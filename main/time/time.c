@@ -24,13 +24,13 @@
 
 #include "apps/sntp/sntp.h"
 
-#include "log.h"
+#include "../misc/log.h"
 #include "time.h"
-#include "kv.h"
-#include "kv_ble.h"
-#include "ble.h"
-#include "ble_db.h"
-#include "wifi.h"
+#include "../core/kv.h"
+#include "../core/kv_ble.h"
+#include "../core/ble.h"
+#include "../ble_db.h"
+#include "../wi-fi/wifi.h"
 
 // "126528f3-7b17-4fd1-ac63-210c9078958e"
 const uint8_t TIME_SERVICE[ESP_UUID_LEN_128] = {0x8e,0x95,0x78,0x90,0x0c,0x21,0x63,0xac,0xd1,0x4f,0x17,0x7b,0xf3,0x28,0x65,0x12};

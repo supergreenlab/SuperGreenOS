@@ -18,10 +18,10 @@
 
 #include "ble_db.h"
 
-#include "log.h"
-#include "ble_private.h"
-#include "ble_utils.h"
-#include "time.h"
+#include "misc/log.h"
+#include "core/ble_private.h"
+#include "core/ble_utils.h"
+#include "time/time.h"
 
 const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
   // Time Service Declaration

@@ -27,8 +27,8 @@
 #include "driver/ledc.h"
 #include "esp_err.h"
 
-#include "kv.h"
-#include "time.h"
+#include "../core/kv.h"
+#include "../time/time.h"
 
 #define min(a, b) (((a) < (b)) ? (a) : (b)) 
 #define max(a, b) (((a) > (b)) ? (a) : (b)) 

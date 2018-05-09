@@ -29,12 +29,12 @@
 #include "esp_gatts_api.h"
 #include "esp_bt_main.h"
 
-#include "log.h"
+#include "../misc/log.h"
 
 #include "ble.h"
 #include "ble_utils.h"
 #include "ble_private.h"
-#include "ble_db.h"
+#include "../ble_db.h"
 
 #define ESP_APP_ID          0x55
 #define DEVICE_NAME      "🤖🍁"

@@ -11,11 +11,11 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-#include "ble.h"
 #include "kv.h"
-#include "wifi.h"
-#include "time.h"
-#include "led.h"
+#include "ble.h"
+#include "../wi-fi/wifi.h"
+#include "../time/time.h"
+#include "../led/led.h"
 
 #define VERSION "v0.1"
 
