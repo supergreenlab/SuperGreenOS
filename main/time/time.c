@@ -142,7 +142,7 @@ void time_task(void *param) {
     set_attr_value(IDX_CHAR_VAL_SIMULATED_TIME, (uint8_t *)&box_time, sizeof(time_t));
     notify_attr(IDX_CHAR_VAL_SIMULATED_TIME);
 
-    vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
+    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
   }
 }
 
