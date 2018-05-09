@@ -24,8 +24,10 @@
 
 #include "apps/sntp/sntp.h"
 
+#include "log.h"
 #include "time.h"
 #include "kv.h"
+#include "kv_ble.h"
 #include "ble.h"
 #include "ble_db.h"
 #include "wifi.h"
@@ -69,8 +71,12 @@ void init_time() {
   defaulti(SIMULATION_DURATION_DAYS, 75);
   defaulti(STARTED_AT, 0);
 
-  seti(STARTED_AT, (int)1518912000); // 02
-  //seti(STARTED_AT, (int)1521331200); // 03
+  sync_ble_i(TIME, IDX_CHAR_VAL_TIME);
+  sync_ble_i(START_DATE_MONTH, IDX_CHAR_VAL_START_DATE_MONTH);
+  sync_ble_i(START_DATE_DAY, IDX_CHAR_VAL_START_DATE_DAY);
+  sync_ble_i(DURATION_DAYS, IDX_CHAR_VAL_DURATION_DAYS);
+  sync_ble_i(SIMULATION_DURATION_DAYS, IDX_CHAR_VAL_SIMULATION_DURATION_DAYS);
+  sync_ble_i(STARTED_AT, IDX_CHAR_VAL_STARTED_AT);
 
   xTaskCreate(time_task, "Time Task", 2048, NULL, 10, NULL);
 }
@@ -165,4 +171,33 @@ static void setup(void) {
   sntp_setoperatingmode(SNTP_OPMODE_POLL);
   sntp_setservername(0, (char *)NTP_SERVER);
   sntp_init();
+}
+
+/* ble callbacks */
+
+void on_set_time(time_t value) {
+  ESP_LOGI(TAG, "on_set_time %d", (int)value);
+  struct timeval tv = { .tv_sec = value, .tv_usec = 0 };
+  settimeofday(&tv, NULL);
+  seti(TIME, (int)value);
+}
+
+void on_set_start_date_month(int value) {
+  seti(START_DATE_MONTH, value);
+}
+
+void on_set_start_date_day(int value) {
+  seti(START_DATE_DAY, value);
+}
+
+void on_set_duration_days(int value) {
+  seti(DURATION_DAYS, value);
+}
+
+void on_set_simulation_duration_days(int value) {
+  seti(SIMULATION_DURATION_DAYS, value);
+}
+
+void on_set_started_at(int value) {
+  seti(STARTED_AT, value);
 }

@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  ble_private.h
+ *       Filename:  kv_ble.h
  *
  *    Description:  
  *
  *        Version:  1.0
- *        Created:  05/09/2018 11:24:04
+ *        Created:  05/09/2018 16:33:37
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,12 +16,12 @@
  * =====================================================================================
  */
 
-#ifndef BLE_PRIVATE_H_
-#define BLE_PRIVATE_H_
+#ifndef KV_BLE_H_
+#define KV_BLE_H_
 
-#include "esp_gap_ble_api.h"
+#include "ble_db.h"
 
-void on_write(esp_ble_gatts_cb_param_t *param);
-void on_read(esp_ble_gatts_cb_param_t *param);
+void sync_ble_i(const char *key, enum idx i);
+void sync_ble_str(const char *key, enum idx i);
 
 #endif

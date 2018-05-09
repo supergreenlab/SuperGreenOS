@@ -19,6 +19,8 @@
 #ifndef KV_H_
 #define KV_H_
 
+#include <stdbool.h>
+
 void init_kv();
 
 int geti(const char * key);
