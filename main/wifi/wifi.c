@@ -49,6 +49,10 @@ const uint8_t WIFI_PASS_UUID[ESP_UUID_LEN_128] = {0xb9,0x5d,0x53,0x82,0x6e,0xcc,
 #define DEFAULT_SSID "default_ssid"
 #define DEFAULT_PASS ""
 
+static const unsigned int DISCONNECTED = 1;
+static const unsigned int CONNECTING = 2;
+static const unsigned int CONNECTED = 3;
+
 static const unsigned int CMD_SSID_CHANGED = 1;
 static const unsigned int CMD_PASS_CHANGED = 1;
 
@@ -66,6 +70,8 @@ static bool is_valid();
 void init_wifi() {
   defaultstr(SSID, DEFAULT_SSID);
   defaultstr(PASS, "");
+
+  set_attr_value(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&DISCONNECTED, sizeof(const unsigned int));
 
   sync_ble_str(SSID, IDX_VALUE(WIFI_SSID));
 
@@ -118,10 +124,14 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
     case SYSTEM_EVENT_STA_START:
       printf("SYSTEM_EVENT_STA_START\n");
       esp_wifi_connect();
+      set_attr_value(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTING, sizeof(const unsigned int));
+      notify_attr(IDX_VALUE(WIFI_STATUS));
       break;
     case SYSTEM_EVENT_STA_GOT_IP:
       printf("SYSTEM_EVENT_STA_GOT_IP\n");
       xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
+      set_attr_value(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTED, sizeof(const unsigned int));
+      notify_attr(IDX_VALUE(WIFI_STATUS));
       break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
       printf("SYSTEM_EVENT_STA_DISCONNECTED\n");
@@ -129,6 +139,8 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
         esp_wifi_connect();
       }
       xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
+      set_attr_value(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&DISCONNECTED, sizeof(const unsigned int));
+      notify_attr(IDX_VALUE(WIFI_STATUS));
       break;
     default:
       break;
