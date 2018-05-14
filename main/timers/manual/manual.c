@@ -18,13 +18,15 @@
 
 #include "manual.h"
 
+#include "../../misc/log.h"
+
 void init_manual() {
 }
 
 void start_manual() {
-
+  ESP_LOGI(TAG, "start_manual");
 }
 
 void stop_manual() {
-
+  ESP_LOGI(TAG, "stop_manual");
 }

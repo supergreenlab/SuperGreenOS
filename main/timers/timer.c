@@ -34,12 +34,45 @@ const uint8_t TIMER_OUTPUT_UUID[ESP_UUID_LEN_128] = {0x89,0x57,0x36,0x6e,0x85,0x
 #define TIMER_TYPE "TIMER_T"
 #define TIMER_OUTPUT "TIMER_O"
 
+static void stop(enum timer t);
+static void start(enum timer t);
+
 void init_timer() {
   defaulti(TIMER_TYPE, TIMER_MANUAL);
   defaulti(TIMER_OUTPUT, 0);
 
   sync_ble_i(TIMER_TYPE, IDX_VALUE(TIMER_TYPE));
   sync_ble_i(TIMER_OUTPUT, IDX_VALUE(TIMER_OUTPUT));
+
+  start(geti(TIMER_TYPE));
+}
+
+static void stop(enum timer t) {
+  switch(t) {
+    case TIMER_MANUAL:
+      stop_manual();
+      break;
+    case TIMER_ONOFF:
+      stop_onoff();
+      break;
+    case TIMER_SEASON:
+      stop_season();
+      break;
+  }
+}
+
+static void start(enum timer t) {
+  switch(t) {
+    case TIMER_MANUAL:
+      start_manual();
+      break;
+    case TIMER_ONOFF:
+      start_onoff();
+      break;
+    case TIMER_SEASON:
+      start_season();
+      break;
+  }
 }
 
 // BLE Callbacks
@@ -48,24 +81,8 @@ void on_set_timer_type(enum timer t) {
   enum timer old = geti(TIMER_TYPE);
 
   seti(TIMER_TYPE, t);
-
-  switch(old) {
-    case TIMER_MANUAL:
-      stop_manual();
-    case TIMER_ONOFF:
-      stop_onoff();
-    case TIMER_SEASON:
-      stop_season();
-  }
-
-  switch(t) {
-    case TIMER_MANUAL:
-      start_manual();
-    case TIMER_ONOFF:
-      start_onoff();
-    case TIMER_SEASON:
-      start_season();
-  }
+  stop(old);
+  start(t);
 }
 
 void on_set_timer_output(int value) {

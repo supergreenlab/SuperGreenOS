@@ -38,8 +38,8 @@ const uint8_t TIME_UUID[ESP_UUID_LEN_128] = {0x9b,0x6a,0x3b,0xe2,0xaa,0xb4,0x33,
 
 #define TIME "TIME"
 
-void time_task(void *param);
-void ntp_task(void *param);
+static void time_task(void *param);
+static void ntp_task(void *param);
 static void setup(void);
 
 void init_time() {
@@ -49,7 +49,7 @@ void init_time() {
   xTaskCreate(time_task, "Time Task", 2048, NULL, 10, NULL);
 }
 
-void time_task(void *param) {
+static void time_task(void *param) {
   if (hasi(TIME)) {
     time_t now = (time_t)geti(TIME);
     struct timeval tv = { .tv_sec = now, .tv_usec = 0 };
@@ -72,7 +72,7 @@ void time_task(void *param) {
   }
 }
 
-void ntp_task(void *param) {
+static void ntp_task(void *param) {
   wait_connected();
   setup();
   vTaskDelete(NULL);

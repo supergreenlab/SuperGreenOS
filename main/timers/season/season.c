@@ -67,11 +67,12 @@ void init_season() {
 }
 
 void start_season() {
+  ESP_LOGI(TAG, "start_season");
   xTaskCreate(simulator_task, "Season Task", 2048, NULL, 10, NULL);
 }
 
 void stop_season() {
-
+  ESP_LOGI(TAG, "stop_season");
 }
 
 time_t get_box_time() {

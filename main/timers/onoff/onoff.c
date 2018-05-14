@@ -63,6 +63,7 @@ void init_onoff() {
 }
 
 void start_onoff() {
+  ESP_LOGI(TAG, "start_onoff");
   BaseType_t ret = xTaskCreate(onoff_task, "onoff task", 1024, NULL, tskIDLE_PRIORITY, NULL);
   if (ret != pdPASS) {
     ESP_LOGE(TAG, "Failed to create task");
@@ -74,6 +75,7 @@ void start_onoff() {
 }
 
 void stop_onoff() {
+  ESP_LOGI(TAG, "stop_onoff");
 }
 
 void onoff_task(void *param) {
