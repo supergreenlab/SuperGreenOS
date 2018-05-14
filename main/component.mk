@@ -1,1 +1,1 @@
-COMPONENT_SRCDIRS := . core/ led/ misc/ time/ timers/ wi-fi/
+COMPONENT_SRCDIRS := . core/ led/ misc/ time/ timers/ timers/season wifi/

@@ -47,6 +47,10 @@ static uint8_t adv_config_done     = 0;
 
 uint16_t handle_table[HRS_IDX_NB];
 
+static uint8_t service_uuid[16] = {
+	0xfb, 0x34, 0x9b, 0x5f, 0x80, 0x00, 0x00, 0x80, 0x00, 0x10, 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00,
+};
+
 /* The length of adv data must be less than 31 bytes */
 static esp_ble_adv_data_t adv_data = {
   .set_scan_rsp    = false,
@@ -59,8 +63,8 @@ static esp_ble_adv_data_t adv_data = {
   .p_manufacturer_data = NULL, //test_manufacturer,
   .service_data_len  = 0,
   .p_service_data    = NULL,
-  .service_uuid_len  = 0, // sizeof(service_uuid),
-  .p_service_uuid    = NULL, // service_uuid,
+  .service_uuid_len  = sizeof(service_uuid),
+  .p_service_uuid    = service_uuid,
   .flag = (ESP_BLE_ADV_FLAG_GEN_DISC | ESP_BLE_ADV_FLAG_BREDR_NOT_SPT),
 };
 
@@ -76,8 +80,8 @@ static esp_ble_adv_data_t scan_rsp_data = {
   .p_manufacturer_data = NULL, //&test_manufacturer[0],
   .service_data_len  = 0,
   .p_service_data    = NULL,
-  .service_uuid_len  = 0, // sizeof(service_uuid),
-  .p_service_uuid    = NULL, // service_uuid,
+  .service_uuid_len  = sizeof(service_uuid),
+  .p_service_uuid    = service_uuid,
   .flag = (ESP_BLE_ADV_FLAG_GEN_DISC | ESP_BLE_ADV_FLAG_BREDR_NOT_SPT),
 };
 
@@ -111,6 +115,7 @@ const uint8_t char_prop_read_write_notify   = ESP_GATT_CHAR_PROP_BIT_WRITE | ESP
 const uint8_t char_prop_read_notify   = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_NOTIFY;
 const uint8_t client_configuration[2]    = {0x01, 0x00};
 const uint8_t i_char_value[4]         = {0x00, 0x0, 0x0, 0x0};
+const uint8_t str_char_value[1]         = {0};
 
 /* Full Database Description - Used to add attributes into the database */
 static void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param)
@@ -248,7 +253,7 @@ static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
       else {
         ESP_LOGI(TAG, "create attribute table successfully, the number handle = %d\n",param->add_attr_tab.num_handle);
         memcpy(handle_table, param->add_attr_tab.handles, sizeof(handle_table));
-        esp_ble_gatts_start_service(handle_table[IDX_TIME_SVC]);
+        esp_ble_gatts_start_service(handle_table[IDX_SVC]);
       }
       break;
     }

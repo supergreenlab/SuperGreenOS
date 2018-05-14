@@ -30,6 +30,19 @@
 #include "nvs_flash.h"
 
 #include "wifi.h"
+#include "../core/kv.h"
+#include "../core/kv_ble.h"
+#include "../ble_db.h"
+
+/*  UUID string: 372fda1c-6d67-cbda-f083-ae31b50e06ee */
+const uint8_t WIFI_STATUS_UUID[ESP_UUID_LEN_128] = {0xee,0x06,0x0e,0xb5,0x31,0xae,0x83,0xf0,0xda,0xcb,0x67,0x6d,0x1c,0xda,0x2f,0x37};
+/*  UUID string: 6ca36981-9c55-74a5-5415-e16bc1c3fe17 */
+const uint8_t WIFI_SSID_UUID[ESP_UUID_LEN_128] = {0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x6c};
+/*  UUID string: f7e40b10-6cfe-a6f1-fea0-cc6e82535db9 */
+const uint8_t WIFI_PASS_UUID[ESP_UUID_LEN_128] = {0xb9,0x5d,0x53,0x82,0x6e,0xcc,0xa0,0xfe,0xf1,0xa6,0xfe,0x6c,0x10,0x0b,0xe4,0xf7};
+
+#define SSID "WSSID"
+#define PASS "WPASS"
 
 #define DEFAULT_SSID "FastAndSeriousSoft"
 #define DEFAULT_PASS "42FastAndSeriousSoft42"
@@ -46,6 +59,10 @@ static void setup(void);
 static esp_err_t event_handler(void *ctx, system_event_t *event);
 
 void init_wifi() {
+  defaultstr(SSID, DEFAULT_SSID);
+  defaultstr(PASS, "");
+
+  sync_ble_str(SSID, IDX_VALUE(WIFI_SSID));
   setup();
 }
 
@@ -93,4 +110,15 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
       break;
   }
   return ESP_OK;
+}
+
+// BLE Callbacks
+
+
+void on_set_wifi_ssid(const char *ssid) {
+
+}
+
+void on_set_wifi_password(const char *pass) {
+
 }

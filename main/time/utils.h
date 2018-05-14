@@ -1,12 +1,12 @@
 /*
  * =====================================================================================
  *
- *       Filename:  wifi.h
+ *       Filename:  utils.h
  *
  *    Description:  
  *
  *        Version:  1.0
- *        Created:  04/16/2018 19:25:08
+ *        Created:  05/10/2018 20:32:35
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,19 +16,12 @@
  * =====================================================================================
  */
 
-#ifndef WIFI_H_
-#define WIFI_H_
+#ifndef UTILS_H_
+#define UTILS_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <time.h>
 
-  void init_wifi();
-
-  void wait_connected();
-
-#ifdef __cplusplus
-}
-#endif
+void print_time(time_t t);
+void print_timeinfo(struct tm timeinfo);
 
 #endif

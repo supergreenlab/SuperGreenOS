@@ -13,7 +13,7 @@
 
 #include "kv.h"
 #include "ble.h"
-#include "../wi-fi/wifi.h"
+#include "../wifi/wifi.h"
 #include "../time/time.h"
 #include "../led/led.h"
 

@@ -24,16 +24,14 @@
 
 #include "apps/sntp/sntp.h"
 
-#include "log.h"
-#include "time.h"
-#include "kv.h"
-#include "kv_ble.h"
-#include "ble.h"
-#include "ble_db.h"
-#include "wifi.h"
+#include "../../misc/log.h"
+#include "../../time/utils.h"
+#include "../../core/kv.h"
+#include "../../core/kv_ble.h"
+#include "../../core/ble.h"
+#include "../../ble_db.h"
+#include "../../wifi/wifi.h"
 
-// "c80d8382-9e41-34cf-10f5-7c3f3c40e192"
-const uint8_t SEASON_SIMULATOR_SERVICE[ESP_UUID_LEN_128] = {0x92,0xe1,0x40,0x3c,0x3f,0x7c,0xf5,0x10,0xcf,0x34,0x41,0x9e,0x82,0x83,0x0d,0xc8};
 // "3867a37c-85a9-338c-40ac-96d4ee586841"
 const uint8_t SIMULATED_TIME_UUID[ESP_UUID_LEN_128] = {0x41,0x68,0x58,0xee,0xd4,0x96,0xac,0x40,0x8c,0x33,0xa9,0x85,0x7c,0xa3,0x67,0x38};
 // "829bfbd2-a7e1-4c16-b7e2-4a8fd6261f40"
@@ -67,8 +65,14 @@ void init_season_simulator() {
   sync_ble_i(DURATION_DAYS, IDX_CHAR_VAL_DURATION_DAYS);
   sync_ble_i(SIMULATION_DURATION_DAYS, IDX_CHAR_VAL_SIMULATION_DURATION_DAYS);
   sync_ble_i(STARTED_AT, IDX_CHAR_VAL_STARTED_AT);
+}
 
-  xTaskCreate(simulator_task, "Time Task", 2048, NULL, 10, NULL);
+void start_season_simulator() {
+  xTaskCreate(simulator_task, "Season Task", 2048, NULL, 10, NULL);
+}
+
+void stop_season_simulator() {
+
 }
 
 time_t get_box_time() {

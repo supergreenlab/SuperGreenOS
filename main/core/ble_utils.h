@@ -41,47 +41,91 @@ struct gatts_profile_inst {
 };
 
 #define CHAR_DECLARATION_SIZE     (sizeof(uint8_t))
-#define GATTS_DEMO_CHAR_VAL_LEN_MAX 517
+#define CHAR_VAL_LEN_MAX 517
 
-#define RW_I_NOTIFIABLE_CHAR(IDX_CHAR, IDX_CHAR_VAL, IDX_CHAR_CFG, CHAR_UUID) [IDX_CHAR]   =  \
+// I
+
+#define RW_I_NOTIFIABLE_CHAR(name) [IDX_CHAR_##name]   =  \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
     CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read_write_notify}}, \
   \
-  [IDX_CHAR_VAL] = \
-  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&CHAR_UUID, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
-    GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(i_char_value), (uint8_t *)i_char_value}}, \
+  [IDX_CHAR_VAL_##name] = \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&( name ## _UUID), ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
+    sizeof(i_char_value), sizeof(i_char_value), (uint8_t *)i_char_value}}, \
   \
-  [IDX_CHAR_CFG]  = \
+  [IDX_CHAR_CFG_##name]  = \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_client_config_uuid, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
     sizeof(uint16_t), sizeof(client_configuration), (uint8_t *)client_configuration}}
 
-#define R_I_NOTIFIABLE_CHAR(IDX_CHAR, IDX_CHAR_VAL, IDX_CHAR_CFG, CHAR_UUID) [IDX_CHAR]   =  \
+#define R_I_NOTIFIABLE_CHAR(name) [IDX_CHAR_##name]   =  \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
     CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read_notify}}, \
   \
-  [IDX_CHAR_VAL] = \
-  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&CHAR_UUID, ESP_GATT_PERM_READ, \
-    GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(i_char_value), (uint8_t *)i_char_value}}, \
+  [IDX_CHAR_VAL_##name] = \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&( name ## _UUID), ESP_GATT_PERM_READ, \
+    sizeof(i_char_value), sizeof(i_char_value), (uint8_t *)i_char_value}}, \
   \
-  [IDX_CHAR_CFG]  = \
+  [IDX_CHAR_CFG_##name]  = \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_client_config_uuid, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
     sizeof(uint16_t), sizeof(client_configuration), (uint8_t *)client_configuration}}
 
-#define RW_I_CHAR(IDX_CHAR, IDX_CHAR_VAL, CHAR_UUID) [IDX_CHAR]   =  \
+#define RW_I_CHAR(name) [IDX_CHAR_##name]   =  \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
     CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read_write}}, \
   \
-  [IDX_CHAR_VAL] = \
-  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&CHAR_UUID, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
-    GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(i_char_value), (uint8_t *)i_char_value}}
+  [IDX_CHAR_VAL_##name] = \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&( name ## _UUID), ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
+    sizeof(i_char_value), sizeof(i_char_value), (uint8_t *)i_char_value}}
 
-#define R_I_CHAR(IDX_CHAR, IDX_CHAR_VAL, CHAR_UUID) [IDX_CHAR]   =  \
+#define R_I_CHAR(name) [IDX_CHAR_##name]   =  \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
     CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}}, \
   \
-  [IDX_CHAR_VAL] = \
-  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&CHAR_UUID, ESP_GATT_PERM_READ, \
-    GATTS_DEMO_CHAR_VAL_LEN_MAX, sizeof(i_char_value), (uint8_t *)i_char_value}}
+  [IDX_CHAR_VAL_##name] = \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&( name ## _UUID), ESP_GATT_PERM_READ, \
+    sizeof(i_char_value), sizeof(i_char_value), (uint8_t *)i_char_value}}
+
+// STR
+
+#define RW_STR_NOTIFIABLE_CHAR(name) [IDX_CHAR_##name]   =  \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
+    CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read_write_notify}}, \
+  \
+  [IDX_CHAR_VAL_##name] = \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&( name ## _UUID), ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
+    CHAR_VAL_LEN_MAX, sizeof(str_char_value), (uint8_t *)str_char_value}}, \
+  \
+  [IDX_CHAR_CFG_##name]  = \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_client_config_uuid, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
+    sizeof(uint16_t), sizeof(client_configuration), (uint8_t *)client_configuration}}
+
+#define R_STR_NOTIFIABLE_CHAR(name) [IDX_CHAR_##name]   =  \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
+    CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read_notify}}, \
+  \
+  [IDX_CHAR_VAL_##name] = \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&( name ## _UUID), ESP_GATT_PERM_READ, \
+    CHAR_VAL_LEN_MAX, sizeof(str_char_value), (uint8_t *)str_char_value}}, \
+  \
+  [IDX_CHAR_CFG_##name]  = \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_client_config_uuid, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
+    sizeof(uint16_t), sizeof(client_configuration), (uint8_t *)client_configuration}}
+
+#define RW_STR_CHAR(name) [IDX_CHAR_##name]   =  \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
+    CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read_write}}, \
+  \
+  [IDX_CHAR_VAL_##name] = \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&( name ## _UUID), ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
+    CHAR_VAL_LEN_MAX, sizeof(str_char_value), (uint8_t *)str_char_value}}
+
+#define R_STR_CHAR(name) [IDX_CHAR_##name]   =  \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
+    CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read}}, \
+  \
+  [IDX_CHAR_VAL_##name] = \
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&( name ## _UUID), ESP_GATT_PERM_READ, \
+    CHAR_VAL_LEN_MAX, sizeof(str_char_value), (uint8_t *)str_char_value}}
 
 #define PROFILE_APP_IDX       0
 
@@ -98,5 +142,6 @@ extern const uint8_t char_prop_read_write_notify;
 extern const uint8_t char_prop_read_notify;
 extern const uint8_t client_configuration[2];
 extern const uint8_t i_char_value[4];
+extern const uint8_t str_char_value[1];
 
 #endif

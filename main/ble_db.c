@@ -22,38 +22,62 @@
 #include "core/ble_private.h"
 #include "core/ble_utils.h"
 #include "time/time.h"
+#include "timers/timer.h"
+#include "wifi/wifi.h"
+#include "timers/season/season_simulator.h"
+
+static const uint16_t GATTS_SERVICE_UUID      = 0x00FF;
 
 const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
   // Time Service Declaration
-  [IDX_TIME_SVC]    =
+  [IDX_SVC]    =
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&primary_service_uuid, ESP_GATT_PERM_READ,
-    ESP_UUID_LEN_16, sizeof(TIME_SERVICE), (uint8_t *)TIME_SERVICE}},
+    sizeof(uint16_t), sizeof(GATTS_SERVICE_UUID), (uint8_t *)&GATTS_SERVICE_UUID}},
 
-  RW_I_NOTIFIABLE_CHAR(IDX_CHAR_TIME, IDX_CHAR_VAL_TIME, IDX_CHAR_CFG_TIME, TIME_UUID),
-  R_I_NOTIFIABLE_CHAR(IDX_CHAR_SIMULATED_TIME, IDX_CHAR_VAL_SIMULATED_TIME, IDX_CHAR_CFG_SIMULATED_TIME, SIMULATED_TIME_UUID),
-  RW_I_CHAR(IDX_CHAR_START_DATE_MONTH, IDX_CHAR_VAL_START_DATE_MONTH, START_DATE_MONTH_UUID),
-  RW_I_CHAR(IDX_CHAR_START_DATE_DAY, IDX_CHAR_VAL_START_DATE_DAY, START_DATE_DAY_UUID),
-  RW_I_CHAR(IDX_CHAR_DURATION_DAYS, IDX_CHAR_VAL_DURATION_DAYS, DURATION_DAYS_UUID),
-  RW_I_CHAR(IDX_CHAR_SIMULATION_DURATION_DAYS, IDX_CHAR_VAL_SIMULATION_DURATION_DAYS, SIMULATION_DURATION_DAYS_UUID),
-  RW_I_CHAR(IDX_CHAR_STARTED_AT, IDX_CHAR_VAL_STARTED_AT, STARTED_AT_UUID)
+  RW_I_NOTIFIABLE_CHAR(TIME),
+
+  RW_I_NOTIFIABLE_CHAR(TIMER_TYPE),
+  RW_I_NOTIFIABLE_CHAR(TIMER_OUTPUT),
+
+  R_I_NOTIFIABLE_CHAR(SIMULATED_TIME),
+  RW_I_CHAR(START_DATE_MONTH),
+  RW_I_CHAR(START_DATE_DAY),
+  RW_I_CHAR(DURATION_DAYS),
+  RW_I_CHAR(SIMULATION_DURATION_DAYS),
+  RW_I_CHAR(STARTED_AT),
+
+  R_I_NOTIFIABLE_CHAR(WIFI_STATUS),
+  RW_STR_CHAR(WIFI_SSID),
+  RW_STR_CHAR(WIFI_PASS),
 };
 
 void on_write(esp_ble_gatts_cb_param_t *param) {
   ESP_LOGI(TAG, "on_write");
 
   // TIME SERVICE
-  if (param->write.handle == handle_table[IDX_CHAR_VAL_TIME]) {
+  if (param->write.handle == handle_table[IDX_VALUE(TIME)]) {
     on_set_time(*(uint32_t *)(&param->write.value[0]));
-  } else if (param->write.handle == handle_table[IDX_CHAR_VAL_START_DATE_MONTH]) {
+
+  } else if (param->write.handle == handle_table[IDX_VALUE(TIMER_TYPE)]) {
+    on_set_timer_type((enum timer)*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(TIMER_OUTPUT)]) {
+    on_set_timer_output(*(uint32_t *)(&param->write.value[0]));
+
+  } else if (param->write.handle == handle_table[IDX_VALUE(START_DATE_MONTH)]) {
     on_set_start_date_month(*(uint32_t *)(&param->write.value[0]));
-  } else if (param->write.handle == handle_table[IDX_CHAR_VAL_START_DATE_DAY]) {
+  } else if (param->write.handle == handle_table[IDX_VALUE(START_DATE_DAY)]) {
     on_set_start_date_day(*(uint32_t *)(&param->write.value[0]));
-  } else if (param->write.handle == handle_table[IDX_CHAR_VAL_DURATION_DAYS]) {
+  } else if (param->write.handle == handle_table[IDX_VALUE(DURATION_DAYS)]) {
     on_set_duration_days(*(uint32_t *)(&param->write.value[0]));
-  } else if (param->write.handle == handle_table[IDX_CHAR_VAL_SIMULATION_DURATION_DAYS]) {
+  } else if (param->write.handle == handle_table[IDX_VALUE(SIMULATION_DURATION_DAYS)]) {
     on_set_duration_days(*(uint32_t *)(&param->write.value[0]));
-  } else if (param->write.handle == handle_table[IDX_CHAR_VAL_STARTED_AT]) {
+  } else if (param->write.handle == handle_table[IDX_VALUE(STARTED_AT)]) {
     on_set_started_at(*(uint32_t *)(&param->write.value[0]));
+
+  } else if (param->write.handle == handle_table[IDX_VALUE(WIFI_SSID)]) {
+    on_set_wifi_ssid((const char *)param->write.value);
+  } else if (param->write.handle == handle_table[IDX_VALUE(WIFI_PASS)]) {
+    on_set_wifi_password((const char *)param->write.value);
   }
 }
 
