@@ -18,13 +18,16 @@
 
 #include "ble_db.h"
 
+#include "string.h"
+
 #include "misc/log.h"
 #include "core/ble_private.h"
 #include "core/ble_utils.h"
 #include "time/time.h"
 #include "timers/timer.h"
 #include "wifi/wifi.h"
-#include "timers/season/season_simulator.h"
+#include "timers/onoff/onoff.h"
+#include "timers/season/season.h"
 
 static const uint16_t GATTS_SERVICE_UUID      = 0x00FF;
 
@@ -45,6 +48,11 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
   RW_I_CHAR(DURATION_DAYS),
   RW_I_CHAR(SIMULATION_DURATION_DAYS),
   RW_I_CHAR(STARTED_AT),
+  
+  RW_I_CHAR(ON_HOUR),
+  RW_I_CHAR(ON_MIN),
+  RW_I_CHAR(OFF_HOUR),
+  RW_I_CHAR(OFF_MIN),
 
   R_I_NOTIFIABLE_CHAR(WIFI_STATUS),
   RW_STR_CHAR(WIFI_SSID),
@@ -57,13 +65,15 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
   // TIME SERVICE
   if (param->write.handle == handle_table[IDX_VALUE(TIME)]) {
     on_set_time(*(uint32_t *)(&param->write.value[0]));
-
-  } else if (param->write.handle == handle_table[IDX_VALUE(TIMER_TYPE)]) {
+  }
+  
+  else if (param->write.handle == handle_table[IDX_VALUE(TIMER_TYPE)]) {
     on_set_timer_type((enum timer)*(uint32_t *)(&param->write.value[0]));
   } else if (param->write.handle == handle_table[IDX_VALUE(TIMER_OUTPUT)]) {
     on_set_timer_output(*(uint32_t *)(&param->write.value[0]));
-
-  } else if (param->write.handle == handle_table[IDX_VALUE(START_DATE_MONTH)]) {
+  }
+  
+  else if (param->write.handle == handle_table[IDX_VALUE(START_DATE_MONTH)]) {
     on_set_start_date_month(*(uint32_t *)(&param->write.value[0]));
   } else if (param->write.handle == handle_table[IDX_VALUE(START_DATE_DAY)]) {
     on_set_start_date_day(*(uint32_t *)(&param->write.value[0]));
@@ -73,10 +83,15 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
     on_set_duration_days(*(uint32_t *)(&param->write.value[0]));
   } else if (param->write.handle == handle_table[IDX_VALUE(STARTED_AT)]) {
     on_set_started_at(*(uint32_t *)(&param->write.value[0]));
-
-  } else if (param->write.handle == handle_table[IDX_VALUE(WIFI_SSID)]) {
-    on_set_wifi_ssid((const char *)param->write.value);
+  }
+  
+  else if (param->write.handle == handle_table[IDX_VALUE(WIFI_SSID)]) {
+    char ssid[32] = {0};
+    strncpy(ssid, (const char *)param->write.value, param->write.len);
+    on_set_wifi_ssid(ssid);
   } else if (param->write.handle == handle_table[IDX_VALUE(WIFI_PASS)]) {
+    char pass[64] = {0};
+    strncpy(pass, (const char *)param->write.value, param->write.len);
     on_set_wifi_password((const char *)param->write.value);
   }
 }

@@ -29,12 +29,13 @@ extern const uint8_t TIMER_OUTPUT_UUID[ESP_UUID_LEN_128];
 enum timer {
   TIMER_MANUAL,
   TIMER_ONOFF,
-  TIMER_SEASON_SIMULATOR,
+  TIMER_SEASON,
 };
 
 #define TIMER_TYPE "TIMER_T"
 #define TIMER_OUTPUT "TIMER_O"
 
+void init_timer();
 void on_set_timer_type(enum timer t);
 void on_set_timer_output(int value);
 

@@ -11,11 +11,15 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-#include "kv.h"
-#include "ble.h"
-#include "../wifi/wifi.h"
-#include "../time/time.h"
-#include "../led/led.h"
+#include "core/kv.h"
+#include "core/ble.h"
+#include "wifi/wifi.h"
+#include "time/time.h"
+#include "led/led.h"
+#include "timers/timer.h"
+#include "timers/manual/manual.h"
+#include "timers/onoff/onoff.h"
+#include "timers/season/season.h"
 
 #define VERSION "v0.1"
 
@@ -25,8 +29,13 @@ void app_main() {
     init_kv();
     init_ble();
     init_wifi();
-    init_time();
     init_led();
+    init_time();
+
+    init_timer();
+    init_manual();
+    init_onoff();
+    init_season();
 
     fflush(stdout);
     while(1) vTaskDelay(10);

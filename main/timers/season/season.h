@@ -32,8 +32,10 @@ extern "C" {
   extern const uint8_t SIMULATION_DURATION_DAYS_UUID[ESP_UUID_LEN_128];
   extern const uint8_t STARTED_AT_UUID[ESP_UUID_LEN_128];
 
-  void init_season_simulator();
-  void start_season_simulator();
+  void init_season();
+  void start_season();
+  void stop_season();
+  
   time_t get_box_time();
 
   void on_set_start_date_month(int value);

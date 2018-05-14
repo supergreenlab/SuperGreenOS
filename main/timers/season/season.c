@@ -15,7 +15,6 @@
  *
  * =====================================================================================
  */
-#include <stdio.h>
 #include <time.h>
 #include <string.h>
 
@@ -53,7 +52,7 @@ const uint8_t STARTED_AT_UUID[ESP_UUID_LEN_128] = {0xa2,0x95,0x3b,0x05,0x4b,0x30
 
 void simulator_task(void *param);
 
-void init_season_simulator() {
+void init_season() {
   defaulti(START_DATE_MONTH, 4);
   defaulti(START_DATE_DAY, 1);
   defaulti(DURATION_DAYS, 195);
@@ -67,11 +66,11 @@ void init_season_simulator() {
   sync_ble_i(STARTED_AT, IDX_CHAR_VAL_STARTED_AT);
 }
 
-void start_season_simulator() {
+void start_season() {
   xTaskCreate(simulator_task, "Season Task", 2048, NULL, 10, NULL);
 }
 
-void stop_season_simulator() {
+void stop_season() {
 
 }
 
@@ -113,7 +112,7 @@ time_t get_box_time() {
 
 void simulator_task(void *param) {
   while(true) {
-    printf("Simulated time: ");
+    ESP_LOGI(TAG, "Simulated time: ");
     time_t box_time = get_box_time();
     print_time(box_time);
     set_attr_value(IDX_CHAR_VAL_SIMULATED_TIME, (uint8_t *)&box_time, sizeof(time_t));

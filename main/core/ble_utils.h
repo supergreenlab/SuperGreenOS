@@ -57,6 +57,8 @@ struct gatts_profile_inst {
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_client_config_uuid, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
     sizeof(uint16_t), sizeof(client_configuration), (uint8_t *)client_configuration}}
 
+//
+
 #define R_I_NOTIFIABLE_CHAR(name) [IDX_CHAR_##name]   =  \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
     CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read_notify}}, \
@@ -69,6 +71,8 @@ struct gatts_profile_inst {
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_client_config_uuid, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
     sizeof(uint16_t), sizeof(client_configuration), (uint8_t *)client_configuration}}
 
+//
+
 #define RW_I_CHAR(name) [IDX_CHAR_##name]   =  \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
     CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read_write}}, \
@@ -76,6 +80,8 @@ struct gatts_profile_inst {
   [IDX_CHAR_VAL_##name] = \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&( name ## _UUID), ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
     sizeof(i_char_value), sizeof(i_char_value), (uint8_t *)i_char_value}}
+
+//
 
 #define R_I_CHAR(name) [IDX_CHAR_##name]   =  \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
@@ -99,6 +105,8 @@ struct gatts_profile_inst {
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_client_config_uuid, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
     sizeof(uint16_t), sizeof(client_configuration), (uint8_t *)client_configuration}}
 
+//
+
 #define R_STR_NOTIFIABLE_CHAR(name) [IDX_CHAR_##name]   =  \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
     CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read_notify}}, \
@@ -111,6 +119,8 @@ struct gatts_profile_inst {
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_client_config_uuid, ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
     sizeof(uint16_t), sizeof(client_configuration), (uint8_t *)client_configuration}}
 
+//
+
 #define RW_STR_CHAR(name) [IDX_CHAR_##name]   =  \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
     CHAR_DECLARATION_SIZE, CHAR_DECLARATION_SIZE, (uint8_t *)&char_prop_read_write}}, \
@@ -118,6 +128,8 @@ struct gatts_profile_inst {
   [IDX_CHAR_VAL_##name] = \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_128, (uint8_t *)&( name ## _UUID), ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE, \
     CHAR_VAL_LEN_MAX, sizeof(str_char_value), (uint8_t *)str_char_value}}
+
+//
 
 #define R_STR_CHAR(name) [IDX_CHAR_##name]   =  \
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&character_declaration_uuid, ESP_GATT_PERM_READ, \
