@@ -187,8 +187,6 @@ void init_keys(led_config_t config) {
   defaulti(config.duty_key, 0);
   defaulti(config.power_key, 100);
 
-  seti(config.power_key, 100);
-
   sync_ble_i(config.duty_key, config.duty_val_idx);
   sync_ble_i(config.power_key, config.power_val_idx);
 }
@@ -218,7 +216,7 @@ void led_task(void *param) {
     for (int i = 0; i < N_CHANNELS; ++i) {
       int duty = geti(ledc_channels[i].duty_key);
       int power = geti(ledc_channels[i].power_key);
-      ESP_LOGI(TAG, "power: %d duty: %d led: %d\n", power, duty, (int)((double)duty * (double)power/100));
+      ESP_LOGI(TAG, "power: %d duty: %d led: %d", power, duty, (int)((double)duty * (double)power/100));
 
       fade_no_wait_led(ledc_channels[i].channel_config, (int)((double)duty * (double)power/100));
     }
@@ -229,7 +227,7 @@ void led_task(void *param) {
 }
 
 void init_led() {
-  ESP_LOGI(TAG, "Initializing led task\n");
+  ESP_LOGI(TAG, "Initializing led task");
 
   cmd = xQueueCreate(10, sizeof(unsigned char));
   if (cmd == NULL) {
@@ -257,50 +255,62 @@ void refresh_led() {
 
 void on_set_led_0_0_pwr(int value) {
   seti(LED_0_0_PWR, value);
+  refresh_led();
 }
 
 void on_set_led_0_1_pwr(int value) {
   seti(LED_0_1_PWR, value);
+  refresh_led();
 }
 
 void on_set_led_0_2_pwr(int value) {
   seti(LED_0_2_PWR, value);
+  refresh_led();
 }
 
 void on_set_led_1_0_pwr(int value) {
   seti(LED_1_0_PWR, value);
+  refresh_led();
 }
 
 void on_set_led_1_1_pwr(int value) {
   seti(LED_1_1_PWR, value);
+  refresh_led();
 }
 
 void on_set_led_1_2_pwr(int value) {
   seti(LED_1_2_PWR, value);
+  refresh_led();
 }
 
 
 
 void on_set_led_0_0_duty(int value) {
   seti(LED_0_0_DUTY, value);
+  refresh_led();
 }
 
 void on_set_led_0_1_duty(int value) {
   seti(LED_0_1_DUTY, value);
+  refresh_led();
 }
 
 void on_set_led_0_2_duty(int value) {
   seti(LED_0_2_DUTY, value);
+  refresh_led();
 }
 
 void on_set_led_1_0_duty(int value) {
   seti(LED_1_0_DUTY, value);
+  refresh_led();
 }
 
 void on_set_led_1_1_duty(int value) {
   seti(LED_1_1_DUTY, value);
+  refresh_led();
 }
 
 void on_set_led_1_2_duty(int value) {
   seti(LED_1_2_DUTY, value);
+  refresh_led();
 }

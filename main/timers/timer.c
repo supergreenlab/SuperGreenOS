@@ -115,6 +115,7 @@ static void timer_task(void *param) {
 void on_set_timer_type(enum timer t) {
   enum timer old = geti(TIMER_TYPE);
 
+  if (old == t) return;
   seti(TIMER_TYPE, t);
   stop(old);
   start(t);

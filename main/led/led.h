@@ -57,6 +57,20 @@ extern const uint8_t LED_1_0_DUTY_UUID[ESP_UUID_LEN_128];
 extern const uint8_t LED_1_1_DUTY_UUID[ESP_UUID_LEN_128];
 extern const uint8_t LED_1_2_DUTY_UUID[ESP_UUID_LEN_128];
 
+void on_set_led_0_0_pwr(int value);
+void on_set_led_0_1_pwr(int value);
+void on_set_led_0_2_pwr(int value);
+void on_set_led_1_0_pwr(int value);
+void on_set_led_1_1_pwr(int value);
+void on_set_led_1_2_pwr(int value);
+
+void on_set_led_0_0_duty(int value);
+void on_set_led_0_1_duty(int value);
+void on_set_led_0_2_duty(int value);
+void on_set_led_1_0_duty(int value);
+void on_set_led_1_1_duty(int value);
+void on_set_led_1_2_duty(int value);
+
 void init_led();
 void refresh_led();
 

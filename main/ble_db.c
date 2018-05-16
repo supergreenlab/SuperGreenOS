@@ -110,15 +110,30 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
     on_set_wifi_password((const char *)param->write.value);
   }
 
-  else if (
-    (param->write.handle == handle_table[IDX_VALUE(LED_0_0_PWR)] || param->write.handle == handle_table[IDX_VALUE(LED_0_0_DUTY)]) ||
-    (param->write.handle == handle_table[IDX_VALUE(LED_0_1_PWR)] || param->write.handle == handle_table[IDX_VALUE(LED_0_1_DUTY)]) ||
-    (param->write.handle == handle_table[IDX_VALUE(LED_0_2_PWR)] || param->write.handle == handle_table[IDX_VALUE(LED_0_2_DUTY)]) ||
-    (param->write.handle == handle_table[IDX_VALUE(LED_1_0_PWR)] || param->write.handle == handle_table[IDX_VALUE(LED_1_0_DUTY)]) ||
-    (param->write.handle == handle_table[IDX_VALUE(LED_1_1_PWR)] || param->write.handle == handle_table[IDX_VALUE(LED_1_1_DUTY)]) ||
-    (param->write.handle == handle_table[IDX_VALUE(LED_1_2_PWR)] || param->write.handle == handle_table[IDX_VALUE(LED_1_2_DUTY)])
-  ) {
-    refresh_led();
+  else if (param->write.handle == handle_table[IDX_VALUE(LED_0_0_PWR)]) {
+    on_set_led_0_0_pwr(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(LED_0_1_PWR)]) {
+    on_set_led_0_1_pwr(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(LED_0_2_PWR)]) {
+    on_set_led_0_2_pwr(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(LED_1_0_PWR)]) {
+    on_set_led_1_0_pwr(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(LED_1_1_PWR)]) {
+    on_set_led_1_1_pwr(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(LED_1_2_PWR)]) {
+    on_set_led_1_2_pwr(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(LED_0_0_DUTY)]) {
+    on_set_led_0_0_duty(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(LED_0_1_DUTY)]) {
+    on_set_led_0_1_duty(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(LED_0_2_DUTY)]) {
+    on_set_led_0_2_duty(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(LED_1_0_DUTY)]) {
+    on_set_led_1_0_duty(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(LED_1_1_DUTY)]) {
+    on_set_led_1_1_duty(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(LED_1_2_DUTY)]) {
+    on_set_led_1_2_duty(*(uint32_t *)(&param->write.value[0]));
   }
 }
 
