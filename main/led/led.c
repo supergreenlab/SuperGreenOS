@@ -86,97 +86,29 @@ typedef struct led_config {
 
 #define N_CHANNELS 6
 
+#define CHANNEL(side, n, gpio) { \
+    duty_key: LED_##side##_##n##_DUTY, \
+    power_key: LED_##side##_##n##_PWR, \
+    duty_val_idx: IDX_VALUE(LED_##side##_##n##_DUTY), \
+    power_val_idx: IDX_VALUE(LED_##side##_##n##_PWR), \
+    \
+    channel_config: { \
+      gpio_num:    LEDC_LS_CH##gpio##_GPIO, \
+      speed_mode:  LEDC_LOW_SPEED_MODE, \
+      channel:     LEDC_LS_CH##gpio##_CHANNEL, \
+      intr_type:   LEDC_INTR_FADE_END, \
+      timer_sel:   LEDC_TIMER_1, \
+      duty:        0, \
+    } \
+  }
+
 led_config_t ledc_channels[N_CHANNELS] = {
-  {
-    duty_key: LED_0_0_DUTY,
-    power_key: LED_0_0_PWR,
-    duty_val_idx: IDX_VALUE(LED_0_0_PWR),
-    power_val_idx: IDX_VALUE(LED_0_0_DUTY),
-
-    channel_config: {
-      gpio_num:    LEDC_LS_CH0_GPIO,
-      speed_mode:  LEDC_LOW_SPEED_MODE,
-      channel:     LEDC_LS_CH0_CHANNEL,
-      intr_type:   LEDC_INTR_FADE_END,
-      timer_sel:   LEDC_TIMER_1,
-      duty:        0,
-    }
-  },
-  {
-    duty_key: "LED_0_1_DUTY",
-    power_key: "LED_0_1_PWR",
-    duty_val_idx: IDX_VALUE(LED_0_1_PWR),
-    power_val_idx: IDX_VALUE(LED_0_1_DUTY),
-
-    channel_config: {
-      gpio_num:    LEDC_LS_CH1_GPIO,
-      speed_mode:  LEDC_LOW_SPEED_MODE,
-      channel:     LEDC_LS_CH1_CHANNEL,
-      intr_type:   LEDC_INTR_FADE_END,
-      timer_sel:   LEDC_TIMER_1,
-      duty:        0,
-    }
-  },
-  {
-    duty_key: "LED_0_2_DUTY",
-    power_key: "LED_0_2_PWR",
-    duty_val_idx: IDX_VALUE(LED_0_2_PWR),
-    power_val_idx: IDX_VALUE(LED_0_2_DUTY),
-
-    channel_config: {
-      gpio_num:    LEDC_LS_CH2_GPIO,
-      speed_mode:  LEDC_LOW_SPEED_MODE,
-      channel:     LEDC_LS_CH2_CHANNEL,
-      intr_type:   LEDC_INTR_FADE_END,
-      timer_sel:   LEDC_TIMER_1,
-      duty:        0,
-    }
-  },
-  {
-    duty_key: "LED_1_0_DUTY",
-    power_key: "LED_1_0_PWR",
-    duty_val_idx: IDX_VALUE(LED_1_0_PWR),
-    power_val_idx: IDX_VALUE(LED_1_0_DUTY),
-
-    channel_config: {
-      gpio_num:    LEDC_LS_CH3_GPIO,
-      speed_mode:  LEDC_LOW_SPEED_MODE,
-      channel:     LEDC_LS_CH3_CHANNEL,
-      intr_type:   LEDC_INTR_FADE_END,
-      timer_sel:   LEDC_TIMER_1,
-      duty:        0,
-    }
-  },
-  {
-    duty_key: "LED_1_1_DUTY",
-    power_key: "LED_1_1_PWR",
-    duty_val_idx: IDX_VALUE(LED_1_1_PWR),
-    power_val_idx: IDX_VALUE(LED_1_1_DUTY),
-
-    channel_config: {
-      gpio_num:    LEDC_LS_CH4_GPIO,
-      speed_mode:  LEDC_LOW_SPEED_MODE,
-      channel:     LEDC_LS_CH4_CHANNEL,
-      intr_type:   LEDC_INTR_FADE_END,
-      timer_sel:   LEDC_TIMER_1,
-      duty:        0,
-    }
-  },
-  {
-    duty_key: "LED_1_2_DUTY",
-    power_key: "LED_1_2_PWR",
-    duty_val_idx: IDX_VALUE(LED_1_2_PWR),
-    power_val_idx: IDX_VALUE(LED_1_2_DUTY),
-
-    channel_config: {
-      gpio_num:    LEDC_LS_CH5_GPIO,
-      speed_mode:  LEDC_LOW_SPEED_MODE,
-      channel:     LEDC_LS_CH5_CHANNEL,
-      intr_type:   LEDC_INTR_FADE_END,
-      timer_sel:   LEDC_TIMER_1,
-      duty:        0,
-    }
-  },
+  CHANNEL(0, 0, 0),
+  CHANNEL(0, 1, 1),
+  CHANNEL(0, 2, 2),
+  CHANNEL(1, 0, 3),
+  CHANNEL(1, 1, 4),
+  CHANNEL(1, 2, 5)
 };
 
 QueueHandle_t cmd;
@@ -187,6 +119,8 @@ void init_keys(led_config_t config) {
   defaulti(config.duty_key, 0);
   defaulti(config.power_key, 100);
 
+  seti(config.power_key, 100);
+  
   sync_ble_i(config.duty_key, config.duty_val_idx);
   sync_ble_i(config.power_key, config.power_val_idx);
 }
