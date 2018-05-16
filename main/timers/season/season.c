@@ -18,11 +18,14 @@
 #include <time.h>
 #include <string.h>
 
+#include <math.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
 #include "apps/sntp/sntp.h"
 
+#include "../timer.h"
 #include "../../misc/log.h"
 #include "../../time/utils.h"
 #include "../../core/kv.h"
@@ -50,7 +53,10 @@ const uint8_t STARTED_AT_UUID[ESP_UUID_LEN_128] = {0xa2,0x95,0x3b,0x05,0x4b,0x30
 #define SIMULATION_DURATION_DAYS "SIM_DUR_D"
 #define STARTED_AT "ST_AT"
 
-void simulator_task(void *param);
+#define min(a, b) (((a) < (b)) ? (a) : (b)) 
+#define max(a, b) (((a) > (b)) ? (a) : (b)) 
+
+#define YEAR_ADV_OFFSET (time_t)(10*24*60*60) // solstice is 21st June, that's the 172nd day in year
 
 void init_season() {
   defaulti(START_DATE_MONTH, 4);
@@ -68,7 +74,7 @@ void init_season() {
 
 void start_season() {
   ESP_LOGI(TAG, "start_season");
-  xTaskCreate(simulator_task, "Season Task", 2048, NULL, 10, NULL);
+  season_task();
 }
 
 void stop_season() {
@@ -111,16 +117,27 @@ time_t get_box_time() {
   return simulated_time;
 }
 
-void simulator_task(void *param) {
-  while(true) {
-    ESP_LOGI(TAG, "Simulated time: ");
-    time_t box_time = get_box_time();
-    print_time(box_time);
-    set_attr_value(IDX_CHAR_VAL_SIMULATED_TIME, (uint8_t *)&box_time, sizeof(time_t));
-    notify_attr(IDX_CHAR_VAL_SIMULATED_TIME);
+int get_output_for_time() {
+  time_t now = get_box_time() - YEAR_ADV_OFFSET;
 
-    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
-  }
+  struct tm timeinfo;
+  localtime_r(&now, &timeinfo); 
+
+  double day_adv = (double)(timeinfo.tm_hour*60*60 + timeinfo.tm_min*60 + timeinfo.tm_sec) / (double)(24*60*60);
+  double year_adv = (double)(timeinfo.tm_yday) / (double) 365;
+
+  double output = cos(year_adv * M_PI * 2) * 0.5 - cos(day_adv * M_PI * 2) * 0.5;
+  return ((output + 1) / 2) * 100;
+}
+
+void season_task() {
+  ESP_LOGI(TAG, "Simulated time: ");
+  time_t box_time = get_box_time();
+  print_time(box_time);
+  set_attr_value(IDX_VALUE(SIMULATED_TIME), (uint8_t *)&box_time, sizeof(time_t));
+  notify_attr(IDX_VALUE(SIMULATED_TIME));
+
+  update_output(get_output_for_time());
 }
 
 /* ble callbacks */

@@ -30,3 +30,7 @@ void start_manual() {
 void stop_manual() {
   ESP_LOGI(TAG, "stop_manual");
 }
+
+void manual_task() {
+  ESP_LOGI(TAG, "manual_task");
+}

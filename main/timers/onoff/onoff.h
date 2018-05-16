@@ -33,6 +33,7 @@ extern "C" {
   void init_onoff();
   void start_onoff();
   void stop_onoff();
+  void onoff_task();
 
   void on_set_on_hour(int value);
   void on_set_on_min(int value);

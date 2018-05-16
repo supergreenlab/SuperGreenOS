@@ -22,6 +22,7 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 
+#include "../timer.h"
 #include "../../misc/log.h"
 #include "../../core/kv.h"
 #include "../../core/kv_ble.h"
@@ -44,12 +45,6 @@ const uint8_t OFF_MIN_UUID[ESP_UUID_LEN_128] = {0xd4,0xd3,0xef,0x05,0x3f,0x4f,0x
 
 #define NOT_SET INT_MAX
 
-const unsigned char CMD_QUIT = 1;
-
-QueueHandle_t cmd;
-
-void onoff_task(void *param);
-
 void init_onoff() {
   defaulti(ON_HOUR, NOT_SET);
   defaulti(ON_MIN, NOT_SET);
@@ -62,36 +57,41 @@ void init_onoff() {
   sync_ble_i(OFF_MIN, IDX_VALUE(OFF_MIN));
 }
 
+int get_output_for_hour_min() {
+  int on_hour = geti(ON_HOUR);
+  int on_min = geti(ON_MIN);
+  int off_hour = geti(OFF_HOUR);
+  int off_min = geti(OFF_MIN);
+
+  time_t now;
+  struct tm tm_now;
+  time(&now);
+  localtime_r(&now, &tm_now); 
+
+  int on_sec = on_hour * 3600 + on_min * 60;
+  int off_sec = off_hour * 3600 + off_min * 60;
+  int cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
+
+  if (on_sec < off_sec && on_sec < cur_sec && off_sec > cur_sec) {
+    return 100;
+  } else if (on_sec > off_sec && on_sec < cur_sec || cur_sec < off_sec) {
+    return 100;
+  }
+
+  return 0; 
+}
+
 void start_onoff() {
   ESP_LOGI(TAG, "start_onoff");
-  BaseType_t ret = xTaskCreate(onoff_task, "onoff task", 1024, NULL, tskIDLE_PRIORITY, NULL);
-  if (ret != pdPASS) {
-    ESP_LOGE(TAG, "Failed to create task");
-  }
-  cmd = xQueueCreate(10, sizeof(unsigned char));
-  if (cmd == NULL) {
-    ESP_LOGE(TAG, "Failed to create queue");
-  }
+  onoff_task();
 }
 
 void stop_onoff() {
   ESP_LOGI(TAG, "stop_onoff");
 }
 
-void onoff_task(void *param) {
-  unsigned char c;
-  while (1) {
-    if(xQueueReceive(cmd, &c, (TickType_t) 100)) {
-      if (c == CMD_QUIT) {
-        ESP_LOGI(TAG, "onoff timer CMD_QUIT");
-        break;
-      }
-    }
-  }
-
-  vQueueDelete(cmd);
-  cmd = NULL;
-  vTaskDelete(NULL);
+void onoff_task() {
+  update_output(get_output_for_hour_min());
 }
 
 // BLE Callbacks

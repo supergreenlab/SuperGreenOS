@@ -17,8 +17,13 @@
  */
 #include <stdlib.h>
 
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+
 #include "../core/kv.h"
+#include "../core/ble.h"
 #include "../core/kv_ble.h"
+#include "../misc/log.h"
 #include "timer.h"
 #include "../ble_db.h"
 
@@ -31,9 +36,7 @@ const uint8_t TIMER_TYPE_UUID[ESP_UUID_LEN_128] = {0xf3,0xa9,0xfa,0xb2,0x5a,0x41
 /*  UUID string: b2286094-8299-a967-db89-ee856e365789 */
 const uint8_t TIMER_OUTPUT_UUID[ESP_UUID_LEN_128] = {0x89,0x57,0x36,0x6e,0x85,0xee,0x89,0xdb,0x67,0xa9,0x99,0x82,0x94,0x60,0x28,0xb2};
 
-#define TIMER_TYPE "TIMER_T"
-#define TIMER_OUTPUT "TIMER_O"
-
+static void timer_task(void *param);
 static void stop(enum timer t);
 static void start(enum timer t);
 
@@ -45,6 +48,11 @@ void init_timer() {
   sync_ble_i(TIMER_OUTPUT, IDX_VALUE(TIMER_OUTPUT));
 
   start(geti(TIMER_TYPE));
+
+  BaseType_t ret = xTaskCreate(timer_task, "Timer task", 2048, NULL, tskIDLE_PRIORITY, NULL);
+  if (ret != pdPASS) {
+    ESP_LOGE(TAG, "Failed to create task");
+  }
 }
 
 static void stop(enum timer t) {
@@ -75,6 +83,32 @@ static void start(enum timer t) {
   }
 }
 
+void update_output(int output) {
+  ESP_LOGI(TAG, "update_output %d", output);
+  seti(TIMER_OUTPUT, output);
+  set_attr_value(IDX_VALUE(TIMER_OUTPUT), (uint8_t *)&output, sizeof(int));
+  notify_attr(IDX_VALUE(TIMER_OUTPUT));
+}
+
+static void timer_task(void *param) {
+  while (1) {
+    enum timer t = geti(TIMER_TYPE);
+
+    switch(t) {
+      case TIMER_MANUAL:
+        manual_task();
+        break;
+      case TIMER_ONOFF:
+        onoff_task();
+        break;
+      case TIMER_SEASON:
+        season_task();
+        break;
+    }
+    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
+  }
+}
+
 // BLE Callbacks
 
 void on_set_timer_type(enum timer t) {
@@ -82,6 +116,7 @@ void on_set_timer_type(enum timer t) {
 
   seti(TIMER_TYPE, t);
   stop(old);
+  vTaskDelay(10 / portTICK_PERIOD_MS);
   start(t);
 }
 

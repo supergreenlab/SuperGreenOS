@@ -26,6 +26,7 @@
 #include "time/time.h"
 #include "timers/timer.h"
 #include "wifi/wifi.h"
+#include "led/led.h"
 #include "timers/onoff/onoff.h"
 #include "timers/season/season.h"
 
@@ -38,6 +39,20 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
     sizeof(uint16_t), sizeof(GATTS_SERVICE_UUID), (uint8_t *)&GATTS_SERVICE_UUID}},
 
   RW_I_NOTIFIABLE_CHAR(TIME),
+
+  RW_I_NOTIFIABLE_CHAR(LED_0_0_PWR),
+  RW_I_NOTIFIABLE_CHAR(LED_0_1_PWR),
+  RW_I_NOTIFIABLE_CHAR(LED_0_2_PWR),
+  RW_I_NOTIFIABLE_CHAR(LED_1_0_PWR),
+  RW_I_NOTIFIABLE_CHAR(LED_1_1_PWR),
+  RW_I_NOTIFIABLE_CHAR(LED_1_2_PWR),
+
+  RW_I_NOTIFIABLE_CHAR(LED_0_0_DUTY),
+  RW_I_NOTIFIABLE_CHAR(LED_0_1_DUTY),
+  RW_I_NOTIFIABLE_CHAR(LED_0_2_DUTY),
+  RW_I_NOTIFIABLE_CHAR(LED_1_0_DUTY),
+  RW_I_NOTIFIABLE_CHAR(LED_1_1_DUTY),
+  RW_I_NOTIFIABLE_CHAR(LED_1_2_DUTY),
 
   RW_I_CHAR(TIMER_TYPE),
   RW_I_NOTIFIABLE_CHAR(TIMER_OUTPUT),

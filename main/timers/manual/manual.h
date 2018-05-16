@@ -26,6 +26,7 @@ extern "C" {
   void init_manual();
   void start_manual();
   void stop_manual();
+  void manual_task();
 
 #ifdef __cplusplus
 }

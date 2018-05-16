@@ -19,6 +19,8 @@
 #ifndef TIMER_H_
 #define TIMER_H_
 
+#include "esp_gatt_common_api.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -34,6 +36,8 @@ enum timer {
 
 #define TIMER_TYPE "TIMER_T"
 #define TIMER_OUTPUT "TIMER_O"
+
+void update_output(int output);
 
 void init_timer();
 void on_set_timer_type(enum timer t);

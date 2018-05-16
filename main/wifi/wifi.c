@@ -54,7 +54,7 @@ static const unsigned int CONNECTING = 2;
 static const unsigned int CONNECTED = 3;
 
 static const unsigned int CMD_SSID_CHANGED = 1;
-static const unsigned int CMD_PASS_CHANGED = 1;
+static const unsigned int CMD_PASS_CHANGED = 2;
 
 static QueueHandle_t cmd;
 

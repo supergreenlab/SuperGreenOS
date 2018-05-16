@@ -35,6 +35,7 @@ extern "C" {
   void init_season();
   void start_season();
   void stop_season();
+  void season_task();
   
   time_t get_box_time();
 
