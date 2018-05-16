@@ -58,6 +58,8 @@ const uint8_t STARTED_AT_UUID[ESP_UUID_LEN_128] = {0xa2,0x95,0x3b,0x05,0x4b,0x30
 
 #define YEAR_ADV_OFFSET (time_t)(10*24*60*60) // solstice is 21st June, that's the 172nd day in year
 
+void season_task();
+
 void init_season() {
   defaulti(START_DATE_MONTH, 4);
   defaulti(START_DATE_DAY, 1);
@@ -126,7 +128,7 @@ int get_output_for_time() {
   double day_adv = (double)(timeinfo.tm_hour*60*60 + timeinfo.tm_min*60 + timeinfo.tm_sec) / (double)(24*60*60);
   double year_adv = (double)(timeinfo.tm_yday) / (double) 365;
 
-  double output = cos(year_adv * M_PI * 2) * 0.5 - cos(day_adv * M_PI * 2) * 0.5;
+  double output = 0.5 + cos(year_adv * M_PI * 2) * 0.25 - cos(day_adv * M_PI * 2) * 0.5;
   return ((output + 1) / 2) * 100;
 }
 

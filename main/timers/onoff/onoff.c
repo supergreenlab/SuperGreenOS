@@ -18,6 +18,8 @@
 
 #include "onoff.h"
 
+#include <time.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
@@ -74,7 +76,7 @@ int get_output_for_hour_min() {
 
   if (on_sec < off_sec && on_sec < cur_sec && off_sec > cur_sec) {
     return 100;
-  } else if (on_sec > off_sec && on_sec < cur_sec || cur_sec < off_sec) {
+  } else if (on_sec > off_sec && (on_sec < cur_sec || cur_sec < off_sec)) {
     return 100;
   }
 

@@ -20,6 +20,7 @@
 #include "timers/manual/manual.h"
 #include "timers/onoff/onoff.h"
 #include "timers/season/season.h"
+#include "mixer/mixer.h"
 
 #define VERSION "v0.1"
 
@@ -36,6 +37,8 @@ void app_main() {
     init_manual();
     init_onoff();
     init_season();
+
+    init_mixer();
 
     fflush(stdout);
     while(1) vTaskDelay(10);

@@ -24,6 +24,7 @@
 #include "../core/ble.h"
 #include "../core/kv_ble.h"
 #include "../misc/log.h"
+#include "../led/led.h"
 #include "timer.h"
 #include "../ble_db.h"
 
@@ -116,8 +117,8 @@ void on_set_timer_type(enum timer t) {
 
   seti(TIMER_TYPE, t);
   stop(old);
-  vTaskDelay(10 / portTICK_PERIOD_MS);
   start(t);
+  refresh_led();
 }
 
 void on_set_timer_output(int value) {

@@ -22,12 +22,15 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/queue.h"
 #include "driver/ledc.h"
 #include "esp_err.h"
 
+#include "led.h"
 #include "../ble_db.h"
 #include "../core/kv.h"
 #include "../core/kv_ble.h"
+#include "../misc/log.h"
 #include "../time/time.h"
 
 /*  UUID string: 4750daf8-0f06-ad2b-178e-ec58c7f30421 */
@@ -70,8 +73,6 @@ const uint8_t LED_1_2_DUTY_UUID[ESP_UUID_LEN_128] = {0x4e,0x49,0xa4,0x7d,0x37,0x
 #define LEDC_LS_CH5_CHANNEL    LEDC_CHANNEL_5
 
 #define LEDC_CH_NUM            (6)
-#define LED_MIN_DUTY           (550)
-#define LED_MAX_DUTY           (8191)
 #define LEDC_FADE_TIME         (1000)
 
 typedef struct led_config {
@@ -87,8 +88,8 @@ typedef struct led_config {
 
 led_config_t ledc_channels[N_CHANNELS] = {
   {
-    duty_key: "LED_0_0_DUTY",
-    power_key: "LED_0_0_PWR",
+    duty_key: LED_0_0_DUTY,
+    power_key: LED_0_0_PWR,
     duty_val_idx: IDX_VALUE(LED_0_0_PWR),
     power_val_idx: IDX_VALUE(LED_0_0_DUTY),
 
@@ -178,9 +179,15 @@ led_config_t ledc_channels[N_CHANNELS] = {
   },
 };
 
+QueueHandle_t cmd;
+
+static const unsigned char CMD_REFRESH_LED = 1;
+
 void init_keys(led_config_t config) {
   defaulti(config.duty_key, 0);
   defaulti(config.power_key, 100);
+
+  seti(config.power_key, 100);
 
   sync_ble_i(config.duty_key, config.duty_val_idx);
   sync_ble_i(config.power_key, config.power_val_idx);
@@ -200,6 +207,8 @@ void fade_and_wait_led(ledc_channel_config_t ledc_channel, int duty) {
 
 void led_task(void *param) {
 
+  unsigned char c;
+
   for (int i = 0; i < N_CHANNELS; ++i) {
     init_keys(ledc_channels[i]);
     ledc_channel_config(&ledc_channels[i].channel_config);
@@ -209,16 +218,23 @@ void led_task(void *param) {
     for (int i = 0; i < N_CHANNELS; ++i) {
       int duty = geti(ledc_channels[i].duty_key);
       int power = geti(ledc_channels[i].power_key);
-      printf("power: %d duty: %d led: %d\n", power, duty, (int)((double)duty * (double)power/100));
+      ESP_LOGI(TAG, "power: %d duty: %d led: %d\n", power, duty, (int)((double)duty * (double)power/100));
 
       fade_no_wait_led(ledc_channels[i].channel_config, (int)((double)duty * (double)power/100));
     }
-    vTaskDelay(30*1000 / portTICK_PERIOD_MS);
+    if (xQueueReceive(cmd, &c, 30*1000 / portTICK_PERIOD_MS)) {
+      ESP_LOGI(TAG, "Force refresh leds");
+    }
   }
 }
 
 void init_led() {
-  printf("Initializing led task\n");
+  ESP_LOGI(TAG, "Initializing led task\n");
+
+  cmd = xQueueCreate(10, sizeof(unsigned char));
+  if (cmd == NULL) {
+    ESP_LOGE(TAG, "Unable to create led queue");
+  }
 
   ledc_timer_config_t ledc_timer = {
     speed_mode:       LEDC_LOW_SPEED_MODE,
@@ -233,8 +249,58 @@ void init_led() {
   xTaskCreate(led_task, "Led task", 2048, NULL, 10, NULL);
 }
 
+void refresh_led() {
+  xQueueSend(cmd, &CMD_REFRESH_LED, 0);
+}
+
 /* BLE Callbacks */
 
 void on_set_led_0_0_pwr(int value) {
-  seti("LED_0_0_PWR", value);
+  seti(LED_0_0_PWR, value);
+}
+
+void on_set_led_0_1_pwr(int value) {
+  seti(LED_0_1_PWR, value);
+}
+
+void on_set_led_0_2_pwr(int value) {
+  seti(LED_0_2_PWR, value);
+}
+
+void on_set_led_1_0_pwr(int value) {
+  seti(LED_1_0_PWR, value);
+}
+
+void on_set_led_1_1_pwr(int value) {
+  seti(LED_1_1_PWR, value);
+}
+
+void on_set_led_1_2_pwr(int value) {
+  seti(LED_1_2_PWR, value);
+}
+
+
+
+void on_set_led_0_0_duty(int value) {
+  seti(LED_0_0_DUTY, value);
+}
+
+void on_set_led_0_1_duty(int value) {
+  seti(LED_0_1_DUTY, value);
+}
+
+void on_set_led_0_2_duty(int value) {
+  seti(LED_0_2_DUTY, value);
+}
+
+void on_set_led_1_0_duty(int value) {
+  seti(LED_1_0_DUTY, value);
+}
+
+void on_set_led_1_1_duty(int value) {
+  seti(LED_1_1_DUTY, value);
+}
+
+void on_set_led_1_2_duty(int value) {
+  seti(LED_1_2_DUTY, value);
 }

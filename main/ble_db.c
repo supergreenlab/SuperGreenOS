@@ -109,6 +109,17 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
     strncpy(pass, (const char *)param->write.value, param->write.len);
     on_set_wifi_password((const char *)param->write.value);
   }
+
+  else if (
+    (param->write.handle == handle_table[IDX_VALUE(LED_0_0_PWR)] || param->write.handle == handle_table[IDX_VALUE(LED_0_0_DUTY)]) ||
+    (param->write.handle == handle_table[IDX_VALUE(LED_0_1_PWR)] || param->write.handle == handle_table[IDX_VALUE(LED_0_1_DUTY)]) ||
+    (param->write.handle == handle_table[IDX_VALUE(LED_0_2_PWR)] || param->write.handle == handle_table[IDX_VALUE(LED_0_2_DUTY)]) ||
+    (param->write.handle == handle_table[IDX_VALUE(LED_1_0_PWR)] || param->write.handle == handle_table[IDX_VALUE(LED_1_0_DUTY)]) ||
+    (param->write.handle == handle_table[IDX_VALUE(LED_1_1_PWR)] || param->write.handle == handle_table[IDX_VALUE(LED_1_1_DUTY)]) ||
+    (param->write.handle == handle_table[IDX_VALUE(LED_1_2_PWR)] || param->write.handle == handle_table[IDX_VALUE(LED_1_2_DUTY)])
+  ) {
+    refresh_led();
+  }
 }
 
 void on_read(esp_ble_gatts_cb_param_t *param) {
