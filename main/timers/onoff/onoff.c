@@ -45,13 +45,11 @@ const uint8_t OFF_MIN_UUID[ESP_UUID_LEN_128] = {0xd4,0xd3,0xef,0x05,0x3f,0x4f,0x
 #define OFF_HOUR "OFF_H"
 #define OFF_MIN "OFF_M"
 
-#define NOT_SET INT_MAX
-
 void init_onoff() {
-  defaulti(ON_HOUR, NOT_SET);
-  defaulti(ON_MIN, NOT_SET);
-  defaulti(OFF_HOUR, NOT_SET);
-  defaulti(OFF_MIN, NOT_SET);
+  defaulti(ON_HOUR, 9);
+  defaulti(ON_MIN, 0);
+  defaulti(OFF_HOUR, 21);
+  defaulti(OFF_MIN, 0);
 
   sync_ble_i(ON_HOUR, IDX_VALUE(ON_HOUR));
   sync_ble_i(ON_MIN, IDX_VALUE(ON_MIN));
