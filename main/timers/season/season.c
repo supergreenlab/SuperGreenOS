@@ -100,7 +100,7 @@ time_t get_box_time() {
   localtime_r(&started_at_t, &tm_started_at);
 
   double duration = (double)((int)now - (int)started_at_t) / (double)(24 * 60 * 60);
-  double adv = (double)duration / (double)simulation_duration_days;
+  double adv = min(1, (double)duration / (double)simulation_duration_days);
 
   struct tm tm_simulated;
   memset(&tm_simulated, 0, sizeof(tm_simulated));

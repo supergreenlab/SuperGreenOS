@@ -19,6 +19,18 @@
 #ifndef STATE_H_
 #define STATE_H_
 
-void on_set_state();
+#define STATE "STATE"
+
+enum state {
+  FIRST_RUN,
+  IDLE,
+  RUNNING
+};
+
+void init_state();
+
+// BLE Callbacks
+
+void on_set_state(enum state value);
 
 #endif
