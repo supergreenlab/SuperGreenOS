@@ -32,6 +32,7 @@
 #include "../core/kv_ble.h"
 #include "../misc/log.h"
 #include "../time/time.h"
+#include "../state/state.h"
 
 /*  UUID string: 4750daf8-0f06-ad2b-178e-ec58c7f30421 */
 const uint8_t LED_0_0_PWR_UUID[ESP_UUID_LEN_128] = {0x21,0x04,0xf3,0xc7,0x58,0xec,0x8e,0x17,0x2b,0xad,0x06,0x0f,0xf8,0xda,0x50,0x47};
@@ -147,6 +148,14 @@ void led_task(void *param) {
   }
 
   while(1) {
+    enum state s = geti(STATE);
+    if (s != RUNNING) {
+      for (int i = 0; i < N_CHANNELS; ++i) {
+        fade_no_wait_led(ledc_channels[i].channel_config, LED_MIN_DUTY * 1.2);
+      }
+      vTaskDelay(500 / portTICK_PERIOD_MS);
+      continue;
+    }
     for (int i = 0; i < N_CHANNELS; ++i) {
       int duty = geti(ledc_channels[i].duty_key);
       int power = geti(ledc_channels[i].power_key);

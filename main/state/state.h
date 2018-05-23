@@ -19,7 +19,11 @@
 #ifndef STATE_H_
 #define STATE_H_
 
+#include "esp_gatt_common_api.h"
+
 #define STATE "STATE"
+
+extern const uint8_t STATE_UUID[ESP_UUID_LEN_128];
 
 enum state {
   FIRST_RUN,

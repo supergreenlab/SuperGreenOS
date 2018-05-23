@@ -31,6 +31,7 @@
 #include "manual/manual.h"
 #include "onoff/onoff.h"
 #include "season/season.h"
+#include "../state/state.h"
 
 /*  UUID string: 5f5ea840-3aa9-0a7b-343d-415ab2faa9f3 */
 const uint8_t TIMER_TYPE_UUID[ESP_UUID_LEN_128] = {0xf3,0xa9,0xfa,0xb2,0x5a,0x41,0x3d,0x34,0x7b,0x0a,0xa9,0x3a,0x40,0xa8,0x5e,0x5f};
@@ -93,6 +94,11 @@ void update_output(int output) {
 
 static void timer_task(void *param) {
   while (1) {
+    enum state s = geti(STATE);
+    if (s != RUNNING) {
+      continue;
+    }
+
     enum timer t = geti(TIMER_TYPE);
 
     switch(t) {

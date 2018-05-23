@@ -23,6 +23,7 @@
 #include "misc/log.h"
 #include "core/ble_private.h"
 #include "core/ble_utils.h"
+#include "state/state.h"
 #include "time/time.h"
 #include "timers/timer.h"
 #include "wifi/wifi.h"
@@ -39,6 +40,8 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
     sizeof(uint16_t), sizeof(GATTS_SERVICE_UUID), (uint8_t *)&GATTS_SERVICE_UUID}},
 
   RW_I_NOTIFIABLE_CHAR(TIME),
+
+  R_I_NOTIFIABLE_CHAR(STATE),
 
   RW_I_NOTIFIABLE_CHAR(LED_0_0_PWR),
   RW_I_NOTIFIABLE_CHAR(LED_0_1_PWR),

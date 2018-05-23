@@ -13,6 +13,7 @@
 
 #include "core/kv.h"
 #include "core/ble.h"
+#include "state/state.h"
 #include "wifi/wifi.h"
 #include "time/time.h"
 #include "led/led.h"
@@ -29,6 +30,7 @@ void app_main() {
 
     init_kv();
     init_ble();
+    init_state();
     init_wifi();
     init_led();
     init_time();
