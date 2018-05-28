@@ -52,6 +52,7 @@ const uint8_t WIFI_PASS_UUID[ESP_UUID_LEN_128] = {0xb9,0x5d,0x53,0x82,0x6e,0xcc,
 static const unsigned int DISCONNECTED = 1;
 static const unsigned int CONNECTING = 2;
 static const unsigned int CONNECTED = 3;
+static const unsigned int FAILED = 4;
 
 static const unsigned int CMD_SSID_CHANGED = 1;
 static const unsigned int CMD_PASS_CHANGED = 2;
@@ -106,7 +107,7 @@ static void setup() {
   getstr(PASS, (char *)wifi_config.sta.password, sizeof(wifi_config.sta.password) - 1);
 
   wifi_config.sta.bssid_set = false;
-  printf("Setting WiFi configuration SSID %s...", wifi_config.sta.ssid);
+  ESP_LOGI(TAG, "Setting WiFi configuration SSID %s...", wifi_config.sta.ssid);
   ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
   ESP_ERROR_CHECK( esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config) );
 
@@ -115,32 +116,37 @@ static void setup() {
     xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
     ESP_ERROR_CHECK(esp_wifi_disconnect());
   } else {
-    ESP_ERROR_CHECK( esp_wifi_start() );
+    if (esp_wifi_connect() == ESP_ERR_WIFI_NOT_STARTED) {
+      ESP_ERROR_CHECK( esp_wifi_start() );
+    }
   }
 }
 
 static esp_err_t event_handler(void *ctx, system_event_t *event) {
   switch(event->event_id) {
     case SYSTEM_EVENT_STA_START:
-      printf("SYSTEM_EVENT_STA_START\n");
+      ESP_LOGI(TAG, "SYSTEM_EVENT_STA_START");
       esp_wifi_connect();
-      set_attr_value(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTING, sizeof(const unsigned int));
-      notify_attr(IDX_VALUE(WIFI_STATUS));
+      set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTING, sizeof(const unsigned int));
       break;
     case SYSTEM_EVENT_STA_GOT_IP:
-      printf("SYSTEM_EVENT_STA_GOT_IP\n");
+      ESP_LOGI(TAG, "SYSTEM_EVENT_STA_GOT_IP");
       xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
-      set_attr_value(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTED, sizeof(const unsigned int));
-      notify_attr(IDX_VALUE(WIFI_STATUS));
+      set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTED, sizeof(const unsigned int));
       break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
-      printf("SYSTEM_EVENT_STA_DISCONNECTED\n");
-      if (is_valid()) {
+      ESP_LOGI(TAG, "SYSTEM_EVENT_STA_DISCONNECTED");
+      ESP_LOGI(TAG, "%d", event->event_info.disconnected.reason);
+      bool failed = event->event_info.disconnected.reason == WIFI_REASON_NO_AP_FOUND || event->event_info.disconnected.reason == WIFI_REASON_HANDSHAKE_TIMEOUT;
+      if (!failed && is_valid()) {
         esp_wifi_connect();
       }
       xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
-      set_attr_value(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&DISCONNECTED, sizeof(const unsigned int));
-      notify_attr(IDX_VALUE(WIFI_STATUS));
+      if (failed) {
+        set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&FAILED, sizeof(const unsigned int));
+      } else {
+        set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&DISCONNECTED, sizeof(const unsigned int));
+      }
       break;
     default:
       break;

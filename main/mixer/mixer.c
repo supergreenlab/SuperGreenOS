@@ -42,8 +42,7 @@ void init_mixer() {
 
 void set_duty(const char *key, enum idx i, int duty) {
   seti(key, duty);
-  set_attr_value(i, (uint8_t *)&duty, sizeof(int));
-  notify_attr(i);
+  set_attr_value_and_notify(i, (uint8_t *)&duty, sizeof(int));
 }
 
 static void mixer_task() {

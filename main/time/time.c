@@ -65,8 +65,7 @@ static void time_task(void *param) {
     time(&now);
     print_time(now);
     seti(TIME, (int)now);
-    set_attr_value(IDX_CHAR_VAL_TIME, (uint8_t *)&now, sizeof(time_t));
-    notify_attr(IDX_CHAR_VAL_TIME);
+    set_attr_value_and_notify(IDX_CHAR_VAL_TIME, (uint8_t *)&now, sizeof(time_t));
 
     vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
   }

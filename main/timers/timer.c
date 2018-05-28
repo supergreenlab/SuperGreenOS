@@ -88,8 +88,7 @@ static void start(enum timer t) {
 void update_output(int output) {
   ESP_LOGI(TAG, "update_output %d", output);
   seti(TIMER_OUTPUT, output);
-  set_attr_value(IDX_VALUE(TIMER_OUTPUT), (uint8_t *)&output, sizeof(int));
-  notify_attr(IDX_VALUE(TIMER_OUTPUT));
+  set_attr_value_and_notify(IDX_VALUE(TIMER_OUTPUT), (uint8_t *)&output, sizeof(int));
 }
 
 static void timer_task(void *param) {

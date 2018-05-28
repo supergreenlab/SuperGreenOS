@@ -136,8 +136,7 @@ void season_task() {
   ESP_LOGI(TAG, "Simulated time: ");
   time_t box_time = get_box_time();
   print_time(box_time);
-  set_attr_value(IDX_VALUE(SIMULATED_TIME), (uint8_t *)&box_time, sizeof(time_t));
-  notify_attr(IDX_VALUE(SIMULATED_TIME));
+  set_attr_value_and_notify(IDX_VALUE(SIMULATED_TIME), (uint8_t *)&box_time, sizeof(time_t));
 
   update_output(get_output_for_time());
 }

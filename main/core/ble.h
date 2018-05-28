@@ -17,4 +17,6 @@ void notify_attr(enum idx i);
 
 void set_attr_value(enum idx i, const uint8_t *value, uint16_t value_length);
 
+void set_attr_value_and_notify(enum idx i, const uint8_t *value, uint16_t value_length);
+
 #endif
