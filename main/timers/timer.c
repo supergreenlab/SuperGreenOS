@@ -95,6 +95,7 @@ static void timer_task(void *param) {
   while (1) {
     enum state s = geti(STATE);
     if (s != RUNNING) {
+      vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
       continue;
     }
 

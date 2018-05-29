@@ -46,7 +46,7 @@ const uint8_t WIFI_PASS_UUID[ESP_UUID_LEN_128] = {0xb9,0x5d,0x53,0x82,0x6e,0xcc,
 #define SSID "WSSID"
 #define PASS "WPASS"
 
-#define DEFAULT_SSID "default_ssid"
+#define DEFAULT_SSID ""
 #define DEFAULT_PASS ""
 
 static const unsigned int DISCONNECTED = 1;
@@ -70,7 +70,7 @@ static bool is_valid();
 
 void init_wifi() {
   defaultstr(SSID, DEFAULT_SSID);
-  defaultstr(PASS, "");
+  defaultstr(PASS, DEFAULT_PASS);
 
   set_attr_value(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&DISCONNECTED, sizeof(const unsigned int));
 

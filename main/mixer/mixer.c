@@ -26,6 +26,7 @@
 #include "../core/kv.h"
 #include "../misc/log.h"
 #include "../led/led.h"
+#include "../state/state.h"
 #include "../timers/timer.h"
 
 #define min(a, b) (((a) < (b)) ? (a) : (b)) 
@@ -47,6 +48,11 @@ void set_duty(const char *key, enum idx i, int duty) {
 
 static void mixer_task() {
   while (1) {
+    enum state s = geti(STATE);
+    if (s != RUNNING) {
+      vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
+      continue;
+    }
     double timerOutput = geti(TIMER_OUTPUT);
     double duty = LED_MIN_DUTY + (LED_MAX_DUTY - LED_MIN_DUTY) * (timerOutput - 50) / 100;
     duty = max(0, min(LED_MAX_DUTY, duty));
