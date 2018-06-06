@@ -60,18 +60,19 @@ const uint8_t LED_1_1_DUTY_UUID[ESP_UUID_LEN_128] = {0xcb,0xd3,0x9f,0xfa,0x13,0x
 /*  UUID string: bd87b60e-30b7-d99c-56e2-cd377da4494e */
 const uint8_t LED_1_2_DUTY_UUID[ESP_UUID_LEN_128] = {0x4e,0x49,0xa4,0x7d,0x37,0xcd,0xe2,0x56,0x9c,0xd9,0xb7,0x30,0x0e,0xb6,0x87,0xbd};
 
-#define LEDC_LS_CH0_GPIO       (19)
+#define LEDC_LS_CH0_GPIO       (17)
 #define LEDC_LS_CH0_CHANNEL    LEDC_CHANNEL_0
-#define LEDC_LS_CH1_GPIO       (18)
+#define LEDC_LS_CH1_GPIO       (16)
 #define LEDC_LS_CH1_CHANNEL    LEDC_CHANNEL_1
-#define LEDC_LS_CH2_GPIO       (5)
+#define LEDC_LS_CH2_GPIO       (4)
 #define LEDC_LS_CH2_CHANNEL    LEDC_CHANNEL_2
-#define LEDC_LS_CH3_GPIO       (33)
+#define LEDC_LS_CH3_GPIO       (32)
 #define LEDC_LS_CH3_CHANNEL    LEDC_CHANNEL_3
-#define LEDC_LS_CH4_GPIO       (25)
+#define LEDC_LS_CH4_GPIO       (33)
 #define LEDC_LS_CH4_CHANNEL    LEDC_CHANNEL_4
-#define LEDC_LS_CH5_GPIO       (26)
+#define LEDC_LS_CH5_GPIO       (25)
 #define LEDC_LS_CH5_CHANNEL    LEDC_CHANNEL_5
+
 
 #define LEDC_CH_NUM            (6)
 #define LEDC_FADE_TIME         (1000)
@@ -148,14 +149,6 @@ void led_task(void *param) {
   }
 
   while(1) {
-    enum state s = geti(STATE);
-    if (s != RUNNING) {
-      for (int i = 0; i < N_CHANNELS; ++i) {
-        fade_no_wait_led(ledc_channels[i].channel_config, LED_MIN_DUTY * 1.2);
-      }
-      vTaskDelay(500 / portTICK_PERIOD_MS);
-      continue;
-    }
     for (int i = 0; i < N_CHANNELS; ++i) {
       int duty = geti(ledc_channels[i].duty_key);
       int power = geti(ledc_channels[i].power_key);
