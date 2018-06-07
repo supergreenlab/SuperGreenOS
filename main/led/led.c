@@ -60,17 +60,17 @@ const uint8_t LED_1_1_DUTY_UUID[ESP_UUID_LEN_128] = {0xcb,0xd3,0x9f,0xfa,0x13,0x
 /*  UUID string: bd87b60e-30b7-d99c-56e2-cd377da4494e */
 const uint8_t LED_1_2_DUTY_UUID[ESP_UUID_LEN_128] = {0x4e,0x49,0xa4,0x7d,0x37,0xcd,0xe2,0x56,0x9c,0xd9,0xb7,0x30,0x0e,0xb6,0x87,0xbd};
 
-#define LEDC_LS_CH0_GPIO       (17)
+#define LEDC_LS_CH0_GPIO       (32)
 #define LEDC_LS_CH0_CHANNEL    LEDC_CHANNEL_0
-#define LEDC_LS_CH1_GPIO       (16)
+#define LEDC_LS_CH1_GPIO       (33)
 #define LEDC_LS_CH1_CHANNEL    LEDC_CHANNEL_1
-#define LEDC_LS_CH2_GPIO       (4)
+#define LEDC_LS_CH2_GPIO       (25)
 #define LEDC_LS_CH2_CHANNEL    LEDC_CHANNEL_2
-#define LEDC_LS_CH3_GPIO       (32)
+#define LEDC_LS_CH3_GPIO       (17)
 #define LEDC_LS_CH3_CHANNEL    LEDC_CHANNEL_3
-#define LEDC_LS_CH4_GPIO       (33)
+#define LEDC_LS_CH4_GPIO       (4)
 #define LEDC_LS_CH4_CHANNEL    LEDC_CHANNEL_4
-#define LEDC_LS_CH5_GPIO       (25)
+#define LEDC_LS_CH5_GPIO       (16)
 #define LEDC_LS_CH5_CHANNEL    LEDC_CHANNEL_5
 
 
@@ -115,14 +115,10 @@ led_config_t ledc_channels[N_CHANNELS] = {
 
 QueueHandle_t cmd;
 
-static const unsigned char CMD_REFRESH_LED = 1;
-
 void init_keys(led_config_t config) {
   defaulti(config.duty_key, 0);
   defaulti(config.power_key, 100);
 
-  seti(config.power_key, 100);
-  
   sync_ble_i(config.duty_key, config.duty_val_idx);
   sync_ble_i(config.power_key, config.power_val_idx);
 }
@@ -130,6 +126,8 @@ void init_keys(led_config_t config) {
 void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
   ledc_set_fade_with_time(ledc_channel.speed_mode,
       ledc_channel.channel, duty, LEDC_FADE_TIME);
+  ledc_fade_start(ledc_channel.speed_mode,
+      ledc_channel.channel, LEDC_FADE_NO_WAIT);
 }
 
 void fade_and_wait_led(ledc_channel_config_t ledc_channel, int duty) {
@@ -139,25 +137,28 @@ void fade_and_wait_led(ledc_channel_config_t ledc_channel, int duty) {
       ledc_channel.channel, LEDC_FADE_WAIT_DONE);
 }
 
+void update_led(int i) {
+  int duty = geti(ledc_channels[i].duty_key);
+  int power = geti(ledc_channels[i].power_key);
+  ESP_LOGI(TAG, "power: %d duty: %d led: %d", power, duty, (int)((double)duty * (double)power/100));
+
+  fade_no_wait_led(ledc_channels[i].channel_config, (int)((double)duty * (double)power/100));
+}
+
 void led_task(void *param) {
 
-  unsigned char c;
+  int c;
 
   for (int i = 0; i < N_CHANNELS; ++i) {
     init_keys(ledc_channels[i]);
     ledc_channel_config(&ledc_channels[i].channel_config);
+    update_led(i);
   }
 
   while(1) {
-    for (int i = 0; i < N_CHANNELS; ++i) {
-      int duty = geti(ledc_channels[i].duty_key);
-      int power = geti(ledc_channels[i].power_key);
-      ESP_LOGI(TAG, "power: %d duty: %d led: %d", power, duty, (int)((double)duty * (double)power/100));
-
-      fade_no_wait_led(ledc_channels[i].channel_config, (int)((double)duty * (double)power/100));
-    }
-    if (xQueueReceive(cmd, &c, 30*1000 / portTICK_PERIOD_MS)) {
+    if (xQueueReceive(cmd, &c, 1000000000 / portTICK_PERIOD_MS)) {
       ESP_LOGI(TAG, "Force refresh leds");
+      update_led(c);
     }
   }
 }
@@ -165,7 +166,7 @@ void led_task(void *param) {
 void init_led() {
   ESP_LOGI(TAG, "Initializing led task");
 
-  cmd = xQueueCreate(10, sizeof(unsigned char));
+  cmd = xQueueCreate(10, sizeof(int));
   if (cmd == NULL) {
     ESP_LOGE(TAG, "Unable to create led queue");
   }
@@ -183,70 +184,94 @@ void init_led() {
   xTaskCreate(led_task, "Led task", 2048, NULL, 10, NULL);
 }
 
-void refresh_led() {
-  xQueueSend(cmd, &CMD_REFRESH_LED, 0);
+void refresh_led(int i) {
+  xQueueSend(cmd, &i, 0);
 }
 
 /* BLE Callbacks */
 
 void on_set_led_0_0_pwr(int value) {
   seti(LED_0_0_PWR, value);
-  refresh_led();
+  refresh_led(0);
 }
 
 void on_set_led_0_1_pwr(int value) {
   seti(LED_0_1_PWR, value);
-  refresh_led();
+  refresh_led(1);
 }
 
 void on_set_led_0_2_pwr(int value) {
   seti(LED_0_2_PWR, value);
-  refresh_led();
+  refresh_led(2);
 }
 
 void on_set_led_1_0_pwr(int value) {
   seti(LED_1_0_PWR, value);
-  refresh_led();
+  refresh_led(3);
 }
 
 void on_set_led_1_1_pwr(int value) {
   seti(LED_1_1_PWR, value);
-  refresh_led();
+  refresh_led(4);
 }
 
 void on_set_led_1_2_pwr(int value) {
   seti(LED_1_2_PWR, value);
-  refresh_led();
+  refresh_led(5);
 }
 
 
 
 void on_set_led_0_0_duty(int value) {
   seti(LED_0_0_DUTY, value);
-  refresh_led();
+
+  const int pwr = geti(LED_0_0_PWR);
+  if (pwr != 0) {
+    refresh_led(0);
+  }
 }
 
 void on_set_led_0_1_duty(int value) {
   seti(LED_0_1_DUTY, value);
-  refresh_led();
+
+  const int pwr = geti(LED_0_1_PWR);
+  if (pwr != 0) {
+    refresh_led(1);
+  }
 }
 
 void on_set_led_0_2_duty(int value) {
   seti(LED_0_2_DUTY, value);
-  refresh_led();
+
+  const int pwr = geti(LED_0_2_PWR);
+  if (pwr != 0) {
+    refresh_led(2);
+  }
 }
 
 void on_set_led_1_0_duty(int value) {
   seti(LED_1_0_DUTY, value);
-  refresh_led();
+
+  const int pwr = geti(LED_1_0_PWR);
+  if (pwr != 0) {
+    refresh_led(3);
+  }
 }
 
 void on_set_led_1_1_duty(int value) {
   seti(LED_1_1_DUTY, value);
-  refresh_led();
+
+  const int pwr = geti(LED_1_1_PWR);
+  if (pwr != 0) {
+    refresh_led(4);
+  }
 }
 
 void on_set_led_1_2_duty(int value) {
   seti(LED_1_2_DUTY, value);
-  refresh_led();
+
+  const int pwr = geti(LED_1_2_PWR);
+  if (pwr != 0) {
+    refresh_led(5);
+  }
 }
