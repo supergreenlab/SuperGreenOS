@@ -1,0 +1,3 @@
+[submodule "components/DHT22"]
+	path = components/DHT22
+	url = git@github.com:gosouth/DHT22.git

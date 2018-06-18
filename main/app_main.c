@@ -22,6 +22,9 @@
 #include "timers/onoff/onoff.h"
 #include "timers/season/season.h"
 #include "mixer/mixer.h"
+#include "fans/fans.h"
+#include "blower/blower.h"
+#include "i2c/i2c.h"
 
 #define VERSION "v0.1"
 
@@ -34,6 +37,9 @@ void app_main() {
     init_wifi();
     init_led();
     init_time();
+    init_fans();
+    init_blower();
+    init_i2c();
 
     init_timer();
     init_manual();

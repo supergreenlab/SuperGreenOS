@@ -68,9 +68,9 @@ const uint8_t LED_1_2_DUTY_UUID[ESP_UUID_LEN_128] = {0x4e,0x49,0xa4,0x7d,0x37,0x
 #define LEDC_LS_CH2_CHANNEL    LEDC_CHANNEL_2
 #define LEDC_LS_CH3_GPIO       (17)
 #define LEDC_LS_CH3_CHANNEL    LEDC_CHANNEL_3
-#define LEDC_LS_CH4_GPIO       (4)
+#define LEDC_LS_CH4_GPIO       (16)
 #define LEDC_LS_CH4_CHANNEL    LEDC_CHANNEL_4
-#define LEDC_LS_CH5_GPIO       (16)
+#define LEDC_LS_CH5_GPIO       (4)
 #define LEDC_LS_CH5_CHANNEL    LEDC_CHANNEL_5
 
 
@@ -123,21 +123,21 @@ void init_keys(led_config_t config) {
   sync_ble_i(config.power_key, config.power_val_idx);
 }
 
-void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
+static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
   ledc_set_fade_with_time(ledc_channel.speed_mode,
       ledc_channel.channel, duty, LEDC_FADE_TIME);
   ledc_fade_start(ledc_channel.speed_mode,
       ledc_channel.channel, LEDC_FADE_NO_WAIT);
 }
 
-void fade_and_wait_led(ledc_channel_config_t ledc_channel, int duty) {
+/* static void fade_and_wait_led(ledc_channel_config_t ledc_channel, int duty) {
   ledc_set_fade_with_time(ledc_channel.speed_mode,
       ledc_channel.channel, duty, LEDC_FADE_TIME);
   ledc_fade_start(ledc_channel.speed_mode,
       ledc_channel.channel, LEDC_FADE_WAIT_DONE);
-}
+} */
 
-void update_led(int i) {
+static void update_led(int i) {
   int duty = geti(ledc_channels[i].duty_key);
   int power = geti(ledc_channels[i].power_key);
   ESP_LOGI(TAG, "power: %d duty: %d led: %d", power, duty, (int)((double)duty * (double)power/100));
@@ -145,7 +145,7 @@ void update_led(int i) {
   fade_no_wait_led(ledc_channels[i].channel_config, (int)((double)duty * (double)power/100));
 }
 
-void led_task(void *param) {
+static void led_task(void *param) {
 
   int c;
 
