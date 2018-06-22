@@ -25,6 +25,7 @@
 #include "fans/fans.h"
 #include "blower/blower.h"
 #include "i2c/i2c.h"
+#include "ota/ota.h"
 
 #define VERSION "v0.1"
 
@@ -35,6 +36,7 @@ void app_main() {
     init_ble();
     init_state();
     init_wifi();
+    init_ota();
     init_led();
     init_time();
     init_fans();

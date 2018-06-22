@@ -21,6 +21,12 @@
 
 #include "esp_gap_ble_api.h"
 
+#include "esp_gatts_api.h"
+
+extern const uint8_t BLE_DEVICE_NAME_UUID[ESP_UUID_LEN_128];
+
+void on_set_ble_device_name(const char *value);
+
 void on_write(esp_ble_gatts_cb_param_t *param);
 void on_read(esp_ble_gatts_cb_param_t *param);
 

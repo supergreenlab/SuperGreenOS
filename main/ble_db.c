@@ -39,6 +39,8 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&primary_service_uuid, ESP_GATT_PERM_READ,
     sizeof(uint16_t), sizeof(GATTS_SERVICE_UUID), (uint8_t *)&GATTS_SERVICE_UUID}},
 
+  RW_STR_NOTIFIABLE_CHAR(BLE_DEVICE_NAME),
+
   RW_I_NOTIFIABLE_CHAR(TIME),
 
   R_I_NOTIFIABLE_CHAR(STATE),
@@ -80,8 +82,11 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
 void on_write(esp_ble_gatts_cb_param_t *param) {
   ESP_LOGI(TAG, "on_write");
 
-  // TIME SERVICE
-  if (param->write.handle == handle_table[IDX_VALUE(TIME)]) {
+  if (param->write.handle == handle_table[IDX_VALUE(BLE_DEVICE_NAME)]) {
+    on_set_ble_device_name((const char *)param->write.value);
+  }
+
+   else if (param->write.handle == handle_table[IDX_VALUE(TIME)]) {
     on_set_time(*(uint32_t *)(&param->write.value[0]));
   }
   

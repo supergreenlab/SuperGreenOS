@@ -15,9 +15,11 @@
  *
  * =====================================================================================
  */
+
 #include <stdlib.h>
 #include <string.h>
 
+#include "../misc/log.h"
 #include "kv.h"
 #include "kv_ble.h"
 
@@ -29,7 +31,7 @@ void sync_ble_i(const char *key, enum idx i) {
 }
 
 void sync_ble_str(const char *key, enum idx i) {
-  char value[500] = {0};
-  getstr(key, value, 499);
+  char value[517] = {0};
+  getstr(key, value, sizeof(value) - 1);
   set_attr_value(i, (const uint8_t *)value, strlen(value));
 }

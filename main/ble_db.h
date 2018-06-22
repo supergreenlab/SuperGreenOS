@@ -36,6 +36,8 @@ enum idx
 {
   IDX_SVC,
 
+  CHAR_VAL_CFG(BLE_DEVICE_NAME),
+
   CHAR_VAL_CFG(TIME),
 
   CHAR_VAL_CFG(STATE),
