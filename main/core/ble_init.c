@@ -39,16 +39,11 @@
 #include "../ble_db.h"
 
 #define ESP_APP_ID          0x55
-#define DEFAULT_DEVICE_NAME      "chronic-o-matic"
+#define BLE_DEVICE_NAME "🤖🍁"
 #define SVC_INST_ID         0
 
 #define ADV_CONFIG_FLAG       (1 << 0)
 #define SCAN_RSP_CONFIG_FLAG    (1 << 1)
-
-/*  UUID string: a6317732-8c0e-ee6e-68ee-61f13d4f8b25 */
-const uint8_t BLE_DEVICE_NAME_UUID[ESP_UUID_LEN_128] = {0x25,0x8b,0x4f,0x3d,0xf1,0x61,0xee,0x68,0x6e,0xee,0x0e,0x8c,0x32,0x77,0x31,0xa6};
-
-#define BLE_DEVICE_NAME "BLE_DEV_NAME"
 
 static uint8_t adv_config_done     = 0;
 
@@ -57,8 +52,6 @@ uint16_t handle_table[HRS_IDX_NB];
 static uint8_t service_uuid[16] = {
 	0xfb, 0x34, 0x9b, 0x5f, 0x80, 0x00, 0x00, 0x80, 0x00, 0x10, 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00,
 };
-
-static unsigned char manufacturer[2] = { 42 };
 
 /* The length of adv data must be less than 31 bytes */
 static esp_ble_adv_data_t adv_data = {
@@ -176,10 +169,7 @@ static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
 {
   switch (event) {
     case ESP_GATTS_REG_EVT:{
-      char device_name[64] = {0};
-      getstr(BLE_DEVICE_NAME, device_name, sizeof(device_name) - 1);
-
-      esp_err_t set_dev_name_ret = esp_ble_gap_set_device_name(device_name);
+      esp_err_t set_dev_name_ret = esp_ble_gap_set_device_name(BLE_DEVICE_NAME);
       if (set_dev_name_ret){
         ESP_LOGE(TAG, "set device name failed, error code = %x", set_dev_name_ret);
       }
@@ -311,8 +301,6 @@ static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_
 
 void init_ble()
 {
-  defaultstr(BLE_DEVICE_NAME, DEFAULT_DEVICE_NAME);
-
   esp_err_t ret;
 
   ESP_ERROR_CHECK(esp_bt_controller_mem_release(ESP_BT_MODE_CLASSIC_BT));
@@ -359,12 +347,4 @@ void init_ble()
     ESP_LOGE(TAG, "gatts app register error, error code = %x", ret);
     return;
   }
-
-  sync_ble_str(BLE_DEVICE_NAME, IDX_VALUE(BLE_DEVICE_NAME));
-}
-
-void on_set_ble_device_name(const char *value) {
-  setstr(BLE_DEVICE_NAME, value);
-  ESP_LOGI(TAG, "Prepare to restart system!");
-  esp_restart();
 }

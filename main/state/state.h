@@ -24,6 +24,7 @@
 #define STATE "STATE"
 
 extern const uint8_t STATE_UUID[ESP_UUID_LEN_128];
+extern const uint8_t DEVICE_NAME_UUID[ESP_UUID_LEN_128];
 
 enum state {
   FIRST_RUN,
@@ -36,5 +37,6 @@ void init_state();
 // BLE Callbacks
 
 void on_set_state(enum state value);
+void on_set_device_name(const char *value);
 
 #endif

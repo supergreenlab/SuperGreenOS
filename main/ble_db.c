@@ -21,7 +21,6 @@
 #include "string.h"
 
 #include "misc/log.h"
-#include "core/ble_private.h"
 #include "core/ble_utils.h"
 #include "state/state.h"
 #include "time/time.h"
@@ -39,7 +38,7 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&primary_service_uuid, ESP_GATT_PERM_READ,
     sizeof(uint16_t), sizeof(GATTS_SERVICE_UUID), (uint8_t *)&GATTS_SERVICE_UUID}},
 
-  RW_STR_NOTIFIABLE_CHAR(BLE_DEVICE_NAME),
+  RW_STR_NOTIFIABLE_CHAR(DEVICE_NAME),
 
   RW_I_NOTIFIABLE_CHAR(TIME),
 
@@ -82,8 +81,8 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
 void on_write(esp_ble_gatts_cb_param_t *param) {
   ESP_LOGI(TAG, "on_write");
 
-  if (param->write.handle == handle_table[IDX_VALUE(BLE_DEVICE_NAME)]) {
-    on_set_ble_device_name((const char *)param->write.value);
+  if (param->write.handle == handle_table[IDX_VALUE(DEVICE_NAME)]) {
+    on_set_device_name((const char *)param->write.value);
   }
 
    else if (param->write.handle == handle_table[IDX_VALUE(TIME)]) {
