@@ -78,7 +78,7 @@ int get_output_for_hour_min() {
     return 100;
   }
 
-  return 50; 
+  return 0; 
 }
 
 void start_onoff() {

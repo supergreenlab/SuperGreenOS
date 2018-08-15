@@ -188,5 +188,6 @@ static bool is_valid() {
 
   getstr(SSID, (char *)ssid, sizeof(ssid) - 1);
   getstr(PASS, (char *)pass, sizeof(pass) - 1);
+
   return strlen((char *)ssid) != 0 && strlen((char *)pass) != 0;
 }

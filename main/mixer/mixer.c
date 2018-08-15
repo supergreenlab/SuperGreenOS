@@ -49,19 +49,20 @@ void set_duty(const char *key, enum idx i, int duty) {
 static void mixer_task() {
   while (1) {
     enum state s = geti(STATE);
+    ESP_LOGI(TAG, "mixer %d", s);
     if (s != RUNNING) {
       vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
       continue;
     }
     double timerOutput = geti(TIMER_OUTPUT);
-    double duty = LED_MIN_DUTY + (LED_MAX_DUTY - LED_MIN_DUTY) * (timerOutput - 50) / 100;
+    double duty = LED_MIN_DUTY + (LED_MAX_DUTY - LED_MIN_DUTY) * timerOutput / 100;
     duty = max(0, min(LED_MAX_DUTY, duty));
     set_duty(LED_DUTY(0, 0), IDX_VALUE(LED_0_0_DUTY), duty);
     set_duty(LED_DUTY(0, 1), IDX_VALUE(LED_0_1_DUTY), duty);
     set_duty(LED_DUTY(0, 2), IDX_VALUE(LED_0_2_DUTY), duty);
     set_duty(LED_DUTY(1, 0), IDX_VALUE(LED_1_0_DUTY), duty);
     set_duty(LED_DUTY(1, 1), IDX_VALUE(LED_1_1_DUTY), duty);
-    set_duty(LED_DUTY(1, 2), IDX_VALUE(LED_1_1_DUTY), duty);
+    set_duty(LED_DUTY(1, 2), IDX_VALUE(LED_1_2_DUTY), duty);
     vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
   }
 }

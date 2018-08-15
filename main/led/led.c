@@ -34,6 +34,9 @@
 #include "../time/time.h"
 #include "../state/state.h"
 
+#define MAX(x, y) (((x) > (y)) ? (x) : (y))
+#define MIN(x, y) (((x) < (y)) ? (x) : (y))
+
 /*  UUID string: 4750daf8-0f06-ad2b-178e-ec58c7f30421 */
 const uint8_t LED_0_0_PWR_UUID[ESP_UUID_LEN_128] = {0x21,0x04,0xf3,0xc7,0x58,0xec,0x8e,0x17,0x2b,0xad,0x06,0x0f,0xf8,0xda,0x50,0x47};
 /*  UUID string: 3c14371f-b1b6-6d66-cc02-b01396f6f84f */
@@ -156,9 +159,14 @@ static void led_task(void *param) {
   }
 
   while(1) {
-    if (xQueueReceive(cmd, &c, 1000000000 / portTICK_PERIOD_MS)) {
+    if (xQueueReceive(cmd, &c, 30 * 1000 / portTICK_PERIOD_MS)) {
       ESP_LOGI(TAG, "Force refresh leds");
       update_led(c);
+    } else {
+      ESP_LOGI(TAG, "Led refresh");
+      for (int i = 0; i < N_CHANNELS; ++i) {
+        update_led(i);
+      }
     }
   }
 }
@@ -191,31 +199,37 @@ void refresh_led(int i) {
 /* BLE Callbacks */
 
 void on_set_led_0_0_pwr(int value) {
+  value = MIN(100, MAX(value, 0));
   seti(LED_0_0_PWR, value);
   refresh_led(0);
 }
 
 void on_set_led_0_1_pwr(int value) {
+  value = MIN(100, MAX(value, 0));
   seti(LED_0_1_PWR, value);
   refresh_led(1);
 }
 
 void on_set_led_0_2_pwr(int value) {
+  value = MIN(100, MAX(value, 0));
   seti(LED_0_2_PWR, value);
   refresh_led(2);
 }
 
 void on_set_led_1_0_pwr(int value) {
+  value = MIN(100, MAX(value, 0));
   seti(LED_1_0_PWR, value);
   refresh_led(3);
 }
 
 void on_set_led_1_1_pwr(int value) {
+  value = MIN(100, MAX(value, 0));
   seti(LED_1_1_PWR, value);
   refresh_led(4);
 }
 
 void on_set_led_1_2_pwr(int value) {
+  value = MIN(100, MAX(value, 0));
   seti(LED_1_2_PWR, value);
   refresh_led(5);
 }
@@ -223,6 +237,7 @@ void on_set_led_1_2_pwr(int value) {
 
 
 void on_set_led_0_0_duty(int value) {
+  value = MIN(LED_MAX_DUTY, MAX(value, LED_MIN_DUTY));
   seti(LED_0_0_DUTY, value);
 
   const int pwr = geti(LED_0_0_PWR);
@@ -232,6 +247,7 @@ void on_set_led_0_0_duty(int value) {
 }
 
 void on_set_led_0_1_duty(int value) {
+  value = MIN(LED_MAX_DUTY, MAX(value, LED_MIN_DUTY));
   seti(LED_0_1_DUTY, value);
 
   const int pwr = geti(LED_0_1_PWR);
@@ -241,6 +257,7 @@ void on_set_led_0_1_duty(int value) {
 }
 
 void on_set_led_0_2_duty(int value) {
+  value = MIN(LED_MAX_DUTY, MAX(value, LED_MIN_DUTY));
   seti(LED_0_2_DUTY, value);
 
   const int pwr = geti(LED_0_2_PWR);
@@ -250,6 +267,7 @@ void on_set_led_0_2_duty(int value) {
 }
 
 void on_set_led_1_0_duty(int value) {
+  value = MIN(LED_MAX_DUTY, MAX(value, LED_MIN_DUTY));
   seti(LED_1_0_DUTY, value);
 
   const int pwr = geti(LED_1_0_PWR);
@@ -259,6 +277,7 @@ void on_set_led_1_0_duty(int value) {
 }
 
 void on_set_led_1_1_duty(int value) {
+  value = MIN(LED_MAX_DUTY, MAX(value, LED_MIN_DUTY));
   seti(LED_1_1_DUTY, value);
 
   const int pwr = geti(LED_1_1_PWR);
@@ -268,6 +287,7 @@ void on_set_led_1_1_duty(int value) {
 }
 
 void on_set_led_1_2_duty(int value) {
+  value = MIN(LED_MAX_DUTY, MAX(value, LED_MIN_DUTY));
   seti(LED_1_2_DUTY, value);
 
   const int pwr = geti(LED_1_2_PWR);

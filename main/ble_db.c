@@ -42,7 +42,7 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
 
   RW_I_NOTIFIABLE_CHAR(TIME),
 
-  R_I_NOTIFIABLE_CHAR(STATE),
+  RW_I_NOTIFIABLE_CHAR(STATE),
 
   RW_I_NOTIFIABLE_CHAR(LED_0_0_PWR),
   RW_I_NOTIFIABLE_CHAR(LED_0_1_PWR),
@@ -83,6 +83,9 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
 
   if (param->write.handle == handle_table[IDX_VALUE(DEVICE_NAME)]) {
     on_set_device_name((const char *)param->write.value);
+  }
+  else if (param->write.handle == handle_table[IDX_VALUE(STATE)]) {
+    on_set_state(*(uint32_t *)(&param->write.value[0]));
   }
 
    else if (param->write.handle == handle_table[IDX_VALUE(TIME)]) {
@@ -142,6 +145,7 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
   } else if (param->write.handle == handle_table[IDX_VALUE(LED_1_2_DUTY)]) {
     on_set_led_1_2_duty(*(uint32_t *)(&param->write.value[0]));
   }
+
 }
 
 void on_read(esp_ble_gatts_cb_param_t *param) {
