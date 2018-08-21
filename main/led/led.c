@@ -37,19 +37,6 @@
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
 
-/*  UUID string: 4750daf8-0f06-ad2b-178e-ec58c7f30421 */
-const uint8_t LED_0_0_PWR_UUID[ESP_UUID_LEN_128] = {0x21,0x04,0xf3,0xc7,0x58,0xec,0x8e,0x17,0x2b,0xad,0x06,0x0f,0xf8,0xda,0x50,0x47};
-/*  UUID string: 3c14371f-b1b6-6d66-cc02-b01396f6f84f */
-const uint8_t LED_0_1_PWR_UUID[ESP_UUID_LEN_128] = {0x4f,0xf8,0xf6,0x96,0x13,0xb0,0x02,0xcc,0x66,0x6d,0xb6,0xb1,0x1f,0x37,0x14,0x3c};
-/*  UUID string: ca2a9037-7626-6751-60fb-c3922021cc42 */
-const uint8_t LED_0_2_PWR_UUID[ESP_UUID_LEN_128] = {0x42,0xcc,0x21,0x20,0x92,0xc3,0xfb,0x60,0x51,0x67,0x26,0x76,0x37,0x90,0x2a,0xca};
-/*  UUID string: 0365b1c9-4079-4caf-51f4-2730ca055bb5 */
-const uint8_t LED_1_0_PWR_UUID[ESP_UUID_LEN_128] = {0xb5,0x5b,0x05,0xca,0x30,0x27,0xf4,0x51,0xaf,0x4c,0x79,0x40,0xc9,0xb1,0x65,0x03};
-/*  UUID string: ab2abc56-1a48-84d1-1b20-6c0035d7c9eb */
-const uint8_t LED_1_1_PWR_UUID[ESP_UUID_LEN_128] = {0xeb,0xc9,0xd7,0x35,0x00,0x6c,0x20,0x1b,0xd1,0x84,0x48,0x1a,0x56,0xbc,0x2a,0xab};
-/*  UUID string: 05a5cc9e-a67b-bc62-2577-6ceb69cbc567 */
-const uint8_t LED_1_2_PWR_UUID[ESP_UUID_LEN_128] = {0x67,0xc5,0xcb,0x69,0xeb,0x6c,0x77,0x25,0x62,0xbc,0x7b,0xa6,0x9e,0xcc,0xa5,0x05};
-
 /*  UUID string: 4291ec1b-65df-19c4-c5f1-e4259071fc5d */
 const uint8_t LED_0_0_DUTY_UUID[ESP_UUID_LEN_128] = {0x5d,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x42};
 /*  UUID string: 18a17b54-716d-3eb8-af12-b447d7c81cd8 */
@@ -82,9 +69,7 @@ const uint8_t LED_1_2_DUTY_UUID[ESP_UUID_LEN_128] = {0x4e,0x49,0xa4,0x7d,0x37,0x
 
 typedef struct led_config {
   char           *duty_key;
-  char           *power_key;
   enum idx       duty_val_idx;
-  enum idx       power_val_idx;
 
   ledc_channel_config_t channel_config;
 } led_config_t;
@@ -93,9 +78,7 @@ typedef struct led_config {
 
 #define CHANNEL(side, n, gpio) { \
     duty_key: LED_##side##_##n##_DUTY, \
-    power_key: LED_##side##_##n##_PWR, \
     duty_val_idx: IDX_VALUE(LED_##side##_##n##_DUTY), \
-    power_val_idx: IDX_VALUE(LED_##side##_##n##_PWR), \
     \
     channel_config: { \
       gpio_num:    LEDC_LS_CH##gpio##_GPIO, \
@@ -120,10 +103,8 @@ QueueHandle_t cmd;
 
 void init_keys(led_config_t config) {
   defaulti(config.duty_key, 0);
-  defaulti(config.power_key, 100);
 
   sync_ble_i(config.duty_key, config.duty_val_idx);
-  sync_ble_i(config.power_key, config.power_val_idx);
 }
 
 static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
@@ -142,10 +123,9 @@ static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
 
 static void update_led(int i) {
   int duty = geti(ledc_channels[i].duty_key);
-  int power = geti(ledc_channels[i].power_key);
-  ESP_LOGI(TAG, "power: %d duty: %d led: %d", power, duty, (int)((double)duty * (double)power/100));
+  ESP_LOGI(TAG, "duty: %d", duty);
 
-  fade_no_wait_led(ledc_channels[i].channel_config, (int)((double)duty * (double)power/100));
+  fade_no_wait_led(ledc_channels[i].channel_config, duty);
 }
 
 static void led_task(void *param) {
@@ -161,7 +141,13 @@ static void led_task(void *param) {
   while(1) {
     if (xQueueReceive(cmd, &c, 30 * 1000 / portTICK_PERIOD_MS)) {
       ESP_LOGI(TAG, "Force refresh leds");
-      update_led(c);
+      if (c == -1) {
+        for (int i = 0; i < N_CHANNELS; ++i) {
+          update_led(i);
+        }
+      } else {
+        update_led(c);
+      }
     } else {
       ESP_LOGI(TAG, "Led refresh");
       for (int i = 0; i < N_CHANNELS; ++i) {

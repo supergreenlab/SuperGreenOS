@@ -125,7 +125,7 @@ void on_set_timer_type(enum timer t) {
   seti(TIMER_TYPE, t);
   stop(old);
   start(t);
-  refresh_led();
+  refresh_led(-1);
 }
 
 void on_set_timer_output(int value) {

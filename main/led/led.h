@@ -72,6 +72,6 @@ void on_set_led_1_1_duty(int value);
 void on_set_led_1_2_duty(int value);
 
 void init_led();
-void refresh_led();
+void refresh_led(int i);
 
 #endif
