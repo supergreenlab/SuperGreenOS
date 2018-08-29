@@ -20,9 +20,9 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-#include "../core/kv.h"
-#include "../core/ble.h"
-#include "../core/kv_ble.h"
+#include "../kv/kv.h"
+#include "../ble/ble.h"
+#include "../kv/kv_ble.h"
 #include "../misc/log.h"
 #include "../led/led.h"
 #include "timer.h"

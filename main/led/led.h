@@ -20,58 +20,59 @@
 #define LED_H_
 
 #include "esp_gatt_common_api.h"
+#include "driver/ledc.h"
 
-#define LED_SIDES 2
-#define LED_PER_SIDES 3
-#define LED_MIN_DUTY           (550)
-#define LED_MAX_DUTY           (8191)
+#include "../ble_db.h"
 
-#define LED_PWR(side, n) LED_##side##_##n##_PWR
-#define LED_DUTY(side, n) LED_##side##_##n##_DUTY
+extern const uint8_t LED_INFO_UUID[ESP_UUID_LEN_128];
 
-#define LED_0_0_PWR "LED_0_0_PWR"
-#define LED_0_1_PWR "LED_0_1_PWR"
-#define LED_0_2_PWR "LED_0_2_PWR"
-#define LED_1_0_PWR "LED_1_0_PWR"
-#define LED_1_1_PWR "LED_1_1_PWR"
-#define LED_1_2_PWR "LED_1_2_PWR"
+/*  UUID string: 4291ec1b-65df-19c4-c5f1-e4259071fc00 */
+#define LED_DUTY_UUID_HEADER(i) extern const uint8_t LED_##i##_DUTY_UUID[ESP_UUID_LEN_128];
+#define LED_DUTY_UUID(i) const uint8_t LED_##i##_DUTY_UUID[ESP_UUID_LEN_128] = {i,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x42};
 
-#define LED_0_0_DUTY "LED_0_0_DUTY"
-#define LED_0_1_DUTY "LED_0_1_DUTY"
-#define LED_0_2_DUTY "LED_0_2_DUTY"
-#define LED_1_0_DUTY "LED_1_0_DUTY"
-#define LED_1_1_DUTY "LED_1_1_DUTY"
-#define LED_1_2_DUTY "LED_1_2_DUTY"
+typedef struct led_config {
+  enum idx       duty_val_idx;
 
-extern const uint8_t LED_0_0_PWR_UUID[ESP_UUID_LEN_128];
-extern const uint8_t LED_0_1_PWR_UUID[ESP_UUID_LEN_128];
-extern const uint8_t LED_0_2_PWR_UUID[ESP_UUID_LEN_128];
-extern const uint8_t LED_1_0_PWR_UUID[ESP_UUID_LEN_128];
-extern const uint8_t LED_1_1_PWR_UUID[ESP_UUID_LEN_128];
-extern const uint8_t LED_1_2_PWR_UUID[ESP_UUID_LEN_128];
+  int min_duty;
+  int max_duty;
 
-extern const uint8_t LED_0_0_DUTY_UUID[ESP_UUID_LEN_128];
-extern const uint8_t LED_0_1_DUTY_UUID[ESP_UUID_LEN_128];
-extern const uint8_t LED_0_2_DUTY_UUID[ESP_UUID_LEN_128];
-extern const uint8_t LED_1_0_DUTY_UUID[ESP_UUID_LEN_128];
-extern const uint8_t LED_1_1_DUTY_UUID[ESP_UUID_LEN_128];
-extern const uint8_t LED_1_2_DUTY_UUID[ESP_UUID_LEN_128];
+  int x;
+  int y;
+  int z;
 
-void on_set_led_0_0_pwr(int value);
-void on_set_led_0_1_pwr(int value);
-void on_set_led_0_2_pwr(int value);
-void on_set_led_1_0_pwr(int value);
-void on_set_led_1_1_pwr(int value);
-void on_set_led_1_2_pwr(int value);
+  ledc_channel_config_t channel_config;
+} led_config_t;
 
-void on_set_led_0_0_duty(int value);
-void on_set_led_0_1_duty(int value);
-void on_set_led_0_2_duty(int value);
-void on_set_led_1_0_duty(int value);
-void on_set_led_1_1_duty(int value);
-void on_set_led_1_2_duty(int value);
+extern led_config_t ledc_channels[];
+
+#define CHANNEL(i, min_d, max_d, lx, ly, lz, gpio, timer, chan) { \
+    duty_val_idx: IDX_VALUE(LED_##i##_DUTY), \
+    min_duty: min_d, \
+    max_duty: max_d, \
+    x: lx, \
+    y: ly, \
+    z: lz, \
+    \
+    channel_config: { \
+      gpio_num:    gpio, \
+      speed_mode:  LEDC_LOW_SPEED_MODE, \
+      channel:     LEDC_CHANNEL_##chan, \
+      intr_type:   LEDC_INTR_FADE_END, \
+      timer_sel:   LEDC_TIMER_##timer, \
+      duty:        0, \
+    } \
+  }
+
+extern const unsigned int N_LEDS;
 
 void init_led();
 void refresh_led(int i);
+
+void set_led_duty(int i, int value);
+int get_led_duty(int i);
+
+/* BLE Callbacks */
+
+void on_set_led_duty(enum idx iv, int i, int value);
 
 #endif

@@ -28,9 +28,9 @@
 #include "../timer.h"
 #include "../../misc/log.h"
 #include "../../time/utils.h"
-#include "../../core/kv.h"
-#include "../../core/kv_ble.h"
-#include "../../core/ble.h"
+#include "../../kv/kv.h"
+#include "../../kv/kv_ble.h"
+#include "../../ble/ble.h"
 #include "../../ble_db.h"
 #include "../../wifi/wifi.h"
 

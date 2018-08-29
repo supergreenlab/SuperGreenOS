@@ -21,15 +21,26 @@
 #include "string.h"
 
 #include "misc/log.h"
-#include "core/ble_utils.h"
+#include "ble/ble_utils.h"
 #include "state/state.h"
 #include "time/time.h"
 #include "timers/timer.h"
 #include "wifi/wifi.h"
 #include "led/led.h"
+#include "led_db.h"
 #include "timers/onoff/onoff.h"
 #include "timers/season/season.h"
 #include "mixer/mixer.h"
+
+// TODO move these
+
+#define LED_CHAR(i) RW_I_NOTIFIABLE_CHAR(LED_##i##_DUTY)
+
+#define LED_CB(i)  else if (param->write.handle == handle_table[IDX_VALUE(LED_##i##_DUTY)]) { \
+    on_set_led_duty(IDX_VALUE(LED_##i##_DUTY), i, *(uint32_t *)(&param->write.value[0])); \
+  }
+
+// end TODO
 
 static const uint16_t GATTS_SERVICE_UUID      = 0x00FF;
 
@@ -45,12 +56,14 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
 
   RW_I_NOTIFIABLE_CHAR(STATE),
 
-  RW_I_NOTIFIABLE_CHAR(LED_0_0_DUTY),
-  RW_I_NOTIFIABLE_CHAR(LED_0_1_DUTY),
-  RW_I_NOTIFIABLE_CHAR(LED_0_2_DUTY),
-  RW_I_NOTIFIABLE_CHAR(LED_1_0_DUTY),
-  RW_I_NOTIFIABLE_CHAR(LED_1_1_DUTY),
-  RW_I_NOTIFIABLE_CHAR(LED_1_2_DUTY),
+  R_STR_CHAR(LED_INFO),
+
+  LED_CHAR(0),
+  LED_CHAR(1),
+  LED_CHAR(2),
+  LED_CHAR(3),
+  LED_CHAR(4),
+  LED_CHAR(5),
 
   RW_I_CHAR(TIMER_TYPE),
   RW_I_NOTIFIABLE_CHAR(TIMER_OUTPUT),
@@ -113,22 +126,15 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
   } else if (param->write.handle == handle_table[IDX_VALUE(WIFI_PASS)]) {
     char pass[64] = {0};
     strncpy(pass, (const char *)param->write.value, param->write.len);
-    on_set_wifi_password((const char *)param->write.value);
+    on_set_wifi_password(pass);
   }
 
-  else if (param->write.handle == handle_table[IDX_VALUE(LED_0_0_DUTY)]) {
-    on_set_led_0_0_duty(*(uint32_t *)(&param->write.value[0]));
-  } else if (param->write.handle == handle_table[IDX_VALUE(LED_0_1_DUTY)]) {
-    on_set_led_0_1_duty(*(uint32_t *)(&param->write.value[0]));
-  } else if (param->write.handle == handle_table[IDX_VALUE(LED_0_2_DUTY)]) {
-    on_set_led_0_2_duty(*(uint32_t *)(&param->write.value[0]));
-  } else if (param->write.handle == handle_table[IDX_VALUE(LED_1_0_DUTY)]) {
-    on_set_led_1_0_duty(*(uint32_t *)(&param->write.value[0]));
-  } else if (param->write.handle == handle_table[IDX_VALUE(LED_1_1_DUTY)]) {
-    on_set_led_1_1_duty(*(uint32_t *)(&param->write.value[0]));
-  } else if (param->write.handle == handle_table[IDX_VALUE(LED_1_2_DUTY)]) {
-    on_set_led_1_2_duty(*(uint32_t *)(&param->write.value[0]));
-  }
+  LED_CB(0)
+  LED_CB(1)
+  LED_CB(2)
+  LED_CB(3)
+  LED_CB(4)
+  LED_CB(5)
 
   else if (param->write.handle == handle_table[IDX_VALUE(LED_DIM)]) {
     on_set_led_dim(*(uint32_t *)(&param->write.value[0]));

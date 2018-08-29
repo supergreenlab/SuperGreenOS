@@ -32,6 +32,8 @@
 #define IDX_VALUE(name) IDX_CHAR_VAL_##name
 #define IDX_CFG(name) IDX_CHAR_CFG_##name
 
+#define LED_CFG(i) CHAR_VAL_CFG(LED_##i##_DUTY)
+
 enum idx
 {
   IDX_SVC,
@@ -42,12 +44,14 @@ enum idx
 
   CHAR_VAL_CFG(STATE),
 
-  CHAR_VAL_CFG(LED_0_0_DUTY),
-  CHAR_VAL_CFG(LED_0_1_DUTY),
-  CHAR_VAL_CFG(LED_0_2_DUTY),
-  CHAR_VAL_CFG(LED_1_0_DUTY),
-  CHAR_VAL_CFG(LED_1_1_DUTY),
-  CHAR_VAL_CFG(LED_1_2_DUTY),
+  CHAR_VAL(LED_INFO),
+
+  LED_CFG(0),
+  LED_CFG(1),
+  LED_CFG(2),
+  LED_CFG(3),
+  LED_CFG(4),
+  LED_CFG(5),
 
   CHAR_VAL(TIMER_TYPE),
   CHAR_VAL_CFG(TIMER_OUTPUT),

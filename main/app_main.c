@@ -11,8 +11,8 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-#include "core/kv.h"
-#include "core/ble.h"
+#include "kv/kv.h"
+#include "ble/ble.h"
 #include "state/state.h"
 #include "wifi/wifi.h"
 #include "time/time.h"

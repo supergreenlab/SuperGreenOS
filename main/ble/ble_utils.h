@@ -40,7 +40,7 @@ struct gatts_profile_inst {
   esp_bt_uuid_t descr_uuid;
 };
 
-#define CHAR_DECLARATION_SIZE     (sizeof(uint8_t))
+#define CHAR_DECLARATION_SIZE     (0)
 #define CHAR_VAL_LEN_MAX 517
 
 // I

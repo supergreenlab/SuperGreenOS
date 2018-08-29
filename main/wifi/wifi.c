@@ -31,9 +31,9 @@
 
 #include "wifi.h"
 #include "../misc/log.h"
-#include "../core/ble.h"
-#include "../core/kv.h"
-#include "../core/kv_ble.h"
+#include "../ble/ble.h"
+#include "../kv/kv.h"
+#include "../kv/kv_ble.h"
 #include "../ble_db.h"
 
 /*  UUID string: 372fda1c-6d67-cbda-f083-ae31b50e06ee */
@@ -176,7 +176,7 @@ void on_set_wifi_ssid(const char *ssid) {
 
 void on_set_wifi_password(const char *pass) {
   setstr(PASS, pass);
-  set_attr_value(IDX_VALUE(WIFI_PASS), (const uint8_t *)"", 1);
+  set_attr_value(IDX_VALUE(WIFI_PASS), (const uint8_t *)"", 0);
   xQueueSend(cmd, &CMD_PASS_CHANGED, 0);
 }
 

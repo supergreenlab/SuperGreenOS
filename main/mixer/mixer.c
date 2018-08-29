@@ -22,10 +22,10 @@
 #include "freertos/task.h"
 #include "time.h"
 
-#include "../core/ble.h"
 #include "../ble_db.h"
-#include "../core/kv.h"
-#include "../core/kv_ble.h"
+#include "../kv/kv.h"
+#include "../kv/kv_ble.h"
+#include "../ble/ble.h"
 #include "../misc/log.h"
 #include "../led/led.h"
 #include "../state/state.h"
@@ -53,9 +53,9 @@ void init_mixer() {
   }
 }
 
-static void set_duty(const char *key, enum idx i, int duty) {
-  seti(key, duty);
-  set_attr_value_and_notify(i, (uint8_t *)&duty, sizeof(int));
+static void set_duty(int i, int duty) {
+  set_led_duty(i, duty);
+  set_attr_value_and_notify(ledc_channels[i].duty_val_idx, (uint8_t *)&duty, sizeof(int));
 }
 
 static void mixer_task() {
@@ -76,26 +76,23 @@ static void mixer_task() {
     }
 
     double timerOutput = geti(TIMER_OUTPUT);
-    double duty = LED_MIN_DUTY + (LED_MAX_DUTY - LED_MIN_DUTY) * timerOutput / 100;
-    duty = max(0, min(LED_MAX_DUTY, duty));
+    double duty = timerOutput;
+    duty = max(0, min(100, duty));
     set_all_duty(duty);
     vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
   }
 }
 
 static void set_all_duty(int value) {
-  set_duty(LED_DUTY(0, 0), IDX_VALUE(LED_0_0_DUTY), value);
-  set_duty(LED_DUTY(0, 1), IDX_VALUE(LED_0_1_DUTY), value);
-  set_duty(LED_DUTY(0, 2), IDX_VALUE(LED_0_2_DUTY), value);
-  set_duty(LED_DUTY(1, 0), IDX_VALUE(LED_1_0_DUTY), value);
-  set_duty(LED_DUTY(1, 1), IDX_VALUE(LED_1_1_DUTY), value);
-  set_duty(LED_DUTY(1, 2), IDX_VALUE(LED_1_2_DUTY), value);
+  for (int i = 0; i < N_LEDS; ++i) {
+    set_duty(i, value);
+  }
 }
 
 //  BLE Callbacks
 
 void on_set_led_dim(int value) {
   seti(LED_DIM, value); 
-  set_all_duty(LED_MIN_DUTY + (LED_MAX_DUTY - LED_MIN_DUTY) * 0.2);
+  set_all_duty(10);
   refresh_led(-1);
 }

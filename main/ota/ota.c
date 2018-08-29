@@ -32,8 +32,8 @@
 
 #include "../misc/log.h"
 #include "../wifi/wifi.h"
-#include "../core/kv.h"
-#include "../misc/version.h"
+#include "../kv/kv.h"
+#include "../version.h"
 
 #define BUFFSIZE 1024
 #define TEXT_BUFFSIZE 1024
