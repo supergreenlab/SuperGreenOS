@@ -72,6 +72,8 @@ int get_output_for_hour_min() {
   int off_sec = off_hour * 3600 + off_min * 60;
   int cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
 
+  ESP_LOGI(TAG, "on_sec: %d off_sec: %d cur_sec: %d", on_sec, off_sec, cur_sec);
+
   if (on_sec < off_sec && on_sec < cur_sec && off_sec > cur_sec) {
     return 100;
   } else if (on_sec > off_sec && (on_sec < cur_sec || cur_sec < off_sec)) {

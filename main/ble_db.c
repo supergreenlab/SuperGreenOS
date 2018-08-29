@@ -118,6 +118,16 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
   } else if (param->write.handle == handle_table[IDX_VALUE(STARTED_AT)]) {
     on_set_started_at(*(uint32_t *)(&param->write.value[0]));
   }
+
+  else if (param->write.handle == handle_table[IDX_VALUE(ON_HOUR)]) {
+    on_set_on_hour(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(ON_MIN)]) {
+    on_set_on_min(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(OFF_HOUR)]) {
+    on_set_off_hour(*(uint32_t *)(&param->write.value[0]));
+  } else if (param->write.handle == handle_table[IDX_VALUE(OFF_MIN)]) {
+    on_set_off_min(*(uint32_t *)(&param->write.value[0]));
+  }
   
   else if (param->write.handle == handle_table[IDX_VALUE(WIFI_SSID)]) {
     char ssid[32] = {0};
