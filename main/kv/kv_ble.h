@@ -19,7 +19,7 @@
 #ifndef KV_BLE_H_
 #define KV_BLE_H_
 
-#include "../ble_db.h"
+#include "../conf/ble_db.h"
 
 void sync_ble_i(const char *key, enum idx i);
 void sync_ble_str(const char *key, enum idx i);

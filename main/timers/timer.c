@@ -26,7 +26,7 @@
 #include "../misc/log.h"
 #include "../led/led.h"
 #include "timer.h"
-#include "../ble_db.h"
+#include "../conf/ble_db.h"
 
 #include "manual/manual.h"
 #include "onoff/onoff.h"

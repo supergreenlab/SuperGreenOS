@@ -31,12 +31,12 @@
 
 #include "../misc/log.h"
 
-#include "./ble.h"
-#include "./ble_utils.h"
-#include "./ble_private.h"
+#include "ble.h"
+#include "ble_utils.h"
+#include "ble_private.h"
 #include "../kv/kv.h"
 #include "../kv/kv_ble.h"
-#include "../ble_db.h"
+#include "../conf/ble_db.h"
 
 #define ESP_APP_ID          0x55
 #define BLE_DEVICE_NAME "🤖🍁"

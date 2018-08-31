@@ -31,7 +31,7 @@
 #include "../../kv/kv.h"
 #include "../../kv/kv_ble.h"
 #include "../../ble/ble.h"
-#include "../../ble_db.h"
+#include "../../conf/ble_db.h"
 #include "../../wifi/wifi.h"
 
 // "3867a37c-85a9-338c-40ac-96d4ee586841"

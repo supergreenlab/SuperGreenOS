@@ -26,7 +26,7 @@
 #include "esp_err.h"
 
 #include "led.h"
-#include "../ble_db.h"
+#include "../conf/ble_db.h"
 #include "../kv/kv.h"
 #include "../kv/kv_ble.h"
 #include "../ble/ble.h"

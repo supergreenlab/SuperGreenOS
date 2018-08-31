@@ -9,7 +9,7 @@
 #ifndef BLE_H_
 #define BLE_H_
 
-#include "../ble_db.h"
+#include "../conf/ble_db.h"
 
 void init_ble();
 void notify_handle(enum idx i, const uint8_t *notify_data, uint16_t notify_data_length);

@@ -29,7 +29,7 @@
 #include "../../kv/kv.h"
 #include "../../kv/kv_ble.h"
 #include "../../ble/ble.h"
-#include "../../ble_db.h"
+#include "../../conf/ble_db.h"
 
 /*  UUID string: e867f9a6-4ab7-09da-ef26-19f350ed4ba1 */
 const uint8_t ON_HOUR_UUID[ESP_UUID_LEN_128] = {0xa1,0x4b,0xed,0x50,0xf3,0x19,0x26,0xef,0xda,0x09,0xb7,0x4a,0xa6,0xf9,0x67,0xe8};

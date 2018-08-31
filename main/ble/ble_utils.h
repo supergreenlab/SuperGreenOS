@@ -20,7 +20,6 @@
 #define BLE_UTILS_H_
 
 #include "ble.h"
-#include "../ble_db.h"
 #include "esp_gatts_api.h"
 
 #define PROFILE_NUM         1

@@ -34,7 +34,7 @@
 #include "../ble/ble.h"
 #include "../kv/kv.h"
 #include "../kv/kv_ble.h"
-#include "../ble_db.h"
+#include "../conf/ble_db.h"
 
 /*  UUID string: 372fda1c-6d67-cbda-f083-ae31b50e06ee */
 const uint8_t WIFI_STATUS_UUID[ESP_UUID_LEN_128] = {0xee,0x06,0x0e,0xb5,0x31,0xae,0x83,0xf0,0xda,0xcb,0x67,0x6d,0x1c,0xda,0x2f,0x37};

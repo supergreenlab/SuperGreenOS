@@ -22,7 +22,7 @@
 #include "esp_gatt_common_api.h"
 #include "driver/ledc.h"
 
-#include "../ble_db.h"
+#include "../conf/ble_db.h"
 
 extern const uint8_t LED_INFO_UUID[ESP_UUID_LEN_128];
 
