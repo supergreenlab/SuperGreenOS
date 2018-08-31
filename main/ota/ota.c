@@ -21,6 +21,8 @@
 #include <netdb.h>
 #include <stdbool.h>
 
+#include "ota.h"
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
@@ -91,7 +93,7 @@ static bool read_past_http_header(char text[], int total_len, esp_ota_handle_t u
 
 static bool connect_to_http_server()
 {
-  ESP_LOGI(TAG, "Server IP: %s Server Port:%s", CONFIG_OTA_SERVER_IP, CONFIG_OTA_SERVER_PORT);
+  ESP_LOGI(TAG, "Server IP: %s Server Port:%s", OTA_SERVER_IP, OTA_SERVER_PORT);
 
   int  http_connect_flag = -1;
   struct sockaddr_in sock_info;
@@ -105,8 +107,8 @@ static bool connect_to_http_server()
   // set connect info
   memset(&sock_info, 0, sizeof(struct sockaddr_in));
   sock_info.sin_family = AF_INET;
-  sock_info.sin_addr.s_addr = inet_addr(CONFIG_OTA_SERVER_IP);
-  sock_info.sin_port = htons(atoi(CONFIG_OTA_SERVER_PORT));
+  sock_info.sin_addr.s_addr = inet_addr(OTA_SERVER_IP);
+  sock_info.sin_port = htons(atoi(OTA_SERVER_PORT));
 
   // connect to http server
   http_connect_flag = connect(socket_id, (struct sockaddr *)&sock_info, sizeof(sock_info));
@@ -138,7 +140,7 @@ static bool check_new_version() {
     "User-Agent: esp-idf/1.0 esp32\r\n\r\n";
 
   char *http_request = NULL;
-  int get_len = asprintf(&http_request, GET_FORMAT, CONFIG_OTA_VERSION_FILENAME, CONFIG_OTA_SERVER_IP, CONFIG_OTA_SERVER_PORT);
+  int get_len = asprintf(&http_request, GET_FORMAT, OTA_VERSION_FILENAME, OTA_SERVER_IP, OTA_SERVER_PORT);
   if (get_len < 0) {
     ESP_LOGE(TAG, "Failed to allocate memory for GET request buffer");
     close(socket_id);
@@ -207,7 +209,7 @@ static void try_ota()
     "User-Agent: esp-idf/1.0 esp32\r\n\r\n";
 
   char *http_request = NULL;
-  int get_len = asprintf(&http_request, GET_FORMAT, CONFIG_OTA_FILENAME, CONFIG_OTA_SERVER_IP, CONFIG_OTA_SERVER_PORT);
+  int get_len = asprintf(&http_request, GET_FORMAT, OTA_FILENAME, OTA_SERVER_IP, OTA_SERVER_PORT);
   if (get_len < 0) {
     ESP_LOGE(TAG, "Failed to allocate memory for GET request buffer");
     close(socket_id);

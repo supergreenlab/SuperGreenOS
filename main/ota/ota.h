@@ -19,6 +19,11 @@
 #ifndef OTA_H_
 #define OTA_H_
 
+extern const char *OTA_SERVER_IP;
+extern const char *OTA_SERVER_PORT;
+extern const char *OTA_VERSION_FILENAME;
+extern const char *OTA_FILENAME;
+
 void init_ota();
 
 #endif
