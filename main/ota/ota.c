@@ -35,6 +35,7 @@
 #include "../misc/log.h"
 #include "../wifi/wifi.h"
 #include "../kv/kv.h"
+#include "../conf/ota_db.h"
 #include "../conf/version.h"
 
 #define BUFFSIZE 1024
@@ -169,8 +170,8 @@ static bool check_new_version() {
 
   char timestamp[15] = {0};
   while(recv(socket_id, &(timestamp[strlen(timestamp)]), sizeof(timestamp) - strlen(timestamp) - 1, 0) > 0);
-  ESP_LOGI(TAG, "OTA TIMESTAMP: %d (build: %lu)", atoi(timestamp), UNIX_TIMESTAMP);
-  return UNIX_TIMESTAMP < atoi(timestamp);
+  ESP_LOGI(TAG, "OTA TIMESTAMP: %d (build: %lu)", atoi(timestamp), OTA_TIMESTAMP);
+  return OTA_TIMESTAMP < atoi(timestamp);
 }
 
 static void try_ota()
@@ -312,7 +313,7 @@ static void ota_task(void *pvParameter) {
 }
 
 void init_ota() {
-  ESP_LOGI(TAG, "OTA initialization timestamp: %lu", UNIX_TIMESTAMP);
+  ESP_LOGI(TAG, "OTA initialization timestamp: %lu", OTA_TIMESTAMP);
 
   xTaskCreate(&ota_task, "OTA", 8192, NULL, 5, NULL);
 }
