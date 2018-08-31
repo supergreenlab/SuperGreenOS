@@ -1,6 +1,3 @@
-[submodule "components/DHT22"]
-	path = components/DHT22
-	url = git@github.com:gosouth/DHT22.git
-[submodule "sgd_conf_sgb_2leds"]
-	path = sgd_conf_sgb_2leds
+[submodule "main/conf"]
+	path = main/conf
 	url = git@github.com:vitaminwater/sgd_conf_sgb_2leds.git
