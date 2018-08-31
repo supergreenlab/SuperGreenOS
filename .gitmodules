@@ -1,3 +1,0 @@
-[submodule "main/conf"]
-	path = main/conf
-	url = git@github.com:vitaminwater/sgd_conf_sgb_2leds.git
