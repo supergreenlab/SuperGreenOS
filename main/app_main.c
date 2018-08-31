@@ -11,6 +11,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+#include "status_led/status_led.h"
 #include "kv/kv.h"
 #include "ble/ble.h"
 #include "state/state.h"
@@ -26,12 +27,14 @@
 #include "blower/blower.h"
 #include "i2c/i2c.h"
 #include "ota/ota.h"
+#include "status_led/status_led.h"
 
 #define VERSION "v0.1"
 
 void app_main() {
     printf("Welcome to chronic-o-matic firmware %s\n", VERSION);
 
+    init_status_led();
     init_kv();
     init_ble();
     init_state();

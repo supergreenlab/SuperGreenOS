@@ -22,7 +22,7 @@
 #include "freertos/queue.h"
 #include "driver/gpio.h"
 
-#define FANS_GPIO (35)
+#define FANS_GPIO (21)
 #define GPIO_OUTPUT_PIN_SEL  (1ULL<<FANS_GPIO)
 
 void init_fans() {
