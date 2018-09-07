@@ -43,6 +43,15 @@ typedef struct led_config {
   ledc_channel_config_t channel_config;
 } led_config_t;
 
+extern int min_x;
+extern int max_x;
+
+extern int min_y;
+extern int max_y;
+
+extern int min_z;
+extern int max_z;
+
 extern led_config_t ledc_channels[];
 
 #define CHANNEL(i, min_d, max_d, lx, ly, lz, gpio, timer, chan) { \

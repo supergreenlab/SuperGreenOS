@@ -101,6 +101,8 @@ void wait_connected() {
 }
 
 static void setup() {
+  set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTING, sizeof(const unsigned int));
+
   wifi_config_t wifi_config = {0};
   
   getstr(SSID, (char *)wifi_config.sta.ssid, sizeof(wifi_config.sta.ssid) - 1);

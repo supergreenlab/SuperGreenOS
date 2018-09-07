@@ -69,7 +69,7 @@ void init_status_led() {
   red = (ledc_channel_config_t) {
     gpio_num:    RED_GPIO,
     speed_mode:  LEDC_LOW_SPEED_MODE,
-    channel:     LEDC_CHANNEL_0,
+    channel:     LEDC_CHANNEL_6,
     intr_type:   LEDC_INTR_FADE_END,
     timer_sel:   LEDC_TIMER_3,
     duty:        0,
@@ -79,7 +79,7 @@ void init_status_led() {
   blue = (ledc_channel_config_t) {
     gpio_num:    BLUE_GPIO,
     speed_mode:  LEDC_LOW_SPEED_MODE,
-    channel:     LEDC_CHANNEL_1,
+    channel:     LEDC_CHANNEL_7,
     intr_type:   LEDC_INTR_FADE_END,
     timer_sel:   LEDC_TIMER_3,
     duty:        0,

@@ -21,12 +21,9 @@
 
 #include "esp_gatt_common_api.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 extern const uint8_t TIMER_TYPE_UUID[ESP_UUID_LEN_128];
 extern const uint8_t TIMER_OUTPUT_UUID[ESP_UUID_LEN_128];
+extern const uint8_t STARTED_AT_UUID[ESP_UUID_LEN_128];
 
 enum timer {
   TIMER_MANUAL,
@@ -36,15 +33,13 @@ enum timer {
 
 #define TIMER_TYPE "TIMER_T"
 #define TIMER_OUTPUT "TIMER_O"
+#define STARTED_AT "ST_AT"
 
 void update_output(int output);
 
 void init_timer();
 void on_set_timer_type(enum timer t);
 void on_set_timer_output(int value);
-
-#ifdef __cplusplus
-}
-#endif
+void on_set_started_at(int value);
 
 #endif

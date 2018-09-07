@@ -313,6 +313,10 @@ static void ota_task(void *pvParameter) {
 }
 
 void init_ota() {
+  if (OTA_TIMESTAMP == 0) {
+    ESP_LOGI(TAG, "OTA NOT INITIALIZING timestamp: %lu", OTA_TIMESTAMP);
+    return;
+  }
   ESP_LOGI(TAG, "OTA initialization timestamp: %lu", OTA_TIMESTAMP);
 
   xTaskCreate(&ota_task, "OTA", 8192, NULL, 5, NULL);

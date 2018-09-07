@@ -44,14 +44,11 @@ const uint8_t START_DATE_DAY_UUID[ESP_UUID_LEN_128] = {0x1e,0xdc,0x4c,0x19,0x3f,
 const uint8_t DURATION_DAYS_UUID[ESP_UUID_LEN_128] = {0x1a,0xd8,0xd1,0x0a,0x78,0x20,0x96,0xa9,0x57,0x41,0x7d,0x94,0xfd,0x00,0x56,0x49};
 // "6f01cd48-a405-45e5-99db-0de8b5ca2e7f"
 const uint8_t SIMULATION_DURATION_DAYS_UUID[ESP_UUID_LEN_128] = {0x7f,0x2e,0xca,0xb5,0xe8,0x0d,0xdb,0x99,0xe5,0x45,0x05,0xa4,0x48,0xcd,0x01,0x6f};
-// "1f450234-f101-4f57-ba39-304b053b95a2"
-const uint8_t STARTED_AT_UUID[ESP_UUID_LEN_128] = {0xa2,0x95,0x3b,0x05,0x4b,0x30,0x39,0xba,0x57,0x4f,0x01,0xf1,0x34,0x02,0x45,0x1f};
 
 #define START_DATE_MONTH "SIM_S_M"
 #define START_DATE_DAY "SIM_S_D"
 #define DURATION_DAYS "DUR_D"
 #define SIMULATION_DURATION_DAYS "SIM_DUR_D"
-#define STARTED_AT "ST_AT"
 
 #define min(a, b) (((a) < (b)) ? (a) : (b)) 
 #define max(a, b) (((a) > (b)) ? (a) : (b)) 
@@ -63,15 +60,13 @@ void season_task();
 void init_season() {
   defaulti(START_DATE_MONTH, 4);
   defaulti(START_DATE_DAY, 1);
-  defaulti(DURATION_DAYS, 195);
+  defaulti(DURATION_DAYS, 215);
   defaulti(SIMULATION_DURATION_DAYS, 75);
-  defaulti(STARTED_AT, 0);
 
   sync_ble_i(START_DATE_MONTH, IDX_CHAR_VAL_START_DATE_MONTH);
   sync_ble_i(START_DATE_DAY, IDX_CHAR_VAL_START_DATE_DAY);
   sync_ble_i(DURATION_DAYS, IDX_CHAR_VAL_DURATION_DAYS);
   sync_ble_i(SIMULATION_DURATION_DAYS, IDX_CHAR_VAL_SIMULATION_DURATION_DAYS);
-  sync_ble_i(STARTED_AT, IDX_CHAR_VAL_STARTED_AT);
 }
 
 void start_season() {
@@ -128,8 +123,9 @@ int get_output_for_time() {
   double day_adv = (double)(timeinfo.tm_hour*60*60 + timeinfo.tm_min*60 + timeinfo.tm_sec) / (double)(24*60*60);
   double year_adv = (double)(timeinfo.tm_yday) / (double) 365;
 
-  double output = 0.5 + cos(year_adv * M_PI * 2) * 0.25 - cos(day_adv * M_PI * 2) * 0.5;
-  return ((output + 1) / 2) * 100;
+  double output = cos(year_adv * M_PI * 2) * 0.25 - cos(day_adv * M_PI * 2);
+  ESP_LOGI(TAG, "timeinfo.tm_hour: %d timeinfo.tm_min: %d timeinfo.tm_sec: %d year_adv: %f day_adv: %f output: %f", timeinfo.tm_hour, timeinfo.tm_min, timeinfo.tm_sec, year_adv, day_adv, output);
+  return min(100, max(0, output * 100));
 }
 
 void season_task() {
@@ -157,8 +153,4 @@ void on_set_duration_days(int value) {
 
 void on_set_simulation_duration_days(int value) {
   seti(SIMULATION_DURATION_DAYS, value);
-}
-
-void on_set_started_at(int value) {
-  seti(STARTED_AT, value);
 }

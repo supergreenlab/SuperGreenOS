@@ -37,6 +37,8 @@
 const uint8_t TIMER_TYPE_UUID[ESP_UUID_LEN_128] = {0xf3,0xa9,0xfa,0xb2,0x5a,0x41,0x3d,0x34,0x7b,0x0a,0xa9,0x3a,0x40,0xa8,0x5e,0x5f};
 /*  UUID string: b2286094-8299-a967-db89-ee856e365789 */
 const uint8_t TIMER_OUTPUT_UUID[ESP_UUID_LEN_128] = {0x89,0x57,0x36,0x6e,0x85,0xee,0x89,0xdb,0x67,0xa9,0x99,0x82,0x94,0x60,0x28,0xb2};
+// "1f450234-f101-4f57-ba39-304b053b95a2"
+const uint8_t STARTED_AT_UUID[ESP_UUID_LEN_128] = {0xa2,0x95,0x3b,0x05,0x4b,0x30,0x39,0xba,0x57,0x4f,0x01,0xf1,0x34,0x02,0x45,0x1f};
 
 static void timer_task(void *param);
 static void stop(enum timer t);
@@ -45,9 +47,11 @@ static void start(enum timer t);
 void init_timer() {
   defaulti(TIMER_TYPE, TIMER_MANUAL);
   defaulti(TIMER_OUTPUT, 0);
+  defaulti(STARTED_AT, 0);
 
   sync_ble_i(TIMER_TYPE, IDX_VALUE(TIMER_TYPE));
   sync_ble_i(TIMER_OUTPUT, IDX_VALUE(TIMER_OUTPUT));
+  sync_ble_i(STARTED_AT, IDX_CHAR_VAL_STARTED_AT);
 
   start(geti(TIMER_TYPE));
 
@@ -132,4 +136,8 @@ void on_set_timer_output(int value) {
   if (geti(TIMER_TYPE) != TIMER_MANUAL) return;
 
   seti(TIMER_OUTPUT, value);
+}
+
+void on_set_started_at(int value) {
+  seti(STARTED_AT, value);
 }

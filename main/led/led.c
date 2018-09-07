@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <sys/time.h>
+#include <float.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -38,8 +39,17 @@
 /*  UUID string: 6df781fe-6dce-5234-1870-6a972114c596 */
 const uint8_t LED_INFO_UUID[ESP_UUID_LEN_128] = {0x96,0xc5,0x14,0x21,0x97,0x6a,0x70,0x18,0x34,0x52,0xce,0x6d,0xfe,0x81,0xf7,0x6d};
 
-#define MAX(x, y) (((x) > (y)) ? (x) : (y))
-#define MIN(x, y) (((x) < (y)) ? (x) : (y))
+int min_x = INT_MAX;
+int max_x = INT_MIN;
+
+int min_y = INT_MAX;
+int max_y = INT_MIN;
+
+int min_z = INT_MAX;
+int max_z = INT_MIN;
+
+#define max(x, y) (((x) > (y)) ? (x) : (y))
+#define min(x, y) (((x) < (y)) ? (x) : (y))
 
 #define LEDC_FADE_TIME         (500)
 
@@ -122,6 +132,14 @@ void init_led_info() {
       break;
     }
     sprintf(led_info, "%s|%s", led_info, led);
+    min_x = min(min_x, ledc_channels[i].x);
+    max_x = max(max_x, ledc_channels[i].x);
+
+    min_y = min(min_y, ledc_channels[i].y);
+    max_y = max(max_y, ledc_channels[i].y);
+
+    min_z = min(min_z, ledc_channels[i].z);
+    max_z = max(max_z, ledc_channels[i].z);
   }
   set_attr_value(IDX_VALUE(LED_INFO), (const uint8_t *)led_info, strlen(led_info));
 }
@@ -158,15 +176,15 @@ void set_led_duty(int i, int value) {
   char duty_key[13] = {0};
   sprintf(duty_key, "LED_%d_DUTY", i);
 
-  seti(duty_key, MIN(100, MAX(value, 0)));
+  seti(duty_key, min(100, max(value, 0)));
   refresh_led(i);
 }
 
 /* BLE Callbacks */
 
 void on_set_led_duty(enum idx iv, int i, int value) {
-  char reset = value != MIN(100, MAX(value, 0));
-  value = MIN(100, MAX(value, 0));
+  char reset = value != min(100, max(value, 0));
+  value = min(100, max(value, 0));
   set_led_duty(i, value);
   if (reset) {
     set_attr_value_and_notify(iv, (const uint8_t *)&value, sizeof(value));
