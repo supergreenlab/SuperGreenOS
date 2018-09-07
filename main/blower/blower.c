@@ -22,11 +22,27 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/queue.h"
 #include "driver/mcpwm.h"
 #include "soc/mcpwm_reg.h"
 #include "soc/mcpwm_struct.h"
 
+#include "../misc/log.h"
+#include "../conf/ble_db.h"
+#include "../kv/kv.h"
+#include "../kv/kv_ble.h"
+
+#define max(x, y) (((x) > (y)) ? (x) : (y))
+#define min(x, y) (((x) < (y)) ? (x) : (y))
+
 #define BLOWER_GPIO (22)
+
+/*  UUID string: 03b7cea7-bedc-e37f-1bfd-7f2ab70a5e7b * */
+const uint8_t BLOWER_UUID[ESP_UUID_LEN_128] = {0x7b,0x5e,0x0a,0xb7,0x2a,0x7f,0xfd,0x1b,0x7f,0xe3,0xdc,0xbe,0xa7,0xce,0xb7,0x03};
+
+#define BLOWER "BLWR"
+
+static QueueHandle_t cmd;
 
 static void set_duty(mcpwm_unit_t mcpwm_num, mcpwm_timer_t timer_num , float duty_cycle)
 {
@@ -35,15 +51,26 @@ static void set_duty(mcpwm_unit_t mcpwm_num, mcpwm_timer_t timer_num , float dut
 }
 
 static void blower_task(void *param) {
-  double i = 0;
+  int c;
+
   while (1) {
-    set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, 100.0f);
-    vTaskDelay(100 / portTICK_RATE_MS);
-    ++i;
+    int v = geti(BLOWER);
+    set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, v);
+    xQueueReceive(cmd, &c, 3000 / portTICK_PERIOD_MS);
   }
 }
 
 void init_blower() {
+  ESP_LOGI(TAG, "Initializing blower task");
+  defaulti(BLOWER, 50);
+
+  sync_ble_i(BLOWER, IDX_VALUE(BLOWER));
+
+  cmd = xQueueCreate(10, sizeof(int));
+  if (cmd == NULL) {
+    ESP_LOGE(TAG, "Unable to create led queue");
+  }
+
   mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, BLOWER_GPIO);
   mcpwm_config_t pwm_config;
   pwm_config.frequency = 200;
@@ -55,4 +82,14 @@ void init_blower() {
 
   set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, 0.0);
   xTaskCreate(blower_task, "Blower task", 2048, NULL, 10, NULL);
+}
+
+/* BLE Callbacks */
+
+void on_set_blower(int value) {
+  value = min(100, max(value, 0));
+
+  seti(BLOWER, value);
+
+  xQueueSend(cmd, &value, 0);
 }

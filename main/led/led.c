@@ -55,7 +55,7 @@ int max_z = INT_MIN;
 
 void init_led_timers();
 
-QueueHandle_t cmd;
+static QueueHandle_t cmd;
 
 void init_keys(int i) {
   char duty_key[13] = {0};
@@ -103,7 +103,7 @@ static void led_task(void *param) {
 
   while(1) {
     if (xQueueReceive(cmd, &c, 30 * 1000 / portTICK_PERIOD_MS)) {
-      ESP_LOGI(TAG, "Force refresh leds");
+      ESP_LOGI(TAG, "Force refresh leds %d", c);
       if (c == -1) {
         for (int i = 0; i < N_LEDS; ++i) {
           update_led(i);
