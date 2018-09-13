@@ -15,4 +15,4 @@ fi
 popd > /dev/null
 
 rm -rf main/conf
-git clone git@github.com:vitaminwater/$NAME.git main/conf
+git clone git@github.com:supergreenlab/$NAME.git main/conf
