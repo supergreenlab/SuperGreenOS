@@ -34,6 +34,32 @@ Most of these keys and values are accessible via 2 means of transport, ble, and 
 
 For example, there is a key `TIMER_T` that tells which type of timer is currently activated. And if the value is `1`, the "classic" timer is selected, then the keys `ON_H` and `ON_M` will tell the hour and minute at which the light goes on, `OFF_H` and `OFF_M` are for off jours and minutes.
 
+While http access is under development right now, ble already works, see below for a list of available characteristics available with there corresponding keys.
+
+### Workers
+
+Workers are like threads that continuously run in the background, most folders under the `main/` directory are workers.
+
+Their role is to ensure that the state described by the key/value store is the actual state of the SuperGreenDriver in the real world.
+
+For example, if you change the time of sunrise or sunset, the worker of the timer will pick the change up and change the state of the leds accordingly.
+
+A worker in its most simple form is nothing more than an empty `while (true)` loop: (like an Arduino sketch)
+
+```c
+
+void worker_task(void *param) {
+  while (true) {}
+}
+
+```
+
+Most worker have a `wait(30s)` in there body. Every 30s they re-apply the desired state according to there related key/values.
+
+This avoids error-prone event-driven development: whatever happens it'll get back on it's feet, even if you mess with the key/values through ble or http.
+
+And it makes it nearly as easy as creating and Arduino sketch to create a new worker.
+
 ## Quick start
 
 Follow the [get-started guide from espressif](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/).
