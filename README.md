@@ -15,6 +15,8 @@ I've mostly been woking with either:
 - [Espressif ESP32 WROVER KIT - V3](https://www.adafruit.com/product/3384)  
   this one allows to debug through xtensa-esp32-elf-gdb and to flash the actual SuperGreenDriver.
 
+![ESP32 WROVER KIT](assets/esp32.png?raw=true "ESP32 WROVER KIT")
+
 ## Basic concept
 
 This code is made to be as compile-time as possible, in order to keep a low memory footprint and to keep memory-related error away.
