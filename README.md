@@ -10,9 +10,9 @@ Only runs on esp32.
 
 I've mostly been woking with either:
 
-- [Espressif ESP32 Development Board - Developer Edition](https://www.adafruit.com/product/3269)
+- [Espressif ESP32 Development Board - Developer Edition](https://www.adafruit.com/product/3269)  
   Simple, but does not allow to flash the actual SuperGreenDriver.
-- [https://www.adafruit.com/product/3384](Espressif ESP32 WROVER KIT - V3)
+- [https://www.adafruit.com/product/3384](Espressif ESP32 WROVER KIT - V3)  
   this one allows to debug through xtensa-esp32-elf-gdb and to flash the actual SuperGreenDriver.
 
 ## Quick start
