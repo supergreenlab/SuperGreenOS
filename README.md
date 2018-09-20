@@ -72,3 +72,38 @@ For the project to compile, you need to clone at `main/conf` one of the configur
 - [SuperGreenOSConf-SGD2Leds](https://github.com/supergreenlab/SuperGreenOSConf-SGD2Leds)
 - [SuperGreenOSConf-SGD3Leds](https://github.com/supergreenlab/SuperGreenOSConf-SGD3Leds)
 
+
+# Misc
+
+## BLE characteristic to key table
+
+| uuid                                 | name                   | type         |
+| ------------------------------------ | ---------------------- | ------------ |
+| a6317732-8c0e-ee6e-68ee-61f13d4f8b25 | name                   | stringValue  |
+| 40f9ee4f-e19e-4a8a-aa33-b4aae23b6a9b | time                   | intValue     |
+| 8ff6dfd2-3bd6-feb4-43ec-de5663122894 | state                  | intValue     |
+| 6df781fe-6dce-5234-1870-6a972114c596 | ledInfo                | ledInfoValue |
+| 4291ec1b-65df-19c4-c5f1-e4259071fc00 | led_0_duty             | intValue     |
+| 4291ec1b-65df-19c4-c5f1-e4259071fc01 | led_1_duty             | intValue     |
+| 4291ec1b-65df-19c4-c5f1-e4259071fc02 | led_2_duty             | intValue     |
+| 4291ec1b-65df-19c4-c5f1-e4259071fc03 | led_3_duty             | intValue     |
+| 4291ec1b-65df-19c4-c5f1-e4259071fc04 | led_4_duty             | intValue     |
+| 4291ec1b-65df-19c4-c5f1-e4259071fc05 | led_5_duty             | intValue     |
+| 5f5ea840-3aa9-0a7b-343d-415ab2faa9f3 | timerType              | intValue     |
+| b2286094-8299-a967-db89-ee856e365789 | timerOutput            | intValue     |
+| e867f9a6-4ab7-09da-ef26-19f350ed4ba1 | onHour                 | intValue     |
+| 7528a50b-dd3b-f714-62f5-7167f1791347 | onMin                  | intValue     |
+| 5dafb88c-9d7e-ab6b-0253-12294c35beae | offHour                | intValue     |
+| 086aa1e1-d9ab-2d22-4110-4f3f05efd3d4 | offMin                 | intValue     |
+| 3867a37c-85a9-338c-40ac-96d4ee586841 | simulatedTime          | intValue     |
+| 829bfbd2-a7e1-4c16-b7e2-4a8fd6261f40 | startDateMonth         | intValue     |
+| 547af7e1-6a8c-4fbc-b568-9c3f194cdc1e | startDateDay           | intValue     |
+| 495600fd-947d-4157-a996-20780ad1d81a | durationDays           | intValue     |
+| 6f01cd48-a405-45e5-99db-0de8b5ca2e7f | simulationDurationDays | intValue     |
+| 1f450234-f101-4f57-ba39-304b053b95a2 | startedAt              | intValue     |
+| 372fda1c-6d67-cbda-f083-ae31b50e06ee | wifiStatus             | intValue     |
+| 6ca36981-9c55-74a5-5415-e16bc1c3fe17 | wifiSsid               | stringValue  |
+| f7e40b10-6cfe-a6f1-fea0-cc6e82535db9 | wifiPassword           | stringValue  |
+| 7072326b-95b0-4822-a5e1-b2cc47875ae5 | stretch                | intValue     |
+| a66375f6-7677-ba29-46b7-0fde55b0db61 | ledDim                 | intValue     |
+| 03b7cea7-bedc-e37f-1bfd-7f2ab70a5e7b | blower                 | intValue     |
