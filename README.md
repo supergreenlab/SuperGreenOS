@@ -77,6 +77,8 @@ For the project to compile, you need to clone at `main/conf` one of the configur
 
 ## BLE characteristic to key table
 
+Extracted from [SuperGreenApp/src/utils/ble.h](https://github.com/supergreenlab/SuperGreenApp/blob/master/src/utils/ble.js#L44).
+
 | uuid                                 | name                   | type         |
 | ------------------------------------ | ---------------------- | ------------ |
 | a6317732-8c0e-ee6e-68ee-61f13d4f8b25 | name                   | stringValue  |
