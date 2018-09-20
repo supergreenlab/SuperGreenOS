@@ -79,6 +79,8 @@ For the project to compile, you need to clone at `main/conf` one of the configur
 
 Extracted from [SuperGreenApp/src/utils/ble.h](https://github.com/supergreenlab/SuperGreenApp/blob/master/src/utils/ble.js#L44).
 
+Install LightBlue for [iOS](https://itunes.apple.com/us/app/lightblue-explorer/id557428110?mt=8) and [android](https://play.google.com/store/apps/details?id=com.punchthrough.lightblueexplorer&hl=en) for direct access.
+
 | uuid                                 | name                   | type         |
 | ------------------------------------ | ---------------------- | ------------ |
 | a6317732-8c0e-ee6e-68ee-61f13d4f8b25 | name                   | stringValue  |
