@@ -24,8 +24,6 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-#include "apps/sntp/sntp.h"
-
 #include "../timer.h"
 #include "../../misc/log.h"
 #include "../../time/utils.h"

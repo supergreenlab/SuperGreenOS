@@ -140,16 +140,17 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
     case SYSTEM_EVENT_STA_DISCONNECTED:
       ESP_LOGI(TAG, "SYSTEM_EVENT_STA_DISCONNECTED");
       ESP_LOGI(TAG, "%d", event->event_info.disconnected.reason);
-      bool failed = event->event_info.disconnected.reason == WIFI_REASON_NO_AP_FOUND || event->event_info.disconnected.reason == WIFI_REASON_HANDSHAKE_TIMEOUT;
-      if (!failed && is_valid()) {
-        esp_wifi_connect();
-      }
-      xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
+      bool failed = event->event_info.disconnected.reason == WIFI_REASON_NO_AP_FOUND || event->event_info.disconnected.reason == WIFI_REASON_AUTH_FAIL;
       if (failed) {
         set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&FAILED, sizeof(const unsigned int));
       } else {
         set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&DISCONNECTED, sizeof(const unsigned int));
       }
+
+      if (is_valid()) {
+        esp_wifi_connect();
+      }
+      xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
       break;
     default:
       break;
@@ -174,6 +175,7 @@ static void wifi_task(void *param) {
 
 void on_set_wifi_ssid(const char *ssid) {
   setstr(SSID, ssid);
+  setstr(PASS, "");
   xQueueSend(cmd, &CMD_SSID_CHANGED, 0);
 }
 
