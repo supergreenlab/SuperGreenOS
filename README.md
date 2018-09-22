@@ -17,6 +17,20 @@ I've mostly been woking with either:
 
 ![ESP32 WROVER KIT](assets/esp32.png?raw=true "ESP32 WROVER KIT")
 
+## Features
+
+- Automatic leds (up to 6 now) control:
+  - Classic on/off timer
+  - "Season simulation" timer
+  - "Stretch" or "thicken" modes
+- Blower (extraction with carbon filter), manual or automatic
+- Fans (intraction)
+- Possibility to add sensors, i.e temperature and humidity sensor
+- Automatic update over wifi
+- Statistic reports
+- Bluetooth LE interface
+- HTTP interface
+
 ## Basic concept
 
 This code is made to be as compile-time as possible, in order to keep a low memory footprint and to keep memory-related error away.
