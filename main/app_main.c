@@ -24,6 +24,7 @@
 #include "conf/version.h"
 #include "status_led/status_led.h"
 #include "kv/kv.h"
+#include "mqtt/mqtt.h"
 #include "ble/ble.h"
 #include "state/state.h"
 #include "wifi/wifi.h"
@@ -41,13 +42,15 @@
 #include "status_led/status_led.h"
 
 void app_main() {
-    printf("Welcome to chronic-o-matic firmware %s\n", VERSION);
+    mqtt_intercept_log();
+    printf("Welcome to SuperGreenOS (version: %s)\n", VERSION);
 
     init_status_led();
     init_kv();
     init_ble();
     init_state();
     init_wifi();
+    init_mqtt();
     init_ota();
     init_led();
     init_time();

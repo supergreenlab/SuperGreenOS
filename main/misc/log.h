@@ -21,6 +21,6 @@
 
 #include "esp_log.h"
 
-#define TAG "CHRONIC_O_MATIC"
+#define TAG "SUPER_GREEN_OS"
 
 #endif

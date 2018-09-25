@@ -68,7 +68,7 @@ void init_blower() {
 
   cmd = xQueueCreate(10, sizeof(int));
   if (cmd == NULL) {
-    ESP_LOGE(TAG, "Unable to create led queue");
+    ESP_LOGE(TAG, "Unable to create blower queue");
   }
 
   mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, BLOWER_GPIO);
