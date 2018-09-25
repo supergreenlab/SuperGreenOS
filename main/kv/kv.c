@@ -19,6 +19,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "../misc/log.h"
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"
@@ -73,11 +75,15 @@ void seti(const char * key, int value) {
   ESP_ERROR_CHECK(err);
   nvs_commit(kv_handle);
   nvs_close(kv_handle);
+  ESP_LOGI(TAG, "%s=%d", key, value);
 }
 
 void defaulti(const char * key, int value) {
   if (!hasi(key)) {
     seti(key, value);
+  } else {
+    int v = geti(key);
+    ESP_LOGI(TAG, "%s=%d", key, v);
   }
 }
 
@@ -102,10 +108,16 @@ void setstr(const char * key, const char * value) {
   ESP_ERROR_CHECK(err);
   nvs_commit(kv_handle);
   nvs_close(kv_handle);
+
+  ESP_LOGI(TAG, "%s=%s", key, value);
 }
 
 void defaultstr(const char * key, const char * value) {
   if (!hasstr(key)) {
     setstr(key, value);
+  } else {
+    char buf[517] = {0};
+    getstr(key, buf, sizeof(buf) - 1);
+    ESP_LOGI(TAG, "%s=%s", key, buf);
   }
 }
