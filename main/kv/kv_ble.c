@@ -33,6 +33,5 @@ void sync_ble_i(const char *key, enum idx i) {
 void sync_ble_str(const char *key, enum idx i) {
   char value[517] = {0};
   getstr(key, value, sizeof(value) - 1);
-  ESP_LOGI(TAG, "%s = %s strlen(value) = %d", key, value, strlen(value));
   set_attr_value(i, (const uint8_t *)value, strlen(value));
 }

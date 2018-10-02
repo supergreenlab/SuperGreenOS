@@ -69,12 +69,12 @@ void init_season() {
 }
 
 void start_season() {
-  ESP_LOGI(TAG, "start_season");
+  ESP_LOGI(LOG_EVENT, "@SEASON start_season");
   season_task();
 }
 
 void stop_season() {
-  ESP_LOGI(TAG, "stop_season");
+  ESP_LOGI(LOG_EVENT, "@SEASON stop_season");
 }
 
 time_t get_box_time() {
@@ -123,14 +123,14 @@ int get_output_for_time() {
   double year_adv = (double)(timeinfo.tm_yday) / (double) 365;
 
   double output = cos(year_adv * M_PI * 2) * 0.25 - cos(day_adv * M_PI * 2);
-  ESP_LOGI(TAG, "timeinfo.tm_hour: %d timeinfo.tm_min: %d timeinfo.tm_sec: %d year_adv: %f day_adv: %f output: %f", timeinfo.tm_hour, timeinfo.tm_min, timeinfo.tm_sec, year_adv, day_adv, output);
+  ESP_LOGI(LOG_EVENT, "@SEASON timeinfo.tm_hour = %d, timeinfo.tm_min = %d, timeinfo.tm_sec = %d, year_adv = %f, day_adv = %f, output = %f", timeinfo.tm_hour, timeinfo.tm_min, timeinfo.tm_sec, year_adv, day_adv, output);
   return min(100, max(0, output * 100));
 }
 
 void season_task() {
-  ESP_LOGI(TAG, "Simulated time: ");
   time_t box_time = get_box_time();
-  print_time(box_time);
+  ESP_LOGI(LOG_EVENT, "@SEASON Simulated time = %d", box_time);
+  print_time(LOG_NOSEND, "@SEASON", box_time);
   set_attr_value_and_notify(IDX_VALUE(SIMULATED_TIME), (uint8_t *)&box_time, sizeof(time_t));
 
   update_output(get_output_for_time());

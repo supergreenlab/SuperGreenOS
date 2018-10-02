@@ -57,7 +57,7 @@ static void status_led_task(void *param) {
 }
 
 void init_status_led() {
-  ESP_LOGI(TAG, "Status led");
+  ESP_LOGI(LOG_EVENT, "@STATUS_LED Status led");
 
   ledc_timer_config_t ledc_timer = {
     speed_mode:       LEDC_LOW_SPEED_MODE,

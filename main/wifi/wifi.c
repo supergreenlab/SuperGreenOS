@@ -86,7 +86,7 @@ void init_wifi() {
 
   cmd = xQueueCreate(5, sizeof(unsigned int));
   if (cmd == NULL) {
-    ESP_LOGE(TAG, "Failed to create queue");
+    ESP_LOGE(LOG_EVENT, "@WIFI Failed to create queue");
   }
 
   xTaskCreate(wifi_task, "wifi task", 2048, NULL, tskIDLE_PRIORITY, NULL);
@@ -110,7 +110,7 @@ static void setup() {
   getstr(PASS, (char *)wifi_config.sta.password, sizeof(wifi_config.sta.password) - 1);
 
   wifi_config.sta.bssid_set = false;
-  ESP_LOGI(TAG, "Setting WiFi configuration SSID %s...", wifi_config.sta.ssid);
+  ESP_LOGI(LOG_EVENT, "@WIFI Setting WiFi configuration SSID %s...", wifi_config.sta.ssid);
   ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
   ESP_ERROR_CHECK( esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config) );
 
@@ -128,18 +128,17 @@ static void setup() {
 static esp_err_t event_handler(void *ctx, system_event_t *event) {
   switch(event->event_id) {
     case SYSTEM_EVENT_STA_START:
-      ESP_LOGI(TAG, "SYSTEM_EVENT_STA_START");
+      ESP_LOGI(LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_START");
       esp_wifi_connect();
       set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTING, sizeof(const unsigned int));
       break;
     case SYSTEM_EVENT_STA_GOT_IP:
-      ESP_LOGI(TAG, "SYSTEM_EVENT_STA_GOT_IP");
+      ESP_LOGI(LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_GOT_IP");
       xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
       set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTED, sizeof(const unsigned int));
       break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
-      ESP_LOGI(TAG, "SYSTEM_EVENT_STA_DISCONNECTED");
-      ESP_LOGI(TAG, "%d", event->event_info.disconnected.reason);
+      ESP_LOGI(LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_DISCONNECTED = %d", event->event_info.disconnected.reason);
       bool failed = event->event_info.disconnected.reason == WIFI_REASON_NO_AP_FOUND || event->event_info.disconnected.reason == WIFI_REASON_AUTH_FAIL;
       if (failed) {
         set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&FAILED, sizeof(const unsigned int));
@@ -163,7 +162,7 @@ static void wifi_task(void *param) {
   for (;;) {
     if(xQueueReceive(cmd, &c, (TickType_t) portMAX_DELAY)) {
       if ((c == CMD_SSID_CHANGED || CMD_PASS_CHANGED) && is_valid()) {
-        ESP_LOGI(TAG, "wifi_task CMD_SSID_CHANGED");
+        ESP_LOGI(LOG_EVENT, "@WIFI CMD_SSID_CHANGED | CMD_PASS_CHANGED");
         setup();
       }
     }

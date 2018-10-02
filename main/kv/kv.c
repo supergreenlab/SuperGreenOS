@@ -33,7 +33,7 @@ nvs_handle open_handle() {
   nvs_handle kv_handle;
   esp_err_t err = nvs_open("kv_store", NVS_READWRITE, &kv_handle);
   if (err != ESP_OK) {
-    printf("Error (%s) opening NVS handle!\n", esp_err_to_name(err));
+    ESP_LOGI(LOG_EVENT, "@KV Error (%s) opening NVS handle!\n", esp_err_to_name(err));
   }
   return kv_handle;
 }
@@ -75,7 +75,7 @@ void seti(const char * key, int value) {
   ESP_ERROR_CHECK(err);
   nvs_commit(kv_handle);
   nvs_close(kv_handle);
-  ESP_LOGI(TAG, "%s=%d", key, value);
+  ESP_LOGI(LOG_METRIC, "@KV %s=%d", key, value);
 }
 
 void defaulti(const char * key, int value) {
@@ -83,7 +83,7 @@ void defaulti(const char * key, int value) {
     seti(key, value);
   } else {
     int v = geti(key);
-    ESP_LOGI(TAG, "%s=%d", key, v);
+    ESP_LOGI(LOG_METRIC, "@KV %s=%d", key, v);
   }
 }
 
@@ -109,7 +109,7 @@ void setstr(const char * key, const char * value) {
   nvs_commit(kv_handle);
   nvs_close(kv_handle);
 
-  ESP_LOGI(TAG, "%s=%s", key, value);
+  ESP_LOGI(LOG_METRIC, "@KV %s=%s", key, value);
 }
 
 void defaultstr(const char * key, const char * value) {
@@ -118,6 +118,6 @@ void defaultstr(const char * key, const char * value) {
   } else {
     char buf[517] = {0};
     getstr(key, buf, sizeof(buf) - 1);
-    ESP_LOGI(TAG, "%s=%s", key, buf);
+    ESP_LOGI(LOG_METRIC, "@KV %s=%s", key, buf);
   }
 }

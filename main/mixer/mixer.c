@@ -57,7 +57,7 @@ void init_mixer() {
 
   BaseType_t ret = xTaskCreate(mixer_task, "Mixer task", 3072, NULL, tskIDLE_PRIORITY, NULL);
   if (ret != pdPASS) {
-    ESP_LOGE(TAG, "Failed to create task");
+    ESP_LOGE(LOG_EVENT, "@MIXER Failed to create task");
   }
 }
 
@@ -75,12 +75,12 @@ static void set_duty_3d(double x, double y, double z, int duty, int min_duty) {
     max_dist = max(max_dist, dist);
   }
 
-  ESP_LOGI(TAG, "min_dist: %f max_dist: %f x: %f y: %f z: %f", min_dist, max_dist, x, y, z);
+  ESP_LOGI(LOG_EVENT, "@MIXER min_dist = %f, max_dist = %f, x = %f, y = %f, z = %f", min_dist, max_dist, x, y, z);
 
   for (int i = 0; i < N_LEDS; ++i) {
     double dist = sqrtf(pow(fabs(x - ledc_channels[i].x), 2) + pow(fabs(y - ledc_channels[i].y), 2) + pow(fabs(z - ledc_channels[i].z), 2));
     double d = min_duty + (double)(duty - min_duty) * ((max_dist - dist) / (max_dist - min_dist));
-    ESP_LOGI(TAG, "i: %d d: %f", i, d);
+    ESP_LOGI(LOG_EVENT, "@MIXER i = %d, d = %f", i, d);
     set_duty(i, d);
   }
 }

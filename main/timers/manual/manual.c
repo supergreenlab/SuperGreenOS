@@ -24,13 +24,13 @@ void init_manual() {
 }
 
 void start_manual() {
-  ESP_LOGI(TAG, "start_manual");
+  ESP_LOGI(LOG_EVENT, "@MANUAL start_manual");
 }
 
 void stop_manual() {
-  ESP_LOGI(TAG, "stop_manual");
+  ESP_LOGI(LOG_EVENT, "@MANUAL stop_manual");
 }
 
 void manual_task() {
-  ESP_LOGI(TAG, "manual_task");
+  ESP_LOGI(LOG_EVENT, "@MANUAL manual_task");
 }

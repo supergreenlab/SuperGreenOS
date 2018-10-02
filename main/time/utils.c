@@ -20,15 +20,15 @@
 
 #include "../log/log.h"
 
-void print_time(time_t t) {
+void print_time(const char *tag, const char *module, time_t t) {
   struct tm timeinfo;
   localtime_r(&t, &timeinfo); 
 
-  print_timeinfo(timeinfo);
+  print_timeinfo(tag, module, timeinfo);
 }
 
-void print_timeinfo(struct tm timeinfo) {
+void print_timeinfo(const char * tag, const char *module, struct tm timeinfo) {
   char buffer[26] = {0};
   strftime(buffer, 26, "%Y-%m-%d %H:%M:%S", &timeinfo);
-  ESP_LOGI(TAG, "%s", buffer);
+  ESP_LOGI(tag, "@%s %s", module, buffer);
 }
