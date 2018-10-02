@@ -29,7 +29,7 @@
 #include "../kv/kv.h"
 #include "../kv/kv_ble.h"
 #include "../ble/ble.h"
-#include "../misc/log.h"
+#include "../log/log.h"
 #include "../led/led.h"
 #include "../state/state.h"
 #include "../timers/timer.h"

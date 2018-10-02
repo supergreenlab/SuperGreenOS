@@ -25,7 +25,7 @@
 #include "freertos/queue.h"
 
 #include "../timer.h"
-#include "../../misc/log.h"
+#include "../../log/log.h"
 #include "../../kv/kv.h"
 #include "../../kv/kv_ble.h"
 #include "../../ble/ble.h"

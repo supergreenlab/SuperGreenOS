@@ -24,7 +24,7 @@
 #include "../kv/kv.h"
 #include "../ble/ble.h"
 #include "../kv/kv_ble.h"
-#include "../misc/log.h"
+#include "../log/log.h"
 #include "../led/led.h"
 #include "timer.h"
 #include "../conf/ble_db.h"

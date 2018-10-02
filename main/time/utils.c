@@ -18,7 +18,7 @@
 
 #include "utils.h"
 
-#include "../misc/log.h"
+#include "../log/log.h"
 
 void print_time(time_t t) {
   struct tm timeinfo;

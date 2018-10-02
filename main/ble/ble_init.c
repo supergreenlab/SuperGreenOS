@@ -30,7 +30,7 @@
 #include "esp_gatts_api.h"
 #include "esp_bt_main.h"
 
-#include "../misc/log.h"
+#include "../log/log.h"
 
 #include "ble.h"
 #include "ble_utils.h"

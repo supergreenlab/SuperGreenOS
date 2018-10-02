@@ -31,7 +31,7 @@
 #include "nvs_flash.h"
 
 #include "wifi.h"
-#include "../misc/log.h"
+#include "../log/log.h"
 #include "../ble/ble.h"
 #include "../kv/kv.h"
 #include "../kv/kv_ble.h"

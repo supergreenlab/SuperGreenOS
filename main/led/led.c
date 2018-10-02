@@ -33,7 +33,7 @@
 #include "../kv/kv_ble.h"
 #include "../ble/ble.h"
 #include "../ble/ble_utils.h"
-#include "../misc/log.h"
+#include "../log/log.h"
 #include "../time/time.h"
 #include "../state/state.h"
 

@@ -25,7 +25,7 @@
 #include "freertos/task.h"
 
 #include "../timer.h"
-#include "../../misc/log.h"
+#include "../../log/log.h"
 #include "../../time/utils.h"
 #include "../../kv/kv.h"
 #include "../../kv/kv_ble.h"

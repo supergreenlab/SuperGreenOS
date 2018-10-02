@@ -25,7 +25,7 @@
 #include "driver/ledc.h"
 
 #include "status_led.h"
-#include "../misc/log.h"
+#include "../log/log.h"
 
 #define LEDC_FADE_TIME         (50)
 

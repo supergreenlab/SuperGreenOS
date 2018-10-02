@@ -21,6 +21,9 @@
 
 #include "esp_log.h"
 
-#define TAG "SUPER_GREEN_OS"
+#define LOG_NOSEND "NOSEND"
+#define LOG_MSG "MSG"
+#define LOG_EVENT "EVENT"
+#define LOG_METRIC "METRIC"
 
 #endif

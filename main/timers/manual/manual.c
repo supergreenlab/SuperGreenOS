@@ -18,7 +18,7 @@
 
 #include "manual.h"
 
-#include "../../misc/log.h"
+#include "../../log/log.h"
 
 void init_manual() {
 }

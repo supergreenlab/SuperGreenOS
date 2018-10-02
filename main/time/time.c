@@ -25,7 +25,7 @@
 
 #include "lwip/apps/sntp.h"
 
-#include "../misc/log.h"
+#include "../log/log.h"
 #include "time.h"
 #include "utils.h"
 #include "../kv/kv.h"

@@ -32,7 +32,7 @@
 #include "esp_event_loop.h"
 #include "esp_ota_ops.h"
 
-#include "../misc/log.h"
+#include "../log/log.h"
 #include "../wifi/wifi.h"
 #include "../kv/kv.h"
 #include "../conf/ota_db.h"

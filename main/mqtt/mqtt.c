@@ -23,7 +23,7 @@
 #include "freertos/queue.h"
 #include "esp_log.h"
 
-#include "../misc/log.h"
+#include "../log/log.h"
 #include "../wifi/wifi.h"
 
 static esp_mqtt_client_handle_t client;
@@ -111,6 +111,10 @@ static void mqtt_task(void *param) {
 }
 
 static int mqtt_logging_vprintf(const char *str, va_list l) {
+  int totalsize = vsnprintf(NULL, 0, str, l);
+  if (totalsize >= MAX_LOG_QUEUE_SIZE * 2 - 1) {
+    return vprintf(str, l);
+  }
   memset(buf, 0, MAX_LOG_QUEUE_SIZE * 2);
   int len = vsprintf((char*)buf, str, l) - 1;
   buf[len] = 0;
@@ -118,7 +122,7 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
   if (cmd && uxQueueMessagesWaiting(log_queue) > 5) {
     xQueueSend(cmd, &CMD_MQTT_FORCE_FLUSH, 0);
   }
-  return vprintf( str, l );
+  return vprintf(str, l);
 }
 
 void mqtt_intercept_log() {

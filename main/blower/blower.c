@@ -27,7 +27,7 @@
 #include "soc/mcpwm_reg.h"
 #include "soc/mcpwm_struct.h"
 
-#include "../misc/log.h"
+#include "../log/log.h"
 #include "../conf/ble_db.h"
 #include "../kv/kv.h"
 #include "../kv/kv_ble.h"

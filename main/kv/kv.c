@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../misc/log.h"
+#include "../log/log.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"

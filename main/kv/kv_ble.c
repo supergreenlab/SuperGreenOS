@@ -19,7 +19,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../misc/log.h"
+#include "../log/log.h"
 #include "./kv.h"
 #include "./kv_ble.h"
 
