@@ -79,10 +79,10 @@ static bool read_past_http_header(char text[], int total_len, esp_ota_handle_t u
 
       esp_err_t err = esp_ota_write( update_handle, (const void *)ota_write_data, i_write_len);
       if (err != ESP_OK) {
-        ESP_LOGE(LOG_EVENT, "@OTA Error: esp_ota_write failed (%s)!", esp_err_to_name(err));
+        ESP_LOGE(SGO_LOG_EVENT, "@OTA Error: esp_ota_write failed (%s)!", esp_err_to_name(err));
         return false;
       } else {
-        ESP_LOGI(LOG_EVENT, "@OTA esp_ota_write header OK");
+        ESP_LOGI(SGO_LOG_EVENT, "@OTA esp_ota_write header OK");
         binary_file_length += i_write_len;
       }
       return true;
@@ -94,14 +94,14 @@ static bool read_past_http_header(char text[], int total_len, esp_ota_handle_t u
 
 static bool connect_to_http_server()
 {
-  ESP_LOGI(LOG_EVENT, "@OTA Server IP: %s Server Port:%s", OTA_SERVER_IP, OTA_SERVER_PORT);
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA Server IP: %s Server Port:%s", OTA_SERVER_IP, OTA_SERVER_PORT);
 
   int  http_connect_flag = -1;
   struct sockaddr_in sock_info;
 
   socket_id = socket(AF_INET, SOCK_STREAM, 0);
   if (socket_id == -1) {
-    ESP_LOGE(LOG_EVENT, "@OTA Create socket failed!");
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA Create socket failed!");
     return false;
   }
 
@@ -114,11 +114,11 @@ static bool connect_to_http_server()
   // connect to http server
   http_connect_flag = connect(socket_id, (struct sockaddr *)&sock_info, sizeof(sock_info));
   if (http_connect_flag == -1) {
-    ESP_LOGE(LOG_EVENT, "@OTA Connect to server failed! errno=%d", errno);
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA Connect to server failed! errno=%d", errno);
     close(socket_id);
     return false;
   } else {
-    ESP_LOGI(LOG_EVENT, "@OTA Connected to server");
+    ESP_LOGI(SGO_LOG_EVENT, "@OTA Connected to server");
     return true;
   }
  return false;
@@ -127,9 +127,9 @@ static bool connect_to_http_server()
 static bool check_new_version() {
   /*connect to http server*/
   if (connect_to_http_server()) {
-    ESP_LOGI(LOG_EVENT, "@OTA Connected to http server");
+    ESP_LOGI(SGO_LOG_EVENT, "@OTA Connected to http server");
   } else {
-    ESP_LOGE(LOG_EVENT, "@OTA Connect to http server failed!");
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA Connect to http server failed!");
     close(socket_id);
     return false;
   }
@@ -143,7 +143,7 @@ static bool check_new_version() {
   char *http_request = NULL;
   int get_len = asprintf(&http_request, GET_FORMAT, OTA_VERSION_FILENAME, OTA_SERVER_IP, OTA_SERVER_PORT);
   if (get_len < 0) {
-    ESP_LOGE(LOG_EVENT, "@OTA Failed to allocate memory for GET request buffer");
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA Failed to allocate memory for GET request buffer");
     close(socket_id);
     return false;
   }
@@ -151,11 +151,11 @@ static bool check_new_version() {
   free(http_request);
 
   if (res < 0) {
-    ESP_LOGE(LOG_EVENT, "@OTA Send GET request to server failed");
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA Send GET request to server failed");
     close(socket_id);
     return false;
   } else {
-    ESP_LOGI(LOG_EVENT, "@OTA Send GET request to server succeeded");
+    ESP_LOGI(SGO_LOG_EVENT, "@OTA Send GET request to server succeeded");
   }
 
   int i = 0;
@@ -166,11 +166,11 @@ static bool check_new_version() {
     else i = 0;
   }
 
-  ESP_LOGI(LOG_EVENT, "@OTA Skipped http header");
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA Skipped http header");
 
   char timestamp[15] = {0};
   while(recv(socket_id, &(timestamp[strlen(timestamp)]), sizeof(timestamp) - strlen(timestamp) - 1, 0) > 0);
-  ESP_LOGI(LOG_EVENT, "@OTA OTA TIMESTAMP: %d (build: %lu)", atoi(timestamp), OTA_TIMESTAMP);
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA TIMESTAMP: %d (build: %lu)", atoi(timestamp), OTA_TIMESTAMP);
   return OTA_TIMESTAMP < atoi(timestamp);
 }
 
@@ -181,24 +181,24 @@ static void try_ota()
   esp_ota_handle_t update_handle = 0 ;
   const esp_partition_t *update_partition = NULL;
 
-  ESP_LOGI(LOG_EVENT, "@OTA Starting OTA example...");
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA Starting OTA example...");
 
   const esp_partition_t *configured = esp_ota_get_boot_partition();
   const esp_partition_t *running = esp_ota_get_running_partition();
 
   if (configured != running) {
-    ESP_LOGW(LOG_EVENT, "@OTA Configured OTA boot partition at offset 0x%08x, but running from offset 0x%08x",
+    ESP_LOGW(SGO_LOG_EVENT, "@OTA Configured OTA boot partition at offset 0x%08x, but running from offset 0x%08x",
         configured->address, running->address);
-    ESP_LOGW(LOG_EVENT, "@OTA (This can happen if either the OTA boot data or preferred boot image become corrupted somehow.)");
+    ESP_LOGW(SGO_LOG_EVENT, "@OTA (This can happen if either the OTA boot data or preferred boot image become corrupted somehow.)");
   }
-  ESP_LOGI(LOG_EVENT, "@OTA Running partition type %d subtype %d (offset 0x%08x)",
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA Running partition type %d subtype %d (offset 0x%08x)",
       running->type, running->subtype, running->address);
 
   /*connect to http server*/
   if (connect_to_http_server()) {
-    ESP_LOGI(LOG_EVENT, "@OTA Connected to http server");
+    ESP_LOGI(SGO_LOG_EVENT, "@OTA Connected to http server");
   } else {
-    ESP_LOGE(LOG_EVENT, "@OTA Connect to http server failed!");
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA Connect to http server failed!");
     close(socket_id);
     return;
   }
@@ -212,7 +212,7 @@ static void try_ota()
   char *http_request = NULL;
   int get_len = asprintf(&http_request, GET_FORMAT, OTA_FILENAME, OTA_SERVER_IP, OTA_SERVER_PORT);
   if (get_len < 0) {
-    ESP_LOGE(LOG_EVENT, "@OTA Failed to allocate memory for GET request buffer");
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA Failed to allocate memory for GET request buffer");
     close(socket_id);
     return;
   }
@@ -220,25 +220,25 @@ static void try_ota()
   free(http_request);
 
   if (res < 0) {
-    ESP_LOGE(LOG_EVENT, "@OTA Send GET request to server failed");
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA Send GET request to server failed");
     close(socket_id);
     return;
   } else {
-    ESP_LOGI(LOG_EVENT, "@OTA Send GET request to server succeeded");
+    ESP_LOGI(SGO_LOG_EVENT, "@OTA Send GET request to server succeeded");
   }
 
   update_partition = esp_ota_get_next_update_partition(NULL);
-  ESP_LOGI(LOG_EVENT, "@OTA Writing to partition subtype %d at offset 0x%x",
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA Writing to partition subtype %d at offset 0x%x",
       update_partition->subtype, update_partition->address);
   assert(update_partition != NULL);
 
   err = esp_ota_begin(update_partition, OTA_SIZE_UNKNOWN, &update_handle);
   if (err != ESP_OK) {
-    ESP_LOGE(LOG_EVENT, "@OTA esp_ota_begin failed (%s)", esp_err_to_name(err));
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA esp_ota_begin failed (%s)", esp_err_to_name(err));
     close(socket_id);
     return;
   }
-  ESP_LOGI(LOG_EVENT, "@OTA esp_ota_begin succeeded");
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA esp_ota_begin succeeded");
 
   bool resp_body_start = false, socket_flag = true, http_200_flag = false;
   /*deal with all receive packet*/
@@ -247,13 +247,13 @@ static void try_ota()
     memset(ota_write_data, 0, BUFFSIZE);
     int buff_len = recv(socket_id, text, TEXT_BUFFSIZE, 0);
     if (buff_len < 0) { /*receive error*/
-      ESP_LOGE(LOG_EVENT, "@OTA Error: receive data error! errno=%d", errno);
+      ESP_LOGE(SGO_LOG_EVENT, "@OTA Error: receive data error! errno=%d", errno);
       close(socket_id);
       return;
     } else if (buff_len > 0 && !resp_body_start) {  /*deal with response header*/
       // only start ota when server response 200 state code
       if (strstr(text, "200") == NULL && !http_200_flag) {
-        ESP_LOGE(LOG_EVENT, "@OTA ota url is invalid or bin is not exist");
+        ESP_LOGE(SGO_LOG_EVENT, "@OTA ota url is invalid or bin is not exist");
         close(socket_id);
         return;
       }
@@ -264,49 +264,49 @@ static void try_ota()
       memcpy(ota_write_data, text, buff_len);
       err = esp_ota_write( update_handle, (const void *)ota_write_data, buff_len);
       if (err != ESP_OK) {
-        ESP_LOGE(LOG_EVENT, "@OTA Error: esp_ota_write failed (%s)!", esp_err_to_name(err));
+        ESP_LOGE(SGO_LOG_EVENT, "@OTA Error: esp_ota_write failed (%s)!", esp_err_to_name(err));
         close(socket_id);
         return;
       }
       binary_file_length += buff_len;
-      ESP_LOGI(LOG_EVENT, "@OTA Have written image length %d", binary_file_length);
+      ESP_LOGI(SGO_LOG_EVENT, "@OTA Have written image length %d", binary_file_length);
     } else if (buff_len == 0) {  /*packet over*/
       socket_flag = false;
-      ESP_LOGI(LOG_EVENT, "@OTA Connection closed, all packets received");
+      ESP_LOGI(SGO_LOG_EVENT, "@OTA Connection closed, all packets received");
       close(socket_id);
     } else {
-      ESP_LOGE(LOG_EVENT, "@OTA Unexpected recv result");
+      ESP_LOGE(SGO_LOG_EVENT, "@OTA Unexpected recv result");
     }
   }
 
-  ESP_LOGI(LOG_EVENT, "@OTA Total Write binary data length : %d", binary_file_length);
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA Total Write binary data length : %d", binary_file_length);
 
   if (esp_ota_end(update_handle) != ESP_OK) {
-    ESP_LOGE(LOG_EVENT, "@OTA esp_ota_end failed!");
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA esp_ota_end failed!");
     close(socket_id);
     return;
   }
   err = esp_ota_set_boot_partition(update_partition);
   if (err != ESP_OK) {
-    ESP_LOGE(LOG_EVENT, "@OTA esp_ota_set_boot_partition failed (%s)!", esp_err_to_name(err));
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA esp_ota_set_boot_partition failed (%s)!", esp_err_to_name(err));
     close(socket_id);
     return;
   }
-  ESP_LOGI(LOG_EVENT, "@OTA Prepare to restart system!");
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA Prepare to restart system!");
   esp_restart();
   return ;
 }
 
 static void ota_task(void *pvParameter) {
   while (true) {
-    ESP_LOGI(LOG_EVENT, "@OTA OTA waiting for wifi");
+    ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA waiting for wifi");
     wait_connected();
-    ESP_LOGI(LOG_EVENT, "@OTA Checking firmware update available");
+    ESP_LOGI(SGO_LOG_EVENT, "@OTA Checking firmware update available");
     if (check_new_version()) {
-      ESP_LOGI(LOG_EVENT, "@OTA Start OTA procedure");
+      ESP_LOGI(SGO_LOG_EVENT, "@OTA Start OTA procedure");
       try_ota();
     } else {
-      ESP_LOGI(LOG_EVENT, "@OTA Firmware is up-to-date");
+      ESP_LOGI(SGO_LOG_EVENT, "@OTA Firmware is up-to-date");
     }
     vTaskDelay((1 * 3600 * 1000) / portTICK_PERIOD_MS);
   }
@@ -314,10 +314,10 @@ static void ota_task(void *pvParameter) {
 
 void init_ota() {
   if (OTA_TIMESTAMP == 0) {
-    ESP_LOGI(LOG_EVENT, "@OTA OTA NOT INITIALIZING timestamp: %lu", OTA_TIMESTAMP);
+    ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT INITIALIZING timestamp: %lu", OTA_TIMESTAMP);
     return;
   }
-  ESP_LOGI(LOG_EVENT, "@OTA OTA initialization timestamp: %lu", OTA_TIMESTAMP);
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA initialization timestamp: %lu", OTA_TIMESTAMP);
 
   xTaskCreate(&ota_task, "OTA", 8192, NULL, 5, NULL);
 }

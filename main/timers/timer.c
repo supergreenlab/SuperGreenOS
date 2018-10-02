@@ -58,7 +58,7 @@ void init_timer() {
 
   BaseType_t ret = xTaskCreate(timer_task, "Timer task", 3072, NULL, tskIDLE_PRIORITY, NULL);
   if (ret != pdPASS) {
-    ESP_LOGE(LOG_EVENT, "@TIMER Failed to create task");
+    ESP_LOGE(SGO_LOG_EVENT, "@TIMER Failed to create task");
   }
 }
 
@@ -91,7 +91,7 @@ static void start(enum timer t) {
 }
 
 void update_output(int output) {
-  ESP_LOGI(LOG_EVENT, "@TIMER update_output %d", output);
+  ESP_LOGI(SGO_LOG_EVENT, "@TIMER update_output %d", output);
   seti(TIMER_OUTPUT, output);
   set_attr_value_and_notify(IDX_VALUE(TIMER_OUTPUT), (uint8_t *)&output, sizeof(int));
 }

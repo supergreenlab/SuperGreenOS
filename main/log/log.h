@@ -21,9 +21,9 @@
 
 #include "esp_log.h"
 
-#define LOG_NOSEND "NOSEND"
-#define LOG_MSG "MSG"
-#define LOG_EVENT "EVENT"
-#define LOG_METRIC "METRIC"
+#define SGO_LOG_NOSEND "NOSEND"
+#define SGO_LOG_MSG "MSG"
+#define SGO_LOG_EVENT "EVENT"
+#define SGO_LOG_METRIC "METRIC"
 
 #endif

@@ -63,7 +63,7 @@ static void time_task(void *param) {
   while(true) {
     time_t now;
     time(&now);
-    print_time(LOG_NOSEND, "@TIME", now);
+    print_time(SGO_LOG_NOSEND, "@TIME", now);
     seti(TIME, (int)now);
     set_attr_value_and_notify(IDX_CHAR_VAL_TIME, (uint8_t *)&now, sizeof(time_t));
 
@@ -79,7 +79,7 @@ static void ntp_task(void *param) {
 
 static void setup(void) {
   const char *NTP_SERVER = "pool.ntp.org";
-  ESP_LOGI(LOG_EVENT, "@TIME Initializing SNTP\n");
+  ESP_LOGI(SGO_LOG_EVENT, "@TIME Initializing SNTP\n");
   sntp_setoperatingmode(SNTP_OPMODE_POLL);
   sntp_setservername(0, (char *)NTP_SERVER);
   sntp_init();
@@ -88,7 +88,7 @@ static void setup(void) {
 /* ble callbacks */
 
 void on_set_time(time_t value) {
-  ESP_LOGI(LOG_EVENT, "@TIMER on_set_time = %d", (int)value);
+  ESP_LOGI(SGO_LOG_EVENT, "@TIMER on_set_time = %d", (int)value);
   struct timeval tv = { .tv_sec = value, .tv_usec = 0 };
   settimeofday(&tv, NULL);
   seti(TIME, (int)value);

@@ -61,14 +61,14 @@ static void blower_task(void *param) {
 }
 
 void init_blower() {
-  ESP_LOGI(LOG_EVENT, "@BLOWER Initializing blower task");
+  ESP_LOGI(SGO_LOG_EVENT, "@BLOWER Initializing blower task");
   defaulti(BLOWER, 50);
 
   sync_ble_i(BLOWER, IDX_VALUE(BLOWER));
 
   cmd = xQueueCreate(10, sizeof(int));
   if (cmd == NULL) {
-    ESP_LOGE(LOG_EVENT, "@BLOWER Unable to create blower queue");
+    ESP_LOGE(SGO_LOG_EVENT, "@BLOWER Unable to create blower queue");
   }
 
   mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, BLOWER_GPIO);

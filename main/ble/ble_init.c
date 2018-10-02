@@ -30,8 +30,6 @@
 #include "esp_gatts_api.h"
 #include "esp_bt_main.h"
 
-#include "../log/log.h"
-
 #include "ble.h"
 #include "ble_utils.h"
 #include "ble_private.h"
@@ -139,21 +137,21 @@ static void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param
     case ESP_GAP_BLE_ADV_START_COMPLETE_EVT:
       /* advertising start complete event to indicate advertising start successfully or failed */
       if (param->adv_start_cmpl.status != ESP_BT_STATUS_SUCCESS) {
-        ESP_LOGE(LOG_EVENT, "@BLE Advertising start failed");
+        ESP_LOGE(SGO_LOG_EVENT, "@BLE Advertising start failed");
       }else{
-        ESP_LOGI(LOG_EVENT, "@BLE Advertising start successfully");
+        ESP_LOGI(SGO_LOG_EVENT, "@BLE Advertising start successfully");
       }
       break;
     case ESP_GAP_BLE_ADV_STOP_COMPLETE_EVT:
       if (param->adv_stop_cmpl.status != ESP_BT_STATUS_SUCCESS) {
-        ESP_LOGE(LOG_EVENT, "@BLE Advertising stop failed");
+        ESP_LOGE(SGO_LOG_EVENT, "@BLE Advertising stop failed");
       }
       else {
-        ESP_LOGI(LOG_EVENT, "@BLE Stop adv successfully\n");
+        ESP_LOGI(SGO_LOG_EVENT, "@BLE Stop adv successfully\n");
       }
       break;
     case ESP_GAP_BLE_UPDATE_CONN_PARAMS_EVT:
-      ESP_LOGI(LOG_EVENT, "@BLE Update connection params status = %d, min_int = %d, max_int = %d,conn_int = %d,latency = %d, timeout = %d",
+      ESP_LOGI(SGO_LOG_EVENT, "@BLE Update connection params status = %d, min_int = %d, max_int = %d,conn_int = %d,latency = %d, timeout = %d",
           param->update_conn_params.status,
           param->update_conn_params.min_int,
           param->update_conn_params.max_int,
@@ -172,35 +170,35 @@ static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
     case ESP_GATTS_REG_EVT:{
       esp_err_t set_dev_name_ret = esp_ble_gap_set_device_name(BLE_DEVICE_NAME);
       if (set_dev_name_ret){
-        ESP_LOGE(LOG_EVENT, "@BLE Set device name failed, error code = %x", set_dev_name_ret);
+        ESP_LOGE(SGO_LOG_EVENT, "@BLE Set device name failed, error code = %x", set_dev_name_ret);
       }
       //config adv data
       esp_err_t ret = esp_ble_gap_config_adv_data(&adv_data);
       if (ret){
-        ESP_LOGE(LOG_EVENT, "@BLE Config adv data failed, error code = %x", ret);
+        ESP_LOGE(SGO_LOG_EVENT, "@BLE Config adv data failed, error code = %x", ret);
       }
       adv_config_done |= ADV_CONFIG_FLAG;
       //config scan response data
       ret = esp_ble_gap_config_adv_data(&scan_rsp_data);
       if (ret){
-        ESP_LOGE(LOG_EVENT, "Config scan response data failed, error code = %x", ret);
+        ESP_LOGE(SGO_LOG_EVENT, "Config scan response data failed, error code = %x", ret);
       }
       adv_config_done |= SCAN_RSP_CONFIG_FLAG;
       esp_err_t create_attr_ret = esp_ble_gatts_create_attr_tab(gatt_db, gatts_if, HRS_IDX_NB, SVC_INST_ID);
       if (create_attr_ret){
-        ESP_LOGE(LOG_EVENT, "@BLE Create attr table failed, error code = %x", create_attr_ret);
+        ESP_LOGE(SGO_LOG_EVENT, "@BLE Create attr table failed, error code = %x", create_attr_ret);
       }
     }
      	  break;
     case ESP_GATTS_READ_EVT:
-      ESP_LOGI(LOG_EVENT, "@BLE ESP_GATTS_READ_EVT");
+      ESP_LOGI(SGO_LOG_EVENT, "@BLE ESP_GATTS_READ_EVT");
       on_read(param);
      	break;
     case ESP_GATTS_WRITE_EVT:
       if (!param->write.is_prep){
         // the data length of gattc write  must be less than GATTS_DEMO_CHAR_VAL_LEN_MAX.
-        ESP_LOGI(LOG_EVENT, "@BLE GATT_WRITE_EVT, handle = %d, value len = %d, value :", param->write.handle, param->write.len);
-        esp_log_buffer_hex(LOG_EVENT, param->write.value, param->write.len);
+        ESP_LOGI(SGO_LOG_EVENT, "@BLE GATT_WRITE_EVT, handle = %d, value len = %d, value :", param->write.handle, param->write.len);
+        esp_log_buffer_hex(SGO_LOG_EVENT, param->write.value, param->write.len);
         on_write(param);
         /* send response when param->write.need_rsp is true*/
         if (param->write.need_rsp){
@@ -208,25 +206,25 @@ static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
         }
       }else{
         /* handle prepare write */
-        ESP_LOGI(LOG_EVENT, "@BLE GATT_WRITE_EVT IS_PREP, handle = %d, value len = %d, value :", param->write.handle, param->write.len);
+        ESP_LOGI(SGO_LOG_EVENT, "@BLE GATT_WRITE_EVT IS_PREP, handle = %d, value len = %d, value :", param->write.handle, param->write.len);
       }
     	  break;
     case ESP_GATTS_EXEC_WRITE_EVT: 
       // the length of gattc prapare write data must be less than GATTS_DEMO_CHAR_VAL_LEN_MAX. 
-      ESP_LOGI(LOG_EVENT, "@BLE ESP_GATTS_EXEC_WRITE_EVT");
+      ESP_LOGI(SGO_LOG_EVENT, "@BLE ESP_GATTS_EXEC_WRITE_EVT");
       break;
     case ESP_GATTS_MTU_EVT:
-      ESP_LOGI(LOG_EVENT, "@BLE ESP_GATTS_MTU_EVT, MTU = %d", param->mtu.mtu);
+      ESP_LOGI(SGO_LOG_EVENT, "@BLE ESP_GATTS_MTU_EVT, MTU = %d", param->mtu.mtu);
       break;
     case ESP_GATTS_CONF_EVT:
-      ESP_LOGI(LOG_EVENT, "ESP_GATTS_CONF_EVT, status = %d", param->conf.status);
+      ESP_LOGI(SGO_LOG_EVENT, "ESP_GATTS_CONF_EVT, status = %d", param->conf.status);
       break;
     case ESP_GATTS_START_EVT:
-      ESP_LOGI(LOG_EVENT, "SERVICE_START_EVT, status = %d, service_handle = %d", param->start.status, param->start.service_handle);
+      ESP_LOGI(SGO_LOG_EVENT, "SERVICE_START_EVT, status = %d, service_handle = %d", param->start.status, param->start.service_handle);
       break;
     case ESP_GATTS_CONNECT_EVT:
-      ESP_LOGI(LOG_EVENT, "ESP_GATTS_CONNECT_EVT, conn_id = %d", param->write.conn_id);
-      esp_log_buffer_hex(LOG_EVENT, param->connect.remote_bda, 6);
+      ESP_LOGI(SGO_LOG_EVENT, "ESP_GATTS_CONNECT_EVT, conn_id = %d", param->write.conn_id);
+      esp_log_buffer_hex(SGO_LOG_EVENT, param->connect.remote_bda, 6);
 
       profile_tab[PROFILE_APP_IDX].conn_id = param->write.conn_id;
 
@@ -241,20 +239,20 @@ static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
       esp_ble_gap_update_conn_params(&conn_params);
       break;
     case ESP_GATTS_DISCONNECT_EVT:
-      ESP_LOGI(LOG_EVENT, "@BLE ESP_GATTS_DISCONNECT_EVT, reason = %d", param->disconnect.reason);
+      ESP_LOGI(SGO_LOG_EVENT, "@BLE ESP_GATTS_DISCONNECT_EVT, reason = %d", param->disconnect.reason);
       esp_ble_gap_start_advertising(&adv_params);
       profile_tab[PROFILE_APP_IDX].conn_id = UINT16_MAX;
       break;
     case ESP_GATTS_CREAT_ATTR_TAB_EVT:{
       if (param->add_attr_tab.status != ESP_GATT_OK){
-        ESP_LOGE(LOG_EVENT, "@BLE Create attribute table failed, error code = 0x%x", param->add_attr_tab.status);
+        ESP_LOGE(SGO_LOG_EVENT, "@BLE Create attribute table failed, error code = 0x%x", param->add_attr_tab.status);
       }
       else if (param->add_attr_tab.num_handle != HRS_IDX_NB){
-        ESP_LOGE(LOG_EVENT, "@BLE Create attribute table abnormally, num_handle = (%d), \
+        ESP_LOGE(SGO_LOG_EVENT, "@BLE Create attribute table abnormally, num_handle = (%d), \
             doesn't equal to HRS_IDX_NB(%d)", param->add_attr_tab.num_handle, HRS_IDX_NB);
       }
       else {
-        ESP_LOGI(LOG_EVENT, "@BLE Create attribute table successfully, the number handle = %d\n",param->add_attr_tab.num_handle);
+        ESP_LOGI(SGO_LOG_EVENT, "@BLE Create attribute table successfully, the number handle = %d\n",param->add_attr_tab.num_handle);
         memcpy(handle_table, param->add_attr_tab.handles, sizeof(handle_table));
         esp_ble_gatts_start_service(handle_table[IDX_SVC]);
       }
@@ -281,7 +279,7 @@ static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_
     if (param->reg.status == ESP_GATT_OK) {
       profile_tab[PROFILE_APP_IDX].gatts_if = gatts_if;
     } else {
-      ESP_LOGE(LOG_EVENT, "@BLE Reg app failed, app_id = %04x, status = %d",
+      ESP_LOGE(SGO_LOG_EVENT, "@BLE Reg app failed, app_id = %04x, status = %d",
           param->reg.app_id,
           param->reg.status);
       return;
@@ -309,43 +307,43 @@ void init_ble()
   esp_bt_controller_config_t bt_cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();
   ret = esp_bt_controller_init(&bt_cfg);
   if (ret) {
-    ESP_LOGE(LOG_EVENT, "@BLE %s enable controller failed: %s", __func__, esp_err_to_name(ret));
+    ESP_LOGE(SGO_LOG_EVENT, "@BLE enable controller failed: %s", esp_err_to_name(ret));
     return;
   }
 
   ret = esp_bt_controller_enable(ESP_BT_MODE_BLE);
   if (ret) {
-    ESP_LOGE(LOG_EVENT, "@BLE %s enable controller failed: %s", __func__, esp_err_to_name(ret));
+    ESP_LOGE(SGO_LOG_EVENT, "@BLE enable controller failed: %s", esp_err_to_name(ret));
     return;
   }
 
   ret = esp_bluedroid_init();
   if (ret) {
-    ESP_LOGE(LOG_EVENT, "@BLE %s init bluetooth failed: %s", __func__, esp_err_to_name(ret));
+    ESP_LOGE(SGO_LOG_EVENT, "@BLE init bluetooth failed: %s", esp_err_to_name(ret));
     return;
   }
 
   ret = esp_bluedroid_enable();
   if (ret) {
-    ESP_LOGE(LOG_EVENT, "@BLE Enable bluetooth failed: %s", __func__, esp_err_to_name(ret));
+    ESP_LOGE(SGO_LOG_EVENT, "@BLE Enable bluetooth failed: %s", esp_err_to_name(ret));
     return;
   }
 
   ret = esp_ble_gatts_register_callback(gatts_event_handler);
   if (ret){
-    ESP_LOGE(LOG_EVENT, "@BLE Gatts register error, error code = %x", ret);
+    ESP_LOGE(SGO_LOG_EVENT, "@BLE Gatts register error, error code = %x", ret);
     return;
   }
 
   ret = esp_ble_gap_register_callback(gap_event_handler);
   if (ret){
-    ESP_LOGE(LOG_EVENT, "@BLE Gap register error, error code = %x", ret);
+    ESP_LOGE(SGO_LOG_EVENT, "@BLE Gap register error, error code = %x", ret);
     return;
   }
 
   ret = esp_ble_gatts_app_register(ESP_APP_ID);
   if (ret){
-    ESP_LOGE(LOG_EVENT, "@BLE Gatts app register error, error code = %x", ret);
+    ESP_LOGE(SGO_LOG_EVENT, "@BLE Gatts app register error, error code = %x", ret);
     return;
   }
 }

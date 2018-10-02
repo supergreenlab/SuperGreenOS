@@ -44,27 +44,27 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
   // your_context_t *context = event->context;
   switch (event->event_id) {
     case MQTT_EVENT_CONNECTED:
-      ESP_LOGI(LOG_EVENT, "@MQTT MQTT_EVENT_CONNECTED");
+      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_CONNECTED");
       xQueueSend(cmd, &CMD_MQTT_CONNECTED, 0);
       break;
     case MQTT_EVENT_DISCONNECTED:
-      ESP_LOGI(LOG_EVENT, "@MQTT MQTT_EVENT_DISCONNECTED");
+      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_DISCONNECTED");
       xQueueSend(cmd, &CMD_MQTT_DISCONNECTED, 0);
       break;
     case MQTT_EVENT_SUBSCRIBED:
-      ESP_LOGI(LOG_EVENT, "@MQTT MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
+      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
       break;
     case MQTT_EVENT_UNSUBSCRIBED:
-      ESP_LOGI(LOG_EVENT, "@MQTT MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
+      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
       break;
     case MQTT_EVENT_PUBLISHED:
-      ESP_LOGI(LOG_EVENT, "@MQTT MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
+      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
       break;
     case MQTT_EVENT_DATA:
-      ESP_LOGI(LOG_EVENT, "MQTT_EVENT_DATA");
+      ESP_LOGI(SGO_LOG_EVENT, "MQTT_EVENT_DATA");
       break;
     case MQTT_EVENT_ERROR:
-      ESP_LOGI(LOG_EVENT, "MQTT_EVENT_ERROR");
+      ESP_LOGI(SGO_LOG_EVENT, "MQTT_EVENT_ERROR");
       break;
   }
   return ESP_OK;
@@ -78,7 +78,7 @@ static void mqtt_task(void *param) {
   char log_channel[64] = {0};
   esp_efuse_mac_get_default((uint8_t*) (&_chipmacid));
   sprintf(log_channel, "%llx.log", _chipmacid);
-  ESP_LOGI(LOG_EVENT, "@MQTT Log channel: %s", log_channel);
+  ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log channel: %s", log_channel);
 
   wait_connected();
 
@@ -100,7 +100,7 @@ static void mqtt_task(void *param) {
       }
     }
     if (connected) {
-      ESP_LOGI(LOG_EVENT, "@MQTT MQTT loop");
+      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT loop");
       memset(buf, 0, MAX_LOG_QUEUE_SIZE * 2);
       while (xQueueReceive(log_queue, buf, MAX_LOG_QUEUE_SIZE - 1)) {
         esp_mqtt_client_publish(client, log_channel, (char *)buf, 0, 0, 0);
@@ -128,18 +128,18 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
 void mqtt_intercept_log() {
   log_queue = xQueueCreate(MAX_LOG_QUEUE_ITEMS, MAX_LOG_QUEUE_SIZE);
   if (log_queue == NULL) {
-    ESP_LOGE(LOG_EVENT, "@MQTT Unable to create mqtt log queue");
+    ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt log queue");
   }
 
   esp_log_set_vprintf(mqtt_logging_vprintf);
 }
 
 void init_mqtt() {
-  ESP_LOGI(LOG_EVENT, "@MQTT Intializing MQTT task");
+  ESP_LOGI(SGO_LOG_EVENT, "@MQTT Intializing MQTT task");
 
   cmd = xQueueCreate(10, sizeof(int));
   if (cmd == NULL) {
-    ESP_LOGE(LOG_EVENT, "@MQTT Unable to create mqtt queue");
+    ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt queue");
   }
 
   xTaskCreate(mqtt_task, "MQTT task", 2048, NULL, 10, NULL);

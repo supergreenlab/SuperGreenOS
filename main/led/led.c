@@ -87,7 +87,7 @@ static void update_led(int i) {
 
   double duty = geti(duty_key);
   double real_duty = ledc_channels[i].min_duty + (double)(ledc_channels[i].max_duty - ledc_channels[i].min_duty) * duty / 100;
-  ESP_LOGI(LOG_EVENT, "@LED DUTY = %d, REAL_DUTY = %d", (int)duty, (int)real_duty);
+  ESP_LOGI(SGO_LOG_EVENT, "@LED DUTY = %d, REAL_DUTY = %d", (int)duty, (int)real_duty);
 
   fade_no_wait_led(ledc_channels[i].channel_config, real_duty);
 }
@@ -104,7 +104,7 @@ static void led_task(void *param) {
 
   while(1) {
     if (xQueueReceive(cmd, &c, 30 * 1000 / portTICK_PERIOD_MS)) {
-      ESP_LOGI(LOG_EVENT, "@LED Force refresh leds = %d", c);
+      ESP_LOGI(SGO_LOG_EVENT, "@LED Force refresh leds = %d", c);
       if (c == -1) {
         for (int i = 0; i < N_LEDS; ++i) {
           update_led(i);
@@ -113,7 +113,7 @@ static void led_task(void *param) {
         update_led(c);
       }
     } else {
-      ESP_LOGI(LOG_EVENT, "@LED Led refresh");
+      ESP_LOGI(SGO_LOG_EVENT, "@LED Led refresh");
       for (int i = 0; i < N_LEDS; ++i) {
         update_led(i);
       }
@@ -129,7 +129,7 @@ void init_led_info() {
     char led[32] = {0};
     sprintf(led, "x:%d;y:%d;z:%d;gpio_num:%d", ledc_channels[i].x, ledc_channels[i].y, ledc_channels[i].z, ledc_channels[i].channel_config.gpio_num);
     if (strlen(led_info) + strlen(led) + 1 >= CHAR_VAL_LEN_MAX) {
-      ESP_LOGE(LOG_EVENT, "@LED Not enough space to build LED_INFO !!!");
+      ESP_LOGE(SGO_LOG_EVENT, "@LED Not enough space to build LED_INFO !!!");
       break;
     }
     sprintf(led_info, "%s|%s", led_info, led);
@@ -146,13 +146,13 @@ void init_led_info() {
 }
 
 void init_led() {
-  ESP_LOGI(LOG_EVENT, "@LED Initializing led task");
+  ESP_LOGI(SGO_LOG_EVENT, "@LED Initializing led task");
 
   init_led_info();
 
   cmd = xQueueCreate(10, sizeof(int));
   if (cmd == NULL) {
-    ESP_LOGE(LOG_EVENT, "@LED Unable to create led queue");
+    ESP_LOGE(SGO_LOG_EVENT, "@LED Unable to create led queue");
   }
 
   init_led_timers();

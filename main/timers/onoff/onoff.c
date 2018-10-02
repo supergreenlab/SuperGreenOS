@@ -72,7 +72,7 @@ int get_output_for_hour_min() {
   int off_sec = off_hour * 3600 + off_min * 60;
   int cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
 
-  ESP_LOGI(LOG_EVENT, "@ONOFF on_sec = %d, off_sec = %d, cur_sec = %d", on_sec, off_sec, cur_sec);
+  ESP_LOGI(SGO_LOG_EVENT, "@ONOFF on_sec = %d, off_sec = %d, cur_sec = %d", on_sec, off_sec, cur_sec);
 
   if (on_sec < off_sec && on_sec < cur_sec && off_sec > cur_sec) {
     return 100;
@@ -84,12 +84,12 @@ int get_output_for_hour_min() {
 }
 
 void start_onoff() {
-  ESP_LOGI(LOG_EVENT, "@ONOFF start_onoff");
+  ESP_LOGI(SGO_LOG_EVENT, "@ONOFF start_onoff");
   onoff_task();
 }
 
 void stop_onoff() {
-  ESP_LOGI(LOG_EVENT, "@ONOFF stop_onoff");
+  ESP_LOGI(SGO_LOG_EVENT, "@ONOFF stop_onoff");
 }
 
 void onoff_task() {

@@ -21,7 +21,7 @@
 
 #include <time.h>
 
-void print_time(time_t t);
-void print_timeinfo(struct tm timeinfo);
+void print_time(const char *tag, const char *module, time_t t);
+void print_timeinfo(const char *tag, const char *module, struct tm timeinfo);
 
 #endif
