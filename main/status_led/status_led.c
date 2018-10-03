@@ -89,5 +89,5 @@ void init_status_led() {
 
   ledc_fade_func_install(0);
 
-  xTaskCreate(status_led_task, "Status Led task", 2048, NULL, 10, NULL);
+  xTaskCreate(status_led_task, "Status Led task", 4096, NULL, 10, NULL);
 }

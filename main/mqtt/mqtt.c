@@ -115,6 +115,15 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
   if (totalsize >= MAX_LOG_QUEUE_SIZE * 2 - 1) {
     return vprintf(str, l);
   }
+  
+  va_list nl;
+  va_copy(nl, l);
+  va_arg(nl, int);
+  const char *tag = va_arg(nl, const char *);
+  if (strcmp(tag, SGO_LOG_NOSEND) == 0) {
+    return vprintf(str, l);
+  }
+
   memset(buf, 0, MAX_LOG_QUEUE_SIZE * 2);
   int len = vsprintf((char*)buf, str, l) - 1;
   buf[len] = 0;
@@ -142,5 +151,5 @@ void init_mqtt() {
     ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt queue");
   }
 
-  xTaskCreate(mqtt_task, "MQTT task", 2048, NULL, 10, NULL);
+  xTaskCreate(mqtt_task, "MQTT task", 4096, NULL, 10, NULL);
 }

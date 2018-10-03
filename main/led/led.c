@@ -68,6 +68,11 @@ void init_keys(int i) {
 }
 
 static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
+  uint32_t current_duty = ledc_get_duty(ledc_channel.speed_mode, ledc_channel.channel); 
+  if (current_duty == duty) {
+    ESP_LOGI(SGO_LOG_NOSEND, "@LED Skipping led duty change");
+    return;
+  }
   ledc_set_fade_with_time(ledc_channel.speed_mode,
       ledc_channel.channel, duty, LEDC_FADE_TIME);
   ledc_fade_start(ledc_channel.speed_mode,
@@ -159,7 +164,7 @@ void init_led() {
 
   ledc_fade_func_install(0);
 
-  xTaskCreate(led_task, "Led task", 2048, NULL, 10, NULL);
+  xTaskCreate(led_task, "Led task", 4096, NULL, 10, NULL);
 }
 
 void refresh_led(int i) {

@@ -81,7 +81,7 @@ void init_blower() {
   mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);
 
   set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, 0.0);
-  xTaskCreate(blower_task, "Blower task", 2048, NULL, 10, NULL);
+  xTaskCreate(blower_task, "Blower task", 4096, NULL, 10, NULL);
 }
 
 /* BLE Callbacks */
