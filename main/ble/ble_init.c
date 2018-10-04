@@ -217,13 +217,13 @@ static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
       ESP_LOGI(SGO_LOG_EVENT, "@BLE ESP_GATTS_MTU_EVT, MTU = %d", param->mtu.mtu);
       break;
     case ESP_GATTS_CONF_EVT:
-      ESP_LOGI(SGO_LOG_EVENT, "ESP_GATTS_CONF_EVT, status = %d", param->conf.status);
+      ESP_LOGI(SGO_LOG_EVENT, "@BLE ESP_GATTS_CONF_EVT, status = %d", param->conf.status);
       break;
     case ESP_GATTS_START_EVT:
-      ESP_LOGI(SGO_LOG_EVENT, "SERVICE_START_EVT, status = %d, service_handle = %d", param->start.status, param->start.service_handle);
+      ESP_LOGI(SGO_LOG_EVENT, "@BLE SERVICE_START_EVT, status = %d, service_handle = %d", param->start.status, param->start.service_handle);
       break;
     case ESP_GATTS_CONNECT_EVT:
-      ESP_LOGI(SGO_LOG_EVENT, "ESP_GATTS_CONNECT_EVT, conn_id = %d", param->write.conn_id);
+      ESP_LOGI(SGO_LOG_EVENT, "@BLE ESP_GATTS_CONNECT_EVT, conn_id = %d", param->write.conn_id);
       esp_log_buffer_hex(SGO_LOG_EVENT, param->connect.remote_bda, 6);
 
       profile_tab[PROFILE_APP_IDX].conn_id = param->write.conn_id;

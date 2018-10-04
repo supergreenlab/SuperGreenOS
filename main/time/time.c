@@ -63,7 +63,7 @@ static void time_task(void *param) {
   while(true) {
     time_t now;
     time(&now);
-    print_time(SGO_LOG_NOSEND, "@TIME", now);
+    print_time(SGO_LOG_NOSEND, "TIME", now);
     seti(TIME, (int)now);
     set_attr_value_and_notify(IDX_CHAR_VAL_TIME, (uint8_t *)&now, sizeof(time_t));
 

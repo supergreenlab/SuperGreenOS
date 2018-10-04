@@ -130,7 +130,7 @@ int get_output_for_time() {
 void season_task() {
   time_t box_time = get_box_time();
   ESP_LOGI(SGO_LOG_MSG, "@SEASON Simulated time = %lu", box_time);
-  print_time(SGO_LOG_NOSEND, "@SEASON", box_time);
+  print_time(SGO_LOG_NOSEND, "SEASON", box_time);
   set_attr_value_and_notify(IDX_VALUE(SIMULATED_TIME), (uint8_t *)&box_time, sizeof(time_t));
 
   update_output(get_output_for_time());
