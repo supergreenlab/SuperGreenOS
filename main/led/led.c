@@ -92,7 +92,7 @@ static void update_led(int i) {
 
   double duty = geti(duty_key);
   double real_duty = ledc_channels[i].min_duty + (double)(ledc_channels[i].max_duty - ledc_channels[i].min_duty) * duty / 100;
-  ESP_LOGI(SGO_LOG_EVENT, "@LED DUTY = %d, REAL_DUTY = %d", (int)duty, (int)real_duty);
+  ESP_LOGI(SGO_LOG_EVENT, "@LED DUTY_%d=%d, REAL_DUTY_%d=%d", i, (int)duty, i, (int)real_duty);
 
   fade_no_wait_led(ledc_channels[i].channel_config, real_duty);
 }
@@ -109,7 +109,7 @@ static void led_task(void *param) {
 
   while(1) {
     if (xQueueReceive(cmd, &c, 30 * 1000 / portTICK_PERIOD_MS)) {
-      ESP_LOGI(SGO_LOG_EVENT, "@LED Force refresh leds = %d", c);
+      ESP_LOGI(SGO_LOG_EVENT, "@LED Force refresh leds %d", c);
       if (c == -1) {
         for (int i = 0; i < N_LEDS; ++i) {
           update_led(i);
