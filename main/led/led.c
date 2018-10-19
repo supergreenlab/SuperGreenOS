@@ -164,7 +164,7 @@ void init_led() {
 
   ledc_fade_func_install(0);
 
-  xTaskCreate(led_task, "Led task", 4096, NULL, 10, NULL);
+  xTaskCreate(led_task, "LED", 4096, NULL, 10, NULL);
 }
 
 void refresh_led(int i) {

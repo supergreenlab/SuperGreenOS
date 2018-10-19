@@ -56,7 +56,7 @@ void init_timer() {
 
   start(geti(TIMER_TYPE));
 
-  BaseType_t ret = xTaskCreate(timer_task, "Timer task", 4096, NULL, tskIDLE_PRIORITY, NULL);
+  BaseType_t ret = xTaskCreate(timer_task, "TIMER", 4096, NULL, tskIDLE_PRIORITY, NULL);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@TIMER Failed to create task");
   }

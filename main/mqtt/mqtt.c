@@ -76,15 +76,16 @@ static void mqtt_task(void *param) {
 
   uint64_t _chipmacid;
   char log_channel[64] = {0};
+  char client_id[64] = {0};
   esp_efuse_mac_get_default((uint8_t*) (&_chipmacid));
   sprintf(log_channel, "%llx.log", _chipmacid);
+  sprintf(client_id, "%llx", _chipmacid);
   ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log channel: %s", log_channel);
-
-  wait_connected();
 
   esp_mqtt_client_config_t mqtt_cfg = {
     .uri = CONFIG_BROKER_URL,
     .event_handle = mqtt_event_handler,
+    .client_id = client_id,
     // .user_context = (void *)your_context
   };
 
@@ -153,5 +154,5 @@ void init_mqtt() {
     ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt queue");
   }
 
-  xTaskCreate(mqtt_task, "MQTT task", 4096, NULL, 10, NULL);
+  xTaskCreate(mqtt_task, "MQTT", 4096, NULL, 10, NULL);
 }

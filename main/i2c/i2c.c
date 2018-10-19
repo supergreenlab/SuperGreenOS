@@ -72,5 +72,5 @@ void init_i2c() {
       MASTER_RX_BUF_DISABLE,
       MASTER_TX_BUF_DISABLE, 0);
 
-  xTaskCreate(i2c_task, "i2c", 4096, NULL, 10, NULL);
+  xTaskCreate(i2c_task, "I2C", 4096, NULL, 10, NULL);
 }

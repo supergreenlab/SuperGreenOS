@@ -47,7 +47,7 @@ void init_time() {
   defaulti(TIME, 4);
   sync_ble_i(TIME, IDX_CHAR_VAL_TIME);
 
-  xTaskCreate(time_task, "Time Task", 4096, NULL, 10, NULL);
+  xTaskCreate(time_task, "TIME", 4096, NULL, 10, NULL);
 }
 
 static void time_task(void *param) {
@@ -55,7 +55,7 @@ static void time_task(void *param) {
     time_t now = (time_t)geti(TIME);
     struct timeval tv = { .tv_sec = now, .tv_usec = 0 };
     settimeofday(&tv, NULL);
-    xTaskCreate(ntp_task, "NTP task", 4096, NULL, 10, NULL);
+    xTaskCreate(ntp_task, "NTP", 4096, NULL, 10, NULL);
   } else {
     wait_connected();
     setup();

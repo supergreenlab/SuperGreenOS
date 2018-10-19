@@ -21,6 +21,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+#include "log/log.h"
 #include "conf/version.h"
 #include "status_led/status_led.h"
 #include "kv/kv.h"
@@ -66,5 +67,14 @@ void app_main() {
     init_mixer();
 
     fflush(stdout);
-    while(1) vTaskDelay(10);
+
+    int n_tasks = uxTaskGetNumberOfTasks();
+    TaskStatus_t *statuses = malloc(n_tasks * sizeof(TaskStatus_t));
+    while(1) {
+      uxTaskGetSystemState(statuses, n_tasks, NULL);
+      for (int i = 0; i < n_tasks; ++i) {
+        ESP_LOGI(SGO_LOG_METRIC, "@%s stack_left=%d, counter=%d", statuses[i].pcTaskName, statuses[i].usStackHighWaterMark, statuses[i].ulRunTimeCounter);
+      }
+      vTaskDelay(30000 / portTICK_PERIOD_MS);
+    }
 }

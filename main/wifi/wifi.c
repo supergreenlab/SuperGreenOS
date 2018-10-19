@@ -89,7 +89,7 @@ void init_wifi() {
     ESP_LOGE(SGO_LOG_EVENT, "@WIFI Failed to create queue");
   }
 
-  xTaskCreate(wifi_task, "wifi task", 2048, NULL, tskIDLE_PRIORITY, NULL);
+  xTaskCreate(wifi_task, "WIFI", 2048, NULL, tskIDLE_PRIORITY, NULL);
 
   if (is_valid()) {
     setup();
