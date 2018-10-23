@@ -42,9 +42,33 @@
 #include "ota/ota.h"
 #include "status_led/status_led.h"
 
+void logger_task(void *param) {
+  wait_connected();
+  int n_tasks = uxTaskGetNumberOfTasks();
+  uint32_t ulTotalRunTime, ulStatsAsPercentage;
+  TaskStatus_t *statuses = malloc(n_tasks * sizeof(TaskStatus_t));
+  while(1) {
+    int nn_tasks = uxTaskGetNumberOfTasks();
+    if (n_tasks != nn_tasks) {
+      free(statuses);
+      n_tasks = nn_tasks;
+      statuses = malloc(n_tasks * sizeof(TaskStatus_t));
+    }
+    uxTaskGetSystemState(statuses, n_tasks, &ulTotalRunTime);
+    ulTotalRunTime /= 100UL;
+    if (ulTotalRunTime == 0) continue;
+
+    for (int i = 0; i < n_tasks; ++i) {
+      ulStatsAsPercentage = statuses[i].ulRunTimeCounter / ulTotalRunTime;
+      ESP_LOGI(SGO_LOG_METRIC, "@%s stack_left=%d, task_counter=%d, task_percent=%d", statuses[i].pcTaskName, statuses[i].usStackHighWaterMark, statuses[i].ulRunTimeCounter, ulStatsAsPercentage);
+    }
+    vTaskDelay(30000 / portTICK_PERIOD_MS);
+  }
+}
+
 void app_main() {
     mqtt_intercept_log();
-    printf("Welcome to SuperGreenOS (version: %s)\n", VERSION);
+    ESP_LOGI(SGO_LOG_EVENT, "@MAIN Welcome to SuperGreenOS version=%s\n", VERSION);
 
     init_status_led();
     init_kv();
@@ -68,13 +92,5 @@ void app_main() {
 
     fflush(stdout);
 
-    int n_tasks = uxTaskGetNumberOfTasks();
-    TaskStatus_t *statuses = malloc(n_tasks * sizeof(TaskStatus_t));
-    while(1) {
-      uxTaskGetSystemState(statuses, n_tasks, NULL);
-      for (int i = 0; i < n_tasks; ++i) {
-        ESP_LOGI(SGO_LOG_METRIC, "@%s stack_left=%d, counter=%d", statuses[i].pcTaskName, statuses[i].usStackHighWaterMark, statuses[i].ulRunTimeCounter);
-      }
-      vTaskDelay(30000 / portTICK_PERIOD_MS);
-    }
+    xTaskCreate(logger_task, "LOGGER", 3072, NULL, 10, NULL);
 }

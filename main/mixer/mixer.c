@@ -55,7 +55,7 @@ void init_mixer() {
   sync_ble_i(STRETCH, IDX_VALUE(STRETCH));
   sync_ble_i(LED_DIM, IDX_VALUE(LED_DIM));
 
-  BaseType_t ret = xTaskCreate(mixer_task, "MIXER", 4096, NULL, tskIDLE_PRIORITY, NULL);
+  BaseType_t ret = xTaskCreate(mixer_task, "MIXER", 6084, NULL, tskIDLE_PRIORITY, NULL);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@MIXER Failed to create task");
   }

@@ -31,9 +31,10 @@ static esp_mqtt_client_handle_t client;
 static QueueHandle_t cmd;
 static QueueHandle_t log_queue;
 
-#define MAX_LOG_QUEUE_ITEM_SIZE 256
+#define MAX_LOG_QUEUE_ITEM_SIZE 128
 #define MAX_LOG_QUEUE_ITEMS 50
-static uint8_t buf[MAX_LOG_QUEUE_ITEM_SIZE] = {0};
+static uint8_t buf_in[MAX_LOG_QUEUE_ITEM_SIZE] = {0};
+static uint8_t buf_out[MAX_LOG_QUEUE_ITEM_SIZE] = {0};
 
 static int CMD_MQTT_DISCONNECTED = 0;
 static int CMD_MQTT_CONNECTED = 1;
@@ -101,11 +102,10 @@ static void mqtt_task(void *param) {
       }
     }
     if (connected) {
-      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT loop");
-      memset(buf, 0, MAX_LOG_QUEUE_ITEM_SIZE);
-      while (xQueueReceive(log_queue, buf, MAX_LOG_QUEUE_ITEM_SIZE - 1)) {
-        esp_mqtt_client_publish(client, log_channel, (char *)buf, 0, 0, 0);
-        memset(buf, 0, MAX_LOG_QUEUE_ITEM_SIZE);
+      memset(buf_out, 0, MAX_LOG_QUEUE_ITEM_SIZE);
+      while (xQueueReceive(log_queue, buf_out, 0)) {
+        esp_mqtt_client_publish(client, log_channel, (char *)buf_out, 0, 0, 0);
+        memset(buf_out, 0, MAX_LOG_QUEUE_ITEM_SIZE);
       }
     }
   }
@@ -125,10 +125,10 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
     return vprintf(str, l);
   }
 
-  memset(buf, 0, MAX_LOG_QUEUE_ITEM_SIZE);
-  int len = vsprintf((char*)buf, str, l) - 1;
-  buf[len] = 0;
-  xQueueSend(log_queue, buf, 0);
+  memset(buf_in, 0, MAX_LOG_QUEUE_ITEM_SIZE);
+  int len = vsprintf((char*)buf_in, str, l) - 1;
+  buf_in[len] = 0;
+  xQueueSend(log_queue, buf_in, 0);
   if (cmd && uxQueueMessagesWaiting(log_queue) > 5) {
     xQueueSend(cmd, &CMD_MQTT_FORCE_FLUSH, 0);
   }

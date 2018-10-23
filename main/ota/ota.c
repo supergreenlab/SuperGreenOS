@@ -88,6 +88,7 @@ static bool read_past_http_header(char text[], int total_len, esp_ota_handle_t u
       return true;
     }
     i += i_read_len;
+    vTaskDelay(1 / portTICK_PERIOD_MS);
   }
   return false;
 }
@@ -141,7 +142,7 @@ static bool check_new_version() {
     "User-Agent: esp-idf/1.0 esp32\r\n\r\n";
 
   char *http_request = NULL;
-  int get_len = asprintf(&http_request, GET_FORMAT, OTA_VERSION_FILENAME, OTA_SERVER_IP, OTA_SERVER_PORT);
+  int get_len = asprintf(&http_request, GET_FORMAT, OTA_VERSION_FILENAME, OTA_SERVER_HOSTNAME, OTA_SERVER_PORT);
   if (get_len < 0) {
     ESP_LOGE(SGO_LOG_EVENT, "@OTA Failed to allocate memory for GET request buffer");
     close(socket_id);
@@ -210,7 +211,7 @@ static void try_ota()
     "User-Agent: esp-idf/1.0 esp32\r\n\r\n";
 
   char *http_request = NULL;
-  int get_len = asprintf(&http_request, GET_FORMAT, OTA_FILENAME, OTA_SERVER_IP, OTA_SERVER_PORT);
+  int get_len = asprintf(&http_request, GET_FORMAT, OTA_FILENAME, OTA_SERVER_HOSTNAME, OTA_SERVER_PORT);
   if (get_len < 0) {
     ESP_LOGE(SGO_LOG_EVENT, "@OTA Failed to allocate memory for GET request buffer");
     close(socket_id);
@@ -277,6 +278,7 @@ static void try_ota()
     } else {
       ESP_LOGE(SGO_LOG_EVENT, "@OTA Unexpected recv result");
     }
+    vTaskDelay(1 / portTICK_PERIOD_MS);
   }
 
   ESP_LOGI(SGO_LOG_EVENT, "@OTA Total Write binary data length : %d", binary_file_length);
