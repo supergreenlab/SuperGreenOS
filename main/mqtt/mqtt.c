@@ -74,6 +74,7 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
 static void mqtt_task(void *param) {
   int c;
   bool connected = false;
+  bool first_connect = true;
 
   uint64_t _chipmacid;
   char log_channel[64] = {0};
@@ -97,6 +98,10 @@ static void mqtt_task(void *param) {
     if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS)) {
       if (c == CMD_MQTT_CONNECTED) {
         connected = true;
+        if (first_connect) {
+          first_connect = false;
+          ESP_LOGI(SGO_LOG_EVENT, "@MQTT First connect");
+        }
       } else if (c == CMD_MQTT_DISCONNECTED) {
         connected = false;
       }
