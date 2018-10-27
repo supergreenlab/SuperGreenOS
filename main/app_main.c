@@ -44,7 +44,7 @@
 
 void logger_task(void *param) {
   wait_connected();
-  vTaskDelay(30000 / portTICK_PERIOD_MS);
+  vTaskDelay(60000 / portTICK_PERIOD_MS);
   int n_tasks = uxTaskGetNumberOfTasks();
   uint32_t ulTotalRunTime, ulStatsAsPercentage;
   TaskStatus_t *statuses = malloc(n_tasks * sizeof(TaskStatus_t));
