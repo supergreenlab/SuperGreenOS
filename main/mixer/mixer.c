@@ -94,7 +94,7 @@ static void mixer_duty() {
   if (stretch == 0 || duty == 0) {
     set_all_duty(duty);
   } else if (duty != 0) {
-    set_duty_3d((double)max_x / 2, (double)max_y / 2, max_z, duty + ((double)stretch / 100 * 25), 30 - ((double)stretch / 100 * 25));
+    set_duty_3d((double)max_x / 2, (double)max_y / 2, max_z * 1.25, duty + ((double)stretch / 100 * 25), 30 - ((double)stretch / 100 * 25));
   }
 }
 

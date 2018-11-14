@@ -131,7 +131,7 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
   }
 
   memset(buf_in, 0, MAX_LOG_QUEUE_ITEM_SIZE);
-  int len = vsprintf((char*)buf_in, str, l) - 1;
+  int len = vsprintf((char*)buf_in, str, l);
   buf_in[len] = 0;
   xQueueSend(log_queue, buf_in, 0);
   if (cmd && uxQueueMessagesWaiting(log_queue) > 5) {

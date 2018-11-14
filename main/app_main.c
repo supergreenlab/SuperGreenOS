@@ -41,33 +41,11 @@
 #include "i2c/i2c.h"
 #include "ota/ota.h"
 #include "status_led/status_led.h"
-
-void logger_task(void *param) {
-  wait_connected();
-  vTaskDelay(60000 / portTICK_PERIOD_MS);
-  int n_tasks = uxTaskGetNumberOfTasks();
-  uint32_t ulTotalRunTime, ulStatsAsPercentage;
-  TaskStatus_t *statuses = malloc(n_tasks * sizeof(TaskStatus_t));
-  while(1) {
-    int nn_tasks = uxTaskGetNumberOfTasks();
-    if (n_tasks != nn_tasks) {
-      free(statuses);
-      n_tasks = nn_tasks;
-      statuses = malloc(n_tasks * sizeof(TaskStatus_t));
-    }
-    uxTaskGetSystemState(statuses, n_tasks, &ulTotalRunTime);
-    ulTotalRunTime /= 100UL;
-    if (ulTotalRunTime == 0) continue;
-
-    for (int i = 0; i < n_tasks; ++i) {
-      ulStatsAsPercentage = statuses[i].ulRunTimeCounter / ulTotalRunTime;
-      ESP_LOGI(SGO_LOG_METRIC, "@%s stack_left=%d, task_counter=%d, task_percent=%d", statuses[i].pcTaskName, statuses[i].usStackHighWaterMark, statuses[i].ulRunTimeCounter, ulStatsAsPercentage);
-    }
-    vTaskDelay(30000 / portTICK_PERIOD_MS);
-  }
-}
+#include "stat_dump/stat_dump.h"
+#include "httpd/httpd.h"
 
 void app_main() {
+    init_stat_dump_queues();
     mqtt_intercept_log();
     ESP_LOGI(SGO_LOG_EVENT, "@MAIN Welcome to SuperGreenOS version=%s\n", VERSION);
 
@@ -91,7 +69,9 @@ void app_main() {
 
     init_mixer();
 
-    fflush(stdout);
+    init_stat_dump();
 
-    xTaskCreate(logger_task, "LOGGER", 3072, NULL, 10, NULL);
+    init_httpd();
+
+    fflush(stdout);
 }

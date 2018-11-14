@@ -21,6 +21,8 @@
 
 #include <stdbool.h>
 
+#define MAX_KVALUE_SIZE 517
+
 void init_kv();
 
 int geti(const char * key);

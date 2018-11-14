@@ -16,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -28,6 +29,7 @@
 #include "nvs.h"
 
 #include "kv.h"
+#include "../stat_dump/stat_dump.h"
 
 nvs_handle open_handle() {
   nvs_handle kv_handle;
@@ -79,6 +81,7 @@ void seti(const char * key, int value) {
 }
 
 void defaulti(const char * key, int value) {
+  add_kvi_dump(key);
   if (!hasi(key)) {
     seti(key, value);
   } else {
@@ -113,11 +116,16 @@ void setstr(const char * key, const char * value) {
 }
 
 void defaultstr(const char * key, const char * value) {
+  bool skip = strcmp(key, "WPASS") == 0;
+  
+  if (!skip) {
+    add_kvs_dump(key);
+  }
   if (!hasstr(key)) {
     setstr(key, value);
   } else {
-    char buf[517] = {0};
+    char buf[MAX_KVALUE_SIZE] = {0};
     getstr(key, buf, sizeof(buf) - 1);
-    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", key, buf);
+    ESP_LOGI(skip ? SGO_LOG_NOSEND : SGO_LOG_METRIC, "@KV %s=%s", key, buf);
   }
 }

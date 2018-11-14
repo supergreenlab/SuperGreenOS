@@ -46,9 +46,9 @@ const uint8_t OFF_MIN_UUID[ESP_UUID_LEN_128] = {0xd4,0xd3,0xef,0x05,0x3f,0x4f,0x
 #define OFF_MIN "OFF_M"
 
 void init_onoff() {
-  defaulti(ON_HOUR, 9);
+  defaulti(ON_HOUR, 1);
   defaulti(ON_MIN, 0);
-  defaulti(OFF_HOUR, 21);
+  defaulti(OFF_HOUR, 19);
   defaulti(OFF_MIN, 0);
 
   sync_ble_i(ON_HOUR, IDX_VALUE(ON_HOUR));
