@@ -36,7 +36,7 @@ void init_state();
 
 // BLE Callbacks
 
-void on_set_state(enum state value);
+void on_set_state(int value);
 void on_set_device_name(const char *value);
 
 #endif

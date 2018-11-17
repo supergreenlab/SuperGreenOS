@@ -41,7 +41,7 @@ void init_state() {
 
 // BLE Callbacks
 
-void on_set_state(enum state value) {
+void on_set_state(int value) {
   seti(STATE, value);
 }
 

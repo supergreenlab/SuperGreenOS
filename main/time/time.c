@@ -87,7 +87,7 @@ static void setup(void) {
 
 /* ble callbacks */
 
-void on_set_time(time_t value) {
+void on_set_time(int value) {
   ESP_LOGI(SGO_LOG_EVENT, "@TIMER on_set_time = %d", (int)value);
   struct timeval tv = { .tv_sec = value, .tv_usec = 0 };
   settimeofday(&tv, NULL);

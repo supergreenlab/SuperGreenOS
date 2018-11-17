@@ -38,7 +38,7 @@ enum timer {
 void update_output(int output);
 
 void init_timer();
-void on_set_timer_type(enum timer t);
+void on_set_timer_type(int value);
 void on_set_timer_output(int value);
 void on_set_started_at(int value);
 

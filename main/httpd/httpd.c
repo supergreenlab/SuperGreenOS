@@ -17,6 +17,7 @@
  */
 
 #include "httpd.h"
+#include "httpd_kv_handlers.h"
 
 #include <stdlib.h>
 
@@ -100,6 +101,15 @@ static esp_err_t seti_handler(httpd_req_t *req) {
   len = 50;
   char value[50] = {0};
   find_str_param(req->uri, "v", value, &len);
+  int res = atoi(value);
+
+  const kvi_handler *h = get_kvi_handler(name);
+  if (h) {
+    h->handler(res);
+  } else {
+    seti(name, res);
+  }
+  httpd_resp_send(req, "OK", 2);
   return ESP_OK;
 }
 
@@ -132,8 +142,13 @@ static esp_err_t setstr_handler(httpd_req_t *req) {
   char value[50] = {0};
   find_str_param(req->uri, "v", value, &len);
 
-  setstr(name, value);
-
+  const kvs_handler *h = get_kvs_handler(name);
+  if (h) {
+    h->handler(value);
+  } else {
+    setstr(name, value);
+  }
+  httpd_resp_send(req, "OK", 2);
   return ESP_OK;
 }
 

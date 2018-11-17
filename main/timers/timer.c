@@ -123,13 +123,13 @@ static void timer_task(void *param) {
 
 // BLE Callbacks
 
-void on_set_timer_type(enum timer t) {
-  enum timer old = geti(TIMER_TYPE);
+void on_set_timer_type(int value) {
+  int old = geti(TIMER_TYPE);
 
-  if (old == t) return;
-  seti(TIMER_TYPE, t);
+  if (old == value) return;
+  seti(TIMER_TYPE, value);
   stop(old);
-  start(t);
+  start(value);
   refresh_led(-1);
 }
 
