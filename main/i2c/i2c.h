@@ -20,5 +20,7 @@
 #define I2C_H_
 
 void init_i2c();
+void start_i2c();
+void stop_i2c();
 
 #endif

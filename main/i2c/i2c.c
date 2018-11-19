@@ -21,6 +21,8 @@
 
 #include "../log/log.h"
 
+#include "../sht1x/sht1x.h"
+
 #define MASTER_SCL_IO 27
 #define MASTER_SDA_IO 26
 #define MASTER_TX_BUF_DISABLE  0
@@ -54,12 +56,20 @@
 
 void i2c_task(void *param) {
   while(true) {
-    //print_scan();
+    read_sht1x(MASTER_SCL_IO, MASTER_SDA_IO);
     vTaskDelay(2000 / portTICK_RATE_MS);
   }
 }
 
 void init_i2c() {
+  xTaskCreate(i2c_task, "I2C", 4096, NULL, 10, NULL);
+}
+
+static bool i2c_started = false;
+
+void start_i2c() {
+  if (i2c_started) return;
+  i2c_started = true;
   i2c_config_t conf;
   conf.mode = I2C_MODE_MASTER;
   conf.sda_io_num = MASTER_SDA_IO;
@@ -71,6 +81,10 @@ void init_i2c() {
   i2c_driver_install(I2C_NUM_0, conf.mode,
       MASTER_RX_BUF_DISABLE,
       MASTER_TX_BUF_DISABLE, 0);
+}
 
-  xTaskCreate(i2c_task, "I2C", 4096, NULL, 10, NULL);
+void stop_i2c() {
+  if (!i2c_started) return;
+  i2c_started = false;
+  i2c_driver_delete(I2C_NUM_0);
 }
