@@ -39,8 +39,9 @@ void read_sht1x(int sda, int sck) {
   float temp_c = read_temperature_c(sda, sck);
   float temp_f = read_temperature_f(sda, sck);
   float humi = read_humidity(sda, sck);
-  seti(SHT1X_TEMP_C, temp_c);
-  seti(SHT1X_TEMP_F, temp_f);
+  seti(SHT1X_TEMP_C, temp_c * 1000);
+  seti(SHT1X_TEMP_F, temp_f * 1000);
   seti(SHT1X_HUMI, humi);
+  ESP_LOGI(SGO_LOG_METRIC, "@SHT1x temp_c=%f, temp_f=%f, humi=%f", temp_c, temp_f, humi);
   release_gpios(sda, sck);
 }
