@@ -21,7 +21,7 @@
 
 #include "../log/log.h"
 
-#include "../sht1x/sht1x.h"
+#include "sht1x/sht1x.h"
 
 #define MASTER_SDA_IO 26
 #define MASTER_SCL_IO 27
@@ -62,6 +62,7 @@ void i2c_task(void *param) {
 }
 
 void init_i2c() {
+  init_sht1x();
   xTaskCreate(i2c_task, "I2C", 4096, NULL, 10, NULL);
 }
 

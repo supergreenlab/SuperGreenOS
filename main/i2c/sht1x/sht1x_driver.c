@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "../log/log.h"
+#include "../../log/log.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"

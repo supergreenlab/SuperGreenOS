@@ -17,10 +17,21 @@
  */
 #include <stdlib.h>
 
-#include "../log/log.h"
+#include "../../log/log.h"
 #include "sht1x.h"
 #include "sht1x_driver.h"
-#include "../i2c/i2c.h"
+#include "../i2c.h"
+#include "../../kv/kv.h"
+
+#define SHT1X_TEMP_C "SHT1X_C"
+#define SHT1X_TEMP_F "SHT1X_F"
+#define SHT1X_HUMI "SHT1X_HU"
+
+void init_sht1x() {
+  defaulti(SHT1X_TEMP_C, -1);
+  defaulti(SHT1X_TEMP_F, -1);
+  defaulti(SHT1X_HUMI, -1);
+}
 
 void read_sht1x(int sda, int sck) {
   esp_log_level_set("gpio", ESP_LOG_NONE);
@@ -28,6 +39,8 @@ void read_sht1x(int sda, int sck) {
   float temp_c = read_temperature_c(sda, sck);
   float temp_f = read_temperature_f(sda, sck);
   float humi = read_humidity(sda, sck);
-  ESP_LOGI(SGO_LOG_METRIC, "@SHT1x temp_c=%f, temp_f=%f, humi=%f", temp_c, temp_f, humi);
+  seti(SHT1X_TEMP_C, temp_c);
+  seti(SHT1X_TEMP_F, temp_f);
+  seti(SHT1X_HUMI, humi);
   release_gpios(sda, sck);
 }

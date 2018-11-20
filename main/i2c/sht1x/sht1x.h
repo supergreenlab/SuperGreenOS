@@ -19,6 +19,7 @@
 #ifndef SHT1X_H_
 #define SHT1X_H_
 
+void init_sht1x();
 void read_sht1x(int sca, int sdk);
 
 #endif
