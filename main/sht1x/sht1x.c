@@ -25,7 +25,6 @@
 void read_sht1x(int sda, int sck) {
   esp_log_level_set("gpio", ESP_LOG_NONE);
   stop_i2c();
-  setup_gpios(sda, sck);
   float temp_c = read_temperature_c(sda, sck);
   float temp_f = read_temperature_f(sda, sck);
   float humi = read_humidity(sda, sck);

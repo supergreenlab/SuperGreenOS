@@ -23,8 +23,8 @@
 
 #include "../sht1x/sht1x.h"
 
-#define MASTER_SCL_IO 27
 #define MASTER_SDA_IO 26
+#define MASTER_SCL_IO 27
 #define MASTER_TX_BUF_DISABLE  0
 #define MASTER_RX_BUF_DISABLE  0
 #define MASTER_FREQ_HZ         100000
@@ -56,7 +56,7 @@
 
 void i2c_task(void *param) {
   while(true) {
-    read_sht1x(MASTER_SCL_IO, MASTER_SDA_IO);
+    read_sht1x(MASTER_SDA_IO, MASTER_SCL_IO);
     vTaskDelay(2000 / portTICK_RATE_MS);
   }
 }

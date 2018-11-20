@@ -18,6 +18,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "../log/log.h"
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "driver/gpio.h"
@@ -28,31 +30,27 @@ void shift_out(int sda, int sck, unsigned char c);
 
 // Init functions
 
-void setup_gpios(int sda, int sck) {
-	gpio_config_t io_conf;
-	io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
-	io_conf.mode = GPIO_MODE_OUTPUT;
-	io_conf.pin_bit_mask = (1ULL << sck);
-	io_conf.pull_down_en = 0;
-	io_conf.pull_up_en = 0;
-	gpio_config(&io_conf);
+void setup_gpios(int sda, int sck, bool input) {
+	gpio_config_t sck_conf;
+	sck_conf.intr_type = GPIO_PIN_INTR_DISABLE;
+	sck_conf.mode = GPIO_MODE_OUTPUT;
+	sck_conf.pin_bit_mask = (1ULL << sck);
+	sck_conf.pull_down_en = 0;
+	sck_conf.pull_up_en = 0;
+	gpio_config(&sck_conf);
 
-  set_sda_mode(sda, false);
+	gpio_config_t sda_conf;
+	sda_conf.intr_type = GPIO_PIN_INTR_DISABLE;
+	sda_conf.mode = (input ? GPIO_MODE_INPUT : GPIO_MODE_OUTPUT);
+	sda_conf.pin_bit_mask = (1ULL << sda);
+	sda_conf.pull_down_en = 0;
+	sda_conf.pull_up_en = input;
+	gpio_config(&sda_conf);
 }
 
 void release_gpios(int sda, int sck) {
   gpio_reset_pin(sda);
   gpio_reset_pin(sck);
-}
-
-void set_sda_mode(int sda, bool input) {
-	gpio_config_t io_conf;
-	io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
-	io_conf.mode = (input ? GPIO_MODE_INPUT : GPIO_MODE_OUTPUT);
-	io_conf.pin_bit_mask = (1ULL << sda);
-	io_conf.pull_down_en = 0;
-	io_conf.pull_up_en = 0;
-	gpio_config(&io_conf);
 }
 
 // Reading functions
@@ -77,8 +75,8 @@ float read_temperature_f(int sda, int sck)
   int val;
   float temperature;
 
-  const float D1 = -40.0;   // for 14 Bit @ 5V
-  const float D2 =   0.018; // for 14 Bit DEGF
+  const float D1 = -40.0; // for 14 Bit @ 5V
+  const float D2 = 0.018; // for 14 Bit DEGF
 
   val = read_temperature_raw(sda, sck);
 
@@ -103,7 +101,7 @@ float read_humidity(int sda, int sck)
   int g_humid_cmd = 0b00000101;
 
   sendcommand_SHT(g_humid_cmd, sda, sck);
-  wait_for_result_SHT(sda);
+  wait_for_result_SHT(sda, sck);
   val = get_data16SHT(sda, sck);
   skip_crc_SHT(sda, sck);
 
@@ -125,7 +123,7 @@ float read_temperature_raw(int sda, int sck)
   int g_temp_cmd  = 0b00000011;
 
   sendcommand_SHT(g_temp_cmd, sda, sck);
-  wait_for_result_SHT(sda);
+  wait_for_result_SHT(sda, sck);
   val = get_data16SHT(sda, sck);
   skip_crc_SHT(sda, sck);
 
@@ -136,7 +134,7 @@ void sendcommand_SHT(int command, int sda, int sck)
 {
   int ack;
 
-	set_sda_mode(sda, false);
+	setup_gpios(sda, sck, false);
   gpio_set_level(sda, 1);
   gpio_set_level(sck, 1);
   gpio_set_level(sda, 0);
@@ -150,30 +148,30 @@ void sendcommand_SHT(int command, int sda, int sck)
 
   // Verify we get the correct ack
   gpio_set_level(sck, 1);
-  set_sda_mode(sda, true);
+  setup_gpios(sda, sck, true);
   ack = gpio_get_level(sda);
   if (ack != 0) {
-    //Serial.println("Ack Error 0");
+    ESP_LOGI(SGO_LOG_NOSEND, "Ack Error 0");
   }
   gpio_set_level(sck, 0);
   ack = gpio_get_level(sda);
   if (ack != 1) {
-    //Serial.println("Ack Error 1");
+    ESP_LOGI(SGO_LOG_NOSEND, "Ack Error 1");
   }
 }
 
 /**
  */
-void wait_for_result_SHT(int sda)
+void wait_for_result_SHT(int sda, int sck)
 {
   int i;
   int ack;
 
-  set_sda_mode(sda, true);
+  setup_gpios(sda, sck, true);
 
   for(i= 0; i < 100; ++i)
   {
-    vTaskDelay(1/portTICK_PERIOD_MS * 10);
+    vTaskDelay(10 / portTICK_PERIOD_MS);
     ack = gpio_get_level(sda);
 
     if (ack == 0) {
@@ -182,7 +180,7 @@ void wait_for_result_SHT(int sda)
   }
 
   if (ack == 1) {
-    //Serial.println("Ack Error 2"); // Can't do serial stuff here, need another way of reporting errors
+    ESP_LOGI(SGO_LOG_NOSEND, "Ack Error 2");
   }
 }
 
@@ -190,17 +188,17 @@ int get_data16SHT(int sda, int sck)
 {
   int val;
 
-  set_sda_mode(sda, true);
+  setup_gpios(sda, sck, true);
   val = shift_in(sda, sck, 8);
   val *= 256;
 
-  set_sda_mode(sda, false);
+  setup_gpios(sda, sck, false);
   gpio_set_level(sda, 1);
   gpio_set_level(sda, 0);
   gpio_set_level(sck, 1);
   gpio_set_level(sck, 0);
 
-  set_sda_mode(sda, true);
+  setup_gpios(sda, sck, true);
   val |= shift_in(sda, sck, 8);
 
   return val;
@@ -208,7 +206,7 @@ int get_data16SHT(int sda, int sck)
 
 void skip_crc_SHT(int sda, int sck)
 {
-  set_sda_mode(sda, false);
+  setup_gpios(sda, sck, false);
 
   gpio_set_level(sda, 1);
   gpio_set_level(sck, 1);
@@ -225,7 +223,7 @@ int shift_in(int sda, int sck, int num_bits)
   for (i = 0; i < num_bits; ++i)
   {
      gpio_set_level(sck, 1);
-     vTaskDelay(1 / portTICK_PERIOD_MS * 10);
+     vTaskDelay(10 / portTICK_PERIOD_MS);
      ret = ret * 2 + gpio_get_level(sda);
      gpio_set_level(sck, 0);
   }
@@ -233,23 +231,12 @@ int shift_in(int sda, int sck, int num_bits)
   return(ret);
 }
 
-void shift_out(int sda, int sck, unsigned char c) {
-  int i=0;
-  int pin;
-  set_sda_mode(sda, false);
+void shift_out(int sda, int sck, uint8_t val) {
+  int i;
 
-  gpio_set_level(sda, 0);
-  gpio_set_level(sck, 0);
-
-  for (i=0; i<=7; i++)  {
-    gpio_set_level(sck, 0);
-
-		pin = c & (1 << i);
-    gpio_set_level(sda, pin);
+  for(i = 0; i < 8; i++) {
+    gpio_set_level(sda, !!(val & (1 << (7 - i))));
     gpio_set_level(sck, 1);
-    gpio_set_level(sda, 0);
+    gpio_set_level(sck, 0);
   }
-
-  //stop shifting
-  gpio_set_level(sck, 0);
 }
