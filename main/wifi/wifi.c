@@ -29,6 +29,7 @@
 #include "esp_attr.h"
 #include "esp_sleep.h"
 #include "nvs_flash.h"
+#include "mdns.h"
 
 #include "wifi.h"
 #include "../log/log.h"
@@ -64,14 +65,31 @@ static EventGroupHandle_t wifi_event_group;
 
 static const int CONNECTED_BIT = BIT0;
 
-static void setup(void);
+static void start_sta(void);
 static esp_err_t event_handler(void *ctx, system_event_t *event);
 static void wifi_task(void *param);
 static bool is_valid();
 
+void start_mdns_service()
+{
+	esp_err_t err = mdns_init();
+	if (err) {
+		ESP_LOGE(SGO_LOG_EVENT, "@WIFI MDNS Init failed: %d\n", err);
+		return;
+	}
+
+
+  mdns_service_add(NULL, "_http", "_tcp", 80, NULL, 0);
+
+	mdns_instance_name_set("Super Green Driver");
+	mdns_hostname_set("supergreendriver");
+}
+
 void init_wifi() {
   defaultstr(SSID, DEFAULT_SSID);
   defaultstr(PASS, DEFAULT_PASS);
+
+	start_mdns_service();
 
   set_attr_value(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&DISCONNECTED, sizeof(const unsigned int));
 
@@ -92,7 +110,7 @@ void init_wifi() {
   xTaskCreate(wifi_task, "WIFI", 2048, NULL, tskIDLE_PRIORITY, NULL);
 
   if (is_valid()) {
-    setup();
+    start_sta();
   }
 }
 
@@ -101,7 +119,7 @@ void wait_connected() {
       false, true, portMAX_DELAY);
 }
 
-static void setup() {
+static void start_sta() {
   set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTING, sizeof(const unsigned int));
 
   wifi_config_t wifi_config = {0};
@@ -154,6 +172,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
     default:
       break;
   }
+  mdns_handle_system_event(ctx, event);
   return ESP_OK;
 }
 
@@ -163,7 +182,7 @@ static void wifi_task(void *param) {
     if(xQueueReceive(cmd, &c, (TickType_t) portMAX_DELAY)) {
       if ((c == CMD_SSID_CHANGED || CMD_PASS_CHANGED) && is_valid()) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_SSID_CHANGED | CMD_PASS_CHANGED");
-        setup();
+        start_sta();
       }
     }
     vTaskDelay(500 / portTICK_PERIOD_MS);
