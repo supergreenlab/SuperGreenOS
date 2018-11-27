@@ -81,7 +81,6 @@ void start_mdns_service()
 
   mdns_service_add(NULL, "_http", "_tcp", 80, NULL, 0);
 
-	mdns_instance_name_set("Super Green Driver");
 	mdns_hostname_set("supergreendriver");
 }
 
