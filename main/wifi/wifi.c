@@ -45,6 +45,9 @@ const uint8_t WIFI_SSID_UUID[ESP_UUID_LEN_128] = {0x17,0xfe,0xc3,0xc1,0x6b,0xe1,
 /*  UUID string: f7e40b10-6cfe-a6f1-fea0-cc6e82535db9 */
 const uint8_t WIFI_PASS_UUID[ESP_UUID_LEN_128] = {0xb9,0x5d,0x53,0x82,0x6e,0xcc,0xa0,0xfe,0xf1,0xa6,0xfe,0x6c,0x10,0x0b,0xe4,0xf7};
 
+#define AP_SSID "🤖🍁"
+#define AP_PASS "multipass"
+
 #define SSID "WSSID"
 #define PASS "WPASS"
 
@@ -55,6 +58,7 @@ static const unsigned int DISCONNECTED = 1;
 static const unsigned int CONNECTING = 2;
 static const unsigned int CONNECTED = 3;
 static const unsigned int FAILED = 4;
+static const unsigned int AP = 5;
 
 static const unsigned int CMD_SSID_CHANGED = 1;
 static const unsigned int CMD_PASS_CHANGED = 2;
@@ -66,6 +70,7 @@ static EventGroupHandle_t wifi_event_group;
 static const int CONNECTED_BIT = BIT0;
 
 static void start_sta(void);
+static void start_ap(void);
 static esp_err_t event_handler(void *ctx, system_event_t *event);
 static void wifi_task(void *param);
 static bool is_valid();
@@ -110,6 +115,8 @@ void init_wifi() {
 
   if (is_valid()) {
     start_sta();
+  } else {
+    start_ap();
   }
 }
 
@@ -118,7 +125,28 @@ void wait_connected() {
       false, true, portMAX_DELAY);
 }
 
+static void start_ap() {
+  ESP_LOGI(SGO_LOG_EVENT, "@WIFI AP mode started SSID=%s", AP_SSID);
+  esp_wifi_stop();
+
+  set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&AP, sizeof(const unsigned int));
+
+  wifi_config_t wifi_config = {0};
+  wifi_config.ap.authmode = WIFI_AUTH_WPA2_PSK;
+  wifi_config.ap.max_connection = 1;
+  memcpy(wifi_config.ap.ssid, AP_SSID, sizeof(wifi_config.ap.ssid));
+  memcpy(wifi_config.ap.password, AP_PASS, sizeof(wifi_config.ap.password));
+
+  ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_AP) );
+  ESP_ERROR_CHECK( esp_wifi_set_config(ESP_IF_WIFI_AP, &wifi_config) );
+
+  xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
+  ESP_ERROR_CHECK( esp_wifi_start() );
+}
+
 static void start_sta() {
+  esp_wifi_stop();
+
   set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTING, sizeof(const unsigned int));
 
   wifi_config_t wifi_config = {0};
@@ -143,6 +171,7 @@ static void start_sta() {
 }
 
 static esp_err_t event_handler(void *ctx, system_event_t *event) {
+  static int n_connection_failed = 0;
   switch(event->event_id) {
     case SYSTEM_EVENT_STA_START:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_START");
@@ -163,8 +192,12 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
         set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&DISCONNECTED, sizeof(const unsigned int));
       }
 
-      if (is_valid()) {
+      if (n_connection_failed < 5 && is_valid()) {
+        ++n_connection_failed;
         esp_wifi_connect();
+      } else if (!is_valid() || (n_connection_failed >= 5 && is_valid())) {
+        n_connection_failed = 0;
+        start_ap();
       }
       xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
       break;
@@ -179,9 +212,13 @@ static void wifi_task(void *param) {
   unsigned int c;
   for (;;) {
     if(xQueueReceive(cmd, &c, (TickType_t) portMAX_DELAY)) {
-      if ((c == CMD_SSID_CHANGED || CMD_PASS_CHANGED) && is_valid()) {
+      if ((c == CMD_SSID_CHANGED || CMD_PASS_CHANGED)) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_SSID_CHANGED | CMD_PASS_CHANGED");
-        start_sta();
+        if (is_valid()) {
+          start_sta();
+        } else {
+          start_ap();
+        }
       }
     }
     vTaskDelay(500 / portTICK_PERIOD_MS);
