@@ -130,12 +130,12 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
     return vprintf(str, l);
   }
 
+  if (uxQueueMessagesWaiting(log_queue) >= MAX_LOG_QUEUE_ITEMS) {
+    xQueueReceive(log_queue, buf_in, 0);
+  }
   memset(buf_in, 0, MAX_LOG_QUEUE_ITEM_SIZE);
   int len = vsprintf((char*)buf_in, str, l);
   buf_in[len] = 0;
-  if (uxQueueMessagesWaiting(log_queue) >= MAX_LOG_QUEUE_ITEMS) {
-    xQueueReceive(log_queue, buf_out, 0);
-  }
   xQueueSend(log_queue, buf_in, 0);
   if (cmd && uxQueueMessagesWaiting(log_queue) > 5) {
     xQueueSend(cmd, &CMD_MQTT_FORCE_FLUSH, 0);

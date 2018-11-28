@@ -41,6 +41,8 @@
 #define BUFFSIZE 1024
 #define TEXT_BUFFSIZE 1024
 
+#define OTA_TIMESTAMP_K "OTA_TS"
+
 static char ota_write_data[BUFFSIZE + 1] = { 0 };
 /*an packet receive buffer*/
 static char text[BUFFSIZE + 1] = { 0 };
@@ -304,17 +306,21 @@ static void ota_task(void *pvParameter) {
     ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA waiting for wifi");
     wait_connected();
     ESP_LOGI(SGO_LOG_EVENT, "@OTA Checking firmware update available");
+    ESP_LOGI(SGO_LOG_EVENT, "@OTA timestamp=%lu", OTA_TIMESTAMP);
     if (check_new_version()) {
       ESP_LOGI(SGO_LOG_EVENT, "@OTA Start OTA procedure");
       try_ota();
     } else {
       ESP_LOGI(SGO_LOG_EVENT, "@OTA Firmware is up-to-date");
     }
-    vTaskDelay((1 * 3600 * 1000) / portTICK_PERIOD_MS);
+    vTaskDelay((20 * 60 * 1000) / portTICK_PERIOD_MS);
   }
 }
 
 void init_ota() {
+  defaulti(OTA_TIMESTAMP_K, OTA_TIMESTAMP);
+  seti(OTA_TIMESTAMP_K, OTA_TIMESTAMP);
+
   if (OTA_TIMESTAMP == 0) {
     ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT INITIALIZING timestamp=%lu", OTA_TIMESTAMP);
     return;
