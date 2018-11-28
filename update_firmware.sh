@@ -18,9 +18,8 @@
 
 if [ "$#" -ne 1 ]; then
   echo "Illegal number of parameters"
+  exit
 fi
-
-NAME=$1
 
 pushd main/conf > /dev/null
 if [[ `git status --porcelain` ]]; then
@@ -29,11 +28,17 @@ if [[ `git status --porcelain` ]]; then
 fi
 popd > /dev/null
 
+NAME=$1
+DEST="releases/$NAME"
+mkdir -p $DEST
+
 ./switch_conf.sh $NAME
 
 TS=`date +"%s"`
 sed -i -E "s/^#define OTA_TIMESTAMP [^$]+/#define OTA_TIMESTAMP ${TS}UL/g" main/conf/ota_db.h
 make
-scp build/chronic-o-matic.bin ccsas.biz:/var/www/$NAME/firmware.bin
-ssh ccsas.biz "echo $TS > /var/www/$NAME/last_timestamp"
+cp build/chronic-o-matic.bin $DEST/firmware.bin
+echo $TS > $DEST/last_timestamp
+# scp build/chronic-o-matic.bin ccsas.biz:/var/www/$NAME/firmware.bin
+# ssh ccsas.biz "echo $TS > /var/www/$NAME/last_timestamp"
 sed -i -E "s/^#define OTA_TIMESTAMP [^$]+/#define OTA_TIMESTAMP 0UL/g" main/conf/ota_db.h

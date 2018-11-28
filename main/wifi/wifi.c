@@ -160,15 +160,7 @@ static void start_sta() {
   ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
   ESP_ERROR_CHECK( esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config) );
 
-  /* EventBits_t wbits = xEventGroupGetBits(wifi_event_group);
-  if (wbits & CONNECTED_BIT) { 
-    xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
-    ESP_ERROR_CHECK(esp_wifi_disconnect());
-  } else {
-    if (esp_wifi_connect() == ESP_ERR_WIFI_NOT_STARTED) {*/
-      ESP_ERROR_CHECK( esp_wifi_start() );
-    /* }
-  } */
+  ESP_ERROR_CHECK( esp_wifi_start() );
 }
 
 static esp_err_t event_handler(void *ctx, system_event_t *event) {

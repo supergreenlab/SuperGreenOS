@@ -182,7 +182,7 @@ static void try_ota()
   esp_ota_handle_t update_handle = 0 ;
   const esp_partition_t *update_partition = NULL;
 
-  ESP_LOGI(SGO_LOG_EVENT, "@OTA Starting OTA example...");
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA Starting OTA");
 
   const esp_partition_t *configured = esp_ota_get_boot_partition();
   const esp_partition_t *running = esp_ota_get_running_partition();
@@ -316,10 +316,10 @@ static void ota_task(void *pvParameter) {
 
 void init_ota() {
   if (OTA_TIMESTAMP == 0) {
-    ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT INITIALIZING timestamp: %lu", OTA_TIMESTAMP);
+    ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT INITIALIZING timestamp=%lu", OTA_TIMESTAMP);
     return;
   }
-  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA initialization timestamp: %lu", OTA_TIMESTAMP);
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA initialization timestamp=%lu", OTA_TIMESTAMP);
 
   xTaskCreate(&ota_task, "OTA", 8192, NULL, 5, NULL);
 }
