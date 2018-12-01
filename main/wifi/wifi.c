@@ -77,16 +77,15 @@ static bool is_valid();
 
 void start_mdns_service()
 {
+  mdns_free();
 	esp_err_t err = mdns_init();
 	if (err) {
 		ESP_LOGE(SGO_LOG_EVENT, "@WIFI MDNS Init failed: %d\n", err);
 		return;
 	}
 
-
-  mdns_service_add(NULL, "_http", "_tcp", 80, NULL, 0);
-
 	mdns_hostname_set("supergreendriver");
+  mdns_service_add(NULL, "_http", "_tcp", 80, NULL, 0);
 }
 
 void init_wifi() {
@@ -105,6 +104,7 @@ void init_wifi() {
   tcpip_adapter_init();
   wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
   ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
+  ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
 
   cmd = xQueueCreate(5, sizeof(unsigned int));
   if (cmd == NULL) {
@@ -174,6 +174,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
     case SYSTEM_EVENT_STA_GOT_IP:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_GOT_IP");
       xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
+      start_mdns_service();
       set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTED, sizeof(const unsigned int));
       break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
@@ -193,6 +194,10 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
         start_ap();
       }
       xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
+      break;
+    case SYSTEM_EVENT_AP_STACONNECTED:
+      ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_AP_STACONNECTED");
+      start_mdns_service();
       break;
     default:
       break;
