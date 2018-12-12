@@ -92,8 +92,6 @@ void init_wifi() {
   defaultstr(SSID, DEFAULT_SSID);
   defaultstr(PASS, DEFAULT_PASS);
 
-	start_mdns_service();
-
   set_attr_value(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&DISCONNECTED, sizeof(const unsigned int));
 
   sync_ble_str(SSID, IDX_VALUE(WIFI_SSID));
@@ -209,7 +207,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
 static void wifi_task(void *param) {
   unsigned int c;
   for (;;) {
-    if(xQueueReceive(cmd, &c, (TickType_t) portMAX_DELAY)) {
+    if(xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS)) {
       if ((c == CMD_SSID_CHANGED || CMD_PASS_CHANGED)) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_SSID_CHANGED | CMD_PASS_CHANGED");
         if (is_valid()) {
@@ -219,7 +217,7 @@ static void wifi_task(void *param) {
         }
       }
     }
-    vTaskDelay(500 / portTICK_PERIOD_MS);
+    start_mdns_service();
   }
 }
 
