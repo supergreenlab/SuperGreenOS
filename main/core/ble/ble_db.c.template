@@ -24,6 +24,8 @@
 #include "../log/log.h"
 #include "../ble/ble_utils.h"
 #include "../kv/kv.h"
+#include "../kv/kv_helpers_internal.h"
+
 
 static const uint16_t GATTS_SERVICE_UUID      = 0x00FF;
 
@@ -65,23 +67,13 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
     {{#ble.write}}
       {{^ble.first}} else {{/ble.first}}if (param->write.handle == handle_table[IDX_VALUE({{caps_name}})]) {
         {{#integer}}
-          uint32_t val = *(uint32_t *)(&param->write.value[0]);
-          {{^ble.manual}}
-            seti({{caps_name}}, val);
-          {{/ble.manual}}
-          {{#write_cb}}
-            on_set_{{name}}(val);
-          {{/write_cb}}
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_{{name}}(value);
         {{/integer}}
         {{#string}}
-            char val[MAX_KVALUE_SIZE] = {0};
-            strncpy(val, (const char *)param->write.value, param->write.len);
-          {{^ble.manual}}
-            setstr({{caps_name}}, val);
-          {{/ble.manual}}
-          {{#write_cb}}
-            on_set_{{name}}(val);
-          {{/write_cb}}
+          char value[MAX_KVALUE_SIZE] = {0};
+          strncpy(value, (const char *)param->write.value, param->write.len);
+          internal_set_{{name}}(value);
         {{/string}}
       }
     {{/ble.write}}

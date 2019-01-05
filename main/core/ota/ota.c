@@ -94,7 +94,9 @@ static bool read_past_http_header(char text[], int total_len, esp_ota_handle_t u
 
 static bool connect_to_http_server()
 {
-  ESP_LOGI(SGO_LOG_EVENT, "@OTA Server IP: %s Server Port:%s", OTA_SERVER_IP, OTA_SERVER_PORT);
+  char server_ip[20] = {0}; getstr(OTA_SERVER_IP, server_ip, 20);
+  char port[6] = {0}; getstr(OTA_SERVER_PORT, port, 6);
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA Server IP: %s Server Port:%s", server_ip, port);
 
   int  http_connect_flag = -1;
   struct sockaddr_in sock_info;
@@ -108,8 +110,8 @@ static bool connect_to_http_server()
   // set connect info
   memset(&sock_info, 0, sizeof(struct sockaddr_in));
   sock_info.sin_family = AF_INET;
-  sock_info.sin_addr.s_addr = inet_addr(OTA_SERVER_IP);
-  sock_info.sin_port = htons(atoi(OTA_SERVER_PORT));
+  sock_info.sin_addr.s_addr = inet_addr(server_ip);
+  sock_info.sin_port = htons(atoi(port));
 
   // connect to http server
   http_connect_flag = connect(socket_id, (struct sockaddr *)&sock_info, sizeof(sock_info));
@@ -125,6 +127,9 @@ static bool connect_to_http_server()
 }
 
 static bool check_new_version() {
+  char version_filename[20] = {0}; getstr(OTA_VERSION_FILENAME, version_filename, 20);
+  char hostname[128] = {0}; getstr(OTA_SERVER_HOSTNAME, hostname, 128);
+  char port[6] = {0}; getstr(OTA_SERVER_PORT, port, 6);
   /*connect to http server*/
   if (connect_to_http_server()) {
     ESP_LOGI(SGO_LOG_EVENT, "@OTA Connected to http server");
@@ -141,7 +146,7 @@ static bool check_new_version() {
     "User-Agent: esp-idf/1.0 esp32\r\n\r\n";
 
   char *http_request = NULL;
-  int get_len = asprintf(&http_request, GET_FORMAT, OTA_VERSION_FILENAME, OTA_SERVER_HOSTNAME, OTA_SERVER_PORT);
+  int get_len = asprintf(&http_request, GET_FORMAT, version_filename, hostname, port);
   if (get_len < 0) {
     ESP_LOGE(SGO_LOG_EVENT, "@OTA Failed to allocate memory for GET request buffer");
     close(socket_id);
@@ -170,12 +175,18 @@ static bool check_new_version() {
 
   char timestamp[15] = {0};
   while(recv(socket_id, &(timestamp[strlen(timestamp)]), sizeof(timestamp) - strlen(timestamp) - 1, 0) > 0);
-  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA TIMESTAMP: %d (build: %lu)", atoi(timestamp), OTA_TIMESTAMP);
-  return OTA_TIMESTAMP < atoi(timestamp);
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA TIMESTAMP: %d (build: %lu)", atoi(timestamp), OTA_BUILD_TIMESTAMP);
+  return OTA_BUILD_TIMESTAMP < atoi(timestamp);
 }
 
 static void try_ota()
 {
+  char server_ip[20] = {0}; getstr(OTA_SERVER_IP, server_ip, 20);
+  char hostname[128] = {0}; getstr(OTA_SERVER_HOSTNAME, hostname, 128);
+  char port[6] = {0}; getstr(OTA_SERVER_PORT, port, 6);
+  char version_filename[20] = {0}; getstr(OTA_VERSION_FILENAME, version_filename, 20);
+  char filename[20] = {0}; getstr(OTA_FILENAME, version_filename, 20);
+
   esp_err_t err;
   /* update handle : set by esp_ota_begin(), must be freed via esp_ota_end() */
   esp_ota_handle_t update_handle = 0 ;
@@ -210,7 +221,7 @@ static void try_ota()
     "User-Agent: esp-idf/1.0 esp32\r\n\r\n";
 
   char *http_request = NULL;
-  int get_len = asprintf(&http_request, GET_FORMAT, OTA_FILENAME, OTA_SERVER_HOSTNAME, OTA_SERVER_PORT);
+  int get_len = asprintf(&http_request, GET_FORMAT, filename, hostname, port);
   if (get_len < 0) {
     ESP_LOGE(SGO_LOG_EVENT, "@OTA Failed to allocate memory for GET request buffer");
     close(socket_id);
@@ -303,7 +314,7 @@ static void ota_task(void *pvParameter) {
     ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA waiting for wifi");
     wait_connected();
     ESP_LOGI(SGO_LOG_EVENT, "@OTA Checking firmware update available");
-    ESP_LOGI(SGO_LOG_EVENT, "@OTA timestamp=%lu", OTA_TIMESTAMP);
+    ESP_LOGI(SGO_LOG_EVENT, "@OTA timestamp=%lu", OTA_BUILD_TIMESTAMP);
     if (check_new_version()) {
       ESP_LOGI(SGO_LOG_EVENT, "@OTA Start OTA procedure");
       try_ota();
@@ -315,11 +326,11 @@ static void ota_task(void *pvParameter) {
 }
 
 void init_ota() {
-  if (OTA_TIMESTAMP == 0) {
-    ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT INITIALIZING timestamp=%lu", OTA_TIMESTAMP);
+  if (OTA_BUILD_TIMESTAMP == 0) {
+    ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT INITIALIZING timestamp=%lu", OTA_BUILD_TIMESTAMP);
     return;
   }
-  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA initialization timestamp=%lu", OTA_TIMESTAMP);
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA initialization timestamp=%lu", OTA_BUILD_TIMESTAMP);
 
   xTaskCreate(&ota_task, "OTA", 8192, NULL, 5, NULL);
 }

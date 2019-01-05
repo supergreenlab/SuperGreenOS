@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../kv/kv_helpers_internal.h"
 #include "httpd_kv_handlers.h"
 #include "../include_modules.h"
 
@@ -32,8 +33,8 @@ const kvi_handler kvi_handlers[] = {
   {{#http.write}}
   {{#write_cb}}
   {
-    .name = "{{name}}",
-    .handler = {{write_cb}},
+    .name = "{{caps_name}}",
+    .handler = internal_set_{{name}},
   },
   {{/write_cb}}
   {{/http.write}}
@@ -68,8 +69,8 @@ const kvs_handler kvs_handlers[] = {
   {{#http.write}}
   {{#write_cb}}
   {
-    .name = "{{name}}",
-    .handler = {{write_cb}},
+    .name = "{{caps_name}}",
+    .handler = internal_set_{{name}},
   },
   {{/write_cb}}
   {{/http.write}}

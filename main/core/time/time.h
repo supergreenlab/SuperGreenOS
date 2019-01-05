@@ -22,11 +22,6 @@
 void init_time();
 time_t get_box_time();
 
-void on_set_time(int value);
-void on_set_start_date_month(int value);
-void on_set_start_date_day(int value);
-void on_set_duration_days(int value);
-void on_set_simulation_duration_days(int value);
-void on_set_started_at(int value);
+int on_set_time(int value);
 
 #endif

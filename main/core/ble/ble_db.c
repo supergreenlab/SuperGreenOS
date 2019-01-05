@@ -24,6 +24,8 @@
 #include "../log/log.h"
 #include "../ble/ble_utils.h"
 #include "../kv/kv.h"
+#include "../kv/kv_helpers_internal.h"
+
 
 static const uint16_t GATTS_SERVICE_UUID      = 0x00FF;
 
@@ -70,46 +72,43 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
    */
   
       if (param->write.handle == handle_table[IDX_VALUE(WIFI_SSID)]) {
-            char val[MAX_KVALUE_SIZE] = {0};
-            strncpy(val, (const char *)param->write.value, param->write.len);
-            setstr(WIFI_SSID, val);
-            on_set_wifi_ssid(val);
+          char value[MAX_KVALUE_SIZE] = {0};
+          strncpy(value, (const char *)param->write.value, param->write.len);
+          internal_set_wifi_ssid(value);
       }
        else if (param->write.handle == handle_table[IDX_VALUE(WIFI_PASS)]) {
-            char val[MAX_KVALUE_SIZE] = {0};
-            strncpy(val, (const char *)param->write.value, param->write.len);
-            setstr(WIFI_PASS, val);
-            on_set_wifi_password(val);
+          char value[MAX_KVALUE_SIZE] = {0};
+          strncpy(value, (const char *)param->write.value, param->write.len);
+          internal_set_wifi_password(value);
       }
        else if (param->write.handle == handle_table[IDX_VALUE(TIME)]) {
-          uint32_t val = *(uint32_t *)(&param->write.value[0]);
-            seti(TIME, val);
-            on_set_time(val);
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_time(value);
       }
        else if (param->write.handle == handle_table[IDX_VALUE(OTA_SERVER_IP)]) {
-            char val[MAX_KVALUE_SIZE] = {0};
-            strncpy(val, (const char *)param->write.value, param->write.len);
-            setstr(OTA_SERVER_IP, val);
+          char value[MAX_KVALUE_SIZE] = {0};
+          strncpy(value, (const char *)param->write.value, param->write.len);
+          internal_set_ota_server_ip(value);
       }
        else if (param->write.handle == handle_table[IDX_VALUE(OTA_SERVER_HOSTNAME)]) {
-            char val[MAX_KVALUE_SIZE] = {0};
-            strncpy(val, (const char *)param->write.value, param->write.len);
-            setstr(OTA_SERVER_HOSTNAME, val);
+          char value[MAX_KVALUE_SIZE] = {0};
+          strncpy(value, (const char *)param->write.value, param->write.len);
+          internal_set_ota_server_hostname(value);
       }
        else if (param->write.handle == handle_table[IDX_VALUE(OTA_SERVER_PORT)]) {
-            char val[MAX_KVALUE_SIZE] = {0};
-            strncpy(val, (const char *)param->write.value, param->write.len);
-            setstr(OTA_SERVER_PORT, val);
+          char value[MAX_KVALUE_SIZE] = {0};
+          strncpy(value, (const char *)param->write.value, param->write.len);
+          internal_set_ota_server_port(value);
       }
        else if (param->write.handle == handle_table[IDX_VALUE(OTA_VERSION_FILENAME)]) {
-            char val[MAX_KVALUE_SIZE] = {0};
-            strncpy(val, (const char *)param->write.value, param->write.len);
-            setstr(OTA_VERSION_FILENAME, val);
+          char value[MAX_KVALUE_SIZE] = {0};
+          strncpy(value, (const char *)param->write.value, param->write.len);
+          internal_set_ota_version_filename(value);
       }
        else if (param->write.handle == handle_table[IDX_VALUE(OTA_FILENAME)]) {
-            char val[MAX_KVALUE_SIZE] = {0};
-            strncpy(val, (const char *)param->write.value, param->write.len);
-            setstr(OTA_FILENAME, val);
+          char value[MAX_KVALUE_SIZE] = {0};
+          strncpy(value, (const char *)param->write.value, param->write.len);
+          internal_set_ota_filename(value);
       }
 
   /*

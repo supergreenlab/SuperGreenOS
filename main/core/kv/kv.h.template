@@ -42,14 +42,12 @@ void defaultstr(const char * key, const char * value);
  */
 
 {{#keys}}
-{{#nvs}}
 {{#integer}}
 void set_{{name}}(int value);
 {{/integer}}
 {{#string}}
 void set_{{name}}(const char *value);
 {{/string}}
-{{/nvs}}
 {{/keys}}
 
 /*

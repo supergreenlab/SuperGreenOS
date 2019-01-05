@@ -19,47 +19,79 @@
 #include <string.h>
 
 #include "kv.h"
+#include "keys.h"
 #include "kv_ble.h"
 #include "../ble/ble.h"
+
+#include "../include_modules.h"
 
 /*
  * [GENERATED]
  */
 
-void set_wifi_status(int value) {
+void internal_set_wifi_status(int value) {
+
+
   set_attr_value_and_notify(IDX_CHAR_VAL_WIFI_STATUS, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
 }
-void set_wifi_ssid(const char *value) {
+void internal_set_wifi_ssid(const char *value) {
   setstr(WIFI_SSID, value);
+
+    value = on_set_wifi_ssid(value);
+
   set_attr_value(IDX_CHAR_VAL_WIFI_SSID, (uint8_t *)value, strlen(value));
 }
-void set_wifi_password(const char *value) {
+void internal_set_wifi_password(const char *value) {
   setstr(WIFI_PASS, value);
+
+    value = on_set_wifi_password(value);
+
 }
-void set_time(int value) {
+void internal_set_time(int value) {
   seti(TIME, value);
+
+    value = on_set_time(value);
+
   set_attr_value_and_notify(IDX_CHAR_VAL_TIME, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
 }
-void set_ota_timestamp(int value) {
+void internal_set_ota_timestamp(int value) {
+
+
+
+  // TODO: httpd notify
 }
-void set_ota_server_ip(const char *value) {
+void internal_set_ota_server_ip(const char *value) {
   setstr(OTA_SERVER_IP, value);
+
+
   set_attr_value(IDX_CHAR_VAL_OTA_SERVER_IP, (uint8_t *)value, strlen(value));
 }
-void set_ota_server_hostname(const char *value) {
+void internal_set_ota_server_hostname(const char *value) {
   setstr(OTA_SERVER_HOSTNAME, value);
+
+
   set_attr_value(IDX_CHAR_VAL_OTA_SERVER_HOSTNAME, (uint8_t *)value, strlen(value));
 }
-void set_ota_server_port(const char *value) {
+void internal_set_ota_server_port(const char *value) {
   setstr(OTA_SERVER_PORT, value);
+
+
   set_attr_value(IDX_CHAR_VAL_OTA_SERVER_PORT, (uint8_t *)value, strlen(value));
 }
-void set_ota_version_filename(const char *value) {
+void internal_set_ota_version_filename(const char *value) {
   setstr(OTA_VERSION_FILENAME, value);
+
+
   set_attr_value(IDX_CHAR_VAL_OTA_VERSION_FILENAME, (uint8_t *)value, strlen(value));
 }
-void set_ota_filename(const char *value) {
+void internal_set_ota_filename(const char *value) {
   setstr(OTA_FILENAME, value);
+
+
   set_attr_value(IDX_CHAR_VAL_OTA_FILENAME, (uint8_t *)value, strlen(value));
 }
 

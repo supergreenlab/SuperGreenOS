@@ -41,12 +41,6 @@
 #define AP_SSID "🤖🍁"
 #define AP_PASS "multipass"
 
-static const unsigned int DISCONNECTED = 1;
-static const unsigned int CONNECTING = 2;
-static const unsigned int CONNECTED = 3;
-static const unsigned int FAILED = 4;
-static const unsigned int AP = 5;
-
 static const unsigned int CMD_SSID_CHANGED = 1;
 static const unsigned int CMD_PASS_CHANGED = 2;
 
@@ -107,7 +101,7 @@ static void start_ap() {
   ESP_LOGI(SGO_LOG_EVENT, "@WIFI AP mode started SSID=%s", AP_SSID);
   esp_wifi_stop();
 
-  set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&AP, sizeof(const unsigned int));
+  set_wifi_status(AP);
 
   wifi_config_t wifi_config = {0};
   wifi_config.ap.authmode = WIFI_AUTH_WPA2_PSK;
@@ -126,7 +120,7 @@ static void start_sta() {
   esp_wifi_stop();
   xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
 
-  set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTING, sizeof(const unsigned int));
+  set_wifi_status(CONNECTING);
 
   wifi_config_t wifi_config = {0};
   
@@ -147,21 +141,21 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
     case SYSTEM_EVENT_STA_START:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_START");
       esp_wifi_connect();
-      set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTING, sizeof(const unsigned int));
+      set_wifi_status(CONNECTING);
       break;
     case SYSTEM_EVENT_STA_GOT_IP:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_GOT_IP");
       xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
       start_mdns_service();
-      set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&CONNECTED, sizeof(const unsigned int));
+      set_wifi_status(CONNECTED);
       break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_DISCONNECTED = %d", event->event_info.disconnected.reason);
       bool failed = event->event_info.disconnected.reason == WIFI_REASON_NO_AP_FOUND || event->event_info.disconnected.reason == WIFI_REASON_AUTH_FAIL;
       if (failed) {
-        set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&FAILED, sizeof(const unsigned int));
+        set_wifi_status(FAILED);
       } else {
-        set_attr_value_and_notify(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&DISCONNECTED, sizeof(const unsigned int));
+        set_wifi_status(DISCONNECTED);
       }
 
       if (n_connection_failed < 5 && is_valid()) {
@@ -203,14 +197,15 @@ static void wifi_task(void *param) {
 
 // BLE Callbacks
 
-void on_set_wifi_ssid(const char *ssid) {
-  setstr(WIFI_PASS, "");
+const char *on_set_wifi_ssid(const char *ssid) {
+  set_wifi_password("");
   xQueueSend(cmd, &CMD_SSID_CHANGED, 0);
+  return ssid;
 }
 
-void on_set_wifi_password(const char *pass) {
-  set_attr_value_and_notify(IDX_VALUE(WIFI_PASS), (const uint8_t *)"", 0);
+const char *on_set_wifi_password(const char *pass) {
   xQueueSend(cmd, &CMD_PASS_CHANGED, 0);
+  return "";
 }
 
 // utils

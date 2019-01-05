@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../kv/kv_helpers_internal.h"
 #include "httpd_kv_handlers.h"
 #include "../include_modules.h"
 
@@ -28,8 +29,8 @@ const kvi_handler kvi_handlers[] = {
 */
   
   {
-    .name = "time",
-    .handler = true,
+    .name = "TIME",
+    .handler = internal_set_time,
   },
 
 /*
@@ -56,12 +57,12 @@ const kvs_handler kvs_handlers[] = {
 */
 
   {
-    .name = "wifi_ssid",
-    .handler = true,
+    .name = "WIFI_SSID",
+    .handler = internal_set_wifi_ssid,
   },
   {
-    .name = "wifi_password",
-    .handler = true,
+    .name = "WIFI_PASS",
+    .handler = internal_set_wifi_password,
   },
 
 /*

@@ -19,25 +19,19 @@
 #ifndef WIFI_H_
 #define WIFI_H_
 
-#include "esp_gatts_api.h"
+typedef enum {
+  DISCONNECTED = 1,
+  CONNECTING,
+  CONNECTED,
+  FAILED,
+  AP,
+} wifi_status;
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+void init_wifi();
 
-  extern const uint8_t WIFI_STATUS_UUID[ESP_UUID_LEN_128];
-  extern const uint8_t WIFI_SSID_UUID[ESP_UUID_LEN_128];
-  extern const uint8_t WIFI_PASS_UUID[ESP_UUID_LEN_128];
+void wait_connected();
 
-  void init_wifi();
-
-  void wait_connected();
-
-  void on_set_wifi_ssid(const char *ssid);
-  void on_set_wifi_password(const char *pass);
-
-#ifdef __cplusplus
-}
-#endif
+const char *on_set_wifi_ssid(const char *ssid);
+const char *on_set_wifi_password(const char *pass);
 
 #endif

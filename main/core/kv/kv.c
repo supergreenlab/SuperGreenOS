@@ -62,7 +62,6 @@ void init_kv() {
   defaultstr(WIFI_SSID, "");
   sync_ble_str(WIFI_SSID, IDX_VALUE(WIFI_SSID));
   defaultstr(WIFI_PASS, "");
-  sync_ble_str(WIFI_PASS, IDX_VALUE(WIFI_PASS));
   defaulti(TIME, 0);
   sync_ble_i(TIME, IDX_VALUE(TIME));
   defaultstr(OTA_SERVER_IP, CONFIG_OTA_SERVER_IP);

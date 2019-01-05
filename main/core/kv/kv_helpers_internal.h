@@ -16,43 +16,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string.h>
-
-#include "kv.h"
-#include "kv_ble.h"
-#include "../ble/ble.h"
+#ifndef KV_HELPERS_INTERNAL_H_
+#define KV_HELPERS_INTERNAL_H_
 
 /*
  * [GENERATED]
  */
 
-{{#keys}}
-{{#integer}}
-void set_{{name}}(int value) {
-  {{#nvs}}
-  seti({{caps_name}}, value);
-  {{/nvs}}
-  {{#ble.notify}}
-  {{^ble.no_sync}}
-  set_attr_value_and_notify(IDX_CHAR_VAL_{{caps_name}}, (uint8_t *)&value, sizeof(int));
-  {{/ble.no_sync}}
-  {{/ble.notify}}
-}
-{{/integer}}
-{{#string}}
-void set_{{name}}(const char *value) {
-  {{#nvs}}
-  setstr({{caps_name}}, value);
-  {{/nvs}}
-  {{#ble}}
-  {{^ble.no_sync}}
-  set_attr_value{{#ble.notify}}_and_notify{{/ble.notify}}(IDX_CHAR_VAL_{{caps_name}}, (uint8_t *)value, strlen(value));
-  {{/ble.no_sync}}
-  {{/ble}}
-}
-{{/string}}
-{{/keys}}
+void internal_set_wifi_status(int value);
+void internal_set_wifi_ssid(const char *value);
+void internal_set_wifi_password(const char *value);
+void internal_set_time(int value);
+void internal_set_ota_timestamp(int value);
+void internal_set_ota_server_ip(const char *value);
+void internal_set_ota_server_hostname(const char *value);
+void internal_set_ota_server_port(const char *value);
+void internal_set_ota_version_filename(const char *value);
+void internal_set_ota_filename(const char *value);
 
 /*
  * [/GENERATED]
  */
+
+#endif

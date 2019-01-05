@@ -39,9 +39,6 @@ static void ntp_task(void *param);
 static void setup(void);
 
 void init_time() {
-  defaulti(TIME, 4);
-  sync_ble_i(TIME, IDX_CHAR_VAL_TIME);
-
   xTaskCreate(time_task, "TIME", 4096, NULL, 10, NULL);
 }
 
@@ -59,8 +56,7 @@ static void time_task(void *param) {
     time_t now;
     time(&now);
     print_time(SGO_LOG_NOSEND, "TIME", now);
-    seti(TIME, (int)now);
-    set_attr_value_and_notify(IDX_CHAR_VAL_TIME, (uint8_t *)&now, sizeof(time_t));
+    set_time((int)now);
 
     vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
   }
@@ -82,8 +78,9 @@ static void setup(void) {
 
 /* ble callbacks */
 
-void on_set_time(int value) {
+int on_set_time(int value) {
   ESP_LOGI(SGO_LOG_EVENT, "@TIMER on_set_time = %d", (int)value);
   struct timeval tv = { .tv_sec = value, .tv_usec = 0 };
   settimeofday(&tv, NULL);
+  return value;
 }
