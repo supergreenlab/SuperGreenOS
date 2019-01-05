@@ -42,7 +42,7 @@ nvs_handle open_handle() {
   return kv_handle;
 }
 
-void init_kv() {
+void preinit_kv() {
   // Initialize NVS
   esp_err_t err = nvs_flash_init();
   if (err == ESP_ERR_NVS_NO_FREE_PAGES) {
@@ -60,19 +60,30 @@ void init_kv() {
    */
 
   defaultstr(WIFI_SSID, "");
-  sync_ble_str(WIFI_SSID, IDX_VALUE(WIFI_SSID));
   defaultstr(WIFI_PASS, "");
   defaulti(TIME, 0);
-  sync_ble_i(TIME, IDX_VALUE(TIME));
   defaultstr(OTA_SERVER_IP, CONFIG_OTA_SERVER_IP);
-  sync_ble_str(OTA_SERVER_IP, IDX_VALUE(OTA_SERVER_IP));
   defaultstr(OTA_SERVER_HOSTNAME, CONFIG_OTA_SERVER_HOSTNAME);
-  sync_ble_str(OTA_SERVER_HOSTNAME, IDX_VALUE(OTA_SERVER_HOSTNAME));
   defaultstr(OTA_SERVER_PORT, CONFIG_OTA_SERVER_PORT);
-  sync_ble_str(OTA_SERVER_PORT, IDX_VALUE(OTA_SERVER_PORT));
   defaultstr(OTA_VERSION_FILENAME, CONFIG_OTA_VERSION_FILENAME);
-  sync_ble_str(OTA_VERSION_FILENAME, IDX_VALUE(OTA_VERSION_FILENAME));
   defaultstr(OTA_FILENAME, CONFIG_OTA_FILENAME);
+
+  /*
+   * [/GENERATED]
+   */
+}
+
+void postinit_kv() {
+  /*
+   * [GENERATED]
+   */
+
+  sync_ble_str(WIFI_SSID, IDX_VALUE(WIFI_SSID));
+  sync_ble_i(TIME, IDX_VALUE(TIME));
+  sync_ble_str(OTA_SERVER_IP, IDX_VALUE(OTA_SERVER_IP));
+  sync_ble_str(OTA_SERVER_HOSTNAME, IDX_VALUE(OTA_SERVER_HOSTNAME));
+  sync_ble_str(OTA_SERVER_PORT, IDX_VALUE(OTA_SERVER_PORT));
+  sync_ble_str(OTA_VERSION_FILENAME, IDX_VALUE(OTA_VERSION_FILENAME));
   sync_ble_str(OTA_FILENAME, IDX_VALUE(OTA_FILENAME));
 
   /*

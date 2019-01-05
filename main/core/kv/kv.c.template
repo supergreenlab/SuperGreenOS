@@ -42,7 +42,7 @@ nvs_handle open_handle() {
   return kv_handle;
 }
 
-void init_kv() {
+void preinit_kv() {
   // Initialize NVS
   esp_err_t err = nvs_flash_init();
   if (err == ESP_ERR_NVS_NO_FREE_PAGES) {
@@ -68,11 +68,6 @@ void init_kv() {
   {{^default_var}}
   defaulti({{caps_name}}, {{default}});
   {{/default_var}}
-  {{#ble}}
-  {{^ble.no_sync}}
-  sync_ble_i({{caps_name}}, IDX_VALUE({{caps_name}}));
-  {{/ble.no_sync}}
-  {{/ble}}
   {{/integer}}
   {{#string}}
   {{#default_var}}
@@ -81,6 +76,30 @@ void init_kv() {
   {{^default_var}}
   defaultstr({{caps_name}}, "{{default}}");
   {{/default_var}}
+  {{/string}}
+  {{/nvs}}
+  {{/keys}}
+
+  /*
+   * [/GENERATED]
+   */
+}
+
+void postinit_kv() {
+  /*
+   * [GENERATED]
+   */
+
+  {{#keys}}
+  {{#nvs}}
+  {{#integer}}
+  {{#ble}}
+  {{^ble.no_sync}}
+  sync_ble_i({{caps_name}}, IDX_VALUE({{caps_name}}));
+  {{/ble.no_sync}}
+  {{/ble}}
+  {{/integer}}
+  {{#string}}
   {{#ble}}
   {{^ble.no_sync}}
   sync_ble_str({{caps_name}}, IDX_VALUE({{caps_name}}));

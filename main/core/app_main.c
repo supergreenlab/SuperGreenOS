@@ -39,9 +39,13 @@ void app_main() {
     mqtt_intercept_log();
     ESP_LOGI(SGO_LOG_EVENT, "@MAIN Welcome to SuperGreenOS version=%s\n", CONFIG_VERSION);
 
-    init_kv();
+    preinit_kv();
+
     init_ble();
     init_wifi();
+
+    postinit_kv();
+
     init_mqtt();
     init_ota();
     init_time();

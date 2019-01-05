@@ -25,7 +25,8 @@
 
 #define MAX_KVALUE_SIZE 517
 
-void init_kv();
+void preinit_kv();
+void postinit_kv();
 
 int geti(const char * key);
 void seti(const char * key, int value);
