@@ -58,6 +58,27 @@ void init_kv() {
    * [GENERATED]
    */
 
+  {{#keys}}
+  {{#nvs}}
+  {{#integer}}
+  {{#default_var}}
+  defaulti({{nvs.key}}, {{default_var}});
+  {{/default_var}}
+  {{^default_var}}
+  defaulti({{nvs.key}}, {{default}});
+  {{/default_var}}
+  {{/integer}}
+  {{#string}}
+  {{#default_var}}
+  defaultstr({{nvs.key}}, {{default_var}});
+  {{/default_var}}
+  {{^default_var}}
+  defaultstr({{nvs.key}}, "{{default}}");
+  {{/default_var}}
+  {{/string}}
+  {{/nvs}}
+  {{/keys}}
+
   /*
    * [/GENERATED]
    */
