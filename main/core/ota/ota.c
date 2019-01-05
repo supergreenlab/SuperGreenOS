@@ -40,8 +40,6 @@
 #define BUFFSIZE 1024
 #define TEXT_BUFFSIZE 1024
 
-#define OTA_TIMESTAMP_K "OTA_TS"
-
 static char ota_write_data[BUFFSIZE + 1] = { 0 };
 /*an packet receive buffer*/
 static char text[BUFFSIZE + 1] = { 0 };
@@ -317,9 +315,6 @@ static void ota_task(void *pvParameter) {
 }
 
 void init_ota() {
-  defaulti(OTA_TIMESTAMP_K, OTA_TIMESTAMP);
-  seti(OTA_TIMESTAMP_K, OTA_TIMESTAMP);
-
   if (OTA_TIMESTAMP == 0) {
     ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT INITIALIZING timestamp=%lu", OTA_TIMESTAMP);
     return;

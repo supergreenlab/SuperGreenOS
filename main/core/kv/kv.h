@@ -46,6 +46,9 @@ void set_wifi_password(const char *value);
 void set_time(int value);
 void set_ota_server_ip(const char *value);
 void set_ota_server_hostname(const char *value);
+void set_ota_server_port(const char *value);
+void set_ota_version_filename(const char *value);
+void set_ota_filename(const char *value);
 
 /*
  * [/GENERATED]

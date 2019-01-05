@@ -41,12 +41,6 @@
 #define AP_SSID "🤖🍁"
 #define AP_PASS "multipass"
 
-#define SSID "WSSID"
-#define PASS "WPASS"
-
-#define DEFAULT_SSID ""
-#define DEFAULT_PASS ""
-
 static const unsigned int DISCONNECTED = 1;
 static const unsigned int CONNECTING = 2;
 static const unsigned int CONNECTED = 3;
@@ -82,13 +76,6 @@ void start_mdns_service()
 }
 
 void init_wifi() {
-  defaultstr(SSID, DEFAULT_SSID);
-  defaultstr(PASS, DEFAULT_PASS);
-
-  set_attr_value(IDX_VALUE(WIFI_STATUS), (const uint8_t *)&DISCONNECTED, sizeof(const unsigned int));
-
-  sync_ble_str(SSID, IDX_VALUE(WIFI_SSID));
-
   wifi_event_group = xEventGroupCreate();
   ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
 
@@ -143,8 +130,8 @@ static void start_sta() {
 
   wifi_config_t wifi_config = {0};
   
-  getstr(SSID, (char *)wifi_config.sta.ssid, sizeof(wifi_config.sta.ssid) - 1);
-  getstr(PASS, (char *)wifi_config.sta.password, sizeof(wifi_config.sta.password) - 1);
+  getstr(WIFI_SSID, (char *)wifi_config.sta.ssid, sizeof(wifi_config.sta.ssid) - 1);
+  getstr(WIFI_PASS, (char *)wifi_config.sta.password, sizeof(wifi_config.sta.password) - 1);
 
   wifi_config.sta.bssid_set = false;
   ESP_LOGI(SGO_LOG_EVENT, "@WIFI Setting WiFi configuration SSID %s...", wifi_config.sta.ssid);
@@ -217,14 +204,12 @@ static void wifi_task(void *param) {
 // BLE Callbacks
 
 void on_set_wifi_ssid(const char *ssid) {
-  setstr(SSID, ssid);
-  setstr(PASS, "");
+  setstr(WIFI_PASS, "");
   xQueueSend(cmd, &CMD_SSID_CHANGED, 0);
 }
 
 void on_set_wifi_password(const char *pass) {
-  setstr(PASS, pass);
-  set_attr_value(IDX_VALUE(WIFI_PASS), (const uint8_t *)"", 0);
+  set_attr_value_and_notify(IDX_VALUE(WIFI_PASS), (const uint8_t *)"", 0);
   xQueueSend(cmd, &CMD_PASS_CHANGED, 0);
 }
 
@@ -234,8 +219,8 @@ static bool is_valid() {
   uint8_t ssid[32] = {0}; 
   uint8_t pass[64] = {0};
 
-  getstr(SSID, (char *)ssid, sizeof(ssid) - 1);
-  getstr(PASS, (char *)pass, sizeof(pass) - 1);
+  getstr(WIFI_SSID, (char *)ssid, sizeof(ssid) - 1);
+  getstr(WIFI_PASS, (char *)pass, sizeof(pass) - 1);
 
   return strlen((char *)ssid) != 0 && strlen((char *)pass) != 0;
 }

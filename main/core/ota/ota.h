@@ -23,8 +23,4 @@
 
 void init_ota();
 
-void on_set_ota_timestamp(int value);
-void on_set_ota_server_ip(const char *value);
-void on_set_ota_server_hostname(const char *value);
-
 #endif

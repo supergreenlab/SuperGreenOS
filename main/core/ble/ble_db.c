@@ -34,6 +34,9 @@ const uint8_t TIME_UUID[ESP_UUID_LEN_128] = {0x9b,0x6a,0x3b,0xe2,0xaa,0xb4,0x33,
 const uint8_t OTA_TIMESTAMP_UUID[ESP_UUID_LEN_128] = {0x89,0x6e,0x49,0xd6,0x82,0x21,0x7e,0xce,0x96,0x23,0xc9,0xe3,0x2b,0x16,0x6f,0x61};
 const uint8_t OTA_SERVER_IP_UUID[ESP_UUID_LEN_128] = {0xda,0x84,0xdb,0xbc,0x5f,0x7d,0x86,0xf5,0x10,0xf0,0xae,0xaa,0x05,0xdb,0xb8,0xf7};
 const uint8_t OTA_SERVER_HOSTNAME_UUID[ESP_UUID_LEN_128] = {0x3c,0x3d,0xce,0xb9,0x11,0x81,0xce,0x11,0xe6,0x13,0xab,0x05,0x47,0x6a,0xa2,0xfa};
+const uint8_t OTA_SERVER_PORT_UUID[ESP_UUID_LEN_128] = {0x6a,0xe5,0xac,0x03,0xe2,0xe0,0x6f,0x79,0x75,0x69,0xe0,0xeb,0x38,0xbd,0x35,0x6c};
+const uint8_t OTA_VERSION_FILENAME_UUID[ESP_UUID_LEN_128] = {0x52,0x7b,0x93,0xa6,0x52,0x22,0x4c,0xb2,0x3f,0xc9,0x16,0x3e,0x7d,0xf5,0xe5,0x1e};
+const uint8_t OTA_FILENAME_UUID[ESP_UUID_LEN_128] = {0x32,0x94,0x27,0x51,0x16,0x02,0x33,0x8b,0xa5,0xff,0x83,0xfd,0x9f,0xfd,0x10,0x3f};
 
 const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
 
@@ -52,6 +55,9 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
     R_I_CHAR(OTA_TIMESTAMP),
     RW_STR_CHAR(OTA_SERVER_IP),
     RW_STR_CHAR(OTA_SERVER_HOSTNAME),
+    RW_STR_CHAR(OTA_SERVER_PORT),
+    RW_STR_CHAR(OTA_VERSION_FILENAME),
+    RW_STR_CHAR(OTA_FILENAME),
 
   /*
    * [/GENERATED]
@@ -84,13 +90,26 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
             char val[MAX_KVALUE_SIZE] = {0};
             strncpy(val, (const char *)param->write.value, param->write.len);
             setstr(OTA_SERVER_IP, val);
-            on_set_ota_server_ip(val);
       }
        else if (param->write.handle == handle_table[IDX_VALUE(OTA_SERVER_HOSTNAME)]) {
             char val[MAX_KVALUE_SIZE] = {0};
             strncpy(val, (const char *)param->write.value, param->write.len);
             setstr(OTA_SERVER_HOSTNAME, val);
-            on_set_ota_server_hostname(val);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(OTA_SERVER_PORT)]) {
+            char val[MAX_KVALUE_SIZE] = {0};
+            strncpy(val, (const char *)param->write.value, param->write.len);
+            setstr(OTA_SERVER_PORT, val);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(OTA_VERSION_FILENAME)]) {
+            char val[MAX_KVALUE_SIZE] = {0};
+            strncpy(val, (const char *)param->write.value, param->write.len);
+            setstr(OTA_VERSION_FILENAME, val);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(OTA_FILENAME)]) {
+            char val[MAX_KVALUE_SIZE] = {0};
+            strncpy(val, (const char *)param->write.value, param->write.len);
+            setstr(OTA_FILENAME, val);
       }
 
   /*

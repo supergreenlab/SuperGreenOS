@@ -63,14 +63,6 @@ const kvs_handler kvs_handlers[] = {
     .name = "wifi_password",
     .handler = true,
   },
-  {
-    .name = "ota_server_ip",
-    .handler = true,
-  },
-  {
-    .name = "ota_server_hostname",
-    .handler = true,
-  },
 
 /*
 * [/GENERATED]

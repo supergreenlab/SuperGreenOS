@@ -43,6 +43,15 @@ void set_ota_server_ip(const char *value) {
 void set_ota_server_hostname(const char *value) {
   setstr(OTA_SERVER_HOSTNAME, value);
 }
+void set_ota_server_port(const char *value) {
+  setstr(OTA_SERVER_PORT, value);
+}
+void set_ota_version_filename(const char *value) {
+  setstr(OTA_VERSION_FILENAME, value);
+}
+void set_ota_filename(const char *value) {
+  setstr(OTA_FILENAME, value);
+}
 
 /*
  * [/GENERATED]

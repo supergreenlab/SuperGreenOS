@@ -34,11 +34,6 @@
 #include "../ble/ble_db.h"
 #include "../wifi/wifi.h"
 
-// "40f9ee4f-e19e-4a8a-aa33-b4aae23b6a9b"
-const uint8_t TIME_UUID[ESP_UUID_LEN_128] = {0x9b,0x6a,0x3b,0xe2,0xaa,0xb4,0x33,0xaa,0x8a,0x4a,0x9e,0xe1,0x4f,0xee,0xf9,0x40};
-
-#define TIME "TIME"
-
 static void time_task(void *param);
 static void ntp_task(void *param);
 static void setup(void);
@@ -91,5 +86,4 @@ void on_set_time(int value) {
   ESP_LOGI(SGO_LOG_EVENT, "@TIMER on_set_time = %d", (int)value);
   struct timeval tv = { .tv_sec = value, .tv_usec = 0 };
   settimeofday(&tv, NULL);
-  seti(TIME, (int)value);
 }
