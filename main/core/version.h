@@ -16,20 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MANUAL_H_
-#define MANUAL_H_
+#ifndef VERSION_H_
+#define VERSION_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-  void init_manual();
-  void start_manual();
-  void stop_manual();
-  void manual_task();
-
-#ifdef __cplusplus
-}
-#endif
+#define VERSION "SuperGreenOSTemplate"
 
 #endif

@@ -21,9 +21,6 @@
 
 #include "../log/log.h"
 
-#include "sht1x/sht1x.h"
-#include "arduino_co2/arduino_co2.h"
-
 #define MASTER_SDA_IO 26
 #define MASTER_SCL_IO 27
 #define MASTER_TX_BUF_DISABLE  0
@@ -57,15 +54,13 @@
 
 void i2c_task(void *param) {
   while(true) {
-    read_sht1x(MASTER_SDA_IO, MASTER_SCL_IO);
-		read_arduino_co2(MASTER_SDA_IO, MASTER_SCL_IO);
+    // Call `read` driver methods
     vTaskDelay(2000 / portTICK_RATE_MS);
   }
 }
 
 void init_i2c() {
-  init_sht1x();
-  init_arduino_co2();
+  // Call `init` driver methods
   xTaskCreate(i2c_task, "I2C", 4096, NULL, 10, NULL);
 }
 

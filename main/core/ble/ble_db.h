@@ -16,9 +16,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef FANS_H_
-#define FANS_H_
+#ifndef BLE_DB_H_
+#define BLE_DB_H_
 
-void init_fans();
+#include "esp_gatts_api.h"
+
+#define CHAR_VAL(name) IDX_CHAR_##name, \
+  IDX_CHAR_VAL_##name
+
+#define CHAR_VAL_CFG(name) IDX_CHAR_##name, \
+  IDX_CHAR_VAL_##name, \
+  IDX_CHAR_CFG_##name
+
+#define IDX(name) IDX_CHAR_##name
+#define IDX_VALUE(name) IDX_CHAR_VAL_##name
+#define IDX_CFG(name) IDX_CHAR_CFG_##name
+
+enum idx
+{
+  IDX_SVC,
+
+  /*
+   * [GENERATED]
+   */
+
+  /*
+   * [/GENERATED]
+   */
+  HRS_IDX_NB,
+};
+
+extern const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB];
 
 #endif

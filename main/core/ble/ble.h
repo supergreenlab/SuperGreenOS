@@ -16,17 +16,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BLOWER_H_
-#define BLOWER_H_
+#ifndef BLE_H_
+#define BLE_H_
 
-#include "esp_gatt_common_api.h"
+#include "ble_db.h"
 
-extern const uint8_t BLOWER_UUID[ESP_UUID_LEN_128];
+void init_ble();
+void notify_handle(enum idx i, const uint8_t *notify_data, uint16_t notify_data_length);
+void notify_attr(enum idx i);
 
-void init_blower();
+void set_attr_value(enum idx i, const uint8_t *value, uint16_t value_length);
 
-/* BLE Callbacks */
-
-void on_set_blower(int value);
+void set_attr_value_and_notify(enum idx i, const uint8_t *value, uint16_t value_length);
 
 #endif

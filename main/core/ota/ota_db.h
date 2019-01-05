@@ -16,30 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TIMER_H_
-#define TIMER_H_
-
-#include "esp_gatt_common_api.h"
-
-extern const uint8_t TIMER_TYPE_UUID[ESP_UUID_LEN_128];
-extern const uint8_t TIMER_OUTPUT_UUID[ESP_UUID_LEN_128];
-extern const uint8_t STARTED_AT_UUID[ESP_UUID_LEN_128];
-
-enum timer {
-  TIMER_MANUAL,
-  TIMER_ONOFF,
-  TIMER_SEASON,
-};
-
-#define TIMER_TYPE "TIMER_T"
-#define TIMER_OUTPUT "TIMER_O"
-#define STARTED_AT "ST_AT"
-
-void update_output(int output);
-
-void init_timer();
-void on_set_timer_type(int value);
-void on_set_timer_output(int value);
-void on_set_started_at(int value);
+#ifndef OTA_DB_H_
+#define OTA_DB_H_
 
 #endif

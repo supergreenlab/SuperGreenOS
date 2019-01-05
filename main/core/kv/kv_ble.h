@@ -16,27 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SEASON_SIMULATOR_H_
-#define SEASON_SIMULATOR_H_
+#ifndef KV_BLE_H_
+#define KV_BLE_H_
 
-#include "esp_gatt_common_api.h"
+#include "../ble/ble_db.h"
 
-extern const uint8_t SIMULATED_TIME_UUID[ESP_UUID_LEN_128];
-extern const uint8_t START_DATE_MONTH_UUID[ESP_UUID_LEN_128];
-extern const uint8_t START_DATE_DAY_UUID[ESP_UUID_LEN_128];
-extern const uint8_t DURATION_DAYS_UUID[ESP_UUID_LEN_128];
-extern const uint8_t SIMULATION_DURATION_DAYS_UUID[ESP_UUID_LEN_128];
-
-void init_season();
-void start_season();
-void stop_season();
-void season_task();
-
-time_t get_box_time();
-
-void on_set_start_date_month(int value);
-void on_set_start_date_day(int value);
-void on_set_duration_days(int value);
-void on_set_simulation_duration_days(int value);
+void sync_ble_i(const char *key, enum idx i);
+void sync_ble_str(const char *key, enum idx i);
 
 #endif

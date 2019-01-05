@@ -16,27 +16,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef STATE_H_
-#define STATE_H_
+#include <stdio.h>
 
-#include "esp_gatt_common_api.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
-#define STATE "STATE"
+#include "log/log.h"
+#include "kv/kv.h"
+#include "mqtt/mqtt.h"
+#include "ble/ble.h"
+#include "wifi/wifi.h"
+#include "time/time.h"
+#include "i2c/i2c.h"
+#include "ota/ota.h"
+#include "stat_dump/stat_dump.h"
+#include "httpd/httpd.h"
 
-extern const uint8_t STATE_UUID[ESP_UUID_LEN_128];
-extern const uint8_t DEVICE_NAME_UUID[ESP_UUID_LEN_128];
+void init_app();
 
-enum state {
-  FIRST_RUN,
-  IDLE,
-  RUNNING
-};
+void app_main() {
+    init_stat_dump_queues();
+    mqtt_intercept_log();
+    ESP_LOGI(SGO_LOG_EVENT, "@MAIN Welcome to SuperGreenOS version=%s\n", CONFIG_VERSION);
 
-void init_state();
+    init_kv();
+    init_ble();
+    init_wifi();
+    init_mqtt();
+    init_ota();
+    init_time();
+    init_i2c();
 
-// BLE Callbacks
+    init_app();
 
-void on_set_state(int value);
-void on_set_device_name(const char *value);
+    init_stat_dump();
 
-#endif
+    init_httpd();
+
+    fflush(stdout);
+}

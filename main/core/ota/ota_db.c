@@ -16,9 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef STATUS_LED_H
-#define STATUS_LED_H
+#include <stdlib.h>
 
-void init_status_led();
-
-#endif
+#include "ota_db.h"

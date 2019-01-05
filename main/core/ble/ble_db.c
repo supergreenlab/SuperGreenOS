@@ -16,12 +16,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef KV_BLE_H_
-#define KV_BLE_H_
+#include "ble_db.h"
 
-#include "../conf/ble_db.h"
+#include "string.h"
 
-void sync_ble_i(const char *key, enum idx i);
-void sync_ble_str(const char *key, enum idx i);
+#include "../include_modules.h"
+#include "../log/log.h"
+#include "../ble/ble_utils.h"
 
-#endif
+static const uint16_t GATTS_SERVICE_UUID      = 0x00FF;
+
+const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
+  [IDX_SVC]    =
+  {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&primary_service_uuid, ESP_GATT_PERM_READ,
+    sizeof(uint16_t), sizeof(GATTS_SERVICE_UUID), (uint8_t *)&GATTS_SERVICE_UUID}},
+
+  /*
+   * [GENERATED]
+   */
+
+  /*
+   * [/GENERATED]
+   */
+};
+
+void on_write(esp_ble_gatts_cb_param_t *param) {
+  /*
+   * [GENERATED]
+   */
+
+  /*
+   * [/GENERATED]
+   */
+}
+
+void on_read(esp_ble_gatts_cb_param_t *param) {
+}
