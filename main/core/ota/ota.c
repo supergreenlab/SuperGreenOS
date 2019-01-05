@@ -35,7 +35,6 @@
 #include "../log/log.h"
 #include "../wifi/wifi.h"
 #include "../kv/kv.h"
-#include "ota_db.h"
 
 #define BUFFSIZE 1024
 #define TEXT_BUFFSIZE 1024
