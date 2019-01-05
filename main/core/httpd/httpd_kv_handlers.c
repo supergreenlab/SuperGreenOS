@@ -26,6 +26,11 @@ const kvi_handler kvi_handlers[] = {
 /*
 * [GENERATED]
 */
+  
+  {
+    .name = "time",
+    .handler = true,
+  },
 
 /*
 * [/GENERATED]
@@ -49,6 +54,23 @@ const kvs_handler kvs_handlers[] = {
 /*
 * [GENERATED]
 */
+
+  {
+    .name = "wifi_ssid",
+    .handler = true,
+  },
+  {
+    .name = "wifi_password",
+    .handler = true,
+  },
+  {
+    .name = "ota_server_ip",
+    .handler = true,
+  },
+  {
+    .name = "ota_server_hostname",
+    .handler = true,
+  },
 
 /*
 * [/GENERATED]

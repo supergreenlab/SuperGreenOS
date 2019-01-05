@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,9 +16,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef VERSION_H_
-#define VERSION_H_
+#ifndef KEYS_H_
+#define KEYS_H_
 
-#define VERSION "SuperGreenOSTemplate"
+/*
+ * [GENERATED]
+ */
+
+#define WIFI_SSID "WSSID"
+#define WIFI_PASS "WPASS"
+#define TIME "TIME"
+#define OTA_SERVER_IP "OTA_SRV_IP"
+#define OTA_SERVER_HOSTNAME "OTA_SRV_HN"
+
+/*
+ * [/GENERATED]
+ */
 
 #endif

@@ -12,12 +12,6 @@ config VERSION
   help
     Version displayed in the logs
 
-config OTA_TIMESTAMP
-  string "Over-The-Air timestamp"
-  default 0UL
-  help
-    Timestamp of the build, used to compare with device's own build timestamp.
-
 config OTA_SERVER_IP
   string "Over-The-Air server IP"
   default "142.93.167.50"

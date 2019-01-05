@@ -39,7 +39,11 @@ enum idx
   /*
    * [GENERATED]
    */
-
+  {{#keys}}
+    {{#ble}}
+    CHAR_VAL{{#ble.notify}}_CFG{{/ble.notify}}({{caps_name}}),
+    {{/ble}}
+  {{/keys}}
   /*
    * [/GENERATED]
    */

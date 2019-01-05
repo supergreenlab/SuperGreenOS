@@ -29,6 +29,7 @@
 #include "nvs.h"
 
 #include "kv.h"
+#include "kv_ble.h"
 #include "../include_modules.h"
 #include "../stat_dump/stat_dump.h"
 
@@ -57,6 +58,17 @@ void init_kv() {
   /*
    * [GENERATED]
    */
+
+  defaultstr(WIFI_SSID, "");
+  sync_ble_str(WIFI_SSID, IDX_VALUE(WIFI_SSID));
+  defaultstr(WIFI_PASS, "");
+  sync_ble_str(WIFI_PASS, IDX_VALUE(WIFI_PASS));
+  defaulti(TIME, 0);
+  sync_ble_i(TIME, IDX_VALUE(TIME));
+  defaultstr(OTA_SERVER_IP, CONFIG_OTA_SERVER_IP);
+  sync_ble_str(OTA_SERVER_IP, IDX_VALUE(OTA_SERVER_IP));
+  defaultstr(OTA_SERVER_HOSTNAME, CONFIG_OTA_SERVER_HOSTNAME);
+  sync_ble_str(OTA_SERVER_HOSTNAME, IDX_VALUE(OTA_SERVER_HOSTNAME));
 
   /*
    * [/GENERATED]

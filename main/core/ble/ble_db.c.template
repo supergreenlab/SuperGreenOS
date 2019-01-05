@@ -29,7 +29,7 @@ static const uint16_t GATTS_SERVICE_UUID      = 0x00FF;
 
 {{#keys}}
 {{#ble}}
-const uint8_t {{name}}_UUID[ESP_UUID_LEN_128] = {{uuid}};
+const uint8_t {{caps_name}}_UUID[ESP_UUID_LEN_128] = {{uuid}};
 {{/ble}}
 {{/keys}}
 
@@ -47,7 +47,7 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
 
   {{#keys}}
     {{#ble}}
-    R{{#ble.write}}W{{/ble.write}}_{{#integer}}I{{/integer}}{{#string}}STR{{/string}}{{#ble.notify}}_NOTIFIABLE{{/ble.notify}}_CHAR({{name}})
+    R{{#ble.write}}W{{/ble.write}}_{{#integer}}I{{/integer}}{{#string}}STR{{/string}}{{#ble.notify}}_NOTIFIABLE{{/ble.notify}}_CHAR({{caps_name}}),
     {{/ble}}
   {{/keys}}
 
@@ -63,24 +63,24 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
   
   {{#keys}}
     {{#ble.write}}
-      {{^ble.first}} else {{/ble.first}}if (param->write.handle == handle_table[IDX_VALUE({{name}})]) {
+      {{^ble.first}} else {{/ble.first}}if (param->write.handle == handle_table[IDX_VALUE({{caps_name}})]) {
         {{#integer}}
-          uint32_t val = *(uint32_t *)(&param->write.value[0])
+          uint32_t val = *(uint32_t *)(&param->write.value[0]);
           {{^ble.manual}}
-            seti({{name}}, val);
+            seti({{caps_name}}, val);
           {{/ble.manual}}
           {{#write_cb}}
-            {{write_cb}}(val)
+            on_set_{{name}}(val);
           {{/write_cb}}
         {{/integer}}
         {{#string}}
             char val[MAX_KVALUE_SIZE] = {0};
             strncpy(val, (const char *)param->write.value, param->write.len);
           {{^ble.manual}}
-            setstr({{name}}, val);
+            setstr({{caps_name}}, val);
           {{/ble.manual}}
           {{#write_cb}}
-            {{write_cb}}(val);
+            on_set_{{name}}(val);
           {{/write_cb}}
         {{/string}}
       }

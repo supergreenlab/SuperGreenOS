@@ -19,12 +19,12 @@
 #ifndef OTA_H_
 #define OTA_H_
 
-extern const char *OTA_SERVER_IP;
-extern const char *OTA_SERVER_HOSTNAME;
-extern const char *OTA_SERVER_PORT;
-extern const char *OTA_VERSION_FILENAME;
-extern const char *OTA_FILENAME;
+#define OTA_TIMESTAMP 0UL
 
 void init_ota();
+
+void on_set_ota_timestamp(int value);
+void on_set_ota_server_ip(const char *value);
+void on_set_ota_server_hostname(const char *value);
 
 #endif

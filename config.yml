@@ -34,6 +34,7 @@ keys:
   # Core keys
   #
   - name: wifi_status
+    caps_name: WIFI_STATUS
     integer: true
     ble:
       uuid: "{0xee,0x06,0x0e,0xb5,0x31,0xae,0x83,0xf0,0xda,0xcb,0x67,0x6d,0x1c,0xda,0x2f,0x37}"
@@ -41,6 +42,7 @@ keys:
     default: 0
 
   - name: wifi_ssid
+    caps_name: WIFI_SSID
     string: true
     nvs:
       key: WSSID
@@ -53,7 +55,8 @@ keys:
     write_cb: true
     default: 
 
-  - name: wifi_pass
+  - name: wifi_password
+    caps_name: WIFI_PASS
     string: true
     nvs:
       key: WPASS
@@ -67,6 +70,7 @@ keys:
     default: ""
 
   - name: time
+    caps_name: TIME
     integer: true
     nvs:
       key: TIME
@@ -80,18 +84,17 @@ keys:
     default: 0
  
   - name: ota_timestamp
+    caps_name: OTA_TIMESTAMP
     integer: true
-    nvs:
-      key: OTA_TS
     ble:
       uuid: "{0x89,0x6e,0x49,0xd6,0x82,0x21,0x7e,0xce,0x96,0x23,0xc9,0xe3,0x2b,0x16,0x6f,0x61}"
-      write: true
     http:
-      write: true
+      noop: true
     write_cb: true
     default_var: CONFIG_OTA_TIMESTAMP
 
   - name: ota_server_ip
+    caps_name: OTA_SERVER_IP
     string: true
     nvs:
       key: OTA_SRV_IP
@@ -104,6 +107,7 @@ keys:
     default_var: CONFIG_OTA_SERVER_IP
 
   - name: ota_server_hostname
+    caps_name: OTA_SERVER_HOSTNAME
     string: true
     nvs:
       key: OTA_SRV_HN

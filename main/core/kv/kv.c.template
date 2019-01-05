@@ -29,6 +29,7 @@
 #include "nvs.h"
 
 #include "kv.h"
+#include "kv_ble.h"
 #include "../include_modules.h"
 #include "../stat_dump/stat_dump.h"
 
@@ -62,19 +63,25 @@ void init_kv() {
   {{#nvs}}
   {{#integer}}
   {{#default_var}}
-  defaulti({{nvs.key}}, {{default_var}});
+  defaulti({{caps_name}}, {{default_var}});
   {{/default_var}}
   {{^default_var}}
-  defaulti({{nvs.key}}, {{default}});
+  defaulti({{caps_name}}, {{default}});
   {{/default_var}}
+  {{#ble}}
+  sync_ble_i({{caps_name}}, IDX_VALUE({{caps_name}}));
+  {{/ble}}
   {{/integer}}
   {{#string}}
   {{#default_var}}
-  defaultstr({{nvs.key}}, {{default_var}});
+  defaultstr({{caps_name}}, {{default_var}});
   {{/default_var}}
   {{^default_var}}
-  defaultstr({{nvs.key}}, "{{default}}");
+  defaultstr({{caps_name}}, "{{default}}");
   {{/default_var}}
+  {{#ble}}
+  sync_ble_str({{caps_name}}, IDX_VALUE({{caps_name}}));
+  {{/ble}}
   {{/string}}
   {{/nvs}}
   {{/keys}}

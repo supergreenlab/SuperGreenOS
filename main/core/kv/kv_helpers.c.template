@@ -16,8 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <string.h>
+
 #include "kv.h"
 #include "kv_ble.h"
+#include "../ble/ble.h"
 
 /*
  * [GENERATED]
@@ -27,17 +30,17 @@
 {{#nvs}}
 {{#integer}}
 void set_{{name}}(int value) {
-  seti({{nvs.key}}, value);
+  seti({{caps_name}}, value);
   {{#ble.notify}}
-  set_attr_value_and_notify(IDX_CHAR_VAL_{{name}}, (uint8_t *)&value, sizeof(int));
+  set_attr_value_and_notify(IDX_CHAR_VAL_{{caps_name}}, (uint8_t *)&value, sizeof(int));
   {{/ble.notify}}
 }
 {{/integer}}
 {{#string}}
 void set_{{name}}(const char *value) {
-  setstr({{nvs.key}}, value);
+  setstr({{caps_name}}, value);
   {{#ble.notify}}
-  set_attr_value_and_notify(IDX_CHAR_VAL_{{name}}, (uint8_t *)value, strlen(value));
+  set_attr_value_and_notify(IDX_CHAR_VAL_{{caps_name}}, (uint8_t *)value, strlen(value));
   {{/ble.notify}}
 }
 {{/string}}

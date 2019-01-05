@@ -23,6 +23,15 @@
 * [GENERATED]
 */
 
+#include "../core/wifi/wifi.h"
+#include "../core/ble/ble.h"
+#include "../core/kv/kv.h"
+#include "../core/ota/ota.h"
+#include "../core/httpd/httpd.h"
+#include "../core/stat_dump/stat_dump.h"
+#include "../core/time/time.h"
+#include "../core/mqtt/mqtt.h"
+
 /*
 * [/GENERATED]
 */
