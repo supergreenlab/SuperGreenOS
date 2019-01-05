@@ -175,6 +175,7 @@ static bool check_new_version() {
   char timestamp[15] = {0};
   while(recv(socket_id, &(timestamp[strlen(timestamp)]), sizeof(timestamp) - strlen(timestamp) - 1, 0) > 0);
   ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA TIMESTAMP: %d (build: %lu)", atoi(timestamp), OTA_BUILD_TIMESTAMP);
+  close(socket_id);
   return OTA_BUILD_TIMESTAMP < atoi(timestamp);
 }
 
@@ -305,7 +306,7 @@ static void try_ota()
   }
   ESP_LOGI(SGO_LOG_EVENT, "@OTA Prepare to restart system!");
   esp_restart();
-  return ;
+  return;
 }
 
 static void ota_task(void *pvParameter) {

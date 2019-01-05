@@ -31,7 +31,6 @@
 #include "kv.h"
 #include "kv_ble.h"
 #include "../include_modules.h"
-#include "../stat_dump/stat_dump.h"
 
 nvs_handle open_handle() {
   nvs_handle kv_handle;
@@ -141,7 +140,6 @@ void seti(const char * key, int value) {
 }
 
 void defaulti(const char * key, int value) {
-  add_kvi_dump(key);
   if (!hasi(key)) {
     seti(key, value);
   } else {
@@ -178,9 +176,6 @@ void setstr(const char * key, const char * value) {
 void defaultstr(const char * key, const char * value) {
   bool skip = strcmp(key, "WPASS") == 0;
   
-  if (!skip) {
-    add_kvs_dump(key);
-  }
   if (!hasstr(key)) {
     setstr(key, value);
   } else {

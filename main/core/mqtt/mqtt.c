@@ -33,7 +33,6 @@ static QueueHandle_t log_queue;
 
 #define MAX_LOG_QUEUE_ITEM_SIZE 128
 #define MAX_LOG_QUEUE_ITEMS 50
-static uint8_t buf_in[MAX_LOG_QUEUE_ITEM_SIZE] = {0};
 static uint8_t buf_out[MAX_LOG_QUEUE_ITEM_SIZE] = {0};
 
 static int CMD_MQTT_DISCONNECTED = 0;
@@ -130,6 +129,7 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
     return vprintf(str, l);
   }
 
+  uint8_t buf_in[MAX_LOG_QUEUE_ITEM_SIZE] = {0};
   if (uxQueueMessagesWaiting(log_queue) >= MAX_LOG_QUEUE_ITEMS) {
     xQueueReceive(log_queue, buf_in, 0);
   }
