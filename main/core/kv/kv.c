@@ -66,6 +66,8 @@ void preinit_kv() {
   defaultstr(OTA_SERVER_PORT, CONFIG_OTA_SERVER_PORT);
   defaultstr(OTA_VERSION_FILENAME, CONFIG_OTA_VERSION_FILENAME);
   defaultstr(OTA_FILENAME, CONFIG_OTA_FILENAME);
+  defaulti(I2C_SDA, DEFAULT_I2C_SDA);
+  defaulti(I2C_SCL, DEFAULT_I2C_SCL);
   defaulti(STATE, FIRST_RUN);
   defaultstr(DEVICE_NAME, "SuperGreenDriver");
   defaulti(TIMER_TYPE, TIMER_MANUAL);
@@ -88,6 +90,30 @@ void preinit_kv() {
   defaulti(LED_3_DUTY, 0);
   defaulti(LED_4_DUTY, 0);
   defaulti(LED_5_DUTY, 0);
+  defaulti(LED_0_GPIO, 0);
+  defaulti(LED_1_GPIO, 0);
+  defaulti(LED_2_GPIO, 0);
+  defaulti(LED_3_GPIO, 0);
+  defaulti(LED_4_GPIO, 0);
+  defaulti(LED_5_GPIO, 0);
+  defaulti(LED_0_X, 0);
+  defaulti(LED_1_X, 0);
+  defaulti(LED_2_X, 0);
+  defaulti(LED_3_X, 0);
+  defaulti(LED_4_X, 0);
+  defaulti(LED_5_X, 0);
+  defaulti(LED_0_Y, 0);
+  defaulti(LED_1_Y, 0);
+  defaulti(LED_2_Y, 0);
+  defaulti(LED_3_Y, 0);
+  defaulti(LED_4_Y, 0);
+  defaulti(LED_5_Y, 0);
+  defaulti(LED_0_Z, 0);
+  defaulti(LED_1_Z, 0);
+  defaulti(LED_2_Z, 0);
+  defaulti(LED_3_Z, 0);
+  defaulti(LED_4_Z, 0);
+  defaulti(LED_5_Z, 0);
 
   /*
    * [/GENERATED]
@@ -106,6 +132,8 @@ void postinit_kv() {
   sync_ble_str(OTA_SERVER_PORT, IDX_VALUE(OTA_SERVER_PORT));
   sync_ble_str(OTA_VERSION_FILENAME, IDX_VALUE(OTA_VERSION_FILENAME));
   sync_ble_str(OTA_FILENAME, IDX_VALUE(OTA_FILENAME));
+  sync_ble_i(I2C_SDA, IDX_VALUE(I2C_SDA));
+  sync_ble_i(I2C_SCL, IDX_VALUE(I2C_SCL));
   sync_ble_i(STATE, IDX_VALUE(STATE));
   sync_ble_str(DEVICE_NAME, IDX_VALUE(DEVICE_NAME));
   sync_ble_i(TIMER_TYPE, IDX_VALUE(TIMER_TYPE));
@@ -128,6 +156,30 @@ void postinit_kv() {
   sync_ble_i(LED_3_DUTY, IDX_VALUE(LED_3_DUTY));
   sync_ble_i(LED_4_DUTY, IDX_VALUE(LED_4_DUTY));
   sync_ble_i(LED_5_DUTY, IDX_VALUE(LED_5_DUTY));
+  sync_ble_i(LED_0_GPIO, IDX_VALUE(LED_0_GPIO));
+  sync_ble_i(LED_1_GPIO, IDX_VALUE(LED_1_GPIO));
+  sync_ble_i(LED_2_GPIO, IDX_VALUE(LED_2_GPIO));
+  sync_ble_i(LED_3_GPIO, IDX_VALUE(LED_3_GPIO));
+  sync_ble_i(LED_4_GPIO, IDX_VALUE(LED_4_GPIO));
+  sync_ble_i(LED_5_GPIO, IDX_VALUE(LED_5_GPIO));
+  sync_ble_i(LED_0_X, IDX_VALUE(LED_0_X));
+  sync_ble_i(LED_1_X, IDX_VALUE(LED_1_X));
+  sync_ble_i(LED_2_X, IDX_VALUE(LED_2_X));
+  sync_ble_i(LED_3_X, IDX_VALUE(LED_3_X));
+  sync_ble_i(LED_4_X, IDX_VALUE(LED_4_X));
+  sync_ble_i(LED_5_X, IDX_VALUE(LED_5_X));
+  sync_ble_i(LED_0_Y, IDX_VALUE(LED_0_Y));
+  sync_ble_i(LED_1_Y, IDX_VALUE(LED_1_Y));
+  sync_ble_i(LED_2_Y, IDX_VALUE(LED_2_Y));
+  sync_ble_i(LED_3_Y, IDX_VALUE(LED_3_Y));
+  sync_ble_i(LED_4_Y, IDX_VALUE(LED_4_Y));
+  sync_ble_i(LED_5_Y, IDX_VALUE(LED_5_Y));
+  sync_ble_i(LED_0_Z, IDX_VALUE(LED_0_Z));
+  sync_ble_i(LED_1_Z, IDX_VALUE(LED_1_Z));
+  sync_ble_i(LED_2_Z, IDX_VALUE(LED_2_Z));
+  sync_ble_i(LED_3_Z, IDX_VALUE(LED_3_Z));
+  sync_ble_i(LED_4_Z, IDX_VALUE(LED_4_Z));
+  sync_ble_i(LED_5_Z, IDX_VALUE(LED_5_Z));
 
   /*
    * [/GENERATED]

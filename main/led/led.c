@@ -53,6 +53,7 @@ int max_z = INT_MIN;
 #define LEDC_FADE_TIME         (500)
 
 void init_led_timers();
+int get_led_param(int i, const char *param);
 
 static QueueHandle_t cmd;
 
@@ -149,6 +150,13 @@ void init_led() {
   ESP_LOGI(SGO_LOG_EVENT, "@LED Initializing led task");
 
   // TODO init led array + set defaults with kv
+  for (int i = 0; i < N_LEDS; ++i) {
+    ledc_channels[i].channel_config.gpio_num = get_led_param(i, "IO");
+
+    ledc_channels[i].x = get_led_param(i, "X");
+    ledc_channels[i].y = get_led_param(i, "Y");
+    ledc_channels[i].z = get_led_param(i, "Z");
+  }
 
   init_led_info();
 
@@ -168,10 +176,14 @@ void refresh_led(int i) {
   xQueueSend(cmd, &i, 0);
 }
 
-int get_led_duty(int i) {
+int get_led_param(int i, const char *param) {
   char duty_key[13] = {0};
-  sprintf(duty_key, "LED_%d_DUTY", i);
+  sprintf(duty_key, "LED_%d_%s", i, param);
   return geti(duty_key);
+}
+
+int get_led_duty(int i) {
+  return get_led_param(i, "DUTY");
 }
 
 int set_led_duty(int i, int value) {

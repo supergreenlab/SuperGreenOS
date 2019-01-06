@@ -19,6 +19,9 @@
 #ifndef I2C_H_
 #define I2C_H_
 
+#define DEFAULT_I2C_SDA 26
+#define DEFAULT_I2C_SCL 27
+
 void init_i2c();
 void start_i2c();
 void stop_i2c();

@@ -39,6 +39,8 @@ const uint8_t OTA_SERVER_HOSTNAME_UUID[ESP_UUID_LEN_128] = {0x3c,0x3d,0xce,0xb9,
 const uint8_t OTA_SERVER_PORT_UUID[ESP_UUID_LEN_128] = {0x6a,0xe5,0xac,0x03,0xe2,0xe0,0x6f,0x79,0x75,0x69,0xe0,0xeb,0x38,0xbd,0x35,0x6c};
 const uint8_t OTA_VERSION_FILENAME_UUID[ESP_UUID_LEN_128] = {0x52,0x7b,0x93,0xa6,0x52,0x22,0x4c,0xb2,0x3f,0xc9,0x16,0x3e,0x7d,0xf5,0xe5,0x1e};
 const uint8_t OTA_FILENAME_UUID[ESP_UUID_LEN_128] = {0x32,0x94,0x27,0x51,0x16,0x02,0x33,0x8b,0xa5,0xff,0x83,0xfd,0x9f,0xfd,0x10,0x3f};
+const uint8_t I2C_SDA_UUID[ESP_UUID_LEN_128] = {0x9b,0x6a,0x3b,0xe2,0xaa,0xb4,0x33,0xaa,0x8a,0x4a,0x9e,0xe1,0x4f,0xee,0xf9,0x40};
+const uint8_t I2C_SCL_UUID[ESP_UUID_LEN_128] = {0x9b,0x6a,0x3b,0xe2,0xaa,0xb4,0x33,0xaa,0x8a,0x4a,0x9e,0xe1,0x4f,0xee,0xf9,0x40};
 const uint8_t STATE_UUID[ESP_UUID_LEN_128] = {0x94,0x28,0x12,0x63,0x56,0xde,0xec,0x43,0xb4,0xfe,0xd6,0x3b,0xd2,0xdf,0xf6,0x8f};
 const uint8_t DEVICE_NAME_UUID[ESP_UUID_LEN_128] = {0x25,0x8b,0x4f,0x3d,0xf1,0x61,0xee,0x68,0x6e,0xee,0x0e,0x8c,0x32,0x77,0x31,0xa6};
 const uint8_t TIMER_TYPE_UUID[ESP_UUID_LEN_128] = {0xf3,0xa9,0xfa,0xb2,0x5a,0x41,0x3d,0x34,0x7b,0x0a,0xa9,0x3a,0x40,0xa8,0x5e,0x5f};
@@ -61,6 +63,30 @@ const uint8_t LED_2_DUTY_UUID[ESP_UUID_LEN_128] = {0x02,0xfc,0x71,0x90,0x25,0xe4
 const uint8_t LED_3_DUTY_UUID[ESP_UUID_LEN_128] = {0x03,0x61,0xeb,0x40,0x8c,0x1e,0x59,0x61,0x3a,0xa5,0x78,0x55,0xcd,0x31,0xb9,0x50};
 const uint8_t LED_4_DUTY_UUID[ESP_UUID_LEN_128] = {0x04,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x42};
 const uint8_t LED_5_DUTY_UUID[ESP_UUID_LEN_128] = {0x05,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x42};
+const uint8_t LED_0_GPIO_UUID[ESP_UUID_LEN_128] = {0x00,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x43};
+const uint8_t LED_1_GPIO_UUID[ESP_UUID_LEN_128] = {0x01,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x43};
+const uint8_t LED_2_GPIO_UUID[ESP_UUID_LEN_128] = {0x02,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x43};
+const uint8_t LED_3_GPIO_UUID[ESP_UUID_LEN_128] = {0x03,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x43};
+const uint8_t LED_4_GPIO_UUID[ESP_UUID_LEN_128] = {0x04,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x43};
+const uint8_t LED_5_GPIO_UUID[ESP_UUID_LEN_128] = {0x05,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x43};
+const uint8_t LED_0_X_UUID[ESP_UUID_LEN_128] = {0x00,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x44};
+const uint8_t LED_1_X_UUID[ESP_UUID_LEN_128] = {0x01,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x44};
+const uint8_t LED_2_X_UUID[ESP_UUID_LEN_128] = {0x02,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x44};
+const uint8_t LED_3_X_UUID[ESP_UUID_LEN_128] = {0x03,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x44};
+const uint8_t LED_4_X_UUID[ESP_UUID_LEN_128] = {0x04,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x44};
+const uint8_t LED_5_X_UUID[ESP_UUID_LEN_128] = {0x05,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x44};
+const uint8_t LED_0_Y_UUID[ESP_UUID_LEN_128] = {0x00,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x45};
+const uint8_t LED_1_Y_UUID[ESP_UUID_LEN_128] = {0x01,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x45};
+const uint8_t LED_2_Y_UUID[ESP_UUID_LEN_128] = {0x02,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x45};
+const uint8_t LED_3_Y_UUID[ESP_UUID_LEN_128] = {0x03,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x45};
+const uint8_t LED_4_Y_UUID[ESP_UUID_LEN_128] = {0x04,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x45};
+const uint8_t LED_5_Y_UUID[ESP_UUID_LEN_128] = {0x05,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x45};
+const uint8_t LED_0_Z_UUID[ESP_UUID_LEN_128] = {0x00,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x45};
+const uint8_t LED_1_Z_UUID[ESP_UUID_LEN_128] = {0x01,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x45};
+const uint8_t LED_2_Z_UUID[ESP_UUID_LEN_128] = {0x02,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x45};
+const uint8_t LED_3_Z_UUID[ESP_UUID_LEN_128] = {0x03,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x45};
+const uint8_t LED_4_Z_UUID[ESP_UUID_LEN_128] = {0x04,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x45};
+const uint8_t LED_5_Z_UUID[ESP_UUID_LEN_128] = {0x05,0xfc,0x71,0x90,0x25,0xe4,0xf1,0xc5,0xc4,0x19,0xdf,0x65,0x1b,0xec,0x91,0x45};
 
 const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
 
@@ -82,6 +108,8 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
     RW_STR_CHAR(OTA_SERVER_PORT),
     RW_STR_CHAR(OTA_VERSION_FILENAME),
     RW_STR_CHAR(OTA_FILENAME),
+    RW_I_NOTIFIABLE_CHAR(I2C_SDA),
+    RW_I_NOTIFIABLE_CHAR(I2C_SCL),
     RW_I_NOTIFIABLE_CHAR(STATE),
     RW_STR_CHAR(DEVICE_NAME),
     RW_I_CHAR(TIMER_TYPE),
@@ -104,6 +132,30 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
     RW_I_NOTIFIABLE_CHAR(LED_3_DUTY),
     RW_I_NOTIFIABLE_CHAR(LED_4_DUTY),
     RW_I_NOTIFIABLE_CHAR(LED_5_DUTY),
+    RW_I_CHAR(LED_0_GPIO),
+    RW_I_CHAR(LED_1_GPIO),
+    RW_I_CHAR(LED_2_GPIO),
+    RW_I_CHAR(LED_3_GPIO),
+    RW_I_CHAR(LED_4_GPIO),
+    RW_I_CHAR(LED_5_GPIO),
+    RW_I_CHAR(LED_0_X),
+    RW_I_CHAR(LED_1_X),
+    RW_I_CHAR(LED_2_X),
+    RW_I_CHAR(LED_3_X),
+    RW_I_CHAR(LED_4_X),
+    RW_I_CHAR(LED_5_X),
+    RW_I_CHAR(LED_0_Y),
+    RW_I_CHAR(LED_1_Y),
+    RW_I_CHAR(LED_2_Y),
+    RW_I_CHAR(LED_3_Y),
+    RW_I_CHAR(LED_4_Y),
+    RW_I_CHAR(LED_5_Y),
+    RW_I_CHAR(LED_0_Z),
+    RW_I_CHAR(LED_1_Z),
+    RW_I_CHAR(LED_2_Z),
+    RW_I_CHAR(LED_3_Z),
+    RW_I_CHAR(LED_4_Z),
+    RW_I_CHAR(LED_5_Z),
 
   /*
    * [/GENERATED]
@@ -153,6 +205,14 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
           char value[MAX_KVALUE_SIZE] = {0};
           strncpy(value, (const char *)param->write.value, param->write.len);
           internal_set_ota_filename(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(I2C_SDA)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_i2c_sda(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(I2C_SCL)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_i2c_scl(value);
       }
        else if (param->write.handle == handle_table[IDX_VALUE(STATE)]) {
           uint32_t value = *(uint32_t *)(&param->write.value[0]);
@@ -210,6 +270,102 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
        else if (param->write.handle == handle_table[IDX_VALUE(LED_5_DUTY)]) {
           uint32_t value = *(uint32_t *)(&param->write.value[0]);
           internal_set_led_5_duty(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_0_GPIO)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_0_gpio(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_1_GPIO)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_1_gpio(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_2_GPIO)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_2_gpio(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_3_GPIO)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_3_gpio(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_4_GPIO)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_4_gpio(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_5_GPIO)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_5_gpio(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_0_X)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_0_x(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_1_X)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_1_x(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_2_X)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_2_x(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_3_X)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_3_x(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_4_X)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_4_x(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_5_X)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_5_x(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_0_Y)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_0_y(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_1_Y)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_1_y(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_2_Y)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_2_y(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_3_Y)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_3_y(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_4_Y)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_4_y(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_5_Y)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_5_y(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_0_Z)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_0_z(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_1_Z)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_1_z(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_2_Z)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_2_z(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_3_Z)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_3_z(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_4_Z)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_4_z(value);
+      }
+       else if (param->write.handle == handle_table[IDX_VALUE(LED_5_Z)]) {
+          uint32_t value = *(uint32_t *)(&param->write.value[0]);
+          internal_set_led_5_z(value);
       }
 
   /*

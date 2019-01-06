@@ -17,12 +17,12 @@
  */
 
 #include <stdlib.h>
+#include "i2c.h"
 #include "driver/i2c.h"
 
+#include "../kv/kv.h"
 #include "../log/log.h"
 
-#define MASTER_SDA_IO 26
-#define MASTER_SCL_IO 27
 #define MASTER_TX_BUF_DISABLE  0
 #define MASTER_RX_BUF_DISABLE  0
 #define MASTER_FREQ_HZ         100000
@@ -53,6 +53,8 @@
 }*/
 
 void i2c_task(void *param) {
+  int sda = geti(I2C_SDA);
+  int scl = geti(I2C_SCL);
   while(true) {
     // Call `read` driver methods
     vTaskDelay(2000 / portTICK_RATE_MS);
@@ -68,12 +70,16 @@ static bool i2c_started = false;
 
 void start_i2c() {
   if (i2c_started) return;
+
+  int sda = geti(I2C_SDA);
+  int scl = geti(I2C_SCL);
+
   i2c_started = true;
   i2c_config_t conf;
   conf.mode = I2C_MODE_MASTER;
-  conf.sda_io_num = MASTER_SDA_IO;
+  conf.sda_io_num = sda;
   conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
-  conf.scl_io_num = MASTER_SCL_IO;
+  conf.scl_io_num = scl;
   conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
   conf.master.clk_speed = MASTER_FREQ_HZ;
   i2c_param_config(I2C_NUM_0, &conf);

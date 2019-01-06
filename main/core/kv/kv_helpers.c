@@ -62,6 +62,14 @@ void set_ota_filename(const char *value) {
   setstr(OTA_FILENAME, value);
   set_attr_value(IDX_CHAR_VAL_OTA_FILENAME, (uint8_t *)value, strlen(value));
 }
+void set_i2c_sda(int value) {
+  seti(I2C_SDA, value);
+  set_attr_value_and_notify(IDX_CHAR_VAL_I2C_SDA, (uint8_t *)&value, sizeof(int));
+}
+void set_i2c_scl(int value) {
+  seti(I2C_SCL, value);
+  set_attr_value_and_notify(IDX_CHAR_VAL_I2C_SCL, (uint8_t *)&value, sizeof(int));
+}
 void set_state(int value) {
   seti(STATE, value);
   set_attr_value_and_notify(IDX_CHAR_VAL_STATE, (uint8_t *)&value, sizeof(int));
@@ -144,6 +152,78 @@ void set_led_4_duty(int value) {
 void set_led_5_duty(int value) {
   seti(LED_5_DUTY, value);
   set_attr_value_and_notify(IDX_CHAR_VAL_LED_5_DUTY, (uint8_t *)&value, sizeof(int));
+}
+void set_led_0_gpio(int value) {
+  seti(LED_0_GPIO, value);
+}
+void set_led_1_gpio(int value) {
+  seti(LED_1_GPIO, value);
+}
+void set_led_2_gpio(int value) {
+  seti(LED_2_GPIO, value);
+}
+void set_led_3_gpio(int value) {
+  seti(LED_3_GPIO, value);
+}
+void set_led_4_gpio(int value) {
+  seti(LED_4_GPIO, value);
+}
+void set_led_5_gpio(int value) {
+  seti(LED_5_GPIO, value);
+}
+void set_led_0_x(int value) {
+  seti(LED_0_X, value);
+}
+void set_led_1_x(int value) {
+  seti(LED_1_X, value);
+}
+void set_led_2_x(int value) {
+  seti(LED_2_X, value);
+}
+void set_led_3_x(int value) {
+  seti(LED_3_X, value);
+}
+void set_led_4_x(int value) {
+  seti(LED_4_X, value);
+}
+void set_led_5_x(int value) {
+  seti(LED_5_X, value);
+}
+void set_led_0_y(int value) {
+  seti(LED_0_Y, value);
+}
+void set_led_1_y(int value) {
+  seti(LED_1_Y, value);
+}
+void set_led_2_y(int value) {
+  seti(LED_2_Y, value);
+}
+void set_led_3_y(int value) {
+  seti(LED_3_Y, value);
+}
+void set_led_4_y(int value) {
+  seti(LED_4_Y, value);
+}
+void set_led_5_y(int value) {
+  seti(LED_5_Y, value);
+}
+void set_led_0_z(int value) {
+  seti(LED_0_Z, value);
+}
+void set_led_1_z(int value) {
+  seti(LED_1_Z, value);
+}
+void set_led_2_z(int value) {
+  seti(LED_2_Z, value);
+}
+void set_led_3_z(int value) {
+  seti(LED_3_Z, value);
+}
+void set_led_4_z(int value) {
+  seti(LED_4_Z, value);
+}
+void set_led_5_z(int value) {
+  seti(LED_5_Z, value);
 }
 
 /*

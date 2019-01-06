@@ -100,9 +100,10 @@ static void timer_task(void *param) {
 int on_set_timer_type(int value) {
   int old = geti(TIMER_TYPE);
 
-  if (old == value) return;
+  if (old == value) return value;
   set_timer_type(value);
   stop(old);
   start(value);
   refresh_led(-1);
+  return value;
 }
