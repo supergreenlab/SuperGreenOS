@@ -64,11 +64,9 @@ void set_ota_filename(const char *value) {
 }
 void set_i2c_sda(int value) {
   seti(I2C_SDA, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_I2C_SDA, (uint8_t *)&value, sizeof(int));
 }
 void set_i2c_scl(int value) {
   seti(I2C_SCL, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_I2C_SCL, (uint8_t *)&value, sizeof(int));
 }
 void set_state(int value) {
   seti(STATE, value);
@@ -83,7 +81,6 @@ void set_timer_type(int value) {
 }
 void set_timer_output(int value) {
   seti(TIMER_OUTPUT, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_TIMER_OUTPUT, (uint8_t *)&value, sizeof(int));
 }
 void set_started_at(int value) {
   seti(STARTED_AT, value);
@@ -131,27 +128,21 @@ void set_led_info(const char *value) {
 }
 void set_led_0_duty(int value) {
   seti(LED_0_DUTY, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_LED_0_DUTY, (uint8_t *)&value, sizeof(int));
 }
 void set_led_1_duty(int value) {
   seti(LED_1_DUTY, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_LED_1_DUTY, (uint8_t *)&value, sizeof(int));
 }
 void set_led_2_duty(int value) {
   seti(LED_2_DUTY, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_LED_2_DUTY, (uint8_t *)&value, sizeof(int));
 }
 void set_led_3_duty(int value) {
   seti(LED_3_DUTY, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_LED_3_DUTY, (uint8_t *)&value, sizeof(int));
 }
 void set_led_4_duty(int value) {
   seti(LED_4_DUTY, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_LED_4_DUTY, (uint8_t *)&value, sizeof(int));
 }
 void set_led_5_duty(int value) {
   seti(LED_5_DUTY, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_LED_5_DUTY, (uint8_t *)&value, sizeof(int));
 }
 void set_led_0_gpio(int value) {
   seti(LED_0_GPIO, value);

@@ -53,8 +53,8 @@
 }*/
 
 void i2c_task(void *param) {
-  int sda = geti(I2C_SDA);
-  int scl = geti(I2C_SCL);
+  /* int sda = geti(I2C_SDA);
+  int scl = geti(I2C_SCL);*/
   while(true) {
     // Call `read` driver methods
     vTaskDelay(2000 / portTICK_RATE_MS);

@@ -23,8 +23,6 @@
 #include "driver/ledc.h"
 
 typedef struct led_config {
-  enum idx       duty_val_idx;
-
   int x;
   int y;
   int z;
@@ -45,8 +43,6 @@ extern int max_z;
 extern led_config_t ledc_channels[];
 
 #define CHANNEL(i, lx, ly, lz, gpio, timer, chan) { \
-    duty_val_idx: IDX_VALUE(LED_##i##_DUTY), \
-    \
     x: lx, \
     y: ly, \
     z: lz, \

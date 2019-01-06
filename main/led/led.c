@@ -57,15 +57,6 @@ int get_led_param(int i, const char *param);
 
 static QueueHandle_t cmd;
 
-void init_keys(int i) {
-  char duty_key[13] = {0};
-  sprintf(duty_key, "LED_%d_DUTY", i);
-
-  defaulti(duty_key, 0);
-
-  sync_ble_i(duty_key, ledc_channels[i].duty_val_idx);
-}
-
 static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
   uint32_t current_duty = ledc_get_duty(ledc_channel.speed_mode, ledc_channel.channel); 
   if (current_duty == duty) {
@@ -100,7 +91,6 @@ static void led_task(void *param) {
   int c;
 
   for (int i = 0; i < N_LEDS; ++i) {
-    init_keys(i);
     ledc_channel_config(&ledc_channels[i].channel_config);
     update_led(i);
   }
