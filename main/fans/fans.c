@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,32 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDE_MODULES_H_
-#define INCLUDE_MODULES_H_
+#include "fans.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/queue.h"
+#include "driver/gpio.h"
 
-/*
-* [GENERATED]
-*/
+#define FANS_GPIO (21)
+#define GPIO_OUTPUT_PIN_SEL  (1ULL<<FANS_GPIO)
 
-#include "../core/wifi/wifi.h"
-#include "../core/ble/ble.h"
-#include "../core/kv/kv.h"
-#include "../core/ota/ota.h"
-#include "../core/httpd/httpd.h"
-#include "../core/stat_dump/stat_dump.h"
-#include "../core/time/time.h"
-#include "../core/mqtt/mqtt.h"
-#include "../blower/blower.h"
-#include "../fans/fans.h"
-#include "../led/led.h"
-#include "../mixer/mixer.h"
-#include "../state/state.h"
-#include "../status_led/status_led.h"
-#include "../timers/timer.h"
-#include "../timers/onoff/onoff.h"
+void init_fans() {
+  gpio_config_t io_conf;
+  io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
+  io_conf.mode = GPIO_MODE_OUTPUT;
+  io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL;
+  io_conf.pull_down_en = 0;
+  io_conf.pull_up_en = 0;
+  gpio_config(&io_conf);
 
-/*
-* [/GENERATED]
-*/
-
-#endif
+  gpio_set_level(FANS_GPIO, 1);
+}

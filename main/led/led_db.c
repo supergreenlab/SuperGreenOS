@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,32 +16,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDE_MODULES_H_
-#define INCLUDE_MODULES_H_
+#include <stdlib.h>
 
-/*
-* [GENERATED]
-*/
+#include "led_db.h"
 
-#include "../core/wifi/wifi.h"
-#include "../core/ble/ble.h"
-#include "../core/kv/kv.h"
-#include "../core/ota/ota.h"
-#include "../core/httpd/httpd.h"
-#include "../core/stat_dump/stat_dump.h"
-#include "../core/time/time.h"
-#include "../core/mqtt/mqtt.h"
-#include "../blower/blower.h"
-#include "../fans/fans.h"
-#include "../led/led.h"
-#include "../mixer/mixer.h"
-#include "../state/state.h"
-#include "../status_led/status_led.h"
-#include "../timers/timer.h"
-#include "../timers/onoff/onoff.h"
+#include "driver/ledc.h"
 
-/*
-* [/GENERATED]
-*/
+const unsigned int N_LEDS = 6;
 
-#endif
+led_config_t ledc_channels[] = {
+  CHANNEL(0, 0, 0, 0, 32, 1, 0),
+  CHANNEL(1, 1, 1, 0, 17, 1, 1),
+  CHANNEL(2, 0, 0, 1, 33, 1, 2),
+  CHANNEL(3, 1, 1, 1, 16, 1, 3),
+  CHANNEL(4, 0, 0, 2, 25, 1, 4),
+  CHANNEL(5, 1, 1, 2, 4, 1, 5)
+};
+
+void init_led_timers() {
+  ledc_timer_config_t ledc_timer = {
+    speed_mode:       LEDC_LOW_SPEED_MODE,
+    { duty_resolution:  LEDC_TIMER_13_BIT, },
+    timer_num:        LEDC_TIMER_1,
+    freq_hz:          120,
+  };
+  ledc_timer_config(&ledc_timer);
+}

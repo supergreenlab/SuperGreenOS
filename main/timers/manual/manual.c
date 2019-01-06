@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,32 +16,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDE_MODULES_H_
-#define INCLUDE_MODULES_H_
+#include "manual.h"
 
-/*
-* [GENERATED]
-*/
+#include "../../core/log/log.h"
 
-#include "../core/wifi/wifi.h"
-#include "../core/ble/ble.h"
-#include "../core/kv/kv.h"
-#include "../core/ota/ota.h"
-#include "../core/httpd/httpd.h"
-#include "../core/stat_dump/stat_dump.h"
-#include "../core/time/time.h"
-#include "../core/mqtt/mqtt.h"
-#include "../blower/blower.h"
-#include "../fans/fans.h"
-#include "../led/led.h"
-#include "../mixer/mixer.h"
-#include "../state/state.h"
-#include "../status_led/status_led.h"
-#include "../timers/timer.h"
-#include "../timers/onoff/onoff.h"
+void init_manual() {
+}
 
-/*
-* [/GENERATED]
-*/
+void start_manual() {
+  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL start_manual");
+}
 
-#endif
+void stop_manual() {
+  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL stop_manual");
+}
+
+void manual_task() {
+  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL manual_task");
+}

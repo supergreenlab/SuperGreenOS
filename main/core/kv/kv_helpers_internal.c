@@ -32,6 +32,7 @@
 void internal_set_wifi_status(int value) {
 
 
+
   set_attr_value_and_notify(IDX_CHAR_VAL_WIFI_STATUS, (uint8_t *)&value, sizeof(int));
 
   // TODO: httpd notify
@@ -41,6 +42,8 @@ void internal_set_wifi_ssid(const char *value) {
 
     value = on_set_wifi_ssid(value);
 
+  setstr(WIFI_SSID, value);
+
   set_attr_value(IDX_CHAR_VAL_WIFI_SSID, (uint8_t *)value, strlen(value));
 }
 void internal_set_wifi_password(const char *value) {
@@ -48,11 +51,15 @@ void internal_set_wifi_password(const char *value) {
 
     value = on_set_wifi_password(value);
 
+  setstr(WIFI_PASS, value);
+
 }
 void internal_set_time(int value) {
   seti(TIME, value);
 
     value = on_set_time(value);
+
+  seti(TIME, value);
 
   set_attr_value_and_notify(IDX_CHAR_VAL_TIME, (uint8_t *)&value, sizeof(int));
 
@@ -62,11 +69,14 @@ void internal_set_ota_timestamp(int value) {
 
 
 
+
   // TODO: httpd notify
 }
 void internal_set_ota_server_ip(const char *value) {
   setstr(OTA_SERVER_IP, value);
 
+
+  setstr(OTA_SERVER_IP, value);
 
   set_attr_value(IDX_CHAR_VAL_OTA_SERVER_IP, (uint8_t *)value, strlen(value));
 }
@@ -74,11 +84,15 @@ void internal_set_ota_server_hostname(const char *value) {
   setstr(OTA_SERVER_HOSTNAME, value);
 
 
+  setstr(OTA_SERVER_HOSTNAME, value);
+
   set_attr_value(IDX_CHAR_VAL_OTA_SERVER_HOSTNAME, (uint8_t *)value, strlen(value));
 }
 void internal_set_ota_server_port(const char *value) {
   setstr(OTA_SERVER_PORT, value);
 
+
+  setstr(OTA_SERVER_PORT, value);
 
   set_attr_value(IDX_CHAR_VAL_OTA_SERVER_PORT, (uint8_t *)value, strlen(value));
 }
@@ -86,13 +100,234 @@ void internal_set_ota_version_filename(const char *value) {
   setstr(OTA_VERSION_FILENAME, value);
 
 
+  setstr(OTA_VERSION_FILENAME, value);
+
   set_attr_value(IDX_CHAR_VAL_OTA_VERSION_FILENAME, (uint8_t *)value, strlen(value));
 }
 void internal_set_ota_filename(const char *value) {
   setstr(OTA_FILENAME, value);
 
 
+  setstr(OTA_FILENAME, value);
+
   set_attr_value(IDX_CHAR_VAL_OTA_FILENAME, (uint8_t *)value, strlen(value));
+}
+void internal_set_state(int value) {
+  seti(STATE, value);
+
+
+  seti(STATE, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_STATE, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_device_name(const char *value) {
+  setstr(DEVICE_NAME, value);
+
+
+  setstr(DEVICE_NAME, value);
+
+  set_attr_value(IDX_CHAR_VAL_DEVICE_NAME, (uint8_t *)value, strlen(value));
+}
+void internal_set_timer_type(int value) {
+
+    value = on_set_timer_type(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_timer_output(int value) {
+  seti(TIMER_OUTPUT, value);
+
+
+  seti(TIMER_OUTPUT, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_TIMER_OUTPUT, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_started_at(int value) {
+  seti(STARTED_AT, value);
+
+
+  seti(STARTED_AT, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_STARTED_AT, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_on_hour(int value) {
+  seti(ON_HOUR, value);
+
+
+  seti(ON_HOUR, value);
+
+
+  // TODO: httpd notify
+}
+void internal_set_on_min(int value) {
+  seti(ON_MIN, value);
+
+
+  seti(ON_MIN, value);
+
+
+  // TODO: httpd notify
+}
+void internal_set_off_hour(int value) {
+  seti(OFF_HOUR, value);
+
+
+  seti(OFF_HOUR, value);
+
+
+  // TODO: httpd notify
+}
+void internal_set_off_min(int value) {
+  seti(OFF_MIN, value);
+
+
+  seti(OFF_MIN, value);
+
+
+  // TODO: httpd notify
+}
+void internal_set_stretch(int value) {
+  seti(STRETCH, value);
+
+    value = on_set_stretch(value);
+
+  seti(STRETCH, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_STRETCH, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_led_dim(int value) {
+  seti(LED_DIM, value);
+
+    value = on_set_led_dim(value);
+
+  seti(LED_DIM, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_LED_DIM, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_blower(int value) {
+  seti(BLOWER, value);
+
+    value = on_set_blower(value);
+
+  seti(BLOWER, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_BLOWER, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_sht1x_temp_c(int value) {
+  seti(SHT1X_TEMP_C, value);
+
+
+  seti(SHT1X_TEMP_C, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_SHT1X_TEMP_C, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_sht1x_temp_f(int value) {
+  seti(SHT1X_TEMP_F, value);
+
+
+  seti(SHT1X_TEMP_F, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_SHT1X_TEMP_F, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_sht1x_humi(int value) {
+  seti(SHT1X_HUMI, value);
+
+
+  seti(SHT1X_HUMI, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_SHT1X_HUMI, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_led_info(const char *value) {
+
+
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_LED_INFO, (uint8_t *)value, strlen(value));
+}
+void internal_set_led_0_duty(int value) {
+  seti(LED_0_DUTY, value);
+
+    value = on_set_led_0_duty(value);
+
+  seti(LED_0_DUTY, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_LED_0_DUTY, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_led_1_duty(int value) {
+  seti(LED_1_DUTY, value);
+
+    value = on_set_led_1_duty(value);
+
+  seti(LED_1_DUTY, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_LED_1_DUTY, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_led_2_duty(int value) {
+  seti(LED_2_DUTY, value);
+
+    value = on_set_led_2_duty(value);
+
+  seti(LED_2_DUTY, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_LED_2_DUTY, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_led_3_duty(int value) {
+  seti(LED_3_DUTY, value);
+
+    value = on_set_led_3_duty(value);
+
+  seti(LED_3_DUTY, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_LED_3_DUTY, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_led_4_duty(int value) {
+  seti(LED_4_DUTY, value);
+
+    value = on_set_led_4_duty(value);
+
+  seti(LED_4_DUTY, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_LED_4_DUTY, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_led_5_duty(int value) {
+  seti(LED_5_DUTY, value);
+
+    value = on_set_led_5_duty(value);
+
+  seti(LED_5_DUTY, value);
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_LED_5_DUTY, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
 }
 
 /*

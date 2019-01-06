@@ -66,6 +66,28 @@ void preinit_kv() {
   defaultstr(OTA_SERVER_PORT, CONFIG_OTA_SERVER_PORT);
   defaultstr(OTA_VERSION_FILENAME, CONFIG_OTA_VERSION_FILENAME);
   defaultstr(OTA_FILENAME, CONFIG_OTA_FILENAME);
+  defaulti(STATE, FIRST_RUN);
+  defaultstr(DEVICE_NAME, "SuperGreenDriver");
+  defaulti(TIMER_TYPE, TIMER_MANUAL);
+  defaulti(TIMER_OUTPUT, 0);
+  defaulti(STARTED_AT, 0);
+  defaulti(ON_HOUR, 1);
+  defaulti(ON_MIN, 0);
+  defaulti(OFF_HOUR, 19);
+  defaulti(OFF_MIN, 0);
+  defaulti(STRETCH, 0);
+  defaulti(LED_DIM, 0);
+  defaulti(BLOWER, 50);
+  defaulti(SHT1X_TEMP_C, -1000000);
+  defaulti(SHT1X_TEMP_F, -1000000);
+  defaulti(SHT1X_HUMI, -1000000);
+  defaultstr(LED_INFO, "0");
+  defaulti(LED_0_DUTY, 0);
+  defaulti(LED_1_DUTY, 0);
+  defaulti(LED_2_DUTY, 0);
+  defaulti(LED_3_DUTY, 0);
+  defaulti(LED_4_DUTY, 0);
+  defaulti(LED_5_DUTY, 0);
 
   /*
    * [/GENERATED]
@@ -84,6 +106,28 @@ void postinit_kv() {
   sync_ble_str(OTA_SERVER_PORT, IDX_VALUE(OTA_SERVER_PORT));
   sync_ble_str(OTA_VERSION_FILENAME, IDX_VALUE(OTA_VERSION_FILENAME));
   sync_ble_str(OTA_FILENAME, IDX_VALUE(OTA_FILENAME));
+  sync_ble_i(STATE, IDX_VALUE(STATE));
+  sync_ble_str(DEVICE_NAME, IDX_VALUE(DEVICE_NAME));
+  sync_ble_i(TIMER_TYPE, IDX_VALUE(TIMER_TYPE));
+  sync_ble_i(TIMER_OUTPUT, IDX_VALUE(TIMER_OUTPUT));
+  sync_ble_i(STARTED_AT, IDX_VALUE(STARTED_AT));
+  sync_ble_i(ON_HOUR, IDX_VALUE(ON_HOUR));
+  sync_ble_i(ON_MIN, IDX_VALUE(ON_MIN));
+  sync_ble_i(OFF_HOUR, IDX_VALUE(OFF_HOUR));
+  sync_ble_i(OFF_MIN, IDX_VALUE(OFF_MIN));
+  sync_ble_i(STRETCH, IDX_VALUE(STRETCH));
+  sync_ble_i(LED_DIM, IDX_VALUE(LED_DIM));
+  sync_ble_i(BLOWER, IDX_VALUE(BLOWER));
+  sync_ble_i(SHT1X_TEMP_C, IDX_VALUE(SHT1X_TEMP_C));
+  sync_ble_i(SHT1X_TEMP_F, IDX_VALUE(SHT1X_TEMP_F));
+  sync_ble_i(SHT1X_HUMI, IDX_VALUE(SHT1X_HUMI));
+  sync_ble_str(LED_INFO, IDX_VALUE(LED_INFO));
+  sync_ble_i(LED_0_DUTY, IDX_VALUE(LED_0_DUTY));
+  sync_ble_i(LED_1_DUTY, IDX_VALUE(LED_1_DUTY));
+  sync_ble_i(LED_2_DUTY, IDX_VALUE(LED_2_DUTY));
+  sync_ble_i(LED_3_DUTY, IDX_VALUE(LED_3_DUTY));
+  sync_ble_i(LED_4_DUTY, IDX_VALUE(LED_4_DUTY));
+  sync_ble_i(LED_5_DUTY, IDX_VALUE(LED_5_DUTY));
 
   /*
    * [/GENERATED]

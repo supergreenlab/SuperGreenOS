@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,32 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDE_MODULES_H_
-#define INCLUDE_MODULES_H_
+#ifndef MIXER_H_
+#define MIXER_H_
 
-/*
-* [GENERATED]
-*/
+#include "esp_gatt_common_api.h"
 
-#include "../core/wifi/wifi.h"
-#include "../core/ble/ble.h"
-#include "../core/kv/kv.h"
-#include "../core/ota/ota.h"
-#include "../core/httpd/httpd.h"
-#include "../core/stat_dump/stat_dump.h"
-#include "../core/time/time.h"
-#include "../core/mqtt/mqtt.h"
-#include "../blower/blower.h"
-#include "../fans/fans.h"
-#include "../led/led.h"
-#include "../mixer/mixer.h"
-#include "../state/state.h"
-#include "../status_led/status_led.h"
-#include "../timers/timer.h"
-#include "../timers/onoff/onoff.h"
+extern const uint8_t LED_DIM_UUID[ESP_UUID_LEN_128];
+extern const uint8_t STRETCH_UUID[ESP_UUID_LEN_128];
 
-/*
-* [/GENERATED]
-*/
+void init_mixer();
+
+// BLE Callbacks
+
+int on_set_led_dim(int value);
+int on_set_stretch(int value);
 
 #endif

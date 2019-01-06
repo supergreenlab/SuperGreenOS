@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,32 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDE_MODULES_H_
-#define INCLUDE_MODULES_H_
+#ifndef TIMER_H_
+#define TIMER_H_
 
-/*
-* [GENERATED]
-*/
+#include "esp_gatt_common_api.h"
 
-#include "../core/wifi/wifi.h"
-#include "../core/ble/ble.h"
-#include "../core/kv/kv.h"
-#include "../core/ota/ota.h"
-#include "../core/httpd/httpd.h"
-#include "../core/stat_dump/stat_dump.h"
-#include "../core/time/time.h"
-#include "../core/mqtt/mqtt.h"
-#include "../blower/blower.h"
-#include "../fans/fans.h"
-#include "../led/led.h"
-#include "../mixer/mixer.h"
-#include "../state/state.h"
-#include "../status_led/status_led.h"
-#include "../timers/timer.h"
-#include "../timers/onoff/onoff.h"
+enum timer {
+  TIMER_MANUAL,
+  TIMER_ONOFF,
+};
 
-/*
-* [/GENERATED]
-*/
+void update_output(int output);
+
+void init_timer();
+
+/* BLE callbacks */
+
+int on_set_timer_type(int value);
 
 #endif

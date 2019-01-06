@@ -42,6 +42,12 @@ void internal_set_{{name}}(int value) {
     value = on_set_{{name}}(value);
   {{/write_cb}}
 
+  {{#nvs}}
+  {{^nvs.manual}}
+  seti({{caps_name}}, value);
+  {{/nvs.manual}}
+  {{/nvs}}
+
   {{#ble.notify}}
   {{^ble.no_sync}}
   set_attr_value_and_notify(IDX_CHAR_VAL_{{caps_name}}, (uint8_t *)&value, sizeof(int));
@@ -62,6 +68,12 @@ void internal_set_{{name}}(const char *value) {
   {{#write_cb}}
     value = on_set_{{name}}(value);
   {{/write_cb}}
+
+  {{#nvs}}
+  {{^nvs.manual}}
+  setstr({{caps_name}}, value);
+  {{/nvs.manual}}
+  {{/nvs}}
 
   {{#ble}}
   {{^ble.no_sync}}

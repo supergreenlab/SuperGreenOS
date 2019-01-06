@@ -33,6 +33,28 @@ void internal_set_ota_server_hostname(const char *value);
 void internal_set_ota_server_port(const char *value);
 void internal_set_ota_version_filename(const char *value);
 void internal_set_ota_filename(const char *value);
+void internal_set_state(int value);
+void internal_set_device_name(const char *value);
+void internal_set_timer_type(int value);
+void internal_set_timer_output(int value);
+void internal_set_started_at(int value);
+void internal_set_on_hour(int value);
+void internal_set_on_min(int value);
+void internal_set_off_hour(int value);
+void internal_set_off_min(int value);
+void internal_set_stretch(int value);
+void internal_set_led_dim(int value);
+void internal_set_blower(int value);
+void internal_set_sht1x_temp_c(int value);
+void internal_set_sht1x_temp_f(int value);
+void internal_set_sht1x_humi(int value);
+void internal_set_led_info(const char *value);
+void internal_set_led_0_duty(int value);
+void internal_set_led_1_duty(int value);
+void internal_set_led_2_duty(int value);
+void internal_set_led_3_duty(int value);
+void internal_set_led_4_duty(int value);
+void internal_set_led_5_duty(int value);
 
 /*
  * [/GENERATED]

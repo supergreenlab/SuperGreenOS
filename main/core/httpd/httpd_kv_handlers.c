@@ -32,6 +32,46 @@ const kvi_handler kvi_handlers[] = {
     .name = "TIME",
     .handler = internal_set_time,
   },
+  {
+    .name = "TIMER_TYPE",
+    .handler = internal_set_timer_type,
+  },
+  {
+    .name = "STRETCH",
+    .handler = internal_set_stretch,
+  },
+  {
+    .name = "LED_DIM",
+    .handler = internal_set_led_dim,
+  },
+  {
+    .name = "BLOWER",
+    .handler = internal_set_blower,
+  },
+  {
+    .name = "LED_0_DUTY",
+    .handler = internal_set_led_0_duty,
+  },
+  {
+    .name = "LED_1_DUTY",
+    .handler = internal_set_led_1_duty,
+  },
+  {
+    .name = "LED_2_DUTY",
+    .handler = internal_set_led_2_duty,
+  },
+  {
+    .name = "LED_3_DUTY",
+    .handler = internal_set_led_3_duty,
+  },
+  {
+    .name = "LED_4_DUTY",
+    .handler = internal_set_led_4_duty,
+  },
+  {
+    .name = "LED_5_DUTY",
+    .handler = internal_set_led_5_duty,
+  },
 
 /*
 * [/GENERATED]
