@@ -16,5 +16,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "status_led/status_led.h"
+#include "state/state.h"
+#include "led/led.h"
+#include "fans/fans.h"
+#include "blower/blower.h"
+
+#include "timers/timer.h"
+#include "timers/manual/manual.h"
+#include "timers/onoff/onoff.h"
+
+#include "mixer/mixer.h"
+
 void init_app() {
+  init_status_led();
+  init_state();
+  init_led();
+  init_fans();
+  init_blower();
+
+  init_timer();
+  init_manual();
+  init_onoff();
+
+  init_mixer();
 }
