@@ -133,9 +133,6 @@ static void stat_dump_task(void *param) {
     value = geti(SHT1X_HUMI);
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "SHT1X_HUMI", value);
     vTaskDelay(50 / portTICK_PERIOD_MS);
-    getstr(LED_INFO, str, MAX_KVALUE_SIZE-1);
-    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "LED_INFO", str);
-    vTaskDelay(50 / portTICK_PERIOD_MS);
     value = geti(LED_0_DUTY);
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_0_DUTY", value);
     vTaskDelay(50 / portTICK_PERIOD_MS);
