@@ -45,6 +45,7 @@
 #define STRETCH "STRETCH"
 #define LED_DIM "LED_DIM"
 #define BLOWER "BLWR"
+#define BLOWER_GPIO "BLWR_IO"
 #define SHT1X_TEMP_C "SHT1X_C"
 #define SHT1X_TEMP_F "SHT1X_F"
 #define SHT1X_HUMI "SHT1X_HU"

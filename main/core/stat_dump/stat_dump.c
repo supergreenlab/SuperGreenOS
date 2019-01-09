@@ -124,6 +124,9 @@ static void stat_dump_task(void *param) {
     value = geti(BLOWER);
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BLOWER", value);
     vTaskDelay(50 / portTICK_PERIOD_MS);
+    value = geti(BLOWER_GPIO);
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BLOWER_GPIO", value);
+    vTaskDelay(50 / portTICK_PERIOD_MS);
     value = geti(SHT1X_TEMP_C);
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "SHT1X_TEMP_C", value);
     vTaskDelay(50 / portTICK_PERIOD_MS);

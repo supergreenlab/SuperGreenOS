@@ -244,6 +244,15 @@ void internal_set_blower(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_blower_gpio(int value) {
+  seti(BLOWER_GPIO, value);
+
+
+  seti(BLOWER_GPIO, value);
+
+
+  // TODO: httpd notify
+}
 void internal_set_sht1x_temp_c(int value) {
   seti(SHT1X_TEMP_C, value);
 

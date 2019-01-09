@@ -35,8 +35,6 @@
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
-#define BLOWER_GPIO (22)
-
 static QueueHandle_t cmd;
 
 static void set_duty(mcpwm_unit_t mcpwm_num, mcpwm_timer_t timer_num , float duty_cycle)
@@ -66,7 +64,8 @@ void init_blower() {
     ESP_LOGE(SGO_LOG_EVENT, "@BLOWER Unable to create blower queue");
   }
 
-  mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, BLOWER_GPIO);
+  int blower_gpio = geti(BLOWER_GPIO);
+  mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, blower_gpio);
   mcpwm_config_t pwm_config;
   pwm_config.frequency = 200;
   pwm_config.cmpr_a = 0;

@@ -110,6 +110,9 @@ void set_blower(int value) {
   seti(BLOWER, value);
   set_attr_value_and_notify(IDX_CHAR_VAL_BLOWER, (uint8_t *)&value, sizeof(int));
 }
+void set_blower_gpio(int value) {
+  seti(BLOWER_GPIO, value);
+}
 void set_sht1x_temp_c(int value) {
   seti(SHT1X_TEMP_C, value);
   set_attr_value_and_notify(IDX_CHAR_VAL_SHT1X_TEMP_C, (uint8_t *)&value, sizeof(int));

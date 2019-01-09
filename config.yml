@@ -335,6 +335,15 @@ keys:
     write_cb: true
     default: 50
 
+  - name: blower_gpio
+    caps_name: BLOWER_GPIO
+    integer: true
+    nvs:
+      key: BLWR_IO
+    http:
+      write: true
+    default_var: DEFAULT_BLOWER_GPIO
+ 
   - name: sht1x_temp_c
     caps_name: SHT1X_TEMP_C
     integer: true

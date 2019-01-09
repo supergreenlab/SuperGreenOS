@@ -66,6 +66,7 @@ void set_off_min(int value);
 void set_stretch(int value);
 void set_led_dim(int value);
 void set_blower(int value);
+void set_blower_gpio(int value);
 void set_sht1x_temp_c(int value);
 void set_sht1x_temp_f(int value);
 void set_sht1x_humi(int value);

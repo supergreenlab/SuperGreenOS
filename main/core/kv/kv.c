@@ -80,6 +80,7 @@ void preinit_kv() {
   defaulti(STRETCH, 0);
   defaulti(LED_DIM, 0);
   defaulti(BLOWER, 50);
+  defaulti(BLOWER_GPIO, DEFAULT_BLOWER_GPIO);
   defaulti(SHT1X_TEMP_C, -1000000);
   defaulti(SHT1X_TEMP_F, -1000000);
   defaulti(SHT1X_HUMI, -1000000);
