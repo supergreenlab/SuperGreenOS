@@ -126,7 +126,6 @@ void set_sht1x_humi(int value) {
   set_attr_value_and_notify(IDX_CHAR_VAL_SHT1X_HUMI, (uint8_t *)&value, sizeof(int));
 }
 void set_led_info(const char *value) {
-  setstr(LED_INFO, value);
   set_attr_value_and_notify(IDX_CHAR_VAL_LED_INFO, (uint8_t *)value, strlen(value));
 }
 void set_led_0_duty(int value) {

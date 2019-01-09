@@ -84,7 +84,6 @@ void preinit_kv() {
   defaulti(SHT1X_TEMP_C, -1000000);
   defaulti(SHT1X_TEMP_F, -1000000);
   defaulti(SHT1X_HUMI, -1000000);
-  defaultstr(LED_INFO, "0");
   defaulti(LED_0_DUTY, 0);
   defaulti(LED_1_DUTY, 0);
   defaulti(LED_2_DUTY, 0);
@@ -147,7 +146,6 @@ void postinit_kv() {
   sync_ble_i(SHT1X_TEMP_C, IDX_VALUE(SHT1X_TEMP_C));
   sync_ble_i(SHT1X_TEMP_F, IDX_VALUE(SHT1X_TEMP_F));
   sync_ble_i(SHT1X_HUMI, IDX_VALUE(SHT1X_HUMI));
-  sync_ble_str(LED_INFO, IDX_VALUE(LED_INFO));
 
   /*
    * [/GENERATED]

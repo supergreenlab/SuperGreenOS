@@ -204,8 +204,10 @@ const char *on_set_wifi_ssid(const char *ssid) {
 }
 
 const char *on_set_wifi_password(const char *pass) {
+  set_wifi_password(pass);
+  set_attr_value(IDX_VALUE(WIFI_PASS), (uint8_t *)"", 0);
   xQueueSend(cmd, &CMD_PASS_CHANGED, 0);
-  return "";
+  return pass;
 }
 
 // utils

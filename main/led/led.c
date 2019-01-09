@@ -76,10 +76,7 @@ static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
 } */
 
 static void update_led(int i) {
-  char duty_key[13] = {0};
-  sprintf(duty_key, "LED_%d_DUTY", i);
-
-  double duty = geti(duty_key);
+  double duty = get_led_param(i, "D");
   double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
   ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
 
@@ -167,13 +164,13 @@ void refresh_led(int i) {
 }
 
 int get_led_param(int i, const char *param) {
-  char duty_key[13] = {0};
-  sprintf(duty_key, "LED_%d_%s", i, param);
-  return geti(duty_key);
+  char key[16] = {0};
+  sprintf(key, "L_%d_%s", i, param);
+  return geti(key);
 }
 
 int get_led_duty(int i) {
-  return get_led_param(i, "DUTY");
+  return get_led_param(i, "D");
 }
 
 int set_led_duty(int i, int value) {
