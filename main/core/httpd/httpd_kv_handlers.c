@@ -283,7 +283,7 @@ const kvs_handler kvs_handlers[] = {
     .handler = internal_set_wifi_ssid,
   },
   {
-    .name = "WIFI_PASS",
+    .name = "WIFI_PASSWORD",
     .nvs_key = "WPASS",
     .handler = internal_set_wifi_password,
   },

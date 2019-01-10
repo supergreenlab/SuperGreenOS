@@ -125,7 +125,7 @@ static void start_sta() {
   wifi_config_t wifi_config = {0};
   
   getstr(WIFI_SSID, (char *)wifi_config.sta.ssid, sizeof(wifi_config.sta.ssid) - 1);
-  getstr(WIFI_PASS, (char *)wifi_config.sta.password, sizeof(wifi_config.sta.password) - 1);
+  getstr(WIFI_PASSWORD, (char *)wifi_config.sta.password, sizeof(wifi_config.sta.password) - 1);
 
   wifi_config.sta.bssid_set = false;
   ESP_LOGI(SGO_LOG_EVENT, "@WIFI Setting WiFi configuration SSID %s...", wifi_config.sta.ssid);
@@ -205,7 +205,7 @@ const char *on_set_wifi_ssid(const char *ssid) {
 
 const char *on_set_wifi_password(const char *pass) {
   xQueueSend(cmd, &CMD_PASS_CHANGED, 0);
-  return "";
+  return pass;
 }
 
 // utils
@@ -215,7 +215,7 @@ static bool is_valid() {
   uint8_t pass[64] = {0};
 
   getstr(WIFI_SSID, (char *)ssid, sizeof(ssid) - 1);
-  getstr(WIFI_PASS, (char *)pass, sizeof(pass) - 1);
+  getstr(WIFI_PASSWORD, (char *)pass, sizeof(pass) - 1);
 
   return strlen((char *)ssid) != 0 && strlen((char *)pass) != 0;
 }

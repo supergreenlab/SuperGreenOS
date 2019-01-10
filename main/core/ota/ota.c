@@ -126,7 +126,7 @@ static bool connect_to_http_server()
 }
 
 static bool check_new_version() {
-  char version_filename[20] = {0}; getstr(OTA_VERSION_FILENAME, version_filename, 20);
+  char version_filename[64] = {0}; getstr(OTA_VERSION_FILENAME, version_filename, 64);
   char hostname[128] = {0}; getstr(OTA_SERVER_HOSTNAME, hostname, 128);
   char port[6] = {0}; getstr(OTA_SERVER_PORT, port, 6);
   /*connect to http server*/
@@ -177,7 +177,8 @@ static bool check_new_version() {
   while(recv(socket_id, &(timestamp[strlen(timestamp)]), sizeof(timestamp) - strlen(timestamp) - 1, 0) > 0);
   ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA TIMESTAMP: %d (build: %d)", atoi(timestamp), ota_build_timestamp);
   close(socket_id);
-  return OTA_BUILD_TIMESTAMP < atoi(timestamp);
+
+  return ota_build_timestamp < atoi(timestamp);
 }
 
 static void try_ota()
@@ -185,8 +186,8 @@ static void try_ota()
   char server_ip[20] = {0}; getstr(OTA_SERVER_IP, server_ip, 20);
   char hostname[128] = {0}; getstr(OTA_SERVER_HOSTNAME, hostname, 128);
   char port[6] = {0}; getstr(OTA_SERVER_PORT, port, 6);
-  char version_filename[20] = {0}; getstr(OTA_VERSION_FILENAME, version_filename, 20);
-  char filename[20] = {0}; getstr(OTA_FILENAME, version_filename, 20);
+  char version_filename[64] = {0}; getstr(OTA_VERSION_FILENAME, version_filename, 64);
+  char filename[64] = {0}; getstr(OTA_FILENAME, version_filename, 64);
 
   esp_err_t err;
   /* update handle : set by esp_ota_begin(), must be freed via esp_ota_end() */
@@ -316,8 +317,8 @@ static void ota_task(void *pvParameter) {
     wait_connected();
 
     int ota_build_timestamp = geti(OTA_TIMESTAMP);
-    if (OTA_BUILD_TIMESTAMP == 0) {
-      ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT STARTING timestamp=%d", OTA_BUILD_TIMESTAMP);
+    if (ota_build_timestamp == 0) {
+      ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT STARTING timestamp=%d", ota_build_timestamp);
     } else { 
       ESP_LOGI(SGO_LOG_EVENT, "@OTA Checking firmware update available");
       ESP_LOGI(SGO_LOG_EVENT, "@OTA timestamp=%d", ota_build_timestamp);

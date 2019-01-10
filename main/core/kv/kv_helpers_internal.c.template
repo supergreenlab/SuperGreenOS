@@ -39,14 +39,14 @@ void internal_set_{{name}}(int value) {
   {{/nvs}}
 
   {{#write_cb}}
-    value = on_set_{{name}}(value);
-  {{/write_cb}}
+  value = on_set_{{name}}(value);
 
   {{#nvs}}
   {{^nvs.manual}}
   seti({{caps_name}}, value);
   {{/nvs.manual}}
   {{/nvs}}
+  {{/write_cb}}
 
   {{#ble.notify}}
   {{^ble.no_sync}}
@@ -66,14 +66,14 @@ void internal_set_{{name}}(const char *value) {
   {{/nvs}}
 
   {{#write_cb}}
-    value = on_set_{{name}}(value);
-  {{/write_cb}}
+  value = on_set_{{name}}(value);
 
   {{#nvs}}
   {{^nvs.manual}}
   setstr({{caps_name}}, value);
   {{/nvs.manual}}
   {{/nvs}}
+  {{/write_cb}}
 
   {{#ble}}
   {{^ble.no_sync}}

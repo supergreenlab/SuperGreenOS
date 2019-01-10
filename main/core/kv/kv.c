@@ -59,7 +59,7 @@ void preinit_kv() {
    */
 
   defaultstr(WIFI_SSID, "");
-  defaultstr(WIFI_PASS, "");
+  defaultstr(WIFI_PASSWORD, "");
   defaulti(TIME, 0);
   defaulti(OTA_TIMESTAMP, OTA_BUILD_TIMESTAMP);
   defaultstr(OTA_SERVER_IP, CONFIG_OTA_SERVER_IP);

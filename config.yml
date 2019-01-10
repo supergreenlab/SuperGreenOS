@@ -71,7 +71,7 @@ keys:
     default: 
 
   - name: wifi_password
-    caps_name: WIFI_PASS
+    caps_name: WIFI_PASSWORD
     string: true
     nvs:
       key: WPASS

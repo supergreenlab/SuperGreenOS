@@ -34,7 +34,7 @@ void set_wifi_ssid(const char *value) {
   set_attr_value(IDX_CHAR_VAL_WIFI_SSID, (uint8_t *)value, strlen(value));
 }
 void set_wifi_password(const char *value) {
-  setstr(WIFI_PASS, value);
+  setstr(WIFI_PASSWORD, value);
 }
 void set_time(int value) {
   seti(TIME, value);

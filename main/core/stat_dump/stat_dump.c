@@ -61,8 +61,8 @@ static void stat_dump_task(void *param) {
     getstr(WIFI_SSID, str, MAX_KVALUE_SIZE-1);
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "WIFI_SSID", str);
     vTaskDelay(50 / portTICK_PERIOD_MS);
-    getstr(WIFI_PASS, str, MAX_KVALUE_SIZE-1);
-    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "WIFI_PASS", str);
+    getstr(WIFI_PASSWORD, str, MAX_KVALUE_SIZE-1);
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "WIFI_PASSWORD", str);
     vTaskDelay(50 / portTICK_PERIOD_MS);
     value = geti(TIME);
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "TIME", value);
