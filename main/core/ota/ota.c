@@ -39,6 +39,8 @@
 #define BUFFSIZE 1024
 #define TEXT_BUFFSIZE 1024
 
+#define OTA_BUILD_TIMESTAMP_BCK "O_B_T_BCK"
+
 static char ota_write_data[BUFFSIZE + 1] = { 0 };
 /*an packet receive buffer*/
 static char text[BUFFSIZE + 1] = { 0 };
@@ -334,6 +336,16 @@ static void ota_task(void *pvParameter) {
 }
 
 void init_ota() {
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA_BUILD_TIMESTAMP=%d", OTA_BUILD_TIMESTAMP);
+  if (hasi(OTA_BUILD_TIMESTAMP_BCK)) {
+    int ota_build_timestamp_bck = geti(OTA_BUILD_TIMESTAMP_BCK);
+    if (ota_build_timestamp_bck != OTA_BUILD_TIMESTAMP) {
+      ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA build update detected, OTA_BUILD_TIMESTAMP_BCK=%d OTA_BUILD_TIMESTAMP=%d", ota_build_timestamp_bck, OTA_BUILD_TIMESTAMP);
+      set_ota_timestamp(OTA_BUILD_TIMESTAMP);
+    }
+  }
+  seti(OTA_BUILD_TIMESTAMP_BCK, OTA_BUILD_TIMESTAMP);
+
   int ota_build_timestamp = geti(OTA_TIMESTAMP);
   ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA initialization timestamp=%d", ota_build_timestamp);
 
