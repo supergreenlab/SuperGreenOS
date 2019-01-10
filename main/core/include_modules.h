@@ -23,23 +23,27 @@
 * [GENERATED]
 */
 
-#include "../core/wifi/wifi.h"
-#include "../core/ble/ble.h"
-#include "../core/kv/kv.h"
-#include "../core/ota/ota.h"
-#include "../core/httpd/httpd.h"
-#include "../core/stat_dump/stat_dump.h"
-#include "../core/time/time.h"
-#include "../core/mqtt/mqtt.h"
-#include "../core/i2c/i2c.h"
+// Core modules
+#include "wifi/wifi.h"
+#include "ble/ble.h"
+#include "kv/kv.h"
+#include "ota/ota.h"
+#include "httpd/httpd.h"
+#include "stat_dump/stat_dump.h"
+#include "time/time.h"
+#include "mqtt/mqtt.h"
+#include "i2c/i2c.h"
+
+// Custom modules
 #include "../blower/blower.h"
 #include "../fans/fans.h"
 #include "../led/led.h"
 #include "../mixer/mixer.h"
 #include "../state/state.h"
 #include "../status_led/status_led.h"
-#include "../timers/timer.h"
-#include "../timers/onoff/onoff.h"
+#include "../timer/timer.h"
+#include "../onoff/onoff.h"
+#include "../manual/manual.h"
 
 /*
 * [/GENERATED]

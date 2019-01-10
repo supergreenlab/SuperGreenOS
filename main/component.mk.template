@@ -1,0 +1,8 @@
+# Core modules
+COMPONENT_SRCDIRS := . core{{#core_modules}} core/{{.}}{{/core_modules}}
+
+# Custom modules
+COMPONENT_SRCDIRS +={{#custom_modules}} {{.}}{{/custom_modules}}
+
+# I2C devices
+COMPONENT_SRCDIRS +={{#i2c_devices}} {{.}}{{/i2c_devices}}

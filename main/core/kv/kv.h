@@ -52,6 +52,8 @@ void set_ota_server_hostname(const char *value);
 void set_ota_server_port(const char *value);
 void set_ota_version_filename(const char *value);
 void set_ota_filename(const char *value);
+void set_mqtt_broker_url(const char *value);
+void set_broker_url(const char *value);
 void set_i2c_sda(int value);
 void set_i2c_scl(int value);
 void set_state(int value);

@@ -17,23 +17,23 @@
  */
 #include <stdlib.h>
 
-#include "../../log/log.h"
+#include "../core/log/log.h"
 #include "sht1x.h"
 #include "sht1x_driver.h"
-#include "../i2c.h"
-#include "../../kv/kv.h"
+#include "../core/i2c/i2c.h"
+#include "../core/kv/kv.h"
 
 #define SHT1X_TEMP_C "SHT1X_C"
 #define SHT1X_TEMP_F "SHT1X_F"
 #define SHT1X_HUMI "SHT1X_HU"
 
-void init_sht1x() {
+void init_sht1x(int sca, int sdk) {
   defaulti(SHT1X_TEMP_C, -1);
   defaulti(SHT1X_TEMP_F, -1);
   defaulti(SHT1X_HUMI, -1);
 }
 
-void read_sht1x(int sda, int sck) {
+void loop_sht1x(int sda, int sck) {
   esp_log_level_set("gpio", ESP_LOG_NONE);
   stop_i2c();
   float temp_c = read_temperature_c(sda, sck);

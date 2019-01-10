@@ -21,6 +21,7 @@
 
 typedef struct {
   const char *name;
+  const char *nvs_key;
   void (*handler)(int);
 } kvi_handler;
 
@@ -29,6 +30,7 @@ const kvi_handler *get_kvi_handler(const char *name);
 
 typedef struct {
   const char *name;
+  const char *nvs_key;
   void (*handler)(const char *);
 } kvs_handler;
 

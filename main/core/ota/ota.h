@@ -19,7 +19,7 @@
 #ifndef OTA_H_
 #define OTA_H_
 
-#define OTA_BUILD_TIMESTAMP 0UL
+#define OTA_BUILD_TIMESTAMP 0
 
 void init_ota();
 

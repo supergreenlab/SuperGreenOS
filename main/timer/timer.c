@@ -17,6 +17,7 @@
  */
 
 #include <stdlib.h>
+#include "timer.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -27,10 +28,9 @@
 #include "../core/log/log.h"
 #include "../core/ble/ble_db.h"
 #include "../led/led.h"
-#include "timer.h"
 
-#include "manual/manual.h"
-#include "onoff/onoff.h"
+#include "../manual/manual.h"
+#include "../onoff/onoff.h"
 #include "../state/state.h"
 
 static void timer_task(void *param);

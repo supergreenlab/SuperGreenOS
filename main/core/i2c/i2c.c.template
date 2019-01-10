@@ -23,8 +23,9 @@
 #include "../kv/kv.h"
 #include "../log/log.h"
 
-#include "../../sht1x/sht1x.h"
-#include "../../arduino_co2/arduino_co2.h"
+{{#i2c_devices}}
+#include "../../{{.}}/{{.}}.h"
+{{/i2c_devices}}
 
 #define MASTER_TX_BUF_DISABLE  0
 #define MASTER_RX_BUF_DISABLE  0
@@ -59,10 +60,10 @@ void i2c_task(void *param) {
   int sda = geti(I2C_SDA);
   int scl = geti(I2C_SCL);
   while(true) {
-    loop_sht1x(sda, scl);
+    {{#i2c_devices}}
+    loop_{{.}}(sda, scl);
     vTaskDelay(50 / portTICK_RATE_MS);
-    loop_arduino_co2(sda, scl);
-    vTaskDelay(50 / portTICK_RATE_MS);
+    {{/i2c_devices}}
 
     vTaskDelay(2000 / portTICK_RATE_MS);
   }
@@ -72,8 +73,9 @@ void init_i2c() {
   int sda = geti(I2C_SDA);
   int scl = geti(I2C_SCL);
   // Call `init` driver methods
-  init_sht1x(sda, scl);
-  init_arduino_co2(sda, scl);
+  {{#i2c_devices}}
+  init_{{.}}(sda, scl);
+  {{/i2c_devices}}
 
   xTaskCreate(i2c_task, "I2C", 4096, NULL, 10, NULL);
 }

@@ -24,6 +24,7 @@
 #include "esp_log.h"
 
 #include "../log/log.h"
+#include "../kv/kv.h"
 #include "../wifi/wifi.h"
 
 static esp_mqtt_client_handle_t client;
@@ -83,8 +84,10 @@ static void mqtt_task(void *param) {
   sprintf(client_id, "%llx", _chipmacid);
   ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log channel: %s", log_channel);
 
+  char broker_url[MAX_KVALUE_SIZE] = {0};
+  getstr(BROKER_URL, broker_url, MAX_KVALUE_SIZE-1);
   esp_mqtt_client_config_t mqtt_cfg = {
-    .uri = CONFIG_BROKER_URL,
+    .uri = broker_url,
     .event_handle = mqtt_event_handler,
     .client_id = client_id,
     // .user_context = (void *)your_context

@@ -32,7 +32,7 @@
 #include "../core/log/log.h"
 #include "../led/led.h"
 #include "../state/state.h"
-#include "../timers/timer.h"
+#include "../timer/timer.h"
 
 #define min(a, b) (((a) < (b)) ? (a) : (b)) 
 #define max(a, b) (((a) > (b)) ? (a) : (b)) 

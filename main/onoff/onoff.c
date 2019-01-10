@@ -24,12 +24,12 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 
-#include "../timer.h"
-#include "../../core/log/log.h"
-#include "../../core/kv/kv.h"
-#include "../../core/kv/kv_ble.h"
-#include "../../core/ble/ble.h"
-#include "../../core/ble/ble_db.h"
+#include "../timer/timer.h"
+#include "../core/log/log.h"
+#include "../core/kv/kv.h"
+#include "../core/kv/kv_ble.h"
+#include "../core/ble/ble.h"
+#include "../core/ble/ble_db.h"
 
 void init_onoff() {
 }

@@ -172,9 +172,10 @@ static bool check_new_version() {
 
   ESP_LOGI(SGO_LOG_EVENT, "@OTA Skipped http header");
 
+  int ota_build_timestamp = geti(OTA_TIMESTAMP);
   char timestamp[15] = {0};
   while(recv(socket_id, &(timestamp[strlen(timestamp)]), sizeof(timestamp) - strlen(timestamp) - 1, 0) > 0);
-  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA TIMESTAMP: %d (build: %lu)", atoi(timestamp), OTA_BUILD_TIMESTAMP);
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA TIMESTAMP: %d (build: %d)", atoi(timestamp), ota_build_timestamp);
   close(socket_id);
   return OTA_BUILD_TIMESTAMP < atoi(timestamp);
 }
@@ -313,24 +314,27 @@ static void ota_task(void *pvParameter) {
   while (true) {
     ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA waiting for wifi");
     wait_connected();
-    ESP_LOGI(SGO_LOG_EVENT, "@OTA Checking firmware update available");
-    ESP_LOGI(SGO_LOG_EVENT, "@OTA timestamp=%lu", OTA_BUILD_TIMESTAMP);
-    if (check_new_version()) {
-      ESP_LOGI(SGO_LOG_EVENT, "@OTA Start OTA procedure");
-      try_ota();
-    } else {
-      ESP_LOGI(SGO_LOG_EVENT, "@OTA Firmware is up-to-date");
+
+    int ota_build_timestamp = geti(OTA_TIMESTAMP);
+    if (OTA_BUILD_TIMESTAMP == 0) {
+      ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT STARTING timestamp=%d", OTA_BUILD_TIMESTAMP);
+    } else { 
+      ESP_LOGI(SGO_LOG_EVENT, "@OTA Checking firmware update available");
+      ESP_LOGI(SGO_LOG_EVENT, "@OTA timestamp=%d", ota_build_timestamp);
+      if (check_new_version()) {
+        ESP_LOGI(SGO_LOG_EVENT, "@OTA Start OTA procedure");
+        try_ota();
+      } else {
+        ESP_LOGI(SGO_LOG_EVENT, "@OTA Firmware is up-to-date");
+      }
     }
     vTaskDelay((20 * 60 * 1000) / portTICK_PERIOD_MS);
   }
 }
 
 void init_ota() {
-  if (OTA_BUILD_TIMESTAMP == 0) {
-    ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT INITIALIZING timestamp=%lu", OTA_BUILD_TIMESTAMP);
-    return;
-  }
-  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA initialization timestamp=%lu", OTA_BUILD_TIMESTAMP);
+  int ota_build_timestamp = geti(OTA_TIMESTAMP);
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA initialization timestamp=%d", ota_build_timestamp);
 
   xTaskCreate(&ota_task, "OTA", 8192, NULL, 5, NULL);
 }

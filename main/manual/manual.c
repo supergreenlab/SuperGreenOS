@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,25 +16,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDE_MODULES_H_
-#define INCLUDE_MODULES_H_
+#include "manual.h"
 
-/*
-* [GENERATED]
-*/
+#include "../core/log/log.h"
 
-// Core modules
-{{#core_modules}}
-#include "{{.}}/{{.}}.h"
-{{/core_modules}}
+void init_manual() {
+}
 
-// Custom modules
-{{#custom_modules}}
-#include "../{{.}}/{{.}}.h"
-{{/custom_modules}}
+void start_manual() {
+  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL start_manual");
+}
 
-/*
-* [/GENERATED]
-*/
+void stop_manual() {
+  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL stop_manual");
+}
 
-#endif
+void manual_task() {
+  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL manual_task");
+}

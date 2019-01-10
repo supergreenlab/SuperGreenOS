@@ -41,26 +41,28 @@ void set_time(int value) {
   set_attr_value_and_notify(IDX_CHAR_VAL_TIME, (uint8_t *)&value, sizeof(int));
 }
 void set_ota_timestamp(int value) {
+  seti(OTA_TIMESTAMP, value);
 }
 void set_ota_server_ip(const char *value) {
   setstr(OTA_SERVER_IP, value);
-  set_attr_value(IDX_CHAR_VAL_OTA_SERVER_IP, (uint8_t *)value, strlen(value));
 }
 void set_ota_server_hostname(const char *value) {
   setstr(OTA_SERVER_HOSTNAME, value);
-  set_attr_value(IDX_CHAR_VAL_OTA_SERVER_HOSTNAME, (uint8_t *)value, strlen(value));
 }
 void set_ota_server_port(const char *value) {
   setstr(OTA_SERVER_PORT, value);
-  set_attr_value(IDX_CHAR_VAL_OTA_SERVER_PORT, (uint8_t *)value, strlen(value));
 }
 void set_ota_version_filename(const char *value) {
   setstr(OTA_VERSION_FILENAME, value);
-  set_attr_value(IDX_CHAR_VAL_OTA_VERSION_FILENAME, (uint8_t *)value, strlen(value));
 }
 void set_ota_filename(const char *value) {
   setstr(OTA_FILENAME, value);
-  set_attr_value(IDX_CHAR_VAL_OTA_FILENAME, (uint8_t *)value, strlen(value));
+}
+void set_mqtt_broker_url(const char *value) {
+  setstr(OTA, value);
+}
+void set_broker_url(const char *value) {
+  setstr(BROKER_URL, value);
 }
 void set_i2c_sda(int value) {
   seti(I2C_SDA, value);

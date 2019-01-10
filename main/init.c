@@ -22,9 +22,9 @@
 #include "fans/fans.h"
 #include "blower/blower.h"
 
-#include "timers/timer.h"
-#include "timers/manual/manual.h"
-#include "timers/onoff/onoff.h"
+#include "timer/timer.h"
+#include "manual/manual.h"
+#include "onoff/onoff.h"
 
 #include "mixer/mixer.h"
 

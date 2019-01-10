@@ -67,6 +67,9 @@ static void stat_dump_task(void *param) {
     value = geti(TIME);
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "TIME", value);
     vTaskDelay(50 / portTICK_PERIOD_MS);
+    value = geti(OTA_TIMESTAMP);
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "OTA_TIMESTAMP", value);
+    vTaskDelay(50 / portTICK_PERIOD_MS);
     getstr(OTA_SERVER_IP, str, MAX_KVALUE_SIZE-1);
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "OTA_SERVER_IP", str);
     vTaskDelay(50 / portTICK_PERIOD_MS);
@@ -81,6 +84,12 @@ static void stat_dump_task(void *param) {
     vTaskDelay(50 / portTICK_PERIOD_MS);
     getstr(OTA_FILENAME, str, MAX_KVALUE_SIZE-1);
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "OTA_FILENAME", str);
+    vTaskDelay(50 / portTICK_PERIOD_MS);
+    getstr(OTA, str, MAX_KVALUE_SIZE-1);
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "OTA", str);
+    vTaskDelay(50 / portTICK_PERIOD_MS);
+    getstr(BROKER_URL, str, MAX_KVALUE_SIZE-1);
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "BROKER_URL", str);
     vTaskDelay(50 / portTICK_PERIOD_MS);
     value = geti(I2C_SDA);
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "I2C_SDA", value);

@@ -14,32 +14,34 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-modules:
+core_modules:
 
-  #
-  # Core modules
-  #
-  - core/wifi/wifi.h
-  - core/ble/ble.h
-  - core/kv/kv.h
-  - core/ota/ota.h
-  - core/httpd/httpd.h
-  - core/stat_dump/stat_dump.h
-  - core/time/time.h
-  - core/mqtt/mqtt.h
-  - core/i2c/i2c.h
+  - wifi
+  - ble
+  - kv
+  - ota
+  - httpd
+  - stat_dump
+  - time
+  - mqtt
+  - i2c
 
-  #
-  # Custom modules
-  #
-  - blower/blower.h
-  - fans/fans.h
-  - led/led.h
-  - mixer/mixer.h
-  - state/state.h
-  - status_led/status_led.h
-  - timers/timer.h
-  - timers/onoff/onoff.h
+custom_modules:
+
+  - blower
+  - fans
+  - led
+  - mixer
+  - state
+  - status_led
+  - timer
+  - onoff
+  - manual
+
+i2c_devices:
+
+  - sht1x
+  - arduino_co2
 
 keys:
 
@@ -73,7 +75,6 @@ keys:
     string: true
     nvs:
       key: WPASS
-      manual: true
     ble:
       uuid: "{0xb9,0x5d,0x53,0x82,0x6e,0xcc,0xa0,0xfe,0xf1,0xa6,0xfe,0x6c,0x10,0x0b,0xe4,0xf7}"
       write: true
@@ -101,20 +102,17 @@ keys:
   - name: ota_timestamp
     caps_name: OTA_TIMESTAMP
     integer: true
-    ble:
-      uuid: "{0x89,0x6e,0x49,0xd6,0x82,0x21,0x7e,0xce,0x96,0x23,0xc9,0xe3,0x2b,0x16,0x6f,0x61}"
+    nvs:
+      key: OTA_TMSTP
     http:
-      noop: true
-    default_var: OTA_TIMESTAMP
+      write: true
+    default_var: OTA_BUILD_TIMESTAMP
 
   - name: ota_server_ip
     caps_name: OTA_SERVER_IP
     string: true
     nvs:
       key: OTA_SRV_IP
-    ble:
-      uuid: "{0xda,0x84,0xdb,0xbc,0x5f,0x7d,0x86,0xf5,0x10,0xf0,0xae,0xaa,0x05,0xdb,0xb8,0xf7}"
-      write: true
     http:
       write: true
     default_var: CONFIG_OTA_SERVER_IP
@@ -124,9 +122,6 @@ keys:
     string: true
     nvs:
       key: OTA_SRV_HN
-    ble:
-      uuid: "{0x3c,0x3d,0xce,0xb9,0x11,0x81,0xce,0x11,0xe6,0x13,0xab,0x05,0x47,0x6a,0xa2,0xfa}"
-      write: true
     http:
       write: true
     default_var: CONFIG_OTA_SERVER_HOSTNAME
@@ -136,9 +131,6 @@ keys:
     string: true
     nvs:
       key: OTA_SRV_PRT
-    ble:
-      uuid: "{0x6a,0xe5,0xac,0x03,0xe2,0xe0,0x6f,0x79,0x75,0x69,0xe0,0xeb,0x38,0xbd,0x35,0x6c}"
-      write: true
     http:
       write: true
     default_var: CONFIG_OTA_SERVER_PORT
@@ -148,9 +140,6 @@ keys:
     string: true
     nvs:
       key: OTA_VR_FILE
-    ble:
-      uuid: "{0x52,0x7b,0x93,0xa6,0x52,0x22,0x4c,0xb2,0x3f,0xc9,0x16,0x3e,0x7d,0xf5,0xe5,0x1e}"
-      write: true
     http:
       write: true
     default_var: CONFIG_OTA_VERSION_FILENAME
@@ -160,12 +149,27 @@ keys:
     string: true
     nvs:
       key: OTA_FILE
-    ble:
-      uuid: "{0x32,0x94,0x27,0x51,0x16,0x02,0x33,0x8b,0xa5,0xff,0x83,0xfd,0x9f,0xfd,0x10,0x3f}"
-      write: true
     http:
       write: true
     default_var: CONFIG_OTA_FILENAME
+
+  - name: mqtt_broker_url
+    caps_name: OTA
+    string: true
+    nvs:
+      key: OTA_SRV_IP
+    http:
+      write: true
+    default_var: CONFIG_BROKER_URL
+
+  - name: broker_url
+    caps_name: BROKER_URL
+    string: true
+    nvs:
+      key: BRKR_URL
+    http:
+      write: true
+    default_var: CONFIG_BROKER_URL
 
   - name: i2c_sda
     caps_name: I2C_SDA

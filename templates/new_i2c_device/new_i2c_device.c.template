@@ -1,7 +1,4 @@
 /*
- * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
- * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -16,21 +13,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "manual.h"
+#include <stdlib.h>
+#include "{{name}}.h"
+#include "driver/i2c.h"
 
-#include "../../core/log/log.h"
+#include "../core/kv/kv.h"
+#include "../core/log/log.h"
 
-void init_manual() {
+#define {{caps_name}}_ADDR 0x42
+
+void init_{{name}}(int sda, int sck) {
+  ESP_LOGI(SGO_LOG_EVENT, "@{{caps_name}} Initializing {{name}} i2c device\n");
+  // TODO: write you setup code here
 }
 
-void start_manual() {
-  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL start_manual");
-}
-
-void stop_manual() {
-  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL stop_manual");
-}
-
-void manual_task() {
-  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL manual_task");
+void loop_{{name}}(int sda, int sck) {
+  // start_i2c();
+  // TODO: write you i2c device read code here
+  // stop_i2c();
 }

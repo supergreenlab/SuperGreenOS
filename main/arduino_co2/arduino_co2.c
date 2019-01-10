@@ -19,19 +19,19 @@
 #include "arduino_co2.h"
 #include "driver/i2c.h"
 
-#include "../../log/log.h"
-#include "../i2c.h"
+#include "../core/log/log.h"
+#include "../core/i2c/i2c.h"
 
 #define ARDUINO_CO2_ADDR 0x42
 #define ACK_CHECK_EN 0x1
 #define ACK_VAL 0x0
 #define NACK_VAL 0x1
 
-void init_arduino_co2() {
+void init_arduino_co2(int sca, int sdk) {
 
 }
 
-void read_arduino_co2(int sda, int sck) {
+void loop_arduino_co2(int sda, int sck) {
   uint16_t v = 0;
 	uint8_t nack;
   start_i2c();

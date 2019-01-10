@@ -1,5 +1,8 @@
 # Core modules
-COMPONENT_SRCDIRS := . core core/ble core/kv core/log core/time core/wifi core/ota core/mqtt core/stat_dump core/httpd core/i2c
+COMPONENT_SRCDIRS := . core core/wifi core/ble core/kv core/ota core/httpd core/stat_dump core/time core/mqtt core/i2c
 
 # Custom modules
-COMPONENT_SRCDIRS += led timers mixer state fans timers/manual timers/onoff blower status_led core/i2c/sht1x core/i2c/arduino_co2
+COMPONENT_SRCDIRS += blower fans led mixer state status_led timer onoff manual
+
+# I2C devices
+COMPONENT_SRCDIRS += sht1x arduino_co2

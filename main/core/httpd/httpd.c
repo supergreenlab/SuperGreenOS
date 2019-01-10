@@ -77,11 +77,16 @@ static esp_err_t geti_handler(httpd_req_t *req) {
   char name[50] = {0};
   find_str_param(req->uri, "k", name, &len);
 
-  if (!hasi(name)) {
+  const kvi_handler *h = get_kvi_handler(name);
+  if (!h) {
     return httpd_resp_send_404(req);
   }
 
-  int v = geti(name);
+  if (!hasi(h->nvs_key)) {
+    return httpd_resp_send_404(req);
+  }
+
+  int v = geti(h->nvs_key);
   char ret[12] = {0};
   sprintf(ret, "%d", v);
 
@@ -94,7 +99,8 @@ static esp_err_t seti_handler(httpd_req_t *req) {
   char name[50] = {0};
   find_str_param(req->uri, "k", name, &len);
 
-  if (!hasi(name)) {
+  const kvi_handler *h = get_kvi_handler(name);
+  if (!h || !h->handler) {
     return httpd_resp_send_404(req);
   }
 
@@ -103,12 +109,7 @@ static esp_err_t seti_handler(httpd_req_t *req) {
   find_str_param(req->uri, "v", value, &len);
   int res = atoi(value);
 
-  const kvi_handler *h = get_kvi_handler(name);
-  if (h) {
-    h->handler(res);
-  } else {
-    seti(name, res);
-  }
+  h->handler(res);
   httpd_resp_send(req, "OK", 2);
   return ESP_OK;
 }
@@ -118,12 +119,17 @@ static esp_err_t getstr_handler(httpd_req_t *req) {
   size_t len = 50;
   find_str_param(req->uri, "k", name, &len);
 
-  if (!hasstr(name)) {
+  const kvs_handler *h = get_kvs_handler(name);
+  if (!h || !h->nvs_key) {
+    return httpd_resp_send_404(req);
+  }
+
+  if (!hasstr(h->nvs_key)) {
     return httpd_resp_send_404(req);
   }
 
   char v[MAX_KVALUE_SIZE] = {0};
-  getstr(name, v, MAX_KVALUE_SIZE);
+  getstr(h->nvs_key, v, MAX_KVALUE_SIZE - 1);
 
   httpd_resp_send(req, v, strlen(v));
   return ESP_OK;
@@ -134,7 +140,8 @@ static esp_err_t setstr_handler(httpd_req_t *req) {
   size_t len = 50;
   find_str_param(req->uri, "k", name, &len);
 
-  if (!hasstr(name)) {
+  const kvs_handler *h = get_kvs_handler(name);
+  if (!h || !h->handler) {
     return httpd_resp_send_404(req);
   }
 
@@ -142,12 +149,7 @@ static esp_err_t setstr_handler(httpd_req_t *req) {
   char value[50] = {0};
   find_str_param(req->uri, "v", value, &len);
 
-  const kvs_handler *h = get_kvs_handler(name);
-  if (h) {
-    h->handler(value);
-  } else {
-    setstr(name, value);
-  }
+  h->handler(value);
   httpd_resp_send(req, "OK", 2);
   return ESP_OK;
 }
