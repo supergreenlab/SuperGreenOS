@@ -189,7 +189,7 @@ static void try_ota()
   char hostname[128] = {0}; getstr(OTA_SERVER_HOSTNAME, hostname, 128);
   char port[6] = {0}; getstr(OTA_SERVER_PORT, port, 6);
   char version_filename[64] = {0}; getstr(OTA_VERSION_FILENAME, version_filename, 64);
-  char filename[64] = {0}; getstr(OTA_FILENAME, version_filename, 64);
+  char filename[64] = {0}; getstr(OTA_FILENAME, filename, 64);
 
   esp_err_t err;
   /* update handle : set by esp_ota_begin(), must be freed via esp_ota_end() */
@@ -231,6 +231,7 @@ static void try_ota()
     close(socket_id);
     return;
   }
+
   int res = send(socket_id, http_request, get_len, 0);
   free(http_request);
 
@@ -268,7 +269,7 @@ static void try_ota()
     } else if (buff_len > 0 && !resp_body_start) {  /*deal with response header*/
       // only start ota when server response 200 state code
       if (strstr(text, "200") == NULL && !http_200_flag) {
-        ESP_LOGE(SGO_LOG_EVENT, "@OTA ota url is invalid or bin is not exist");
+        ESP_LOGE(SGO_LOG_EVENT, "@OTA ota url is invalid or bin does not exist");
         close(socket_id);
         return;
       }
