@@ -35,27 +35,28 @@
 void init_app();
 
 void app_main() {
-    init_stat_dump_queues();
-    mqtt_intercept_log();
-    ESP_LOGI(SGO_LOG_EVENT, "@MAIN Welcome to SuperGreenOS version=%s\n", CONFIG_VERSION);
+  init_stat_dump_queues();
+  mqtt_intercept_log();
+  ESP_LOGI(SGO_LOG_EVENT, "@MAIN Welcome to SuperGreenOS version=%s\n", CONFIG_VERSION);
 
-    preinit_kv();
+  preinit_kv();
+  set_n_restarts(geti(N_RESTARTS)+1);
 
-    init_ble();
-    init_wifi();
+  init_ble();
+  init_wifi();
 
-    postinit_kv();
+  postinit_kv();
 
-    init_mqtt();
-    init_ota();
-    init_time();
-    init_i2c();
+  init_mqtt();
+  init_ota();
+  init_time();
+  init_i2c();
 
-    init_app();
+  init_app();
 
-    init_stat_dump();
+  init_stat_dump();
 
-    init_httpd();
+  init_httpd();
 
-    fflush(stdout);
+  fflush(stdout);
 }

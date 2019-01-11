@@ -98,6 +98,15 @@ keys:
       write: true
     write_cb: true
     default: 0
+
+  - name: n_restarts
+    caps_name: N_RESTARTS
+    integer: true
+    nvs:
+      key: N_RESTARTS
+    http:
+      noop: true
+    default_var: 0
  
   - name: ota_timestamp
     caps_name: OTA_TIMESTAMP

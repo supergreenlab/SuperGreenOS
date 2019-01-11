@@ -46,6 +46,7 @@ void set_wifi_status(int value);
 void set_wifi_ssid(const char *value);
 void set_wifi_password(const char *value);
 void set_time(int value);
+void set_n_restarts(int value);
 void set_ota_timestamp(int value);
 void set_ota_server_ip(const char *value);
 void set_ota_server_hostname(const char *value);

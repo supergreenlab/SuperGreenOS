@@ -40,6 +40,9 @@ void set_time(int value) {
   seti(TIME, value);
   set_attr_value_and_notify(IDX_CHAR_VAL_TIME, (uint8_t *)&value, sizeof(int));
 }
+void set_n_restarts(int value) {
+  seti(N_RESTARTS, value);
+}
 void set_ota_timestamp(int value) {
   seti(OTA_TIMESTAMP, value);
 }

@@ -64,6 +64,13 @@ void internal_set_time(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_n_restarts(int value) {
+  seti(N_RESTARTS, value);
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_ota_timestamp(int value) {
   seti(OTA_TIMESTAMP, value);
 
