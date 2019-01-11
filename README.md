@@ -2,6 +2,8 @@
 
 # SuperGreenOS
 
+![WeedAppPic](assets/banner-mainpage2.jpg?raw=true "WeedAppPic")
+
 SuperGreenOS provides most features used when growing cannabis, all in one package, and controllable from your smartphone, pc, mac, linux, toaster, plumbus, whatnot...
 
 Here's what it can (or will) do:
