@@ -10,8 +10,8 @@ Here's what it can (or will) do:
 - Up to 6 separate led drivers controls (you can put multiple leds behind one driver)
 - Up to 3 separate timers, for full-cycle setups (veg + flo)
 - Monitoring a wide range of sensors
-- Data sent to a *private* cloud
-- Produce alerts based on sensor values
+- Data sent to a _private_ [cloud](https://github.com/supergreenlab/SuperGreenCloud)
+- Produce alerts based on sensor values (ok right now not that much, but hey I'm doing my best:P)
 - Allows remote control (TODO)
 - Manual ventilation control
 - Automatic ventilation control based on temperature and humidity (TODO)
