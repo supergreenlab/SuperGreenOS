@@ -28,7 +28,7 @@ typedef struct led_config {
   int z;
 
   ledc_channel_config_t channel_config;
-  int (*setter)(int);
+  void (*setter)(int);
 } led_config_t;
 
 extern int min_x;
@@ -55,7 +55,7 @@ extern led_config_t ledc_channels[];
       timer_sel:   LEDC_TIMER_##timer, \
       duty:        0, \
     }, \
-    setter: on_set_led_##i##_duty, \
+    setter: set_led_##i##_duty, \
   }
 
 extern const unsigned int N_LEDS;

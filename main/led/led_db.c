@@ -19,6 +19,7 @@
 #include <stdlib.h>
 
 #include "led_db.h"
+#include "../core/kv/kv.h"
 
 #include "driver/ledc.h"
 

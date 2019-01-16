@@ -23,8 +23,5 @@
 #include "../core/kv/kv.h"
 #include "../core/kv/kv_ble.h"
 
-#define DEVICE_NAME "DEV_NAME"
-#define DEFAULT_DEVICE_NAME "SuperGreenDriver"
-
 void init_state() {
 }
