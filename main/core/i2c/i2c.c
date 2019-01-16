@@ -56,8 +56,8 @@
 }*/
 
 void i2c_task(void *param) {
-  int sda = geti(I2C_SDA);
-  int scl = geti(I2C_SCL);
+  int sda = get_i2c_sda();
+  int scl = get_i2c_scl();
   while(true) {
     loop_sht1x(sda, scl);
     vTaskDelay(50 / portTICK_RATE_MS);
@@ -69,8 +69,8 @@ void i2c_task(void *param) {
 }
 
 void init_i2c() {
-  int sda = geti(I2C_SDA);
-  int scl = geti(I2C_SCL);
+  int sda = get_i2c_sda();
+  int scl = get_i2c_scl();
   // Call `init` driver methods
   init_sht1x(sda, scl);
   init_arduino_co2(sda, scl);
@@ -83,8 +83,8 @@ static bool i2c_started = false;
 void start_i2c() {
   if (i2c_started) return;
 
-  int sda = geti(I2C_SDA);
-  int scl = geti(I2C_SCL);
+  int sda = get_i2c_sda();
+  int scl = get_i2c_scl();
 
   i2c_started = true;
   i2c_config_t conf;

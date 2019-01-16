@@ -1,24 +1,25 @@
 /*
- * =====================================================================================
+ * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+ * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
- *       Filename:  httpd_kv_handlers.c
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *    Description:  
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *        Version:  1.0
- *        Created:  11/14/2018 11:24:27 AM
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  YOUR NAME (), 
- *   Organization:  
- *
- * =====================================================================================
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <stdlib.h>
 #include <string.h>
 
+#include "../kv/kv.h"
 #include "../kv/kv_helpers_internal.h"
 #include "httpd_kv_handlers.h"
 #include "../include_modules.h"
@@ -30,18 +31,16 @@ const kvi_handler kvi_handlers[] = {
   
   {{#keys}}
   {{#integer}}
-  {{#http.write}}
   {
     .name = "{{caps_name}}",
-    {{#nvs.key}}
-    .nvs_key = "{{nvs.key}}",
-    {{/nvs.key}}
-    {{^nvs.key}}
-    .nvs_key = NULL,
-    {{/nvs.key}}
+    {{#http.write}}
     .handler = internal_set_{{name}},
+    {{/http.write}}
+    {{^http.write}}
+    .handler = NULL,
+    {{/http.write}}
+    .getter = get_{{name}},
   },
-  {{/http.write}}
   {{/integer}}
   {{/keys}}
 
@@ -72,15 +71,13 @@ const kvs_handler kvs_handlers[] = {
   {{#string}}
   {
     .name = "{{caps_name}}",
-    {{#nvs.key}}
-    .nvs_key = "{{nvs.key}}",
-    {{/nvs.key}}
-    {{^nvs.key}}
-    .nvs_key = NULL,
-    {{/nvs.key}}
     {{#http.write}}
     .handler = internal_set_{{name}},
     {{/http.write}}
+    {{^http.write}}
+    .handler = NULL,
+    {{/http.write}}
+    .getter = get_{{name}},
   },
   {{/string}}
   {{/keys}}

@@ -44,9 +44,11 @@ void defaultstr(const char * key, const char * value);
 
 {{#keys}}
 {{#integer}}
+int get_{{name}}();
 void set_{{name}}(int value);
 {{/integer}}
 {{#string}}
+void get_{{name}}(char *dest, size_t len);
 void set_{{name}}(const char *value);
 {{/string}}
 {{/keys}}

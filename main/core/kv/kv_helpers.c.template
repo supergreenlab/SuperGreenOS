@@ -28,9 +28,26 @@
 
 {{#keys}}
 {{#integer}}
+
+{{^nvs}}
+static int _{{name}} = 0;
+{{/nvs}}
+
+int get_{{name}}() {
+  {{#nvs}}
+  return geti({{caps_name}});
+  {{/nvs}}
+  {{^nvs}}
+  return _{{name}};
+  {{/nvs}}
+}
+
 void set_{{name}}(int value) {
   {{#nvs}}
   seti({{caps_name}}, value);
+  {{/nvs}}
+  {{^nvs}}
+  _{{name}} = value;
   {{/nvs}}
   {{#ble.notify}}
   {{^ble.no_sync}}
@@ -39,10 +56,30 @@ void set_{{name}}(int value) {
   {{/ble.notify}}
 }
 {{/integer}}
+
 {{#string}}
+
+{{^nvs}}
+static char _{{name}}[MAX_KVALUE_SIZE] = {0};
+{{/nvs}}
+
+void get_{{name}}(char *dest, size_t len) {
+  assert(len <= MAX_KVALUE_SIZE - 1);
+  {{#nvs}}
+  getstr({{caps_name}}, dest, len);
+  {{/nvs}}
+  {{^nvs}}
+  strncpy(dest, _{{name}}, len);
+  {{/nvs}}
+}
+
 void set_{{name}}(const char *value) {
+  assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
   {{#nvs}}
   setstr({{caps_name}}, value);
+  {{/nvs}}
+  {{^nvs}}
+  strncpy(_{{name}}, value, strlen(value));
   {{/nvs}}
   {{#ble}}
   {{^ble.no_sync}}

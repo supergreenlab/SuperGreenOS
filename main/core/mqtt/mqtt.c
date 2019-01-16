@@ -1,19 +1,19 @@
 /*
- * =====================================================================================
+ * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+ * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
- *       Filename:  mqtt.c
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *    Description:  
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *        Version:  1.0
- *        Created:  09/25/2018 09:21:59 AM
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  YOUR NAME (), 
- *   Organization:  
- *
- * =====================================================================================
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "mqtt.h"
@@ -42,8 +42,10 @@ static int CMD_MQTT_FORCE_FLUSH = 2;
 
 static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
 {
-  // your_context_t *context = event->context;
   switch (event->event_id) {
+    case MQTT_EVENT_BEFORE_CONNECT:
+      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_BEFORE_CONNECT");
+      break;
     case MQTT_EVENT_CONNECTED:
       ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_CONNECTED");
       xQueueSend(cmd, &CMD_MQTT_CONNECTED, 0);

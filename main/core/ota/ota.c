@@ -174,7 +174,7 @@ static bool check_new_version() {
 
   ESP_LOGI(SGO_LOG_EVENT, "@OTA Skipped http header");
 
-  int ota_build_timestamp = geti(OTA_TIMESTAMP);
+  int ota_build_timestamp = get_ota_timestamp();
   char timestamp[15] = {0};
   while(recv(socket_id, &(timestamp[strlen(timestamp)]), sizeof(timestamp) - strlen(timestamp) - 1, 0) > 0);
   ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA TIMESTAMP: %d (build: %d)", atoi(timestamp), ota_build_timestamp);
@@ -319,7 +319,7 @@ static void ota_task(void *pvParameter) {
     ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA waiting for wifi");
     wait_connected();
 
-    int ota_build_timestamp = geti(OTA_TIMESTAMP);
+    int ota_build_timestamp = get_ota_timestamp();
     if (ota_build_timestamp == 0) {
       ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT STARTING timestamp=%d", ota_build_timestamp);
     } else { 
@@ -347,7 +347,7 @@ void init_ota() {
   }
   seti(OTA_BUILD_TIMESTAMP_BCK, OTA_BUILD_TIMESTAMP);
 
-  int ota_build_timestamp = geti(OTA_TIMESTAMP);
+  int ota_build_timestamp = get_ota_timestamp();
   ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA initialization timestamp=%d", ota_build_timestamp);
 
   xTaskCreate(&ota_task, "OTA", 8192, NULL, 5, NULL);

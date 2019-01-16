@@ -59,24 +59,18 @@ void preinit_kv() {
    */
 
   {{#keys}}
-  {{#nvs}}
   {{#integer}}
-  {{#default_var}}
-  defaulti({{caps_name}}, {{default_var}});
-  {{/default_var}}
-  {{^default_var}}
-  defaulti({{caps_name}}, {{default}});
-  {{/default_var}}
+  {{#nvs}}
+  int default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}{{default}}{{/default}};
+  defaulti({{caps_name}}, default_{{name}});
+  {{/nvs}}
   {{/integer}}
   {{#string}}
-  {{#default_var}}
-  defaultstr({{caps_name}}, {{default_var}});
-  {{/default_var}}
-  {{^default_var}}
-  defaultstr({{caps_name}}, "{{default}}");
-  {{/default_var}}
-  {{/string}}
+  {{#nvs}}
+  const char *default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}"{{default}}"{{/default}};
+  defaultstr({{caps_name}}, default_{{name}});
   {{/nvs}}
+  {{/string}}
   {{/keys}}
 
   /*
@@ -90,23 +84,28 @@ void postinit_kv() {
    */
 
   {{#keys}}
-  {{#nvs}}
-  {{#integer}}
   {{#ble}}
   {{^ble.no_sync}}
-  sync_ble_i({{caps_name}}, IDX_VALUE({{caps_name}}));
+  {{#nvs}}
+  sync_ble_{{#string}}str{{/string}}{{#integer}}i{{/integer}}({{caps_name}}, IDX_VALUE({{caps_name}}));
+  {{/nvs}}
   {{/ble.no_sync}}
   {{/ble}}
+  {{/keys}}
+
+  // Initialize non-nvs keys
+  {{#keys}}
+  {{^nvs}}
+  {{#integer}}
+  int default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}{{default}}{{/default}};
   {{/integer}}
   {{#string}}
-  {{#ble}}
-  {{^ble.no_sync}}
-  sync_ble_str({{caps_name}}, IDX_VALUE({{caps_name}}));
-  {{/ble.no_sync}}
-  {{/ble}}
+  const char *default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}"{{default}}"{{/default}};
   {{/string}}
+  set_{{name}}(default_{{name}});
   {{/nvs}}
   {{/keys}}
+
 
   /*
    * [/GENERATED]

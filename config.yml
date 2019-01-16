@@ -68,7 +68,7 @@ keys:
     http:
       write: true
     write_cb: true
-    default: 
+    default: ""
 
   - name: wifi_password
     caps_name: WIFI_PASSWORD
@@ -402,7 +402,7 @@ keys:
       notify: true
     http:
       noop: true
-    default: 
+    default: ""
 
   - name: led_0_duty
     caps_name: LED_0_DUTY

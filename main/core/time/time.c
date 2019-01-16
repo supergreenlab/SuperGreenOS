@@ -44,7 +44,7 @@ void init_time() {
 
 static void time_task(void *param) {
   if (hasi(TIME)) {
-    time_t now = (time_t)geti(TIME);
+    time_t now = (time_t)get_time();
     struct timeval tv = { .tv_sec = now, .tv_usec = 0 };
     settimeofday(&tv, NULL);
     xTaskCreate(ntp_task, "NTP", 4096, NULL, 10, NULL);

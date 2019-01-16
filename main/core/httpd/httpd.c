@@ -1,19 +1,19 @@
 /*
- * =====================================================================================
+ * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
+ * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
- *       Filename:  httpd.c
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *    Description:  
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *        Version:  1.0
- *        Created:  11/13/2018 12:09:52 PM
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  YOUR NAME (), 
- *   Organization:  
- *
- * =====================================================================================
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "httpd.h"
@@ -82,11 +82,7 @@ static esp_err_t geti_handler(httpd_req_t *req) {
     return httpd_resp_send_404(req);
   }
 
-  if (!hasi(h->nvs_key)) {
-    return httpd_resp_send_404(req);
-  }
-
-  int v = geti(h->nvs_key);
+  int v = h->getter();
   char ret[12] = {0};
   sprintf(ret, "%d", v);
 
@@ -120,16 +116,12 @@ static esp_err_t getstr_handler(httpd_req_t *req) {
   find_str_param(req->uri, "k", name, &len);
 
   const kvs_handler *h = get_kvs_handler(name);
-  if (!h || !h->nvs_key) {
-    return httpd_resp_send_404(req);
-  }
-
-  if (!hasstr(h->nvs_key)) {
+  if (!h) {
     return httpd_resp_send_404(req);
   }
 
   char v[MAX_KVALUE_SIZE] = {0};
-  getstr(h->nvs_key, v, MAX_KVALUE_SIZE - 1);
+  h->getter(v, MAX_KVALUE_SIZE - 1);
 
   httpd_resp_send(req, v, strlen(v));
   return ESP_OK;

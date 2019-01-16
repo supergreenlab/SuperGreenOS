@@ -40,7 +40,7 @@ void app_main() {
   ESP_LOGI(SGO_LOG_EVENT, "@MAIN Welcome to SuperGreenOS version=%s\n", CONFIG_VERSION);
 
   preinit_kv();
-  set_n_restarts(geti(N_RESTARTS)+1);
+  set_n_restarts(get_n_restarts()+1);
 
   init_ble();
   init_wifi();
