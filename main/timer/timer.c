@@ -38,7 +38,7 @@ static void stop(enum timer t);
 static void start(enum timer t);
 
 void init_timer() {
-  start(geti(TIMER_TYPE));
+  start(get_timer_type());
 
   BaseType_t ret = xTaskCreate(timer_task, "TIMER", 4096, NULL, tskIDLE_PRIORITY, NULL);
   if (ret != pdPASS) {
@@ -75,13 +75,13 @@ void update_output(int output) {
 
 static void timer_task(void *param) {
   while (1) {
-    enum state s = geti(STATE);
+    enum state s = get_state();
     if (s != RUNNING) {
       vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
       continue;
     }
 
-    enum timer t = geti(TIMER_TYPE);
+    enum timer t = get_timer_type();
 
     switch(t) {
       case TIMER_MANUAL:
@@ -98,7 +98,7 @@ static void timer_task(void *param) {
 // BLE Callbacks
 
 int on_set_timer_type(int value) {
-  int old = geti(TIMER_TYPE);
+  int old = get_timer_type();
 
   if (old == value) return value;
   set_timer_type(value);

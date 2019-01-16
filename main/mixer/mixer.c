@@ -72,10 +72,10 @@ static void set_duty_3d(double x, double y, double z, int duty, int min_duty) {
 }
 
 static void mixer_duty() {
-  double timerOutput = geti(TIMER_OUTPUT);
+  double timerOutput = get_timer_output();
   double duty = max(0, min(100, timerOutput));
 
-  int stretch = geti(STRETCH);
+  int stretch = get_stretch();
 
   if (stretch == 0 || duty == 0) {
     set_all_duty(duty);
@@ -88,14 +88,14 @@ static void mixer_task() {
   time_t now;
 
   while (1) {
-    enum state s = geti(STATE);
+    enum state s = get_state();
     if (s != RUNNING) {
       vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
       continue;
     }
 
     time(&now);
-    int led_dim = geti(LED_DIM);
+    int led_dim = get_led_dim();
     if (now - led_dim < 60) {
       vTaskDelay((now - led_dim + 1) * 1000 / portTICK_PERIOD_MS);
       continue;

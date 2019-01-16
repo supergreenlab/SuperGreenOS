@@ -47,7 +47,7 @@ static void blower_task(void *param) {
   int c;
 
   while (1) {
-    int v = geti(BLOWER);
+    int v = get_blower();
     set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, v);
     xQueueReceive(cmd, &c, 3000 / portTICK_PERIOD_MS);
   }
@@ -64,7 +64,7 @@ void init_blower() {
     ESP_LOGE(SGO_LOG_EVENT, "@BLOWER Unable to create blower queue");
   }
 
-  int blower_gpio = geti(BLOWER_GPIO);
+  int blower_gpio = get_blower_gpio();
   mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, blower_gpio);
   mcpwm_config_t pwm_config;
   pwm_config.frequency = 200;

@@ -35,10 +35,10 @@ void init_onoff() {
 }
 
 int get_output_for_hour_min() {
-  int on_hour = geti(ON_HOUR);
-  int on_min = geti(ON_MIN);
-  int off_hour = geti(OFF_HOUR);
-  int off_min = geti(OFF_MIN);
+  int on_hour = get_on_hour();
+  int on_min = get_on_min();
+  int off_hour = get_off_hour();
+  int off_min = get_off_min();
 
   time_t now;
   struct tm tm_now;

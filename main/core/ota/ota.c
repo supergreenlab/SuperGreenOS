@@ -95,8 +95,8 @@ static bool read_past_http_header(char text[], int total_len, esp_ota_handle_t u
 
 static bool connect_to_http_server()
 {
-  char server_ip[20] = {0}; getstr(OTA_SERVER_IP, server_ip, 20);
-  char port[6] = {0}; getstr(OTA_SERVER_PORT, port, 6);
+  char server_ip[20] = {0}; get_ota_server_ip(server_ip, 20);
+  char port[6] = {0}; get_ota_server_port(port, 6);
   ESP_LOGI(SGO_LOG_EVENT, "@OTA Server IP: %s Server Port:%s", server_ip, port);
 
   int  http_connect_flag = -1;
@@ -128,9 +128,9 @@ static bool connect_to_http_server()
 }
 
 static bool check_new_version() {
-  char version_filename[64] = {0}; getstr(OTA_VERSION_FILENAME, version_filename, 64);
-  char hostname[128] = {0}; getstr(OTA_SERVER_HOSTNAME, hostname, 128);
-  char port[6] = {0}; getstr(OTA_SERVER_PORT, port, 6);
+  char version_filename[64] = {0}; get_ota_version_filename(version_filename, 64);
+  char hostname[128] = {0}; get_ota_server_hostname(hostname, 128);
+  char port[6] = {0}; get_ota_server_port(port, 6);
   /*connect to http server*/
   if (connect_to_http_server()) {
     ESP_LOGI(SGO_LOG_EVENT, "@OTA Connected to http server");
@@ -185,11 +185,11 @@ static bool check_new_version() {
 
 static void try_ota()
 {
-  char server_ip[20] = {0}; getstr(OTA_SERVER_IP, server_ip, 20);
-  char hostname[128] = {0}; getstr(OTA_SERVER_HOSTNAME, hostname, 128);
-  char port[6] = {0}; getstr(OTA_SERVER_PORT, port, 6);
-  char version_filename[64] = {0}; getstr(OTA_VERSION_FILENAME, version_filename, 64);
-  char filename[64] = {0}; getstr(OTA_FILENAME, filename, 64);
+  char server_ip[20] = {0}; get_ota_server_ip(server_ip, 20);
+  char hostname[128] = {0}; get_ota_server_hostname(hostname, 128);
+  char port[6] = {0}; get_ota_server_port(port, 6);
+  char version_filename[64] = {0}; get_ota_version_filename(version_filename, 64);
+  char filename[64] = {0}; get_ota_filename(filename, 64);
 
   esp_err_t err;
   /* update handle : set by esp_ota_begin(), must be freed via esp_ota_end() */
