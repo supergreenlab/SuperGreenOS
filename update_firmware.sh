@@ -30,7 +30,7 @@ mkdir -p $DEST
 
 TS=`date +"%s"`
 sed -i -E "s/^#define OTA_BUILD_TIMESTAMP [^$]+/#define OTA_BUILD_TIMESTAMP ${TS}/g" main/core/ota/ota.h
-make
+make -j4
 
 for i in build/ota_data_initial.bin build/bootloader/bootloader.bin build/partitions.bin build/firmware.bin $IDF_PATH/components/esptool_py/esptool/esptool.py
 do
