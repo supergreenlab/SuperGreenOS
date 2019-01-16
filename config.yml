@@ -462,7 +462,7 @@ keys:
       key: L_0_IO
     http:
       write: true
-    default: 0
+    default: DEFAULT_LED_0_GPIO
 
   - name: led_1_gpio
     caps_name: LED_1_GPIO
@@ -471,7 +471,7 @@ keys:
       key: L_1_IO
     http:
       write: true
-    default: 0
+    default: DEFAULT_LED_1_GPIO
 
   - name: led_2_gpio
     caps_name: LED_2_GPIO
@@ -480,7 +480,7 @@ keys:
       key: L_2_IO
     http:
       write: true
-    default: 0
+    default: DEFAULT_LED_2_GPIO
 
   - name: led_3_gpio
     caps_name: LED_3_GPIO
@@ -489,7 +489,7 @@ keys:
       key: L_3_IO
     http:
       write: true
-    default: 0
+    default: DEFAULT_LED_3_GPIO
 
   - name: led_4_gpio
     caps_name: LED_4_GPIO
@@ -498,7 +498,7 @@ keys:
       key: L_4_IO
     http:
       write: true
-    default: 0
+    default: DEFAULT_LED_4_GPIO
 
   - name: led_5_gpio
     caps_name: LED_5_GPIO
@@ -507,7 +507,7 @@ keys:
       key: L_5_IO
     http:
       write: true
-    default: 0
+    default: DEFAULT_LED_5_GPIO
 
   - name: led_0_x
     caps_name: LED_0_X

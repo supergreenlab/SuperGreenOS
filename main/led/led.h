@@ -66,6 +66,13 @@ void refresh_led(int i);
 int set_led_duty(int i, int value);
 int get_led_duty(int i);
 
+#define DEFAULT_LED_0_GPIO 32
+#define DEFAULT_LED_1_GPIO 17
+#define DEFAULT_LED_2_GPIO 33
+#define DEFAULT_LED_3_GPIO 16
+#define DEFAULT_LED_4_GPIO 25
+#define DEFAULT_LED_5_GPIO 4
+
 /* BLE Callbacks */
 
 int on_set_led_0_duty(int value);

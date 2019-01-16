@@ -94,17 +94,13 @@ static void led_task(void *param) {
 
   while(1) {
     if (xQueueReceive(cmd, &c, 30 * 1000 / portTICK_PERIOD_MS)) {
-      if (c == -1) {
-        for (int i = 0; i < N_LEDS; ++i) {
-          update_led(i);
-        }
-      } else {
+      if (c != -1) {
         update_led(c);
+        continue;
       }
-    } else {
-      for (int i = 0; i < N_LEDS; ++i) {
-        update_led(i);
-      }
+    }
+    for (int i = 0; i < N_LEDS; ++i) {
+      update_led(i);
     }
   }
 }
