@@ -169,18 +169,6 @@ void set_ota_filename(const char *value) {
 
 
 
-void get_mqtt_broker_url(char *dest, size_t len) {
-  assert(len <= MAX_KVALUE_SIZE - 1);
-  getstr(OTA, dest, len);
-}
-
-void set_mqtt_broker_url(const char *value) {
-  assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
-  setstr(OTA, value);
-}
-
-
-
 void get_broker_url(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(BROKER_URL, dest, len);

@@ -162,15 +162,6 @@ keys:
       write: true
     default_var: CONFIG_OTA_FILENAME
 
-  - name: mqtt_broker_url
-    caps_name: OTA
-    string: true
-    nvs:
-      key: OTA_SRV_IP
-    http:
-      write: true
-    default_var: CONFIG_BROKER_URL
-
   - name: broker_url
     caps_name: BROKER_URL
     string: true

@@ -89,9 +89,6 @@ static void stat_dump_task(void *param) {
     get_ota_filename(str, MAX_KVALUE_SIZE-1);
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "OTA_FILENAME", str);
     vTaskDelay(50 / portTICK_PERIOD_MS);
-    get_mqtt_broker_url(str, MAX_KVALUE_SIZE-1);
-    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "OTA", str);
-    vTaskDelay(50 / portTICK_PERIOD_MS);
     get_broker_url(str, MAX_KVALUE_SIZE-1);
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "BROKER_URL", str);
     vTaskDelay(50 / portTICK_PERIOD_MS);

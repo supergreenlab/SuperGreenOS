@@ -81,8 +81,6 @@ void preinit_kv() {
   defaultstr(OTA_VERSION_FILENAME, default_ota_version_filename);
   const char *default_ota_filename = CONFIG_OTA_FILENAME;
   defaultstr(OTA_FILENAME, default_ota_filename);
-  const char *default_mqtt_broker_url = CONFIG_BROKER_URL;
-  defaultstr(OTA, default_mqtt_broker_url);
   const char *default_broker_url = CONFIG_BROKER_URL;
   defaultstr(BROKER_URL, default_broker_url);
   int default_i2c_sda = DEFAULT_I2C_SDA;

@@ -344,11 +344,6 @@ const kvs_handler kvs_handlers[] = {
     .getter = get_ota_filename,
   },
   {
-    .name = "OTA",
-    .handler = internal_set_mqtt_broker_url,
-    .getter = get_mqtt_broker_url,
-  },
-  {
     .name = "BROKER_URL",
     .handler = internal_set_broker_url,
     .getter = get_broker_url,

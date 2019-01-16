@@ -64,8 +64,6 @@ void get_ota_version_filename(char *dest, size_t len);
 void set_ota_version_filename(const char *value);
 void get_ota_filename(char *dest, size_t len);
 void set_ota_filename(const char *value);
-void get_mqtt_broker_url(char *dest, size_t len);
-void set_mqtt_broker_url(const char *value);
 void get_broker_url(char *dest, size_t len);
 void set_broker_url(const char *value);
 int get_i2c_sda();
