@@ -32,6 +32,8 @@
 #include "kv_ble.h"
 #include "../include_modules.h"
 
+void init_helpers();
+
 nvs_handle open_handle() {
   nvs_handle kv_handle;
   esp_err_t err = nvs_open("kv_store", NVS_READWRITE, &kv_handle);
@@ -58,6 +60,7 @@ void preinit_kv() {
    * [GENERATED]
    */
 
+  init_helpers();
   const char *default_wifi_ssid = "";
   defaultstr(WIFI_SSID, default_wifi_ssid);
   const char *default_wifi_password = "";

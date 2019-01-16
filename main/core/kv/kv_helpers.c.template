@@ -18,6 +18,10 @@
 
 #include <string.h>
 
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/semphr.h"
+
 #include "kv.h"
 #include "kv_ble.h"
 #include "../ble/ble.h"
@@ -26,10 +30,13 @@
  * [GENERATED]
  */
 
+StaticSemaphore_t mutex_buffer;
+
 {{#keys}}
 {{#integer}}
 
 {{^nvs}}
+static SemaphoreHandle_t _mutex_{{name}};
 static int _{{name}} = 0;
 {{/nvs}}
 
@@ -38,7 +45,10 @@ int get_{{name}}() {
   return geti({{caps_name}});
   {{/nvs}}
   {{^nvs}}
-  return _{{name}};
+  xSemaphoreTake(_mutex_{{name}}, 0);
+  int v = _{{name}};
+  xSemaphoreGive(_mutex_{{name}});
+  return v;
   {{/nvs}}
 }
 
@@ -47,7 +57,9 @@ void set_{{name}}(int value) {
   seti({{caps_name}}, value);
   {{/nvs}}
   {{^nvs}}
+  xSemaphoreTake(_mutex_{{name}}, 0);
   _{{name}} = value;
+  xSemaphoreGive(_mutex_{{name}});
   {{/nvs}}
   {{#ble.notify}}
   {{^ble.no_sync}}
@@ -60,6 +72,7 @@ void set_{{name}}(int value) {
 {{#string}}
 
 {{^nvs}}
+static SemaphoreHandle_t _mutex_{{name}};
 static char _{{name}}[MAX_KVALUE_SIZE] = {0};
 {{/nvs}}
 
@@ -69,7 +82,9 @@ void get_{{name}}(char *dest, size_t len) {
   getstr({{caps_name}}, dest, len);
   {{/nvs}}
   {{^nvs}}
+  xSemaphoreTake(_mutex_{{name}}, 0);
   strncpy(dest, _{{name}}, len);
+  xSemaphoreGive(_mutex_{{name}});
   {{/nvs}}
 }
 
@@ -79,7 +94,9 @@ void set_{{name}}(const char *value) {
   setstr({{caps_name}}, value);
   {{/nvs}}
   {{^nvs}}
+  xSemaphoreTake(_mutex_{{name}}, 0);
   strncpy(_{{name}}, value, strlen(value));
+  xSemaphoreGive(_mutex_{{name}});
   {{/nvs}}
   {{#ble}}
   {{^ble.no_sync}}
@@ -89,6 +106,14 @@ void set_{{name}}(const char *value) {
 }
 {{/string}}
 {{/keys}}
+
+void init_helpers() {
+  {{#keys}}
+  {{^nvs}}
+  _mutex_{{name}} = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  {{/nvs}}
+  {{/keys}}
+}
 
 /*
  * [/GENERATED]

@@ -41,8 +41,15 @@
 #define AP_SSID "🤖🍁"
 #define AP_PASS "multipass"
 
-static const unsigned int CMD_SSID_CHANGED = 1;
-static const unsigned int CMD_PASS_CHANGED = 2;
+typedef const unsigned int wifi_cmd;
+static wifi_cmd CMD_SSID_CHANGED = 1;
+static wifi_cmd CMD_PASS_CHANGED = 2;
+static wifi_cmd CMD_STA_CONNECTED = 3;
+static wifi_cmd CMD_STA_DISCONNECTED = 4;
+static wifi_cmd CMD_STA_CONNECTION_FAILED = 5;
+static wifi_cmd CMD_AP_STACONNECTED = 6;
+static wifi_cmd CMD_AP_STADISCONNECTED = 7;
+static wifi_cmd CMD_AP_START = 8;
 
 static QueueHandle_t cmd;
 
@@ -55,19 +62,7 @@ static void start_ap(void);
 static esp_err_t event_handler(void *ctx, system_event_t *event);
 static void wifi_task(void *param);
 static bool is_valid();
-
-void start_mdns_service()
-{
-  mdns_free();
-	esp_err_t err = mdns_init();
-	if (err) {
-		ESP_LOGE(SGO_LOG_EVENT, "@WIFI MDNS Init failed: %d\n", err);
-		return;
-	}
-
-	mdns_hostname_set("supergreendriver");
-  mdns_service_add(NULL, "_http", "_tcp", 80, NULL, 0);
-}
+static void start_mdns_service();
 
 void init_wifi() {
   wifi_event_group = xEventGroupCreate();
@@ -78,12 +73,12 @@ void init_wifi() {
   ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
   ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
 
-  cmd = xQueueCreate(5, sizeof(unsigned int));
+  cmd = xQueueCreate(5, sizeof(wifi_cmd));
   if (cmd == NULL) {
     ESP_LOGE(SGO_LOG_EVENT, "@WIFI Failed to create queue");
   }
 
-  xTaskCreate(wifi_task, "WIFI", 2048, NULL, tskIDLE_PRIORITY, NULL);
+  xTaskCreate(wifi_task, "WIFI", 4096, NULL, tskIDLE_PRIORITY, NULL);
 
   if (is_valid()) {
     start_sta();
@@ -95,6 +90,19 @@ void init_wifi() {
 void wait_connected() {
   xEventGroupWaitBits(wifi_event_group, CONNECTED_BIT,
       false, true, portMAX_DELAY);
+}
+
+static void start_mdns_service()
+{
+  mdns_free();
+	esp_err_t err = mdns_init();
+	if (err) {
+		ESP_LOGE(SGO_LOG_EVENT, "@WIFI MDNS Init failed: %d\n", err);
+		return;
+	}
+
+	mdns_hostname_set("supergreendriver");
+  mdns_service_add(NULL, "_http", "_tcp", 80, NULL, 0);
 }
 
 static void start_ap() {
@@ -124,8 +132,8 @@ static void start_sta() {
 
   wifi_config_t wifi_config = {0};
   
-  getstr(WIFI_SSID, (char *)wifi_config.sta.ssid, sizeof(wifi_config.sta.ssid) - 1);
-  getstr(WIFI_PASSWORD, (char *)wifi_config.sta.password, sizeof(wifi_config.sta.password) - 1);
+  get_wifi_ssid((char *)wifi_config.sta.ssid, sizeof(wifi_config.sta.ssid) - 1);
+  get_wifi_password((char *)wifi_config.sta.password, sizeof(wifi_config.sta.password) - 1);
 
   wifi_config.sta.bssid_set = false;
   ESP_LOGI(SGO_LOG_EVENT, "@WIFI Setting WiFi configuration SSID %s...", wifi_config.sta.ssid);
@@ -136,7 +144,6 @@ static void start_sta() {
 }
 
 static esp_err_t event_handler(void *ctx, system_event_t *event) {
-  static int n_connection_failed = 0;
   switch(event->event_id) {
     case SYSTEM_EVENT_STA_START:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_START");
@@ -146,30 +153,31 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
     case SYSTEM_EVENT_STA_GOT_IP:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_GOT_IP");
       xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
-      start_mdns_service();
+      xQueueSend(cmd, &CMD_STA_CONNECTED, 0);
       set_wifi_status(CONNECTED);
       break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_DISCONNECTED = %d", event->event_info.disconnected.reason);
       bool failed = event->event_info.disconnected.reason == WIFI_REASON_NO_AP_FOUND || event->event_info.disconnected.reason == WIFI_REASON_AUTH_FAIL;
       if (failed) {
+        xQueueSend(cmd, &CMD_STA_CONNECTION_FAILED, 0);
         set_wifi_status(FAILED);
       } else {
+        xQueueSend(cmd, &CMD_STA_DISCONNECTED, 0);
         set_wifi_status(DISCONNECTED);
-      }
-
-      if (n_connection_failed < 5 && is_valid()) {
-        ++n_connection_failed;
-        esp_wifi_connect();
-      } else if (!is_valid() || (n_connection_failed >= 5 && is_valid())) {
-        n_connection_failed = 0;
-        start_ap();
       }
       xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
       break;
+    case SYSTEM_EVENT_AP_START:
+      xQueueSend(cmd, &CMD_AP_START, 0);
+      break;
     case SYSTEM_EVENT_AP_STACONNECTED:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_AP_STACONNECTED");
-      start_mdns_service();
+      xQueueSend(cmd, &CMD_AP_STACONNECTED, 0);
+      break;
+    case SYSTEM_EVENT_AP_STADISCONNECTED:
+      ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_AP_STADISCONNECTED");
+      xQueueSend(cmd, &CMD_AP_STADISCONNECTED, 0);
       break;
     default:
       break;
@@ -180,23 +188,78 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
 
 static void wifi_task(void *param) {
   unsigned int c;
+  unsigned int n_connection_failed = 0;
+  unsigned int n_connected_sta = 0;
+  unsigned int counter = 1;
+
   for (;;) {
-    if(xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS)) {
-      if ((c == CMD_SSID_CHANGED || CMD_PASS_CHANGED)) {
+    if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS)) {
+      ESP_LOGI(SGO_LOG_EVENT, "@WIFI xQueueReceive %d", c);
+
+      // Wifi STA conf change
+      if ((c == CMD_SSID_CHANGED || c == CMD_PASS_CHANGED)) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_SSID_CHANGED | CMD_PASS_CHANGED");
         if (is_valid()) {
           start_sta();
         } else {
           start_ap();
         }
+
+      } else if (c == CMD_AP_START) {
+        ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_AP_START");
+        n_connected_sta = 0;
+
+      } else if (c == CMD_STA_CONNECTED) {
+        ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_STA_CONNECTED");
+        start_mdns_service();
+      } else if (c == CMD_AP_STACONNECTED) {
+        ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_AP_STACONNECTED");
+        start_mdns_service();
+        ++n_connected_sta;
+      } else if (c == CMD_AP_STADISCONNECTED) {
+        ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_AP_STADISCONNECTED");
+        --n_connected_sta;
+
+      // STA connection stopped
+      } else if (c == CMD_STA_CONNECTION_FAILED || c == CMD_STA_DISCONNECTED) {
+        ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_STA_CONNECTION_FAILED || CMD_STA_DISCONNECTED");
+        if (n_connection_failed < 5 && is_valid()) {
+          ++n_connection_failed;
+          ESP_LOGI(SGO_LOG_EVENT, "@WIFI Retry: %d/5", n_connection_failed);
+          esp_wifi_connect();
+        } else if (!is_valid() || (n_connection_failed >= 5 && is_valid())) {
+          ESP_LOGI(SGO_LOG_EVENT, "@WIFI Too many retries, start AP mode");
+          n_connection_failed = 0;
+          start_ap();
+        }
       }
+    } else {
+      // if AP mode and noone's watching, try STA mode.
+      wifi_mode_t wm = {0};
+      //wifi_sta_list_t sl = {0}; // commented all esp_wifi_ap_get_sta_list stuffs as it seems it doesn't refresh properly
+      if (esp_wifi_get_mode(&wm) == ESP_OK) {
+        //if (esp_wifi_ap_get_sta_list(&sl) == ESP_OK) {
+          ESP_LOGI(SGO_LOG_EVENT, "@WIFI num_sta=%d, wm=%d, counter=%d/6", n_connected_sta, wm, (counter % 6) + 1);
+          if (!(counter % 6) && is_valid() && n_connected_sta == 0 && wm != WIFI_MODE_STA) {
+            ESP_LOGI(SGO_LOG_EVENT, "@WIFI Trying STA while no-one's watching");
+            start_sta();
+            ++counter;
+            continue;
+          }
+        //} else {
+        //  ESP_LOGI(SGO_LOG_EVENT, "@WIFI unable to esp_wifi_ap_get_sta_list");
+        //}
+      } else {
+        ESP_LOGI(SGO_LOG_EVENT, "@WIFI unable to get_mode");
+      }
+      ESP_LOGI(SGO_LOG_EVENT, "@WIFI Refresh MDNS service");
+      start_mdns_service();
+      ++counter;
     }
-    start_mdns_service();
   }
 }
 
 // BLE Callbacks
-
 const char *on_set_wifi_ssid(const char *ssid) {
   set_wifi_password("");
   xQueueSend(cmd, &CMD_SSID_CHANGED, 0);
@@ -214,8 +277,8 @@ static bool is_valid() {
   uint8_t ssid[32] = {0}; 
   uint8_t pass[64] = {0};
 
-  getstr(WIFI_SSID, (char *)ssid, sizeof(ssid) - 1);
-  getstr(WIFI_PASSWORD, (char *)pass, sizeof(pass) - 1);
+  get_wifi_ssid((char *)ssid, sizeof(ssid) - 1);
+  get_wifi_password((char *)pass, sizeof(pass) - 1);
 
   return strlen((char *)ssid) != 0 && strlen((char *)pass) != 0;
 }

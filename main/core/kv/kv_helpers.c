@@ -18,6 +18,10 @@
 
 #include <string.h>
 
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/semphr.h"
+
 #include "kv.h"
 #include "kv_ble.h"
 #include "../ble/ble.h"
@@ -26,15 +30,23 @@
  * [GENERATED]
  */
 
+StaticSemaphore_t mutex_buffer;
 
+
+static SemaphoreHandle_t _mutex_wifi_status;
 static int _wifi_status = 0;
 
 int get_wifi_status() {
-  return _wifi_status;
+  xSemaphoreTake(_mutex_wifi_status, 0);
+  int v = _wifi_status;
+  xSemaphoreGive(_mutex_wifi_status);
+  return v;
 }
 
 void set_wifi_status(int value) {
+  xSemaphoreTake(_mutex_wifi_status, 0);
   _wifi_status = value;
+  xSemaphoreGive(_mutex_wifi_status);
   set_attr_value_and_notify(IDX_CHAR_VAL_WIFI_STATUS, (uint8_t *)&value, sizeof(int));
 }
 
@@ -371,16 +383,21 @@ void set_sht1x_humi(int value) {
 
 
 
+static SemaphoreHandle_t _mutex_led_info;
 static char _led_info[MAX_KVALUE_SIZE] = {0};
 
 void get_led_info(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
+  xSemaphoreTake(_mutex_led_info, 0);
   strncpy(dest, _led_info, len);
+  xSemaphoreGive(_mutex_led_info);
 }
 
 void set_led_info(const char *value) {
   assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
+  xSemaphoreTake(_mutex_led_info, 0);
   strncpy(_led_info, value, strlen(value));
+  xSemaphoreGive(_mutex_led_info);
   set_attr_value_and_notify(IDX_CHAR_VAL_LED_INFO, (uint8_t *)value, strlen(value));
 }
 
@@ -683,6 +700,11 @@ void set_led_5_z(int value) {
   seti(LED_5_Z, value);
 }
 
+
+void init_helpers() {
+  _mutex_wifi_status = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_led_info = xSemaphoreCreateMutexStatic(&mutex_buffer);
+}
 
 /*
  * [/GENERATED]
