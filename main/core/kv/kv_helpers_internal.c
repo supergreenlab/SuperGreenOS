@@ -484,6 +484,48 @@ void internal_set_led_5_z(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_led_0_enable(int value) {
+  seti(LED_0_ENABLE, value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_1_enable(int value) {
+  seti(LED_1_ENABLE, value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_2_enable(int value) {
+  seti(LED_2_ENABLE, value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_3_enable(int value) {
+  seti(LED_3_ENABLE, value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_4_enable(int value) {
+  seti(LED_4_ENABLE, value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_5_enable(int value) {
+  seti(LED_5_ENABLE, value);
+
+
+
+  // TODO: httpd notify
+}
 
 /*
  * [/GENERATED]

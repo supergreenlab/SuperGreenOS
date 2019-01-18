@@ -670,3 +670,57 @@ keys:
     http:
       write: true
     default: 0
+
+  - name: led_0_enable
+    caps_name: LED_0_ENABLE
+    integer: true
+    nvs:
+      key: L_0_E
+    http:
+      write: true
+    default: 1
+
+  - name: led_1_enable
+    caps_name: LED_1_ENABLE
+    integer: true
+    nvs:
+      key: L_1_E
+    http:
+      write: true
+    default: 1
+
+  - name: led_2_enable
+    caps_name: LED_2_ENABLE
+    integer: true
+    nvs:
+      key: L_2_E
+    http:
+      write: true
+    default: 1
+
+  - name: led_3_enable
+    caps_name: LED_3_ENABLE
+    integer: true
+    nvs:
+      key: L_3_E
+    http:
+      write: true
+    default: 1
+
+  - name: led_4_enable
+    caps_name: LED_4_ENABLE
+    integer: true
+    nvs:
+      key: L_4_E
+    http:
+      write: true
+    default: 1
+
+  - name: led_5_enable
+    caps_name: LED_5_ENABLE
+    integer: true
+    nvs:
+      key: L_5_E
+    http:
+      write: true
+    default: 1

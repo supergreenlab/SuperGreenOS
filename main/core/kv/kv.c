@@ -179,6 +179,18 @@ void preinit_kv() {
   defaulti(LED_4_Z, default_led_4_z);
   int default_led_5_z = 0;
   defaulti(LED_5_Z, default_led_5_z);
+  int default_led_0_enable = 1;
+  defaulti(LED_0_ENABLE, default_led_0_enable);
+  int default_led_1_enable = 1;
+  defaulti(LED_1_ENABLE, default_led_1_enable);
+  int default_led_2_enable = 1;
+  defaulti(LED_2_ENABLE, default_led_2_enable);
+  int default_led_3_enable = 1;
+  defaulti(LED_3_ENABLE, default_led_3_enable);
+  int default_led_4_enable = 1;
+  defaulti(LED_4_ENABLE, default_led_4_enable);
+  int default_led_5_enable = 1;
+  defaulti(LED_5_ENABLE, default_led_5_enable);
 
   /*
    * [/GENERATED]

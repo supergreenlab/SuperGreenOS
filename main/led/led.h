@@ -23,6 +23,8 @@
 #include "driver/ledc.h"
 
 typedef struct led_config {
+  bool enabled;
+
   int x;
   int y;
   int z;
@@ -42,7 +44,9 @@ extern int max_z;
 
 extern led_config_t ledc_channels[];
 
-#define CHANNEL(i, lx, ly, lz, gpio, timer, chan) { \
+#define CHANNEL(i, lenabled, lx, ly, lz, gpio, timer, chan) { \
+    enabled: lenabled, \
+    \
     x: lx, \
     y: ly, \
     z: lz, \

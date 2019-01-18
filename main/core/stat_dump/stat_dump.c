@@ -236,6 +236,24 @@ static void stat_dump_task(void *param) {
     value = get_led_5_z();
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_5_Z", value);
     vTaskDelay(50 / portTICK_PERIOD_MS);
+    value = get_led_0_enable();
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_0_ENABLE", value);
+    vTaskDelay(50 / portTICK_PERIOD_MS);
+    value = get_led_1_enable();
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_1_ENABLE", value);
+    vTaskDelay(50 / portTICK_PERIOD_MS);
+    value = get_led_2_enable();
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_2_ENABLE", value);
+    vTaskDelay(50 / portTICK_PERIOD_MS);
+    value = get_led_3_enable();
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_3_ENABLE", value);
+    vTaskDelay(50 / portTICK_PERIOD_MS);
+    value = get_led_4_enable();
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_4_ENABLE", value);
+    vTaskDelay(50 / portTICK_PERIOD_MS);
+    value = get_led_5_enable();
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_5_ENABLE", value);
+    vTaskDelay(50 / portTICK_PERIOD_MS);
 
     vTaskDelay(60000 / portTICK_PERIOD_MS);
 

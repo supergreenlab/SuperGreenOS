@@ -84,6 +84,12 @@ void internal_set_led_2_z(int value);
 void internal_set_led_3_z(int value);
 void internal_set_led_4_z(int value);
 void internal_set_led_5_z(int value);
+void internal_set_led_0_enable(int value);
+void internal_set_led_1_enable(int value);
+void internal_set_led_2_enable(int value);
+void internal_set_led_3_enable(int value);
+void internal_set_led_4_enable(int value);
+void internal_set_led_5_enable(int value);
 
 /*
  * [/GENERATED]

@@ -48,6 +48,10 @@ void init_mixer() {
 }
 
 static void set_duty(int i, int duty) {
+  if (ledc_channels[i].enabled != 1) {
+    return;
+  }
+
   ledc_channels[i].setter(set_led_duty(i, duty));
 }
 
@@ -55,12 +59,20 @@ static void set_duty_3d(double x, double y, double z, int duty, int min_duty) {
   double min_dist = DBL_MAX;
   double max_dist = DBL_MIN;
   for (int i = 0; i < N_LEDS; ++i) {
+    if (ledc_channels[i].enabled != 1) {
+      continue;
+    }
+
     double dist = sqrtf(pow(fabs(x - ledc_channels[i].x), 2) + pow(fabs(y - ledc_channels[i].y), 2) + pow(fabs(z - ledc_channels[i].z), 2));
     min_dist = min(min_dist, dist);
     max_dist = max(max_dist, dist);
   }
 
   for (int i = 0; i < N_LEDS; ++i) {
+    if (ledc_channels[i].enabled != 1) {
+      continue;
+    }
+
     double dist = sqrtf(pow(fabs(x - ledc_channels[i].x), 2) + pow(fabs(y - ledc_channels[i].y), 2) + pow(fabs(z - ledc_channels[i].z), 2));
     double d = min_duty + (double)(duty - min_duty) * ((max_dist - dist) / (max_dist - min_dist));
     set_duty(i, d);
@@ -105,6 +117,10 @@ static void mixer_task() {
 
 static void set_all_duty(int value) {
   for (int i = 0; i < N_LEDS; ++i) {
+    if (ledc_channels[i].enabled != 1) {
+      continue;
+    }
+
     set_duty(i, value);
   }
 }

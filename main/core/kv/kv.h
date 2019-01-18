@@ -164,6 +164,18 @@ int get_led_4_z();
 void set_led_4_z(int value);
 int get_led_5_z();
 void set_led_5_z(int value);
+int get_led_0_enable();
+void set_led_0_enable(int value);
+int get_led_1_enable();
+void set_led_1_enable(int value);
+int get_led_2_enable();
+void set_led_2_enable(int value);
+int get_led_3_enable();
+void set_led_3_enable(int value);
+int get_led_4_enable();
+void set_led_4_enable(int value);
+int get_led_5_enable();
+void set_led_5_enable(int value);
 
 /*
  * [/GENERATED]

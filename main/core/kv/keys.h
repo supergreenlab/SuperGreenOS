@@ -82,6 +82,12 @@
 #define LED_3_Z "L_3_Z"
 #define LED_4_Z "L_4_Z"
 #define LED_5_Z "L_5_Z"
+#define LED_0_ENABLE "L_0_E"
+#define LED_1_ENABLE "L_1_E"
+#define LED_2_ENABLE "L_2_E"
+#define LED_3_ENABLE "L_3_E"
+#define LED_4_ENABLE "L_4_E"
+#define LED_5_ENABLE "L_5_E"
 
 /*
  * [/GENERATED]

@@ -689,6 +689,66 @@ void set_led_5_z(int value) {
 }
 
 
+
+int get_led_0_enable() {
+  return geti(LED_0_ENABLE);
+}
+
+void set_led_0_enable(int value) {
+  seti(LED_0_ENABLE, value);
+}
+
+
+
+int get_led_1_enable() {
+  return geti(LED_1_ENABLE);
+}
+
+void set_led_1_enable(int value) {
+  seti(LED_1_ENABLE, value);
+}
+
+
+
+int get_led_2_enable() {
+  return geti(LED_2_ENABLE);
+}
+
+void set_led_2_enable(int value) {
+  seti(LED_2_ENABLE, value);
+}
+
+
+
+int get_led_3_enable() {
+  return geti(LED_3_ENABLE);
+}
+
+void set_led_3_enable(int value) {
+  seti(LED_3_ENABLE, value);
+}
+
+
+
+int get_led_4_enable() {
+  return geti(LED_4_ENABLE);
+}
+
+void set_led_4_enable(int value) {
+  seti(LED_4_ENABLE, value);
+}
+
+
+
+int get_led_5_enable() {
+  return geti(LED_5_ENABLE);
+}
+
+void set_led_5_enable(int value) {
+  seti(LED_5_ENABLE, value);
+}
+
+
 void init_helpers() {
   _mutex_wifi_status = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_led_info = xSemaphoreCreateMutexStatic(&mutex_buffer);
