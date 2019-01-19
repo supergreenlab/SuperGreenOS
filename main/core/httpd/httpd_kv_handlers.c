@@ -289,6 +289,36 @@ const kvi_handler kvi_handlers[] = {
     .handler = internal_set_led_5_z,
     .getter = get_led_5_z,
   },
+  {
+    .name = "LED_0_ENABLE",
+    .handler = internal_set_led_0_enable,
+    .getter = get_led_0_enable,
+  },
+  {
+    .name = "LED_1_ENABLE",
+    .handler = internal_set_led_1_enable,
+    .getter = get_led_1_enable,
+  },
+  {
+    .name = "LED_2_ENABLE",
+    .handler = internal_set_led_2_enable,
+    .getter = get_led_2_enable,
+  },
+  {
+    .name = "LED_3_ENABLE",
+    .handler = internal_set_led_3_enable,
+    .getter = get_led_3_enable,
+  },
+  {
+    .name = "LED_4_ENABLE",
+    .handler = internal_set_led_4_enable,
+    .getter = get_led_4_enable,
+  },
+  {
+    .name = "LED_5_ENABLE",
+    .handler = internal_set_led_5_enable,
+    .getter = get_led_5_enable,
+  },
 
 /*
 * [/GENERATED]

@@ -76,6 +76,10 @@ static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
 } */
 
 static void update_led(int i) {
+  if (ledc_channels[i].enabled != 1) {
+    return;
+  }
+
   double duty = get_led_param(i, "D");
   double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
   ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
@@ -88,6 +92,10 @@ static void led_task(void *param) {
   int c;
 
   for (int i = 0; i < N_LEDS; ++i) {
+    if (ledc_channels[i].enabled != 1) {
+      continue;
+    }
+
     ledc_channel_config(&ledc_channels[i].channel_config);
     update_led(i);
   }
@@ -95,11 +103,18 @@ static void led_task(void *param) {
   while(1) {
     if (xQueueReceive(cmd, &c, 30 * 1000 / portTICK_PERIOD_MS)) {
       if (c != -1) {
+        if (ledc_channels[c].enabled != 1) {
+          continue;
+        }
+
         update_led(c);
         continue;
       }
     }
     for (int i = 0; i < N_LEDS; ++i) {
+      if (ledc_channels[i].enabled != 1) {
+        continue;
+      }
       update_led(i);
     }
   }
@@ -108,10 +123,13 @@ static void led_task(void *param) {
 void init_led_info() {
   char led_info[CHAR_VAL_LEN_MAX] = {0};
 
-  sprintf(led_info, "%d", N_LEDS);
+  sprintf(led_info, "n:%d", N_LEDS);
   for (int i = 0; i < N_LEDS; ++i) {
+    if (ledc_channels[i].enabled != 1) {
+      continue;
+    }
     char led[32] = {0};
-    sprintf(led, "x:%d;y:%d;z:%d;gpio_num:%d", ledc_channels[i].x, ledc_channels[i].y, ledc_channels[i].z, ledc_channels[i].channel_config.gpio_num);
+    sprintf(led, "i:%d;x:%d;y:%d;z:%d;gpio_num:%d", i, ledc_channels[i].x, ledc_channels[i].y, ledc_channels[i].z, ledc_channels[i].channel_config.gpio_num);
     if (strlen(led_info) + strlen(led) + 1 >= CHAR_VAL_LEN_MAX) {
       ESP_LOGE(SGO_LOG_EVENT, "@LED Not enough space to build LED_INFO !!!");
       break;
@@ -134,11 +152,13 @@ void init_led() {
 
   // TODO init led array + set defaults with kv
   for (int i = 0; i < N_LEDS; ++i) {
-    ledc_channels[i].channel_config.gpio_num = get_led_param(i, "IO");
+    ledc_channels[i].enabled = get_led_param(i, "E");
 
     ledc_channels[i].x = get_led_param(i, "X");
     ledc_channels[i].y = get_led_param(i, "Y");
     ledc_channels[i].z = get_led_param(i, "Z");
+
+    ledc_channels[i].channel_config.gpio_num = get_led_param(i, "IO");
   }
 
   init_led_info();
