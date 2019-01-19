@@ -111,7 +111,7 @@ void preinit_kv() {
   defaulti(LED_DIM, default_led_dim);
   int default_blower = 50;
   defaulti(BLOWER, default_blower);
-  int default_blower_mode = 50;
+  int default_blower_mode = BLOWER_MODE_MANUAL;
   defaulti(BLOWER_MODE, default_blower_mode);
   int default_blower_gpio = DEFAULT_BLOWER_GPIO;
   defaulti(BLOWER_GPIO, default_blower_gpio);

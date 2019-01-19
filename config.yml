@@ -347,7 +347,7 @@ keys:
       key: BLWR_M
     http:
       write: true
-    default: BLOWER_MODE_MANUAL
+    default_var: BLOWER_MODE_MANUAL
 
   - name: blower_gpio
     caps_name: BLOWER_GPIO
