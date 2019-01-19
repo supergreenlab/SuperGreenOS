@@ -220,6 +220,13 @@ void internal_set_blower(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_blower_mode(int value) {
+  seti(BLOWER_MODE, value);
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_blower_gpio(int value) {
   seti(BLOWER_GPIO, value);
 

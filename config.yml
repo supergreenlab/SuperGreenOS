@@ -340,6 +340,15 @@ keys:
     write_cb: true
     default: 50
 
+  - name: blower_mode
+    caps_name: BLOWER_MODE
+    integer: true
+    nvs:
+      key: BLWR_M
+    http:
+      write: true
+    default: BLOWER_MODE_MANUAL
+
   - name: blower_gpio
     caps_name: BLOWER_GPIO
     integer: true

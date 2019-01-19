@@ -115,6 +115,11 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_blower,
   },
   {
+    .name = "BLOWER_MODE",
+    .handler = internal_set_blower_mode,
+    .getter = get_blower_mode,
+  },
+  {
     .name = "BLOWER_GPIO",
     .handler = internal_set_blower_gpio,
     .getter = get_blower_gpio,

@@ -49,6 +49,7 @@ void internal_set_off_min(int value);
 void internal_set_stretch(int value);
 void internal_set_led_dim(int value);
 void internal_set_blower(int value);
+void internal_set_blower_mode(int value);
 void internal_set_blower_gpio(int value);
 void internal_set_sht1x_temp_c(int value);
 void internal_set_sht1x_temp_f(int value);

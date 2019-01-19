@@ -236,9 +236,9 @@ static void wifi_task(void *param) {
     } else {
       // if AP mode and noone's watching, try STA mode.
       wifi_mode_t wm = {0};
-      //wifi_sta_list_t sl = {0}; // commented all esp_wifi_ap_get_sta_list stuffs as it seems it doesn't refresh properly
+      wifi_sta_list_t sl = {0}; // commented all esp_wifi_ap_get_sta_list stuffs as it seems it doesn't refresh properly
       if (esp_wifi_get_mode(&wm) == ESP_OK) {
-        //if (esp_wifi_ap_get_sta_list(&sl) == ESP_OK) {
+        if (esp_wifi_ap_get_sta_list(&sl) == ESP_OK) {
           ESP_LOGI(SGO_LOG_EVENT, "@WIFI num_sta=%d, wm=%d, counter=%d/6", n_connected_sta, wm, (counter % 6) + 1);
           if (!(counter % 6) && is_valid() && n_connected_sta == 0 && wm != WIFI_MODE_STA) {
             ESP_LOGI(SGO_LOG_EVENT, "@WIFI Trying STA while no-one's watching");
@@ -246,9 +246,9 @@ static void wifi_task(void *param) {
             ++counter;
             continue;
           }
-        //} else {
-        //  ESP_LOGI(SGO_LOG_EVENT, "@WIFI unable to esp_wifi_ap_get_sta_list");
-        //}
+        } else {
+          ESP_LOGI(SGO_LOG_EVENT, "@WIFI unable to esp_wifi_ap_get_sta_list");
+        }
       } else {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI unable to get_mode");
       }

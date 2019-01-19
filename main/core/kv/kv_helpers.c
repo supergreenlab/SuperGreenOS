@@ -328,6 +328,16 @@ void set_blower(int value) {
 
 
 
+int get_blower_mode() {
+  return geti(BLOWER_MODE);
+}
+
+void set_blower_mode(int value) {
+  seti(BLOWER_MODE, value);
+}
+
+
+
 int get_blower_gpio() {
   return geti(BLOWER_GPIO);
 }

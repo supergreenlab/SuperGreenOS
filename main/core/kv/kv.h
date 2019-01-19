@@ -94,6 +94,8 @@ int get_led_dim();
 void set_led_dim(int value);
 int get_blower();
 void set_blower(int value);
+int get_blower_mode();
+void set_blower_mode(int value);
 int get_blower_gpio();
 void set_blower_gpio(int value);
 int get_sht1x_temp_c();

@@ -48,6 +48,11 @@ static void blower_task(void *param) {
 
   while (1) {
     int v = get_blower();
+    int mode = get_blower_mode();
+    if (mode == BLOWER_MODE_TIMER) {
+      int timerOutput = get_timer_output();
+      v = (float)v * (float)timerOutput / 100.0f;
+    }
     set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, v);
     xQueueReceive(cmd, &c, 3000 / portTICK_PERIOD_MS);
   }

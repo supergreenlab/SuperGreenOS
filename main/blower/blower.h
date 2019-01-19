@@ -19,6 +19,11 @@
 #ifndef BLOWER_H_
 #define BLOWER_H_
 
+typedef enum {
+  BLOWER_MODE_MANUAL,
+  BLOWER_MODE_TIMER,
+} blower_mode;
+
 #define DEFAULT_BLOWER_GPIO (22)
 
 void init_blower();
