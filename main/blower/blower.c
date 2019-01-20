@@ -60,9 +60,6 @@ static void blower_task(void *param) {
 
 void init_blower() {
   ESP_LOGI(SGO_LOG_EVENT, "@BLOWER Initializing blower task");
-  defaulti(BLOWER, 50);
-
-  sync_ble_i(BLOWER, IDX_VALUE(BLOWER));
 
   cmd = xQueueCreate(10, sizeof(int));
   if (cmd == NULL) {

@@ -28,9 +28,6 @@
 #define SHT1X_HUMI "SHT1X_HU"
 
 void init_sht1x(int sca, int sdk) {
-  defaulti(SHT1X_TEMP_C, -1);
-  defaulti(SHT1X_TEMP_F, -1);
-  defaulti(SHT1X_HUMI, -1);
 }
 
 void loop_sht1x(int sda, int sck) {

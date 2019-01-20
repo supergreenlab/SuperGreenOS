@@ -86,6 +86,7 @@ static esp_err_t geti_handler(httpd_req_t *req) {
   char ret[12] = {0};
   sprintf(ret, "%d", v);
 
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_send(req, ret, strlen(ret));
   return ESP_OK;
 }
@@ -123,6 +124,7 @@ static esp_err_t getstr_handler(httpd_req_t *req) {
   char v[MAX_KVALUE_SIZE] = {0};
   h->getter(v, MAX_KVALUE_SIZE - 1);
 
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_send(req, v, strlen(v));
   return ESP_OK;
 }
