@@ -54,7 +54,7 @@ static void set_duty(int i, int duty) {
   }
 
   duty = min(100, max(duty, 0));
-  ledc_channels[i].setter(rset_led_duty(i, duty));
+  ledc_channels[i].setter(duty);
 }
 
 static void set_duty_3d(int boxId, double x, double y, double z, int duty, int min_duty) {

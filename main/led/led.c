@@ -195,5 +195,8 @@ int get_led_param(int i, const char *param) {
 /* KV Callbacks */
 
 int on_set_led_duty(int ledId, int value) {
-  return rset_led_duty(ledId, value);
+  value = min(100, max(value, 0));
+  set_led_duty(ledId, value);
+  refresh_led(-1, ledId);
+  return value;
 }
