@@ -39,7 +39,7 @@ custom_modules:
   - manual
 
 i2c_devices:
-
+  - dust_gp2y10
   - sht1x
   - arduino_co2
 
@@ -363,9 +363,6 @@ keys:
     integer: true
     nvs:
       key: SHT1X_C
-    ble:
-      uuid: "{0x25,0x8e,0x2d,0xf9,0x77,0x3d,0x9f,0xee,0x37,0x61,0x00,0x3b,0x36,0x28,0xab,0xb5}"
-      notify: true
     http:
       noop: true
     default: -1000000
@@ -375,9 +372,6 @@ keys:
     integer: true
     nvs:
       key: SHT1X_F
-    ble:
-      uuid: "{0x7b,0xac,0x28,0xbb,0xf8,0xaa,0x7c,0xde,0x31,0xee,0xab,0xa2,0x9d,0xc4,0xdd,0xbe}"
-      notify: true
     http:
       noop: true
     default: -1000000
@@ -387,9 +381,24 @@ keys:
     integer: true
     nvs:
       key: SHT1X_HU
-    ble:
-      uuid: "{0x29,0xdb,0x5c,0x3f,0xdb,0x0c,0x91,0x88,0x5c,0x1e,0x93,0xf9,0x4c,0x16,0xa7,0xba}"
-      notify: true
+    http:
+      noop: true
+    default: -1000000
+
+  - name: arduino_co2
+    caps_name: ARDUINO_CO2
+    integer: true
+    nvs:
+      key: ARDU_CO2
+    http:
+      noop: true
+    default: -1000000
+
+  - name: dust_gpy2y10
+    caps_name: DUST_GPY2Y10
+    integer: true
+    nvs:
+      key: DUST_G2Y1
     http:
       noop: true
     default: -1000000

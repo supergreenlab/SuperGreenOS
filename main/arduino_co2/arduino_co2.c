@@ -19,6 +19,7 @@
 #include "arduino_co2.h"
 #include "driver/i2c.h"
 
+#include "../core/kv/kv.h"
 #include "../core/log/log.h"
 #include "../core/i2c/i2c.h"
 
@@ -28,7 +29,7 @@
 #define NACK_VAL 0x1
 
 void init_arduino_co2(int sca, int sdk) {
-
+  ESP_LOGI(SGO_LOG_EVENT, "@ARDUINO_CO2 Initializing arduino_co2 i2c device\n");
 }
 
 void loop_arduino_co2(int sda, int sck) {
@@ -53,6 +54,7 @@ void loop_arduino_co2(int sda, int sck) {
 		ESP_LOGI(SGO_LOG_NOSEND, "@ARDUINO_CO2 Read failed");
 	}
 	ESP_LOGI(SGO_LOG_METRIC, "@ARDUINO_CO2 co2=%d", v);
+  set_arduino_co2(v);
 
   stop_i2c();
 }

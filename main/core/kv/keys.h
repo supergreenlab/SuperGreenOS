@@ -53,6 +53,8 @@
 #define SHT1X_TEMP_C "SHT1X_C"
 #define SHT1X_TEMP_F "SHT1X_F"
 #define SHT1X_HUMI "SHT1X_HU"
+#define ARDUINO_CO2 "ARDU_CO2"
+#define DUST_GPY2Y10 "DUST_G2Y1"
 #define LED_0_DUTY "L_0_D"
 #define LED_1_DUTY "L_1_D"
 #define LED_2_DUTY "L_2_D"

@@ -121,6 +121,10 @@ void preinit_kv() {
   defaulti(SHT1X_TEMP_F, default_sht1x_temp_f);
   int default_sht1x_humi = -1000000;
   defaulti(SHT1X_HUMI, default_sht1x_humi);
+  int default_arduino_co2 = -1000000;
+  defaulti(ARDUINO_CO2, default_arduino_co2);
+  int default_dust_gpy2y10 = -1000000;
+  defaulti(DUST_GPY2Y10, default_dust_gpy2y10);
   int default_led_0_duty = 0;
   defaulti(LED_0_DUTY, default_led_0_duty);
   int default_led_1_duty = 0;
@@ -217,9 +221,6 @@ void postinit_kv() {
   sync_ble_i(STRETCH, IDX_VALUE(STRETCH));
   sync_ble_i(LED_DIM, IDX_VALUE(LED_DIM));
   sync_ble_i(BLOWER, IDX_VALUE(BLOWER));
-  sync_ble_i(SHT1X_TEMP_C, IDX_VALUE(SHT1X_TEMP_C));
-  sync_ble_i(SHT1X_TEMP_F, IDX_VALUE(SHT1X_TEMP_F));
-  sync_ble_i(SHT1X_HUMI, IDX_VALUE(SHT1X_HUMI));
 
   // Initialize non-nvs keys
   int default_wifi_status = DISCONNECTED;

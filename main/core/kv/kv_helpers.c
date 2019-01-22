@@ -354,7 +354,6 @@ int get_sht1x_temp_c() {
 
 void set_sht1x_temp_c(int value) {
   seti(SHT1X_TEMP_C, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_SHT1X_TEMP_C, (uint8_t *)&value, sizeof(int));
 }
 
 
@@ -365,7 +364,6 @@ int get_sht1x_temp_f() {
 
 void set_sht1x_temp_f(int value) {
   seti(SHT1X_TEMP_F, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_SHT1X_TEMP_F, (uint8_t *)&value, sizeof(int));
 }
 
 
@@ -376,7 +374,26 @@ int get_sht1x_humi() {
 
 void set_sht1x_humi(int value) {
   seti(SHT1X_HUMI, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_SHT1X_HUMI, (uint8_t *)&value, sizeof(int));
+}
+
+
+
+int get_arduino_co2() {
+  return geti(ARDUINO_CO2);
+}
+
+void set_arduino_co2(int value) {
+  seti(ARDUINO_CO2, value);
+}
+
+
+
+int get_dust_gpy2y10() {
+  return geti(DUST_GPY2Y10);
+}
+
+void set_dust_gpy2y10(int value) {
+  seti(DUST_GPY2Y10, value);
 }
 
 

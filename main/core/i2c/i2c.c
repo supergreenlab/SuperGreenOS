@@ -23,6 +23,7 @@
 #include "../kv/kv.h"
 #include "../log/log.h"
 
+#include "../../dust_gp2y10/dust_gp2y10.h"
 #include "../../sht1x/sht1x.h"
 #include "../../arduino_co2/arduino_co2.h"
 
@@ -59,6 +60,8 @@ void i2c_task(void *param) {
   int sda = get_i2c_sda();
   int scl = get_i2c_scl();
   while(true) {
+    loop_dust_gp2y10(sda, scl);
+    vTaskDelay(50 / portTICK_RATE_MS);
     loop_sht1x(sda, scl);
     vTaskDelay(50 / portTICK_RATE_MS);
     loop_arduino_co2(sda, scl);
@@ -72,6 +75,7 @@ void init_i2c() {
   int sda = get_i2c_sda();
   int scl = get_i2c_scl();
   // Call `init` driver methods
+  init_dust_gp2y10(sda, scl);
   init_sht1x(sda, scl);
   init_arduino_co2(sda, scl);
 

@@ -238,7 +238,6 @@ void internal_set_sht1x_temp_c(int value) {
   seti(SHT1X_TEMP_C, value);
 
 
-  set_attr_value_and_notify(IDX_CHAR_VAL_SHT1X_TEMP_C, (uint8_t *)&value, sizeof(int));
 
   // TODO: httpd notify
 }
@@ -246,7 +245,6 @@ void internal_set_sht1x_temp_f(int value) {
   seti(SHT1X_TEMP_F, value);
 
 
-  set_attr_value_and_notify(IDX_CHAR_VAL_SHT1X_TEMP_F, (uint8_t *)&value, sizeof(int));
 
   // TODO: httpd notify
 }
@@ -254,7 +252,20 @@ void internal_set_sht1x_humi(int value) {
   seti(SHT1X_HUMI, value);
 
 
-  set_attr_value_and_notify(IDX_CHAR_VAL_SHT1X_HUMI, (uint8_t *)&value, sizeof(int));
+
+  // TODO: httpd notify
+}
+void internal_set_arduino_co2(int value) {
+  seti(ARDUINO_CO2, value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_dust_gpy2y10(int value) {
+  seti(DUST_GPY2Y10, value);
+
+
 
   // TODO: httpd notify
 }

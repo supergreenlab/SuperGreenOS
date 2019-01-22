@@ -5,4 +5,4 @@ COMPONENT_SRCDIRS := . core core/wifi core/ble core/kv core/ota core/httpd core/
 COMPONENT_SRCDIRS += blower fans led mixer state status_led timer onoff manual
 
 # I2C devices
-COMPONENT_SRCDIRS += sht1x arduino_co2
+COMPONENT_SRCDIRS += dust_gp2y10 sht1x arduino_co2

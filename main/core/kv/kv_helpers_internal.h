@@ -54,6 +54,8 @@ void internal_set_blower_gpio(int value);
 void internal_set_sht1x_temp_c(int value);
 void internal_set_sht1x_temp_f(int value);
 void internal_set_sht1x_humi(int value);
+void internal_set_arduino_co2(int value);
+void internal_set_dust_gpy2y10(int value);
 void internal_set_led_info(const char *value);
 void internal_set_led_0_duty(int value);
 void internal_set_led_1_duty(int value);

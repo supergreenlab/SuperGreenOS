@@ -105,7 +105,7 @@ static void mixer_task() {
     time(&now);
     int led_dim = get_led_dim();
     if (now - led_dim < 60) {
-      vTaskDelay((now - led_dim + 1) * 1000 / portTICK_PERIOD_MS);
+      vTaskDelay(10 * 1000 / portTICK_PERIOD_MS);
       continue;
     }
 

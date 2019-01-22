@@ -140,6 +140,16 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_sht1x_humi,
   },
   {
+    .name = "ARDUINO_CO2",
+    .handler = NULL,
+    .getter = get_arduino_co2,
+  },
+  {
+    .name = "DUST_GPY2Y10",
+    .handler = NULL,
+    .getter = get_dust_gpy2y10,
+  },
+  {
     .name = "LED_0_DUTY",
     .handler = internal_set_led_0_duty,
     .getter = get_led_0_duty,

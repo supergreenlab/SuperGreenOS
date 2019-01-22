@@ -149,6 +149,12 @@ static void stat_dump_task(void *param) {
     value = get_sht1x_humi();
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "SHT1X_HUMI", value);
     vTaskDelay(50 / portTICK_PERIOD_MS);
+    value = get_arduino_co2();
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "ARDUINO_CO2", value);
+    vTaskDelay(50 / portTICK_PERIOD_MS);
+    value = get_dust_gpy2y10();
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "DUST_GPY2Y10", value);
+    vTaskDelay(50 / portTICK_PERIOD_MS);
     value = get_led_0_duty();
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_0_DUTY", value);
     vTaskDelay(50 / portTICK_PERIOD_MS);
