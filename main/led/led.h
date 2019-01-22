@@ -21,6 +21,7 @@
 
 #include "../core/ble/ble_db.h"
 #include "driver/ledc.h"
+#include "led_helpers.h"
 
 typedef struct led_config {
   bool enabled;
@@ -28,6 +29,8 @@ typedef struct led_config {
   int x;
   int y;
   int z;
+
+  int box;
 
   ledc_channel_config_t channel_config;
   void (*setter)(int);
@@ -44,12 +47,14 @@ extern int max_z;
 
 extern led_config_t ledc_channels[];
 
-#define CHANNEL(i, lenabled, lx, ly, lz, gpio, timer, chan) { \
+#define CHANNEL(i, lenabled, lx, ly, lz, b, gpio, timer, chan) { \
     enabled: lenabled, \
     \
     x: lx, \
     y: ly, \
     z: lz, \
+    \
+    box: b, \
     \
     channel_config: { \
       gpio_num:    gpio, \
@@ -67,8 +72,8 @@ extern const unsigned int N_LEDS;
 void init_led();
 void refresh_led(int i);
 
-int set_led_duty(int i, int value);
-int get_led_duty(int i);
+int rset_led_duty(int i, int value);
+int rget_led_duty(int i);
 
 #define DEFAULT_LED_0_GPIO 32
 #define DEFAULT_LED_1_GPIO 17
@@ -79,11 +84,6 @@ int get_led_duty(int i);
 
 /* BLE Callbacks */
 
-int on_set_led_0_duty(int value);
-int on_set_led_1_duty(int value);
-int on_set_led_2_duty(int value);
-int on_set_led_3_duty(int value);
-int on_set_led_4_duty(int value);
-int on_set_led_5_duty(int value);
+int on_set_led_duty(int ledId, int value);
 
 #endif

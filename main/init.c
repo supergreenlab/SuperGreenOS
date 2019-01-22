@@ -36,8 +36,6 @@ void init_app() {
   init_blower();
 
   init_timer();
-  init_manual();
-  init_onoff();
 
   init_mixer();
 }

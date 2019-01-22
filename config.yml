@@ -37,11 +37,59 @@ custom_modules:
   - timer
   - onoff
   - manual
+  - box
 
 i2c_devices:
   - dust_gp2y10
   - sht1x
   - arduino_co2
+
+# TODO generate this with a command
+
+box_params:
+  - enabled     
+  - timer_type
+  - timer_output
+  - started_at
+  - on_hour 
+  - on_min 
+  - off_hour
+  - off_min
+  - stretch
+  - led_dim    
+  - blower     
+  - blower_mode 
+  - blower_gpio 
+  - sht1x_temp_c
+  - sht1x_temp_f
+  - sht1x_humi 
+  - arduino_co2
+  - dust_gp2y10
+  - led_info
+
+# This is why I intend to move away from mustache templates
+
+box_loop_i:
+  - 0
+  - 1
+  - 2
+
+led_params:
+  - duty
+  - gpio
+  - x
+  - y
+  - z
+  - enable
+  - box
+
+led_loop_i:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
 
 keys:
 
@@ -217,11 +265,32 @@ keys:
       write: true
     default: SuperGreenDriver
 
-  - name: timer_type
-    caps_name: TIMER_TYPE
+  #
+  # Boxes configurations
+  # 
+
+  #
+  # BOX 0
+  #
+
+  - name: box_0_enabled
+    caps_name: BOX_0_ENABLED
     integer: true
+    box:
+      index: 0
+      param: enabled
     nvs:
-      key: TIMER_T
+      key: B_0_E
+    default: 1
+
+  - name: box_0_timer_type
+    caps_name: BOX_0_TIMER_TYPE
+    integer: true
+    box:
+      index: 0
+      param: timer_type
+    nvs:
+      key: B_0_TT
       manual: true
     ble:
       uuid: "{0xf3,0xa9,0xfa,0xb2,0x5a,0x41,0x3d,0x34,0x7b,0x0a,0xa9,0x3a,0x40,0xa8,0x5e,0x5f}"
@@ -231,20 +300,26 @@ keys:
     write_cb: true
     default_var: TIMER_MANUAL
 
-  - name: timer_output
-    caps_name: TIMER_OUTPUT
+  - name: box_0_timer_output
+    caps_name: BOX_0_TIMER_OUTPUT
     integer: true
+    box:
+      index: 0
+      param: timer_output
     nvs:
-      key: TIMER_O
+      key: B_0_TO
     http:
       noop: true
     default: 0
 
-  - name: started_at
-    caps_name: STARTED_AT
+  - name: box_0_started_at
+    caps_name: BOX_0_STARTED_AT
     integer: true
+    box:
+      index: 0
+      param: started_at
     nvs:
-      key: ST_AT
+      key: B_0_ST_AT
     ble:
       uuid: "{0xa2,0x95,0x3b,0x05,0x4b,0x30,0x39,0xba,0x57,0x4f,0x01,0xf1,0x34,0x02,0x45,0x1f}"
       notify: true
@@ -253,11 +328,14 @@ keys:
       write: true
     default: 0
 
-  - name: on_hour
-    caps_name: ON_HOUR
+  - name: box_0_on_hour
+    caps_name: B_0_ON_HOUR
     integer: true
+    box:
+      index: 0
+      param: on_hour
     nvs:
-      key: ON_H
+      key: B_0_ON_H
     ble:
       uuid: "{0xa1,0x4b,0xed,0x50,0xf3,0x19,0x26,0xef,0xda,0x09,0xb7,0x4a,0xa6,0xf9,0x67,0xe8}"
       write: true
@@ -265,11 +343,14 @@ keys:
       write: true
     default: 1
 
-  - name: on_min
-    caps_name: ON_MIN
+  - name: box_0_on_min
+    caps_name: BOX_0_ON_MIN
     integer: true
+    box:
+      index: 0
+      param: on_min
     nvs:
-      key: ON_M
+      key: B_0_ON_M
     ble:
       uuid: "{0x47,0x13,0x79,0xf1,0x67,0x71,0xf5,0x62,0x14,0xf7,0x3b,0xdd,0x0b,0xa5,0x28,0x75}"
       write: true
@@ -277,11 +358,14 @@ keys:
       write: true
     default: 0
 
-  - name: off_hour
-    caps_name: OFF_HOUR
+  - name: box_0_off_hour
+    caps_name: BOX_0_OFF_HOUR
     integer: true
+    box:
+      index: 0
+      param: off_hour
     nvs:
-      key: OFF_H
+      key: B_0_OFF_H
     ble:
       uuid: "{0xae,0xbe,0x35,0x4c,0x29,0x12,0x53,0x02,0x6b,0xab,0x7e,0x9d,0x8c,0xb8,0xaf,0x5d}"
       write: true
@@ -289,11 +373,14 @@ keys:
       write: true
     default: 19
 
-  - name: off_min
-    caps_name: OFF_MIN
+  - name: box_0_off_min
+    caps_name: BOX_0_OFF_MIN
     integer: true
+    box:
+      index: 0
+      param: off_min
     nvs:
-      key: OFF_M
+      key: B_0_OFF_M
     ble:
       uuid: "{0xd4,0xd3,0xef,0x05,0x3f,0x4f,0x10,0x41,0x22,0x2d,0xab,0xd9,0xe1,0xa1,0x6a,0x08}"
       write: true
@@ -301,11 +388,14 @@ keys:
       write: true
     default: 0
 
-  - name: stretch
-    caps_name: STRETCH
+  - name: box_0_stretch
+    caps_name: BOX_0_STRETCH
     integer: true
+    box:
+      index: 0
+      param: stretch
     nvs:
-      key: STRETCH
+      key: B_0_STRETCH
     ble:
       uuid: "{0xe5,0x5a,0x87,0x47,0xcc,0xb2,0xe1,0xa5,0x22,0x48,0xb0,0x95,0x6b,0x32,0x72,0x70}"
       notify: true
@@ -314,9 +404,12 @@ keys:
     write_cb: true
     default: 0
 
-  - name: led_dim
-    caps_name: LED_DIM
+  - name: box_0_led_dim
+    caps_name: BOX_0_LED_DIM
     integer: true
+    box:
+      index: 0
+      param: led_dim
     nvs:
       key: LED_DIM
     ble:
@@ -327,11 +420,14 @@ keys:
     write_cb: true
     default: 0
 
-  - name: blower
-    caps_name: BLOWER
+  - name: box_0_blower
+    caps_name: BOX_0_BLOWER
     integer: true
+    box:
+      index: 0
+      param: blower
     nvs:
-      key: BLWR
+      key: B_0_BLWR
     ble:
       uuid: "{0x7b,0x5e,0x0a,0xb7,0x2a,0x7f,0xfd,0x1b,0x7f,0xe3,0xdc,0xbe,0xa7,0xce,0xb7,0x03}"
       notify: true
@@ -340,72 +436,96 @@ keys:
     write_cb: true
     default: 50
 
-  - name: blower_mode
-    caps_name: BLOWER_MODE
+  - name: box_0_blower_mode
+    caps_name: BOX_0_BLOWER_MODE
     integer: true
+    box:
+      index: 0
+      param: blower_mode
     nvs:
-      key: BLWR_M
+      key: B_0_BLWR_M
     http:
       write: true
     default_var: BLOWER_MODE_MANUAL
 
-  - name: blower_gpio
-    caps_name: BLOWER_GPIO
+  - name: box_0_blower_gpio
+    caps_name: BOX_0_BLOWER_GPIO
     integer: true
+    box:
+      index: 0
+      param: blower_gpio
     nvs:
-      key: BLWR_IO
+      key: B_0_BLWR_IO
     http:
       write: true
     default_var: DEFAULT_BLOWER_GPIO
  
-  - name: sht1x_temp_c
-    caps_name: SHT1X_TEMP_C
+  - name: box_0_sht1x_temp_c
+    caps_name: BOX_0_SHT1X_TEMP_C
     integer: true
+    box:
+      index: 0
+      param: sht1x_temp_c
     nvs:
-      key: SHT1X_C
+      key: B_0_SHT1X_C
     http:
       noop: true
     default: -1000000
 
-  - name: sht1x_temp_f
-    caps_name: SHT1X_TEMP_F
+  - name: box_0_sht1x_temp_f
+    caps_name: BOX_0_SHT1X_TEMP_F
     integer: true
+    box:
+      index: 0
+      param: sht1x_temp_f
     nvs:
-      key: SHT1X_F
+      key: B_0_SHT1X_F
     http:
       noop: true
     default: -1000000
 
-  - name: sht1x_humi
-    caps_name: SHT1X_HUMI
+  - name: box_0_sht1x_humi
+    caps_name: BOX_0_SHT1X_HUMI
     integer: true
+    box:
+      index: 0
+      param: sht1x_humi
     nvs:
-      key: SHT1X_HU
+      key: B_0_SHT1X_HU
     http:
       noop: true
     default: -1000000
 
-  - name: arduino_co2
-    caps_name: ARDUINO_CO2
+  - name: box_0_arduino_co2
+    caps_name: BOX_0_ARDUINO_CO2
     integer: true
+    box:
+      index: 0
+      param: arduino_co2
     nvs:
-      key: ARDU_CO2
+      key: B_0_ARDU_CO2
     http:
       noop: true
     default: -1000000
 
-  - name: dust_gpy2y10
-    caps_name: DUST_GPY2Y10
+  - name: box_0_dust_gpy2y10
+    caps_name: BOX_0_DUST_GPY2Y10
     integer: true
+    box:
+      index: 0
+      param: dust_gp2y10
     nvs:
-      key: DUST_G2Y1
+      key: B_0_DUST_G2Y1
     http:
       noop: true
     default: -1000000
 
-  - name: led_info
-    caps_name: LED_INFO
+  - name: box_0_led_info
+    caps_name: BOX_0_LED_INFO
     string: true
+    box:
+      index: 0
+      param: led_info
     ble:
       uuid: "{0x96,0xc5,0x14,0x21,0x97,0x6a,0x70,0x18,0x34,0x52,0xce,0x6d,0xfe,0x81,0xf7,0x6d}"
       notify: true
@@ -413,8 +533,485 @@ keys:
       noop: true
     default: ""
 
+  #
+  # BOX 1
+  #
+
+  - name: box_1_enabled
+    caps_name: BOX_1_ENABLED
+    integer: true
+    box:
+      index: 1
+      param: enabled
+    nvs:
+      key: B_1_E
+    http:
+      write: true
+    default: 0
+
+  - name: box_1_timer_type
+    caps_name: BOX_1_TIMER_TYPE
+    integer: true
+    box:
+      index: 1
+      param: timer_type
+    nvs:
+      key: B_1_TT
+      manual: true
+    http:
+      write: true
+    write_cb: true
+    default_var: TIMER_MANUAL
+
+  - name: box_1_timer_output
+    caps_name: BOX_1_TIMER_OUTPUT
+    integer: true
+    box:
+      index: 1
+      param: timer_output
+    nvs:
+      key: B_1_TO
+    http:
+      noop: true
+    default: 0
+
+  - name: box_1_started_at
+    caps_name: BOX_1_STARTED_AT
+    integer: true
+    box:
+      index: 1
+      param: started_at
+    nvs:
+      key: B_1_ST_AT
+    http:
+      write: true
+    default: 0
+
+  - name: box_1_on_hour
+    caps_name: B_1_ON_HOUR
+    integer: true
+    box:
+      index: 1
+      param: on_hour
+    nvs:
+      key: B_1_ON_H
+    http:
+      write: true
+    default: 1
+
+  - name: box_1_on_min
+    caps_name: BOX_1_ON_MIN
+    integer: true
+    box:
+      index: 1
+      param: on_min
+    nvs:
+      key: B_1_ON_M
+    http:
+      write: true
+    default: 0
+
+  - name: box_1_off_hour
+    caps_name: BOX_1_OFF_HOUR
+    integer: true
+    box:
+      index: 1
+      param: off_hour
+    nvs:
+      key: B_1_OFF_H
+    http:
+      write: true
+    default: 19
+
+  - name: box_1_off_min
+    caps_name: BOX_1_OFF_MIN
+    integer: true
+    box:
+      index: 1
+      param: off_min
+    nvs:
+      key: B_1_OFF_M
+    http:
+      write: true
+    default: 0
+
+  - name: box_1_stretch
+    caps_name: BOX_1_STRETCH
+    integer: true
+    box:
+      index: 1
+      param: stretch
+    nvs:
+      key: B_1_STRETCH
+    http:
+      write: true
+    write_cb: true
+    default: 0
+
+  - name: box_1_led_dim
+    caps_name: BOX_1_LED_DIM
+    integer: true
+    box:
+      index: 1
+      param: led_dim
+    nvs:
+      key: LED_DIM
+    http:
+      write: true
+    write_cb: true
+    default: 0
+
+  - name: box_1_blower
+    caps_name: BOX_1_BLOWER
+    integer: true
+    box:
+      index: 1
+      param: blower
+    nvs:
+      key: B_1_BLWR
+    http:
+      write: true
+    write_cb: true
+    default: 50
+
+  - name: box_1_blower_mode
+    caps_name: BOX_1_BLOWER_MODE
+    integer: true
+    box:
+      index: 1
+      param: blower_mode
+    nvs:
+      key: B_1_BLWR_M
+    http:
+      write: true
+    default_var: BLOWER_MODE_MANUAL
+
+  - name: box_1_blower_gpio
+    caps_name: BOX_1_BLOWER_GPIO
+    integer: true
+    box:
+      index: 1
+      param: blower_gpio
+    nvs:
+      key: B_1_BLWR_IO
+    http:
+      write: true
+    default_var: DEFAULT_BLOWER_GPIO
+ 
+  - name: box_1_sht1x_temp_c
+    caps_name: BOX_1_SHT1X_TEMP_C
+    integer: true
+    box:
+      index: 1
+      param: sht1x_temp_c
+    nvs:
+      key: B_1_SHT1X_C
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_1_sht1x_temp_f
+    caps_name: BOX_1_SHT1X_TEMP_F
+    integer: true
+    box:
+      index: 1
+      param: sht1x_temp_f
+    nvs:
+      key: B_1_SHT1X_F
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_1_sht1x_humi
+    caps_name: BOX_1_SHT1X_HUMI
+    integer: true
+    box:
+      index: 1
+      param: sht1x_humi
+    nvs:
+      key: B_1_SHT1X_HU
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_1_arduino_co2
+    caps_name: BOX_1_ARDUINO_CO2
+    integer: true
+    box:
+      index: 1
+      param: arduino_co2
+    nvs:
+      key: B_1_ARDU_CO2
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_1_dust_gpy2y10
+    caps_name: BOX_1_DUST_GPY2Y10
+    integer: true
+    box:
+      index: 1
+      param: dust_gp2y10
+    nvs:
+      key: B_1_DUST_G2Y1
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_1_led_info
+    caps_name: BOX_1_LED_INFO
+    string: true
+    box:
+      index: 1
+      param: led_info
+    http:
+      noop: true
+    default: ""
+
+  #
+  # BOX 2
+  #
+
+  - name: box_2_enabled
+    caps_name: BOX_2_ENABLED
+    integer: true
+    box:
+      index: 2
+      param: enabled
+    nvs:
+      key: B_2_E
+    http:
+      write: true
+    default: 0
+
+  - name: box_2_timer_type
+    caps_name: BOX_2_TIMER_TYPE
+    integer: true
+    box:
+      index: 2
+      param: timer_type
+    nvs:
+      key: B_2_TT
+      manual: true
+    http:
+      write: true
+    write_cb: true
+    default_var: TIMER_MANUAL
+
+  - name: box_2_timer_output
+    caps_name: BOX_2_TIMER_OUTPUT
+    integer: true
+    box:
+      index: 2
+      param: timer_output
+    nvs:
+      key: B_2_TO
+    http:
+      noop: true
+    default: 0
+
+  - name: box_2_started_at
+    caps_name: BOX_2_STARTED_AT
+    integer: true
+    box:
+      index: 2
+      param: started_at
+    nvs:
+      key: B_2_ST_AT
+    http:
+      write: true
+    default: 0
+
+  - name: box_2_on_hour
+    caps_name: B_2_ON_HOUR
+    integer: true
+    box:
+      index: 2
+      param: on_hour
+    nvs:
+      key: B_2_ON_H
+    http:
+      write: true
+    default: 1
+
+  - name: box_2_on_min
+    caps_name: BOX_2_ON_MIN
+    integer: true
+    box:
+      index: 2
+      param: on_min
+    nvs:
+      key: B_2_ON_M
+    http:
+      write: true
+    default: 0
+
+  - name: box_2_off_hour
+    caps_name: BOX_2_OFF_HOUR
+    integer: true
+    box:
+      index: 2
+      param: off_hour
+    nvs:
+      key: B_2_OFF_H
+    http:
+      write: true
+    default: 19
+
+  - name: box_2_off_min
+    caps_name: BOX_2_OFF_MIN
+    integer: true
+    box:
+      index: 2
+      param: off_min
+    nvs:
+      key: B_2_OFF_M
+    http:
+      write: true
+    default: 0
+
+  - name: box_2_stretch
+    caps_name: BOX_2_STRETCH
+    integer: true
+    box:
+      index: 2
+      param: stretch
+    nvs:
+      key: B_2_STRETCH
+    http:
+      write: true
+    write_cb: true
+    default: 0
+
+  - name: box_2_led_dim
+    caps_name: BOX_2_LED_DIM
+    integer: true
+    box:
+      index: 2
+      param: led_dim
+    nvs:
+      key: LED_DIM
+    http:
+      write: true
+    write_cb: true
+    default: 0
+
+  - name: box_2_blower
+    caps_name: BOX_2_BLOWER
+    integer: true
+    box:
+      index: 2
+      param: blower
+    nvs:
+      key: B_2_BLWR
+    http:
+      write: true
+    write_cb: true
+    default: 50
+
+  - name: box_2_blower_mode
+    caps_name: BOX_2_BLOWER_MODE
+    integer: true
+    box:
+      index: 2
+      param: blower_mode
+    nvs:
+      key: B_2_BLWR_M
+    http:
+      write: true
+    default_var: BLOWER_MODE_MANUAL
+
+  - name: box_2_blower_gpio
+    caps_name: BOX_2_BLOWER_GPIO
+    integer: true
+    box:
+      index: 2
+      param: blower_gpio
+    nvs:
+      key: B_2_BLWR_IO
+    http:
+      write: true
+    default_var: DEFAULT_BLOWER_GPIO
+ 
+  - name: box_2_sht1x_temp_c
+    caps_name: BOX_2_SHT1X_TEMP_C
+    integer: true
+    box:
+      index: 2
+      param: sht1x_temp_c
+    nvs:
+      key: B_2_SHT1X_C
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_2_sht1x_temp_f
+    caps_name: BOX_2_SHT1X_TEMP_F
+    integer: true
+    box:
+      index: 2
+      param: sht1x_temp_f
+    nvs:
+      key: B_2_SHT1X_F
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_2_sht1x_humi
+    caps_name: BOX_2_SHT1X_HUMI
+    integer: true
+    box:
+      index: 2
+      param: sht1x_humi
+    nvs:
+      key: B_2_SHT1X_HU
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_2_arduino_co2
+    caps_name: BOX_2_ARDUINO_CO2
+    integer: true
+    box:
+      index: 2
+      param: arduino_co2
+    nvs:
+      key: B_2_ARDU_CO2
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_2_dust_gpy2y10
+    caps_name: BOX_2_DUST_GPY2Y10
+    integer: true
+    box:
+      index: 2
+      param: dust_gp2y10
+    nvs:
+      key: B_2_DUST_G2Y1
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_2_led_info
+    caps_name: BOX_2_LED_INFO
+    string: true
+    box:
+      index: 2
+      param: led_info
+    http:
+      noop: true
+    default: ""
+
+  #
+  # LEDs Configurations
+  #
+
   - name: led_0_duty
     caps_name: LED_0_DUTY
+    led:
+      index: 0
+      param: duty
     integer: true
     nvs:
       key: L_0_D
@@ -426,6 +1023,9 @@ keys:
   - name: led_1_duty
     caps_name: LED_1_DUTY
     integer: true
+    led:
+      index: 1
+      param: duty
     nvs:
       key: L_1_D
     http:
@@ -436,6 +1036,9 @@ keys:
   - name: led_2_duty
     caps_name: LED_2_DUTY
     integer: true
+    led:
+      index: 2
+      param: duty
     nvs:
       key: L_2_D
     http:
@@ -446,6 +1049,9 @@ keys:
   - name: led_3_duty
     caps_name: LED_3_DUTY
     integer: true
+    led:
+      index: 3
+      param: duty
     nvs:
       key: L_3_D
     http:
@@ -456,6 +1062,9 @@ keys:
   - name: led_4_duty
     caps_name: LED_4_DUTY
     integer: true
+    led:
+      index: 4
+      param: duty
     nvs:
       key: L_4_D
     http:
@@ -466,6 +1075,9 @@ keys:
   - name: led_5_duty
     caps_name: LED_5_DUTY
     integer: true
+    led:
+      index: 5
+      param: duty
     nvs:
       key: L_5_D
     http:
@@ -476,6 +1088,9 @@ keys:
   - name: led_0_gpio
     caps_name: LED_0_GPIO
     integer: true
+    led:
+      index: 0
+      param: gpio
     nvs:
       key: L_0_IO
     http:
@@ -485,6 +1100,9 @@ keys:
   - name: led_1_gpio
     caps_name: LED_1_GPIO
     integer: true
+    led:
+      index: 1
+      param: gpio
     nvs:
       key: L_1_IO
     http:
@@ -494,6 +1112,9 @@ keys:
   - name: led_2_gpio
     caps_name: LED_2_GPIO
     integer: true
+    led:
+      index: 2
+      param: gpio
     nvs:
       key: L_2_IO
     http:
@@ -503,6 +1124,9 @@ keys:
   - name: led_3_gpio
     caps_name: LED_3_GPIO
     integer: true
+    led:
+      index: 3
+      param: gpio
     nvs:
       key: L_3_IO
     http:
@@ -512,6 +1136,9 @@ keys:
   - name: led_4_gpio
     caps_name: LED_4_GPIO
     integer: true
+    led:
+      index: 4
+      param: gpio
     nvs:
       key: L_4_IO
     http:
@@ -521,6 +1148,9 @@ keys:
   - name: led_5_gpio
     caps_name: LED_5_GPIO
     integer: true
+    led:
+      index: 5
+      param: gpio
     nvs:
       key: L_5_IO
     http:
@@ -530,6 +1160,9 @@ keys:
   - name: led_0_x
     caps_name: LED_0_X
     integer: true
+    led:
+      index: 0
+      param: x
     nvs:
       key: L_0_X
     http:
@@ -539,6 +1172,9 @@ keys:
   - name: led_1_x
     caps_name: LED_1_X
     integer: true
+    led:
+      index: 1
+      param: x
     nvs:
       key: L_1_X
     http:
@@ -548,6 +1184,9 @@ keys:
   - name: led_2_x
     caps_name: LED_2_X
     integer: true
+    led:
+      index: 2
+      param: x
     nvs:
       key: L_2_X
     http:
@@ -557,6 +1196,9 @@ keys:
   - name: led_3_x
     caps_name: LED_3_X
     integer: true
+    led:
+      index: 3
+      param: x
     nvs:
       key: L_3_X
     http:
@@ -566,6 +1208,9 @@ keys:
   - name: led_4_x
     caps_name: LED_4_X
     integer: true
+    led:
+      index: 4
+      param: x
     nvs:
       key: L_4_X
     http:
@@ -575,6 +1220,9 @@ keys:
   - name: led_5_x
     caps_name: LED_5_X
     integer: true
+    led:
+      index: 5
+      param: x
     nvs:
       key: L_5_X
     http:
@@ -584,6 +1232,9 @@ keys:
   - name: led_0_y
     caps_name: LED_0_Y
     integer: true
+    led:
+      index: 0
+      param: y
     nvs:
       key: L_0_Y
     http:
@@ -593,6 +1244,9 @@ keys:
   - name: led_1_y
     caps_name: LED_1_Y
     integer: true
+    led:
+      index: 1
+      param: y
     nvs:
       key: L_1_Y
     http:
@@ -602,6 +1256,9 @@ keys:
   - name: led_2_y
     caps_name: LED_2_Y
     integer: true
+    led:
+      index: 2
+      param: y
     nvs:
       key: L_2_Y
     http:
@@ -611,6 +1268,9 @@ keys:
   - name: led_3_y
     caps_name: LED_3_Y
     integer: true
+    led:
+      index: 3
+      param: y
     nvs:
       key: L_3_Y
     http:
@@ -620,6 +1280,9 @@ keys:
   - name: led_4_y
     caps_name: LED_4_Y
     integer: true
+    led:
+      index: 4
+      param: y
     nvs:
       key: L_4_Y
     http:
@@ -629,6 +1292,9 @@ keys:
   - name: led_5_y
     caps_name: LED_5_Y
     integer: true
+    led:
+      index: 5
+      param: y
     nvs:
       key: L_5_Y
     http:
@@ -638,6 +1304,9 @@ keys:
   - name: led_0_z
     caps_name: LED_0_Z
     integer: true
+    led:
+      index: 0
+      param: z
     nvs:
       key: L_0_Z
     http:
@@ -647,6 +1316,9 @@ keys:
   - name: led_1_z
     caps_name: LED_1_Z
     integer: true
+    led:
+      index: 1
+      param: z
     nvs:
       key: L_1_Z
     http:
@@ -656,6 +1328,9 @@ keys:
   - name: led_2_z
     caps_name: LED_2_Z
     integer: true
+    led:
+      index: 2
+      param: z
     nvs:
       key: L_2_Z
     http:
@@ -665,6 +1340,9 @@ keys:
   - name: led_3_z
     caps_name: LED_3_Z
     integer: true
+    led:
+      index: 3
+      param: z
     nvs:
       key: L_3_Z
     http:
@@ -674,6 +1352,9 @@ keys:
   - name: led_4_z
     caps_name: LED_4_Z
     integer: true
+    led:
+      index: 4
+      param: z
     nvs:
       key: L_4_Z
     http:
@@ -683,6 +1364,9 @@ keys:
   - name: led_5_z
     caps_name: LED_5_Z
     integer: true
+    led:
+      index: 5
+      param: z
     nvs:
       key: L_5_Z
     http:
@@ -692,6 +1376,9 @@ keys:
   - name: led_0_enable
     caps_name: LED_0_ENABLE
     integer: true
+    led:
+      index: 0
+      param: enable
     nvs:
       key: L_0_E
     http:
@@ -701,6 +1388,9 @@ keys:
   - name: led_1_enable
     caps_name: LED_1_ENABLE
     integer: true
+    led:
+      index: 1
+      param: enable
     nvs:
       key: L_1_E
     http:
@@ -710,6 +1400,9 @@ keys:
   - name: led_2_enable
     caps_name: LED_2_ENABLE
     integer: true
+    led:
+      index: 2
+      param: enable
     nvs:
       key: L_2_E
     http:
@@ -719,6 +1412,9 @@ keys:
   - name: led_3_enable
     caps_name: LED_3_ENABLE
     integer: true
+    led:
+      index: 3
+      param: enable
     nvs:
       key: L_3_E
     http:
@@ -728,6 +1424,9 @@ keys:
   - name: led_4_enable
     caps_name: LED_4_ENABLE
     integer: true
+    led:
+      index: 4
+      param: enable
     nvs:
       key: L_4_E
     http:
@@ -737,8 +1436,83 @@ keys:
   - name: led_5_enable
     caps_name: LED_5_ENABLE
     integer: true
+    led:
+      index: 5
+      param: enable
     nvs:
       key: L_5_E
+    http:
+      write: true
+    default: 1
+
+  - name: led_0_box
+    caps_name: LED_0_BOX
+    integer: true
+    led:
+      index: 0
+      param: box
+    nvs:
+      key: L_0_B
+    http:
+      write: true
+    default: 0
+
+  - name: led_1_box
+    caps_name: LED_1_BOX
+    integer: true
+    led:
+      index: 1
+      param: box
+    nvs:
+      key: L_1_B
+    http:
+      write: true
+    default: 0
+
+  - name: led_2_box
+    caps_name: LED_2_BOX
+    integer: true
+    led:
+      index: 2
+      param: box
+    nvs:
+      key: L_2_B
+    http:
+      write: true
+    default: 0
+
+  - name: led_3_box
+    caps_name: LED_3_BOX
+    integer: true
+    led:
+      index: 3
+      param: box
+    nvs:
+      key: L_3_B
+    http:
+      write: true
+    default: 0
+
+  - name: led_4_box
+    caps_name: LED_4_BOX
+    integer: true
+    led:
+      index: 4
+      param: box
+    nvs:
+      key: L_4_B
+    http:
+      write: true
+    default: 1
+
+  - name: led_5_box
+    caps_name: LED_5_BOX
+    integer: true
+    led:
+      index: 5
+      param: box
+    nvs:
+      key: L_5_B
     http:
       write: true
     default: 1

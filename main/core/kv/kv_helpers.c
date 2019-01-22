@@ -224,196 +224,602 @@ void set_device_name(const char *value) {
 }
 
 
-int get_timer_type() {
-  return geti(TIMER_TYPE);
+int get_box_0_enabled() {
+  return geti(BOX_0_ENABLED);
 }
 
-void set_timer_type(int value) {
-  seti(TIMER_TYPE, value);
-}
-
-
-
-int get_timer_output() {
-  return geti(TIMER_OUTPUT);
-}
-
-void set_timer_output(int value) {
-  seti(TIMER_OUTPUT, value);
+void set_box_0_enabled(int value) {
+  seti(BOX_0_ENABLED, value);
 }
 
 
 
-int get_started_at() {
-  return geti(STARTED_AT);
+int get_box_0_timer_type() {
+  return geti(BOX_0_TIMER_TYPE);
 }
 
-void set_started_at(int value) {
-  seti(STARTED_AT, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_STARTED_AT, (uint8_t *)&value, sizeof(int));
-}
-
-
-
-int get_on_hour() {
-  return geti(ON_HOUR);
-}
-
-void set_on_hour(int value) {
-  seti(ON_HOUR, value);
+void set_box_0_timer_type(int value) {
+  seti(BOX_0_TIMER_TYPE, value);
 }
 
 
 
-int get_on_min() {
-  return geti(ON_MIN);
+int get_box_0_timer_output() {
+  return geti(BOX_0_TIMER_OUTPUT);
 }
 
-void set_on_min(int value) {
-  seti(ON_MIN, value);
-}
-
-
-
-int get_off_hour() {
-  return geti(OFF_HOUR);
-}
-
-void set_off_hour(int value) {
-  seti(OFF_HOUR, value);
+void set_box_0_timer_output(int value) {
+  seti(BOX_0_TIMER_OUTPUT, value);
 }
 
 
 
-int get_off_min() {
-  return geti(OFF_MIN);
+int get_box_0_started_at() {
+  return geti(BOX_0_STARTED_AT);
 }
 
-void set_off_min(int value) {
-  seti(OFF_MIN, value);
-}
-
-
-
-int get_stretch() {
-  return geti(STRETCH);
-}
-
-void set_stretch(int value) {
-  seti(STRETCH, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_STRETCH, (uint8_t *)&value, sizeof(int));
+void set_box_0_started_at(int value) {
+  seti(BOX_0_STARTED_AT, value);
+  set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_STARTED_AT, (uint8_t *)&value, sizeof(int));
 }
 
 
 
-int get_led_dim() {
-  return geti(LED_DIM);
+int get_box_0_on_hour() {
+  return geti(B_0_ON_HOUR);
 }
 
-void set_led_dim(int value) {
-  seti(LED_DIM, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_LED_DIM, (uint8_t *)&value, sizeof(int));
-}
-
-
-
-int get_blower() {
-  return geti(BLOWER);
-}
-
-void set_blower(int value) {
-  seti(BLOWER, value);
-  set_attr_value_and_notify(IDX_CHAR_VAL_BLOWER, (uint8_t *)&value, sizeof(int));
+void set_box_0_on_hour(int value) {
+  seti(B_0_ON_HOUR, value);
 }
 
 
 
-int get_blower_mode() {
-  return geti(BLOWER_MODE);
+int get_box_0_on_min() {
+  return geti(BOX_0_ON_MIN);
 }
 
-void set_blower_mode(int value) {
-  seti(BLOWER_MODE, value);
-}
-
-
-
-int get_blower_gpio() {
-  return geti(BLOWER_GPIO);
-}
-
-void set_blower_gpio(int value) {
-  seti(BLOWER_GPIO, value);
+void set_box_0_on_min(int value) {
+  seti(BOX_0_ON_MIN, value);
 }
 
 
 
-int get_sht1x_temp_c() {
-  return geti(SHT1X_TEMP_C);
+int get_box_0_off_hour() {
+  return geti(BOX_0_OFF_HOUR);
 }
 
-void set_sht1x_temp_c(int value) {
-  seti(SHT1X_TEMP_C, value);
-}
-
-
-
-int get_sht1x_temp_f() {
-  return geti(SHT1X_TEMP_F);
-}
-
-void set_sht1x_temp_f(int value) {
-  seti(SHT1X_TEMP_F, value);
+void set_box_0_off_hour(int value) {
+  seti(BOX_0_OFF_HOUR, value);
 }
 
 
 
-int get_sht1x_humi() {
-  return geti(SHT1X_HUMI);
+int get_box_0_off_min() {
+  return geti(BOX_0_OFF_MIN);
 }
 
-void set_sht1x_humi(int value) {
-  seti(SHT1X_HUMI, value);
-}
-
-
-
-int get_arduino_co2() {
-  return geti(ARDUINO_CO2);
-}
-
-void set_arduino_co2(int value) {
-  seti(ARDUINO_CO2, value);
+void set_box_0_off_min(int value) {
+  seti(BOX_0_OFF_MIN, value);
 }
 
 
 
-int get_dust_gpy2y10() {
-  return geti(DUST_GPY2Y10);
+int get_box_0_stretch() {
+  return geti(BOX_0_STRETCH);
 }
 
-void set_dust_gpy2y10(int value) {
-  seti(DUST_GPY2Y10, value);
+void set_box_0_stretch(int value) {
+  seti(BOX_0_STRETCH, value);
+  set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_STRETCH, (uint8_t *)&value, sizeof(int));
 }
 
 
 
-static SemaphoreHandle_t _mutex_led_info;
-static char _led_info[MAX_KVALUE_SIZE] = {0};
+int get_box_0_led_dim() {
+  return geti(BOX_0_LED_DIM);
+}
 
-void get_led_info(char *dest, size_t len) {
+void set_box_0_led_dim(int value) {
+  seti(BOX_0_LED_DIM, value);
+  set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_LED_DIM, (uint8_t *)&value, sizeof(int));
+}
+
+
+
+int get_box_0_blower() {
+  return geti(BOX_0_BLOWER);
+}
+
+void set_box_0_blower(int value) {
+  seti(BOX_0_BLOWER, value);
+  set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_BLOWER, (uint8_t *)&value, sizeof(int));
+}
+
+
+
+int get_box_0_blower_mode() {
+  return geti(BOX_0_BLOWER_MODE);
+}
+
+void set_box_0_blower_mode(int value) {
+  seti(BOX_0_BLOWER_MODE, value);
+}
+
+
+
+int get_box_0_blower_gpio() {
+  return geti(BOX_0_BLOWER_GPIO);
+}
+
+void set_box_0_blower_gpio(int value) {
+  seti(BOX_0_BLOWER_GPIO, value);
+}
+
+
+
+int get_box_0_sht1x_temp_c() {
+  return geti(BOX_0_SHT1X_TEMP_C);
+}
+
+void set_box_0_sht1x_temp_c(int value) {
+  seti(BOX_0_SHT1X_TEMP_C, value);
+}
+
+
+
+int get_box_0_sht1x_temp_f() {
+  return geti(BOX_0_SHT1X_TEMP_F);
+}
+
+void set_box_0_sht1x_temp_f(int value) {
+  seti(BOX_0_SHT1X_TEMP_F, value);
+}
+
+
+
+int get_box_0_sht1x_humi() {
+  return geti(BOX_0_SHT1X_HUMI);
+}
+
+void set_box_0_sht1x_humi(int value) {
+  seti(BOX_0_SHT1X_HUMI, value);
+}
+
+
+
+int get_box_0_arduino_co2() {
+  return geti(BOX_0_ARDUINO_CO2);
+}
+
+void set_box_0_arduino_co2(int value) {
+  seti(BOX_0_ARDUINO_CO2, value);
+}
+
+
+
+int get_box_0_dust_gpy2y10() {
+  return geti(BOX_0_DUST_GPY2Y10);
+}
+
+void set_box_0_dust_gpy2y10(int value) {
+  seti(BOX_0_DUST_GPY2Y10, value);
+}
+
+
+
+static SemaphoreHandle_t _mutex_box_0_led_info;
+static char _box_0_led_info[MAX_KVALUE_SIZE] = {0};
+
+void get_box_0_led_info(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
-  xSemaphoreTake(_mutex_led_info, 0);
-  strncpy(dest, _led_info, len);
-  xSemaphoreGive(_mutex_led_info);
+  xSemaphoreTake(_mutex_box_0_led_info, 0);
+  strncpy(dest, _box_0_led_info, len);
+  xSemaphoreGive(_mutex_box_0_led_info);
 }
 
-void set_led_info(const char *value) {
+void set_box_0_led_info(const char *value) {
   assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
-  xSemaphoreTake(_mutex_led_info, 0);
-  strncpy(_led_info, value, strlen(value));
-  xSemaphoreGive(_mutex_led_info);
-  set_attr_value_and_notify(IDX_CHAR_VAL_LED_INFO, (uint8_t *)value, strlen(value));
+  xSemaphoreTake(_mutex_box_0_led_info, 0);
+  strncpy(_box_0_led_info, value, strlen(value));
+  xSemaphoreGive(_mutex_box_0_led_info);
+  set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_LED_INFO, (uint8_t *)value, strlen(value));
+}
+
+
+int get_box_1_enabled() {
+  return geti(BOX_1_ENABLED);
+}
+
+void set_box_1_enabled(int value) {
+  seti(BOX_1_ENABLED, value);
+}
+
+
+
+int get_box_1_timer_type() {
+  return geti(BOX_1_TIMER_TYPE);
+}
+
+void set_box_1_timer_type(int value) {
+  seti(BOX_1_TIMER_TYPE, value);
+}
+
+
+
+int get_box_1_timer_output() {
+  return geti(BOX_1_TIMER_OUTPUT);
+}
+
+void set_box_1_timer_output(int value) {
+  seti(BOX_1_TIMER_OUTPUT, value);
+}
+
+
+
+int get_box_1_started_at() {
+  return geti(BOX_1_STARTED_AT);
+}
+
+void set_box_1_started_at(int value) {
+  seti(BOX_1_STARTED_AT, value);
+}
+
+
+
+int get_box_1_on_hour() {
+  return geti(B_1_ON_HOUR);
+}
+
+void set_box_1_on_hour(int value) {
+  seti(B_1_ON_HOUR, value);
+}
+
+
+
+int get_box_1_on_min() {
+  return geti(BOX_1_ON_MIN);
+}
+
+void set_box_1_on_min(int value) {
+  seti(BOX_1_ON_MIN, value);
+}
+
+
+
+int get_box_1_off_hour() {
+  return geti(BOX_1_OFF_HOUR);
+}
+
+void set_box_1_off_hour(int value) {
+  seti(BOX_1_OFF_HOUR, value);
+}
+
+
+
+int get_box_1_off_min() {
+  return geti(BOX_1_OFF_MIN);
+}
+
+void set_box_1_off_min(int value) {
+  seti(BOX_1_OFF_MIN, value);
+}
+
+
+
+int get_box_1_stretch() {
+  return geti(BOX_1_STRETCH);
+}
+
+void set_box_1_stretch(int value) {
+  seti(BOX_1_STRETCH, value);
+}
+
+
+
+int get_box_1_led_dim() {
+  return geti(BOX_1_LED_DIM);
+}
+
+void set_box_1_led_dim(int value) {
+  seti(BOX_1_LED_DIM, value);
+}
+
+
+
+int get_box_1_blower() {
+  return geti(BOX_1_BLOWER);
+}
+
+void set_box_1_blower(int value) {
+  seti(BOX_1_BLOWER, value);
+}
+
+
+
+int get_box_1_blower_mode() {
+  return geti(BOX_1_BLOWER_MODE);
+}
+
+void set_box_1_blower_mode(int value) {
+  seti(BOX_1_BLOWER_MODE, value);
+}
+
+
+
+int get_box_1_blower_gpio() {
+  return geti(BOX_1_BLOWER_GPIO);
+}
+
+void set_box_1_blower_gpio(int value) {
+  seti(BOX_1_BLOWER_GPIO, value);
+}
+
+
+
+int get_box_1_sht1x_temp_c() {
+  return geti(BOX_1_SHT1X_TEMP_C);
+}
+
+void set_box_1_sht1x_temp_c(int value) {
+  seti(BOX_1_SHT1X_TEMP_C, value);
+}
+
+
+
+int get_box_1_sht1x_temp_f() {
+  return geti(BOX_1_SHT1X_TEMP_F);
+}
+
+void set_box_1_sht1x_temp_f(int value) {
+  seti(BOX_1_SHT1X_TEMP_F, value);
+}
+
+
+
+int get_box_1_sht1x_humi() {
+  return geti(BOX_1_SHT1X_HUMI);
+}
+
+void set_box_1_sht1x_humi(int value) {
+  seti(BOX_1_SHT1X_HUMI, value);
+}
+
+
+
+int get_box_1_arduino_co2() {
+  return geti(BOX_1_ARDUINO_CO2);
+}
+
+void set_box_1_arduino_co2(int value) {
+  seti(BOX_1_ARDUINO_CO2, value);
+}
+
+
+
+int get_box_1_dust_gpy2y10() {
+  return geti(BOX_1_DUST_GPY2Y10);
+}
+
+void set_box_1_dust_gpy2y10(int value) {
+  seti(BOX_1_DUST_GPY2Y10, value);
+}
+
+
+
+static SemaphoreHandle_t _mutex_box_1_led_info;
+static char _box_1_led_info[MAX_KVALUE_SIZE] = {0};
+
+void get_box_1_led_info(char *dest, size_t len) {
+  assert(len <= MAX_KVALUE_SIZE - 1);
+  xSemaphoreTake(_mutex_box_1_led_info, 0);
+  strncpy(dest, _box_1_led_info, len);
+  xSemaphoreGive(_mutex_box_1_led_info);
+}
+
+void set_box_1_led_info(const char *value) {
+  assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
+  xSemaphoreTake(_mutex_box_1_led_info, 0);
+  strncpy(_box_1_led_info, value, strlen(value));
+  xSemaphoreGive(_mutex_box_1_led_info);
+}
+
+
+int get_box_2_enabled() {
+  return geti(BOX_2_ENABLED);
+}
+
+void set_box_2_enabled(int value) {
+  seti(BOX_2_ENABLED, value);
+}
+
+
+
+int get_box_2_timer_type() {
+  return geti(BOX_2_TIMER_TYPE);
+}
+
+void set_box_2_timer_type(int value) {
+  seti(BOX_2_TIMER_TYPE, value);
+}
+
+
+
+int get_box_2_timer_output() {
+  return geti(BOX_2_TIMER_OUTPUT);
+}
+
+void set_box_2_timer_output(int value) {
+  seti(BOX_2_TIMER_OUTPUT, value);
+}
+
+
+
+int get_box_2_started_at() {
+  return geti(BOX_2_STARTED_AT);
+}
+
+void set_box_2_started_at(int value) {
+  seti(BOX_2_STARTED_AT, value);
+}
+
+
+
+int get_box_2_on_hour() {
+  return geti(B_2_ON_HOUR);
+}
+
+void set_box_2_on_hour(int value) {
+  seti(B_2_ON_HOUR, value);
+}
+
+
+
+int get_box_2_on_min() {
+  return geti(BOX_2_ON_MIN);
+}
+
+void set_box_2_on_min(int value) {
+  seti(BOX_2_ON_MIN, value);
+}
+
+
+
+int get_box_2_off_hour() {
+  return geti(BOX_2_OFF_HOUR);
+}
+
+void set_box_2_off_hour(int value) {
+  seti(BOX_2_OFF_HOUR, value);
+}
+
+
+
+int get_box_2_off_min() {
+  return geti(BOX_2_OFF_MIN);
+}
+
+void set_box_2_off_min(int value) {
+  seti(BOX_2_OFF_MIN, value);
+}
+
+
+
+int get_box_2_stretch() {
+  return geti(BOX_2_STRETCH);
+}
+
+void set_box_2_stretch(int value) {
+  seti(BOX_2_STRETCH, value);
+}
+
+
+
+int get_box_2_led_dim() {
+  return geti(BOX_2_LED_DIM);
+}
+
+void set_box_2_led_dim(int value) {
+  seti(BOX_2_LED_DIM, value);
+}
+
+
+
+int get_box_2_blower() {
+  return geti(BOX_2_BLOWER);
+}
+
+void set_box_2_blower(int value) {
+  seti(BOX_2_BLOWER, value);
+}
+
+
+
+int get_box_2_blower_mode() {
+  return geti(BOX_2_BLOWER_MODE);
+}
+
+void set_box_2_blower_mode(int value) {
+  seti(BOX_2_BLOWER_MODE, value);
+}
+
+
+
+int get_box_2_blower_gpio() {
+  return geti(BOX_2_BLOWER_GPIO);
+}
+
+void set_box_2_blower_gpio(int value) {
+  seti(BOX_2_BLOWER_GPIO, value);
+}
+
+
+
+int get_box_2_sht1x_temp_c() {
+  return geti(BOX_2_SHT1X_TEMP_C);
+}
+
+void set_box_2_sht1x_temp_c(int value) {
+  seti(BOX_2_SHT1X_TEMP_C, value);
+}
+
+
+
+int get_box_2_sht1x_temp_f() {
+  return geti(BOX_2_SHT1X_TEMP_F);
+}
+
+void set_box_2_sht1x_temp_f(int value) {
+  seti(BOX_2_SHT1X_TEMP_F, value);
+}
+
+
+
+int get_box_2_sht1x_humi() {
+  return geti(BOX_2_SHT1X_HUMI);
+}
+
+void set_box_2_sht1x_humi(int value) {
+  seti(BOX_2_SHT1X_HUMI, value);
+}
+
+
+
+int get_box_2_arduino_co2() {
+  return geti(BOX_2_ARDUINO_CO2);
+}
+
+void set_box_2_arduino_co2(int value) {
+  seti(BOX_2_ARDUINO_CO2, value);
+}
+
+
+
+int get_box_2_dust_gpy2y10() {
+  return geti(BOX_2_DUST_GPY2Y10);
+}
+
+void set_box_2_dust_gpy2y10(int value) {
+  seti(BOX_2_DUST_GPY2Y10, value);
+}
+
+
+
+static SemaphoreHandle_t _mutex_box_2_led_info;
+static char _box_2_led_info[MAX_KVALUE_SIZE] = {0};
+
+void get_box_2_led_info(char *dest, size_t len) {
+  assert(len <= MAX_KVALUE_SIZE - 1);
+  xSemaphoreTake(_mutex_box_2_led_info, 0);
+  strncpy(dest, _box_2_led_info, len);
+  xSemaphoreGive(_mutex_box_2_led_info);
+}
+
+void set_box_2_led_info(const char *value) {
+  assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
+  xSemaphoreTake(_mutex_box_2_led_info, 0);
+  strncpy(_box_2_led_info, value, strlen(value));
+  xSemaphoreGive(_mutex_box_2_led_info);
 }
 
 
@@ -776,9 +1182,71 @@ void set_led_5_enable(int value) {
 }
 
 
+
+int get_led_0_box() {
+  return geti(LED_0_BOX);
+}
+
+void set_led_0_box(int value) {
+  seti(LED_0_BOX, value);
+}
+
+
+
+int get_led_1_box() {
+  return geti(LED_1_BOX);
+}
+
+void set_led_1_box(int value) {
+  seti(LED_1_BOX, value);
+}
+
+
+
+int get_led_2_box() {
+  return geti(LED_2_BOX);
+}
+
+void set_led_2_box(int value) {
+  seti(LED_2_BOX, value);
+}
+
+
+
+int get_led_3_box() {
+  return geti(LED_3_BOX);
+}
+
+void set_led_3_box(int value) {
+  seti(LED_3_BOX, value);
+}
+
+
+
+int get_led_4_box() {
+  return geti(LED_4_BOX);
+}
+
+void set_led_4_box(int value) {
+  seti(LED_4_BOX, value);
+}
+
+
+
+int get_led_5_box() {
+  return geti(LED_5_BOX);
+}
+
+void set_led_5_box(int value) {
+  seti(LED_5_BOX, value);
+}
+
+
 void init_helpers() {
   _mutex_wifi_status = xSemaphoreCreateMutexStatic(&mutex_buffer);
-  _mutex_led_info = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_0_led_info = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_1_led_info = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_2_led_info = xSemaphoreCreateMutexStatic(&mutex_buffer);
 }
 
 /*

@@ -125,15 +125,15 @@ static void set_all_duty(int value) {
   }
 }
 
-//  BLE Callbacks
+//  KV Callbacks
 
-int on_set_led_dim(int value) {
+int on_set_led_dim(int boxId, int value) {
   set_all_duty(5);
   refresh_led(-1);
   return value;
 }
 
-int on_set_stretch(int value) {
+int on_set_stretch(int boxId, int value) {
   mixer_duty();
   refresh_led(-1);
   return value;

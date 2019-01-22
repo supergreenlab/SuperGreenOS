@@ -16,38 +16,43 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDE_MODULES_H_
-#define INCLUDE_MODULES_H_
+#include "led_helpers.h"
 
-/*
-* [GENERATED]
-*/
+#include "led.h"
+#include "../core/kv/kv.h"
 
-// Core modules
-#include "wifi/wifi.h"
-#include "ble/ble.h"
-#include "kv/kv.h"
-#include "ota/ota.h"
-#include "httpd/httpd.h"
-#include "stat_dump/stat_dump.h"
-#include "time/time.h"
-#include "mqtt/mqtt.h"
-#include "i2c/i2c.h"
+#define LED_CB(ledId, param) int on_set_led_## ledId ##_## param(int value) { \
+  return on_set_led_## param(ledId, value); \
+}
 
-// Custom modules
-#include "../blower/blower.h"
-#include "../fans/fans.h"
-#include "../led/led.h"
-#include "../mixer/mixer.h"
-#include "../state/state.h"
-#include "../status_led/status_led.h"
-#include "../timer/timer.h"
-#include "../onoff/onoff.h"
-#include "../manual/manual.h"
-#include "../box/box.h"
+#define LED_GETTER(param) int get_led_## param(int ledId) { \
+  switch(ledId) { \
+  {{#led_loop_i}}
+    case {{.}}: \
+      return get_led_{{.}}_## param(ledId); \
+  {{/led_loop_i}}
+  } \
+  return 0; \
+}
 
-/*
-* [/GENERATED]
-*/
+#define LED_SETTER(param) void set_led_## param(int ledId, int value) { \
+  switch(ledId) { \
+  {{#led_loop_i}}
+    case {{.}}: \
+      set_led_{{.}}_## param(value); \
+  {{/led_loop_i}}
+  } \
+}
 
-#endif
+{{#keys}}
+{{#led}}
+{{#write_cb}}
+LED_CB({{index}}, {{param}})
+{{/write_cb}}
+{{/led}}
+{{/keys}}
+
+{{#led_params}}
+LED_SETTER({{.}})
+LED_GETTER({{.}})
+{{/led_params}}

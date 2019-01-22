@@ -19,17 +19,8 @@
 #ifndef MANUAL_H_
 #define MANUAL_H_
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-  void init_manual();
-  void start_manual();
-  void stop_manual();
-  void manual_task();
-
-#ifdef __cplusplus
-}
-#endif
+void start_manual(int boxId);
+void stop_manual(int boxId);
+void manual_task(int boxId);
 
 #endif

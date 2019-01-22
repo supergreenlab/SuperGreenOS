@@ -37,6 +37,7 @@
 #include "../core/log/log.h"
 #include "../core/time/time.h"
 #include "../state/state.h"
+#include "../box/box.h"
 
 int min_x = INT_MAX;
 int max_x = INT_MIN;
@@ -120,12 +121,12 @@ static void led_task(void *param) {
   }
 }
 
-void init_led_info() {
+void init_led_info(int boxId) {
   char led_info[CHAR_VAL_LEN_MAX] = {0};
 
   sprintf(led_info, "n:%d", N_LEDS);
   for (int i = 0; i < N_LEDS; ++i) {
-    if (ledc_channels[i].enabled != 1) {
+    if (ledc_channels[i].enabled != 1 || get_box_enabled(get_led_box(i)) != 1) {
       continue;
     }
     char led[32] = {0};
@@ -144,7 +145,7 @@ void init_led_info() {
     min_z = min(min_z, ledc_channels[i].z);
     max_z = max(max_z, ledc_channels[i].z);
   }
-  set_led_info(led_info);
+  set_box_led_info(boxId, led_info);
 }
 
 void init_led() {
@@ -158,10 +159,15 @@ void init_led() {
     ledc_channels[i].y = get_led_param(i, "Y");
     ledc_channels[i].z = get_led_param(i, "Z");
 
+    ledc_channels[i].box = get_led_param(i, "B");
+
     ledc_channels[i].channel_config.gpio_num = get_led_param(i, "IO");
   }
 
-  init_led_info();
+  for (int i = 0; i < N_BOXES; ++i) {
+    if (get_box_enabled(i) != 1) continue;
+    init_led_info(i);
+  }
 
   cmd = xQueueCreate(10, sizeof(int));
   if (cmd == NULL) {
@@ -185,25 +191,18 @@ int get_led_param(int i, const char *param) {
   return geti(key);
 }
 
-int get_led_duty(int i) {
+int rget_led_duty(int i) {
   return get_led_param(i, "D");
 }
 
-int set_led_duty(int i, int value) {
+int rset_led_duty(int i, int value) {
   value = min(100, max(value, 0));
   refresh_led(i);
   return value;
 }
 
-/* BLE Callbacks */
+/* KV Callbacks */
 
-#define LED_CB(i) int on_set_led_##i##_duty(int value) { \
-  return set_led_duty(i, value); \
+int on_set_led_duty(int ledId, int value) {
+  return rset_led_duty(ledId, value);
 }
-
-LED_CB(0)
-LED_CB(1)
-LED_CB(2)
-LED_CB(3)
-LED_CB(4)
-LED_CB(5)

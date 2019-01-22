@@ -65,89 +65,274 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_state,
   },
   {
-    .name = "TIMER_TYPE",
-    .handler = internal_set_timer_type,
-    .getter = get_timer_type,
-  },
-  {
-    .name = "TIMER_OUTPUT",
+    .name = "BOX_0_ENABLED",
     .handler = NULL,
-    .getter = get_timer_output,
+    .getter = get_box_0_enabled,
   },
   {
-    .name = "STARTED_AT",
-    .handler = internal_set_started_at,
-    .getter = get_started_at,
+    .name = "BOX_0_TIMER_TYPE",
+    .handler = internal_set_box_0_timer_type,
+    .getter = get_box_0_timer_type,
   },
   {
-    .name = "ON_HOUR",
-    .handler = internal_set_on_hour,
-    .getter = get_on_hour,
-  },
-  {
-    .name = "ON_MIN",
-    .handler = internal_set_on_min,
-    .getter = get_on_min,
-  },
-  {
-    .name = "OFF_HOUR",
-    .handler = internal_set_off_hour,
-    .getter = get_off_hour,
-  },
-  {
-    .name = "OFF_MIN",
-    .handler = internal_set_off_min,
-    .getter = get_off_min,
-  },
-  {
-    .name = "STRETCH",
-    .handler = internal_set_stretch,
-    .getter = get_stretch,
-  },
-  {
-    .name = "LED_DIM",
-    .handler = internal_set_led_dim,
-    .getter = get_led_dim,
-  },
-  {
-    .name = "BLOWER",
-    .handler = internal_set_blower,
-    .getter = get_blower,
-  },
-  {
-    .name = "BLOWER_MODE",
-    .handler = internal_set_blower_mode,
-    .getter = get_blower_mode,
-  },
-  {
-    .name = "BLOWER_GPIO",
-    .handler = internal_set_blower_gpio,
-    .getter = get_blower_gpio,
-  },
-  {
-    .name = "SHT1X_TEMP_C",
+    .name = "BOX_0_TIMER_OUTPUT",
     .handler = NULL,
-    .getter = get_sht1x_temp_c,
+    .getter = get_box_0_timer_output,
   },
   {
-    .name = "SHT1X_TEMP_F",
-    .handler = NULL,
-    .getter = get_sht1x_temp_f,
+    .name = "BOX_0_STARTED_AT",
+    .handler = internal_set_box_0_started_at,
+    .getter = get_box_0_started_at,
   },
   {
-    .name = "SHT1X_HUMI",
-    .handler = NULL,
-    .getter = get_sht1x_humi,
+    .name = "B_0_ON_HOUR",
+    .handler = internal_set_box_0_on_hour,
+    .getter = get_box_0_on_hour,
   },
   {
-    .name = "ARDUINO_CO2",
-    .handler = NULL,
-    .getter = get_arduino_co2,
+    .name = "BOX_0_ON_MIN",
+    .handler = internal_set_box_0_on_min,
+    .getter = get_box_0_on_min,
   },
   {
-    .name = "DUST_GPY2Y10",
+    .name = "BOX_0_OFF_HOUR",
+    .handler = internal_set_box_0_off_hour,
+    .getter = get_box_0_off_hour,
+  },
+  {
+    .name = "BOX_0_OFF_MIN",
+    .handler = internal_set_box_0_off_min,
+    .getter = get_box_0_off_min,
+  },
+  {
+    .name = "BOX_0_STRETCH",
+    .handler = internal_set_box_0_stretch,
+    .getter = get_box_0_stretch,
+  },
+  {
+    .name = "BOX_0_LED_DIM",
+    .handler = internal_set_box_0_led_dim,
+    .getter = get_box_0_led_dim,
+  },
+  {
+    .name = "BOX_0_BLOWER",
+    .handler = internal_set_box_0_blower,
+    .getter = get_box_0_blower,
+  },
+  {
+    .name = "BOX_0_BLOWER_MODE",
+    .handler = internal_set_box_0_blower_mode,
+    .getter = get_box_0_blower_mode,
+  },
+  {
+    .name = "BOX_0_BLOWER_GPIO",
+    .handler = internal_set_box_0_blower_gpio,
+    .getter = get_box_0_blower_gpio,
+  },
+  {
+    .name = "BOX_0_SHT1X_TEMP_C",
     .handler = NULL,
-    .getter = get_dust_gpy2y10,
+    .getter = get_box_0_sht1x_temp_c,
+  },
+  {
+    .name = "BOX_0_SHT1X_TEMP_F",
+    .handler = NULL,
+    .getter = get_box_0_sht1x_temp_f,
+  },
+  {
+    .name = "BOX_0_SHT1X_HUMI",
+    .handler = NULL,
+    .getter = get_box_0_sht1x_humi,
+  },
+  {
+    .name = "BOX_0_ARDUINO_CO2",
+    .handler = NULL,
+    .getter = get_box_0_arduino_co2,
+  },
+  {
+    .name = "BOX_0_DUST_GPY2Y10",
+    .handler = NULL,
+    .getter = get_box_0_dust_gpy2y10,
+  },
+  {
+    .name = "BOX_1_ENABLED",
+    .handler = internal_set_box_1_enabled,
+    .getter = get_box_1_enabled,
+  },
+  {
+    .name = "BOX_1_TIMER_TYPE",
+    .handler = internal_set_box_1_timer_type,
+    .getter = get_box_1_timer_type,
+  },
+  {
+    .name = "BOX_1_TIMER_OUTPUT",
+    .handler = NULL,
+    .getter = get_box_1_timer_output,
+  },
+  {
+    .name = "BOX_1_STARTED_AT",
+    .handler = internal_set_box_1_started_at,
+    .getter = get_box_1_started_at,
+  },
+  {
+    .name = "B_1_ON_HOUR",
+    .handler = internal_set_box_1_on_hour,
+    .getter = get_box_1_on_hour,
+  },
+  {
+    .name = "BOX_1_ON_MIN",
+    .handler = internal_set_box_1_on_min,
+    .getter = get_box_1_on_min,
+  },
+  {
+    .name = "BOX_1_OFF_HOUR",
+    .handler = internal_set_box_1_off_hour,
+    .getter = get_box_1_off_hour,
+  },
+  {
+    .name = "BOX_1_OFF_MIN",
+    .handler = internal_set_box_1_off_min,
+    .getter = get_box_1_off_min,
+  },
+  {
+    .name = "BOX_1_STRETCH",
+    .handler = internal_set_box_1_stretch,
+    .getter = get_box_1_stretch,
+  },
+  {
+    .name = "BOX_1_LED_DIM",
+    .handler = internal_set_box_1_led_dim,
+    .getter = get_box_1_led_dim,
+  },
+  {
+    .name = "BOX_1_BLOWER",
+    .handler = internal_set_box_1_blower,
+    .getter = get_box_1_blower,
+  },
+  {
+    .name = "BOX_1_BLOWER_MODE",
+    .handler = internal_set_box_1_blower_mode,
+    .getter = get_box_1_blower_mode,
+  },
+  {
+    .name = "BOX_1_BLOWER_GPIO",
+    .handler = internal_set_box_1_blower_gpio,
+    .getter = get_box_1_blower_gpio,
+  },
+  {
+    .name = "BOX_1_SHT1X_TEMP_C",
+    .handler = NULL,
+    .getter = get_box_1_sht1x_temp_c,
+  },
+  {
+    .name = "BOX_1_SHT1X_TEMP_F",
+    .handler = NULL,
+    .getter = get_box_1_sht1x_temp_f,
+  },
+  {
+    .name = "BOX_1_SHT1X_HUMI",
+    .handler = NULL,
+    .getter = get_box_1_sht1x_humi,
+  },
+  {
+    .name = "BOX_1_ARDUINO_CO2",
+    .handler = NULL,
+    .getter = get_box_1_arduino_co2,
+  },
+  {
+    .name = "BOX_1_DUST_GPY2Y10",
+    .handler = NULL,
+    .getter = get_box_1_dust_gpy2y10,
+  },
+  {
+    .name = "BOX_2_ENABLED",
+    .handler = internal_set_box_2_enabled,
+    .getter = get_box_2_enabled,
+  },
+  {
+    .name = "BOX_2_TIMER_TYPE",
+    .handler = internal_set_box_2_timer_type,
+    .getter = get_box_2_timer_type,
+  },
+  {
+    .name = "BOX_2_TIMER_OUTPUT",
+    .handler = NULL,
+    .getter = get_box_2_timer_output,
+  },
+  {
+    .name = "BOX_2_STARTED_AT",
+    .handler = internal_set_box_2_started_at,
+    .getter = get_box_2_started_at,
+  },
+  {
+    .name = "B_2_ON_HOUR",
+    .handler = internal_set_box_2_on_hour,
+    .getter = get_box_2_on_hour,
+  },
+  {
+    .name = "BOX_2_ON_MIN",
+    .handler = internal_set_box_2_on_min,
+    .getter = get_box_2_on_min,
+  },
+  {
+    .name = "BOX_2_OFF_HOUR",
+    .handler = internal_set_box_2_off_hour,
+    .getter = get_box_2_off_hour,
+  },
+  {
+    .name = "BOX_2_OFF_MIN",
+    .handler = internal_set_box_2_off_min,
+    .getter = get_box_2_off_min,
+  },
+  {
+    .name = "BOX_2_STRETCH",
+    .handler = internal_set_box_2_stretch,
+    .getter = get_box_2_stretch,
+  },
+  {
+    .name = "BOX_2_LED_DIM",
+    .handler = internal_set_box_2_led_dim,
+    .getter = get_box_2_led_dim,
+  },
+  {
+    .name = "BOX_2_BLOWER",
+    .handler = internal_set_box_2_blower,
+    .getter = get_box_2_blower,
+  },
+  {
+    .name = "BOX_2_BLOWER_MODE",
+    .handler = internal_set_box_2_blower_mode,
+    .getter = get_box_2_blower_mode,
+  },
+  {
+    .name = "BOX_2_BLOWER_GPIO",
+    .handler = internal_set_box_2_blower_gpio,
+    .getter = get_box_2_blower_gpio,
+  },
+  {
+    .name = "BOX_2_SHT1X_TEMP_C",
+    .handler = NULL,
+    .getter = get_box_2_sht1x_temp_c,
+  },
+  {
+    .name = "BOX_2_SHT1X_TEMP_F",
+    .handler = NULL,
+    .getter = get_box_2_sht1x_temp_f,
+  },
+  {
+    .name = "BOX_2_SHT1X_HUMI",
+    .handler = NULL,
+    .getter = get_box_2_sht1x_humi,
+  },
+  {
+    .name = "BOX_2_ARDUINO_CO2",
+    .handler = NULL,
+    .getter = get_box_2_arduino_co2,
+  },
+  {
+    .name = "BOX_2_DUST_GPY2Y10",
+    .handler = NULL,
+    .getter = get_box_2_dust_gpy2y10,
   },
   {
     .name = "LED_0_DUTY",
@@ -329,6 +514,36 @@ const kvi_handler kvi_handlers[] = {
     .handler = internal_set_led_5_enable,
     .getter = get_led_5_enable,
   },
+  {
+    .name = "LED_0_BOX",
+    .handler = internal_set_led_0_box,
+    .getter = get_led_0_box,
+  },
+  {
+    .name = "LED_1_BOX",
+    .handler = internal_set_led_1_box,
+    .getter = get_led_1_box,
+  },
+  {
+    .name = "LED_2_BOX",
+    .handler = internal_set_led_2_box,
+    .getter = get_led_2_box,
+  },
+  {
+    .name = "LED_3_BOX",
+    .handler = internal_set_led_3_box,
+    .getter = get_led_3_box,
+  },
+  {
+    .name = "LED_4_BOX",
+    .handler = internal_set_led_4_box,
+    .getter = get_led_4_box,
+  },
+  {
+    .name = "LED_5_BOX",
+    .handler = internal_set_led_5_box,
+    .getter = get_led_5_box,
+  },
 
 /*
 * [/GENERATED]
@@ -399,9 +614,19 @@ const kvs_handler kvs_handlers[] = {
     .getter = get_device_name,
   },
   {
-    .name = "LED_INFO",
+    .name = "BOX_0_LED_INFO",
     .handler = NULL,
-    .getter = get_led_info,
+    .getter = get_box_0_led_info,
+  },
+  {
+    .name = "BOX_1_LED_INFO",
+    .handler = NULL,
+    .getter = get_box_1_led_info,
+  },
+  {
+    .name = "BOX_2_LED_INFO",
+    .handler = NULL,
+    .getter = get_box_2_led_info,
   },
 
 /*

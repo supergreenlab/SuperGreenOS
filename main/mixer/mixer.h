@@ -21,14 +21,11 @@
 
 #include "esp_gatt_common_api.h"
 
-extern const uint8_t LED_DIM_UUID[ESP_UUID_LEN_128];
-extern const uint8_t STRETCH_UUID[ESP_UUID_LEN_128];
-
 void init_mixer();
 
 // BLE Callbacks
 
-int on_set_led_dim(int value);
-int on_set_stretch(int value);
+int on_set_led_dim(int boxId, int value);
+int on_set_stretch(int boxId, int value);
 
 #endif

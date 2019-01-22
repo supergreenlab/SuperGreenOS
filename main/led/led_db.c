@@ -28,12 +28,12 @@ const unsigned int N_LEDS = 6;
 // Warning: this values should be synced with config.yml defaults,
 // will fix later TODO
 led_config_t ledc_channels[] = {
-  CHANNEL(0, 1, 0, 0, 0, 32, 1, 0),
-  CHANNEL(1, 1, 1, 1, 0, 17, 1, 1),
-  CHANNEL(2, 1, 0, 0, 1, 33, 1, 2),
-  CHANNEL(3, 1, 1, 1, 1, 16, 1, 3),
-  CHANNEL(4, 1, 0, 0, 2, 25, 1, 4),
-  CHANNEL(5, 1, 1, 1, 2, 4, 1, 5)
+  CHANNEL(0, 1, 0, 0, 0, 0, 32, 1, 0),
+  CHANNEL(1, 1, 1, 1, 0, 0, 17, 1, 1),
+  CHANNEL(2, 1, 0, 0, 1, 0, 33, 1, 2),
+  CHANNEL(3, 1, 1, 1, 1, 0, 16, 1, 3),
+  CHANNEL(4, 1, 0, 0, 2, 1, 25, 1, 4),
+  CHANNEL(5, 1, 1, 1, 2, 1, 4, 1, 5)
 };
 
 void init_led_timers() {

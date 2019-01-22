@@ -34,11 +34,14 @@
 #include "../state/state.h"
 
 static void timer_task(void *param);
-static void stop(enum timer t);
-static void start(enum timer t);
+static void stop(int boxId, enum timer t);
+static void start(int boxId, enum timer t);
 
 void init_timer() {
-  start(get_timer_type());
+  for (int i = 0; i < N_BOXES; ++i) {
+    if (get_box_enabled(i) != 1) continue;
+    start(get_box_timer_type(i));
+  }
 
   BaseType_t ret = xTaskCreate(timer_task, "TIMER", 4096, NULL, tskIDLE_PRIORITY, NULL);
   if (ret != pdPASS) {
@@ -46,31 +49,31 @@ void init_timer() {
   }
 }
 
-static void stop(enum timer t) {
+static void stop(int boxId, enum timer t) {
   switch(t) {
     case TIMER_MANUAL:
-      stop_manual();
+      stop_manual(boxId);
       break;
     case TIMER_ONOFF:
-      stop_onoff();
+      stop_onoff(boxId);
       break;
   }
 }
 
-static void start(enum timer t) {
+static void start(int boxId, enum timer t) {
   switch(t) {
     case TIMER_MANUAL:
-      start_manual();
+      start_manual(boxId);
       break;
     case TIMER_ONOFF:
-      start_onoff();
+      start_onoff(boxId);
       break;
   }
 }
 
-void update_output(int output) {
-  ESP_LOGI(SGO_LOG_EVENT, "@TIMER update_output %d", output);
-  set_timer_output(output);
+void update_output(int boxId, int output) {
+  ESP_LOGI(SGO_LOG_EVENT, "@TIMER_%s update_output %d", boxId, output);
+  set_timer_output(boxId, output);
 }
 
 static void timer_task(void *param) {
@@ -81,15 +84,18 @@ static void timer_task(void *param) {
       continue;
     }
 
-    enum timer t = get_timer_type();
+    for (int i = 0; i < N_BOXES; ++i) {
+      if (get_box_enabled(i) != 1) continue;
+      enum timer t = get_box_timer_type(i);
 
-    switch(t) {
-      case TIMER_MANUAL:
-        manual_task();
-        break;
-      case TIMER_ONOFF:
-        onoff_task();
-        break;
+      switch(t) {
+        case TIMER_MANUAL:
+          manual_task(i);
+          break;
+        case TIMER_ONOFF:
+          onoff_task(i);
+          break;
+      }
     }
     vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
   }
@@ -97,13 +103,17 @@ static void timer_task(void *param) {
 
 // BLE Callbacks
 
-int on_set_timer_type(int value) {
-  int old = get_timer_type();
+int on_set_timer_type(int boxId, int value) {
+  int old = get_timer_type(boxId);
 
   if (old == value) return value;
-  set_timer_type(value);
-  stop(old);
-  start(value);
+  set_timer_type(i, value);
+  stop(i, old);
+  start(i, value);
   refresh_led(-1);
   return value;
 }
+
+TIMER_TYPE_CB(0)
+TIMER_TYPE_CB(1)
+TIMER_TYPE_CB(2)

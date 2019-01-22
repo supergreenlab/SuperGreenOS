@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,20 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BLOWER_H_
-#define BLOWER_H_
+#ifndef LED_HELPERS_H_
+#define LED_HELPERS_H_
 
-typedef enum {
-  BLOWER_MODE_MANUAL,
-  BLOWER_MODE_TIMER,
-} blower_mode;
+#define LED_CB_H(ledId, param) int on_set_led_## ledId ##_## param( int value);
+#define LED_GETTER_H(param) int get_led_## param(int ledId);
+#define LED_SETTER_H(param) void set_led_## param(int ledId, int value);
 
-#define DEFAULT_BLOWER_GPIO (22)
+{{#keys}}
+{{#led}}
+LED_CB_H({{index}}, {{param}})
+{{/led}}
+{{/keys}}
 
-void init_blower();
-
-/* BLE Callbacks */
-
-int on_set_blower(int boxId, int value);
+{{#led_params}}
+LED_SETTER_H({{.}})
+LED_GETTER_H({{.}})
+{{/led_params}}
 
 #endif

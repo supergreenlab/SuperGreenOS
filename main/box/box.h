@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,20 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BLOWER_H_
-#define BLOWER_H_
+#ifndef BOX_H_
+#define BOX_H_
 
-typedef enum {
-  BLOWER_MODE_MANUAL,
-  BLOWER_MODE_TIMER,
-} blower_mode;
+#include "box_helpers.h"
 
-#define DEFAULT_BLOWER_GPIO (22)
-
-void init_blower();
-
-/* BLE Callbacks */
-
-int on_set_blower(int boxId, int value);
+#define N_BOXES 3
 
 #endif

@@ -16,38 +16,44 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDE_MODULES_H_
-#define INCLUDE_MODULES_H_
+#include "box_helpers.h"
 
-/*
-* [GENERATED]
-*/
+#include "../core/kv/kv.h"
 
-// Core modules
-#include "wifi/wifi.h"
-#include "ble/ble.h"
-#include "kv/kv.h"
-#include "ota/ota.h"
-#include "httpd/httpd.h"
-#include "stat_dump/stat_dump.h"
-#include "time/time.h"
-#include "mqtt/mqtt.h"
-#include "i2c/i2c.h"
+#include "box.h"
 
-// Custom modules
-#include "../blower/blower.h"
-#include "../fans/fans.h"
-#include "../led/led.h"
-#include "../mixer/mixer.h"
-#include "../state/state.h"
-#include "../status_led/status_led.h"
-#include "../timer/timer.h"
-#include "../onoff/onoff.h"
-#include "../manual/manual.h"
-#include "../box/box.h"
+#define BOX_CB(boxId, param) int on_set_box_## boxId ##_## param(int value) \
+  return on_set_box_## param(boxId, value); \
+}
 
-/*
-* [/GENERATED]
-*/
+#define BOX_GETTER(param) int get_box_## param(int boxId) { \
+  switch(boxId) { \
+  {{#box_loop_i}}
+    case {{.}}: \
+      return get_box_{{.}}_## param(boxId); \
+  {{/box_loop_i}}
+  } \
+  return 0; \
+}
 
-#endif
+#define BOX_SETTER(param) void set_box_## param(int boxId, int value) { \
+  switch(boxId) { \
+  {{#box_loop_i}}
+    case {{.}}: \
+      set_box_{{.}}_## param(value); \
+  {{/box_loop_i}}
+  } \
+}
+
+{{#keys}}
+{{#box}}
+{{#write_cb}}
+BOX_CB({{index}}, {{param}})
+{{/write_cb}}
+{{/box}}
+{{/keys}}
+
+{{#box_params}}
+BOX_SETTER({{.}})
+BOX_GETTER({{.}})
+{{/box_params}}

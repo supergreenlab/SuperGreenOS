@@ -20,17 +20,14 @@
 
 #include "../core/log/log.h"
 
-void init_manual() {
+void start_manual(int boxId) {
+  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL_%d start_manual", boxId);
 }
 
-void start_manual() {
-  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL start_manual");
+void stop_manual(int boxId) {
+  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL_%d stop_manual", boxId);
 }
 
-void stop_manual() {
-  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL stop_manual");
-}
-
-void manual_task() {
-  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL manual_task");
+void manual_task(int boxId) {
+  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL_%d manual_task", boxId);
 }
