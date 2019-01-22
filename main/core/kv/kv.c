@@ -355,15 +355,11 @@ void seti(const char * key, int value) {
   ESP_ERROR_CHECK(err);
   nvs_commit(kv_handle);
   nvs_close(kv_handle);
-  ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", key, value);
 }
 
 void defaulti(const char * key, int value) {
   if (!hasi(key)) {
     seti(key, value);
-  } else {
-    int v = geti(key);
-    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", key, v);
   }
 }
 
@@ -388,18 +384,13 @@ void setstr(const char * key, const char * value) {
   ESP_ERROR_CHECK(err);
   nvs_commit(kv_handle);
   nvs_close(kv_handle);
-
-  ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", key, value);
 }
 
 void defaultstr(const char * key, const char * value) {
-  bool skip = strcmp(key, "WPASS") == 0;
-  
   if (!hasstr(key)) {
     setstr(key, value);
   } else {
     char buf[MAX_KVALUE_SIZE] = {0};
     getstr(key, buf, sizeof(buf) - 1);
-    ESP_LOGI(skip ? SGO_LOG_NOSEND : SGO_LOG_METRIC, "@KV %s=%s", key, buf);
   }
 }
