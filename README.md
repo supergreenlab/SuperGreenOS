@@ -11,11 +11,11 @@ SuperGreenOS provides most features used when growing cannabis, all in one packa
 Here's what it can (or will) do:
 
 - Lights on and off schedules
-- Up to 6 separate led drivers controls (you can put multiple leds behind one driver)
+- Up to 6 separate led channels (you can put multiple leds behind one channel)
 - Up to 3 separate timers, for full-cycle setups (veg + flo)
 - Monitoring a wide range of sensors
 - Data sent to a **private** [cloud](https://github.com/supergreenlab/SuperGreenCloud)
-- Produce alerts based on sensor values (ok right now not that much, but hey I'm doing my best:P)
+- Produce alerts based on sensor values
 - Allows remote control (TODO)
 - Manual ventilation control
 - Automatic ventilation control based on temperature and humidity (TODO)
