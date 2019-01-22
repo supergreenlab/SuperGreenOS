@@ -28,6 +28,7 @@
 #include "../core/log/log.h"
 #include "../core/ble/ble_db.h"
 #include "../led/led.h"
+#include "../box/box.h"
 
 #include "../manual/manual.h"
 #include "../onoff/onoff.h"
@@ -40,7 +41,7 @@ static void start(int boxId, enum timer t);
 void init_timer() {
   for (int i = 0; i < N_BOXES; ++i) {
     if (get_box_enabled(i) != 1) continue;
-    start(get_box_timer_type(i));
+    start(i, get_box_timer_type(i));
   }
 
   BaseType_t ret = xTaskCreate(timer_task, "TIMER", 4096, NULL, tskIDLE_PRIORITY, NULL);
@@ -72,8 +73,7 @@ static void start(int boxId, enum timer t) {
 }
 
 void update_output(int boxId, int output) {
-  ESP_LOGI(SGO_LOG_EVENT, "@TIMER_%s update_output %d", boxId, output);
-  set_timer_output(boxId, output);
+  ESP_LOGI(SGO_LOG_EVENT, "@TIMER_%d update_output %d", boxId, output);
 }
 
 static void timer_task(void *param) {
@@ -103,17 +103,13 @@ static void timer_task(void *param) {
 
 // BLE Callbacks
 
-int on_set_timer_type(int boxId, int value) {
-  int old = get_timer_type(boxId);
+int on_set_box_timer_type(int boxId, int value) {
+  int old = get_box_timer_type(boxId);
 
   if (old == value) return value;
-  set_timer_type(i, value);
-  stop(i, old);
-  start(i, value);
-  refresh_led(-1);
+  set_box_timer_type(boxId, value);
+  stop(boxId, old);
+  start(boxId, value);
+  refresh_led(boxId, -1);
   return value;
 }
-
-TIMER_TYPE_CB(0)
-TIMER_TYPE_CB(1)
-TIMER_TYPE_CB(2)

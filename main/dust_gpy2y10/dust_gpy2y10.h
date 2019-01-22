@@ -1,7 +1,4 @@
 /*
- * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
- * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -16,11 +13,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ONOFF_H_
-#define ONOFF_H_
+#ifndef DUST_GP2Y10_H_
+#define DUST_GP2Y10_H_
 
-void start_onoff(int boxId);
-void stop_onoff(int boxId);
-void onoff_task(int boxId);
+void init_dust_gpy2y10(int portId, int sda, int sck);
+void loop_dust_gpy2y10(int portId, int sda, int sck);
 
 #endif

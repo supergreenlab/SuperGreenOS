@@ -13,23 +13,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "dust_gp2y10.h"
+#include "dust_gpy2y10.h"
 #include "driver/i2c.h"
 
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 #include "../core/i2c/i2c.h"
+#include "../box/box.h"
 
 #define DUST_GP2Y10_ADDR 0x43
 #define ACK_CHECK_EN 0x1
 #define ACK_VAL 0x0
 #define NACK_VAL 0x1
 
-void init_dust_gp2y10(int sda, int sck) {
-  ESP_LOGI(SGO_LOG_EVENT, "@DUST_GP2Y10 Initializing dust_gp2y10 i2c device\n");
+void init_dust_gpy2y10(int portId, int sda, int sck) {
+  int boxId = portId;
+
+  ESP_LOGI(SGO_LOG_EVENT, "@DUST_GP2Y10_%d Initializing dust_gpy2y10 i2c device\n", boxId);
 }
 
-void loop_dust_gp2y10(int sda, int sck) {
+void loop_dust_gpy2y10(int portId, int sda, int sck) {
+  int boxId = portId;
+
   uint16_t v = 0;
 	uint8_t nack;
   start_i2c();
@@ -46,12 +51,12 @@ void loop_dust_gp2y10(int sda, int sck) {
 	i2c_cmd_link_delete(cmd);
 
 	if (ret == ESP_ERR_TIMEOUT) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@DUST_GPY2Y10 Bus is busy");
+		ESP_LOGI(SGO_LOG_NOSEND, "@DUST_GPY2Y10_%d Bus is busy", boxId);
 	} else if (ret != ESP_OK) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@DUST_GPY2Y10 Read failed");
+		ESP_LOGI(SGO_LOG_NOSEND, "@DUST_GPY2Y10_%d Read failed", boxId);
 	}
-	ESP_LOGI(SGO_LOG_METRIC, "@DUST_GPY2Y10 dust=%d", v);
-  set_dust_gpy2y10(v);
+	ESP_LOGI(SGO_LOG_METRIC, "@DUST_GPY2Y10_%d dust=%d", boxId, v);
+  set_box_dust_gpy2y10(portId, v);
 
   stop_i2c();
 }

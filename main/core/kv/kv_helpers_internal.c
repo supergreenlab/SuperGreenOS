@@ -108,15 +108,43 @@ void internal_set_broker_url(const char *value) {
 
 
 }
-void internal_set_i2c_sda(int value) {
-  seti(I2C_SDA, value);
+void internal_set_i2c_0_sda(int value) {
+  seti(I2C_0_SDA, value);
 
 
 
   // TODO: httpd notify
 }
-void internal_set_i2c_scl(int value) {
-  seti(I2C_SCL, value);
+void internal_set_i2c_0_scl(int value) {
+  seti(I2C_0_SCL, value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_i2c_0_enabled(int value) {
+  seti(I2C_0_ENABLED, value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_i2c_1_sda(int value) {
+  seti(I2C_1_SDA, value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_i2c_1_scl(int value) {
+  seti(I2C_1_SCL, value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_i2c_1_enabled(int value) {
+  seti(I2C_1_ENABLED, value);
 
 
 

@@ -19,10 +19,11 @@
 #include "box_helpers.h"
 
 #include "../core/kv/kv.h"
+#include "../core/include_modules.h"
 
 #include "box.h"
 
-#define BOX_CB(boxId, param) int on_set_box_## boxId ##_## param(int value) \
+#define BOX_CB(boxId, param) int on_set_box_## boxId ##_## param(int value) { \
   return on_set_box_## param(boxId, value); \
 }
 
@@ -96,7 +97,5 @@ BOX_SETTER(sht1x_humi)
 BOX_GETTER(sht1x_humi)
 BOX_SETTER(arduino_co2)
 BOX_GETTER(arduino_co2)
-BOX_SETTER(dust_gp2y10)
-BOX_GETTER(dust_gp2y10)
-BOX_SETTER(led_info)
-BOX_GETTER(led_info)
+BOX_SETTER(dust_gpy2y10)
+BOX_GETTER(dust_gpy2y10)

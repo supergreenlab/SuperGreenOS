@@ -16,45 +16,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "box_helpers.h"
+#include "i2c_helpers.h"
 
-#include "../core/kv/kv.h"
-#include "../core/include_modules.h"
+#include "i2c.h"
+#include "../kv/kv.h"
 
-#include "box.h"
-
-#define BOX_CB(boxId, param) int on_set_box_## boxId ##_## param(int value) { \
-  return on_set_box_## param(boxId, value); \
+#define I2C_CB(i2cId, param) int on_set_i2c_## i2cId ##_## param(int value) { \
+  return on_set_i2c_## param(i2cId, value); \
 }
 
-#define BOX_GETTER(param) int get_box_## param(int boxId) { \
-  switch(boxId) { \
-  {{#box_loop_i}}
-    case {{.}}: \
-      return get_box_{{.}}_## param(boxId); \
-  {{/box_loop_i}}
+#define I2C_GETTER(param) int get_i2c_## param(int i2cId) { \
+  switch(i2cId) { \
+    case 0: \
+      return get_i2c_0_## param(i2cId); \
+    case 1: \
+      return get_i2c_1_## param(i2cId); \
   } \
   return 0; \
 }
 
-#define BOX_SETTER(param) void set_box_## param(int boxId, int value) { \
-  switch(boxId) { \
-  {{#box_loop_i}}
-    case {{.}}: \
-      set_box_{{.}}_## param(value); \
-  {{/box_loop_i}}
+#define I2C_SETTER(param) void set_i2c_## param(int i2cId, int value) { \
+  switch(i2cId) { \
+    case 0: \
+      set_i2c_0_## param(value); \
+    case 1: \
+      set_i2c_1_## param(value); \
   } \
 }
 
-{{#keys}}
-{{#box}}
-{{#write_cb}}
-BOX_CB({{index}}, {{param}})
-{{/write_cb}}
-{{/box}}
-{{/keys}}
 
-{{#box_params}}
-BOX_SETTER({{.}})
-BOX_GETTER({{.}})
-{{/box_params}}
+I2C_SETTER(sda)
+I2C_GETTER(sda)
+I2C_SETTER(scl)
+I2C_GETTER(scl)
+I2C_SETTER(enabled)
+I2C_GETTER(enabled)

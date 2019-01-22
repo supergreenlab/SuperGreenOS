@@ -25,7 +25,7 @@ void init_mixer();
 
 // BLE Callbacks
 
-int on_set_led_dim(int boxId, int value);
-int on_set_stretch(int boxId, int value);
+int on_set_box_led_dim(int boxId, int value);
+int on_set_box_stretch(int boxId, int value);
 
 #endif

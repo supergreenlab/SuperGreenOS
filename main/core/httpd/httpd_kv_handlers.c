@@ -50,14 +50,34 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_ota_timestamp,
   },
   {
-    .name = "I2C_SDA",
-    .handler = internal_set_i2c_sda,
-    .getter = get_i2c_sda,
+    .name = "I2C_0_SDA",
+    .handler = internal_set_i2c_0_sda,
+    .getter = get_i2c_0_sda,
   },
   {
-    .name = "I2C_SCL",
-    .handler = internal_set_i2c_scl,
-    .getter = get_i2c_scl,
+    .name = "I2C_0_SCL",
+    .handler = internal_set_i2c_0_scl,
+    .getter = get_i2c_0_scl,
+  },
+  {
+    .name = "I2C_0_ENABLED",
+    .handler = NULL,
+    .getter = get_i2c_0_enabled,
+  },
+  {
+    .name = "I2C_1_SDA",
+    .handler = internal_set_i2c_1_sda,
+    .getter = get_i2c_1_sda,
+  },
+  {
+    .name = "I2C_1_SCL",
+    .handler = internal_set_i2c_1_scl,
+    .getter = get_i2c_1_scl,
+  },
+  {
+    .name = "I2C_1_ENABLED",
+    .handler = internal_set_i2c_1_enabled,
+    .getter = get_i2c_1_enabled,
   },
   {
     .name = "STATE",

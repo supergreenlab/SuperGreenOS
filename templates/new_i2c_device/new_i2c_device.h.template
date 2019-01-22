@@ -16,7 +16,7 @@
 #ifndef {{caps_name}}_H_
 #define {{caps_name}}_H_
 
-void init_{{name}}(int sda, int sck);
-void loop_{{name}}(int sda, int sck);
+void init_{{name}}(int portId, int sda, int sck);
+void loop_{{name}}(int portId, int sda, int sck);
 
 #endif

@@ -26,12 +26,11 @@ enum timer {
   TIMER_ONOFF,
 };
 
-void update_output(int output);
-
 void init_timer();
+void update_output(int boxId, int output);
 
 /* BLE callbacks */
 
-int on_set_timer_type(int value);
+int on_set_box_timer_type(int boxId, int value);
 
 #endif

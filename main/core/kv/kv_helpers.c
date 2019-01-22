@@ -180,22 +180,62 @@ void set_broker_url(const char *value) {
 }
 
 
-int get_i2c_sda() {
-  return geti(I2C_SDA);
+int get_i2c_0_sda() {
+  return geti(I2C_0_SDA);
 }
 
-void set_i2c_sda(int value) {
-  seti(I2C_SDA, value);
+void set_i2c_0_sda(int value) {
+  seti(I2C_0_SDA, value);
 }
 
 
 
-int get_i2c_scl() {
-  return geti(I2C_SCL);
+int get_i2c_0_scl() {
+  return geti(I2C_0_SCL);
 }
 
-void set_i2c_scl(int value) {
-  seti(I2C_SCL, value);
+void set_i2c_0_scl(int value) {
+  seti(I2C_0_SCL, value);
+}
+
+
+
+int get_i2c_0_enabled() {
+  return geti(I2C_0_ENABLED);
+}
+
+void set_i2c_0_enabled(int value) {
+  seti(I2C_0_ENABLED, value);
+}
+
+
+
+int get_i2c_1_sda() {
+  return geti(I2C_1_SDA);
+}
+
+void set_i2c_1_sda(int value) {
+  seti(I2C_1_SDA, value);
+}
+
+
+
+int get_i2c_1_scl() {
+  return geti(I2C_1_SCL);
+}
+
+void set_i2c_1_scl(int value) {
+  seti(I2C_1_SCL, value);
+}
+
+
+
+int get_i2c_1_enabled() {
+  return geti(I2C_1_ENABLED);
+}
+
+void set_i2c_1_enabled(int value) {
+  seti(I2C_1_ENABLED, value);
 }
 
 

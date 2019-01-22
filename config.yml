@@ -40,9 +40,20 @@ custom_modules:
   - box
 
 i2c_devices:
-  - dust_gp2y10
+  - dust_gpy2y10
   - sht1x
   - arduino_co2
+
+# This is why I intend to move away from mustache templates
+
+i2c_params:
+  - sda
+  - scl
+  - enabled
+
+i2c_loop_i:
+  - 0
+  - 1
 
 # TODO generate this with a command
 
@@ -64,8 +75,7 @@ box_params:
   - sht1x_temp_f
   - sht1x_humi 
   - arduino_co2
-  - dust_gp2y10
-  - led_info
+  - dust_gpy2y10
 
 # This is why I intend to move away from mustache templates
 
@@ -219,23 +229,76 @@ keys:
       write: true
     default_var: CONFIG_BROKER_URL
 
-  - name: i2c_sda
-    caps_name: I2C_SDA
+  - name: i2c_0_sda
+    caps_name: I2C_0_SDA
     integer: true
+    i2c:
+      index: 0
+      param: sda
     nvs:
-      key: I2C_SDA
+      key: I2C_0_SDA
     http:
       write: true
-    default_var: DEFAULT_I2C_SDA
+    default_var: DEFAULT_I2C_0_SDA
 
-  - name: i2c_scl
-    caps_name: I2C_SCL
+  - name: i2c_0_scl
+    caps_name: I2C_0_SCL
     integer: true
+    i2c:
+      index: 0
+      param: sdc
     nvs:
-      key: I2C_SCL
+      key: I2C_0_SCL
     http:
       write: true
-    default_var: DEFAULT_I2C_SCL
+    default_var: DEFAULT_I2C_0_SCL
+
+  - name: i2c_0_enabled
+    caps_name: I2C_0_ENABLED
+    integer: true
+    i2c:
+      index: 0
+      param: enabled
+    nvs:
+      key: I2C_0_E
+    default: 1
+
+
+  - name: i2c_1_sda
+    caps_name: I2C_1_SDA
+    integer: true
+    i2c:
+      index: 1
+      param: sda
+    nvs:
+      key: I2C_1_SDA
+    http:
+      write: true
+    default_var: DEFAULT_I2C_1_SDA
+
+  - name: i2c_1_scl
+    caps_name: I2C_1_SCL
+    integer: true
+    i2c:
+      index: 1
+      param: scl
+    nvs:
+      key: I2C_1_SCL
+    http:
+      write: true
+    default_var: DEFAULT_I2C_1_SCL
+
+  - name: i2c_1_enabled
+    caps_name: I2C_1_ENABLED
+    integer: true
+    i2c:
+      index: 1
+      param: enabled
+    nvs:
+      key: I2C_1_E
+    http:
+      write: true
+    default: 1
 
   #
   # Custom keys
@@ -513,7 +576,7 @@ keys:
     integer: true
     box:
       index: 0
-      param: dust_gp2y10
+      param: dust_gpy2y10
     nvs:
       key: B_0_DUST_G2Y1
     http:

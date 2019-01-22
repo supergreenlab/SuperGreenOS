@@ -30,15 +30,13 @@
 #include "../core/kv/kv_ble.h"
 #include "../core/ble/ble.h"
 #include "../core/ble/ble_db.h"
+#include "../box/box.h"
 
-void init_onoff() {
-}
-
-int get_output_for_hour_min() {
-  int on_hour = get_on_hour();
-  int on_min = get_on_min();
-  int off_hour = get_off_hour();
-  int off_min = get_off_min();
+static int get_output_for_hour_min(int boxId) {
+  int on_hour = get_box_on_hour(boxId);
+  int on_min = get_box_on_min(boxId);
+  int off_hour = get_box_off_hour(boxId);
+  int off_min = get_box_off_min(boxId);
 
   time_t now;
   struct tm tm_now;
@@ -60,15 +58,15 @@ int get_output_for_hour_min() {
   return 0; 
 }
 
-void start_onoff() {
-  ESP_LOGI(SGO_LOG_EVENT, "@ONOFF start_onoff");
-  onoff_task();
+void start_onoff(int boxId) {
+  ESP_LOGI(SGO_LOG_EVENT, "@ONOFF_%d start_onoff", boxId);
+  onoff_task(boxId);
 }
 
-void stop_onoff() {
-  ESP_LOGI(SGO_LOG_EVENT, "@ONOFF stop_onoff");
+void stop_onoff(int boxId) {
+  ESP_LOGI(SGO_LOG_EVENT, "@ONOFF_%d stop_onoff", boxId);
 }
 
-void onoff_task() {
-  update_output(get_output_for_hour_min());
+void onoff_task(int boxId) {
+  set_box_timer_output(boxId, get_output_for_hour_min(boxId));
 }

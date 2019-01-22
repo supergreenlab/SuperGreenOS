@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,11 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ONOFF_H_
-#define ONOFF_H_
+#ifndef I2C_HELPERS_H_
+#define I2C_HELPERS_H_
 
-void start_onoff(int boxId);
-void stop_onoff(int boxId);
-void onoff_task(int boxId);
+#define I2C_CB_H(i2cId, param) int on_set_i2c_## i2cId ##_## param( int value);
+#define I2C_GETTER_H(param) int get_i2c_## param(int i2cId);
+#define I2C_SETTER_H(param) void set_i2c_## param(int i2cId, int value);
+
+I2C_CB_H(0, sda)
+I2C_CB_H(0, sdc)
+I2C_CB_H(0, enabled)
+I2C_CB_H(1, sda)
+I2C_CB_H(1, scl)
+I2C_CB_H(1, enabled)
+
+I2C_SETTER_H(sda)
+I2C_GETTER_H(sda)
+I2C_SETTER_H(scl)
+I2C_GETTER_H(scl)
+I2C_SETTER_H(enabled)
+I2C_GETTER_H(enabled)
 
 #endif

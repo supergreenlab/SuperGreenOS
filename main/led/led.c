@@ -56,6 +56,10 @@ int max_z = INT_MIN;
 void init_led_timers();
 int get_led_param(int i, const char *param);
 
+typedef struct {
+  int boxId;
+  int ledId;
+} cmd_refresh_led;
 static QueueHandle_t cmd;
 
 static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
@@ -90,7 +94,7 @@ static void update_led(int i) {
 
 static void led_task(void *param) {
 
-  int c;
+  cmd_refresh_led c;
 
   for (int i = 0; i < N_LEDS; ++i) {
     if (ledc_channels[i].enabled != 1) {
@@ -103,30 +107,24 @@ static void led_task(void *param) {
 
   while(1) {
     if (xQueueReceive(cmd, &c, 30 * 1000 / portTICK_PERIOD_MS)) {
-      if (c != -1) {
-        if (ledc_channels[c].enabled != 1) {
+      for (int i = 0; i < N_LEDS; ++i) {
+        if (c.boxId != -1 && (c.boxId != ledc_channels[i].box || get_box_enabled(ledc_channels[i].box) != 1)) {
           continue;
         }
-
-        update_led(c);
-        continue;
+        if (c.ledId != -1 && (i != c.ledId || ledc_channels[i].enabled != 1)) {
+          continue;
+        }
+        update_led(i);
       }
-    }
-    for (int i = 0; i < N_LEDS; ++i) {
-      if (ledc_channels[i].enabled != 1) {
-        continue;
-      }
-      update_led(i);
     }
   }
 }
 
-void init_led_info(int boxId) {
-  char led_info[CHAR_VAL_LEN_MAX] = {0};
-
+void init_led_info(int boxId, char *led_info) {
   sprintf(led_info, "n:%d", N_LEDS);
   for (int i = 0; i < N_LEDS; ++i) {
-    if (ledc_channels[i].enabled != 1 || get_box_enabled(get_led_box(i)) != 1) {
+    int bi = get_led_box(i);
+    if (ledc_channels[i].enabled != 1 || bi != boxId || get_box_enabled(bi) != 1) {
       continue;
     }
     char led[32] = {0};
@@ -145,7 +143,6 @@ void init_led_info(int boxId) {
     min_z = min(min_z, ledc_channels[i].z);
     max_z = max(max_z, ledc_channels[i].z);
   }
-  set_box_led_info(boxId, led_info);
 }
 
 void init_led() {
@@ -164,12 +161,12 @@ void init_led() {
     ledc_channels[i].channel_config.gpio_num = get_led_param(i, "IO");
   }
 
-  for (int i = 0; i < N_BOXES; ++i) {
-    if (get_box_enabled(i) != 1) continue;
-    init_led_info(i);
-  }
+  char led_info[CHAR_VAL_LEN_MAX] = {0};
+  init_led_info(0, led_info); set_box_0_led_info(led_info);
+  init_led_info(1, led_info); set_box_1_led_info(led_info);
+  init_led_info(2, led_info); set_box_2_led_info(led_info);
 
-  cmd = xQueueCreate(10, sizeof(int));
+  cmd = xQueueCreate(10, sizeof(cmd_refresh_led));
   if (cmd == NULL) {
     ESP_LOGE(SGO_LOG_EVENT, "@LED Unable to create led queue");
   }
@@ -181,8 +178,12 @@ void init_led() {
   xTaskCreate(led_task, "LED", 4096, NULL, 10, NULL);
 }
 
-void refresh_led(int i) {
-  xQueueSend(cmd, &i, 0);
+void refresh_led(int boxId, int ledId) {
+  cmd_refresh_led cmd_data = {
+    boxId: boxId,
+    ledId: ledId,
+  };
+  xQueueSend(cmd, &cmd_data, 0);
 }
 
 int get_led_param(int i, const char *param) {
@@ -191,13 +192,9 @@ int get_led_param(int i, const char *param) {
   return geti(key);
 }
 
-int rget_led_duty(int i) {
-  return get_led_param(i, "D");
-}
-
 int rset_led_duty(int i, int value) {
   value = min(100, max(value, 0));
-  refresh_led(i);
+  refresh_led(-1, i);
   return value;
 }
 

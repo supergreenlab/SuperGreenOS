@@ -90,7 +90,7 @@ void init_blower() {
 
 /* BLE Callbacks */
 
-int on_set_blower(int boxId, int value) {
+int on_set_box_blower(int boxId, int value) {
   value = min(100, max(value, 0));
   xQueueSend(cmd, &value, 0);
   return value;

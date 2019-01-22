@@ -19,7 +19,7 @@
 #ifndef SHT1X_H_
 #define SHT1X_H_
 
-void init_sht1x(int sca, int sdk);
-void loop_sht1x(int sca, int sdk);
+void init_sht1x(int portId, int sda, int sdk);
+void loop_sht1x(int portId, int sda, int sdk);
 
 #endif

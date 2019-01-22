@@ -27,10 +27,15 @@
 #define SHT1X_TEMP_F "SHT1X_F"
 #define SHT1X_HUMI "SHT1X_HU"
 
-void init_sht1x(int sca, int sdk) {
+void init_sht1x(int portId, int sda, int sdk) {
+  int boxId = portId;
+
+  ESP_LOGI(SGO_LOG_EVENT, "@SHT1X_%d Initializing sht1x pseudo i2c device\n", boxId);
 }
 
-void loop_sht1x(int sda, int sck) {
+void loop_sht1x(int portId, int sda, int sck) {
+  int boxId = portId;
+
   esp_log_level_set("gpio", ESP_LOG_NONE);
   stop_i2c();
   float temp_c = read_temperature_c(sda, sck);
@@ -39,6 +44,6 @@ void loop_sht1x(int sda, int sck) {
   seti(SHT1X_TEMP_C, temp_c * 1000);
   seti(SHT1X_TEMP_F, temp_f * 1000);
   seti(SHT1X_HUMI, humi);
-  ESP_LOGI(SGO_LOG_METRIC, "@SHT1x temp_c=%f, temp_f=%f, humi=%f", temp_c, temp_f, humi);
+  ESP_LOGI(SGO_LOG_METRIC, "@SHT1x_%d temp_c=%f, temp_f=%f, humi=%f", boxId, temp_c, temp_f, humi);
   release_gpios(sda, sck);
 }

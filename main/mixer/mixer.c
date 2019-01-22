@@ -33,12 +33,13 @@
 #include "../led/led.h"
 #include "../state/state.h"
 #include "../timer/timer.h"
+#include "../box/box.h"
 
 #define min(a, b) (((a) < (b)) ? (a) : (b)) 
 #define max(a, b) (((a) > (b)) ? (a) : (b)) 
 
 static void mixer_task();
-static void set_all_duty(int value);
+static void set_all_duty(int boxId, int value);
 
 void init_mixer() {
   BaseType_t ret = xTaskCreate(mixer_task, "MIXER", 6084, NULL, tskIDLE_PRIORITY, NULL);
@@ -52,14 +53,14 @@ static void set_duty(int i, int duty) {
     return;
   }
 
-  ledc_channels[i].setter(set_led_duty(i, duty));
+  ledc_channels[i].setter(rset_led_duty(i, duty));
 }
 
-static void set_duty_3d(double x, double y, double z, int duty, int min_duty) {
+static void set_duty_3d(int boxId, double x, double y, double z, int duty, int min_duty) {
   double min_dist = DBL_MAX;
   double max_dist = DBL_MIN;
   for (int i = 0; i < N_LEDS; ++i) {
-    if (ledc_channels[i].enabled != 1) {
+    if (ledc_channels[i].enabled != 1 || ledc_channels[i].box != boxId) {
       continue;
     }
 
@@ -69,7 +70,7 @@ static void set_duty_3d(double x, double y, double z, int duty, int min_duty) {
   }
 
   for (int i = 0; i < N_LEDS; ++i) {
-    if (ledc_channels[i].enabled != 1) {
+    if (ledc_channels[i].enabled != 1 || ledc_channels[i].box != boxId) {
       continue;
     }
 
@@ -79,16 +80,16 @@ static void set_duty_3d(double x, double y, double z, int duty, int min_duty) {
   }
 }
 
-static void mixer_duty() {
-  double timerOutput = get_timer_output();
+static void mixer_duty(int boxId) {
+  double timerOutput = get_box_timer_output(boxId);
   double duty = max(0, min(100, timerOutput));
 
-  int stretch = get_stretch();
+  int stretch = get_box_stretch(boxId);
 
   if (stretch == 0 || duty == 0) {
-    set_all_duty(duty);
+    set_all_duty(boxId, duty);
   } else if (duty != 0) {
-    set_duty_3d((double)max_x / 2, (double)max_y / 2, max_z * 1.25, duty + ((double)stretch / 100 * 25), 30 - ((double)stretch / 100 * 25));
+    set_duty_3d(boxId, (double)max_x / 2, (double)max_y / 2, max_z * 1.25, duty + ((double)stretch / 100 * 25), 30 - ((double)stretch / 100 * 25));
   }
 }
 
@@ -103,21 +104,24 @@ static void mixer_task() {
     }
 
     time(&now);
-    int led_dim = get_led_dim();
-    if (now - led_dim < 60) {
-      vTaskDelay(10 * 1000 / portTICK_PERIOD_MS);
-      continue;
-    }
+    for (int i = 0; i < N_BOXES; ++i) {
+      if (get_box_enabled(i) != 1) continue;
+      int led_dim = get_box_led_dim(i);
+      if (now - led_dim < 60) {
+        vTaskDelay(10 * 1000 / portTICK_PERIOD_MS);
+        continue;
+      }
 
-    mixer_duty();
+      mixer_duty(i);
+    }
 
     vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
   }
 }
 
-static void set_all_duty(int value) {
+static void set_all_duty(int boxId, int value) {
   for (int i = 0; i < N_LEDS; ++i) {
-    if (ledc_channels[i].enabled != 1) {
+    if (ledc_channels[i].enabled != 1 || ledc_channels[i].box == boxId) {
       continue;
     }
 
@@ -127,14 +131,14 @@ static void set_all_duty(int value) {
 
 //  KV Callbacks
 
-int on_set_led_dim(int boxId, int value) {
-  set_all_duty(5);
-  refresh_led(-1);
+int on_set_box_led_dim(int boxId, int value) {
+  set_all_duty(boxId, 5);
+  refresh_led(boxId, -1);
   return value;
 }
 
-int on_set_stretch(int boxId, int value) {
-  mixer_duty();
-  refresh_led(-1);
+int on_set_box_stretch(int boxId, int value) {
+  mixer_duty(boxId);
+  refresh_led(boxId, -1);
   return value;
 }

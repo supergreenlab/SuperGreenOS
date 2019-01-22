@@ -19,7 +19,7 @@
 #ifndef ARDUINO_CO2_H_
 #define ARDUINO_CO2_H_
 
-void init_arduino_co2(int sca, int sdk);
-void loop_arduino_co2(int sda, int sck);
+void init_arduino_co2(int portId, int sca, int sdk);
+void loop_arduino_co2(int portId, int sda, int sck);
 
 #endif
