@@ -261,6 +261,8 @@ keys:
       param: enabled
     nvs:
       key: I2C_0_E
+    http:
+      write: true
     default: 1
 
 
@@ -298,7 +300,7 @@ keys:
       key: I2C_1_E
     http:
       write: true
-    default: 1
+    default: 0
 
   #
   # Custom keys
@@ -392,7 +394,7 @@ keys:
     default: 0
 
   - name: box_0_on_hour
-    caps_name: B_0_ON_HOUR
+    caps_name: BOX_0_ON_HOUR
     integer: true
     box:
       index: 0

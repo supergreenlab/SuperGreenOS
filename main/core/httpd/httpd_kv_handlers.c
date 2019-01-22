@@ -61,7 +61,7 @@ const kvi_handler kvi_handlers[] = {
   },
   {
     .name = "I2C_0_ENABLED",
-    .handler = NULL,
+    .handler = internal_set_i2c_0_enabled,
     .getter = get_i2c_0_enabled,
   },
   {

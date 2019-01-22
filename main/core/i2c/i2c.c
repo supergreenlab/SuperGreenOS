@@ -56,12 +56,6 @@
   printf("\n");
 }*/
 
-void process_i2c_device(int portId, int sda, int scl) {
-  if (get_i2c_enabled(portId)) {
-
-  }
-}
-
 static void loop_devices(int portId) {
   int sda = get_i2c_sda(portId);
   int scl = get_i2c_scl(portId);
@@ -75,21 +69,39 @@ static void loop_devices(int portId) {
 
 void i2c_task(void *param) {
   while(true) {
-    loop_devices(0);
-    loop_devices(1);
+    if (get_i2c_enabled(0)) {
+      loop_devices(0);
+    }
+    if (get_i2c_enabled(1)) {
+      loop_devices(1);
+    }
 
     vTaskDelay(2000 / portTICK_RATE_MS);
   }
 }
 
+void init_i2c_devices(int portId) {
+  int sda = get_i2c_sda(portId);
+  int scl = get_i2c_scl(portId);
+  init_dust_gpy2y10(portId, sda, scl);
+  init_sht1x(portId, sda, scl);
+  init_arduino_co2(portId, sda, scl);
+}
+
 void init_i2c() {
+  if (get_i2c_enabled(0) == 1) {
+    init_i2c_devices(0);
+  }
+  if (get_i2c_enabled(1) == 1) {
+    init_i2c_devices(1);
+  }
   xTaskCreate(i2c_task, "I2C", 4096, NULL, 10, NULL);
 }
 
-static bool i2c_started = false;
+static bool i2c_started[] = { false,false, };
 
-static void initialize_i2c_port(int i2c_num, int sda, int scl) {
-  i2c_started = true;
+static void initialize_i2c_port(int portId, int sda, int scl) {
+  i2c_started[portId] = true;
   i2c_config_t conf;
   conf.mode = I2C_MODE_MASTER;
   conf.sda_io_num = sda;
@@ -97,29 +109,24 @@ static void initialize_i2c_port(int i2c_num, int sda, int scl) {
   conf.scl_io_num = scl;
   conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
   conf.master.clk_speed = MASTER_FREQ_HZ;
-  i2c_param_config(i2c_num, &conf);
-  i2c_driver_install(i2c_num, conf.mode,
+  i2c_param_config(portId, &conf);
+  i2c_driver_install(portId, conf.mode,
       MASTER_RX_BUF_DISABLE,
       MASTER_TX_BUF_DISABLE, 0);
 }
 
-void start_i2c() {
-  if (i2c_started) return;
+void start_i2c(int portId) {
+  if (i2c_started[portId]) return;
 
-  if (get_i2c_enabled(0) == 1) {
-    int sda = get_i2c_sda(0);
-    int scl = get_i2c_scl(0);
-    initialize_i2c_port(I2C_NUM_0, sda, scl);
-  }
-  if (get_i2c_enabled(1) == 1) {
-    int sda = get_i2c_sda(1);
-    int scl = get_i2c_scl(1);
-    initialize_i2c_port(I2C_NUM_1, sda, scl);
+  if (get_i2c_enabled(portId) == 1) {
+    int sda = get_i2c_sda(portId);
+    int scl = get_i2c_scl(portId);
+    initialize_i2c_port(portId, sda, scl); // Substituting I2C_NUM_X by portId :P
   }
 }
 
-void stop_i2c() {
-  if (!i2c_started) return;
-  i2c_started = false;
+void stop_i2c(int portId) {
+  if (!i2c_started[portId]) return;
+  i2c_started[portId] = false;
   i2c_driver_delete(I2C_NUM_0);
 }

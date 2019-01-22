@@ -93,7 +93,7 @@ void preinit_kv() {
   defaulti(I2C_1_SDA, default_i2c_1_sda);
   int default_i2c_1_scl = DEFAULT_I2C_1_SCL;
   defaulti(I2C_1_SCL, default_i2c_1_scl);
-  int default_i2c_1_enabled = 1;
+  int default_i2c_1_enabled = 0;
   defaulti(I2C_1_ENABLED, default_i2c_1_enabled);
   int default_state = FIRST_RUN;
   defaulti(STATE, default_state);

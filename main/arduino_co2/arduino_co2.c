@@ -40,7 +40,7 @@ void loop_arduino_co2(int portId, int sda, int sck) {
 
   uint16_t v = 0;
 	uint8_t nack;
-  start_i2c();
+  start_i2c(portId);
   i2c_cmd_handle_t cmd = i2c_cmd_link_create();
   i2c_master_start(cmd);
   i2c_master_write_byte(cmd, ARDUINO_CO2_ADDR << 1 | I2C_MASTER_READ, ACK_CHECK_EN);
@@ -61,5 +61,5 @@ void loop_arduino_co2(int portId, int sda, int sck) {
 	ESP_LOGI(SGO_LOG_METRIC, "@ARDUINO_CO2_%d co2=%d", boxId, v);
   set_box_arduino_co2(boxId, v);
 
-  stop_i2c();
+  stop_i2c(portId);
 }

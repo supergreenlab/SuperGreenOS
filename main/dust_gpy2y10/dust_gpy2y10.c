@@ -37,7 +37,7 @@ void loop_dust_gpy2y10(int portId, int sda, int sck) {
 
   uint16_t v = 0;
 	uint8_t nack;
-  start_i2c();
+  start_i2c(portId);
   i2c_cmd_handle_t cmd = i2c_cmd_link_create();
   i2c_master_start(cmd);
   i2c_master_write_byte(cmd, DUST_GP2Y10_ADDR << 1 | I2C_MASTER_READ, ACK_CHECK_EN);
@@ -58,5 +58,5 @@ void loop_dust_gpy2y10(int portId, int sda, int sck) {
 	ESP_LOGI(SGO_LOG_METRIC, "@DUST_GPY2Y10_%d dust=%d", boxId, v);
   set_box_dust_gpy2y10(portId, v);
 
-  stop_i2c();
+  stop_i2c(portId);
 }

@@ -121,7 +121,7 @@ static void mixer_task() {
 
 static void set_all_duty(int boxId, int value) {
   for (int i = 0; i < N_LEDS; ++i) {
-    if (ledc_channels[i].enabled != 1 || ledc_channels[i].box == boxId) {
+    if (ledc_channels[i].enabled != 1 || ledc_channels[i].box != boxId) {
       continue;
     }
 
