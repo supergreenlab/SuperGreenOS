@@ -108,7 +108,7 @@ void preinit_kv() {
   int default_box_0_started_at = 0;
   defaulti(BOX_0_STARTED_AT, default_box_0_started_at);
   int default_box_0_on_hour = 1;
-  defaulti(B_0_ON_HOUR, default_box_0_on_hour);
+  defaulti(BOX_0_ON_HOUR, default_box_0_on_hour);
   int default_box_0_on_min = 0;
   defaulti(BOX_0_ON_MIN, default_box_0_on_min);
   int default_box_0_off_hour = 19;
@@ -308,7 +308,7 @@ void postinit_kv() {
   sync_ble_str(DEVICE_NAME, IDX_VALUE(DEVICE_NAME));
   sync_ble_i(BOX_0_TIMER_TYPE, IDX_VALUE(BOX_0_TIMER_TYPE));
   sync_ble_i(BOX_0_STARTED_AT, IDX_VALUE(BOX_0_STARTED_AT));
-  sync_ble_i(B_0_ON_HOUR, IDX_VALUE(B_0_ON_HOUR));
+  sync_ble_i(BOX_0_ON_HOUR, IDX_VALUE(BOX_0_ON_HOUR));
   sync_ble_i(BOX_0_ON_MIN, IDX_VALUE(BOX_0_ON_MIN));
   sync_ble_i(BOX_0_OFF_HOUR, IDX_VALUE(BOX_0_OFF_HOUR));
   sync_ble_i(BOX_0_OFF_MIN, IDX_VALUE(BOX_0_OFF_MIN));

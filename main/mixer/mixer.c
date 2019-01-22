@@ -106,9 +106,9 @@ static void mixer_task() {
     time(&now);
     for (int i = 0; i < N_BOXES; ++i) {
       if (get_box_enabled(i) != 1) continue;
+
       int led_dim = get_box_led_dim(i);
       if (now - led_dim < 60) {
-        vTaskDelay(10 * 1000 / portTICK_PERIOD_MS);
         continue;
       }
 

@@ -306,11 +306,11 @@ void set_box_0_started_at(int value) {
 
 
 int get_box_0_on_hour() {
-  return geti(B_0_ON_HOUR);
+  return geti(BOX_0_ON_HOUR);
 }
 
 void set_box_0_on_hour(int value) {
-  seti(B_0_ON_HOUR, value);
+  seti(BOX_0_ON_HOUR, value);
 }
 
 

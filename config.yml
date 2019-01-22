@@ -476,7 +476,7 @@ keys:
       index: 0
       param: led_dim
     nvs:
-      key: LED_DIM
+      key: B_0_L_DIM
     ble:
       uuid: "{0x61,0xdb,0xb0,0x55,0xde,0x0f,0xb7,0x46,0x29,0xba,0x77,0x76,0xf6,0x75,0x63,0xa6}"
       notify: true
@@ -720,7 +720,7 @@ keys:
       index: 1
       param: led_dim
     nvs:
-      key: LED_DIM
+      key: B_1_L_DIM
     http:
       write: true
     write_cb: true
@@ -955,7 +955,7 @@ keys:
       index: 2
       param: led_dim
     nvs:
-      key: LED_DIM
+      key: B_2_L_DIM
     http:
       write: true
     write_cb: true

@@ -129,7 +129,7 @@ static void stat_dump_task(void *param) {
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_STARTED_AT", value);
     vTaskDelay(50 / portTICK_PERIOD_MS);
     value = get_box_0_on_hour();
-    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "B_0_ON_HOUR", value);
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_ON_HOUR", value);
     vTaskDelay(50 / portTICK_PERIOD_MS);
     value = get_box_0_on_min();
     ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_ON_MIN", value);

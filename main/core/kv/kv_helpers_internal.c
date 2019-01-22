@@ -195,7 +195,7 @@ void internal_set_box_0_started_at(int value) {
   // TODO: httpd notify
 }
 void internal_set_box_0_on_hour(int value) {
-  seti(B_0_ON_HOUR, value);
+  seti(BOX_0_ON_HOUR, value);
 
 
 

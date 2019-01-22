@@ -105,7 +105,7 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_box_0_started_at,
   },
   {
-    .name = "B_0_ON_HOUR",
+    .name = "BOX_0_ON_HOUR",
     .handler = internal_set_box_0_on_hour,
     .getter = get_box_0_on_hour,
   },
