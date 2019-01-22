@@ -72,8 +72,6 @@ extern const unsigned int N_LEDS;
 void init_led();
 void refresh_led(int boxId, int ledId);
 
-int rset_led_duty(int i, int value);
-
 #define DEFAULT_LED_0_GPIO 32
 #define DEFAULT_LED_1_GPIO 17
 #define DEFAULT_LED_2_GPIO 33

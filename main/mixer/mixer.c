@@ -53,6 +53,7 @@ static void set_duty(int i, int duty) {
     return;
   }
 
+  duty = min(100, max(duty, 0));
   ledc_channels[i].setter(rset_led_duty(i, duty));
 }
 
@@ -91,6 +92,7 @@ static void mixer_duty(int boxId) {
   } else if (duty != 0) {
     set_duty_3d(boxId, (double)max_x / 2, (double)max_y / 2, max_z * 1.25, duty + ((double)stretch / 100 * 25), 30 - ((double)stretch / 100 * 25));
   }
+  refresh_led(boxId, -1);
 }
 
 static void mixer_task() {
