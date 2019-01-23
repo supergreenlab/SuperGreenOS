@@ -267,18 +267,18 @@ void preinit_kv() {
   defaulti(LED_4_Z, default_led_4_z);
   int default_led_5_z = 0;
   defaulti(LED_5_Z, default_led_5_z);
-  int default_led_0_enable = 1;
-  defaulti(LED_0_ENABLE, default_led_0_enable);
-  int default_led_1_enable = 1;
-  defaulti(LED_1_ENABLE, default_led_1_enable);
-  int default_led_2_enable = 1;
-  defaulti(LED_2_ENABLE, default_led_2_enable);
-  int default_led_3_enable = 1;
-  defaulti(LED_3_ENABLE, default_led_3_enable);
-  int default_led_4_enable = 1;
-  defaulti(LED_4_ENABLE, default_led_4_enable);
-  int default_led_5_enable = 1;
-  defaulti(LED_5_ENABLE, default_led_5_enable);
+  int default_led_0_enabled = 1;
+  defaulti(LED_0_ENABLED, default_led_0_enabled);
+  int default_led_1_enabled = 1;
+  defaulti(LED_1_ENABLED, default_led_1_enabled);
+  int default_led_2_enabled = 1;
+  defaulti(LED_2_ENABLED, default_led_2_enabled);
+  int default_led_3_enabled = 1;
+  defaulti(LED_3_ENABLED, default_led_3_enabled);
+  int default_led_4_enabled = 1;
+  defaulti(LED_4_ENABLED, default_led_4_enabled);
+  int default_led_5_enabled = 1;
+  defaulti(LED_5_ENABLED, default_led_5_enabled);
   int default_led_0_box = 0;
   defaulti(LED_0_BOX, default_led_0_box);
   int default_led_1_box = 0;
@@ -291,6 +291,18 @@ void preinit_kv() {
   defaulti(LED_4_BOX, default_led_4_box);
   int default_led_5_box = 1;
   defaulti(LED_5_BOX, default_led_5_box);
+  int default_led_0_dim = 100;
+  defaulti(LED_0_DIM, default_led_0_dim);
+  int default_led_1_dim = 100;
+  defaulti(LED_1_DIM, default_led_1_dim);
+  int default_led_2_dim = 100;
+  defaulti(LED_2_DIM, default_led_2_dim);
+  int default_led_3_dim = 100;
+  defaulti(LED_3_DIM, default_led_3_dim);
+  int default_led_4_dim = 100;
+  defaulti(LED_4_DIM, default_led_4_dim);
+  int default_led_5_dim = 100;
+  defaulti(LED_5_DIM, default_led_5_dim);
 
   /*
    * [/GENERATED]
@@ -355,11 +367,15 @@ void seti(const char * key, int value) {
   ESP_ERROR_CHECK(err);
   nvs_commit(kv_handle);
   nvs_close(kv_handle);
+  ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", key, value);
 }
 
 void defaulti(const char * key, int value) {
   if (!hasi(key)) {
     seti(key, value);
+  } else {
+    int v = geti(key);
+    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", key, v);
   }
 }
 
@@ -384,13 +400,18 @@ void setstr(const char * key, const char * value) {
   ESP_ERROR_CHECK(err);
   nvs_commit(kv_handle);
   nvs_close(kv_handle);
+
+  ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", key, value);
 }
 
 void defaultstr(const char * key, const char * value) {
+  bool skip = strcmp(key, "WPASS") == 0;
+  
   if (!hasstr(key)) {
     setstr(key, value);
   } else {
     char buf[MAX_KVALUE_SIZE] = {0};
     getstr(key, buf, sizeof(buf) - 1);
+    ESP_LOGI(skip ? SGO_LOG_NOSEND : SGO_LOG_METRIC, "@KV %s=%s", key, buf);
   }
 }

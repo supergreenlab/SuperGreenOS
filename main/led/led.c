@@ -54,7 +54,6 @@ int max_z = INT_MIN;
 #define LEDC_FADE_TIME         (500)
 
 void init_led_timers();
-int get_led_param(int i, const char *param);
 
 typedef struct {
   int boxId;
@@ -85,8 +84,9 @@ static void update_led(int i) {
     return;
   }
 
-  double duty = get_led_param(i, "D");
-  double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
+  double duty = get_led_duty(i);
+  double dim = get_led_dim(i);
+  double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100 * dim / 100;
   ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
 
   fade_no_wait_led(ledc_channels[i].channel_config, real_duty);
@@ -150,15 +150,15 @@ void init_led() {
 
   // TODO init led array + set defaults with kv
   for (int i = 0; i < N_LEDS; ++i) {
-    ledc_channels[i].enabled = get_led_param(i, "E");
+    ledc_channels[i].enabled = get_led_enabled(i);
 
-    ledc_channels[i].x = get_led_param(i, "X");
-    ledc_channels[i].y = get_led_param(i, "Y");
-    ledc_channels[i].z = get_led_param(i, "Z");
+    ledc_channels[i].x = get_led_x(i);
+    ledc_channels[i].y = get_led_y(i);
+    ledc_channels[i].z = get_led_z(i);
 
-    ledc_channels[i].box = get_led_param(i, "B");
+    ledc_channels[i].box = get_led_box(i);
 
-    ledc_channels[i].channel_config.gpio_num = get_led_param(i, "IO");
+    ledc_channels[i].channel_config.gpio_num = get_led_gpio(i);
   }
 
   char led_info[CHAR_VAL_LEN_MAX] = {0};
@@ -186,17 +186,18 @@ void refresh_led(int boxId, int ledId) {
   xQueueSend(cmd, &cmd_data, 0);
 }
 
-int get_led_param(int i, const char *param) {
-  char key[16] = {0};
-  sprintf(key, "L_%d_%s", i, param);
-  return geti(key);
-}
-
 /* KV Callbacks */
 
 int on_set_led_duty(int ledId, int value) {
   value = min(100, max(value, 0));
   set_led_duty(ledId, value);
+  refresh_led(-1, ledId);
+  return value;
+}
+
+int on_set_led_dim(int ledId, int value) {
+  value = min(100, max(value, 0));
+  set_led_dim(ledId, value);
   refresh_led(-1, ledId);
   return value;
 }

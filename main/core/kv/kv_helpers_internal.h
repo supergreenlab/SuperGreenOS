@@ -130,18 +130,24 @@ void internal_set_led_2_z(int value);
 void internal_set_led_3_z(int value);
 void internal_set_led_4_z(int value);
 void internal_set_led_5_z(int value);
-void internal_set_led_0_enable(int value);
-void internal_set_led_1_enable(int value);
-void internal_set_led_2_enable(int value);
-void internal_set_led_3_enable(int value);
-void internal_set_led_4_enable(int value);
-void internal_set_led_5_enable(int value);
+void internal_set_led_0_enabled(int value);
+void internal_set_led_1_enabled(int value);
+void internal_set_led_2_enabled(int value);
+void internal_set_led_3_enabled(int value);
+void internal_set_led_4_enabled(int value);
+void internal_set_led_5_enabled(int value);
 void internal_set_led_0_box(int value);
 void internal_set_led_1_box(int value);
 void internal_set_led_2_box(int value);
 void internal_set_led_3_box(int value);
 void internal_set_led_4_box(int value);
 void internal_set_led_5_box(int value);
+void internal_set_led_0_dim(int value);
+void internal_set_led_1_dim(int value);
+void internal_set_led_2_dim(int value);
+void internal_set_led_3_dim(int value);
+void internal_set_led_4_dim(int value);
+void internal_set_led_5_dim(int value);
 
 /*
  * [/GENERATED]

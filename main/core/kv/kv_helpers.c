@@ -1163,62 +1163,62 @@ void set_led_5_z(int value) {
 
 
 
-int get_led_0_enable() {
-  return geti(LED_0_ENABLE);
+int get_led_0_enabled() {
+  return geti(LED_0_ENABLED);
 }
 
-void set_led_0_enable(int value) {
-  seti(LED_0_ENABLE, value);
-}
-
-
-
-int get_led_1_enable() {
-  return geti(LED_1_ENABLE);
-}
-
-void set_led_1_enable(int value) {
-  seti(LED_1_ENABLE, value);
+void set_led_0_enabled(int value) {
+  seti(LED_0_ENABLED, value);
 }
 
 
 
-int get_led_2_enable() {
-  return geti(LED_2_ENABLE);
+int get_led_1_enabled() {
+  return geti(LED_1_ENABLED);
 }
 
-void set_led_2_enable(int value) {
-  seti(LED_2_ENABLE, value);
-}
-
-
-
-int get_led_3_enable() {
-  return geti(LED_3_ENABLE);
-}
-
-void set_led_3_enable(int value) {
-  seti(LED_3_ENABLE, value);
+void set_led_1_enabled(int value) {
+  seti(LED_1_ENABLED, value);
 }
 
 
 
-int get_led_4_enable() {
-  return geti(LED_4_ENABLE);
+int get_led_2_enabled() {
+  return geti(LED_2_ENABLED);
 }
 
-void set_led_4_enable(int value) {
-  seti(LED_4_ENABLE, value);
+void set_led_2_enabled(int value) {
+  seti(LED_2_ENABLED, value);
 }
 
 
 
-int get_led_5_enable() {
-  return geti(LED_5_ENABLE);
+int get_led_3_enabled() {
+  return geti(LED_3_ENABLED);
 }
 
-void set_led_5_enable(int value) {
-  seti(LED_5_ENABLE, value);
+void set_led_3_enabled(int value) {
+  seti(LED_3_ENABLED, value);
+}
+
+
+
+int get_led_4_enabled() {
+  return geti(LED_4_ENABLED);
+}
+
+void set_led_4_enabled(int value) {
+  seti(LED_4_ENABLED, value);
+}
+
+
+
+int get_led_5_enabled() {
+  return geti(LED_5_ENABLED);
+}
+
+void set_led_5_enabled(int value) {
+  seti(LED_5_ENABLED, value);
 }
 
 
@@ -1279,6 +1279,66 @@ int get_led_5_box() {
 
 void set_led_5_box(int value) {
   seti(LED_5_BOX, value);
+}
+
+
+
+int get_led_0_dim() {
+  return geti(LED_0_DIM);
+}
+
+void set_led_0_dim(int value) {
+  seti(LED_0_DIM, value);
+}
+
+
+
+int get_led_1_dim() {
+  return geti(LED_1_DIM);
+}
+
+void set_led_1_dim(int value) {
+  seti(LED_1_DIM, value);
+}
+
+
+
+int get_led_2_dim() {
+  return geti(LED_2_DIM);
+}
+
+void set_led_2_dim(int value) {
+  seti(LED_2_DIM, value);
+}
+
+
+
+int get_led_3_dim() {
+  return geti(LED_3_DIM);
+}
+
+void set_led_3_dim(int value) {
+  seti(LED_3_DIM, value);
+}
+
+
+
+int get_led_4_dim() {
+  return geti(LED_4_DIM);
+}
+
+void set_led_4_dim(int value) {
+  seti(LED_4_DIM, value);
+}
+
+
+
+int get_led_5_dim() {
+  return geti(LED_5_DIM);
+}
+
+void set_led_5_dim(int value) {
+  seti(LED_5_DIM, value);
 }
 
 

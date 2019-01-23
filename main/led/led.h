@@ -82,5 +82,6 @@ void refresh_led(int boxId, int ledId);
 /* BLE Callbacks */
 
 int on_set_led_duty(int ledId, int value);
+int on_set_led_dim(int ledId, int value);
 
 #endif

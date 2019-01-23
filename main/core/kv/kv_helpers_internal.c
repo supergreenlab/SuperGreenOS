@@ -817,43 +817,43 @@ void internal_set_led_5_z(int value) {
 
   // TODO: httpd notify
 }
-void internal_set_led_0_enable(int value) {
-  seti(LED_0_ENABLE, value);
+void internal_set_led_0_enabled(int value) {
+  seti(LED_0_ENABLED, value);
 
 
 
   // TODO: httpd notify
 }
-void internal_set_led_1_enable(int value) {
-  seti(LED_1_ENABLE, value);
+void internal_set_led_1_enabled(int value) {
+  seti(LED_1_ENABLED, value);
 
 
 
   // TODO: httpd notify
 }
-void internal_set_led_2_enable(int value) {
-  seti(LED_2_ENABLE, value);
+void internal_set_led_2_enabled(int value) {
+  seti(LED_2_ENABLED, value);
 
 
 
   // TODO: httpd notify
 }
-void internal_set_led_3_enable(int value) {
-  seti(LED_3_ENABLE, value);
+void internal_set_led_3_enabled(int value) {
+  seti(LED_3_ENABLED, value);
 
 
 
   // TODO: httpd notify
 }
-void internal_set_led_4_enable(int value) {
-  seti(LED_4_ENABLE, value);
+void internal_set_led_4_enabled(int value) {
+  seti(LED_4_ENABLED, value);
 
 
 
   // TODO: httpd notify
 }
-void internal_set_led_5_enable(int value) {
-  seti(LED_5_ENABLE, value);
+void internal_set_led_5_enabled(int value) {
+  seti(LED_5_ENABLED, value);
 
 
 
@@ -897,6 +897,66 @@ void internal_set_led_4_box(int value) {
 void internal_set_led_5_box(int value) {
   seti(LED_5_BOX, value);
 
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_0_dim(int value) {
+  seti(LED_0_DIM, value);
+
+  value = on_set_led_0_dim(value);
+
+  seti(LED_0_DIM, value);
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_1_dim(int value) {
+  seti(LED_1_DIM, value);
+
+  value = on_set_led_1_dim(value);
+
+  seti(LED_1_DIM, value);
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_2_dim(int value) {
+  seti(LED_2_DIM, value);
+
+  value = on_set_led_2_dim(value);
+
+  seti(LED_2_DIM, value);
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_3_dim(int value) {
+  seti(LED_3_DIM, value);
+
+  value = on_set_led_3_dim(value);
+
+  seti(LED_3_DIM, value);
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_4_dim(int value) {
+  seti(LED_4_DIM, value);
+
+  value = on_set_led_4_dim(value);
+
+  seti(LED_4_DIM, value);
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_5_dim(int value) {
+  seti(LED_5_DIM, value);
+
+  value = on_set_led_5_dim(value);
+
+  seti(LED_5_DIM, value);
 
 
   // TODO: httpd notify

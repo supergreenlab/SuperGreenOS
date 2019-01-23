@@ -90,8 +90,9 @@ led_params:
   - x
   - y
   - z
-  - enable
+  - enabled
   - box
+  - dim
 
 led_loop_i:
   - 0
@@ -1581,3 +1582,81 @@ keys:
     http:
       write: true
     default: 1
+
+  - name: led_0_dim
+    caps_name: LED_0_DIM
+    integer: true
+    led:
+      index: 0
+      param: dim
+    nvs:
+      key: L_0_DI
+    http:
+      write: true
+    write_cb: true
+    default: 100
+
+  - name: led_1_dim
+    caps_name: LED_1_DIM
+    integer: true
+    led:
+      index: 1
+      param: dim
+    nvs:
+      key: L_1_DI
+    http:
+      write: true
+    write_cb: true
+    default: 100
+
+  - name: led_2_dim
+    caps_name: LED_2_DIM
+    integer: true
+    led:
+      index: 2
+      param: dim
+    nvs:
+      key: L_2_DI
+    http:
+      write: true
+    write_cb: true
+    default: 100
+
+  - name: led_3_dim
+    caps_name: LED_3_DIM
+    integer: true
+    led:
+      index: 3
+      param: dim
+    nvs:
+      key: L_3_DI
+    http:
+      write: true
+    write_cb: true
+    default: 100
+
+  - name: led_4_dim
+    caps_name: LED_4_DIM
+    integer: true
+    led:
+      index: 4
+      param: dim
+    nvs:
+      key: L_4_DI
+    http:
+      write: true
+    write_cb: true
+    default: 100
+
+  - name: led_5_dim
+    caps_name: LED_5_DIM
+    integer: true
+    led:
+      index: 5
+      param: dim
+    nvs:
+      key: L_5_DI
+    http:
+      write: true
+    write_cb: true
+    default: 100
