@@ -97,7 +97,7 @@ static void led_task(void *param) {
   cmd_refresh_led c;
 
   for (int i = 0; i < N_LEDS; ++i) {
-    if (ledc_channels[i].enabled != 1) {
+    if (ledc_channels[i].enabled != 1 || get_box_enabled(ledc_channels[i].box) != 1) {
       continue;
     }
 

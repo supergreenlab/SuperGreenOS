@@ -191,6 +191,7 @@ static void wifi_task(void *param) {
   unsigned int n_connection_failed = 0;
   unsigned int n_connected_sta = 0;
   unsigned int counter = 1;
+  bool was_valid = is_valid();
 
   for (;;) {
     if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS)) {
@@ -199,12 +200,14 @@ static void wifi_task(void *param) {
       // Wifi STA conf change
       if ((c == CMD_SSID_CHANGED || c == CMD_PASS_CHANGED)) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_SSID_CHANGED | CMD_PASS_CHANGED");
-        if (is_valid()) {
-          start_sta();
-        } else {
-          start_ap();
+        bool _is_valid = is_valid();
+        if (_is_valid != was_valid) {
+          if (_is_valid) {
+            start_sta();
+          } else {
+            start_ap();
+          }
         }
-
       } else if (c == CMD_AP_START) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_AP_START");
         n_connected_sta = 0;

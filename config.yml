@@ -1438,72 +1438,72 @@ keys:
       write: true
     default: 0
 
-  - name: led_0_enable
-    caps_name: LED_0_ENABLE
+  - name: led_0_enabled
+    caps_name: LED_0_ENABLED
     integer: true
     led:
       index: 0
-      param: enable
+      param: enabled
     nvs:
       key: L_0_E
     http:
       write: true
     default: 1
 
-  - name: led_1_enable
-    caps_name: LED_1_ENABLE
+  - name: led_1_enabled
+    caps_name: LED_1_ENABLED
     integer: true
     led:
       index: 1
-      param: enable
+      param: enabled
     nvs:
       key: L_1_E
     http:
       write: true
     default: 1
 
-  - name: led_2_enable
-    caps_name: LED_2_ENABLE
+  - name: led_2_enabled
+    caps_name: LED_2_ENABLED
     integer: true
     led:
       index: 2
-      param: enable
+      param: enabled
     nvs:
       key: L_2_E
     http:
       write: true
     default: 1
 
-  - name: led_3_enable
-    caps_name: LED_3_ENABLE
+  - name: led_3_enabled
+    caps_name: LED_3_ENABLED
     integer: true
     led:
       index: 3
-      param: enable
+      param: enabled
     nvs:
       key: L_3_E
     http:
       write: true
     default: 1
 
-  - name: led_4_enable
-    caps_name: LED_4_ENABLE
+  - name: led_4_enabled
+    caps_name: LED_4_ENABLED
     integer: true
     led:
       index: 4
-      param: enable
+      param: enabled
     nvs:
       key: L_4_E
     http:
       write: true
     default: 1
 
-  - name: led_5_enable
-    caps_name: LED_5_ENABLE
+  - name: led_5_enabled
+    caps_name: LED_5_ENABLED
     integer: true
     led:
       index: 5
-      param: enable
+      param: enabled
     nvs:
       key: L_5_E
     http:
