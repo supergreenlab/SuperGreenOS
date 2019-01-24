@@ -70,11 +70,59 @@ This quickstart will get you through the first step required
 
 ### Core keys
 
+- WIFI_STATUS
+- WIFI_SSID
+- WIFI_PASSWORD
+- TIME
+- N_RESTARTS
+- OTA_TIMESTAMP
+- OTA_SERVER_IP
+- OTA_SERVER_HOSTNAME
+- OTA_SERVER_PORT
+- OTA_VERSION_FILENAME
+- OTA_FILENAME
+- BROKER_URL
+- I2C_0_SDA
+- I2C_0_SCL
+- I2C_0_ENABLED
+- I2C_1_SDA
+- I2C_1_SCL
+- I2C_1_ENABLED
+
 ### Controller keys
+
+- STATE
+- DEVICE_NAME
 
 ### Box keys
 
+- BOX_0_ENABLED
+- BOX_0_TIMER_TYPE
+- BOX_0_TIMER_OUTPUT
+- BOX_0_STARTED_AT
+- BOX_0_ON_HOUR
+- BOX_0_ON_MIN
+- BOX_0_OFF_HOUR
+- BOX_0_OFF_MIN
+- BOX_0_STRETCH
+- BOX_0_LED_DIM
+- BOX_0_BLOWER
+- BOX_0_BLOWER_MODE
+- BOX_0_BLOWER_GPIO
+- BOX_0_SHT
+- BOX_0_SHT
+- BOX_0_SHT
+- BOX_0_ARDUINO_CO
+- BOX_0_DUST_GPY
+- BOX_0_LED_INFO
+
 ### Led keys
 
-
-Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+- LED_0_DUTY
+- LED_0_GPIO
+- LED_0_X
+- LED_0_Y
+- LED_0_Z
+- LED_0_ENABLED
+- LED_0_BOX
+- LED_0_DIM

@@ -654,7 +654,7 @@ keys:
     default: 0
 
   - name: box_1_on_hour
-    caps_name: B_1_ON_HOUR
+    caps_name: BOX_1_ON_HOUR
     integer: true
     box:
       index: 1
@@ -889,7 +889,7 @@ keys:
     default: 0
 
   - name: box_2_on_hour
-    caps_name: B_2_ON_HOUR
+    caps_name: BOX_2_ON_HOUR
     integer: true
     box:
       index: 2
