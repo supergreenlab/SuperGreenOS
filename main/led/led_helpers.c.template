@@ -40,6 +40,7 @@
   {{#led_loop_i}}
     case {{.}}: \
       set_led_{{.}}_## param(value); \
+      break; \
   {{/led_loop_i}}
   } \
 }

@@ -31,8 +31,9 @@
 #define MAX_KEY_SIZE 21
 
 static void stat_dump_task(void *param) {
+  int counter = 0;
   wait_connected();
-  vTaskDelay(60000 / portTICK_PERIOD_MS);
+  vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
   int n_tasks = uxTaskGetNumberOfTasks();
   uint32_t ulTotalRunTime, ulStatsAsPercentage;
   TaskStatus_t *statuses = malloc(n_tasks * sizeof(TaskStatus_t));
@@ -60,20 +61,24 @@ static void stat_dump_task(void *param) {
     int value;
     char str[MAX_KVALUE_SIZE] = {0};
     {{#keys}}
-    {{#nvs}}
-    {{#integer}}
-    value = get_{{name}}();
-    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "{{caps_name}}", value);
-    {{/integer}}
-    {{#string}}
-    get_{{name}}(str, MAX_KVALUE_SIZE-1);
-    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "{{caps_name}}", str);
-    {{/string}}
-    vTaskDelay(50 / portTICK_PERIOD_MS);
-    {{/nvs}}
+    if ((counter % 20) == 0 || is_{{name}}_changed()) {
+      {{#nvs}}
+      {{#integer}}
+      value = get_{{name}}();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "{{caps_name}}", value);
+      {{/integer}}
+      {{#string}}
+      get_{{name}}(str, MAX_KVALUE_SIZE-1);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "{{caps_name}}", str);
+      {{/string}}
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      {{/nvs}}
+      reset_{{name}}_changed();
+    }
     {{/keys}}
 
-    vTaskDelay(60000 / portTICK_PERIOD_MS);
+    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
+    ++counter;
 
     /*
      * [/GENERATED]

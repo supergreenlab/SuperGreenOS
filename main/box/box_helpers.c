@@ -43,10 +43,13 @@
   switch(boxId) { \
     case 0: \
       set_box_0_## param(value); \
+      break; \
     case 1: \
       set_box_1_## param(value); \
+      break; \
     case 2: \
       set_box_2_## param(value); \
+      break; \
   } \
 }
 

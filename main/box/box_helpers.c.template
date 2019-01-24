@@ -42,6 +42,7 @@
   {{#box_loop_i}}
     case {{.}}: \
       set_box_{{.}}_## param(value); \
+      break; \
   {{/box_loop_i}}
   } \
 }

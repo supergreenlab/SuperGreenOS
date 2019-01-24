@@ -47,16 +47,22 @@
   switch(ledId) { \
     case 0: \
       set_led_0_## param(value); \
+      break; \
     case 1: \
       set_led_1_## param(value); \
+      break; \
     case 2: \
       set_led_2_## param(value); \
+      break; \
     case 3: \
       set_led_3_## param(value); \
+      break; \
     case 4: \
       set_led_4_## param(value); \
+      break; \
     case 5: \
       set_led_5_## param(value); \
+      break; \
   } \
 }
 

@@ -19,6 +19,7 @@
 #include "onoff.h"
 
 #include <time.h>
+#include <math.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -32,6 +33,8 @@
 #include "../core/ble/ble_db.h"
 #include "../box/box.h"
 
+#define SUN_MOVING_MULTI 400
+
 static int get_output_for_hour_min(int boxId) {
   int on_hour = get_box_on_hour(boxId);
   int on_min = get_box_on_min(boxId);
@@ -43,16 +46,14 @@ static int get_output_for_hour_min(int boxId) {
   time(&now);
   localtime_r(&now, &tm_now); 
 
-  int on_sec = on_hour * 3600 + on_min * 60;
-  int off_sec = off_hour * 3600 + off_min * 60;
-  int cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
-
-  ESP_LOGI(SGO_LOG_EVENT, "@ONOFF on_sec = %d, off_sec = %d, cur_sec = %d", on_sec, off_sec, cur_sec);
+  double on_sec = on_hour * 3600 + on_min * 60;
+  double off_sec = off_hour * 3600 + off_min * 60;
+  double cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
 
   if (on_sec < off_sec && on_sec < cur_sec && off_sec > cur_sec) {
-    return 100;
+    return sin((cur_sec - on_sec) / (off_sec - on_sec) * M_PI) * SUN_MOVING_MULTI;
   } else if (on_sec > off_sec && (on_sec < cur_sec || cur_sec < off_sec)) {
-    return 100;
+    return sin((24*60*60-(cur_sec - on_sec)) / (24*60*60-(on_sec - off_sec)) * M_PI) * SUN_MOVING_MULTI;
   }
 
   return 0; 

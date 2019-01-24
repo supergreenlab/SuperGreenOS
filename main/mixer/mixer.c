@@ -117,7 +117,7 @@ static void mixer_task() {
       mixer_duty(i);
     }
 
-    vTaskDelay(10 * 1000 / portTICK_PERIOD_MS);
+    vTaskDelay(2 * 1000 / portTICK_PERIOD_MS);
   }
 }
 

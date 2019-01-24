@@ -34,7 +34,7 @@
 void internal_set_{{name}}(int value) {
   {{#nvs}}
   {{^nvs.manual}}
-  seti({{caps_name}}, value);
+  set_{{name}}(value);
   {{/nvs.manual}}
   {{/nvs}}
 
@@ -43,7 +43,7 @@ void internal_set_{{name}}(int value) {
 
   {{#nvs}}
   {{^nvs.manual}}
-  seti({{caps_name}}, value);
+  set_{{name}}(value);
   {{/nvs.manual}}
   {{/nvs}}
   {{/write_cb}}
@@ -61,7 +61,7 @@ void internal_set_{{name}}(int value) {
 void internal_set_{{name}}(const char *value) {
   {{#nvs}}
   {{^nvs.manual}}
-  setstr({{caps_name}}, value);
+  set_{{name}}(value);
   {{/nvs.manual}}
   {{/nvs}}
 
@@ -70,7 +70,7 @@ void internal_set_{{name}}(const char *value) {
 
   {{#nvs}}
   {{^nvs.manual}}
-  setstr({{caps_name}}, value);
+  set_{{name}}(value);
   {{/nvs.manual}}
   {{/nvs}}
   {{/write_cb}}

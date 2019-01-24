@@ -106,7 +106,7 @@ static void led_task(void *param) {
   }
 
   while(1) {
-    if (xQueueReceive(cmd, &c, 30 * 1000 / portTICK_PERIOD_MS)) {
+    if (xQueueReceive(cmd, &c, 5 * 1000 / portTICK_PERIOD_MS)) {
       for (int i = 0; i < N_LEDS; ++i) {
         if (c.boxId != -1 && (c.boxId != ledc_channels[i].box || get_box_enabled(ledc_channels[i].box) != 1)) {
           continue;

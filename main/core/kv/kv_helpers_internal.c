@@ -37,121 +37,121 @@ void internal_set_wifi_status(int value) {
   // TODO: httpd notify
 }
 void internal_set_wifi_ssid(const char *value) {
-  setstr(WIFI_SSID, value);
+  set_wifi_ssid(value);
 
   value = on_set_wifi_ssid(value);
 
-  setstr(WIFI_SSID, value);
+  set_wifi_ssid(value);
 
   set_attr_value(IDX_CHAR_VAL_WIFI_SSID, (uint8_t *)value, strlen(value));
 }
 void internal_set_wifi_password(const char *value) {
-  setstr(WIFI_PASSWORD, value);
+  set_wifi_password(value);
 
   value = on_set_wifi_password(value);
 
-  setstr(WIFI_PASSWORD, value);
+  set_wifi_password(value);
 
 }
 void internal_set_time(int value) {
-  seti(TIME, value);
+  set_time(value);
 
   value = on_set_time(value);
 
-  seti(TIME, value);
+  set_time(value);
 
   set_attr_value_and_notify(IDX_CHAR_VAL_TIME, (uint8_t *)&value, sizeof(int));
 
   // TODO: httpd notify
 }
 void internal_set_n_restarts(int value) {
-  seti(N_RESTARTS, value);
+  set_n_restarts(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_ota_timestamp(int value) {
-  seti(OTA_TIMESTAMP, value);
+  set_ota_timestamp(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_ota_server_ip(const char *value) {
-  setstr(OTA_SERVER_IP, value);
+  set_ota_server_ip(value);
 
 
 }
 void internal_set_ota_server_hostname(const char *value) {
-  setstr(OTA_SERVER_HOSTNAME, value);
+  set_ota_server_hostname(value);
 
 
 }
 void internal_set_ota_server_port(const char *value) {
-  setstr(OTA_SERVER_PORT, value);
+  set_ota_server_port(value);
 
 
 }
 void internal_set_ota_version_filename(const char *value) {
-  setstr(OTA_VERSION_FILENAME, value);
+  set_ota_version_filename(value);
 
 
 }
 void internal_set_ota_filename(const char *value) {
-  setstr(OTA_FILENAME, value);
+  set_ota_filename(value);
 
 
 }
 void internal_set_broker_url(const char *value) {
-  setstr(BROKER_URL, value);
+  set_broker_url(value);
 
 
 }
 void internal_set_i2c_0_sda(int value) {
-  seti(I2C_0_SDA, value);
+  set_i2c_0_sda(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_i2c_0_scl(int value) {
-  seti(I2C_0_SCL, value);
+  set_i2c_0_scl(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_i2c_0_enabled(int value) {
-  seti(I2C_0_ENABLED, value);
+  set_i2c_0_enabled(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_i2c_1_sda(int value) {
-  seti(I2C_1_SDA, value);
+  set_i2c_1_sda(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_i2c_1_scl(int value) {
-  seti(I2C_1_SCL, value);
+  set_i2c_1_scl(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_i2c_1_enabled(int value) {
-  seti(I2C_1_ENABLED, value);
+  set_i2c_1_enabled(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_state(int value) {
-  seti(STATE, value);
+  set_state(value);
 
 
   set_attr_value_and_notify(IDX_CHAR_VAL_STATE, (uint8_t *)&value, sizeof(int));
@@ -159,13 +159,13 @@ void internal_set_state(int value) {
   // TODO: httpd notify
 }
 void internal_set_device_name(const char *value) {
-  setstr(DEVICE_NAME, value);
+  set_device_name(value);
 
 
   set_attr_value(IDX_CHAR_VAL_DEVICE_NAME, (uint8_t *)value, strlen(value));
 }
 void internal_set_box_0_enabled(int value) {
-  seti(BOX_0_ENABLED, value);
+  set_box_0_enabled(value);
 
 
 
@@ -180,14 +180,14 @@ void internal_set_box_0_timer_type(int value) {
   // TODO: httpd notify
 }
 void internal_set_box_0_timer_output(int value) {
-  seti(BOX_0_TIMER_OUTPUT, value);
+  set_box_0_timer_output(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_0_started_at(int value) {
-  seti(BOX_0_STARTED_AT, value);
+  set_box_0_started_at(value);
 
 
   set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_STARTED_AT, (uint8_t *)&value, sizeof(int));
@@ -195,110 +195,110 @@ void internal_set_box_0_started_at(int value) {
   // TODO: httpd notify
 }
 void internal_set_box_0_on_hour(int value) {
-  seti(BOX_0_ON_HOUR, value);
+  set_box_0_on_hour(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_0_on_min(int value) {
-  seti(BOX_0_ON_MIN, value);
+  set_box_0_on_min(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_0_off_hour(int value) {
-  seti(BOX_0_OFF_HOUR, value);
+  set_box_0_off_hour(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_0_off_min(int value) {
-  seti(BOX_0_OFF_MIN, value);
+  set_box_0_off_min(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_0_stretch(int value) {
-  seti(BOX_0_STRETCH, value);
+  set_box_0_stretch(value);
 
   value = on_set_box_0_stretch(value);
 
-  seti(BOX_0_STRETCH, value);
+  set_box_0_stretch(value);
 
   set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_STRETCH, (uint8_t *)&value, sizeof(int));
 
   // TODO: httpd notify
 }
 void internal_set_box_0_led_dim(int value) {
-  seti(BOX_0_LED_DIM, value);
+  set_box_0_led_dim(value);
 
   value = on_set_box_0_led_dim(value);
 
-  seti(BOX_0_LED_DIM, value);
+  set_box_0_led_dim(value);
 
   set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_LED_DIM, (uint8_t *)&value, sizeof(int));
 
   // TODO: httpd notify
 }
 void internal_set_box_0_blower(int value) {
-  seti(BOX_0_BLOWER, value);
+  set_box_0_blower(value);
 
   value = on_set_box_0_blower(value);
 
-  seti(BOX_0_BLOWER, value);
+  set_box_0_blower(value);
 
   set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_BLOWER, (uint8_t *)&value, sizeof(int));
 
   // TODO: httpd notify
 }
 void internal_set_box_0_blower_mode(int value) {
-  seti(BOX_0_BLOWER_MODE, value);
+  set_box_0_blower_mode(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_0_blower_gpio(int value) {
-  seti(BOX_0_BLOWER_GPIO, value);
+  set_box_0_blower_gpio(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_0_sht1x_temp_c(int value) {
-  seti(BOX_0_SHT1X_TEMP_C, value);
+  set_box_0_sht1x_temp_c(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_0_sht1x_temp_f(int value) {
-  seti(BOX_0_SHT1X_TEMP_F, value);
+  set_box_0_sht1x_temp_f(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_0_sht1x_humi(int value) {
-  seti(BOX_0_SHT1X_HUMI, value);
+  set_box_0_sht1x_humi(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_0_arduino_co2(int value) {
-  seti(BOX_0_ARDUINO_CO2, value);
+  set_box_0_arduino_co2(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_0_dust_gpy2y10(int value) {
-  seti(BOX_0_DUST_GPY2Y10, value);
+  set_box_0_dust_gpy2y10(value);
 
 
 
@@ -310,7 +310,7 @@ void internal_set_box_0_led_info(const char *value) {
   set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_LED_INFO, (uint8_t *)value, strlen(value));
 }
 void internal_set_box_1_enabled(int value) {
-  seti(BOX_1_ENABLED, value);
+  set_box_1_enabled(value);
 
 
 
@@ -325,121 +325,121 @@ void internal_set_box_1_timer_type(int value) {
   // TODO: httpd notify
 }
 void internal_set_box_1_timer_output(int value) {
-  seti(BOX_1_TIMER_OUTPUT, value);
+  set_box_1_timer_output(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_started_at(int value) {
-  seti(BOX_1_STARTED_AT, value);
+  set_box_1_started_at(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_on_hour(int value) {
-  seti(B_1_ON_HOUR, value);
+  set_box_1_on_hour(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_on_min(int value) {
-  seti(BOX_1_ON_MIN, value);
+  set_box_1_on_min(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_off_hour(int value) {
-  seti(BOX_1_OFF_HOUR, value);
+  set_box_1_off_hour(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_off_min(int value) {
-  seti(BOX_1_OFF_MIN, value);
+  set_box_1_off_min(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_stretch(int value) {
-  seti(BOX_1_STRETCH, value);
+  set_box_1_stretch(value);
 
   value = on_set_box_1_stretch(value);
 
-  seti(BOX_1_STRETCH, value);
+  set_box_1_stretch(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_led_dim(int value) {
-  seti(BOX_1_LED_DIM, value);
+  set_box_1_led_dim(value);
 
   value = on_set_box_1_led_dim(value);
 
-  seti(BOX_1_LED_DIM, value);
+  set_box_1_led_dim(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_blower(int value) {
-  seti(BOX_1_BLOWER, value);
+  set_box_1_blower(value);
 
   value = on_set_box_1_blower(value);
 
-  seti(BOX_1_BLOWER, value);
+  set_box_1_blower(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_blower_mode(int value) {
-  seti(BOX_1_BLOWER_MODE, value);
+  set_box_1_blower_mode(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_blower_gpio(int value) {
-  seti(BOX_1_BLOWER_GPIO, value);
+  set_box_1_blower_gpio(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_sht1x_temp_c(int value) {
-  seti(BOX_1_SHT1X_TEMP_C, value);
+  set_box_1_sht1x_temp_c(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_sht1x_temp_f(int value) {
-  seti(BOX_1_SHT1X_TEMP_F, value);
+  set_box_1_sht1x_temp_f(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_sht1x_humi(int value) {
-  seti(BOX_1_SHT1X_HUMI, value);
+  set_box_1_sht1x_humi(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_arduino_co2(int value) {
-  seti(BOX_1_ARDUINO_CO2, value);
+  set_box_1_arduino_co2(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_1_dust_gpy2y10(int value) {
-  seti(BOX_1_DUST_GPY2Y10, value);
+  set_box_1_dust_gpy2y10(value);
 
 
 
@@ -450,7 +450,7 @@ void internal_set_box_1_led_info(const char *value) {
 
 }
 void internal_set_box_2_enabled(int value) {
-  seti(BOX_2_ENABLED, value);
+  set_box_2_enabled(value);
 
 
 
@@ -465,121 +465,121 @@ void internal_set_box_2_timer_type(int value) {
   // TODO: httpd notify
 }
 void internal_set_box_2_timer_output(int value) {
-  seti(BOX_2_TIMER_OUTPUT, value);
+  set_box_2_timer_output(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_started_at(int value) {
-  seti(BOX_2_STARTED_AT, value);
+  set_box_2_started_at(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_on_hour(int value) {
-  seti(B_2_ON_HOUR, value);
+  set_box_2_on_hour(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_on_min(int value) {
-  seti(BOX_2_ON_MIN, value);
+  set_box_2_on_min(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_off_hour(int value) {
-  seti(BOX_2_OFF_HOUR, value);
+  set_box_2_off_hour(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_off_min(int value) {
-  seti(BOX_2_OFF_MIN, value);
+  set_box_2_off_min(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_stretch(int value) {
-  seti(BOX_2_STRETCH, value);
+  set_box_2_stretch(value);
 
   value = on_set_box_2_stretch(value);
 
-  seti(BOX_2_STRETCH, value);
+  set_box_2_stretch(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_led_dim(int value) {
-  seti(BOX_2_LED_DIM, value);
+  set_box_2_led_dim(value);
 
   value = on_set_box_2_led_dim(value);
 
-  seti(BOX_2_LED_DIM, value);
+  set_box_2_led_dim(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_blower(int value) {
-  seti(BOX_2_BLOWER, value);
+  set_box_2_blower(value);
 
   value = on_set_box_2_blower(value);
 
-  seti(BOX_2_BLOWER, value);
+  set_box_2_blower(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_blower_mode(int value) {
-  seti(BOX_2_BLOWER_MODE, value);
+  set_box_2_blower_mode(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_blower_gpio(int value) {
-  seti(BOX_2_BLOWER_GPIO, value);
+  set_box_2_blower_gpio(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_sht1x_temp_c(int value) {
-  seti(BOX_2_SHT1X_TEMP_C, value);
+  set_box_2_sht1x_temp_c(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_sht1x_temp_f(int value) {
-  seti(BOX_2_SHT1X_TEMP_F, value);
+  set_box_2_sht1x_temp_f(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_sht1x_humi(int value) {
-  seti(BOX_2_SHT1X_HUMI, value);
+  set_box_2_sht1x_humi(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_arduino_co2(int value) {
-  seti(BOX_2_ARDUINO_CO2, value);
+  set_box_2_arduino_co2(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_box_2_dust_gpy2y10(int value) {
-  seti(BOX_2_DUST_GPY2Y10, value);
+  set_box_2_dust_gpy2y10(value);
 
 
 
@@ -590,373 +590,373 @@ void internal_set_box_2_led_info(const char *value) {
 
 }
 void internal_set_led_0_duty(int value) {
-  seti(LED_0_DUTY, value);
+  set_led_0_duty(value);
 
   value = on_set_led_0_duty(value);
 
-  seti(LED_0_DUTY, value);
+  set_led_0_duty(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_led_1_duty(int value) {
-  seti(LED_1_DUTY, value);
+  set_led_1_duty(value);
 
   value = on_set_led_1_duty(value);
 
-  seti(LED_1_DUTY, value);
+  set_led_1_duty(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_led_2_duty(int value) {
-  seti(LED_2_DUTY, value);
+  set_led_2_duty(value);
 
   value = on_set_led_2_duty(value);
 
-  seti(LED_2_DUTY, value);
+  set_led_2_duty(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_led_3_duty(int value) {
-  seti(LED_3_DUTY, value);
+  set_led_3_duty(value);
 
   value = on_set_led_3_duty(value);
 
-  seti(LED_3_DUTY, value);
+  set_led_3_duty(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_led_4_duty(int value) {
-  seti(LED_4_DUTY, value);
+  set_led_4_duty(value);
 
   value = on_set_led_4_duty(value);
 
-  seti(LED_4_DUTY, value);
+  set_led_4_duty(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_led_5_duty(int value) {
-  seti(LED_5_DUTY, value);
+  set_led_5_duty(value);
 
   value = on_set_led_5_duty(value);
 
-  seti(LED_5_DUTY, value);
+  set_led_5_duty(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_led_0_gpio(int value) {
-  seti(LED_0_GPIO, value);
+  set_led_0_gpio(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_1_gpio(int value) {
-  seti(LED_1_GPIO, value);
+  set_led_1_gpio(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_2_gpio(int value) {
-  seti(LED_2_GPIO, value);
+  set_led_2_gpio(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_3_gpio(int value) {
-  seti(LED_3_GPIO, value);
+  set_led_3_gpio(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_4_gpio(int value) {
-  seti(LED_4_GPIO, value);
+  set_led_4_gpio(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_5_gpio(int value) {
-  seti(LED_5_GPIO, value);
+  set_led_5_gpio(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_0_x(int value) {
-  seti(LED_0_X, value);
+  set_led_0_x(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_1_x(int value) {
-  seti(LED_1_X, value);
+  set_led_1_x(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_2_x(int value) {
-  seti(LED_2_X, value);
+  set_led_2_x(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_3_x(int value) {
-  seti(LED_3_X, value);
+  set_led_3_x(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_4_x(int value) {
-  seti(LED_4_X, value);
+  set_led_4_x(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_5_x(int value) {
-  seti(LED_5_X, value);
+  set_led_5_x(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_0_y(int value) {
-  seti(LED_0_Y, value);
+  set_led_0_y(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_1_y(int value) {
-  seti(LED_1_Y, value);
+  set_led_1_y(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_2_y(int value) {
-  seti(LED_2_Y, value);
+  set_led_2_y(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_3_y(int value) {
-  seti(LED_3_Y, value);
+  set_led_3_y(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_4_y(int value) {
-  seti(LED_4_Y, value);
+  set_led_4_y(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_5_y(int value) {
-  seti(LED_5_Y, value);
+  set_led_5_y(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_0_z(int value) {
-  seti(LED_0_Z, value);
+  set_led_0_z(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_1_z(int value) {
-  seti(LED_1_Z, value);
+  set_led_1_z(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_2_z(int value) {
-  seti(LED_2_Z, value);
+  set_led_2_z(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_3_z(int value) {
-  seti(LED_3_Z, value);
+  set_led_3_z(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_4_z(int value) {
-  seti(LED_4_Z, value);
+  set_led_4_z(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_5_z(int value) {
-  seti(LED_5_Z, value);
+  set_led_5_z(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_0_enabled(int value) {
-  seti(LED_0_ENABLED, value);
+  set_led_0_enabled(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_1_enabled(int value) {
-  seti(LED_1_ENABLED, value);
+  set_led_1_enabled(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_2_enabled(int value) {
-  seti(LED_2_ENABLED, value);
+  set_led_2_enabled(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_3_enabled(int value) {
-  seti(LED_3_ENABLED, value);
+  set_led_3_enabled(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_4_enabled(int value) {
-  seti(LED_4_ENABLED, value);
+  set_led_4_enabled(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_5_enabled(int value) {
-  seti(LED_5_ENABLED, value);
+  set_led_5_enabled(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_0_box(int value) {
-  seti(LED_0_BOX, value);
+  set_led_0_box(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_1_box(int value) {
-  seti(LED_1_BOX, value);
+  set_led_1_box(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_2_box(int value) {
-  seti(LED_2_BOX, value);
+  set_led_2_box(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_3_box(int value) {
-  seti(LED_3_BOX, value);
+  set_led_3_box(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_4_box(int value) {
-  seti(LED_4_BOX, value);
+  set_led_4_box(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_5_box(int value) {
-  seti(LED_5_BOX, value);
+  set_led_5_box(value);
 
 
 
   // TODO: httpd notify
 }
 void internal_set_led_0_dim(int value) {
-  seti(LED_0_DIM, value);
+  set_led_0_dim(value);
 
   value = on_set_led_0_dim(value);
 
-  seti(LED_0_DIM, value);
+  set_led_0_dim(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_led_1_dim(int value) {
-  seti(LED_1_DIM, value);
+  set_led_1_dim(value);
 
   value = on_set_led_1_dim(value);
 
-  seti(LED_1_DIM, value);
+  set_led_1_dim(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_led_2_dim(int value) {
-  seti(LED_2_DIM, value);
+  set_led_2_dim(value);
 
   value = on_set_led_2_dim(value);
 
-  seti(LED_2_DIM, value);
+  set_led_2_dim(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_led_3_dim(int value) {
-  seti(LED_3_DIM, value);
+  set_led_3_dim(value);
 
   value = on_set_led_3_dim(value);
 
-  seti(LED_3_DIM, value);
+  set_led_3_dim(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_led_4_dim(int value) {
-  seti(LED_4_DIM, value);
+  set_led_4_dim(value);
 
   value = on_set_led_4_dim(value);
 
-  seti(LED_4_DIM, value);
+  set_led_4_dim(value);
 
 
   // TODO: httpd notify
 }
 void internal_set_led_5_dim(int value) {
-  seti(LED_5_DIM, value);
+  set_led_5_dim(value);
 
   value = on_set_led_5_dim(value);
 
-  seti(LED_5_DIM, value);
+  set_led_5_dim(value);
 
 
   // TODO: httpd notify

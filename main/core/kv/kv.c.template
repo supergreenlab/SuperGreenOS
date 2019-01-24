@@ -33,15 +33,7 @@
 #include "../include_modules.h"
 
 void init_helpers();
-
-nvs_handle open_handle() {
-  nvs_handle kv_handle;
-  esp_err_t err = nvs_open("kv_store", NVS_READWRITE, &kv_handle);
-  if (err != ESP_OK) {
-    ESP_LOGI(SGO_LOG_EVENT, "@KV Error (%s) opening NVS handle!\n", esp_err_to_name(err));
-  }
-  return kv_handle;
-}
+nvs_handle kv_handle;
 
 void preinit_kv() {
   // Initialize NVS
@@ -54,7 +46,10 @@ void preinit_kv() {
   }
   ESP_ERROR_CHECK( err );
 
-  open_handle();
+  err = nvs_open("kv_store", NVS_READWRITE, &kv_handle);
+  if (err != ESP_OK) {
+    ESP_LOGI(SGO_LOG_EVENT, "@KV Error (%s) opening NVS handle!\n", esp_err_to_name(err));
+  }
 
   /*
    * [GENERATED]
@@ -117,72 +112,48 @@ void postinit_kv() {
 
 bool hasi(const char * key) {
   int32_t value;
-  nvs_handle kv_handle = open_handle();
   esp_err_t err = nvs_get_i32(kv_handle, (const char *)key, &value);
-  nvs_close(kv_handle);
   return err == ESP_OK;
 }
 
 int geti(const char * key) {
-  nvs_handle kv_handle = open_handle();
   int32_t value;
   esp_err_t err = nvs_get_i32(kv_handle, (const char *)key, &value);
   ESP_ERROR_CHECK(err);
-  nvs_close(kv_handle);
   return (int)value;
 }
 
 void seti(const char * key, int value) {
-  nvs_handle kv_handle = open_handle();
   esp_err_t err = nvs_set_i32(kv_handle, (const char *)key, (int32_t)value);
   ESP_ERROR_CHECK(err);
   nvs_commit(kv_handle);
-  nvs_close(kv_handle);
-  ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", key, value);
 }
 
 void defaulti(const char * key, int value) {
   if (!hasi(key)) {
     seti(key, value);
-  } else {
-    int v = geti(key);
-    ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", key, v);
   }
 }
 
 bool hasstr(const char * key) {
-  nvs_handle kv_handle = open_handle();
   size_t length;
   esp_err_t err = nvs_get_str(kv_handle, (const char *)key, NULL, &length);
-  nvs_close(kv_handle);
   return err == ESP_OK;
 }
 
 void getstr(const char * key, char *value, size_t length) {
-  nvs_handle kv_handle = open_handle();
   esp_err_t err = nvs_get_str(kv_handle, key, value, &length);
   ESP_ERROR_CHECK(err);
-  nvs_close(kv_handle);
 }
 
 void setstr(const char * key, const char * value) {
-  nvs_handle kv_handle = open_handle();
   esp_err_t err = nvs_set_str(kv_handle, (const char *)key, value);
   ESP_ERROR_CHECK(err);
   nvs_commit(kv_handle);
-  nvs_close(kv_handle);
-
-  ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", key, value);
 }
 
 void defaultstr(const char * key, const char * value) {
-  bool skip = strcmp(key, "WPASS") == 0;
-  
   if (!hasstr(key)) {
     setstr(key, value);
-  } else {
-    char buf[MAX_KVALUE_SIZE] = {0};
-    getstr(key, buf, sizeof(buf) - 1);
-    ESP_LOGI(skip ? SGO_LOG_NOSEND : SGO_LOG_METRIC, "@KV %s=%s", key, buf);
   }
 }
