@@ -2,10 +2,9 @@
 
 [![SuperGreenLab](assets/reddit-button.png?raw=true "SuperGreenLab")](https://www.reddit.com/r/SuperGreenLab)
 
-![WeedAppPic](assets/weedapppic.png?raw=true "WeedAppPic")
-
 # Table of Contents
 
+   * [SuperGreenOS](#supergreenos)
    * [Intro](#intro)
       * [Who is this document for](#who-is-this-document-for)
       * [Features](#features)
@@ -23,8 +22,9 @@
          * [Led keys](#led-keys)
    * [Table of Contents](#table-of-contents)
 
+![WeedAppPic](assets/weedapppic.png?raw=true "WeedAppPic")
 
-# Intro
+# SuperGreenOS
 
 SuperGreenOS provides most features used when growing cannabis, all in one package, and controllable from your smartphone, pc, mac, linux, toaster, plumbus, whatnot...
 
