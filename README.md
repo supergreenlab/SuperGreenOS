@@ -6,7 +6,34 @@
 
 ![WeedAppPic](assets/weedapppic.png?raw=true "WeedAppPic")
 
+# Table of Contents
+
+   * [SuperGreenOS](#supergreenos)
+   * [Intro](#intro)
+      * [Who is this document for](#who-is-this-document-for)
+      * [Features](#features)
+   * [Quickstart](#quickstart)
+      * [Workspace setup](#workspace-setup)
+         * [Esp-idf setup](#esp-idf-setup)
+         * [Clone repo, build and run](#clone-repo-build-and-run)
+         * [Connect to wifi](#connect-to-wifi)
+      * [Basic concept](#basic-concept)
+      * [Key / value](#key--value)
+      * [Available keys](#available-keys)
+         * [Core keys](#core-keys)
+         * [Controller keys](#controller-keys)
+         * [Box keys](#box-keys)
+         * [Led keys](#led-keys)
+   * [Table of Contents](#table-of-contents)
+
+
+# Intro
+
 SuperGreenOS provides most features used when growing cannabis, all in one package, and controllable from your smartphone, pc, mac, linux, toaster, plumbus, whatnot...
+
+## Who is this document for
+
+## Features
 
 Here's what it can (or will) do:
 
@@ -25,6 +52,31 @@ Here's what it can (or will) do:
 
 This is the firmware that runs the [SuperGreenDriver](https://github.com/supergreenlab/SuperGreenDriver).
 
-# Development
+# Quickstart
 
-This code is based on [SuperGreenOSBoilerplate](https://github.com/supergreenlab/SuperGreenOSBoilerplate), please refer to this repo for technical details.
+This quickstart will get you through the first step required
+
+## Workspace setup
+
+### Esp-idf setup
+
+### Clone repo, build and run
+
+### Connect to wifi
+
+## Basic concept
+
+## Key / value
+
+## Available keys
+
+### Core keys
+
+### Controller keys
+
+### Box keys
+
+### Led keys
+
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
