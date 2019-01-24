@@ -5,7 +5,6 @@
 # Table of Contents
 
    * [SuperGreenOS](#supergreenos)
-   * [Intro](#intro)
       * [Who is this document for](#who-is-this-document-for)
       * [Features](#features)
    * [Quickstart](#quickstart)
