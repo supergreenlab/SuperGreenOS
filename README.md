@@ -19,7 +19,6 @@
          * [Controller keys](#controller-keys)
          * [Box keys](#box-keys)
          * [Led keys](#led-keys)
-   * [Table of Contents](#table-of-contents)
 
 ![WeedAppPic](assets/weedapppic.png?raw=true "WeedAppPic")
 
