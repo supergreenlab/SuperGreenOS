@@ -39,6 +39,8 @@
 #include "../state/state.h"
 #include "../box/box.h"
 
+#define LED_MIN_ZERO           (5)
+
 int min_x = INT_MAX;
 int max_x = INT_MIN;
 
@@ -85,6 +87,7 @@ static void update_led(int i) {
   }
 
   double duty = get_led_duty(i);
+  duty = duty < LED_MIN_ZERO ? 0 : duty;
   double dim = get_led_dim(i);
   double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100 * dim / 100;
   ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
