@@ -82,9 +82,6 @@ This quickstart will get you through the first step required
 - I2C_X_SDA
 - I2C_X_SCL
 - I2C_X_ENABLED
-- I2C_1_SDA
-- I2C_1_SCL
-- I2C_1_ENABLED
 
 ### Controller keys
 
