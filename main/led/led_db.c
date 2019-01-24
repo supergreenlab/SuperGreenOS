@@ -41,7 +41,7 @@ void init_led_timers() {
     speed_mode:       LEDC_HIGH_SPEED_MODE,
     { duty_resolution:  LEDC_TIMER_13_BIT, },
     timer_num:        LEDC_TIMER_1,
-    freq_hz:          250,
+    freq_hz:          120,
   };
   ledc_timer_config(&ledc_timer);
 }

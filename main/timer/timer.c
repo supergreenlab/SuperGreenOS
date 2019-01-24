@@ -110,6 +110,6 @@ int on_set_box_timer_type(int boxId, int value) {
   set_box_timer_type(boxId, value);
   stop(boxId, old);
   start(boxId, value);
-  refresh_led(boxId, -1);
+  refresh_led(boxId, -1 , -1);
   return value;
 }

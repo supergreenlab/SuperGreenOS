@@ -33,7 +33,7 @@
 static void stat_dump_task(void *param) {
   int counter = 0;
   wait_connected();
-  vTaskDelay(60000 / portTICK_PERIOD_MS);
+  vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
   int n_tasks = uxTaskGetNumberOfTasks();
   uint32_t ulTotalRunTime, ulStatsAsPercentage;
   TaskStatus_t *statuses = malloc(n_tasks * sizeof(TaskStatus_t));
@@ -255,6 +255,12 @@ static void stat_dump_task(void *param) {
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_box_0_blower_gpio_changed();
     }
+    if ((counter % 20) == 0 || is_box_0_blower_enabled_changed()) {
+      value = get_box_0_blower_enabled();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_BLOWER_ENABLED", value);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_box_0_blower_enabled_changed();
+    }
     if ((counter % 20) == 0 || is_box_0_sht1x_temp_c_changed()) {
       value = get_box_0_sht1x_temp_c();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_SHT1X_TEMP_C", value);
@@ -366,6 +372,12 @@ static void stat_dump_task(void *param) {
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_box_1_blower_gpio_changed();
     }
+    if ((counter % 20) == 0 || is_box_1_blower_enabled_changed()) {
+      value = get_box_1_blower_enabled();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_BLOWER_ENABLED", value);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_box_1_blower_enabled_changed();
+    }
     if ((counter % 20) == 0 || is_box_1_sht1x_temp_c_changed()) {
       value = get_box_1_sht1x_temp_c();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_SHT1X_TEMP_C", value);
@@ -476,6 +488,12 @@ static void stat_dump_task(void *param) {
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_2_BLOWER_GPIO", value);
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_box_2_blower_gpio_changed();
+    }
+    if ((counter % 20) == 0 || is_box_2_blower_enabled_changed()) {
+      value = get_box_2_blower_enabled();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_2_BLOWER_ENABLED", value);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_box_2_blower_enabled_changed();
     }
     if ((counter % 20) == 0 || is_box_2_sht1x_temp_c_changed()) {
       value = get_box_2_sht1x_temp_c();

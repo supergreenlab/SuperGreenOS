@@ -19,7 +19,6 @@
 #include "status_led/status_led.h"
 #include "state/state.h"
 #include "led/led.h"
-#include "fans/fans.h"
 #include "blower/blower.h"
 
 #include "timer/timer.h"
@@ -32,7 +31,6 @@ void init_app() {
   init_status_led();
   init_state();
   init_led();
-  init_fans();
   init_blower();
 
   init_timer();

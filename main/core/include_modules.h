@@ -36,7 +36,6 @@
 
 // Custom modules
 #include "../blower/blower.h"
-#include "../fans/fans.h"
 #include "../led/led.h"
 #include "../mixer/mixer.h"
 #include "../state/state.h"

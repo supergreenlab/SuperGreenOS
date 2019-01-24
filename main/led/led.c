@@ -53,60 +53,45 @@ int max_z = INT_MIN;
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
-#define LEDC_FADE_TIME         (2000)
+#define LEDC_FADE_TIME         (5000)
 
 void init_led_timers();
 
 typedef struct {
   int boxId;
   int ledId;
+  int fade_time;
 } cmd_refresh_led;
 static QueueHandle_t cmd;
 
-static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
+static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty, int fade_time) {
   uint32_t current_duty = ledc_get_duty(ledc_channel.speed_mode, ledc_channel.channel); 
   if (current_duty == duty) {
     return;
   }
   ledc_set_fade_with_time(ledc_channel.speed_mode,
-      ledc_channel.channel, duty, LEDC_FADE_TIME);
+      ledc_channel.channel, duty, fade_time);
   ledc_fade_start(ledc_channel.speed_mode,
       ledc_channel.channel, LEDC_FADE_NO_WAIT);
 }
 
-/* static void fade_and_wait_led(ledc_channel_config_t ledc_channel, int duty) {
-  ledc_set_fade_with_time(ledc_channel.speed_mode,
-      ledc_channel.channel, duty, LEDC_FADE_TIME);
-  ledc_fade_start(ledc_channel.speed_mode,
-      ledc_channel.channel, LEDC_FADE_WAIT_DONE);
-} */
-
-static void update_led(int i) {
+static void update_led(int i, int fade_time) {
   if (ledc_channels[i].enabled != 1) {
     return;
   }
 
-  double duty = get_led_duty(i);
-  duty = duty < LED_MIN_ZERO ? 0 : duty;
   double dim = get_led_dim(i);
-  double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100 * dim / 100;
+  double duty = get_led_duty(i) * dim / 100;
+  duty = (duty < LED_MIN_ZERO) ? 0 : duty;
+  double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
   ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
 
-  fade_no_wait_led(ledc_channels[i].channel_config, real_duty);
+  fade_no_wait_led(ledc_channels[i].channel_config, real_duty, fade_time);
 }
 
 static void led_task(void *param) {
 
   cmd_refresh_led c;
-
-  for (int i = 0; i < N_LEDS; ++i) {
-    if (ledc_channels[i].enabled != 1 || get_box_enabled(ledc_channels[i].box) != 1) {
-      continue;
-    }
-
-    ledc_channel_config(&ledc_channels[i].channel_config);
-    update_led(i);
-  }
 
   while(1) {
     if (xQueueReceive(cmd, &c, 5 * 1000 / portTICK_PERIOD_MS)) {
@@ -117,7 +102,7 @@ static void led_task(void *param) {
         if (c.ledId != -1 && (i != c.ledId || ledc_channels[i].enabled != 1)) {
           continue;
         }
-        update_led(i);
+        update_led(i, c.fade_time);
       }
     }
   }
@@ -151,7 +136,7 @@ void init_led_info(int boxId, char *led_info) {
 void init_led() {
   ESP_LOGI(SGO_LOG_EVENT, "@LED Initializing led task");
 
-  // TODO init led array + set defaults with kv
+  // TODO remove led array, it's useless now
   for (int i = 0; i < N_LEDS; ++i) {
     ledc_channels[i].enabled = get_led_enabled(i);
 
@@ -162,6 +147,12 @@ void init_led() {
     ledc_channels[i].box = get_led_box(i);
 
     ledc_channels[i].channel_config.gpio_num = get_led_gpio(i);
+
+    if (ledc_channels[i].enabled != 1 || get_box_enabled(ledc_channels[i].box) != 1) {
+      continue;
+    }
+
+    ledc_channel_config(&ledc_channels[i].channel_config);
   }
 
   char led_info[CHAR_VAL_LEN_MAX] = {0};
@@ -181,10 +172,11 @@ void init_led() {
   xTaskCreate(led_task, "LED", 4096, NULL, 10, NULL);
 }
 
-void refresh_led(int boxId, int ledId) {
+void refresh_led(int boxId, int ledId, int fade_time) {
   cmd_refresh_led cmd_data = {
     boxId: boxId,
     ledId: ledId,
+    fade_time: fade_time < 0 ? LEDC_FADE_TIME : fade_time,
   };
   xQueueSend(cmd, &cmd_data, 0);
 }
@@ -194,13 +186,13 @@ void refresh_led(int boxId, int ledId) {
 int on_set_led_duty(int ledId, int value) {
   value = min(100, max(value, 0));
   set_led_duty(ledId, value);
-  refresh_led(-1, ledId);
+  refresh_led(-1, ledId, 1000);
   return value;
 }
 
 int on_set_led_dim(int ledId, int value) {
   value = min(100, max(value, 0));
   set_led_dim(ledId, value);
-  refresh_led(-1, ledId);
+  refresh_led(-1, ledId, 1000);
   return value;
 }

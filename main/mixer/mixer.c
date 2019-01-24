@@ -92,7 +92,7 @@ static void mixer_duty(int boxId) {
   } else if (duty != 0) {
     set_duty_3d(boxId, (double)max_x / 2, (double)max_y / 2, max_z * 1.25, duty + ((double)stretch / 100 * 25), 30 - ((double)stretch / 100 * 25));
   }
-  refresh_led(boxId, -1);
+  refresh_led(boxId, -1, -1);
 }
 
 static void mixer_task() {
@@ -135,12 +135,12 @@ static void set_all_duty(int boxId, int value) {
 
 int on_set_box_led_dim(int boxId, int value) {
   set_all_duty(boxId, 5);
-  refresh_led(boxId, -1);
+  refresh_led(boxId, -1, 1000);
   return value;
 }
 
 int on_set_box_stretch(int boxId, int value) {
   mixer_duty(boxId);
-  refresh_led(boxId, -1);
+  refresh_led(boxId, -1, 1000);
   return value;
 }

@@ -118,8 +118,10 @@ void preinit_kv() {
   defaulti(BOX_0_BLOWER, default_box_0_blower);
   int default_box_0_blower_mode = BLOWER_MODE_MANUAL;
   defaulti(BOX_0_BLOWER_MODE, default_box_0_blower_mode);
-  int default_box_0_blower_gpio = DEFAULT_BLOWER_GPIO;
+  int default_box_0_blower_gpio = DEFAULT_BOX_0_BLOWER_GPIO;
   defaulti(BOX_0_BLOWER_GPIO, default_box_0_blower_gpio);
+  int default_box_0_blower_enabled = 1;
+  defaulti(BOX_0_BLOWER_ENABLED, default_box_0_blower_enabled);
   int default_box_0_sht1x_temp_c = -1000000;
   defaulti(BOX_0_SHT1X_TEMP_C, default_box_0_sht1x_temp_c);
   int default_box_0_sht1x_temp_f = -1000000;
@@ -154,8 +156,10 @@ void preinit_kv() {
   defaulti(BOX_1_BLOWER, default_box_1_blower);
   int default_box_1_blower_mode = BLOWER_MODE_MANUAL;
   defaulti(BOX_1_BLOWER_MODE, default_box_1_blower_mode);
-  int default_box_1_blower_gpio = DEFAULT_BLOWER_GPIO;
+  int default_box_1_blower_gpio = DEFAULT_BOX_1_BLOWER_GPIO;
   defaulti(BOX_1_BLOWER_GPIO, default_box_1_blower_gpio);
+  int default_box_1_blower_enabled = 0;
+  defaulti(BOX_1_BLOWER_ENABLED, default_box_1_blower_enabled);
   int default_box_1_sht1x_temp_c = -1000000;
   defaulti(BOX_1_SHT1X_TEMP_C, default_box_1_sht1x_temp_c);
   int default_box_1_sht1x_temp_f = -1000000;
@@ -190,8 +194,10 @@ void preinit_kv() {
   defaulti(BOX_2_BLOWER, default_box_2_blower);
   int default_box_2_blower_mode = BLOWER_MODE_MANUAL;
   defaulti(BOX_2_BLOWER_MODE, default_box_2_blower_mode);
-  int default_box_2_blower_gpio = DEFAULT_BLOWER_GPIO;
+  int default_box_2_blower_gpio = DEFAULT_BOX_2_BLOWER_GPIO;
   defaulti(BOX_2_BLOWER_GPIO, default_box_2_blower_gpio);
+  int default_box_2_blower_enabled = 0;
+  defaulti(BOX_2_BLOWER_ENABLED, default_box_2_blower_enabled);
   int default_box_2_sht1x_temp_c = -1000000;
   defaulti(BOX_2_SHT1X_TEMP_C, default_box_2_sht1x_temp_c);
   int default_box_2_sht1x_temp_f = -1000000;

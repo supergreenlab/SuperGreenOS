@@ -34,6 +34,7 @@
 #include "../box/box.h"
 
 #define SUN_MOVING_MULTI 800
+#define min(x, y) (((x) < (y)) ? (x) : (y))
 
 static int get_output_for_hour_min(int boxId) {
   int on_hour = get_box_on_hour(boxId);
@@ -51,9 +52,9 @@ static int get_output_for_hour_min(int boxId) {
   double cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
 
   if (on_sec < off_sec && on_sec < cur_sec && off_sec > cur_sec) {
-    return sin((cur_sec - on_sec) / (off_sec - on_sec) * M_PI) * SUN_MOVING_MULTI;
+    return min(100, sin((cur_sec - on_sec) / (off_sec - on_sec) * M_PI) * SUN_MOVING_MULTI);
   } else if (on_sec > off_sec && (on_sec < cur_sec || cur_sec < off_sec)) {
-    return sin((24*60*60-(cur_sec - on_sec)) / (24*60*60-(on_sec - off_sec)) * M_PI) * SUN_MOVING_MULTI;
+    return min(100, sin((24*60*60-(cur_sec - on_sec)) / (24*60*60-(on_sec - off_sec)) * M_PI) * SUN_MOVING_MULTI);
   }
 
   return 0; 
@@ -66,6 +67,7 @@ void start_onoff(int boxId) {
 
 void stop_onoff(int boxId) {
   ESP_LOGI(SGO_LOG_EVENT, "@ONOFF_%d stop_onoff", boxId);
+  set_box_timer_output(boxId, 0);
 }
 
 void onoff_task(int boxId) {

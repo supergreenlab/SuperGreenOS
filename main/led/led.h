@@ -60,8 +60,8 @@ extern led_config_t ledc_channels[];
       gpio_num:    gpio, \
       speed_mode:  LEDC_HIGH_SPEED_MODE, \
       channel:     LEDC_CHANNEL_##chan, \
-      intr_type:   LEDC_INTR_FADE_END, \
       timer_sel:   LEDC_TIMER_##timer, \
+      hpoint:      0, \
       duty:        0, \
     }, \
     setter: set_led_##i##_duty, \
@@ -70,7 +70,7 @@ extern led_config_t ledc_channels[];
 extern const unsigned int N_LEDS;
 
 void init_led();
-void refresh_led(int boxId, int ledId);
+void refresh_led(int boxId, int ledId, int fade_time);
 
 #define DEFAULT_LED_0_GPIO 32
 #define DEFAULT_LED_1_GPIO 17

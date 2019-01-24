@@ -24,7 +24,9 @@ typedef enum {
   BLOWER_MODE_TIMER,
 } blower_mode;
 
-#define DEFAULT_BLOWER_GPIO (22)
+#define DEFAULT_BOX_0_BLOWER_GPIO (22)
+#define DEFAULT_BOX_1_BLOWER_GPIO (21)
+#define DEFAULT_BOX_2_BLOWER_GPIO (20)
 
 void init_blower();
 

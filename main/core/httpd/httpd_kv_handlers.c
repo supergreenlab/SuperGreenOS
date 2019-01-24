@@ -150,6 +150,11 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_box_0_blower_gpio,
   },
   {
+    .name = "BOX_0_BLOWER_ENABLED",
+    .handler = internal_set_box_0_blower_enabled,
+    .getter = get_box_0_blower_enabled,
+  },
+  {
     .name = "BOX_0_SHT1X_TEMP_C",
     .handler = NULL,
     .getter = get_box_0_sht1x_temp_c,
@@ -240,6 +245,11 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_box_1_blower_gpio,
   },
   {
+    .name = "BOX_1_BLOWER_ENABLED",
+    .handler = internal_set_box_1_blower_enabled,
+    .getter = get_box_1_blower_enabled,
+  },
+  {
     .name = "BOX_1_SHT1X_TEMP_C",
     .handler = NULL,
     .getter = get_box_1_sht1x_temp_c,
@@ -328,6 +338,11 @@ const kvi_handler kvi_handlers[] = {
     .name = "BOX_2_BLOWER_GPIO",
     .handler = internal_set_box_2_blower_gpio,
     .getter = get_box_2_blower_gpio,
+  },
+  {
+    .name = "BOX_2_BLOWER_ENABLED",
+    .handler = internal_set_box_2_blower_enabled,
+    .getter = get_box_2_blower_enabled,
   },
   {
     .name = "BOX_2_SHT1X_TEMP_C",

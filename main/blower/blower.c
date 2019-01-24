@@ -39,10 +39,9 @@
 
 static QueueHandle_t cmd;
 
-static void set_duty(mcpwm_unit_t mcpwm_num, mcpwm_timer_t timer_num , float duty_cycle)
+static void set_duty(int i, float duty_cycle)
 {
-  mcpwm_set_duty(mcpwm_num, timer_num, MCPWM_OPR_A, duty_cycle);
-  mcpwm_set_duty_type(mcpwm_num, timer_num, MCPWM_OPR_A, MCPWM_DUTY_MODE_0);
+  mcpwm_set_duty(MCPWM_UNIT_0, i / MCPWM_TIMER_MAX, i % MCPWM_OPR_MAX, duty_cycle);
 }
 
 static void blower_task(void *param) {
@@ -50,14 +49,14 @@ static void blower_task(void *param) {
 
   while (1) {
     for (int i = 0; i < N_BOXES; ++i) {
-      if (get_box_enabled(i) != 1) continue;
+      if (get_box_enabled(i) != 1 || get_box_blower_enabled(i) != 1) continue;
       int v = get_box_blower(i);
       int mode = get_box_blower_mode(i);
       if (mode == BLOWER_MODE_TIMER) {
         int timerOutput = get_box_timer_output(i);
         v = (float)v * (float)timerOutput / 100.0f;
       }
-      set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, v);
+      set_duty(i, v);
     }
     xQueueReceive(cmd, &c, 3000 / portTICK_PERIOD_MS);
   }
@@ -72,18 +71,18 @@ void init_blower() {
   }
 
   for (int i = 0; i < N_BOXES; ++i) {
-    if (get_box_enabled(i) != 1) continue;
+    if (get_box_enabled(i) != 1 || get_box_blower_enabled(i) != 1) continue;
     int blower_gpio = get_box_blower_gpio(i);
-    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, blower_gpio);
+    mcpwm_gpio_init(MCPWM_UNIT_0, i, blower_gpio);
     mcpwm_config_t pwm_config;
     pwm_config.frequency = 200;
     pwm_config.cmpr_a = 0;
     pwm_config.cmpr_b = 0;
     pwm_config.counter_mode = MCPWM_UP_COUNTER;
     pwm_config.duty_mode = MCPWM_DUTY_MODE_0;
-    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);
+    mcpwm_init(MCPWM_UNIT_0, i / MCPWM_TIMER_MAX, &pwm_config);
 
-    set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0, 0.0);
+    set_duty(i, 0.0);
   }
   xTaskCreate(blower_task, "BLOWER", 2048, NULL, 10, NULL);
 }
