@@ -38,10 +38,10 @@ led_config_t ledc_channels[] = {
 
 void init_led_timers() {
   ledc_timer_config_t ledc_timer = {
-    speed_mode:       LEDC_LOW_SPEED_MODE,
+    speed_mode:       LEDC_HIGH_SPEED_MODE,
     { duty_resolution:  LEDC_TIMER_13_BIT, },
     timer_num:        LEDC_TIMER_1,
-    freq_hz:          120,
+    freq_hz:          250,
   };
   ledc_timer_config(&ledc_timer);
 }

@@ -53,7 +53,7 @@ int max_z = INT_MIN;
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
-#define LEDC_FADE_TIME         (500)
+#define LEDC_FADE_TIME         (2000)
 
 void init_led_timers();
 

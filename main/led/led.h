@@ -58,7 +58,7 @@ extern led_config_t ledc_channels[];
     \
     channel_config: { \
       gpio_num:    gpio, \
-      speed_mode:  LEDC_LOW_SPEED_MODE, \
+      speed_mode:  LEDC_HIGH_SPEED_MODE, \
       channel:     LEDC_CHANNEL_##chan, \
       intr_type:   LEDC_INTR_FADE_END, \
       timer_sel:   LEDC_TIMER_##timer, \

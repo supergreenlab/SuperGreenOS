@@ -33,7 +33,7 @@
 #include "../core/ble/ble_db.h"
 #include "../box/box.h"
 
-#define SUN_MOVING_MULTI 400
+#define SUN_MOVING_MULTI 800
 
 static int get_output_for_hour_min(int boxId) {
   int on_hour = get_box_on_hour(boxId);
