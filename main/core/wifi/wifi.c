@@ -202,6 +202,7 @@ static void wifi_task(void *param) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_SSID_CHANGED | CMD_PASS_CHANGED");
         bool _is_valid = is_valid();
         if (_is_valid != was_valid) {
+          was_valid = _is_valid;
           if (_is_valid) {
             start_sta();
           } else {

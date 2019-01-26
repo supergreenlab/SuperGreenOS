@@ -62,17 +62,17 @@ void init_status_led() {
   ledc_timer_config_t ledc_timer = {
     speed_mode:       LEDC_LOW_SPEED_MODE,
     { duty_resolution:  LEDC_TIMER_13_BIT, },
-    timer_num:        LEDC_TIMER_3,
-    freq_hz:          120,
+    timer_num:        LEDC_TIMER_1,
+    freq_hz:          5000,
   };
   ledc_timer_config(&ledc_timer);
 
   red = (ledc_channel_config_t) {
     gpio_num:    RED_GPIO,
     speed_mode:  LEDC_LOW_SPEED_MODE,
-    channel:     LEDC_CHANNEL_6,
-    intr_type:   LEDC_INTR_FADE_END,
-    timer_sel:   LEDC_TIMER_3,
+    channel:     LEDC_CHANNEL_0,
+    timer_sel:   LEDC_TIMER_1,
+    hpoint:      0,
     duty:        0,
   };
   ledc_channel_config(&red);
@@ -80,9 +80,9 @@ void init_status_led() {
   blue = (ledc_channel_config_t) {
     gpio_num:    BLUE_GPIO,
     speed_mode:  LEDC_LOW_SPEED_MODE,
-    channel:     LEDC_CHANNEL_7,
-    intr_type:   LEDC_INTR_FADE_END,
-    timer_sel:   LEDC_TIMER_3,
+    channel:     LEDC_CHANNEL_1,
+    timer_sel:   LEDC_TIMER_1,
+    hpoint:      0,
     duty:        0,
   };
   ledc_channel_config(&blue);

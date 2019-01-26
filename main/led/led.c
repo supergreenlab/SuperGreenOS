@@ -40,6 +40,9 @@
 #include "../box/box.h"
 
 #define LED_MIN_ZERO           (5)
+#define LED_DUTY_RESOLUTION 9
+#define LED_MIN_DUTY           (0)
+#define LED_MAX_DUTY           (511)
 
 int min_x = INT_MAX;
 int max_x = INT_MIN;
@@ -53,22 +56,16 @@ int max_z = INT_MIN;
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
-#define LEDC_FADE_TIME         (5000)
-
-void init_led_timers();
+#define LEDC_FADE_TIME         (1500)
 
 typedef struct {
-  int boxId;
-  int ledId;
+  int box_id;
+  int led_id;
   int fade_time;
 } cmd_refresh_led;
 static QueueHandle_t cmd;
 
 static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty, int fade_time) {
-  uint32_t current_duty = ledc_get_duty(ledc_channel.speed_mode, ledc_channel.channel); 
-  if (current_duty == duty) {
-    return;
-  }
   ledc_set_fade_with_time(ledc_channel.speed_mode,
       ledc_channel.channel, duty, fade_time);
   ledc_fade_start(ledc_channel.speed_mode,
@@ -94,25 +91,28 @@ static void led_task(void *param) {
   cmd_refresh_led c;
 
   while(1) {
-    if (xQueueReceive(cmd, &c, 5 * 1000 / portTICK_PERIOD_MS)) {
-      for (int i = 0; i < N_LEDS; ++i) {
-        if (c.boxId != -1 && (c.boxId != ledc_channels[i].box || get_box_enabled(ledc_channels[i].box) != 1)) {
-          continue;
-        }
-        if (c.ledId != -1 && (i != c.ledId || ledc_channels[i].enabled != 1)) {
-          continue;
-        }
-        update_led(i, c.fade_time);
+    if (!xQueueReceive(cmd, &c, 5 * 1000 / portTICK_PERIOD_MS)) {
+      c.box_id = -1;
+      c.led_id = -1;
+      c.fade_time = LEDC_FADE_TIME;
+    }
+    for (int i = 0; i < N_LEDS; ++i) {
+      if (c.box_id != -1 && (c.box_id != ledc_channels[i].box || get_box_enabled(ledc_channels[i].box) != 1)) {
+        continue;
       }
+      if (c.led_id != -1 && (i != c.led_id || ledc_channels[i].enabled != 1)) {
+        continue;
+      }
+      update_led(i, c.fade_time);
     }
   }
 }
 
-void init_led_info(int boxId, char *led_info) {
+void init_led_info(int box_id, char *led_info) {
   sprintf(led_info, "n:%d", N_LEDS);
   for (int i = 0; i < N_LEDS; ++i) {
     int bi = get_led_box(i);
-    if (ledc_channels[i].enabled != 1 || bi != boxId || get_box_enabled(bi) != 1) {
+    if (ledc_channels[i].enabled != 1 || bi != box_id || get_box_enabled(bi) != 1) {
       continue;
     }
     char led[32] = {0};
@@ -135,6 +135,14 @@ void init_led_info(int boxId, char *led_info) {
 
 void init_led() {
   ESP_LOGI(SGO_LOG_EVENT, "@LED Initializing led task");
+
+  ledc_timer_config_t ledc_timer = {
+    speed_mode:       LEDC_HIGH_SPEED_MODE,
+    { duty_resolution:  LED_DUTY_RESOLUTION, },
+    timer_num:        LEDC_TIMER_0,
+    freq_hz:          1000,
+  };
+  ledc_timer_config(&ledc_timer);
 
   // TODO remove led array, it's useless now
   for (int i = 0; i < N_LEDS; ++i) {
@@ -165,17 +173,15 @@ void init_led() {
     ESP_LOGE(SGO_LOG_EVENT, "@LED Unable to create led queue");
   }
 
-  init_led_timers();
-
   ledc_fade_func_install(0);
 
   xTaskCreate(led_task, "LED", 4096, NULL, 10, NULL);
 }
 
-void refresh_led(int boxId, int ledId, int fade_time) {
+void refresh_led(int box_id, int led_id, int fade_time) {
   cmd_refresh_led cmd_data = {
-    boxId: boxId,
-    ledId: ledId,
+    box_id: box_id,
+    led_id: led_id,
     fade_time: fade_time < 0 ? LEDC_FADE_TIME : fade_time,
   };
   xQueueSend(cmd, &cmd_data, 0);
@@ -183,16 +189,16 @@ void refresh_led(int boxId, int ledId, int fade_time) {
 
 /* KV Callbacks */
 
-int on_set_led_duty(int ledId, int value) {
+int on_set_led_duty(int led_id, int value) {
   value = min(100, max(value, 0));
-  set_led_duty(ledId, value);
-  refresh_led(-1, ledId, 1000);
+  set_led_duty(led_id, value);
+  refresh_led(-1, led_id, 200);
   return value;
 }
 
-int on_set_led_dim(int ledId, int value) {
+int on_set_led_dim(int led_id, int value) {
   value = min(100, max(value, 0));
-  set_led_dim(ledId, value);
-  refresh_led(-1, ledId, 1000);
+  set_led_dim(led_id, value);
+  refresh_led(-1, led_id, 200);
   return value;
 }

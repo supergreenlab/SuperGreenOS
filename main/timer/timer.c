@@ -97,7 +97,7 @@ static void timer_task(void *param) {
           break;
       }
     }
-    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
+    vTaskDelay(1 * 1000 / portTICK_PERIOD_MS);
   }
 }
 

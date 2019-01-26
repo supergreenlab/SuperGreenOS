@@ -21,7 +21,4 @@
 
 #include "../led/led.h"
 
-#define LED_MIN_DUTY           (0)
-#define LED_MAX_DUTY           (8191)
-
 #endif
