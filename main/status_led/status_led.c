@@ -30,7 +30,7 @@
 #define LEDC_FADE_TIME         (50)
 
 #define LED_MIN_DUTY           (0)
-#define LED_MAX_DUTY           (8191)
+#define LED_MAX_DUTY           (511)
 
 #define RED_GPIO  19
 #define BLUE_GPIO 18
@@ -52,7 +52,7 @@ static void status_led_task(void *param) {
     fade_no_wait_led(blue, (int)((-cosf(i / 2) + 1) / 2 * 8191));
 
     i += M_PI / 10;
-    vTaskDelay(1 * LEDC_FADE_TIME / portTICK_PERIOD_MS);
+    vTaskDelay(2 * LEDC_FADE_TIME / portTICK_PERIOD_MS);
   }
 }
 
@@ -61,7 +61,7 @@ void init_status_led() {
 
   ledc_timer_config_t ledc_timer = {
     speed_mode:       LEDC_LOW_SPEED_MODE,
-    { duty_resolution:  LEDC_TIMER_13_BIT, },
+    { duty_resolution:  9, },
     timer_num:        LEDC_TIMER_1,
     freq_hz:          5000,
   };

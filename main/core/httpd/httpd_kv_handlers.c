@@ -200,7 +200,7 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_box_1_started_at,
   },
   {
-    .name = "B_1_ON_HOUR",
+    .name = "BOX_1_ON_HOUR",
     .handler = internal_set_box_1_on_hour,
     .getter = get_box_1_on_hour,
   },
@@ -295,7 +295,7 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_box_2_started_at,
   },
   {
-    .name = "B_2_ON_HOUR",
+    .name = "BOX_2_ON_HOUR",
     .handler = internal_set_box_2_on_hour,
     .getter = get_box_2_on_hour,
   },

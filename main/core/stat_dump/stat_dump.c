@@ -320,7 +320,7 @@ static void stat_dump_task(void *param) {
     }
     if ((counter % 20) == 0 || is_box_1_on_hour_changed()) {
       value = get_box_1_on_hour();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "B_1_ON_HOUR", value);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_ON_HOUR", value);
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_box_1_on_hour_changed();
     }
@@ -437,7 +437,7 @@ static void stat_dump_task(void *param) {
     }
     if ((counter % 20) == 0 || is_box_2_on_hour_changed()) {
       value = get_box_2_on_hour();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "B_2_ON_HOUR", value);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_2_ON_HOUR", value);
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_box_2_on_hour_changed();
     }

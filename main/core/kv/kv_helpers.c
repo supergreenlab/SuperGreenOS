@@ -1499,12 +1499,12 @@ bool is_box_1_on_hour_changed() {
 
 
 int get_box_1_on_hour() {
-  return geti(B_1_ON_HOUR);
+  return geti(BOX_1_ON_HOUR);
 }
 
 void set_box_1_on_hour(int value) {
-  if (geti(B_1_ON_HOUR) == value) return;
-  seti(B_1_ON_HOUR, value);
+  if (geti(BOX_1_ON_HOUR) == value) return;
+  seti(BOX_1_ON_HOUR, value);
   xSemaphoreTake(_mutex_box_1_on_hour, 0);
   _box_1_on_hour_changed = true;
   xSemaphoreGive(_mutex_box_1_on_hour);
@@ -2125,12 +2125,12 @@ bool is_box_2_on_hour_changed() {
 
 
 int get_box_2_on_hour() {
-  return geti(B_2_ON_HOUR);
+  return geti(BOX_2_ON_HOUR);
 }
 
 void set_box_2_on_hour(int value) {
-  if (geti(B_2_ON_HOUR) == value) return;
-  seti(B_2_ON_HOUR, value);
+  if (geti(BOX_2_ON_HOUR) == value) return;
+  seti(BOX_2_ON_HOUR, value);
   xSemaphoreTake(_mutex_box_2_on_hour, 0);
   _box_2_on_hour_changed = true;
   xSemaphoreGive(_mutex_box_2_on_hour);

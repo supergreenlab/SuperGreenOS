@@ -141,7 +141,7 @@ void preinit_kv() {
   int default_box_1_started_at = 0;
   defaulti(BOX_1_STARTED_AT, default_box_1_started_at);
   int default_box_1_on_hour = 1;
-  defaulti(B_1_ON_HOUR, default_box_1_on_hour);
+  defaulti(BOX_1_ON_HOUR, default_box_1_on_hour);
   int default_box_1_on_min = 0;
   defaulti(BOX_1_ON_MIN, default_box_1_on_min);
   int default_box_1_off_hour = 19;
@@ -179,7 +179,7 @@ void preinit_kv() {
   int default_box_2_started_at = 0;
   defaulti(BOX_2_STARTED_AT, default_box_2_started_at);
   int default_box_2_on_hour = 1;
-  defaulti(B_2_ON_HOUR, default_box_2_on_hour);
+  defaulti(BOX_2_ON_HOUR, default_box_2_on_hour);
   int default_box_2_on_min = 0;
   defaulti(BOX_2_ON_MIN, default_box_2_on_min);
   int default_box_2_off_hour = 19;

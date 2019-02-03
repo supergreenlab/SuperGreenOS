@@ -56,7 +56,7 @@ int max_z = INT_MIN;
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
-#define LEDC_FADE_TIME         (1500)
+#define LEDC_FADE_TIME         (1000)
 
 typedef struct {
   int box_id;
@@ -66,6 +66,10 @@ typedef struct {
 static QueueHandle_t cmd;
 
 static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty, int fade_time) {
+  uint32_t current_duty = ledc_get_duty(ledc_channel.speed_mode, ledc_channel.channel); 
+  if (current_duty == duty) {
+    return;
+  }
   ledc_set_fade_with_time(ledc_channel.speed_mode,
       ledc_channel.channel, duty, fade_time);
   ledc_fade_start(ledc_channel.speed_mode,
