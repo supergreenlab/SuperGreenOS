@@ -48,8 +48,8 @@ static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
 static void status_led_task(void *param) {
   double i = 0;
   while (1) {
-    fade_no_wait_led(red, (int)((cosf(i) + 1) / 2 * 8191));
-    fade_no_wait_led(blue, (int)((-cosf(i / 2) + 1) / 2 * 8191));
+    fade_no_wait_led(red, (int)((cosf(i) + 1) / 2 * LED_MAX_DUTY));
+    fade_no_wait_led(blue, (int)((-cosf(i / 2) + 1) / 2 * LED_MAX_DUTY));
 
     i += M_PI / 10;
     vTaskDelay(2 * LEDC_FADE_TIME / portTICK_PERIOD_MS);

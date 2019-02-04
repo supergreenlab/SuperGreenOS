@@ -28,6 +28,8 @@
 
 #define IS_URI_SEP(c) (c == '?' || c == '&' || c == '=')
 
+esp_err_t download_get_handler(httpd_req_t *req);
+
 /* static size_t get_char_count(const char *uri) {
   size_t i = 0;
   for (; uri[i] && !IS_URI_SEP(uri[i]); ++i) {}
@@ -176,9 +178,18 @@ httpd_uri_t uri_setstr = {
   .user_ctx = NULL
 };
 
+/* URI handler for getting uploaded files */
+httpd_uri_t file_download = {
+	.uri       = "/fs/*",  // Match all URIs of type /path/to/file (except index.html)
+	.method    = HTTP_GET,
+	.handler   = download_get_handler,
+	.user_ctx  = NULL    // Pass server data as context
+};
+
 static httpd_handle_t server = NULL;
 
 static httpd_handle_t start_webserver(void) {
+
   httpd_config_t config = HTTPD_DEFAULT_CONFIG();
 
   if (httpd_start(&server, &config) == ESP_OK) {
@@ -186,6 +197,7 @@ static httpd_handle_t start_webserver(void) {
     httpd_register_uri_handler(server, &uri_seti);
     httpd_register_uri_handler(server, &uri_getstr);
     httpd_register_uri_handler(server, &uri_setstr);
+    httpd_register_uri_handler(server, &file_download);
   }
   return server;
 }
