@@ -297,6 +297,27 @@ void internal_set_box_0_sht1x_humi(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_box_0_sht21_temp_c(int value) {
+  set_box_0_sht21_temp_c(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_box_0_sht21_temp_f(int value) {
+  set_box_0_sht21_temp_f(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_box_0_sht21_humi(int value) {
+  set_box_0_sht21_humi(value);
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_box_0_arduino_co2(int value) {
   set_box_0_arduino_co2(value);
 
@@ -445,6 +466,27 @@ void internal_set_box_1_sht1x_humi(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_box_1_sht21_temp_c(int value) {
+  set_box_1_sht21_temp_c(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_box_1_sht21_temp_f(int value) {
+  set_box_1_sht21_temp_f(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_box_1_sht21_humi(int value) {
+  set_box_1_sht21_humi(value);
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_box_1_arduino_co2(int value) {
   set_box_1_arduino_co2(value);
 
@@ -587,6 +629,27 @@ void internal_set_box_2_sht1x_temp_f(int value) {
 }
 void internal_set_box_2_sht1x_humi(int value) {
   set_box_2_sht1x_humi(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_box_2_sht21_temp_c(int value) {
+  set_box_2_sht21_temp_c(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_box_2_sht21_temp_f(int value) {
+  set_box_2_sht21_temp_f(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_box_2_sht21_humi(int value) {
+  set_box_2_sht21_humi(value);
 
 
 

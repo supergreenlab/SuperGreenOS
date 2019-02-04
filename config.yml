@@ -39,6 +39,7 @@ custom_modules:
   - box
 
 i2c_devices:
+  - sht21
   - dust_gpy2y10
   - sht1x
   - arduino_co2
@@ -74,6 +75,9 @@ box_params:
   - sht1x_temp_c
   - sht1x_temp_f
   - sht1x_humi 
+  - sht21_temp_c
+  - sht21_temp_f
+  - sht21_humi 
   - arduino_co2
   - dust_gpy2y10
 
@@ -574,6 +578,42 @@ keys:
       noop: true
     default: -1000000
 
+  - name: box_0_sht21_temp_c
+    caps_name: BOX_0_SHT21_TEMP_C
+    integer: true
+    box:
+      index: 0
+      param: sht21_temp_c
+    nvs:
+      key: B_0_SHT21_C
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_0_sht21_temp_f
+    caps_name: BOX_0_SHT21_TEMP_F
+    integer: true
+    box:
+      index: 0
+      param: sht21_temp_f
+    nvs:
+      key: B_0_SHT21_F
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_0_sht21_humi
+    caps_name: BOX_0_SHT21_HUMI
+    integer: true
+    box:
+      index: 0
+      param: sht21_humi
+    nvs:
+      key: B_0_SHT21_HU
+    http:
+      noop: true
+    default: -1000000
+
   - name: box_0_arduino_co2
     caps_name: BOX_0_ARDUINO_CO2
     integer: true
@@ -824,6 +864,42 @@ keys:
       noop: true
     default: -1000000
 
+  - name: box_1_sht21_temp_c
+    caps_name: BOX_1_SHT21_TEMP_C
+    integer: true
+    box:
+      index: 0
+      param: sht21_temp_c
+    nvs:
+      key: B_1_SHT21_C
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_1_sht21_temp_f
+    caps_name: BOX_1_SHT21_TEMP_F
+    integer: true
+    box:
+      index: 0
+      param: sht21_temp_f
+    nvs:
+      key: B_1_SHT21_F
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_1_sht21_humi
+    caps_name: BOX_1_SHT21_HUMI
+    integer: true
+    box:
+      index: 0
+      param: sht21_humi
+    nvs:
+      key: B_1_SHT21_HU
+    http:
+      noop: true
+    default: -1000000
+
   - name: box_1_arduino_co2
     caps_name: BOX_1_ARDUINO_CO2
     integer: true
@@ -1070,6 +1146,43 @@ keys:
     http:
       noop: true
     default: -1000000
+
+  - name: box_2_sht21_temp_c
+    caps_name: BOX_2_SHT21_TEMP_C
+    integer: true
+    box:
+      index: 0
+      param: sht21_temp_c
+    nvs:
+      key: B_2_SHT21_C
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_2_sht21_temp_f
+    caps_name: BOX_2_SHT21_TEMP_F
+    integer: true
+    box:
+      index: 0
+      param: sht21_temp_f
+    nvs:
+      key: B_2_SHT21_F
+    http:
+      noop: true
+    default: -1000000
+
+  - name: box_2_sht21_humi
+    caps_name: BOX_2_SHT21_HUMI
+    integer: true
+    box:
+      index: 0
+      param: sht21_humi
+    nvs:
+      key: B_2_SHT21_HU
+    http:
+      noop: true
+    default: -1000000
+
 
   - name: box_2_arduino_co2
     caps_name: BOX_2_ARDUINO_CO2
@@ -1605,7 +1718,7 @@ keys:
       key: L_4_B
     http:
       write: true
-    default: 1
+    default: 0
 
   - name: led_5_box
     caps_name: LED_5_BOX
@@ -1617,7 +1730,7 @@ keys:
       key: L_5_B
     http:
       write: true
-    default: 1
+    default: 0
 
   - name: led_0_dim
     caps_name: LED_0_DIM

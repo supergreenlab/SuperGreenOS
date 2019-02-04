@@ -50,7 +50,7 @@ void loop_arduino_co2(int portId, int sda, int sck) {
 
 	i2c_master_stop(cmd);
 
-	esp_err_t ret = i2c_master_cmd_begin(I2C_NUM_0, cmd, 1000 / portTICK_RATE_MS);
+	esp_err_t ret = i2c_master_cmd_begin(portId, cmd, 1000 / portTICK_RATE_MS);
 	i2c_cmd_link_delete(cmd);
 
 	if (ret == ESP_ERR_TIMEOUT) {

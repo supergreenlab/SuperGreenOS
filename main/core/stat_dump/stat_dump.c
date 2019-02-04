@@ -279,6 +279,24 @@ static void stat_dump_task(void *param) {
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_box_0_sht1x_humi_changed();
     }
+    if ((counter % 20) == 0 || is_box_0_sht21_temp_c_changed()) {
+      value = get_box_0_sht21_temp_c();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_SHT21_TEMP_C", value);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_box_0_sht21_temp_c_changed();
+    }
+    if ((counter % 20) == 0 || is_box_0_sht21_temp_f_changed()) {
+      value = get_box_0_sht21_temp_f();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_SHT21_TEMP_F", value);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_box_0_sht21_temp_f_changed();
+    }
+    if ((counter % 20) == 0 || is_box_0_sht21_humi_changed()) {
+      value = get_box_0_sht21_humi();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_SHT21_HUMI", value);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_box_0_sht21_humi_changed();
+    }
     if ((counter % 20) == 0 || is_box_0_arduino_co2_changed()) {
       value = get_box_0_arduino_co2();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_ARDUINO_CO2", value);
@@ -396,6 +414,24 @@ static void stat_dump_task(void *param) {
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_box_1_sht1x_humi_changed();
     }
+    if ((counter % 20) == 0 || is_box_1_sht21_temp_c_changed()) {
+      value = get_box_1_sht21_temp_c();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_SHT21_TEMP_C", value);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_box_1_sht21_temp_c_changed();
+    }
+    if ((counter % 20) == 0 || is_box_1_sht21_temp_f_changed()) {
+      value = get_box_1_sht21_temp_f();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_SHT21_TEMP_F", value);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_box_1_sht21_temp_f_changed();
+    }
+    if ((counter % 20) == 0 || is_box_1_sht21_humi_changed()) {
+      value = get_box_1_sht21_humi();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_SHT21_HUMI", value);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_box_1_sht21_humi_changed();
+    }
     if ((counter % 20) == 0 || is_box_1_arduino_co2_changed()) {
       value = get_box_1_arduino_co2();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_ARDUINO_CO2", value);
@@ -512,6 +548,24 @@ static void stat_dump_task(void *param) {
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_2_SHT1X_HUMI", value);
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_box_2_sht1x_humi_changed();
+    }
+    if ((counter % 20) == 0 || is_box_2_sht21_temp_c_changed()) {
+      value = get_box_2_sht21_temp_c();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_2_SHT21_TEMP_C", value);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_box_2_sht21_temp_c_changed();
+    }
+    if ((counter % 20) == 0 || is_box_2_sht21_temp_f_changed()) {
+      value = get_box_2_sht21_temp_f();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_2_SHT21_TEMP_F", value);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_box_2_sht21_temp_f_changed();
+    }
+    if ((counter % 20) == 0 || is_box_2_sht21_humi_changed()) {
+      value = get_box_2_sht21_humi();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_2_SHT21_HUMI", value);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_box_2_sht21_humi_changed();
     }
     if ((counter % 20) == 0 || is_box_2_arduino_co2_changed()) {
       value = get_box_2_arduino_co2();

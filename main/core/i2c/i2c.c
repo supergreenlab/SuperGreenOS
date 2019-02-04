@@ -23,6 +23,7 @@
 #include "../kv/kv.h"
 #include "../log/log.h"
 
+#include "../../sht21/sht21.h"
 #include "../../dust_gpy2y10/dust_gpy2y10.h"
 #include "../../sht1x/sht1x.h"
 #include "../../arduino_co2/arduino_co2.h"
@@ -59,6 +60,8 @@
 static void loop_devices(int portId) {
   int sda = get_i2c_sda(portId);
   int scl = get_i2c_scl(portId);
+  loop_sht21(portId, sda, scl);
+  vTaskDelay(50 / portTICK_RATE_MS);
   loop_dust_gpy2y10(portId, sda, scl);
   vTaskDelay(50 / portTICK_RATE_MS);
   loop_sht1x(portId, sda, scl);
@@ -83,6 +86,7 @@ void i2c_task(void *param) {
 void init_i2c_devices(int portId) {
   int sda = get_i2c_sda(portId);
   int scl = get_i2c_scl(portId);
+  init_sht21(portId, sda, scl);
   init_dust_gpy2y10(portId, sda, scl);
   init_sht1x(portId, sda, scl);
   init_arduino_co2(portId, sda, scl);
@@ -128,5 +132,5 @@ void start_i2c(int portId) {
 void stop_i2c(int portId) {
   if (!i2c_started[portId]) return;
   i2c_started[portId] = false;
-  i2c_driver_delete(I2C_NUM_0);
+  i2c_driver_delete(portId);
 }

@@ -170,6 +170,21 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_box_0_sht1x_humi,
   },
   {
+    .name = "BOX_0_SHT21_TEMP_C",
+    .handler = NULL,
+    .getter = get_box_0_sht21_temp_c,
+  },
+  {
+    .name = "BOX_0_SHT21_TEMP_F",
+    .handler = NULL,
+    .getter = get_box_0_sht21_temp_f,
+  },
+  {
+    .name = "BOX_0_SHT21_HUMI",
+    .handler = NULL,
+    .getter = get_box_0_sht21_humi,
+  },
+  {
     .name = "BOX_0_ARDUINO_CO2",
     .handler = NULL,
     .getter = get_box_0_arduino_co2,
@@ -265,6 +280,21 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_box_1_sht1x_humi,
   },
   {
+    .name = "BOX_1_SHT21_TEMP_C",
+    .handler = NULL,
+    .getter = get_box_1_sht21_temp_c,
+  },
+  {
+    .name = "BOX_1_SHT21_TEMP_F",
+    .handler = NULL,
+    .getter = get_box_1_sht21_temp_f,
+  },
+  {
+    .name = "BOX_1_SHT21_HUMI",
+    .handler = NULL,
+    .getter = get_box_1_sht21_humi,
+  },
+  {
     .name = "BOX_1_ARDUINO_CO2",
     .handler = NULL,
     .getter = get_box_1_arduino_co2,
@@ -358,6 +388,21 @@ const kvi_handler kvi_handlers[] = {
     .name = "BOX_2_SHT1X_HUMI",
     .handler = NULL,
     .getter = get_box_2_sht1x_humi,
+  },
+  {
+    .name = "BOX_2_SHT21_TEMP_C",
+    .handler = NULL,
+    .getter = get_box_2_sht21_temp_c,
+  },
+  {
+    .name = "BOX_2_SHT21_TEMP_F",
+    .handler = NULL,
+    .getter = get_box_2_sht21_temp_f,
+  },
+  {
+    .name = "BOX_2_SHT21_HUMI",
+    .handler = NULL,
+    .getter = get_box_2_sht21_humi,
   },
   {
     .name = "BOX_2_ARDUINO_CO2",

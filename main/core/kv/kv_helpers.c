@@ -1256,6 +1256,99 @@ void set_box_0_sht1x_humi(int value) {
 }
 
 
+static SemaphoreHandle_t _mutex_box_0_sht21_temp_c; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_0_sht21_temp_c_changed = true;
+
+void reset_box_0_sht21_temp_c_changed() {
+  xSemaphoreTake(_mutex_box_0_sht21_temp_c, 0);
+  _box_0_sht21_temp_c_changed = false;
+  xSemaphoreGive(_mutex_box_0_sht21_temp_c);
+}
+
+bool is_box_0_sht21_temp_c_changed() {
+  xSemaphoreTake(_mutex_box_0_sht21_temp_c, 0);
+  bool v = _box_0_sht21_temp_c_changed;
+  xSemaphoreGive(_mutex_box_0_sht21_temp_c);
+  return v;
+}
+
+
+
+int get_box_0_sht21_temp_c() {
+  return geti(BOX_0_SHT21_TEMP_C);
+}
+
+void set_box_0_sht21_temp_c(int value) {
+  if (geti(BOX_0_SHT21_TEMP_C) == value) return;
+  seti(BOX_0_SHT21_TEMP_C, value);
+  xSemaphoreTake(_mutex_box_0_sht21_temp_c, 0);
+  _box_0_sht21_temp_c_changed = true;
+  xSemaphoreGive(_mutex_box_0_sht21_temp_c);
+}
+
+
+static SemaphoreHandle_t _mutex_box_0_sht21_temp_f; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_0_sht21_temp_f_changed = true;
+
+void reset_box_0_sht21_temp_f_changed() {
+  xSemaphoreTake(_mutex_box_0_sht21_temp_f, 0);
+  _box_0_sht21_temp_f_changed = false;
+  xSemaphoreGive(_mutex_box_0_sht21_temp_f);
+}
+
+bool is_box_0_sht21_temp_f_changed() {
+  xSemaphoreTake(_mutex_box_0_sht21_temp_f, 0);
+  bool v = _box_0_sht21_temp_f_changed;
+  xSemaphoreGive(_mutex_box_0_sht21_temp_f);
+  return v;
+}
+
+
+
+int get_box_0_sht21_temp_f() {
+  return geti(BOX_0_SHT21_TEMP_F);
+}
+
+void set_box_0_sht21_temp_f(int value) {
+  if (geti(BOX_0_SHT21_TEMP_F) == value) return;
+  seti(BOX_0_SHT21_TEMP_F, value);
+  xSemaphoreTake(_mutex_box_0_sht21_temp_f, 0);
+  _box_0_sht21_temp_f_changed = true;
+  xSemaphoreGive(_mutex_box_0_sht21_temp_f);
+}
+
+
+static SemaphoreHandle_t _mutex_box_0_sht21_humi; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_0_sht21_humi_changed = true;
+
+void reset_box_0_sht21_humi_changed() {
+  xSemaphoreTake(_mutex_box_0_sht21_humi, 0);
+  _box_0_sht21_humi_changed = false;
+  xSemaphoreGive(_mutex_box_0_sht21_humi);
+}
+
+bool is_box_0_sht21_humi_changed() {
+  xSemaphoreTake(_mutex_box_0_sht21_humi, 0);
+  bool v = _box_0_sht21_humi_changed;
+  xSemaphoreGive(_mutex_box_0_sht21_humi);
+  return v;
+}
+
+
+
+int get_box_0_sht21_humi() {
+  return geti(BOX_0_SHT21_HUMI);
+}
+
+void set_box_0_sht21_humi(int value) {
+  if (geti(BOX_0_SHT21_HUMI) == value) return;
+  seti(BOX_0_SHT21_HUMI, value);
+  xSemaphoreTake(_mutex_box_0_sht21_humi, 0);
+  _box_0_sht21_humi_changed = true;
+  xSemaphoreGive(_mutex_box_0_sht21_humi);
+}
+
+
 static SemaphoreHandle_t _mutex_box_0_arduino_co2; // TODO check RAM weight of creating so many semaphores :/
 static bool _box_0_arduino_co2_changed = true;
 
@@ -1883,6 +1976,99 @@ void set_box_1_sht1x_humi(int value) {
 }
 
 
+static SemaphoreHandle_t _mutex_box_1_sht21_temp_c; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_1_sht21_temp_c_changed = true;
+
+void reset_box_1_sht21_temp_c_changed() {
+  xSemaphoreTake(_mutex_box_1_sht21_temp_c, 0);
+  _box_1_sht21_temp_c_changed = false;
+  xSemaphoreGive(_mutex_box_1_sht21_temp_c);
+}
+
+bool is_box_1_sht21_temp_c_changed() {
+  xSemaphoreTake(_mutex_box_1_sht21_temp_c, 0);
+  bool v = _box_1_sht21_temp_c_changed;
+  xSemaphoreGive(_mutex_box_1_sht21_temp_c);
+  return v;
+}
+
+
+
+int get_box_1_sht21_temp_c() {
+  return geti(BOX_1_SHT21_TEMP_C);
+}
+
+void set_box_1_sht21_temp_c(int value) {
+  if (geti(BOX_1_SHT21_TEMP_C) == value) return;
+  seti(BOX_1_SHT21_TEMP_C, value);
+  xSemaphoreTake(_mutex_box_1_sht21_temp_c, 0);
+  _box_1_sht21_temp_c_changed = true;
+  xSemaphoreGive(_mutex_box_1_sht21_temp_c);
+}
+
+
+static SemaphoreHandle_t _mutex_box_1_sht21_temp_f; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_1_sht21_temp_f_changed = true;
+
+void reset_box_1_sht21_temp_f_changed() {
+  xSemaphoreTake(_mutex_box_1_sht21_temp_f, 0);
+  _box_1_sht21_temp_f_changed = false;
+  xSemaphoreGive(_mutex_box_1_sht21_temp_f);
+}
+
+bool is_box_1_sht21_temp_f_changed() {
+  xSemaphoreTake(_mutex_box_1_sht21_temp_f, 0);
+  bool v = _box_1_sht21_temp_f_changed;
+  xSemaphoreGive(_mutex_box_1_sht21_temp_f);
+  return v;
+}
+
+
+
+int get_box_1_sht21_temp_f() {
+  return geti(BOX_1_SHT21_TEMP_F);
+}
+
+void set_box_1_sht21_temp_f(int value) {
+  if (geti(BOX_1_SHT21_TEMP_F) == value) return;
+  seti(BOX_1_SHT21_TEMP_F, value);
+  xSemaphoreTake(_mutex_box_1_sht21_temp_f, 0);
+  _box_1_sht21_temp_f_changed = true;
+  xSemaphoreGive(_mutex_box_1_sht21_temp_f);
+}
+
+
+static SemaphoreHandle_t _mutex_box_1_sht21_humi; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_1_sht21_humi_changed = true;
+
+void reset_box_1_sht21_humi_changed() {
+  xSemaphoreTake(_mutex_box_1_sht21_humi, 0);
+  _box_1_sht21_humi_changed = false;
+  xSemaphoreGive(_mutex_box_1_sht21_humi);
+}
+
+bool is_box_1_sht21_humi_changed() {
+  xSemaphoreTake(_mutex_box_1_sht21_humi, 0);
+  bool v = _box_1_sht21_humi_changed;
+  xSemaphoreGive(_mutex_box_1_sht21_humi);
+  return v;
+}
+
+
+
+int get_box_1_sht21_humi() {
+  return geti(BOX_1_SHT21_HUMI);
+}
+
+void set_box_1_sht21_humi(int value) {
+  if (geti(BOX_1_SHT21_HUMI) == value) return;
+  seti(BOX_1_SHT21_HUMI, value);
+  xSemaphoreTake(_mutex_box_1_sht21_humi, 0);
+  _box_1_sht21_humi_changed = true;
+  xSemaphoreGive(_mutex_box_1_sht21_humi);
+}
+
+
 static SemaphoreHandle_t _mutex_box_1_arduino_co2; // TODO check RAM weight of creating so many semaphores :/
 static bool _box_1_arduino_co2_changed = true;
 
@@ -2506,6 +2692,99 @@ void set_box_2_sht1x_humi(int value) {
   xSemaphoreTake(_mutex_box_2_sht1x_humi, 0);
   _box_2_sht1x_humi_changed = true;
   xSemaphoreGive(_mutex_box_2_sht1x_humi);
+}
+
+
+static SemaphoreHandle_t _mutex_box_2_sht21_temp_c; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_2_sht21_temp_c_changed = true;
+
+void reset_box_2_sht21_temp_c_changed() {
+  xSemaphoreTake(_mutex_box_2_sht21_temp_c, 0);
+  _box_2_sht21_temp_c_changed = false;
+  xSemaphoreGive(_mutex_box_2_sht21_temp_c);
+}
+
+bool is_box_2_sht21_temp_c_changed() {
+  xSemaphoreTake(_mutex_box_2_sht21_temp_c, 0);
+  bool v = _box_2_sht21_temp_c_changed;
+  xSemaphoreGive(_mutex_box_2_sht21_temp_c);
+  return v;
+}
+
+
+
+int get_box_2_sht21_temp_c() {
+  return geti(BOX_2_SHT21_TEMP_C);
+}
+
+void set_box_2_sht21_temp_c(int value) {
+  if (geti(BOX_2_SHT21_TEMP_C) == value) return;
+  seti(BOX_2_SHT21_TEMP_C, value);
+  xSemaphoreTake(_mutex_box_2_sht21_temp_c, 0);
+  _box_2_sht21_temp_c_changed = true;
+  xSemaphoreGive(_mutex_box_2_sht21_temp_c);
+}
+
+
+static SemaphoreHandle_t _mutex_box_2_sht21_temp_f; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_2_sht21_temp_f_changed = true;
+
+void reset_box_2_sht21_temp_f_changed() {
+  xSemaphoreTake(_mutex_box_2_sht21_temp_f, 0);
+  _box_2_sht21_temp_f_changed = false;
+  xSemaphoreGive(_mutex_box_2_sht21_temp_f);
+}
+
+bool is_box_2_sht21_temp_f_changed() {
+  xSemaphoreTake(_mutex_box_2_sht21_temp_f, 0);
+  bool v = _box_2_sht21_temp_f_changed;
+  xSemaphoreGive(_mutex_box_2_sht21_temp_f);
+  return v;
+}
+
+
+
+int get_box_2_sht21_temp_f() {
+  return geti(BOX_2_SHT21_TEMP_F);
+}
+
+void set_box_2_sht21_temp_f(int value) {
+  if (geti(BOX_2_SHT21_TEMP_F) == value) return;
+  seti(BOX_2_SHT21_TEMP_F, value);
+  xSemaphoreTake(_mutex_box_2_sht21_temp_f, 0);
+  _box_2_sht21_temp_f_changed = true;
+  xSemaphoreGive(_mutex_box_2_sht21_temp_f);
+}
+
+
+static SemaphoreHandle_t _mutex_box_2_sht21_humi; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_2_sht21_humi_changed = true;
+
+void reset_box_2_sht21_humi_changed() {
+  xSemaphoreTake(_mutex_box_2_sht21_humi, 0);
+  _box_2_sht21_humi_changed = false;
+  xSemaphoreGive(_mutex_box_2_sht21_humi);
+}
+
+bool is_box_2_sht21_humi_changed() {
+  xSemaphoreTake(_mutex_box_2_sht21_humi, 0);
+  bool v = _box_2_sht21_humi_changed;
+  xSemaphoreGive(_mutex_box_2_sht21_humi);
+  return v;
+}
+
+
+
+int get_box_2_sht21_humi() {
+  return geti(BOX_2_SHT21_HUMI);
+}
+
+void set_box_2_sht21_humi(int value) {
+  if (geti(BOX_2_SHT21_HUMI) == value) return;
+  seti(BOX_2_SHT21_HUMI, value);
+  xSemaphoreTake(_mutex_box_2_sht21_humi, 0);
+  _box_2_sht21_humi_changed = true;
+  xSemaphoreGive(_mutex_box_2_sht21_humi);
 }
 
 
@@ -4134,6 +4413,9 @@ void init_helpers() {
   _mutex_box_0_sht1x_temp_c = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_sht1x_temp_f = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_sht1x_humi = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_0_sht21_temp_c = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_0_sht21_temp_f = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_0_sht21_humi = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_arduino_co2 = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_dust_gpy2y10 = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_led_info = xSemaphoreCreateMutexStatic(&mutex_buffer);
@@ -4154,6 +4436,9 @@ void init_helpers() {
   _mutex_box_1_sht1x_temp_c = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_1_sht1x_temp_f = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_1_sht1x_humi = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_1_sht21_temp_c = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_1_sht21_temp_f = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_1_sht21_humi = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_1_arduino_co2 = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_1_dust_gpy2y10 = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_1_led_info = xSemaphoreCreateMutexStatic(&mutex_buffer);
@@ -4174,6 +4459,9 @@ void init_helpers() {
   _mutex_box_2_sht1x_temp_c = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_2_sht1x_temp_f = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_2_sht1x_humi = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_2_sht21_temp_c = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_2_sht21_temp_f = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_2_sht21_humi = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_2_arduino_co2 = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_2_dust_gpy2y10 = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_2_led_info = xSemaphoreCreateMutexStatic(&mutex_buffer);
