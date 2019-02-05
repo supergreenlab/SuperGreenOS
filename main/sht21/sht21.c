@@ -48,10 +48,10 @@ static bool send_sht21_cmd(int portId, uint8_t cmd_b) {
 	esp_err_t ret = i2c_master_cmd_begin(portId, cmd, 1000 / portTICK_RATE_MS);
 	i2c_cmd_link_delete(cmd);
 	if (ret == ESP_ERR_TIMEOUT) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SHT21_%d Write bus is busy", boxId);
+		ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Write bus is busy", boxId);
 		return false;
 	} else if (ret != ESP_OK) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SHT21_%d Write failed", boxId);
+		ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Write failed", boxId);
 		return false;
 	}
 	return true;
@@ -73,16 +73,16 @@ static uint16_t read_sht21(int portId) {
 	esp_err_t ret = i2c_master_cmd_begin(portId, cmd, 1000 / portTICK_RATE_MS);
 	i2c_cmd_link_delete(cmd);
 	if (ret == ESP_ERR_TIMEOUT) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SHT21_%d Read bus is busy", boxId);
+		ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Read bus is busy", boxId);
 		return 255;
 	} else if (ret != ESP_OK) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SHT21_%d Read failed", boxId);
+		ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Read failed", boxId);
 		return 255;
 	}
 
 	if(!crc_checksum(v, 2, v[2])) {
 		//reset();
-		ESP_LOGI(SGO_LOG_NOSEND, "@SHT21_%d Wrong crc", boxId);
+		ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Wrong crc", boxId);
 		return 255;
 	}
 

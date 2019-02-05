@@ -113,7 +113,7 @@ static void mqtt_task(void *param) {
     if (connected) {
       memset(buf_out, 0, MAX_LOG_QUEUE_ITEM_SIZE);
       while (xQueueReceive(log_queue, buf_out, 0)) {
-        esp_mqtt_client_publish(client, log_channel, (char *)buf_out, 0, 2, 1);
+        esp_mqtt_client_publish(client, log_channel, (char *)buf_out, 0, 0, 0);
         memset(buf_out, 0, MAX_LOG_QUEUE_ITEM_SIZE);
       }
     }

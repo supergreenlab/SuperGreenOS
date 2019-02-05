@@ -29,6 +29,7 @@
 #define IS_URI_SEP(c) (c == '?' || c == '&' || c == '=')
 
 esp_err_t download_get_handler(httpd_req_t *req);
+esp_err_t init_spiffs(void);
 
 /* static size_t get_char_count(const char *uri) {
   size_t i = 0;
@@ -178,12 +179,11 @@ httpd_uri_t uri_setstr = {
   .user_ctx = NULL
 };
 
-/* URI handler for getting uploaded files */
 httpd_uri_t file_download = {
-	.uri       = "/fs/*",  // Match all URIs of type /path/to/file (except index.html)
+	.uri       = "/fs/?*",
 	.method    = HTTP_GET,
 	.handler   = download_get_handler,
-	.user_ctx  = NULL    // Pass server data as context
+	.user_ctx  = NULL
 };
 
 static httpd_handle_t server = NULL;
@@ -191,13 +191,14 @@ static httpd_handle_t server = NULL;
 static httpd_handle_t start_webserver(void) {
 
   httpd_config_t config = HTTPD_DEFAULT_CONFIG();
+  config.uri_match_fn = httpd_uri_match_wildcard;
 
   if (httpd_start(&server, &config) == ESP_OK) {
+    httpd_register_uri_handler(server, &file_download);
     httpd_register_uri_handler(server, &uri_geti);
     httpd_register_uri_handler(server, &uri_seti);
     httpd_register_uri_handler(server, &uri_getstr);
     httpd_register_uri_handler(server, &uri_setstr);
-    httpd_register_uri_handler(server, &file_download);
   }
   return server;
 }
@@ -205,5 +206,6 @@ static httpd_handle_t start_webserver(void) {
 void init_httpd() {
   ESP_LOGI(SGO_LOG_EVENT, "@MQTT Intializing MQTT task");
 
+  init_spiffs();
   start_webserver();
 }
