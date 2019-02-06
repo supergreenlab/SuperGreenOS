@@ -1,4 +1,5 @@
 build/
 conf/
+spiffs_fs/config.yml.gz
 releases/
 sdkconfig.old
