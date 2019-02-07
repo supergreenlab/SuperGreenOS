@@ -25,6 +25,7 @@
 
 #define WIFI_SSID "WSSID"
 #define WIFI_PASSWORD "WPASS"
+#define WIFI_IP "WIP"
 #define TIME "TIME"
 #define N_RESTARTS "N_RESTARTS"
 #define OTA_TIMESTAMP "OTA_TMSTP"

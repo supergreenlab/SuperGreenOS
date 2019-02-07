@@ -146,6 +146,45 @@ void set_wifi_password(const char *value) {
   xSemaphoreGive(_mutex_wifi_password);
 }
 
+static SemaphoreHandle_t _mutex_wifi_ip; // TODO check RAM weight of creating so many semaphores :/
+static bool _wifi_ip_changed = true;
+
+void reset_wifi_ip_changed() {
+  xSemaphoreTake(_mutex_wifi_ip, 0);
+  _wifi_ip_changed = false;
+  xSemaphoreGive(_mutex_wifi_ip);
+}
+
+bool is_wifi_ip_changed() {
+  xSemaphoreTake(_mutex_wifi_ip, 0);
+  bool v = _wifi_ip_changed;
+  xSemaphoreGive(_mutex_wifi_ip);
+  return v;
+}
+
+
+
+
+void get_wifi_ip(char *dest, size_t len) {
+  assert(len <= MAX_KVALUE_SIZE - 1);
+  getstr(WIFI_IP, dest, len);
+  xSemaphoreTake(_mutex_wifi_ip, 0);
+  _wifi_ip_changed = true;
+  xSemaphoreGive(_mutex_wifi_ip);
+}
+
+void set_wifi_ip(const char *value) {
+  assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
+  char old_value[MAX_KVALUE_SIZE] = {0};
+  getstr(WIFI_IP, old_value, MAX_KVALUE_SIZE - 1);
+  if (!strcmp(old_value, value)) return;
+  setstr(WIFI_IP, value);
+  xSemaphoreTake(_mutex_wifi_ip, 0);
+  _wifi_ip_changed = true;
+  xSemaphoreGive(_mutex_wifi_ip);
+  set_attr_value_and_notify(IDX_CHAR_VAL_WIFI_IP, (uint8_t *)value, strlen(value));
+}
+
 static SemaphoreHandle_t _mutex_time; // TODO check RAM weight of creating so many semaphores :/
 static bool _time_changed = true;
 
@@ -4379,6 +4418,7 @@ void init_helpers() {
   _mutex_wifi_status = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_wifi_ssid = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_wifi_password = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_wifi_ip = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_time = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_n_restarts = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_ota_timestamp = xSemaphoreCreateMutexStatic(&mutex_buffer);

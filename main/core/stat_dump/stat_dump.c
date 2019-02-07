@@ -75,6 +75,12 @@ static void stat_dump_task(void *param) {
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_wifi_password_changed();
     }
+    if ((counter % 20) == 0 || is_wifi_ip_changed()) {
+      get_wifi_ip(str, MAX_KVALUE_SIZE-1);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "WIFI_IP", str);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_wifi_ip_changed();
+    }
     if ((counter % 20) == 0 || is_time_changed()) {
       value = get_time();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "TIME", value);

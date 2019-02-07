@@ -113,6 +113,8 @@ static esp_err_t set_content_type_from_file(httpd_req_t *req)
         return httpd_resp_set_type(req, "image/jpeg");
     } else if (IS_FILE_EXT(req->uri, ".png")) {
         return httpd_resp_set_type(req, "image/png");
+    } else if (IS_FILE_EXT(req->uri, ".yml")) {
+        return httpd_resp_set_type(req, "application/x-yaml");
     } else if (IS_FILE_EXT(req->uri, ".gz")) {
         return httpd_resp_set_type(req, "application/x-gzip");
     }
@@ -144,6 +146,7 @@ static esp_err_t http_resp_file(httpd_req_t *req)
 
     ESP_LOGI(SGO_LOG_NOSEND, "Sending file : %s (%ld bytes)...", filepath, file_stat.st_size);
     set_content_type_from_file(req);
+    httpd_resp_set_hdr(req, "Content-Encoding", "gzip");
 
     fd = fopen(filepath, "r");
     if (!fd) {

@@ -689,6 +689,11 @@ const kvs_handler kvs_handlers[] = {
     .getter = get_wifi_password,
   },
   {
+    .name = "WIFI_IP",
+    .handler = NULL,
+    .getter = get_wifi_ip,
+  },
+  {
     .name = "OTA_SERVER_IP",
     .handler = internal_set_ota_server_ip,
     .getter = get_ota_server_ip,

@@ -60,6 +60,8 @@ void preinit_kv() {
   defaultstr(WIFI_SSID, default_wifi_ssid);
   const char *default_wifi_password = "";
   defaultstr(WIFI_PASSWORD, default_wifi_password);
+  const char *default_wifi_ip = "0.0.0.0";
+  defaultstr(WIFI_IP, default_wifi_ip);
   int default_time = 0;
   defaulti(TIME, default_time);
   int default_n_restarts = 0;
@@ -334,6 +336,7 @@ void postinit_kv() {
    */
 
   sync_ble_str(WIFI_SSID, IDX_VALUE(WIFI_SSID));
+  sync_ble_str(WIFI_IP, IDX_VALUE(WIFI_IP));
   sync_ble_i(TIME, IDX_VALUE(TIME));
   sync_ble_i(STATE, IDX_VALUE(STATE));
   sync_ble_str(DEVICE_NAME, IDX_VALUE(DEVICE_NAME));

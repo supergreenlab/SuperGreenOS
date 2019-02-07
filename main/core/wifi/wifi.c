@@ -143,6 +143,19 @@ static void start_sta() {
   ESP_ERROR_CHECK( esp_wifi_start() );
 }
 
+static void set_ip(tcpip_adapter_if_t interface) {
+  tcpip_adapter_ip_info_t info;
+  esp_err_t err = tcpip_adapter_get_ip_info(interface, &info);
+  if (err != ESP_OK) {
+    ESP_LOGE(SGO_LOG_EVENT, "@WIFI tcpip_adapter_get_ip_info failed");
+    return;
+  }
+
+  char ip[20] = {0};
+  sprintf(ip, "%d.%d.%d.%d", ((uint8_t*)&(info.ip.addr))[0], ((uint8_t*)&(info.ip.addr))[1], ((uint8_t*)&(info.ip.addr))[2], ((uint8_t*)&(info.ip.addr))[3]);
+  set_wifi_ip(ip);
+}
+
 static esp_err_t event_handler(void *ctx, system_event_t *event) {
   switch(event->event_id) {
     case SYSTEM_EVENT_STA_START:
@@ -155,6 +168,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
       xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
       xQueueSend(cmd, &CMD_STA_CONNECTED, 0);
       set_wifi_status(CONNECTED);
+      set_ip(TCPIP_ADAPTER_IF_STA);
       break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_DISCONNECTED = %d", event->event_info.disconnected.reason);
@@ -170,6 +184,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
       break;
     case SYSTEM_EVENT_AP_START:
       xQueueSend(cmd, &CMD_AP_START, 0);
+      set_ip(TCPIP_ADAPTER_IF_AP);
       break;
     case SYSTEM_EVENT_AP_STACONNECTED:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_AP_STACONNECTED");
@@ -212,7 +227,6 @@ static void wifi_task(void *param) {
       } else if (c == CMD_AP_START) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_AP_START");
         n_connected_sta = 0;
-
       } else if (c == CMD_STA_CONNECTED) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_STA_CONNECTED");
         start_mdns_service();

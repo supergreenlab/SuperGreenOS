@@ -53,6 +53,12 @@ void internal_set_wifi_password(const char *value) {
   set_wifi_password(value);
 
 }
+void internal_set_wifi_ip(const char *value) {
+  set_wifi_ip(value);
+
+
+  set_attr_value_and_notify(IDX_CHAR_VAL_WIFI_IP, (uint8_t *)value, strlen(value));
+}
 void internal_set_time(int value) {
   set_time(value);
 
