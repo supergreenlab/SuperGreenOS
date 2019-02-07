@@ -20,6 +20,10 @@ body, html {
   justify-content: space-between;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* left part */
 
 #device_name {
@@ -41,12 +45,11 @@ body, html {
   justify-content: center;
 }
 
-
 /**
- * Box stuffs
+ * Menu
  */
 
-#box_tabs {
+#menu {
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -54,11 +57,11 @@ body, html {
   background-color: #333333;
 }
 
-#box_tabs li {
+#menu li {
   float: left;
 }
 
-#box_tabs li a {
+#menu li a {
   display: block;
   color: white;
   text-align: center;
@@ -66,9 +69,17 @@ body, html {
   text-decoration: none;
 }
 
-li a:hover {
+#menu li a:hover {
   background-color: #111111;
 }
+
+#menu li.selected {
+  background-color: #111111;
+}
+
+/**
+ * Box stuffs
+ */
 
 #box {
   flex: 1;
@@ -76,37 +87,42 @@ li a:hover {
   display: flex;
 }
 
-.box_params {
+#box_advance {
+  overflow-y: auto;
+}
+
+/**
+ * Common
+ */
+
+.params {
   flex: 1;
   display: flex;
 }
 
-.box_param_list {
-  width: 50%;
+.param_list {
+  flex: 1;
   display: flex;
   flex-direction: column;
   margin: 5pt;
 }
 
-.box_param {
+.param {
   display: flex;
   align-items: center;
   word-wrap: break-word;
+  margin: 3pt;
 }
 
-.box_param label, .box_param b {
+.param label, .param b {
   display: block;
   flex: 1;
 }
 
-.box_param span {
+.param span {
   overflow-x: auto;
 }
 
 .param_loading {
   opacity: 0.5;
-}
-
-#box_advance {
-  overflow-y: auto;
 }
