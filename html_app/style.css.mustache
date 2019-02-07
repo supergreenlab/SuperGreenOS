@@ -1,12 +1,17 @@
+{{< normalize.css}}
+
 body, html {
   display: flex;
   flex-direction: column;
   flex: 1;
   padding: 0; margin: 0;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-  font-weight: 300;
   min-height: 100vh;
 }
+
+/**
+ * Header stuffs
+ */
 
 #header {
   display: flex;
@@ -15,12 +20,18 @@ body, html {
   justify-content: space-between;
 }
 
+/* left part */
+
 #device_name {
   display: block;
 }
 
-#state {
+/* right part */
+
+#controller_infos {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .status_box {
@@ -28,4 +39,74 @@ body, html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+
+/**
+ * Box stuffs
+ */
+
+#box_tabs {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style-type: none;
+  background-color: #333333;
+}
+
+#box_tabs li {
+  float: left;
+}
+
+#box_tabs li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+}
+
+#box {
+  flex: 1;
+  flex-direction: column;
+  display: flex;
+}
+
+.box_params {
+  flex: 1;
+  display: flex;
+}
+
+.box_param_list {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 5pt;
+}
+
+.box_param {
+  display: flex;
+  align-items: center;
+  word-wrap: break-word;
+}
+
+.box_param label, .box_param b {
+  display: block;
+  flex: 1;
+}
+
+.box_param span {
+  overflow-x: auto;
+}
+
+.param_loading {
+  opacity: 0.5;
+}
+
+#box_advance {
+  overflow-y: auto;
 }

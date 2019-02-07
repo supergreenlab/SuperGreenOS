@@ -34,6 +34,22 @@ const fetchParam = async function(type, paramName) {
   })
 }
 
+const updateParam = async function(type, paramName, value) {
+  return new Promise(function(resolve, reject) {
+    const r = new XMLHttpRequest()
+    r.open('POST', `/${type}?k=${paramName}&v=${value}`, true)
+    r.onreadystatechange = function () {
+      if (r.readyState != 4) return
+      if (r.status != 200) {
+        reject(r.status, r.responseText)
+        return
+      }
+      resolve(r.responseText);
+    }
+    r.send()
+  })
+}
+
 const updateDiv = function(id, value) {
   document.getElementById(id).innerText = value
 }

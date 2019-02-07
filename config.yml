@@ -882,7 +882,7 @@ keys:
     caps_name: BOX_1_SHT21_TEMP_C
     integer: true
     box:
-      index: 0
+      index: 1
       param: sht21_temp_c
     nvs:
       key: B_1_SHT21_C
@@ -894,7 +894,7 @@ keys:
     caps_name: BOX_1_SHT21_TEMP_F
     integer: true
     box:
-      index: 0
+      index: 1
       param: sht21_temp_f
     nvs:
       key: B_1_SHT21_F
@@ -906,7 +906,7 @@ keys:
     caps_name: BOX_1_SHT21_HUMI
     integer: true
     box:
-      index: 0
+      index: 1
       param: sht21_humi
     nvs:
       key: B_1_SHT21_HU
@@ -931,7 +931,7 @@ keys:
     integer: true
     box:
       index: 1
-      param: dust_gp2y10
+      param: dust_gpy2y10
     nvs:
       key: B_1_DUST_G2Y1
     http:
@@ -1165,7 +1165,7 @@ keys:
     caps_name: BOX_2_SHT21_TEMP_C
     integer: true
     box:
-      index: 0
+      index: 2
       param: sht21_temp_c
     nvs:
       key: B_2_SHT21_C
@@ -1177,7 +1177,7 @@ keys:
     caps_name: BOX_2_SHT21_TEMP_F
     integer: true
     box:
-      index: 0
+      index: 2
       param: sht21_temp_f
     nvs:
       key: B_2_SHT21_F
@@ -1189,7 +1189,7 @@ keys:
     caps_name: BOX_2_SHT21_HUMI
     integer: true
     box:
-      index: 0
+      index: 2
       param: sht21_humi
     nvs:
       key: B_2_SHT21_HU
@@ -1215,7 +1215,7 @@ keys:
     integer: true
     box:
       index: 2
-      param: dust_gp2y10
+      param: dust_gpy2y10
     nvs:
       key: B_2_DUST_G2Y1
     http:

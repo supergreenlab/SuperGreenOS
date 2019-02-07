@@ -308,9 +308,9 @@ void preinit_kv() {
   defaulti(LED_2_BOX, default_led_2_box);
   int default_led_3_box = 0;
   defaulti(LED_3_BOX, default_led_3_box);
-  int default_led_4_box = 0;
+  int default_led_4_box = 1;
   defaulti(LED_4_BOX, default_led_4_box);
-  int default_led_5_box = 0;
+  int default_led_5_box = 1;
   defaulti(LED_5_BOX, default_led_5_box);
   int default_led_0_dim = 100;
   defaulti(LED_0_DIM, default_led_0_dim);

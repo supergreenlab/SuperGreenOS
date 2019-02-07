@@ -4,15 +4,368 @@
     <meta charset="UTF-8"> 
     <title>SuperGreenDriver</title>
      <style type="text/css">
+      /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+      
+      /* Document
+         ========================================================================== */
+      
+      /**
+       * 1. Correct the line height in all browsers.
+       * 2. Prevent adjustments of font size after orientation changes in iOS.
+       */
+      
+      html {
+        line-height: 1.15; /* 1 */
+        -webkit-text-size-adjust: 100%; /* 2 */
+      }
+      
+      /* Sections
+         ========================================================================== */
+      
+      /**
+       * Remove the margin in all browsers.
+       */
+      
+      body {
+        margin: 0;
+      }
+      
+      /**
+       * Render the `main` element consistently in IE.
+       */
+      
+      main {
+        display: block;
+      }
+      
+      /**
+       * Correct the font size and margin on `h1` elements within `section` and
+       * `article` contexts in Chrome, Firefox, and Safari.
+       */
+      
+      h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+      }
+      
+      /* Grouping content
+         ========================================================================== */
+      
+      /**
+       * 1. Add the correct box sizing in Firefox.
+       * 2. Show the overflow in Edge and IE.
+       */
+      
+      hr {
+        box-sizing: content-box; /* 1 */
+        height: 0; /* 1 */
+        overflow: visible; /* 2 */
+      }
+      
+      /**
+       * 1. Correct the inheritance and scaling of font size in all browsers.
+       * 2. Correct the odd `em` font sizing in all browsers.
+       */
+      
+      pre {
+        font-family: monospace, monospace; /* 1 */
+        font-size: 1em; /* 2 */
+      }
+      
+      /* Text-level semantics
+         ========================================================================== */
+      
+      /**
+       * Remove the gray background on active links in IE 10.
+       */
+      
+      a {
+        background-color: transparent;
+      }
+      
+      /**
+       * 1. Remove the bottom border in Chrome 57-
+       * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+       */
+      
+      abbr[title] {
+        border-bottom: none; /* 1 */
+        text-decoration: underline; /* 2 */
+        text-decoration: underline dotted; /* 2 */
+      }
+      
+      /**
+       * Add the correct font weight in Chrome, Edge, and Safari.
+       */
+      
+      b,
+      strong {
+        font-weight: bolder;
+      }
+      
+      /**
+       * 1. Correct the inheritance and scaling of font size in all browsers.
+       * 2. Correct the odd `em` font sizing in all browsers.
+       */
+      
+      code,
+      kbd,
+      samp {
+        font-family: monospace, monospace; /* 1 */
+        font-size: 1em; /* 2 */
+      }
+      
+      /**
+       * Add the correct font size in all browsers.
+       */
+      
+      small {
+        font-size: 80%;
+      }
+      
+      /**
+       * Prevent `sub` and `sup` elements from affecting the line height in
+       * all browsers.
+       */
+      
+      sub,
+      sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+      }
+      
+      sub {
+        bottom: -0.25em;
+      }
+      
+      sup {
+        top: -0.5em;
+      }
+      
+      /* Embedded content
+         ========================================================================== */
+      
+      /**
+       * Remove the border on images inside links in IE 10.
+       */
+      
+      img {
+        border-style: none;
+      }
+      
+      /* Forms
+         ========================================================================== */
+      
+      /**
+       * 1. Change the font styles in all browsers.
+       * 2. Remove the margin in Firefox and Safari.
+       */
+      
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: inherit; /* 1 */
+        font-size: 100%; /* 1 */
+        line-height: 1.15; /* 1 */
+        margin: 0; /* 2 */
+      }
+      
+      /**
+       * Show the overflow in IE.
+       * 1. Show the overflow in Edge.
+       */
+      
+      button,
+      input { /* 1 */
+        overflow: visible;
+      }
+      
+      /**
+       * Remove the inheritance of text transform in Edge, Firefox, and IE.
+       * 1. Remove the inheritance of text transform in Firefox.
+       */
+      
+      button,
+      select { /* 1 */
+        text-transform: none;
+      }
+      
+      /**
+       * Correct the inability to style clickable types in iOS and Safari.
+       */
+      
+      button,
+      [type="button"],
+      [type="reset"],
+      [type="submit"] {
+        -webkit-appearance: button;
+      }
+      
+      /**
+       * Remove the inner border and padding in Firefox.
+       */
+      
+      button::-moz-focus-inner,
+      [type="button"]::-moz-focus-inner,
+      [type="reset"]::-moz-focus-inner,
+      [type="submit"]::-moz-focus-inner {
+        border-style: none;
+        padding: 0;
+      }
+      
+      /**
+       * Restore the focus styles unset by the previous rule.
+       */
+      
+      button:-moz-focusring,
+      [type="button"]:-moz-focusring,
+      [type="reset"]:-moz-focusring,
+      [type="submit"]:-moz-focusring {
+        outline: 1px dotted ButtonText;
+      }
+      
+      /**
+       * Correct the padding in Firefox.
+       */
+      
+      fieldset {
+        padding: 0.35em 0.75em 0.625em;
+      }
+      
+      /**
+       * 1. Correct the text wrapping in Edge and IE.
+       * 2. Correct the color inheritance from `fieldset` elements in IE.
+       * 3. Remove the padding so developers are not caught out when they zero out
+       *    `fieldset` elements in all browsers.
+       */
+      
+      legend {
+        box-sizing: border-box; /* 1 */
+        color: inherit; /* 2 */
+        display: table; /* 1 */
+        max-width: 100%; /* 1 */
+        padding: 0; /* 3 */
+        white-space: normal; /* 1 */
+      }
+      
+      /**
+       * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+       */
+      
+      progress {
+        vertical-align: baseline;
+      }
+      
+      /**
+       * Remove the default vertical scrollbar in IE 10+.
+       */
+      
+      textarea {
+        overflow: auto;
+      }
+      
+      /**
+       * 1. Add the correct box sizing in IE 10.
+       * 2. Remove the padding in IE 10.
+       */
+      
+      [type="checkbox"],
+      [type="radio"] {
+        box-sizing: border-box; /* 1 */
+        padding: 0; /* 2 */
+      }
+      
+      /**
+       * Correct the cursor style of increment and decrement buttons in Chrome.
+       */
+      
+      [type="number"]::-webkit-inner-spin-button,
+      [type="number"]::-webkit-outer-spin-button {
+        height: auto;
+      }
+      
+      /**
+       * 1. Correct the odd appearance in Chrome and Safari.
+       * 2. Correct the outline style in Safari.
+       */
+      
+      [type="search"] {
+        -webkit-appearance: textfield; /* 1 */
+        outline-offset: -2px; /* 2 */
+      }
+      
+      /**
+       * Remove the inner padding in Chrome and Safari on macOS.
+       */
+      
+      [type="search"]::-webkit-search-decoration {
+        -webkit-appearance: none;
+      }
+      
+      /**
+       * 1. Correct the inability to style clickable types in iOS and Safari.
+       * 2. Change font properties to `inherit` in Safari.
+       */
+      
+      ::-webkit-file-upload-button {
+        -webkit-appearance: button; /* 1 */
+        font: inherit; /* 2 */
+      }
+      
+      /* Interactive
+         ========================================================================== */
+      
+      /*
+       * Add the correct display in Edge, IE 10+, and Firefox.
+       */
+      
+      details {
+        display: block;
+      }
+      
+      /*
+       * Add the correct display in all browsers.
+       */
+      
+      summary {
+        display: list-item;
+      }
+      
+      /* Misc
+         ========================================================================== */
+      
+      /**
+       * Add the correct display in IE 10+.
+       */
+      
+      template {
+        display: none;
+      }
+      
+      /**
+       * Add the correct display in IE 10.
+       */
+      
+      [hidden] {
+        display: none;
+      }
+      
       body, html {
         display: flex;
         flex-direction: column;
         flex: 1;
         padding: 0; margin: 0;
         font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-        font-weight: 300;
         min-height: 100vh;
       }
+      
+      /**
+       * Header stuffs
+       */
       
       #header {
         display: flex;
@@ -21,12 +374,18 @@
         justify-content: space-between;
       }
       
+      /* left part */
+      
       #device_name {
         display: block;
       }
       
-      #state {
+      /* right part */
+      
+      #controller_infos {
         display: flex;
+        align-items: center;
+        justify-content: center;
       }
       
       .status_box {
@@ -35,31 +394,116 @@
         align-items: center;
         justify-content: center;
       }
+      
+      
+      /**
+       * Box stuffs
+       */
+      
+      #box_tabs {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        list-style-type: none;
+        background-color: #333333;
+      }
+      
+      #box_tabs li {
+        float: left;
+      }
+      
+      #box_tabs li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 16px;
+        text-decoration: none;
+      }
+      
+      li a:hover {
+        background-color: #111111;
+      }
+      
+      #box {
+        flex: 1;
+        flex-direction: column;
+        display: flex;
+      }
+      
+      .box_params {
+        flex: 1;
+        display: flex;
+      }
+      
+      .box_param_list {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        margin: 5pt;
+      }
+      
+      .box_param {
+        display: flex;
+        align-items: center;
+        word-wrap: break-word;
+      }
+      
+      .box_param label, .box_param b {
+        display: block;
+        flex: 1;
+      }
+      
+      .box_param span {
+        overflow-x: auto;
+      }
+      
+      .param_loading {
+        opacity: 0.5;
+      }
+      
+      #box_advance {
+        overflow-y: auto;
+      }
     </style>
   </head>
   <body>
     <div id='header'>
     <h3 id='device_name'></h3>
-    <div id='state'>
+    <div id='controller_infos'>
       <div class='status_box'>
-        <span>box state:<span><br />
-        <svg width='33px' height='33px' id='state_color_svg' xmlns='http://www.w3.org/2000/svg' xmlns:xlink="http://www.w3.org/1999/xlink">
-          <ellipse cx='16.5px' cy='16.5px' id='state_color' rx='15' ry='15px' stroke-width='1.5' stroke='#000' fill='#0f27ff'/>
-        </svg><br />
         <span id='state'></span>
       </div>
       <div class='status_box'>
-        <span>wifi_status:<span><br />
-        <svg width='33px' height='33px' id='wifi_status_svg' xmlns='http://www.w3.org/2000/svg' xmlns:xlink="http://www.w3.org/1999/xlink">
-          <ellipse cx='16.5px' cy='16.5px' id='wifi_status' rx='15' ry='15px' stroke-width='1.5' stroke='#000' fill='#0f27ff'/>
-        </svg>
-        <span id='ip'></span>
+        wifi <span id='wifi_status'>-</span>
       </div>
     </div>
+    </div>
+    <div id='boxes'>
+      <ul id='box_tabs'>
+        <li id='box_tab_0'><a href='javascript:void(0)' onclick='renderBox(0)'>Box 1</a></li>
+        <li id='box_tab_1'><a href='javascript:void(0)' onclick='renderBox(1)'>Box 2</a></li>
+        <li id='box_tab_2'><a href='javascript:void(0)' onclick='renderBox(2)'>Box 3</a></li>
+      </ul>
+      <div id='box'>
+        <div class='box_params' id='box_readonly'>
+          <div class='box_param_list' id='box_readonly_0'>
+          </div>
+          <div class='box_param_list' id='box_readonly_1'>
+          </div>
+        </div>
+        <div class='box_params' id='box_advance'>
+          <div class='box_param_list' id='box_advance_0'>
+          </div>
+          <div class='box_param_list' id='box_advance_1'>
+          </div>
+        </div>
+      </div>
     </div>
     <script>
       (function() {
         document.body.onload = function() {
+          let config = {}
+          
           const fetchConfig = async function() {
             return new Promise(function(resolve, reject) {
               const r = new XMLHttpRequest()
@@ -96,6 +540,22 @@
             })
           }
           
+          const updateParam = async function(type, paramName, value) {
+            return new Promise(function(resolve, reject) {
+              const r = new XMLHttpRequest()
+              r.open('POST', `/${type}?k=${paramName}&v=${value}`, true)
+              r.onreadystatechange = function () {
+                if (r.readyState != 4) return
+                if (r.status != 200) {
+                  reject(r.status, r.responseText)
+                  return
+                }
+                resolve(r.responseText);
+              }
+              r.send()
+            })
+          }
+          
           const updateDiv = function(id, value) {
             document.getElementById(id).innerText = value
           }
@@ -103,35 +563,100 @@
           const updateHeader = async function() {
             const device_name = await fetchParam('s', 'DEVICE_NAME')
             updateDiv('device_name', device_name)
+          
             const state = await fetchParam('i', 'STATE')
             if (state == 0) {
-              document.getElementById('state_color_svg').getElementById('state_color').setAttribute('fill', '#0f27ff')
+              updateDiv('state', 'First run')
             } else if (state == 2) {
-              document.getElementById('state_color_svg').getElementById('state_color').setAttribute('fill', '#0fff27')
+              updateDiv('state', 'Running')
             }
-            updateDiv('state', state)
+          
             const wifi_status = await fetchParam('i', 'WIFI_STATUS')
             if (wifi_status == 5) {
-              document.getElementById('wifi_status_svg').getElementById('wifi_status').setAttribute('fill', '#0f27ff')
+              const ip = await fetchParam('s', 'WIFI_IP')
+              updateDiv('wifi_status', `AP (${ip})`)
             } else if (wifi_status == 3) {
-              document.getElementById('wifi_status_svg').getElementById('wifi_status').setAttribute('fill', '#0fff27')
+              const ip = await fetchParam('s', 'WIFI_IP')
+              updateDiv('wifi_status', `STA (${ip})`)
             } else {
-              document.getElementById('wifi_status_svg').getElementById('wifi_status').setAttribute('fill', '#ff0f27')
+              updateDiv('wifi_status', '-')
             }
-            const ip = await fetchParam('s', 'WIFI_IP')
-            updateDiv('ip', ip)
           }
           
-          const renderBox = async function(config) {
+          window.onSubmitBoxParam = async function(id, keyId) {
+            const key = config.keys[keyId]
+            let value = document.getElementById(`value_${key.caps_name}`).value
+            document.getElementById(`box_param_${key.caps_name}`).classList.add('param_loading')
+            await updateParam(key.integer ? 'i' : 's', `${key.caps_name}`, value)
+            value = await fetchParam(key.integer ? 'i' : 's', key.caps_name)
+            document.getElementById(`value_${key.caps_name}`).value = value
+            document.getElementById(`box_param_${key.caps_name}`).classList.remove('param_loading')
           }
           
-          const renderBoxes = async function(config) {
+          const loadBoxParams = async function(id) {
+            let p = Promise.resolve()
+            for (let i = 0; i < config.keys.length; ++i) {
+              const key = config.keys[i]
+              if (!key.box || key.box.index != id || !key.http) continue
+              const np = p.then(((keyId, key) => async () => {
+                const value = await fetchParam(key.integer ? 'i' : 's', key.caps_name)
+                document.getElementById(`box_param_${key.caps_name}`).classList.remove('param_loading')
+                const el = document.getElementById(`value_${key.caps_name}`)
+                if (el.value) {
+                  el.value = value
+                } else {
+                  el.innerText = value
+                }
+              })(i, key))
+              if (i % 3 == 0) {
+                p = np;
+              }
+            }
+            return p
+          }
+          
+          const renderBoxReadonly = async function(id) {
+            let html = []
+            for (let i = 0; i < config.keys.length; ++i) {
+              const key = config.keys[i]
+              if (!key.box || key.box.index != id || !key.http || key.http.write) continue
+              // replace with mustache template
+              html.push(`<div class='box_param param_loading' id='box_param_${key.caps_name}'>
+                    <b>${key.box.param}:</b>&nbsp;<span id='value_${key.caps_name}'>-</span>
+                </div>`)
+            }
+            document.getElementById('box_readonly_0').innerHTML = html.slice(0, html.length / 2).join('')
+            document.getElementById('box_readonly_1').innerHTML = html.slice(html.length / 2).join('')
+          }
+          
+          const renderBoxAdvance = async function(id) {
+            let html = []
+            for (let i = 0; i < config.keys.length; ++i) {
+              const key = config.keys[i]
+              if (!key.box || key.box.index != id || !key.http || !key.http.write) continue
+              // replace with mustache template
+              html.push(`<div class='param_loading' id='box_param_${key.caps_name}'>
+                  <form class='box_param' onSubmit='onSubmitBoxParam(${id}, ${i}); return false'>
+                    <label for='${key.caps_name}'>${key.box.param}</label>
+                    <input type='text' value='-' name='${key.caps_name}' id='value_${key.caps_name}' />
+                  </form>
+          
+                </div>`)
+            }
+            document.getElementById('box_advance_0').innerHTML = html.slice(0, html.length / 2).join('')
+            document.getElementById('box_advance_1').innerHTML = html.slice(html.length / 2).join('')
+          }
+          
+          window.renderBox = async function(id) {
+            renderBoxReadonly(id)
+            renderBoxAdvance(id)
+            loadBoxParams(id);
           }
           
           async function start() {
-            const config = await fetchConfig()
+            config = await fetchConfig()
             updateHeader()
-            renderBoxes(config)
+            renderBox(0)
           }
           
           start()
