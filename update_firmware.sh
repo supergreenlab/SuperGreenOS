@@ -56,7 +56,7 @@ echo -e "Creating spiffs.bin partition:"
 mkdir spiffs_fs_gz
 for i in $(ls ./spiffs_fs); do
   gzip -c "./spiffs_fs/$i" >> "./spiffs_fs_gz/$i"
-  echo -e "Created spiffs_fs/config.yml.gz: ${GREEN}Done${NC}"
+  echo -e "Created spiffs_fs_gq/$i: ${GREEN}Done${NC}"
 done
 mkspiffs -c spiffs_fs_gz/ -b 4096 -p 256 -s 0x8000 $DEST/spiffs.bin
 rm -rf spiffs_fs_gz
