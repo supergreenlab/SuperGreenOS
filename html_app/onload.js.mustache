@@ -1,0 +1,37 @@
+{{< utils.js}}
+
+const updateHeader = async function() {
+  const device_name = await fetchParam('s', 'DEVICE_NAME')
+  updateDiv('device_name', device_name)
+  const state = await fetchParam('i', 'STATE')
+  if (state == 0) {
+    document.getElementById('state_color_svg').getElementById('state_color').setAttribute('fill', '#0f27ff')
+  } else if (state == 2) {
+    document.getElementById('state_color_svg').getElementById('state_color').setAttribute('fill', '#0fff27')
+  }
+  updateDiv('state', state)
+  const wifi_status = await fetchParam('i', 'WIFI_STATUS')
+  if (wifi_status == 5) {
+    document.getElementById('wifi_status_svg').getElementById('wifi_status').setAttribute('fill', '#0f27ff')
+  } else if (wifi_status == 3) {
+    document.getElementById('wifi_status_svg').getElementById('wifi_status').setAttribute('fill', '#0fff27')
+  } else {
+    document.getElementById('wifi_status_svg').getElementById('wifi_status').setAttribute('fill', '#ff0f27')
+  }
+  const ip = await fetchParam('s', 'WIFI_IP')
+  updateDiv('ip', ip)
+}
+
+const renderBox = async function(config) {
+}
+
+const renderBoxes = async function(config) {
+}
+
+async function start() {
+  const config = await fetchConfig()
+  updateHeader()
+  renderBoxes(config)
+}
+
+start()

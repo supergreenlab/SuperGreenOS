@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"> 
+    <title>SuperGreenDriver</title>
+     <style type="text/css">
+      body, html {
+        display: flex;
+        flex: 1;
+        padding: 0; margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='header'>
+    </div>
+    <span sgl-load='DEVICE_NAME'></span>
+    <script type='text/javascript'>
+      (function() {
+        document.body.onload = function() {
+          const fetchParam = function(type, paramName) {
+            const r = new XMLHttpRequest()
+            r.open('GET', '/'+type, true)
+            r.onreadystatechange = function () {
+              if (r.readyState != 4 || r.status != 200) return
+              alert('Success: ' + r.responseText)
+            }
+            r.send('k='+paramName)
+          }
+          
+          fetchParam('s', 'DEVICE_NAME')
+        }
+      })()
+    </script>
+  </body>
+</html>

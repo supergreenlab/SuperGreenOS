@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"> 
+    <title>SuperGreenDriver</title>
+     <style type="text/css">
+      body, html {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 0; margin: 0;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+        font-weight: 300;
+        min-height: 100vh;
+      }
+      
+      #header {
+        display: flex;
+        padding: 10pt;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+      #device_name {
+        display: block;
+      }
+      
+      #state {
+        display: flex;
+      }
+      
+      .status_box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='header'>
+    <h3 id='device_name'></h3>
+    <div id='state'>
+      <div class='status_box'>
+        <span>box state:<span><br />
+        <svg width='33px' height='33px' id='state_color_svg' xmlns='http://www.w3.org/2000/svg' xmlns:xlink="http://www.w3.org/1999/xlink">
+          <ellipse cx='16.5px' cy='16.5px' id='state_color' rx='15' ry='15px' stroke-width='1.5' stroke='#000' fill='#0f27ff'/>
+        </svg><br />
+        <span id='state'></span>
+      </div>
+      <div class='status_box'>
+        <span>wifi_status:<span><br />
+        <svg width='33px' height='33px' id='wifi_status_svg' xmlns='http://www.w3.org/2000/svg' xmlns:xlink="http://www.w3.org/1999/xlink">
+          <ellipse cx='16.5px' cy='16.5px' id='wifi_status' rx='15' ry='15px' stroke-width='1.5' stroke='#000' fill='#0f27ff'/>
+        </svg>
+        <span id='ip'></span>
+      </div>
+    </div>
+    </div>
+    <script>
+      (function() {
+        document.body.onload = function() {
+          const fetchConfig = async function() {
+            return new Promise(function(resolve, reject) {
+              const r = new XMLHttpRequest()
+              r.open('GET', '/fs/config.json', true)
+              r.onreadystatechange = function () {
+                if (r.readyState != 4) return
+                if (r.status != 200) {
+                  reject(r.status, r.responseText)
+                  return
+                }
+                resolve(JSON.parse(r.responseText))
+              }
+              r.send()
+            })
+          }
+          
+          const fetchParam = async function(type, paramName) {
+            return new Promise(function(resolve, reject) {
+              const r = new XMLHttpRequest()
+              r.open('GET', '/'+type+'?k='+paramName, true)
+              r.onreadystatechange = function () {
+                if (r.readyState != 4) return
+                if (r.status != 200) {
+                  reject(r.status, r.responseText)
+                  return
+                }
+                if (type == 'i') {
+                  resolve(parseInt(r.responseText))
+                } else {
+                  resolve(r.responseText);
+                }
+              }
+              r.send()
+            })
+          }
+          
+          const updateDiv = function(id, value) {
+            document.getElementById(id).innerText = value
+          }
+          
+          const updateHeader = async function() {
+            const device_name = await fetchParam('s', 'DEVICE_NAME')
+            updateDiv('device_name', device_name)
+            const state = await fetchParam('i', 'STATE')
+            if (state == 0) {
+              document.getElementById('state_color_svg').getElementById('state_color').setAttribute('fill', '#0f27ff')
+            } else if (state == 2) {
+              document.getElementById('state_color_svg').getElementById('state_color').setAttribute('fill', '#0fff27')
+            }
+            updateDiv('state', state)
+            const wifi_status = await fetchParam('i', 'WIFI_STATUS')
+            if (wifi_status == 5) {
+              document.getElementById('wifi_status_svg').getElementById('wifi_status').setAttribute('fill', '#0f27ff')
+            } else if (wifi_status == 3) {
+              document.getElementById('wifi_status_svg').getElementById('wifi_status').setAttribute('fill', '#0fff27')
+            } else {
+              document.getElementById('wifi_status_svg').getElementById('wifi_status').setAttribute('fill', '#ff0f27')
+            }
+            const ip = await fetchParam('s', 'WIFI_IP')
+            updateDiv('ip', ip)
+          }
+          
+          const renderBox = async function(config) {
+          }
+          
+          const renderBoxes = async function(config) {
+          }
+          
+          async function start() {
+            const config = await fetchConfig()
+            updateHeader()
+            renderBoxes(config)
+          }
+          
+          start()
+        }
+      })()
+    </script>
+  </body>
+</html>

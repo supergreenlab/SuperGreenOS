@@ -183,7 +183,7 @@ keys:
       key: N_RESTARTS
     http:
       noop: true
-    default_var: 0
+    default: 0
  
   - name: ota_timestamp
     caps_name: OTA_TIMESTAMP
@@ -335,7 +335,7 @@ keys:
       notify: true
     http:
       write: true
-    default: FIRST_RUN
+    default_var: FIRST_RUN
 
   - name: device_name
     caps_name: DEVICE_NAME
@@ -554,7 +554,7 @@ keys:
       key: B_0_BLWR_E
     http:
       write: true
-    default_var: 1
+    default: 1
  
   - name: box_0_sht1x_temp_c
     caps_name: BOX_0_SHT1X_TEMP_C
@@ -840,7 +840,7 @@ keys:
       key: B_1_BLWR_E
     http:
       write: true
-    default_var: 0
+    default: 0
  
   - name: box_1_sht1x_temp_c
     caps_name: BOX_1_SHT1X_TEMP_C
@@ -1123,7 +1123,7 @@ keys:
       key: B_2_BLWR_E
     http:
       write: true
-    default_var: 0
+    default: 0
  
   - name: box_2_sht1x_temp_c
     caps_name: BOX_2_SHT1X_TEMP_C
@@ -1324,7 +1324,7 @@ keys:
       key: L_0_IO
     http:
       write: true
-    default: DEFAULT_LED_0_GPIO
+    default_var: DEFAULT_LED_0_GPIO
 
   - name: led_1_gpio
     caps_name: LED_1_GPIO
@@ -1336,7 +1336,7 @@ keys:
       key: L_1_IO
     http:
       write: true
-    default: DEFAULT_LED_1_GPIO
+    default_var: DEFAULT_LED_1_GPIO
 
   - name: led_2_gpio
     caps_name: LED_2_GPIO
@@ -1348,7 +1348,7 @@ keys:
       key: L_2_IO
     http:
       write: true
-    default: DEFAULT_LED_2_GPIO
+    default_var: DEFAULT_LED_2_GPIO
 
   - name: led_3_gpio
     caps_name: LED_3_GPIO
@@ -1360,7 +1360,7 @@ keys:
       key: L_3_IO
     http:
       write: true
-    default: DEFAULT_LED_3_GPIO
+    default_var: DEFAULT_LED_3_GPIO
 
   - name: led_4_gpio
     caps_name: LED_4_GPIO
@@ -1372,7 +1372,7 @@ keys:
       key: L_4_IO
     http:
       write: true
-    default: DEFAULT_LED_4_GPIO
+    default_var: DEFAULT_LED_4_GPIO
 
   - name: led_5_gpio
     caps_name: LED_5_GPIO
@@ -1384,7 +1384,7 @@ keys:
       key: L_5_IO
     http:
       write: true
-    default: DEFAULT_LED_5_GPIO
+    default_var: DEFAULT_LED_5_GPIO
 
   - name: led_0_x
     caps_name: LED_0_X
@@ -1732,7 +1732,7 @@ keys:
       key: L_4_B
     http:
       write: true
-    default: 0
+    default: 1
 
   - name: led_5_box
     caps_name: LED_5_BOX
@@ -1744,7 +1744,7 @@ keys:
       key: L_5_B
     http:
       write: true
-    default: 0
+    default: 1
 
   - name: led_0_dim
     caps_name: LED_0_DIM
