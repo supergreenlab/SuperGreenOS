@@ -265,6 +265,30 @@
       "default_var": "CONFIG_BROKER_URL"
     },
     {
+      "name": "broker_channel",
+      "caps_name": "BROKER_CHANNEL",
+      "string": true,
+      "nvs": {
+        "key": "BRKR_CHN"
+      },
+      "http": {
+        "write": true
+      },
+      "default": ""
+    },
+    {
+      "name": "broker_clientid",
+      "caps_name": "BROKER_CLIENTID",
+      "string": true,
+      "nvs": {
+        "key": "BRKR_CLID"
+      },
+      "http": {
+        "write": true
+      },
+      "default": ""
+    },
+    {
       "name": "i2c_0_sda",
       "caps_name": "I2C_0_SDA",
       "integer": true,

@@ -80,6 +80,10 @@ void preinit_kv() {
   defaultstr(OTA_FILENAME, default_ota_filename);
   const char *default_broker_url = CONFIG_BROKER_URL;
   defaultstr(BROKER_URL, default_broker_url);
+  const char *default_broker_channel = "";
+  defaultstr(BROKER_CHANNEL, default_broker_channel);
+  const char *default_broker_clientid = "";
+  defaultstr(BROKER_CLIENTID, default_broker_clientid);
   int default_i2c_0_sda = DEFAULT_I2C_0_SDA;
   defaulti(I2C_0_SDA, default_i2c_0_sda);
   int default_i2c_0_scl = DEFAULT_I2C_0_SCL;

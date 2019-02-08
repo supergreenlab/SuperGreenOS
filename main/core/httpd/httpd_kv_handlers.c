@@ -724,6 +724,16 @@ const kvs_handler kvs_handlers[] = {
     .getter = get_broker_url,
   },
   {
+    .name = "BROKER_CHANNEL",
+    .handler = internal_set_broker_channel,
+    .getter = get_broker_channel,
+  },
+  {
+    .name = "BROKER_CLIENTID",
+    .handler = internal_set_broker_clientid,
+    .getter = get_broker_clientid,
+  },
+  {
     .name = "DEVICE_NAME",
     .handler = internal_set_device_name,
     .getter = get_device_name,

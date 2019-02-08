@@ -135,6 +135,18 @@ static void stat_dump_task(void *param) {
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_broker_url_changed();
     }
+    if ((counter % 20) == 0 || is_broker_channel_changed()) {
+      get_broker_channel(str, MAX_KVALUE_SIZE-1);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "BROKER_CHANNEL", str);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_broker_channel_changed();
+    }
+    if ((counter % 20) == 0 || is_broker_clientid_changed()) {
+      get_broker_clientid(str, MAX_KVALUE_SIZE-1);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "BROKER_CLIENTID", str);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_broker_clientid_changed();
+    }
     if ((counter % 20) == 0 || is_i2c_0_sda_changed()) {
       value = get_i2c_0_sda();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "I2C_0_SDA", value);

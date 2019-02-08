@@ -114,6 +114,16 @@ void internal_set_broker_url(const char *value) {
 
 
 }
+void internal_set_broker_channel(const char *value) {
+  set_broker_channel(value);
+
+
+}
+void internal_set_broker_clientid(const char *value) {
+  set_broker_clientid(value);
+
+
+}
 void internal_set_i2c_0_sda(int value) {
   set_i2c_0_sda(value);
 

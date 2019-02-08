@@ -507,6 +507,82 @@ void set_broker_url(const char *value) {
   xSemaphoreGive(_mutex_broker_url);
 }
 
+static SemaphoreHandle_t _mutex_broker_channel; // TODO check RAM weight of creating so many semaphores :/
+static bool _broker_channel_changed = true;
+
+void reset_broker_channel_changed() {
+  xSemaphoreTake(_mutex_broker_channel, 0);
+  _broker_channel_changed = false;
+  xSemaphoreGive(_mutex_broker_channel);
+}
+
+bool is_broker_channel_changed() {
+  xSemaphoreTake(_mutex_broker_channel, 0);
+  bool v = _broker_channel_changed;
+  xSemaphoreGive(_mutex_broker_channel);
+  return v;
+}
+
+
+
+
+void get_broker_channel(char *dest, size_t len) {
+  assert(len <= MAX_KVALUE_SIZE - 1);
+  getstr(BROKER_CHANNEL, dest, len);
+  xSemaphoreTake(_mutex_broker_channel, 0);
+  _broker_channel_changed = true;
+  xSemaphoreGive(_mutex_broker_channel);
+}
+
+void set_broker_channel(const char *value) {
+  assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
+  char old_value[MAX_KVALUE_SIZE] = {0};
+  getstr(BROKER_CHANNEL, old_value, MAX_KVALUE_SIZE - 1);
+  if (!strcmp(old_value, value)) return;
+  setstr(BROKER_CHANNEL, value);
+  xSemaphoreTake(_mutex_broker_channel, 0);
+  _broker_channel_changed = true;
+  xSemaphoreGive(_mutex_broker_channel);
+}
+
+static SemaphoreHandle_t _mutex_broker_clientid; // TODO check RAM weight of creating so many semaphores :/
+static bool _broker_clientid_changed = true;
+
+void reset_broker_clientid_changed() {
+  xSemaphoreTake(_mutex_broker_clientid, 0);
+  _broker_clientid_changed = false;
+  xSemaphoreGive(_mutex_broker_clientid);
+}
+
+bool is_broker_clientid_changed() {
+  xSemaphoreTake(_mutex_broker_clientid, 0);
+  bool v = _broker_clientid_changed;
+  xSemaphoreGive(_mutex_broker_clientid);
+  return v;
+}
+
+
+
+
+void get_broker_clientid(char *dest, size_t len) {
+  assert(len <= MAX_KVALUE_SIZE - 1);
+  getstr(BROKER_CLIENTID, dest, len);
+  xSemaphoreTake(_mutex_broker_clientid, 0);
+  _broker_clientid_changed = true;
+  xSemaphoreGive(_mutex_broker_clientid);
+}
+
+void set_broker_clientid(const char *value) {
+  assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
+  char old_value[MAX_KVALUE_SIZE] = {0};
+  getstr(BROKER_CLIENTID, old_value, MAX_KVALUE_SIZE - 1);
+  if (!strcmp(old_value, value)) return;
+  setstr(BROKER_CLIENTID, value);
+  xSemaphoreTake(_mutex_broker_clientid, 0);
+  _broker_clientid_changed = true;
+  xSemaphoreGive(_mutex_broker_clientid);
+}
+
 static SemaphoreHandle_t _mutex_i2c_0_sda; // TODO check RAM weight of creating so many semaphores :/
 static bool _i2c_0_sda_changed = true;
 
@@ -4428,6 +4504,8 @@ void init_helpers() {
   _mutex_ota_version_filename = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_ota_filename = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_broker_url = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_broker_channel = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_broker_clientid = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_i2c_0_sda = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_i2c_0_scl = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_i2c_0_enabled = xSemaphoreCreateMutexStatic(&mutex_buffer);
