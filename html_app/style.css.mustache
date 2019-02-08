@@ -99,6 +99,17 @@ body, html {
 #controller {
   border-top: 1px solid #ababab;
   background-color: #efefef;
+  overflow: hidden;
+}
+
+.controller_hidden {
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+}
+
+.controller_visible {
+  max-height: 500px;
+  transition: max-height 0.3s ease-in;
 }
 
 /**

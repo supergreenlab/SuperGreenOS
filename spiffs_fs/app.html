@@ -453,6 +453,17 @@
       #controller {
         border-top: 1px solid #ababab;
         background-color: #efefef;
+        overflow: hidden;
+      }
+      
+      .controller_hidden {
+        max-height: 0;
+        transition: max-height 0.3s ease-out;
+      }
+      
+      .controller_visible {
+        max-height: 500px;
+        transition: max-height 0.3s ease-in;
       }
       
       /**
@@ -507,7 +518,7 @@
       </div>
     </div>
     </div>
-    <div id='controller' style='display: none'>
+    <div id='controller' class='controller_hidden'>
       <div class='params' id='controller_readonly'>
         <div class='param_list' id='controller_readonly_0'>
           loading...
@@ -817,8 +828,14 @@
           }
           
           window.onToggleControllerSettings = function() {
-            var s = document.getElementById('controller').style
-            s.display = s.display == 'none' ? 'block' : 'none'
+            var el = document.getElementById('controller')
+            if (el.classList.contains('controller_visible')) {
+              el.classList.remove('controller_visible')
+              el.classList.add('controller_hidden')
+            } else {
+              el.classList.add('controller_visible')
+              el.classList.remove('controller_hidden')
+            }
           }
           
           const renderController = async function() {

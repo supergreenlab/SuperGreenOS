@@ -63,8 +63,14 @@ const renderControllerAdvance = async function() {
 }
 
 window.onToggleControllerSettings = function() {
-  var s = document.getElementById('controller').style
-  s.display = s.display == 'none' ? 'block' : 'none'
+  var el = document.getElementById('controller')
+  if (el.classList.contains('controller_visible')) {
+    el.classList.remove('controller_visible')
+    el.classList.add('controller_hidden')
+  } else {
+    el.classList.add('controller_visible')
+    el.classList.remove('controller_hidden')
+  }
 }
 
 const renderController = async function() {
