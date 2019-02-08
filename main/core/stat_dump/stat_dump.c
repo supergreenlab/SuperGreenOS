@@ -183,6 +183,9 @@ static void stat_dump_task(void *param) {
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_i2c_1_enabled_changed();
     }
+    if ((counter % 20) == 0 || is_reboot_changed()) {
+      reset_reboot_changed();
+    }
     if ((counter % 20) == 0 || is_state_changed()) {
       value = get_state();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "STATE", value);

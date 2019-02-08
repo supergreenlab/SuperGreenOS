@@ -16,38 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDE_MODULES_H_
-#define INCLUDE_MODULES_H_
+#include "reboot.h"
 
-/*
-* [GENERATED]
-*/
+#include "esp_system.h"
 
-// Core modules
-#include "wifi/wifi.h"
-#include "ble/ble.h"
-#include "kv/kv.h"
-#include "ota/ota.h"
-#include "httpd/httpd.h"
-#include "stat_dump/stat_dump.h"
-#include "time/time.h"
-#include "mqtt/mqtt.h"
-#include "i2c/i2c.h"
-#include "reboot/reboot.h"
-
-// Custom modules
-#include "../blower/blower.h"
-#include "../led/led.h"
-#include "../mixer/mixer.h"
-#include "../state/state.h"
-#include "../status_led/status_led.h"
-#include "../timer/timer.h"
-#include "../onoff/onoff.h"
-#include "../manual/manual.h"
-#include "../box/box.h"
-
-/*
-* [/GENERATED]
-*/
-
-#endif
+int on_set_reboot(int value) {
+  esp_restart();
+}

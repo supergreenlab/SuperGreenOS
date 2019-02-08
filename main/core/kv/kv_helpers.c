@@ -769,6 +769,41 @@ void set_i2c_1_enabled(int value) {
 }
 
 
+static SemaphoreHandle_t _mutex_reboot; // TODO check RAM weight of creating so many semaphores :/
+static bool _reboot_changed = true;
+
+void reset_reboot_changed() {
+  xSemaphoreTake(_mutex_reboot, 0);
+  _reboot_changed = false;
+  xSemaphoreGive(_mutex_reboot);
+}
+
+bool is_reboot_changed() {
+  xSemaphoreTake(_mutex_reboot, 0);
+  bool v = _reboot_changed;
+  xSemaphoreGive(_mutex_reboot);
+  return v;
+}
+
+
+static int _reboot = 0;
+
+int get_reboot() {
+  xSemaphoreTake(_mutex_reboot, 0);
+  int v = _reboot;
+  xSemaphoreGive(_mutex_reboot);
+  return v;
+}
+
+void set_reboot(int value) {
+  xSemaphoreTake(_mutex_reboot, 0);
+  if (_reboot == value) return;
+  _reboot = value;
+  _reboot_changed = true;
+  xSemaphoreGive(_mutex_reboot);
+}
+
+
 static SemaphoreHandle_t _mutex_state; // TODO check RAM weight of creating so many semaphores :/
 static bool _state_changed = true;
 
@@ -4512,6 +4547,7 @@ void init_helpers() {
   _mutex_i2c_1_sda = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_i2c_1_scl = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_i2c_1_enabled = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_reboot = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_state = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_device_name = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_enabled = xSemaphoreCreateMutexStatic(&mutex_buffer);

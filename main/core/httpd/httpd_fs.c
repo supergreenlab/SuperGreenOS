@@ -232,6 +232,6 @@ esp_err_t init_spiffs(void) {
     return ESP_FAIL;
   }
 
-  ESP_LOGI(SGO_LOG_NOSEND, "Partition size: total=%d, used=%d", total, used);
+  ESP_LOGI(SGO_LOG_METRIC, "@FS total=%d, used=%d", total, used);
   return ESP_OK;
 }

@@ -44,6 +44,7 @@ void internal_set_i2c_0_enabled(int value);
 void internal_set_i2c_1_sda(int value);
 void internal_set_i2c_1_scl(int value);
 void internal_set_i2c_1_enabled(int value);
+void internal_set_reboot(int value);
 void internal_set_state(int value);
 void internal_set_device_name(const char *value);
 void internal_set_box_0_enabled(int value);

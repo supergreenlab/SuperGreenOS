@@ -8,7 +8,8 @@
     "stat_dump",
     "time",
     "mqtt",
-    "i2c"
+    "i2c",
+    "reboot"
   ],
   "custom_modules": [
     "blower",
@@ -382,6 +383,16 @@
       "http": {
         "write": true
       },
+      "default": 0
+    },
+    {
+      "name": "reboot",
+      "caps_name": "REBOOT",
+      "integer": true,
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
       "default": 0
     },
     {

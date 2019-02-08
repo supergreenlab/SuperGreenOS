@@ -80,6 +80,11 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_i2c_1_enabled,
   },
   {
+    .name = "REBOOT",
+    .handler = internal_set_reboot,
+    .getter = get_reboot,
+  },
+  {
     .name = "STATE",
     .handler = internal_set_state,
     .getter = get_state,

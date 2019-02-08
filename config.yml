@@ -25,6 +25,7 @@ core_modules:
   - time
   - mqtt
   - i2c
+  - reboot
 
 custom_modules:
 
@@ -337,6 +338,14 @@ keys:
       key: I2C_1_E
     http:
       write: true
+    default: 0
+
+  - name: reboot
+    caps_name: REBOOT
+    integer: true
+    http:
+      write: true
+    write_cb: true
     default: 0
 
   #

@@ -357,6 +357,8 @@ void postinit_kv() {
   // Initialize non-nvs keys
   int default_wifi_status = DISCONNECTED;
   set_wifi_status(default_wifi_status);
+  int default_reboot = 0;
+  set_reboot(default_reboot);
   const char *default_box_0_led_info = "";
   set_box_0_led_info(default_box_0_led_info);
   const char *default_box_1_led_info = "";

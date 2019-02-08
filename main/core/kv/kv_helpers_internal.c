@@ -166,6 +166,14 @@ void internal_set_i2c_1_enabled(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_reboot(int value) {
+
+  value = on_set_reboot(value);
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_state(int value) {
   set_state(value);
 
