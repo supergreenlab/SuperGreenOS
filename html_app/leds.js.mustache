@@ -9,7 +9,8 @@ window.onSubmitLedParam = async function(keyId) {
 }
 
 const loadLedParams = async function() {
-  let p = Promise.resolve()
+  let p = Promise.resolve(), c = 0
+
   for (let j = 0; j < config.led_loop_i.length; ++j) {
     for (let i = 0; i < config.keys.length; ++i) {
       const key = config.keys[i]
@@ -24,7 +25,7 @@ const loadLedParams = async function() {
           el.innerText = value
         }
       })(i, key))
-      if ((j * config.led_loop_i.length + i) % 3 == 0) {
+      if ((c++) % 3 == 0) {
         p = np;
       }
     }
@@ -50,8 +51,8 @@ const renderLedAdvance = async function() {
     }
     html.push(`<div class='param_list'>${led_html}</div>`)
   }
-  document.getElementById('led_advance_0').innerHTML = html.slice(0, html.length / 2).join('')
-  document.getElementById('led_advance_1').innerHTML = html.slice(html.length / 2).join('')
+  document.getElementById('led_advance_0').innerHTML = html.sort().slice(0, html.length / 2).join('')
+  document.getElementById('led_advance_1').innerHTML = html.sort().slice(html.length / 2).join('')
 }
 
 const renderLeds = async function() {

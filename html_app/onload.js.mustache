@@ -3,6 +3,7 @@ let config = {}
 {{< utils.js}}
 {{< boxes.js}}
 {{< leds.js}}
+{{< controller.js}}
 
 const updateHeader = async function() {
   const device_name = await fetchParam('s', 'DEVICE_NAME')
@@ -60,6 +61,7 @@ async function start() {
   updateHeader()
   await renderBox(0)
   await renderLeds()
+  await renderController()
 }
 
 start()
