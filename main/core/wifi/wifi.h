@@ -19,6 +19,10 @@
 #ifndef WIFI_H_
 #define WIFI_H_
 
+#define DEFAULT_AP_SSID "🤖🍁"
+#define DEFAULT_AP_PASSWORD "multipass"
+#define DEFAULT_MDNS_DOMAIN "supergreendriver"
+
 typedef enum {
   DISCONNECTED = 1,
   CONNECTING,

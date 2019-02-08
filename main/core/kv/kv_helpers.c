@@ -146,6 +146,120 @@ void set_wifi_password(const char *value) {
   xSemaphoreGive(_mutex_wifi_password);
 }
 
+static SemaphoreHandle_t _mutex_wifi_ap_ssid; // TODO check RAM weight of creating so many semaphores :/
+static bool _wifi_ap_ssid_changed = true;
+
+void reset_wifi_ap_ssid_changed() {
+  xSemaphoreTake(_mutex_wifi_ap_ssid, 0);
+  _wifi_ap_ssid_changed = false;
+  xSemaphoreGive(_mutex_wifi_ap_ssid);
+}
+
+bool is_wifi_ap_ssid_changed() {
+  xSemaphoreTake(_mutex_wifi_ap_ssid, 0);
+  bool v = _wifi_ap_ssid_changed;
+  xSemaphoreGive(_mutex_wifi_ap_ssid);
+  return v;
+}
+
+
+
+
+void get_wifi_ap_ssid(char *dest, size_t len) {
+  assert(len <= MAX_KVALUE_SIZE - 1);
+  getstr(WIFI_AP_SSID, dest, len);
+  xSemaphoreTake(_mutex_wifi_ap_ssid, 0);
+  _wifi_ap_ssid_changed = true;
+  xSemaphoreGive(_mutex_wifi_ap_ssid);
+}
+
+void set_wifi_ap_ssid(const char *value) {
+  assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
+  char old_value[MAX_KVALUE_SIZE] = {0};
+  getstr(WIFI_AP_SSID, old_value, MAX_KVALUE_SIZE - 1);
+  if (!strcmp(old_value, value)) return;
+  setstr(WIFI_AP_SSID, value);
+  xSemaphoreTake(_mutex_wifi_ap_ssid, 0);
+  _wifi_ap_ssid_changed = true;
+  xSemaphoreGive(_mutex_wifi_ap_ssid);
+}
+
+static SemaphoreHandle_t _mutex_wifi_ap_password; // TODO check RAM weight of creating so many semaphores :/
+static bool _wifi_ap_password_changed = true;
+
+void reset_wifi_ap_password_changed() {
+  xSemaphoreTake(_mutex_wifi_ap_password, 0);
+  _wifi_ap_password_changed = false;
+  xSemaphoreGive(_mutex_wifi_ap_password);
+}
+
+bool is_wifi_ap_password_changed() {
+  xSemaphoreTake(_mutex_wifi_ap_password, 0);
+  bool v = _wifi_ap_password_changed;
+  xSemaphoreGive(_mutex_wifi_ap_password);
+  return v;
+}
+
+
+
+
+void get_wifi_ap_password(char *dest, size_t len) {
+  assert(len <= MAX_KVALUE_SIZE - 1);
+  getstr(WIFI_AP_PASSWORD, dest, len);
+  xSemaphoreTake(_mutex_wifi_ap_password, 0);
+  _wifi_ap_password_changed = true;
+  xSemaphoreGive(_mutex_wifi_ap_password);
+}
+
+void set_wifi_ap_password(const char *value) {
+  assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
+  char old_value[MAX_KVALUE_SIZE] = {0};
+  getstr(WIFI_AP_PASSWORD, old_value, MAX_KVALUE_SIZE - 1);
+  if (!strcmp(old_value, value)) return;
+  setstr(WIFI_AP_PASSWORD, value);
+  xSemaphoreTake(_mutex_wifi_ap_password, 0);
+  _wifi_ap_password_changed = true;
+  xSemaphoreGive(_mutex_wifi_ap_password);
+}
+
+static SemaphoreHandle_t _mutex_mdns_domain; // TODO check RAM weight of creating so many semaphores :/
+static bool _mdns_domain_changed = true;
+
+void reset_mdns_domain_changed() {
+  xSemaphoreTake(_mutex_mdns_domain, 0);
+  _mdns_domain_changed = false;
+  xSemaphoreGive(_mutex_mdns_domain);
+}
+
+bool is_mdns_domain_changed() {
+  xSemaphoreTake(_mutex_mdns_domain, 0);
+  bool v = _mdns_domain_changed;
+  xSemaphoreGive(_mutex_mdns_domain);
+  return v;
+}
+
+
+
+
+void get_mdns_domain(char *dest, size_t len) {
+  assert(len <= MAX_KVALUE_SIZE - 1);
+  getstr(MDNS_DOMAIN, dest, len);
+  xSemaphoreTake(_mutex_mdns_domain, 0);
+  _mdns_domain_changed = true;
+  xSemaphoreGive(_mutex_mdns_domain);
+}
+
+void set_mdns_domain(const char *value) {
+  assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
+  char old_value[MAX_KVALUE_SIZE] = {0};
+  getstr(MDNS_DOMAIN, old_value, MAX_KVALUE_SIZE - 1);
+  if (!strcmp(old_value, value)) return;
+  setstr(MDNS_DOMAIN, value);
+  xSemaphoreTake(_mutex_mdns_domain, 0);
+  _mdns_domain_changed = true;
+  xSemaphoreGive(_mutex_mdns_domain);
+}
+
 static SemaphoreHandle_t _mutex_wifi_ip; // TODO check RAM weight of creating so many semaphores :/
 static bool _wifi_ip_changed = true;
 
@@ -4529,6 +4643,9 @@ void init_helpers() {
   _mutex_wifi_status = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_wifi_ssid = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_wifi_password = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_wifi_ap_ssid = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_wifi_ap_password = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_mdns_domain = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_wifi_ip = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_time = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_n_restarts = xSemaphoreCreateMutexStatic(&mutex_buffer);

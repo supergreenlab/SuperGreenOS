@@ -53,6 +53,21 @@ void internal_set_wifi_password(const char *value) {
   set_wifi_password(value);
 
 }
+void internal_set_wifi_ap_ssid(const char *value) {
+  set_wifi_ap_ssid(value);
+
+
+}
+void internal_set_wifi_ap_password(const char *value) {
+  set_wifi_ap_password(value);
+
+
+}
+void internal_set_mdns_domain(const char *value) {
+  set_mdns_domain(value);
+
+
+}
 void internal_set_wifi_ip(const char *value) {
   set_wifi_ip(value);
 

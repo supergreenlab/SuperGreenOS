@@ -151,6 +151,33 @@ keys:
     write_cb: true
     default: ""
 
+  - name: wifi_ap_ssid
+    caps_name: WIFI_AP_SSID
+    string: true
+    nvs:
+      key: WAPSSID
+    http:
+      write: true
+    default_var: DEFAULT_AP_SSID
+
+  - name: wifi_ap_password
+    caps_name: WIFI_AP_PASSWORD
+    string: true
+    nvs:
+      key: WAPPASS
+    http:
+      write: true
+    default_var: DEFAULT_AP_PASSWORD
+
+  - name: mdns_domain
+    caps_name: MDNS_DOMAIN
+    string: true
+    nvs:
+      key: MDNSD
+    http:
+      write: true
+    default_var: DEFAULT_MDNS_DOMAIN
+
   - name: wifi_ip
     caps_name: WIFI_IP
     string: true

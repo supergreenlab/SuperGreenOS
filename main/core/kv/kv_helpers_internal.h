@@ -26,6 +26,9 @@
 void internal_set_wifi_status(int value);
 void internal_set_wifi_ssid(const char *value);
 void internal_set_wifi_password(const char *value);
+void internal_set_wifi_ap_ssid(const char *value);
+void internal_set_wifi_ap_password(const char *value);
+void internal_set_mdns_domain(const char *value);
 void internal_set_wifi_ip(const char *value);
 void internal_set_time(int value);
 void internal_set_n_restarts(int value);

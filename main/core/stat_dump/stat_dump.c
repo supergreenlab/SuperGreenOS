@@ -75,6 +75,24 @@ static void stat_dump_task(void *param) {
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_wifi_password_changed();
     }
+    if ((counter % 20) == 0 || is_wifi_ap_ssid_changed()) {
+      get_wifi_ap_ssid(str, MAX_KVALUE_SIZE-1);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "WIFI_AP_SSID", str);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_wifi_ap_ssid_changed();
+    }
+    if ((counter % 20) == 0 || is_wifi_ap_password_changed()) {
+      get_wifi_ap_password(str, MAX_KVALUE_SIZE-1);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "WIFI_AP_PASSWORD", str);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_wifi_ap_password_changed();
+    }
+    if ((counter % 20) == 0 || is_mdns_domain_changed()) {
+      get_mdns_domain(str, MAX_KVALUE_SIZE-1);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "MDNS_DOMAIN", str);
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      reset_mdns_domain_changed();
+    }
     if ((counter % 20) == 0 || is_wifi_ip_changed()) {
       get_wifi_ip(str, MAX_KVALUE_SIZE-1);
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "WIFI_IP", str);

@@ -694,6 +694,21 @@ const kvs_handler kvs_handlers[] = {
     .getter = get_wifi_password,
   },
   {
+    .name = "WIFI_AP_SSID",
+    .handler = internal_set_wifi_ap_ssid,
+    .getter = get_wifi_ap_ssid,
+  },
+  {
+    .name = "WIFI_AP_PASSWORD",
+    .handler = internal_set_wifi_ap_password,
+    .getter = get_wifi_ap_password,
+  },
+  {
+    .name = "MDNS_DOMAIN",
+    .handler = internal_set_mdns_domain,
+    .getter = get_mdns_domain,
+  },
+  {
     .name = "WIFI_IP",
     .handler = NULL,
     .getter = get_wifi_ip,

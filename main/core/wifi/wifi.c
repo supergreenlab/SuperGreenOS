@@ -38,9 +38,6 @@
 #include "../kv/kv.h"
 #include "../kv/kv_ble.h"
 
-#define AP_SSID "🤖🍁"
-#define AP_PASS "multipass"
-
 typedef const unsigned int wifi_cmd;
 static wifi_cmd CMD_SSID_CHANGED = 1;
 static wifi_cmd CMD_PASS_CHANGED = 2;
@@ -101,12 +98,20 @@ static void start_mdns_service()
 		return;
 	}
 
-	mdns_hostname_set("supergreendriver");
+  char domain[MAX_KVALUE_SIZE] = {0};
+  get_mdns_domain(domain, MAX_KVALUE_SIZE-1);
+	mdns_hostname_set(domain);
   mdns_service_add(NULL, "_http", "_tcp", 80, NULL, 0);
+  ESP_LOGI(SGO_LOG_EVENT, "@WIFI Started MDNS advertising as %s.local", domain);
 }
 
 static void start_ap() {
-  ESP_LOGI(SGO_LOG_EVENT, "@WIFI AP mode started SSID=%s", AP_SSID);
+  char ssid[MAX_KVALUE_SIZE] = {0};
+  get_wifi_ap_ssid(ssid, MAX_KVALUE_SIZE-1);
+  char password[MAX_KVALUE_SIZE] = {0};
+  get_wifi_ap_password(password, MAX_KVALUE_SIZE-1);
+  ESP_LOGI(SGO_LOG_EVENT, "@WIFI AP mode started SSID=%s", ssid);
+
   esp_wifi_stop();
 
   set_wifi_status(AP);
@@ -114,8 +119,8 @@ static void start_ap() {
   wifi_config_t wifi_config = {0};
   wifi_config.ap.authmode = WIFI_AUTH_WPA2_PSK;
   wifi_config.ap.max_connection = 1;
-  memcpy(wifi_config.ap.ssid, AP_SSID, sizeof(wifi_config.ap.ssid));
-  memcpy(wifi_config.ap.password, AP_PASS, sizeof(wifi_config.ap.password));
+  memcpy(wifi_config.ap.ssid, ssid, sizeof(wifi_config.ap.ssid));
+  memcpy(wifi_config.ap.password, password, sizeof(wifi_config.ap.password));
 
   ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_AP) );
   ESP_ERROR_CHECK( esp_wifi_set_config(ESP_IF_WIFI_AP, &wifi_config) );

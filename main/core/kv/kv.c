@@ -60,6 +60,12 @@ void preinit_kv() {
   defaultstr(WIFI_SSID, default_wifi_ssid);
   const char *default_wifi_password = "";
   defaultstr(WIFI_PASSWORD, default_wifi_password);
+  const char *default_wifi_ap_ssid = DEFAULT_AP_SSID;
+  defaultstr(WIFI_AP_SSID, default_wifi_ap_ssid);
+  const char *default_wifi_ap_password = DEFAULT_AP_PASSWORD;
+  defaultstr(WIFI_AP_PASSWORD, default_wifi_ap_password);
+  const char *default_mdns_domain = DEFAULT_MDNS_DOMAIN;
+  defaultstr(MDNS_DOMAIN, default_mdns_domain);
   const char *default_wifi_ip = "0.0.0.0";
   defaultstr(WIFI_IP, default_wifi_ip);
   int default_time = 0;

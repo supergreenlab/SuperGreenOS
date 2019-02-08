@@ -25,6 +25,9 @@
 
 #define WIFI_SSID "WSSID"
 #define WIFI_PASSWORD "WPASS"
+#define WIFI_AP_SSID "WAPSSID"
+#define WIFI_AP_PASSWORD "WAPPASS"
+#define MDNS_DOMAIN "MDNSD"
 #define WIFI_IP "WIP"
 #define TIME "TIME"
 #define N_RESTARTS "N_RESTARTS"
