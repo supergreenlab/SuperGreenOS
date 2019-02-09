@@ -18,7 +18,42 @@
 
 #include "reboot.h"
 
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 #include "esp_system.h"
+
+#include "../log/log.h"
+#include "../kv/kv.h"
+
+#define MAX_SHORT_REBOOTS 5
+#define N_SHORT_REBOOTS "NSHRBTS"
+
+static void reboot_task();
+
+void init_reboot() {
+  defaulti(N_SHORT_REBOOTS, 0);
+  int n = geti(N_SHORT_REBOOTS);
+  if (n >= MAX_SHORT_REBOOTS) {
+    seti(N_SHORT_REBOOTS, 0);
+    reset_defaults();
+    esp_restart();
+  }
+  ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=%d", n);
+  seti(N_SHORT_REBOOTS, ++n);
+
+  xTaskCreate(reboot_task, "REBOOT", 2048, NULL, 10, NULL);
+}
+
+static void reboot_task() {
+  vTaskDelay(60 * 1000 / portTICK_PERIOD_MS);
+  ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=0");
+  seti(N_SHORT_REBOOTS, 0);
+  vTaskDelete( NULL );
+}
+
+/*
+ * http callback
+ */
 
 int on_set_reboot(int value) {
   esp_restart();

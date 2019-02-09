@@ -23,6 +23,7 @@
 
 #include "log/log.h"
 #include "kv/kv.h"
+#include "reboot/reboot.h"
 #include "mqtt/mqtt.h"
 #include "ble/ble.h"
 #include "wifi/wifi.h"
@@ -35,9 +36,13 @@
 void init_app();
 
 void app_main() {
+  ESP_LOGI(SGO_LOG_EVENT, "@MAIN Welcome to SuperGreenOS version=%s\n", CONFIG_VERSION);
+
+  open_kv();
+  init_reboot();
+
   init_stat_dump_queues();
   mqtt_intercept_log();
-  ESP_LOGI(SGO_LOG_EVENT, "@MAIN Welcome to SuperGreenOS version=%s\n", CONFIG_VERSION);
 
   preinit_kv();
   set_n_restarts(get_n_restarts()+1);

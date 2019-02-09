@@ -35,7 +35,7 @@
 void init_helpers();
 nvs_handle kv_handle;
 
-void preinit_kv() {
+void open_kv() {
   // Initialize NVS
   esp_err_t err = nvs_flash_init();
   if (err == ESP_ERR_NVS_NO_FREE_PAGES) {
@@ -50,7 +50,9 @@ void preinit_kv() {
   if (err != ESP_OK) {
     ESP_LOGI(SGO_LOG_EVENT, "@KV Error (%s) opening NVS handle!\n", esp_err_to_name(err));
   }
+}
 
+void preinit_kv() {
   /*
    * [GENERATED]
    */
@@ -108,6 +110,23 @@ void postinit_kv() {
   /*
    * [/GENERATED]
    */
+}
+
+void reset_defaults() {
+  {{#keys}}
+  {{#integer}}
+  {{#nvs}}
+  int default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}{{default}}{{/default}};
+  seti({{caps_name}}, default_{{name}});
+  {{/nvs}}
+  {{/integer}}
+  {{#string}}
+  {{#nvs}}
+  const char *default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}"{{default}}"{{/default}};
+  setstr({{caps_name}}, default_{{name}});
+  {{/nvs}}
+  {{/string}}
+  {{/keys}}
 }
 
 bool hasi(const char * key) {

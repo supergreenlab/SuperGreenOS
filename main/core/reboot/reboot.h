@@ -19,6 +19,8 @@
 #ifndef REBOOT_H_
 #define REBOOT_H_
 
+void init_reboot();
+
 int on_set_reboot(int value);
 
 #endif

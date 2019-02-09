@@ -14,6 +14,6 @@ done
 mkspiffs -c spiffs_fs_gz/ -b 4096 -p 256 -s 0x8000 spiffs.bin
 echo -e "Created spiffs.bin: ${GREEN}Done${NC}"
 
-python releases/SuperGreenOS/esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 115200 write_flash -z 0x3f0000 spiffs.bin
+python releases/SuperGreenOS/esptool.py --chip esp32 --port /dev/ttyUSB1 --baud 115200 write_flash -z 0x3f0000 spiffs.bin
 rm spiffs.bin
 rm -rf spiffs_fs_gz
