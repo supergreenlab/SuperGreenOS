@@ -114,13 +114,8 @@ void internal_set_ota_server_port(const char *value) {
 
 
 }
-void internal_set_ota_version_filename(const char *value) {
-  set_ota_version_filename(value);
-
-
-}
-void internal_set_ota_filename(const char *value) {
-  set_ota_filename(value);
+void internal_set_ota_basedir(const char *value) {
+  set_ota_basedir(value);
 
 
 }

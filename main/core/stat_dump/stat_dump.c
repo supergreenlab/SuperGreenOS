@@ -135,17 +135,11 @@ static void stat_dump_task(void *param) {
       vTaskDelay(50 / portTICK_PERIOD_MS);
       reset_ota_server_port_changed();
     }
-    if ((counter % 20) == 0 || is_ota_version_filename_changed()) {
-      get_ota_version_filename(str, MAX_KVALUE_SIZE-1);
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "OTA_VERSION_FILENAME", str);
+    if ((counter % 20) == 0 || is_ota_basedir_changed()) {
+      get_ota_basedir(str, MAX_KVALUE_SIZE-1);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "OTA_BASEDIR", str);
       vTaskDelay(50 / portTICK_PERIOD_MS);
-      reset_ota_version_filename_changed();
-    }
-    if ((counter % 20) == 0 || is_ota_filename_changed()) {
-      get_ota_filename(str, MAX_KVALUE_SIZE-1);
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "OTA_FILENAME", str);
-      vTaskDelay(50 / portTICK_PERIOD_MS);
-      reset_ota_filename_changed();
+      reset_ota_basedir_changed();
     }
     if ((counter % 20) == 0 || is_broker_url_changed()) {
       get_broker_url(str, MAX_KVALUE_SIZE-1);

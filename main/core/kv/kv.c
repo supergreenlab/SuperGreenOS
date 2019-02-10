@@ -82,10 +82,8 @@ void preinit_kv() {
   defaultstr(OTA_SERVER_HOSTNAME, default_ota_server_hostname);
   const char *default_ota_server_port = CONFIG_OTA_SERVER_PORT;
   defaultstr(OTA_SERVER_PORT, default_ota_server_port);
-  const char *default_ota_version_filename = CONFIG_OTA_VERSION_FILENAME;
-  defaultstr(OTA_VERSION_FILENAME, default_ota_version_filename);
-  const char *default_ota_filename = CONFIG_OTA_FILENAME;
-  defaultstr(OTA_FILENAME, default_ota_filename);
+  const char *default_ota_basedir = CONFIG_OTA_BASEDIR;
+  defaultstr(OTA_BASEDIR, default_ota_basedir);
   const char *default_broker_url = CONFIG_BROKER_URL;
   defaultstr(BROKER_URL, default_broker_url);
   const char *default_broker_channel = "";
@@ -405,10 +403,8 @@ void reset_defaults() {
   setstr(OTA_SERVER_HOSTNAME, default_ota_server_hostname);
   const char *default_ota_server_port = CONFIG_OTA_SERVER_PORT;
   setstr(OTA_SERVER_PORT, default_ota_server_port);
-  const char *default_ota_version_filename = CONFIG_OTA_VERSION_FILENAME;
-  setstr(OTA_VERSION_FILENAME, default_ota_version_filename);
-  const char *default_ota_filename = CONFIG_OTA_FILENAME;
-  setstr(OTA_FILENAME, default_ota_filename);
+  const char *default_ota_basedir = CONFIG_OTA_BASEDIR;
+  setstr(OTA_BASEDIR, default_ota_basedir);
   const char *default_broker_url = CONFIG_BROKER_URL;
   setstr(BROKER_URL, default_broker_url);
   const char *default_broker_channel = "";

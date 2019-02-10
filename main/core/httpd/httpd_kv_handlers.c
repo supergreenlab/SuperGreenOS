@@ -729,14 +729,9 @@ const kvs_handler kvs_handlers[] = {
     .getter = get_ota_server_port,
   },
   {
-    .name = "OTA_VERSION_FILENAME",
-    .handler = internal_set_ota_version_filename,
-    .getter = get_ota_version_filename,
-  },
-  {
-    .name = "OTA_FILENAME",
-    .handler = internal_set_ota_filename,
-    .getter = get_ota_filename,
+    .name = "OTA_BASEDIR",
+    .handler = internal_set_ota_basedir,
+    .getter = get_ota_basedir,
   },
   {
     .name = "BROKER_URL",

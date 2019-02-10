@@ -92,7 +92,6 @@ void get_wifi_ssid(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(WIFI_SSID, dest, len);
   xSemaphoreTake(_mutex_wifi_ssid, 0);
-  _wifi_ssid_changed = true;
   xSemaphoreGive(_mutex_wifi_ssid);
 }
 
@@ -131,7 +130,6 @@ void get_wifi_password(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(WIFI_PASSWORD, dest, len);
   xSemaphoreTake(_mutex_wifi_password, 0);
-  _wifi_password_changed = true;
   xSemaphoreGive(_mutex_wifi_password);
 }
 
@@ -169,7 +167,6 @@ void get_wifi_ap_ssid(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(WIFI_AP_SSID, dest, len);
   xSemaphoreTake(_mutex_wifi_ap_ssid, 0);
-  _wifi_ap_ssid_changed = true;
   xSemaphoreGive(_mutex_wifi_ap_ssid);
 }
 
@@ -207,7 +204,6 @@ void get_wifi_ap_password(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(WIFI_AP_PASSWORD, dest, len);
   xSemaphoreTake(_mutex_wifi_ap_password, 0);
-  _wifi_ap_password_changed = true;
   xSemaphoreGive(_mutex_wifi_ap_password);
 }
 
@@ -245,7 +241,6 @@ void get_mdns_domain(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(MDNS_DOMAIN, dest, len);
   xSemaphoreTake(_mutex_mdns_domain, 0);
-  _mdns_domain_changed = true;
   xSemaphoreGive(_mutex_mdns_domain);
 }
 
@@ -283,7 +278,6 @@ void get_wifi_ip(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(WIFI_IP, dest, len);
   xSemaphoreTake(_mutex_wifi_ip, 0);
-  _wifi_ip_changed = true;
   xSemaphoreGive(_mutex_wifi_ip);
 }
 
@@ -416,7 +410,6 @@ void get_ota_server_ip(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(OTA_SERVER_IP, dest, len);
   xSemaphoreTake(_mutex_ota_server_ip, 0);
-  _ota_server_ip_changed = true;
   xSemaphoreGive(_mutex_ota_server_ip);
 }
 
@@ -454,7 +447,6 @@ void get_ota_server_hostname(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(OTA_SERVER_HOSTNAME, dest, len);
   xSemaphoreTake(_mutex_ota_server_hostname, 0);
-  _ota_server_hostname_changed = true;
   xSemaphoreGive(_mutex_ota_server_hostname);
 }
 
@@ -492,7 +484,6 @@ void get_ota_server_port(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(OTA_SERVER_PORT, dest, len);
   xSemaphoreTake(_mutex_ota_server_port, 0);
-  _ota_server_port_changed = true;
   xSemaphoreGive(_mutex_ota_server_port);
 }
 
@@ -507,80 +498,41 @@ void set_ota_server_port(const char *value) {
   xSemaphoreGive(_mutex_ota_server_port);
 }
 
-static SemaphoreHandle_t _mutex_ota_version_filename; // TODO check RAM weight of creating so many semaphores :/
-static bool _ota_version_filename_changed = true;
+static SemaphoreHandle_t _mutex_ota_basedir; // TODO check RAM weight of creating so many semaphores :/
+static bool _ota_basedir_changed = true;
 
-void reset_ota_version_filename_changed() {
-  xSemaphoreTake(_mutex_ota_version_filename, 0);
-  _ota_version_filename_changed = false;
-  xSemaphoreGive(_mutex_ota_version_filename);
+void reset_ota_basedir_changed() {
+  xSemaphoreTake(_mutex_ota_basedir, 0);
+  _ota_basedir_changed = false;
+  xSemaphoreGive(_mutex_ota_basedir);
 }
 
-bool is_ota_version_filename_changed() {
-  xSemaphoreTake(_mutex_ota_version_filename, 0);
-  bool v = _ota_version_filename_changed;
-  xSemaphoreGive(_mutex_ota_version_filename);
+bool is_ota_basedir_changed() {
+  xSemaphoreTake(_mutex_ota_basedir, 0);
+  bool v = _ota_basedir_changed;
+  xSemaphoreGive(_mutex_ota_basedir);
   return v;
 }
 
 
 
 
-void get_ota_version_filename(char *dest, size_t len) {
+void get_ota_basedir(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
-  getstr(OTA_VERSION_FILENAME, dest, len);
-  xSemaphoreTake(_mutex_ota_version_filename, 0);
-  _ota_version_filename_changed = true;
-  xSemaphoreGive(_mutex_ota_version_filename);
+  getstr(OTA_BASEDIR, dest, len);
+  xSemaphoreTake(_mutex_ota_basedir, 0);
+  xSemaphoreGive(_mutex_ota_basedir);
 }
 
-void set_ota_version_filename(const char *value) {
+void set_ota_basedir(const char *value) {
   assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
   char old_value[MAX_KVALUE_SIZE] = {0};
-  getstr(OTA_VERSION_FILENAME, old_value, MAX_KVALUE_SIZE - 1);
+  getstr(OTA_BASEDIR, old_value, MAX_KVALUE_SIZE - 1);
   if (!strcmp(old_value, value)) return;
-  setstr(OTA_VERSION_FILENAME, value);
-  xSemaphoreTake(_mutex_ota_version_filename, 0);
-  _ota_version_filename_changed = true;
-  xSemaphoreGive(_mutex_ota_version_filename);
-}
-
-static SemaphoreHandle_t _mutex_ota_filename; // TODO check RAM weight of creating so many semaphores :/
-static bool _ota_filename_changed = true;
-
-void reset_ota_filename_changed() {
-  xSemaphoreTake(_mutex_ota_filename, 0);
-  _ota_filename_changed = false;
-  xSemaphoreGive(_mutex_ota_filename);
-}
-
-bool is_ota_filename_changed() {
-  xSemaphoreTake(_mutex_ota_filename, 0);
-  bool v = _ota_filename_changed;
-  xSemaphoreGive(_mutex_ota_filename);
-  return v;
-}
-
-
-
-
-void get_ota_filename(char *dest, size_t len) {
-  assert(len <= MAX_KVALUE_SIZE - 1);
-  getstr(OTA_FILENAME, dest, len);
-  xSemaphoreTake(_mutex_ota_filename, 0);
-  _ota_filename_changed = true;
-  xSemaphoreGive(_mutex_ota_filename);
-}
-
-void set_ota_filename(const char *value) {
-  assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
-  char old_value[MAX_KVALUE_SIZE] = {0};
-  getstr(OTA_FILENAME, old_value, MAX_KVALUE_SIZE - 1);
-  if (!strcmp(old_value, value)) return;
-  setstr(OTA_FILENAME, value);
-  xSemaphoreTake(_mutex_ota_filename, 0);
-  _ota_filename_changed = true;
-  xSemaphoreGive(_mutex_ota_filename);
+  setstr(OTA_BASEDIR, value);
+  xSemaphoreTake(_mutex_ota_basedir, 0);
+  _ota_basedir_changed = true;
+  xSemaphoreGive(_mutex_ota_basedir);
 }
 
 static SemaphoreHandle_t _mutex_broker_url; // TODO check RAM weight of creating so many semaphores :/
@@ -606,7 +558,6 @@ void get_broker_url(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(BROKER_URL, dest, len);
   xSemaphoreTake(_mutex_broker_url, 0);
-  _broker_url_changed = true;
   xSemaphoreGive(_mutex_broker_url);
 }
 
@@ -644,7 +595,6 @@ void get_broker_channel(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(BROKER_CHANNEL, dest, len);
   xSemaphoreTake(_mutex_broker_channel, 0);
-  _broker_channel_changed = true;
   xSemaphoreGive(_mutex_broker_channel);
 }
 
@@ -682,7 +632,6 @@ void get_broker_clientid(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(BROKER_CLIENTID, dest, len);
   xSemaphoreTake(_mutex_broker_clientid, 0);
-  _broker_clientid_changed = true;
   xSemaphoreGive(_mutex_broker_clientid);
 }
 
@@ -973,7 +922,6 @@ void get_device_name(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   getstr(DEVICE_NAME, dest, len);
   xSemaphoreTake(_mutex_device_name, 0);
-  _device_name_changed = true;
   xSemaphoreGive(_mutex_device_name);
 }
 
@@ -1698,7 +1646,6 @@ static char _box_0_led_info[MAX_KVALUE_SIZE] = {0};
 void get_box_0_led_info(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   xSemaphoreTake(_mutex_box_0_led_info, 0);
-  _box_0_led_info_changed = true;
   strncpy(dest, _box_0_led_info, len);
   xSemaphoreGive(_mutex_box_0_led_info);
 }
@@ -2418,7 +2365,6 @@ static char _box_1_led_info[MAX_KVALUE_SIZE] = {0};
 void get_box_1_led_info(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   xSemaphoreTake(_mutex_box_1_led_info, 0);
-  _box_1_led_info_changed = true;
   strncpy(dest, _box_1_led_info, len);
   xSemaphoreGive(_mutex_box_1_led_info);
 }
@@ -3137,7 +3083,6 @@ static char _box_2_led_info[MAX_KVALUE_SIZE] = {0};
 void get_box_2_led_info(char *dest, size_t len) {
   assert(len <= MAX_KVALUE_SIZE - 1);
   xSemaphoreTake(_mutex_box_2_led_info, 0);
-  _box_2_led_info_changed = true;
   strncpy(dest, _box_2_led_info, len);
   xSemaphoreGive(_mutex_box_2_led_info);
 }
@@ -4653,8 +4598,7 @@ void init_helpers() {
   _mutex_ota_server_ip = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_ota_server_hostname = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_ota_server_port = xSemaphoreCreateMutexStatic(&mutex_buffer);
-  _mutex_ota_version_filename = xSemaphoreCreateMutexStatic(&mutex_buffer);
-  _mutex_ota_filename = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_ota_basedir = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_broker_url = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_broker_channel = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_broker_clientid = xSemaphoreCreateMutexStatic(&mutex_buffer);

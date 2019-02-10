@@ -8,7 +8,7 @@ config BROKER_URL
 
 config VERSION
   string "A name to give to this version"
-  default SuperGreenDriver
+  default SuperGreenDriver1.0
   help
     Version displayed in the logs
 
@@ -30,16 +30,10 @@ config OTA_SERVER_PORT
   help
     Port of the server used for updates.
 
-config OTA_VERSION_FILENAME
-  string "Over-The-Air path to the file containing the last timestamp"
-  default "/SuperGreenOSTemplate/last_timestamp"
+config OTA_BASEDIR
+  string "Over-The-Air base directory used to build urls"
+  default "/SuperGreenDriver1.0"
   help
-    Path to the file containing last timestamp
-
-config OTA_FILENAME
-  string "Over-The-Air path to file containing the firmware"
-  default "/SuperGreenOSTemplate/firmware.bin"
-  help
-    Port of the server used for updates.
+    Base directory used to build urls
 
 endmenu

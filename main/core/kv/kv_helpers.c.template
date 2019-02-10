@@ -100,7 +100,6 @@ void get_{{name}}(char *dest, size_t len) {
   getstr({{caps_name}}, dest, len);
   {{/nvs}}
   xSemaphoreTake(_mutex_{{name}}, 0);
-  _{{name}}_changed = true;
   {{^nvs}}
   strncpy(dest, _{{name}}, len);
   {{/nvs}}

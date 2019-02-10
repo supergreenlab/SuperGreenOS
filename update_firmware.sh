@@ -27,12 +27,12 @@ else
   echo "Using default name $NAME, change it as first parameter."
 fi
 
-DEST="releases/$NAME"
+TS=`date +"%s"`
+DEST="releases/$NAME/$TS"
 mkdir -p $DEST
 
-TS=`date +"%s"`
 sed -i -E "s/^#define OTA_BUILD_TIMESTAMP [^$]+/#define OTA_BUILD_TIMESTAMP ${TS}/g" main/core/ota/ota.h
-echo -e "Created set timestamp in main/core/ota/ota.h to $TS: ${GREEN}Done${NC}"
+echo -e "Set timestamp in main/core/ota/ota.h to $TS: ${GREEN}Done${NC}"
 make -j4
 echo -e "Building project: ${GREEN}Done${NC}"
 
@@ -42,7 +42,8 @@ cp $i $DEST/
 echo -e "Copying $i to $DEST/$i: ${GREEN}Done${NC}"
 done
 
-echo $TS > $DEST/last_timestamp
+echo $TS > "releases/$NAME/last_timestamp"
+echo $TS > "$DEST/timestamp"
 
 echo "#!/bin/bash" > $DEST/flash.sh
 echo 'DIR=`dirname "$0"`' >> $DEST/flash.sh

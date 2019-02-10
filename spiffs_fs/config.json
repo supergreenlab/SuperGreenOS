@@ -266,28 +266,16 @@
       "default_var": "CONFIG_OTA_SERVER_PORT"
     },
     {
-      "name": "ota_version_filename",
-      "caps_name": "OTA_VERSION_FILENAME",
+      "name": "ota_basedir",
+      "caps_name": "OTA_BASEDIR",
       "string": true,
       "nvs": {
-        "key": "OTA_VR_FILE"
+        "key": "OTA_BASEDIR"
       },
       "http": {
         "write": true
       },
-      "default_var": "CONFIG_OTA_VERSION_FILENAME"
-    },
-    {
-      "name": "ota_filename",
-      "caps_name": "OTA_FILENAME",
-      "string": true,
-      "nvs": {
-        "key": "OTA_FILE"
-      },
-      "http": {
-        "write": true
-      },
-      "default_var": "CONFIG_OTA_FILENAME"
+      "default_var": "CONFIG_OTA_BASEDIR"
     },
     {
       "name": "broker_url",

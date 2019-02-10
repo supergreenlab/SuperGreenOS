@@ -16,6 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+ * This is mostly the esp-idf OTA example from 6 months back,
+ * and is a lot copy-pasted for the htmlapp ota.
+ */
+
 #include <string.h>
 #include <sys/socket.h>
 #include <netdb.h>
@@ -127,10 +132,10 @@ static bool connect_to_http_server()
  return false;
 }
 
-static bool check_new_version() {
-  char version_filename[64] = {0}; get_ota_version_filename(version_filename, 64);
+static bool check_new_version(char *new_timestamp) {
   char hostname[128] = {0}; get_ota_server_hostname(hostname, 128);
   char port[6] = {0}; get_ota_server_port(port, 6);
+  char basedir[128] = {0}; get_ota_basedir(basedir, 128);
   /*connect to http server*/
   if (connect_to_http_server()) {
     ESP_LOGI(SGO_LOG_EVENT, "@OTA Connected to http server");
@@ -142,12 +147,12 @@ static bool check_new_version() {
 
   /*send GET request to http server*/
   const char *GET_FORMAT =
-    "GET %s HTTP/1.0\r\n"
+    "GET %s/last_timestamp HTTP/1.0\r\n"
     "Host: %s:%s\r\n"
     "User-Agent: esp-idf/1.0 esp32\r\n\r\n";
 
   char *http_request = NULL;
-  int get_len = asprintf(&http_request, GET_FORMAT, version_filename, hostname, port);
+  int get_len = asprintf(&http_request, GET_FORMAT, basedir, hostname, port);
   if (get_len < 0) {
     ESP_LOGE(SGO_LOG_EVENT, "@OTA Failed to allocate memory for GET request buffer");
     close(socket_id);
@@ -180,16 +185,17 @@ static bool check_new_version() {
   ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA TIMESTAMP: %d (build: %d)", atoi(timestamp), ota_build_timestamp);
   close(socket_id);
 
-  return ota_build_timestamp < atoi(timestamp);
+  int itimestamp = atoi(timestamp);
+  sprintf(new_timestamp, "%d", itimestamp);
+  return ota_build_timestamp < itimestamp;
 }
 
-static void try_ota()
+static void try_ota(const char *new_timestamp)
 {
   char server_ip[20] = {0}; get_ota_server_ip(server_ip, 20);
   char hostname[128] = {0}; get_ota_server_hostname(hostname, 128);
   char port[6] = {0}; get_ota_server_port(port, 6);
-  char version_filename[64] = {0}; get_ota_version_filename(version_filename, 64);
-  char filename[64] = {0}; get_ota_filename(filename, 64);
+  char basedir[128] = {0}; get_ota_basedir(basedir, 128);
 
   esp_err_t err;
   /* update handle : set by esp_ota_begin(), must be freed via esp_ota_end() */
@@ -220,12 +226,12 @@ static void try_ota()
 
   /*send GET request to http server*/
   const char *GET_FORMAT =
-    "GET %s HTTP/1.0\r\n"
+    "GET %s/%s/firmware.bin HTTP/1.0\r\n"
     "Host: %s:%s\r\n"
     "User-Agent: esp-idf/1.0 esp32\r\n\r\n";
 
   char *http_request = NULL;
-  int get_len = asprintf(&http_request, GET_FORMAT, filename, hostname, port);
+  int get_len = asprintf(&http_request, GET_FORMAT, basedir, new_timestamp, hostname, port);
   if (get_len < 0) {
     ESP_LOGE(SGO_LOG_EVENT, "@OTA Failed to allocate memory for GET request buffer");
     close(socket_id);
@@ -325,9 +331,10 @@ static void ota_task(void *pvParameter) {
     } else { 
       ESP_LOGI(SGO_LOG_EVENT, "@OTA Checking firmware update available");
       ESP_LOGI(SGO_LOG_EVENT, "@OTA timestamp=%d", ota_build_timestamp);
-      if (check_new_version()) {
+      char new_timestamp[15] = {0};
+      if (check_new_version(new_timestamp)) {
         ESP_LOGI(SGO_LOG_EVENT, "@OTA Start OTA procedure");
-        try_ota();
+        try_ota(new_timestamp);
       } else {
         ESP_LOGI(SGO_LOG_EVENT, "@OTA Firmware is up-to-date");
       }
