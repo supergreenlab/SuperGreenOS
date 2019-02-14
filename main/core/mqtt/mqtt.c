@@ -94,6 +94,8 @@ static void mqtt_task(void *param) {
   if (strlen(client_id) == 0) {
     sprintf(client_id, "%llx", _chipmacid);
     set_broker_clientid(client_id);
+  } else if (strlen(client_id) == 1 && client_id[0] == '-') {
+    client_id[0] = 0;
   }
   ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log clientid: %s", client_id);
 

@@ -206,6 +206,23 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
   return ESP_OK;
 }
 
+static bool try_sta_connection() {
+  wifi_mode_t wm = {0};
+  //wifi_sta_list_t sl = {0}; // commented all esp_wifi_ap_get_sta_list stuffs as it seems it doesn't refresh properly
+  if (esp_wifi_get_mode(&wm) == ESP_OK && wm != WIFI_MODE_STA) {
+    //if (esp_wifi_ap_get_sta_list(&sl) == ESP_OK) {
+      ESP_LOGI(SGO_LOG_EVENT, "@WIFI Trying STA while no-one's watching");
+      start_sta();
+      return true;
+    /*} else {
+      ESP_LOGI(SGO_LOG_EVENT, "@WIFI unable to esp_wifi_ap_get_sta_list");
+    }*/
+  } else {
+    ESP_LOGI(SGO_LOG_EVENT, "@WIFI unable to get_mode");
+  }
+  return false;
+}
+
 static void wifi_task(void *param) {
   unsigned int c;
   unsigned int n_connection_failed = 0;
@@ -214,7 +231,7 @@ static void wifi_task(void *param) {
   bool was_valid = is_valid();
 
   for (;;) {
-    if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS)) {
+    if (xQueueReceive(cmd, &c, 20000 / portTICK_PERIOD_MS)) {
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI xQueueReceive %d", c);
 
       // Wifi STA conf change
@@ -258,24 +275,11 @@ static void wifi_task(void *param) {
       }
     } else {
       // if AP mode and noone's watching, try STA mode.
-      wifi_mode_t wm = {0};
-      wifi_sta_list_t sl = {0}; // commented all esp_wifi_ap_get_sta_list stuffs as it seems it doesn't refresh properly
-      if (esp_wifi_get_mode(&wm) == ESP_OK) {
-        if (esp_wifi_ap_get_sta_list(&sl) == ESP_OK) {
-          ESP_LOGI(SGO_LOG_EVENT, "@WIFI num_sta=%d, wm=%d, counter=%d/6", n_connected_sta, wm, (counter % 6) + 1);
-          if (!(counter % 6) && is_valid() && n_connected_sta == 0 && wm != WIFI_MODE_STA) {
-            ESP_LOGI(SGO_LOG_EVENT, "@WIFI Trying STA while no-one's watching");
-            start_sta();
-            ++counter;
-            continue;
-          }
-        } else {
-          ESP_LOGI(SGO_LOG_EVENT, "@WIFI unable to esp_wifi_ap_get_sta_list");
-        }
-      } else {
-        ESP_LOGI(SGO_LOG_EVENT, "@WIFI unable to get_mode");
+      if (!(counter % 6) && !n_connected_sta && is_valid() && try_sta_connection()) {
+        ++counter;
+        continue;
       }
-      ESP_LOGI(SGO_LOG_EVENT, "@WIFI Refresh MDNS service");
+      //ESP_LOGI(SGO_LOG_EVENT, "@WIFI Refresh MDNS service");
       start_mdns_service();
       ++counter;
     }

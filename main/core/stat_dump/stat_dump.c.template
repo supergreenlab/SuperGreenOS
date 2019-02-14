@@ -30,29 +30,76 @@
 
 #define MAX_KEY_SIZE 21
 
+static void dump_heap_infos(const char *name, uint32_t cap) {
+  multi_heap_info_t heap_infos;
+  heap_caps_get_info(&heap_infos, cap);
+  ESP_LOGI(SGO_LOG_METRIC, "@MALLOC_CAP_%s total_free_bytes=%d, total_allocated_bytes=%d", name, heap_infos.total_free_bytes, heap_infos.total_allocated_bytes);
+  ESP_LOGI(SGO_LOG_METRIC, "@MALLOC_CAP_%s largest_free_block=%d, minimum_free_bytes=%d", name, heap_infos.largest_free_block, heap_infos.minimum_free_bytes);
+  ESP_LOGI(SGO_LOG_METRIC, "@MALLOC_CAP_%s allocated_blocks=%d, free_blocks=%d, total_blocks=%d", name, heap_infos.allocated_blocks, heap_infos.free_blocks, heap_infos.total_blocks);
+}
+
 static void stat_dump_task(void *param) {
   int counter = 0;
   wait_connected();
   vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
-  int n_tasks = uxTaskGetNumberOfTasks();
   uint32_t ulTotalRunTime, ulStatsAsPercentage;
-  TaskStatus_t *statuses = malloc(n_tasks * sizeof(TaskStatus_t));
   while(1) {
-    int nn_tasks = uxTaskGetNumberOfTasks();
-    if (n_tasks != nn_tasks) {
-      free(statuses);
-      n_tasks = nn_tasks;
-      statuses = malloc(n_tasks * sizeof(TaskStatus_t));
-    }
-    uxTaskGetSystemState(statuses, n_tasks, &ulTotalRunTime);
-    ulTotalRunTime /= 100UL;
-    if (ulTotalRunTime == 0) continue;
+    dump_heap_infos("32BIT", MALLOC_CAP_32BIT);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
 
-    for (int i = 0; i < n_tasks; ++i) {
-      ulStatsAsPercentage = statuses[i].ulRunTimeCounter / ulTotalRunTime;
-      ESP_LOGI(SGO_LOG_METRIC, "@%s stack_left=%d, task_counter=%d, task_percent=%d", statuses[i].pcTaskName, statuses[i].usStackHighWaterMark, statuses[i].ulRunTimeCounter, ulStatsAsPercentage);
+    dump_heap_infos("8BIT", MALLOC_CAP_8BIT);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
+
+    dump_heap_infos("DMA", MALLOC_CAP_DMA);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
+
+    dump_heap_infos("PID2", MALLOC_CAP_PID2);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
+
+    dump_heap_infos("PID3", MALLOC_CAP_PID3);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
+
+    dump_heap_infos("PID4", MALLOC_CAP_PID4);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
+
+    dump_heap_infos("PID5", MALLOC_CAP_PID5);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
+
+    dump_heap_infos("PID6", MALLOC_CAP_PID6);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
+
+    dump_heap_infos("PID7", MALLOC_CAP_PID7);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
+
+    dump_heap_infos("SPIRAM", MALLOC_CAP_SPIRAM);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
+
+    dump_heap_infos("INTERNAL", MALLOC_CAP_INTERNAL);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
+
+    dump_heap_infos("DEFAULT", MALLOC_CAP_DEFAULT);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
+
+    dump_heap_infos("INVALID", MALLOC_CAP_INVALID);
+    vTaskDelay(200 / portTICK_PERIOD_MS);
+
+    ESP_LOGI(SGO_LOG_METRIC, "@HEAP free=%d, min=%d", esp_get_free_heap_size(), esp_get_minimum_free_heap_size());
+
+    int n_tasks = uxTaskGetNumberOfTasks();
+    TaskStatus_t *statuses = malloc(n_tasks * sizeof(TaskStatus_t));
+    if (statuses) {
+      uxTaskGetSystemState(statuses, n_tasks, &ulTotalRunTime);
+      ulTotalRunTime /= 100UL;
+      for (int i = 0; i < n_tasks; ++i) {
+        ESP_LOGI(SGO_LOG_METRIC, "@%s stack_left=%d", statuses[i].pcTaskName, statuses[i].usStackHighWaterMark);
+        if (ulTotalRunTime != 0) {
+          ulStatsAsPercentage = statuses[i].ulRunTimeCounter / ulTotalRunTime;
+          ESP_LOGI(SGO_LOG_METRIC, "@%s task_counter=%d, task_percent=%d", statuses[i].pcTaskName, statuses[i].ulRunTimeCounter, ulStatsAsPercentage);
+        }
+      }
+      vTaskDelay(5000 / portTICK_PERIOD_MS);
+      free(statuses);
     }
-    vTaskDelay(5000 / portTICK_PERIOD_MS);
 
     /*
      * [GENERATED]
@@ -71,13 +118,13 @@ static void stat_dump_task(void *param) {
       get_{{name}}(str, MAX_KVALUE_SIZE-1);
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "{{caps_name}}", str);
       {{/string}}
-      vTaskDelay(50 / portTICK_PERIOD_MS);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
       {{/nvs}}
       reset_{{name}}_changed();
     }
     {{/keys}}
 
-    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
+    vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
     ++counter;
 
     /*
@@ -90,5 +137,6 @@ void init_stat_dump_queues() {
 }
 
 void init_stat_dump() {
-  xTaskCreate(stat_dump_task, "STAT_DUMP", 3072, NULL, 10, NULL);
+  ESP_LOGI(SGO_LOG_EVENT, "@SYS reset_reason=%d", esp_reset_reason());
+  xTaskCreate(stat_dump_task, "STAT_DUMP", 4096, NULL, 10, NULL);
 }
