@@ -85,7 +85,8 @@ static void stat_dump_task(void *param) {
 
     ESP_LOGI(SGO_LOG_METRIC, "@HEAP free=%d, min=%d", esp_get_free_heap_size(), esp_get_minimum_free_heap_size());
 
-    int n_tasks = uxTaskGetNumberOfTasks();
+    ESP_LOGI(SGO_LOG_METRIC, "@SYS n_tasks=%d", uxTaskGetNumberOfTasks());
+    /* int n_tasks = uxTaskGetNumberOfTasks();
     TaskStatus_t *statuses = malloc(n_tasks * sizeof(TaskStatus_t));
     if (statuses) {
       uxTaskGetSystemState(statuses, n_tasks, &ulTotalRunTime);
@@ -99,7 +100,7 @@ static void stat_dump_task(void *param) {
       }
       vTaskDelay(5000 / portTICK_PERIOD_MS);
       free(statuses);
-    }
+    }*/
 
     /*
      * [GENERATED]
