@@ -45,10 +45,14 @@ void init_reboot() {
 }
 
 static void reboot_task() {
+  // reset n_short_reboots to zero
   vTaskDelay(60 * 1000 / portTICK_PERIOD_MS);
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=0");
   seti(N_SHORT_REBOOTS, 0);
-  vTaskDelete( NULL );
+
+  // Temporary failsafe restart every 2 hours
+  vTaskDelay(2 * 60 * 60 * 1000 / portTICK_PERIOD_MS);
+  esp_restart();
 }
 
 /*
