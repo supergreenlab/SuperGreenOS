@@ -161,6 +161,12 @@
 #define LED_3_DIM "L_3_DI"
 #define LED_4_DIM "L_4_DI"
 #define LED_5_DIM "L_5_DI"
+#define LED_0_FADE "L_0_F"
+#define LED_1_FADE "L_1_F"
+#define LED_2_FADE "L_2_F"
+#define LED_3_FADE "L_3_F"
+#define LED_4_FADE "L_4_F"
+#define LED_5_FADE "L_5_F"
 
 /*
  * [/GENERATED]

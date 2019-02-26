@@ -21,6 +21,12 @@
 
 #define OTA_BUILD_TIMESTAMP 0
 
+typedef enum {
+  OTA_STATUS_IDLE,
+  OTA_STATUS_IN_PROGRESS,
+  OTA_STATUS_DISABLED,
+} ota_status;
+
 void init_ota();
 
 #endif

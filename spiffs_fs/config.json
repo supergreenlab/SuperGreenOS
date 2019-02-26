@@ -74,7 +74,8 @@
     "z",
     "enabled",
     "box",
-    "dim"
+    "dim",
+    "fade"
   ],
   "led_loop_i": [
     0,
@@ -276,6 +277,15 @@
         "write": true
       },
       "default_var": "CONFIG_OTA_BASEDIR"
+    },
+    {
+      "name": "ota_status",
+      "caps_name": "OTA_STATUS",
+      "integer": true,
+      "http": {
+        "noop": true
+      },
+      "default_var": "OTA_STATUS_IDLE"
     },
     {
       "name": "broker_url",
@@ -2379,6 +2389,102 @@
       },
       "write_cb": true,
       "default": 100
+    },
+    {
+      "name": "led_0_fade",
+      "caps_name": "LED_0_FADE",
+      "led": {
+        "index": 0,
+        "param": "fade"
+      },
+      "integer": true,
+      "nvs": {
+        "key": "L_0_F"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_1_fade",
+      "caps_name": "LED_1_FADE",
+      "led": {
+        "index": 1,
+        "param": "fade"
+      },
+      "integer": true,
+      "nvs": {
+        "key": "L_1_F"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_2_fade",
+      "caps_name": "LED_2_FADE",
+      "led": {
+        "index": 2,
+        "param": "fade"
+      },
+      "integer": true,
+      "nvs": {
+        "key": "L_2_F"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_3_fade",
+      "caps_name": "LED_3_FADE",
+      "led": {
+        "index": 3,
+        "param": "fade"
+      },
+      "integer": true,
+      "nvs": {
+        "key": "L_3_F"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_4_fade",
+      "caps_name": "LED_4_FADE",
+      "led": {
+        "index": 4,
+        "param": "fade"
+      },
+      "integer": true,
+      "nvs": {
+        "key": "L_4_F"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_5_fade",
+      "caps_name": "LED_5_FADE",
+      "led": {
+        "index": 5,
+        "param": "fade"
+      },
+      "integer": true,
+      "nvs": {
+        "key": "L_5_F"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
     }
   ]
 }

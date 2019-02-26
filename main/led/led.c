@@ -84,10 +84,16 @@ static void update_led(int i, int fade_time) {
   double dim = get_led_dim(i);
   double duty = get_led_duty(i) * dim / 100;
   duty = (duty < LED_MIN_ZERO) ? 0 : duty;
-  double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
-  ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
+  if (get_led_fade(i) == 1) {
+    double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
+    ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
 
-  fade_no_wait_led(ledc_channels[i].channel_config, real_duty, fade_time);
+    fade_no_wait_led(ledc_channels[i].channel_config, real_duty, fade_time);
+  } else {
+    duty = (duty == 0 ? duty : LED_MAX_DUTY);
+    ledc_set_duty(ledc_channels[i].channel_config.speed_mode, ledc_channels[i].channel_config.channel, duty);
+    ledc_update_duty(ledc_channels[i].channel_config.speed_mode, ledc_channels[i].channel_config.channel);
+  }
 }
 
 static void led_task(void *param) {

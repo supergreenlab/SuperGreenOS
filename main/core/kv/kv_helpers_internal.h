@@ -37,6 +37,7 @@ void internal_set_ota_server_ip(const char *value);
 void internal_set_ota_server_hostname(const char *value);
 void internal_set_ota_server_port(const char *value);
 void internal_set_ota_basedir(const char *value);
+void internal_set_ota_status(int value);
 void internal_set_broker_url(const char *value);
 void internal_set_broker_channel(const char *value);
 void internal_set_broker_clientid(const char *value);
@@ -166,6 +167,12 @@ void internal_set_led_2_dim(int value);
 void internal_set_led_3_dim(int value);
 void internal_set_led_4_dim(int value);
 void internal_set_led_5_dim(int value);
+void internal_set_led_0_fade(int value);
+void internal_set_led_1_fade(int value);
+void internal_set_led_2_fade(int value);
+void internal_set_led_3_fade(int value);
+void internal_set_led_4_fade(int value);
+void internal_set_led_5_fade(int value);
 
 /*
  * [/GENERATED]

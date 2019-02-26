@@ -42,7 +42,7 @@ static void stat_dump_task(void *param) {
   int counter = 0;
   wait_connected();
   vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
-  uint32_t ulTotalRunTime, ulStatsAsPercentage;
+  //uint32_t ulTotalRunTime, ulStatsAsPercentage;
   while(1) {
     dump_heap_infos("32BIT", MALLOC_CAP_32BIT);
     vTaskDelay(200 / portTICK_PERIOD_MS);
@@ -188,6 +188,9 @@ static void stat_dump_task(void *param) {
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "OTA_BASEDIR", str);
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_ota_basedir_changed();
+    }
+    if ((counter % 20) == 0 || is_ota_status_changed()) {
+      reset_ota_status_changed();
     }
     if ((counter % 20) == 0 || is_broker_url_changed()) {
       get_broker_url(str, MAX_KVALUE_SIZE-1);
@@ -950,6 +953,42 @@ static void stat_dump_task(void *param) {
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_5_DIM", value);
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_led_5_dim_changed();
+    }
+    if ((counter % 20) == 0 || is_led_0_fade_changed()) {
+      value = get_led_0_fade();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_0_FADE", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
+      reset_led_0_fade_changed();
+    }
+    if ((counter % 20) == 0 || is_led_1_fade_changed()) {
+      value = get_led_1_fade();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_1_FADE", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
+      reset_led_1_fade_changed();
+    }
+    if ((counter % 20) == 0 || is_led_2_fade_changed()) {
+      value = get_led_2_fade();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_2_FADE", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
+      reset_led_2_fade_changed();
+    }
+    if ((counter % 20) == 0 || is_led_3_fade_changed()) {
+      value = get_led_3_fade();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_3_FADE", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
+      reset_led_3_fade_changed();
+    }
+    if ((counter % 20) == 0 || is_led_4_fade_changed()) {
+      value = get_led_4_fade();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_4_FADE", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
+      reset_led_4_fade_changed();
+    }
+    if ((counter % 20) == 0 || is_led_5_fade_changed()) {
+      value = get_led_5_fade();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_5_FADE", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
+      reset_led_5_fade_changed();
     }
 
     vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);

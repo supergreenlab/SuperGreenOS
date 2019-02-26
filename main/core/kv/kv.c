@@ -334,6 +334,18 @@ void preinit_kv() {
   defaulti(LED_4_DIM, default_led_4_dim);
   int default_led_5_dim = 100;
   defaulti(LED_5_DIM, default_led_5_dim);
+  int default_led_0_fade = 1;
+  defaulti(LED_0_FADE, default_led_0_fade);
+  int default_led_1_fade = 1;
+  defaulti(LED_1_FADE, default_led_1_fade);
+  int default_led_2_fade = 1;
+  defaulti(LED_2_FADE, default_led_2_fade);
+  int default_led_3_fade = 1;
+  defaulti(LED_3_FADE, default_led_3_fade);
+  int default_led_4_fade = 1;
+  defaulti(LED_4_FADE, default_led_4_fade);
+  int default_led_5_fade = 1;
+  defaulti(LED_5_FADE, default_led_5_fade);
 
   /*
    * [/GENERATED]
@@ -363,6 +375,8 @@ void postinit_kv() {
   // Initialize non-nvs keys
   int default_wifi_status = DISCONNECTED;
   set_wifi_status(default_wifi_status);
+  int default_ota_status = OTA_STATUS_IDLE;
+  set_ota_status(default_ota_status);
   int default_reboot = 0;
   set_reboot(default_reboot);
   const char *default_box_0_led_info = "";
@@ -655,6 +669,18 @@ void reset_defaults() {
   seti(LED_4_DIM, default_led_4_dim);
   int default_led_5_dim = 100;
   seti(LED_5_DIM, default_led_5_dim);
+  int default_led_0_fade = 1;
+  seti(LED_0_FADE, default_led_0_fade);
+  int default_led_1_fade = 1;
+  seti(LED_1_FADE, default_led_1_fade);
+  int default_led_2_fade = 1;
+  seti(LED_2_FADE, default_led_2_fade);
+  int default_led_3_fade = 1;
+  seti(LED_3_FADE, default_led_3_fade);
+  int default_led_4_fade = 1;
+  seti(LED_4_FADE, default_led_4_fade);
+  int default_led_5_fade = 1;
+  seti(LED_5_FADE, default_led_5_fade);
 }
 
 bool hasi(const char * key) {

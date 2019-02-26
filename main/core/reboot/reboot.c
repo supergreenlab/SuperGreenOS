@@ -24,6 +24,7 @@
 
 #include "../log/log.h"
 #include "../kv/kv.h"
+#include "../ota/ota.h"
 
 #define MAX_SHORT_REBOOTS 5
 #define N_SHORT_REBOOTS "NSHRBTS"
@@ -50,9 +51,16 @@ static void reboot_task() {
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=0");
   seti(N_SHORT_REBOOTS, 0);
 
-  // Temporary failsafe restart every 2 hours
-  vTaskDelay(2 * 60 * 60 * 1000 / portTICK_PERIOD_MS);
-  esp_restart();
+  // Temporary failsafe restart after 2 hours
+  /* vTaskDelay(2 * 60 * 60 * 1000 / portTICK_PERIOD_MS);
+  while(true) {
+    // avoid interrupting OTA
+    if (get_ota_status() != OTA_STATUS_IN_PROGRESS) {
+      esp_restart();
+    }
+    vTaskDelay(60 * 1000 / portTICK_PERIOD_MS);
+  }*/
+  vTaskDelete(NULL);
 }
 
 /*

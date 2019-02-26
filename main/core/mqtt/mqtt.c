@@ -173,7 +173,7 @@ void mqtt_intercept_log() {
 void init_mqtt() {
   ESP_LOGI(SGO_LOG_EVENT, "@MQTT Intializing MQTT task");
 
-  esp_log_level_set("MQTT_CLIENT", ESP_LOG_NONE);
+  //esp_log_level_set("MQTT_CLIENT", ESP_LOG_NONE);
 
   cmd = xQueueCreate(10, sizeof(int));
   if (cmd == NULL) {

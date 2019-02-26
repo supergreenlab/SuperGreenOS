@@ -42,7 +42,7 @@ static void stat_dump_task(void *param) {
   int counter = 0;
   wait_connected();
   vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
-  uint32_t ulTotalRunTime, ulStatsAsPercentage;
+  //uint32_t ulTotalRunTime, ulStatsAsPercentage;
   while(1) {
     dump_heap_infos("32BIT", MALLOC_CAP_32BIT);
     vTaskDelay(200 / portTICK_PERIOD_MS);

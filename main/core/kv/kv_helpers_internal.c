@@ -119,6 +119,12 @@ void internal_set_ota_basedir(const char *value) {
 
 
 }
+void internal_set_ota_status(int value) {
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_broker_url(const char *value) {
   set_broker_url(value);
 
@@ -1075,6 +1081,48 @@ void internal_set_led_5_dim(int value) {
   value = on_set_led_5_dim(value);
 
   set_led_5_dim(value);
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_0_fade(int value) {
+  set_led_0_fade(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_1_fade(int value) {
+  set_led_1_fade(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_2_fade(int value) {
+  set_led_2_fade(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_3_fade(int value) {
+  set_led_3_fade(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_4_fade(int value) {
+  set_led_4_fade(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_5_fade(int value) {
+  set_led_5_fade(value);
+
 
 
   // TODO: httpd notify

@@ -535,6 +535,41 @@ void set_ota_basedir(const char *value) {
   xSemaphoreGive(_mutex_ota_basedir);
 }
 
+static SemaphoreHandle_t _mutex_ota_status; // TODO check RAM weight of creating so many semaphores :/
+static bool _ota_status_changed = true;
+
+void reset_ota_status_changed() {
+  xSemaphoreTake(_mutex_ota_status, 0);
+  _ota_status_changed = false;
+  xSemaphoreGive(_mutex_ota_status);
+}
+
+bool is_ota_status_changed() {
+  xSemaphoreTake(_mutex_ota_status, 0);
+  bool v = _ota_status_changed;
+  xSemaphoreGive(_mutex_ota_status);
+  return v;
+}
+
+
+static int _ota_status = 0;
+
+int get_ota_status() {
+  xSemaphoreTake(_mutex_ota_status, 0);
+  int v = _ota_status;
+  xSemaphoreGive(_mutex_ota_status);
+  return v;
+}
+
+void set_ota_status(int value) {
+  xSemaphoreTake(_mutex_ota_status, 0);
+  if (_ota_status == value) return;
+  _ota_status = value;
+  _ota_status_changed = true;
+  xSemaphoreGive(_mutex_ota_status);
+}
+
+
 static SemaphoreHandle_t _mutex_broker_url; // TODO check RAM weight of creating so many semaphores :/
 static bool _broker_url_changed = true;
 
@@ -4584,6 +4619,192 @@ void set_led_5_dim(int value) {
 }
 
 
+static SemaphoreHandle_t _mutex_led_0_fade; // TODO check RAM weight of creating so many semaphores :/
+static bool _led_0_fade_changed = true;
+
+void reset_led_0_fade_changed() {
+  xSemaphoreTake(_mutex_led_0_fade, 0);
+  _led_0_fade_changed = false;
+  xSemaphoreGive(_mutex_led_0_fade);
+}
+
+bool is_led_0_fade_changed() {
+  xSemaphoreTake(_mutex_led_0_fade, 0);
+  bool v = _led_0_fade_changed;
+  xSemaphoreGive(_mutex_led_0_fade);
+  return v;
+}
+
+
+
+int get_led_0_fade() {
+  return geti(LED_0_FADE);
+}
+
+void set_led_0_fade(int value) {
+  if (geti(LED_0_FADE) == value) return;
+  seti(LED_0_FADE, value);
+  xSemaphoreTake(_mutex_led_0_fade, 0);
+  _led_0_fade_changed = true;
+  xSemaphoreGive(_mutex_led_0_fade);
+}
+
+
+static SemaphoreHandle_t _mutex_led_1_fade; // TODO check RAM weight of creating so many semaphores :/
+static bool _led_1_fade_changed = true;
+
+void reset_led_1_fade_changed() {
+  xSemaphoreTake(_mutex_led_1_fade, 0);
+  _led_1_fade_changed = false;
+  xSemaphoreGive(_mutex_led_1_fade);
+}
+
+bool is_led_1_fade_changed() {
+  xSemaphoreTake(_mutex_led_1_fade, 0);
+  bool v = _led_1_fade_changed;
+  xSemaphoreGive(_mutex_led_1_fade);
+  return v;
+}
+
+
+
+int get_led_1_fade() {
+  return geti(LED_1_FADE);
+}
+
+void set_led_1_fade(int value) {
+  if (geti(LED_1_FADE) == value) return;
+  seti(LED_1_FADE, value);
+  xSemaphoreTake(_mutex_led_1_fade, 0);
+  _led_1_fade_changed = true;
+  xSemaphoreGive(_mutex_led_1_fade);
+}
+
+
+static SemaphoreHandle_t _mutex_led_2_fade; // TODO check RAM weight of creating so many semaphores :/
+static bool _led_2_fade_changed = true;
+
+void reset_led_2_fade_changed() {
+  xSemaphoreTake(_mutex_led_2_fade, 0);
+  _led_2_fade_changed = false;
+  xSemaphoreGive(_mutex_led_2_fade);
+}
+
+bool is_led_2_fade_changed() {
+  xSemaphoreTake(_mutex_led_2_fade, 0);
+  bool v = _led_2_fade_changed;
+  xSemaphoreGive(_mutex_led_2_fade);
+  return v;
+}
+
+
+
+int get_led_2_fade() {
+  return geti(LED_2_FADE);
+}
+
+void set_led_2_fade(int value) {
+  if (geti(LED_2_FADE) == value) return;
+  seti(LED_2_FADE, value);
+  xSemaphoreTake(_mutex_led_2_fade, 0);
+  _led_2_fade_changed = true;
+  xSemaphoreGive(_mutex_led_2_fade);
+}
+
+
+static SemaphoreHandle_t _mutex_led_3_fade; // TODO check RAM weight of creating so many semaphores :/
+static bool _led_3_fade_changed = true;
+
+void reset_led_3_fade_changed() {
+  xSemaphoreTake(_mutex_led_3_fade, 0);
+  _led_3_fade_changed = false;
+  xSemaphoreGive(_mutex_led_3_fade);
+}
+
+bool is_led_3_fade_changed() {
+  xSemaphoreTake(_mutex_led_3_fade, 0);
+  bool v = _led_3_fade_changed;
+  xSemaphoreGive(_mutex_led_3_fade);
+  return v;
+}
+
+
+
+int get_led_3_fade() {
+  return geti(LED_3_FADE);
+}
+
+void set_led_3_fade(int value) {
+  if (geti(LED_3_FADE) == value) return;
+  seti(LED_3_FADE, value);
+  xSemaphoreTake(_mutex_led_3_fade, 0);
+  _led_3_fade_changed = true;
+  xSemaphoreGive(_mutex_led_3_fade);
+}
+
+
+static SemaphoreHandle_t _mutex_led_4_fade; // TODO check RAM weight of creating so many semaphores :/
+static bool _led_4_fade_changed = true;
+
+void reset_led_4_fade_changed() {
+  xSemaphoreTake(_mutex_led_4_fade, 0);
+  _led_4_fade_changed = false;
+  xSemaphoreGive(_mutex_led_4_fade);
+}
+
+bool is_led_4_fade_changed() {
+  xSemaphoreTake(_mutex_led_4_fade, 0);
+  bool v = _led_4_fade_changed;
+  xSemaphoreGive(_mutex_led_4_fade);
+  return v;
+}
+
+
+
+int get_led_4_fade() {
+  return geti(LED_4_FADE);
+}
+
+void set_led_4_fade(int value) {
+  if (geti(LED_4_FADE) == value) return;
+  seti(LED_4_FADE, value);
+  xSemaphoreTake(_mutex_led_4_fade, 0);
+  _led_4_fade_changed = true;
+  xSemaphoreGive(_mutex_led_4_fade);
+}
+
+
+static SemaphoreHandle_t _mutex_led_5_fade; // TODO check RAM weight of creating so many semaphores :/
+static bool _led_5_fade_changed = true;
+
+void reset_led_5_fade_changed() {
+  xSemaphoreTake(_mutex_led_5_fade, 0);
+  _led_5_fade_changed = false;
+  xSemaphoreGive(_mutex_led_5_fade);
+}
+
+bool is_led_5_fade_changed() {
+  xSemaphoreTake(_mutex_led_5_fade, 0);
+  bool v = _led_5_fade_changed;
+  xSemaphoreGive(_mutex_led_5_fade);
+  return v;
+}
+
+
+
+int get_led_5_fade() {
+  return geti(LED_5_FADE);
+}
+
+void set_led_5_fade(int value) {
+  if (geti(LED_5_FADE) == value) return;
+  seti(LED_5_FADE, value);
+  xSemaphoreTake(_mutex_led_5_fade, 0);
+  _led_5_fade_changed = true;
+  xSemaphoreGive(_mutex_led_5_fade);
+}
+
+
 void init_helpers() {
   _mutex_wifi_status = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_wifi_ssid = xSemaphoreCreateMutexStatic(&mutex_buffer);
@@ -4599,6 +4820,7 @@ void init_helpers() {
   _mutex_ota_server_hostname = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_ota_server_port = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_ota_basedir = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_ota_status = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_broker_url = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_broker_channel = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_broker_clientid = xSemaphoreCreateMutexStatic(&mutex_buffer);
@@ -4728,6 +4950,12 @@ void init_helpers() {
   _mutex_led_3_dim = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_led_4_dim = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_led_5_dim = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_led_0_fade = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_led_1_fade = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_led_2_fade = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_led_3_fade = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_led_4_fade = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_led_5_fade = xSemaphoreCreateMutexStatic(&mutex_buffer);
 }
 
 /*

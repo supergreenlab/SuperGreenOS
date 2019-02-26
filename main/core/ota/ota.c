@@ -328,15 +328,18 @@ static void ota_task(void *pvParameter) {
     int ota_build_timestamp = get_ota_timestamp();
     if (ota_build_timestamp == 0) {
       ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA NOT STARTING timestamp=%d", ota_build_timestamp);
+      set_ota_status(OTA_STATUS_DISABLED);
     } else { 
       ESP_LOGI(SGO_LOG_EVENT, "@OTA Checking firmware update available");
       ESP_LOGI(SGO_LOG_EVENT, "@OTA timestamp=%d", ota_build_timestamp);
       char new_timestamp[15] = {0};
       if (check_new_version(new_timestamp)) {
         ESP_LOGI(SGO_LOG_EVENT, "@OTA Start OTA procedure");
+        set_ota_status(OTA_STATUS_IN_PROGRESS);
         try_ota(new_timestamp);
       } else {
         ESP_LOGI(SGO_LOG_EVENT, "@OTA Firmware is up-to-date");
+        set_ota_status(OTA_STATUS_IDLE);
       }
     }
     vTaskDelay((20 * 60 * 1000) / portTICK_PERIOD_MS);

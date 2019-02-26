@@ -50,6 +50,11 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_ota_timestamp,
   },
   {
+    .name = "OTA_STATUS",
+    .handler = NULL,
+    .getter = get_ota_status,
+  },
+  {
     .name = "I2C_0_SDA",
     .handler = internal_set_i2c_0_sda,
     .getter = get_i2c_0_sda,
@@ -658,6 +663,36 @@ const kvi_handler kvi_handlers[] = {
     .name = "LED_5_DIM",
     .handler = internal_set_led_5_dim,
     .getter = get_led_5_dim,
+  },
+  {
+    .name = "LED_0_FADE",
+    .handler = internal_set_led_0_fade,
+    .getter = get_led_0_fade,
+  },
+  {
+    .name = "LED_1_FADE",
+    .handler = internal_set_led_1_fade,
+    .getter = get_led_1_fade,
+  },
+  {
+    .name = "LED_2_FADE",
+    .handler = internal_set_led_2_fade,
+    .getter = get_led_2_fade,
+  },
+  {
+    .name = "LED_3_FADE",
+    .handler = internal_set_led_3_fade,
+    .getter = get_led_3_fade,
+  },
+  {
+    .name = "LED_4_FADE",
+    .handler = internal_set_led_4_fade,
+    .getter = get_led_4_fade,
+  },
+  {
+    .name = "LED_5_FADE",
+    .handler = internal_set_led_5_fade,
+    .getter = get_led_5_fade,
   },
 
 /*
