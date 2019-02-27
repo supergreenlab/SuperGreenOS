@@ -150,7 +150,7 @@ void preinit_kv() {
   defaulti(BOX_0_ARDUINO_CO2, default_box_0_arduino_co2);
   int default_box_0_dust_gpy2y10 = -1000000;
   defaulti(BOX_0_DUST_GPY2Y10, default_box_0_dust_gpy2y10);
-  int default_box_1_enabled = 0;
+  int default_box_1_enabled = 1;
   defaulti(BOX_1_ENABLED, default_box_1_enabled);
   int default_box_1_timer_type = TIMER_MANUAL;
   defaulti(BOX_1_TIMER_TYPE, default_box_1_timer_type);
@@ -176,7 +176,7 @@ void preinit_kv() {
   defaulti(BOX_1_BLOWER_MODE, default_box_1_blower_mode);
   int default_box_1_blower_gpio = DEFAULT_BOX_1_BLOWER_GPIO;
   defaulti(BOX_1_BLOWER_GPIO, default_box_1_blower_gpio);
-  int default_box_1_blower_enabled = 0;
+  int default_box_1_blower_enabled = 1;
   defaulti(BOX_1_BLOWER_ENABLED, default_box_1_blower_enabled);
   int default_box_1_sht1x_temp_c = -1000000;
   defaulti(BOX_1_SHT1X_TEMP_C, default_box_1_sht1x_temp_c);
@@ -485,7 +485,7 @@ void reset_defaults() {
   seti(BOX_0_ARDUINO_CO2, default_box_0_arduino_co2);
   int default_box_0_dust_gpy2y10 = -1000000;
   seti(BOX_0_DUST_GPY2Y10, default_box_0_dust_gpy2y10);
-  int default_box_1_enabled = 0;
+  int default_box_1_enabled = 1;
   seti(BOX_1_ENABLED, default_box_1_enabled);
   int default_box_1_timer_type = TIMER_MANUAL;
   seti(BOX_1_TIMER_TYPE, default_box_1_timer_type);
@@ -511,7 +511,7 @@ void reset_defaults() {
   seti(BOX_1_BLOWER_MODE, default_box_1_blower_mode);
   int default_box_1_blower_gpio = DEFAULT_BOX_1_BLOWER_GPIO;
   seti(BOX_1_BLOWER_GPIO, default_box_1_blower_gpio);
-  int default_box_1_blower_enabled = 0;
+  int default_box_1_blower_enabled = 1;
   seti(BOX_1_BLOWER_ENABLED, default_box_1_blower_enabled);
   int default_box_1_sht1x_temp_c = -1000000;
   seti(BOX_1_SHT1X_TEMP_C, default_box_1_sht1x_temp_c);

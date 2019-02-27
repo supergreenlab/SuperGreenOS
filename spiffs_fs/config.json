@@ -884,7 +884,7 @@
       "http": {
         "write": true
       },
-      "default": 0
+      "default": 1
     },
     {
       "name": "box_1_timer_type",
@@ -1097,7 +1097,7 @@
       "http": {
         "write": true
       },
-      "default": 0
+      "default": 1
     },
     {
       "name": "box_1_sht1x_temp_c",
