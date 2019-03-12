@@ -275,13 +275,12 @@ static void wifi_task(void *param) {
       }
     } else {
       // if AP mode and noone's watching, try STA mode.
+      ++counter;
       if (!(counter % 6) && !n_connected_sta && is_valid() && try_sta_connection()) {
-        ++counter;
         continue;
       }
       //ESP_LOGI(SGO_LOG_EVENT, "@WIFI Refresh MDNS service");
-      start_mdns_service();
-      ++counter;
+      //start_mdns_service();
     }
   }
 }

@@ -40,7 +40,7 @@ static void dump_heap_infos(const char *name, uint32_t cap) {
 
 static void stat_dump_task(void *param) {
   int counter = 0;
-  wait_connected();
+  //wait_connected();
   vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
   //uint32_t ulTotalRunTime, ulStatsAsPercentage;
   while(1) {

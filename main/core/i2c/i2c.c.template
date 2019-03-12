@@ -61,7 +61,7 @@ static void loop_devices(int portId) {
   int scl = get_i2c_scl(portId);
   {{#i2c_devices}}
   loop_{{.}}(portId, sda, scl);
-  vTaskDelay(50 / portTICK_RATE_MS);
+  vTaskDelay(200 / portTICK_RATE_MS);
   {{/i2c_devices}}
 }
 

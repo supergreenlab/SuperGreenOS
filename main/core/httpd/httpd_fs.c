@@ -147,6 +147,7 @@ static esp_err_t http_resp_file(httpd_req_t *req)
     ESP_LOGI(SGO_LOG_NOSEND, "Sending file : %s (%ld bytes)...", filepath, file_stat.st_size);
     set_content_type_from_file(req);
     httpd_resp_set_hdr(req, "Content-Encoding", "gzip");
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
 
     fd = fopen(filepath, "r");
     if (!fd) {

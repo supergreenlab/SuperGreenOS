@@ -143,7 +143,9 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
   va_copy(nl, l);
   va_arg(nl, int);
   const char *tag = va_arg(nl, const char *);
-  if (strcmp(tag, SGO_LOG_NOSEND) == 0) {
+  if (strcmp(tag, SGO_LOG_MSG) != 0 &&
+      strcmp(tag, SGO_LOG_EVENT) != 0 &&
+      strcmp(tag, SGO_LOG_METRIC) != 0) {
     return vprintf(str, l);
   }
 

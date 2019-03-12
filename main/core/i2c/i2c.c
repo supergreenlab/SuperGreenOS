@@ -61,13 +61,13 @@ static void loop_devices(int portId) {
   int sda = get_i2c_sda(portId);
   int scl = get_i2c_scl(portId);
   loop_sht21(portId, sda, scl);
-  vTaskDelay(50 / portTICK_RATE_MS);
+  vTaskDelay(200 / portTICK_RATE_MS);
   loop_dust_gpy2y10(portId, sda, scl);
-  vTaskDelay(50 / portTICK_RATE_MS);
+  vTaskDelay(200 / portTICK_RATE_MS);
   loop_sht1x(portId, sda, scl);
-  vTaskDelay(50 / portTICK_RATE_MS);
+  vTaskDelay(200 / portTICK_RATE_MS);
   loop_arduino_co2(portId, sda, scl);
-  vTaskDelay(50 / portTICK_RATE_MS);
+  vTaskDelay(200 / portTICK_RATE_MS);
 }
 
 void i2c_task(void *param) {
