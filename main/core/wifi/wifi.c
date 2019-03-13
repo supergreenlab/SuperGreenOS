@@ -59,9 +59,11 @@ static void start_ap(void);
 static esp_err_t event_handler(void *ctx, system_event_t *event);
 static void wifi_task(void *param);
 static bool is_valid();
-static void start_mdns_service();
+static void initt_mdns_service();
 
 void init_wifi() {
+  init_mdns_service();
+
   wifi_event_group = xEventGroupCreate();
   ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
 
@@ -89,9 +91,8 @@ void wait_connected() {
       false, true, portMAX_DELAY);
 }
 
-static void start_mdns_service()
+static void init_mdns_service()
 {
-  mdns_free();
 	esp_err_t err = mdns_init();
 	if (err) {
 		ESP_LOGE(SGO_LOG_EVENT, "@WIFI MDNS Init failed: %d\n", err);
@@ -100,8 +101,10 @@ static void start_mdns_service()
 
   char domain[MAX_KVALUE_SIZE] = {0};
   get_mdns_domain(domain, MAX_KVALUE_SIZE-1);
+
 	mdns_hostname_set(domain);
   mdns_service_add(NULL, "_http", "_tcp", 80, NULL, 0);
+
   ESP_LOGI(SGO_LOG_EVENT, "@WIFI Started MDNS advertising as %s.local", domain);
 }
 
@@ -251,10 +254,8 @@ static void wifi_task(void *param) {
         n_connected_sta = 0;
       } else if (c == CMD_STA_CONNECTED) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_STA_CONNECTED");
-        start_mdns_service();
       } else if (c == CMD_AP_STACONNECTED) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_AP_STACONNECTED");
-        start_mdns_service();
         ++n_connected_sta;
       } else if (c == CMD_AP_STADISCONNECTED) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_AP_STADISCONNECTED");
@@ -280,7 +281,6 @@ static void wifi_task(void *param) {
         continue;
       }
       //ESP_LOGI(SGO_LOG_EVENT, "@WIFI Refresh MDNS service");
-      //start_mdns_service();
     }
   }
 }
