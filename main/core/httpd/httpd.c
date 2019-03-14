@@ -110,6 +110,7 @@ static esp_err_t seti_handler(httpd_req_t *req) {
   int res = atoi(value);
 
   h->handler(res);
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_send(req, "OK", 2);
   return ESP_OK;
 }

@@ -59,7 +59,7 @@ static void start_ap(void);
 static esp_err_t event_handler(void *ctx, system_event_t *event);
 static void wifi_task(void *param);
 static bool is_valid();
-static void initt_mdns_service();
+static void init_mdns_service();
 
 void init_wifi() {
   init_mdns_service();
