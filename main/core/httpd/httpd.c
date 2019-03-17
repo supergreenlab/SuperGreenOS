@@ -153,6 +153,15 @@ static esp_err_t setstr_handler(httpd_req_t *req) {
   return ESP_OK;
 }
 
+static esp_err_t option_handler(httpd_req_t *req) {
+  ESP_LOGI(SGO_LOG_NOSEND, "pouet");
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Headers", "Content-Type,Access-Control-Allow-Origin");
+  httpd_resp_send(req, "OK", 2);
+  return ESP_OK;
+}
+
 httpd_uri_t uri_geti = {
   .uri      = "/i",
   .method   = HTTP_GET,
@@ -188,6 +197,13 @@ httpd_uri_t file_download = {
 	.user_ctx  = NULL
 };
 
+httpd_uri_t uri_option = {
+  .uri      = "/*",
+  .method   = HTTP_OPTIONS,
+  .handler  = option_handler,
+  .user_ctx = NULL
+};
+
 static httpd_handle_t server = NULL;
 
 static httpd_handle_t start_webserver(void) {
@@ -196,6 +212,7 @@ static httpd_handle_t start_webserver(void) {
   config.uri_match_fn = httpd_uri_match_wildcard;
 
   if (httpd_start(&server, &config) == ESP_OK) {
+    httpd_register_uri_handler(server, &uri_option);
     httpd_register_uri_handler(server, &file_download);
     httpd_register_uri_handler(server, &uri_geti);
     httpd_register_uri_handler(server, &uri_seti);
