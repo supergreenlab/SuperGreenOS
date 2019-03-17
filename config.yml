@@ -418,6 +418,8 @@ keys:
       param: enabled
     nvs:
       key: B_0_E
+    http:
+      write: true
     default: 1
 
   - name: box_0_timer_type

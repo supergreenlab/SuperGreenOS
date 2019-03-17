@@ -96,7 +96,7 @@ const kvi_handler kvi_handlers[] = {
   },
   {
     .name = "BOX_0_ENABLED",
-    .handler = NULL,
+    .handler = internal_set_box_0_enabled,
     .getter = get_box_0_enabled,
   },
   {

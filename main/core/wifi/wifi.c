@@ -245,9 +245,9 @@ static void wifi_task(void *param) {
           was_valid = _is_valid;
           if (_is_valid) {
             start_sta();
-          } else {
+          }/* else {
             start_ap();
-          }
+          }*/
         }
       } else if (c == CMD_AP_START) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_AP_START");

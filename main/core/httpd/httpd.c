@@ -148,6 +148,7 @@ static esp_err_t setstr_handler(httpd_req_t *req) {
   find_str_param(req->uri, "v", value, &len);
 
   h->handler(value);
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_send(req, "OK", 2);
   return ESP_OK;
 }
