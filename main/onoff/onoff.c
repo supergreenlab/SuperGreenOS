@@ -28,9 +28,6 @@
 #include "../timer/timer.h"
 #include "../core/log/log.h"
 #include "../core/kv/kv.h"
-#include "../core/kv/kv_ble.h"
-#include "../core/ble/ble.h"
-#include "../core/ble/ble_db.h"
 #include "../box/box.h"
 
 #define SUN_MOVING_MULTI 800

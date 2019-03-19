@@ -23,8 +23,6 @@
 #include "freertos/semphr.h"
 
 #include "kv.h"
-#include "kv_ble.h"
-#include "../ble/ble.h"
 
 /*
  * [GENERATED]
@@ -80,11 +78,6 @@ void set_{{name}}(int value) {
   {{/nvs}}
   _{{name}}_changed = true;
   xSemaphoreGive(_mutex_{{name}});
-  {{#ble.notify}}
-  {{^ble.no_sync}}
-  set_attr_value_and_notify(IDX_CHAR_VAL_{{caps_name}}, (uint8_t *)&value, sizeof(int));
-  {{/ble.no_sync}}
-  {{/ble.notify}}
 }
 {{/integer}}
 
@@ -121,11 +114,6 @@ void set_{{name}}(const char *value) {
   {{/nvs}}
   _{{name}}_changed = true;
   xSemaphoreGive(_mutex_{{name}});
-  {{#ble}}
-  {{^ble.no_sync}}
-  set_attr_value{{#ble.notify}}_and_notify{{/ble.notify}}(IDX_CHAR_VAL_{{caps_name}}, (uint8_t *)value, strlen(value));
-  {{/ble.no_sync}}
-  {{/ble}}
 }
 {{/string}}
 {{/keys}}

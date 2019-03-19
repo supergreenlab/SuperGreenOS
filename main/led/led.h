@@ -19,7 +19,6 @@
 #ifndef LED_H_
 #define LED_H_
 
-#include "../core/ble/ble_db.h"
 #include "driver/ledc.h"
 #include "led_helpers.h"
 

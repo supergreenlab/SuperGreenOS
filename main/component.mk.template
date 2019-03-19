@@ -6,3 +6,6 @@ COMPONENT_SRCDIRS +={{#custom_modules}} {{.}}{{/custom_modules}}
 
 # I2C devices
 COMPONENT_SRCDIRS +={{#i2c_devices}} {{.}}{{/i2c_devices}}
+
+COMPONENT_EMBED_TXTFILES := core/httpd/certs/cacert.pem
+COMPONENT_EMBED_TXTFILES += core/httpd/certs/prvtkey.pem

@@ -19,8 +19,6 @@
 #ifndef MIXER_H_
 #define MIXER_H_
 
-#include "esp_gatt_common_api.h"
-
 void init_mixer();
 
 // BLE Callbacks

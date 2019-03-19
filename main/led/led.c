@@ -29,11 +29,7 @@
 
 #include "led.h"
 #include "led_db.h"
-#include "../core/ble/ble_db.h"
 #include "../core/kv/kv.h"
-#include "../core/kv/kv_ble.h"
-#include "../core/ble/ble.h"
-#include "../core/ble/ble_utils.h"
 #include "../core/log/log.h"
 #include "../core/time/time.h"
 #include "../state/state.h"
@@ -127,7 +123,7 @@ void init_led_info(int box_id, char *led_info) {
     }
     char led[32] = {0};
     sprintf(led, "i:%d;x:%d;y:%d;z:%d;gpio_num:%d", i, ledc_channels[i].x, ledc_channels[i].y, ledc_channels[i].z, ledc_channels[i].channel_config.gpio_num);
-    if (strlen(led_info) + strlen(led) + 1 >= CHAR_VAL_LEN_MAX) {
+    if (strlen(led_info) + strlen(led) + 1 >= MAX_KVALUE_SIZE) {
       ESP_LOGE(SGO_LOG_EVENT, "@LED Not enough space to build LED_INFO !!!");
       break;
     }
@@ -173,7 +169,7 @@ void init_led() {
     ledc_channel_config(&ledc_channels[i].channel_config);
   }
 
-  char led_info[CHAR_VAL_LEN_MAX] = {0};
+  char led_info[MAX_KVALUE_SIZE] = {0};
   init_led_info(0, led_info); set_box_0_led_info(led_info);
   init_led_info(1, led_info); set_box_1_led_info(led_info);
   init_led_info(2, led_info); set_box_2_led_info(led_info);

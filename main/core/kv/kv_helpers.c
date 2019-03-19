@@ -23,8 +23,6 @@
 #include "freertos/semphr.h"
 
 #include "kv.h"
-#include "kv_ble.h"
-#include "../ble/ble.h"
 
 /*
  * [GENERATED]
@@ -65,7 +63,6 @@ void set_wifi_status(int value) {
   _wifi_status = value;
   _wifi_status_changed = true;
   xSemaphoreGive(_mutex_wifi_status);
-  set_attr_value_and_notify(IDX_CHAR_VAL_WIFI_STATUS, (uint8_t *)&value, sizeof(int));
 }
 
 
@@ -104,7 +101,6 @@ void set_wifi_ssid(const char *value) {
   xSemaphoreTake(_mutex_wifi_ssid, 0);
   _wifi_ssid_changed = true;
   xSemaphoreGive(_mutex_wifi_ssid);
-  set_attr_value(IDX_CHAR_VAL_WIFI_SSID, (uint8_t *)value, strlen(value));
 }
 
 static SemaphoreHandle_t _mutex_wifi_password; // TODO check RAM weight of creating so many semaphores :/
@@ -290,7 +286,6 @@ void set_wifi_ip(const char *value) {
   xSemaphoreTake(_mutex_wifi_ip, 0);
   _wifi_ip_changed = true;
   xSemaphoreGive(_mutex_wifi_ip);
-  set_attr_value_and_notify(IDX_CHAR_VAL_WIFI_IP, (uint8_t *)value, strlen(value));
 }
 
 static SemaphoreHandle_t _mutex_time; // TODO check RAM weight of creating so many semaphores :/
@@ -321,7 +316,6 @@ void set_time(int value) {
   xSemaphoreTake(_mutex_time, 0);
   _time_changed = true;
   xSemaphoreGive(_mutex_time);
-  set_attr_value_and_notify(IDX_CHAR_VAL_TIME, (uint8_t *)&value, sizeof(int));
 }
 
 
@@ -930,7 +924,6 @@ void set_state(int value) {
   xSemaphoreTake(_mutex_state, 0);
   _state_changed = true;
   xSemaphoreGive(_mutex_state);
-  set_attr_value_and_notify(IDX_CHAR_VAL_STATE, (uint8_t *)&value, sizeof(int));
 }
 
 
@@ -969,7 +962,6 @@ void set_device_name(const char *value) {
   xSemaphoreTake(_mutex_device_name, 0);
   _device_name_changed = true;
   xSemaphoreGive(_mutex_device_name);
-  set_attr_value(IDX_CHAR_VAL_DEVICE_NAME, (uint8_t *)value, strlen(value));
 }
 
 static SemaphoreHandle_t _mutex_box_0_enabled; // TODO check RAM weight of creating so many semaphores :/
@@ -1093,7 +1085,6 @@ void set_box_0_started_at(int value) {
   xSemaphoreTake(_mutex_box_0_started_at, 0);
   _box_0_started_at_changed = true;
   xSemaphoreGive(_mutex_box_0_started_at);
-  set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_STARTED_AT, (uint8_t *)&value, sizeof(int));
 }
 
 
@@ -1249,7 +1240,6 @@ void set_box_0_stretch(int value) {
   xSemaphoreTake(_mutex_box_0_stretch, 0);
   _box_0_stretch_changed = true;
   xSemaphoreGive(_mutex_box_0_stretch);
-  set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_STRETCH, (uint8_t *)&value, sizeof(int));
 }
 
 
@@ -1281,7 +1271,6 @@ void set_box_0_led_dim(int value) {
   xSemaphoreTake(_mutex_box_0_led_dim, 0);
   _box_0_led_dim_changed = true;
   xSemaphoreGive(_mutex_box_0_led_dim);
-  set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_LED_DIM, (uint8_t *)&value, sizeof(int));
 }
 
 
@@ -1313,7 +1302,6 @@ void set_box_0_blower(int value) {
   xSemaphoreTake(_mutex_box_0_blower, 0);
   _box_0_blower_changed = true;
   xSemaphoreGive(_mutex_box_0_blower);
-  set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_BLOWER, (uint8_t *)&value, sizeof(int));
 }
 
 
@@ -1692,7 +1680,6 @@ void set_box_0_led_info(const char *value) {
   strncpy(_box_0_led_info, value, strlen(value));
   _box_0_led_info_changed = true;
   xSemaphoreGive(_mutex_box_0_led_info);
-  set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_LED_INFO, (uint8_t *)value, strlen(value));
 }
 
 static SemaphoreHandle_t _mutex_box_1_enabled; // TODO check RAM weight of creating so many semaphores :/

@@ -25,7 +25,6 @@
 #include "kv/kv.h"
 #include "reboot/reboot.h"
 #include "mqtt/mqtt.h"
-#include "ble/ble.h"
 #include "wifi/wifi.h"
 #include "time/time.h"
 #include "i2c/i2c.h"
@@ -47,7 +46,6 @@ void app_main() {
   preinit_kv();
   set_n_restarts(get_n_restarts()+1);
 
-  init_ble();
   init_wifi();
 
   postinit_kv();

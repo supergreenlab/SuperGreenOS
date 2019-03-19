@@ -29,7 +29,6 @@
 #include "nvs.h"
 
 #include "kv.h"
-#include "kv_ble.h"
 #include "../include_modules.h"
 
 void init_helpers();
@@ -356,21 +355,6 @@ void postinit_kv() {
   /*
    * [GENERATED]
    */
-
-  sync_ble_str(WIFI_SSID, IDX_VALUE(WIFI_SSID));
-  sync_ble_str(WIFI_IP, IDX_VALUE(WIFI_IP));
-  sync_ble_i(TIME, IDX_VALUE(TIME));
-  sync_ble_i(STATE, IDX_VALUE(STATE));
-  sync_ble_str(DEVICE_NAME, IDX_VALUE(DEVICE_NAME));
-  sync_ble_i(BOX_0_TIMER_TYPE, IDX_VALUE(BOX_0_TIMER_TYPE));
-  sync_ble_i(BOX_0_STARTED_AT, IDX_VALUE(BOX_0_STARTED_AT));
-  sync_ble_i(BOX_0_ON_HOUR, IDX_VALUE(BOX_0_ON_HOUR));
-  sync_ble_i(BOX_0_ON_MIN, IDX_VALUE(BOX_0_ON_MIN));
-  sync_ble_i(BOX_0_OFF_HOUR, IDX_VALUE(BOX_0_OFF_HOUR));
-  sync_ble_i(BOX_0_OFF_MIN, IDX_VALUE(BOX_0_OFF_MIN));
-  sync_ble_i(BOX_0_STRETCH, IDX_VALUE(BOX_0_STRETCH));
-  sync_ble_i(BOX_0_LED_DIM, IDX_VALUE(BOX_0_LED_DIM));
-  sync_ble_i(BOX_0_BLOWER, IDX_VALUE(BOX_0_BLOWER));
 
   // Initialize non-nvs keys
   int default_wifi_status = DISCONNECTED;

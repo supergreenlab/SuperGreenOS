@@ -25,7 +25,6 @@
 
 // Core modules
 #include "wifi/wifi.h"
-#include "ble/ble.h"
 #include "kv/kv.h"
 #include "ota/ota.h"
 #include "httpd/httpd.h"

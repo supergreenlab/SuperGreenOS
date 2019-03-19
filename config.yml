@@ -17,7 +17,6 @@
 core_modules:
 
   - wifi
-  - ble
   - kv
   - ota
   - httpd

@@ -19,6 +19,8 @@
 #ifndef TIME_H_
 #define TIME_H_
 
+#include <time.h>
+
 void init_time();
 time_t get_box_time();
 

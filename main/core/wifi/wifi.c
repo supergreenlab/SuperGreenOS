@@ -33,10 +33,7 @@
 
 #include "wifi.h"
 #include "../log/log.h"
-#include "../ble/ble.h"
-#include "../ble/ble_db.h"
 #include "../kv/kv.h"
-#include "../kv/kv_ble.h"
 
 typedef const unsigned int wifi_cmd;
 static wifi_cmd CMD_SSID_CHANGED = 1;

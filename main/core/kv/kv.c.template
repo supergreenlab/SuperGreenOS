@@ -29,7 +29,6 @@
 #include "nvs.h"
 
 #include "kv.h"
-#include "kv_ble.h"
 #include "../include_modules.h"
 
 void init_helpers();
@@ -82,16 +81,6 @@ void postinit_kv() {
   /*
    * [GENERATED]
    */
-
-  {{#keys}}
-  {{#ble}}
-  {{^ble.no_sync}}
-  {{#nvs}}
-  sync_ble_{{#string}}str{{/string}}{{#integer}}i{{/integer}}({{caps_name}}, IDX_VALUE({{caps_name}}));
-  {{/nvs}}
-  {{/ble.no_sync}}
-  {{/ble}}
-  {{/keys}}
 
   // Initialize non-nvs keys
   {{#keys}}

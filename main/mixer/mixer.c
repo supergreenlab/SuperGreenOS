@@ -25,10 +25,7 @@
 #include "freertos/task.h"
 #include "time.h"
 
-#include "../core/ble/ble_db.h"
 #include "../core/kv/kv.h"
-#include "../core/kv/kv_ble.h"
-#include "../core/ble/ble.h"
 #include "../core/log/log.h"
 #include "../led/led.h"
 #include "../state/state.h"

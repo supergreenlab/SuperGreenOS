@@ -29,9 +29,6 @@
 #include "time.h"
 #include "utils.h"
 #include "../kv/kv.h"
-#include "../kv/kv_ble.h"
-#include "../ble/ble.h"
-#include "../ble/ble_db.h"
 #include "../wifi/wifi.h"
 
 static void time_task(void *param);

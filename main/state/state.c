@@ -21,7 +21,6 @@
 
 #include "state.h"
 #include "../core/kv/kv.h"
-#include "../core/kv/kv_ble.h"
 
 void init_state() {
 }

@@ -21,7 +21,7 @@
 
 #include <stdlib.h>
 
-#include <esp_http_server.h>
+#include <esp_https_server.h>
 
 #include "../kv/kv.h"
 #include "../log/log.h"
@@ -208,16 +208,28 @@ static httpd_handle_t server = NULL;
 
 static httpd_handle_t start_webserver(void) {
 
-  httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-  config.uri_match_fn = httpd_uri_match_wildcard;
+  httpd_ssl_config_t config = HTTPD_SSL_CONFIG_DEFAULT();
+  config.httpd.uri_match_fn = httpd_uri_match_wildcard;
 
-  if (httpd_start(&server, &config) == ESP_OK) {
+  extern const unsigned char cacert_pem_start[] asm("_binary_cacert_pem_start");
+  extern const unsigned char cacert_pem_end[]   asm("_binary_cacert_pem_end");
+  config.cacert_pem = cacert_pem_start;
+  config.cacert_len = cacert_pem_end - cacert_pem_start;
+
+  extern const unsigned char prvtkey_pem_start[] asm("_binary_prvtkey_pem_start");
+  extern const unsigned char prvtkey_pem_end[]   asm("_binary_prvtkey_pem_end");
+  config.prvtkey_pem = prvtkey_pem_start;
+  config.prvtkey_len = prvtkey_pem_end - prvtkey_pem_start;
+
+  if (httpd_ssl_start(&server, &config) == ESP_OK) {
     httpd_register_uri_handler(server, &uri_option);
     httpd_register_uri_handler(server, &file_download);
     httpd_register_uri_handler(server, &uri_geti);
     httpd_register_uri_handler(server, &uri_seti);
     httpd_register_uri_handler(server, &uri_getstr);
     httpd_register_uri_handler(server, &uri_setstr);
+  } else {
+    ESP_LOGI(SGO_LOG_EVENT, "Error starting https server!");
   }
   return server;
 }

@@ -28,9 +28,7 @@
 #include "soc/mcpwm_struct.h"
 
 #include "../core/log/log.h"
-#include "../core/ble/ble_db.h"
 #include "../core/kv/kv.h"
-#include "../core/kv/kv_ble.h"
 
 #include "../box/box.h"
 

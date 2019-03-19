@@ -19,8 +19,6 @@
 #ifndef TIMER_H_
 #define TIMER_H_
 
-#include "esp_gatt_common_api.h"
-
 enum timer {
   TIMER_MANUAL,
   TIMER_ONOFF,
