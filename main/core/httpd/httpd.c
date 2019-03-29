@@ -29,6 +29,7 @@
 #define IS_URI_SEP(c) (c == '?' || c == '&' || c == '=')
 
 esp_err_t download_get_handler(httpd_req_t *req);
+esp_err_t upload_post_handler(httpd_req_t *req);
 esp_err_t init_spiffs(void);
 
 /* static size_t get_char_count(const char *uri) {
@@ -197,6 +198,13 @@ httpd_uri_t file_download = {
 	.user_ctx  = NULL
 };
 
+httpd_uri_t file_upload = {
+	.uri       = "/fs/*",
+	.method    = HTTP_POST,
+	.handler   = upload_post_handler,
+	.user_ctx  = NULL
+};
+
 httpd_uri_t uri_option = {
   .uri      = "/*",
   .method   = HTTP_OPTIONS,
@@ -218,12 +226,13 @@ static httpd_handle_t start_webserver(void) {
     httpd_register_uri_handler(server, &uri_seti);
     httpd_register_uri_handler(server, &uri_getstr);
     httpd_register_uri_handler(server, &uri_setstr);
+		httpd_register_uri_handler(server, &file_upload);
   }
   return server;
 }
 
 void init_httpd() {
-  ESP_LOGI(SGO_LOG_EVENT, "@MQTT Intializing MQTT task");
+  ESP_LOGI(SGO_LOG_EVENT, "@HTTPS Intializing HTTPD task");
 
   init_spiffs();
   start_webserver();
