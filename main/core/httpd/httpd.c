@@ -155,7 +155,6 @@ static esp_err_t setstr_handler(httpd_req_t *req) {
 }
 
 static esp_err_t option_handler(httpd_req_t *req) {
-  ESP_LOGI(SGO_LOG_NOSEND, "pouet");
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_set_hdr(req, "Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   httpd_resp_set_hdr(req, "Access-Control-Allow-Headers", "Content-Type,Access-Control-Allow-Origin");
