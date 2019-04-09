@@ -250,6 +250,8 @@ void preinit_kv() {
   defaulti(LED_4_DUTY, default_led_4_duty);
   int default_led_5_duty = 0;
   defaulti(LED_5_DUTY, default_led_5_duty);
+  int default_led_6_duty = 0;
+  defaulti(LED_6_DUTY, default_led_6_duty);
   int default_led_0_gpio = DEFAULT_LED_0_GPIO;
   defaulti(LED_0_GPIO, default_led_0_gpio);
   int default_led_1_gpio = DEFAULT_LED_1_GPIO;
@@ -262,6 +264,8 @@ void preinit_kv() {
   defaulti(LED_4_GPIO, default_led_4_gpio);
   int default_led_5_gpio = DEFAULT_LED_5_GPIO;
   defaulti(LED_5_GPIO, default_led_5_gpio);
+  int default_led_6_gpio = DEFAULT_LED_6_GPIO;
+  defaulti(LED_6_GPIO, default_led_6_gpio);
   int default_led_0_x = 0;
   defaulti(LED_0_X, default_led_0_x);
   int default_led_1_x = 0;
@@ -274,6 +278,8 @@ void preinit_kv() {
   defaulti(LED_4_X, default_led_4_x);
   int default_led_5_x = 0;
   defaulti(LED_5_X, default_led_5_x);
+  int default_led_6_x = 0;
+  defaulti(LED_6_X, default_led_6_x);
   int default_led_0_y = 0;
   defaulti(LED_0_Y, default_led_0_y);
   int default_led_1_y = 0;
@@ -286,6 +292,8 @@ void preinit_kv() {
   defaulti(LED_4_Y, default_led_4_y);
   int default_led_5_y = 0;
   defaulti(LED_5_Y, default_led_5_y);
+  int default_led_6_y = 0;
+  defaulti(LED_6_Y, default_led_6_y);
   int default_led_0_z = 0;
   defaulti(LED_0_Z, default_led_0_z);
   int default_led_1_z = 0;
@@ -298,6 +306,8 @@ void preinit_kv() {
   defaulti(LED_4_Z, default_led_4_z);
   int default_led_5_z = 0;
   defaulti(LED_5_Z, default_led_5_z);
+  int default_led_6_z = 0;
+  defaulti(LED_6_Z, default_led_6_z);
   int default_led_0_enabled = 1;
   defaulti(LED_0_ENABLED, default_led_0_enabled);
   int default_led_1_enabled = 1;
@@ -310,6 +320,8 @@ void preinit_kv() {
   defaulti(LED_4_ENABLED, default_led_4_enabled);
   int default_led_5_enabled = 1;
   defaulti(LED_5_ENABLED, default_led_5_enabled);
+  int default_led_6_enabled = 1;
+  defaulti(LED_6_ENABLED, default_led_6_enabled);
   int default_led_0_box = 0;
   defaulti(LED_0_BOX, default_led_0_box);
   int default_led_1_box = 0;
@@ -322,6 +334,8 @@ void preinit_kv() {
   defaulti(LED_4_BOX, default_led_4_box);
   int default_led_5_box = 1;
   defaulti(LED_5_BOX, default_led_5_box);
+  int default_led_6_box = 1;
+  defaulti(LED_6_BOX, default_led_6_box);
   int default_led_0_dim = 100;
   defaulti(LED_0_DIM, default_led_0_dim);
   int default_led_1_dim = 100;
@@ -334,6 +348,8 @@ void preinit_kv() {
   defaulti(LED_4_DIM, default_led_4_dim);
   int default_led_5_dim = 100;
   defaulti(LED_5_DIM, default_led_5_dim);
+  int default_led_6_dim = 100;
+  defaulti(LED_6_DIM, default_led_6_dim);
   int default_led_0_fade = 1;
   defaulti(LED_0_FADE, default_led_0_fade);
   int default_led_1_fade = 1;
@@ -346,6 +362,8 @@ void preinit_kv() {
   defaulti(LED_4_FADE, default_led_4_fade);
   int default_led_5_fade = 1;
   defaulti(LED_5_FADE, default_led_5_fade);
+  int default_led_6_fade = 1;
+  defaulti(LED_6_FADE, default_led_6_fade);
 
   /*
    * [/GENERATED]
@@ -585,6 +603,8 @@ void reset_defaults() {
   seti(LED_4_DUTY, default_led_4_duty);
   int default_led_5_duty = 0;
   seti(LED_5_DUTY, default_led_5_duty);
+  int default_led_6_duty = 0;
+  seti(LED_6_DUTY, default_led_6_duty);
   int default_led_0_gpio = DEFAULT_LED_0_GPIO;
   seti(LED_0_GPIO, default_led_0_gpio);
   int default_led_1_gpio = DEFAULT_LED_1_GPIO;
@@ -597,6 +617,8 @@ void reset_defaults() {
   seti(LED_4_GPIO, default_led_4_gpio);
   int default_led_5_gpio = DEFAULT_LED_5_GPIO;
   seti(LED_5_GPIO, default_led_5_gpio);
+  int default_led_6_gpio = DEFAULT_LED_6_GPIO;
+  seti(LED_6_GPIO, default_led_6_gpio);
   int default_led_0_x = 0;
   seti(LED_0_X, default_led_0_x);
   int default_led_1_x = 0;
@@ -609,6 +631,8 @@ void reset_defaults() {
   seti(LED_4_X, default_led_4_x);
   int default_led_5_x = 0;
   seti(LED_5_X, default_led_5_x);
+  int default_led_6_x = 0;
+  seti(LED_6_X, default_led_6_x);
   int default_led_0_y = 0;
   seti(LED_0_Y, default_led_0_y);
   int default_led_1_y = 0;
@@ -621,6 +645,8 @@ void reset_defaults() {
   seti(LED_4_Y, default_led_4_y);
   int default_led_5_y = 0;
   seti(LED_5_Y, default_led_5_y);
+  int default_led_6_y = 0;
+  seti(LED_6_Y, default_led_6_y);
   int default_led_0_z = 0;
   seti(LED_0_Z, default_led_0_z);
   int default_led_1_z = 0;
@@ -633,6 +659,8 @@ void reset_defaults() {
   seti(LED_4_Z, default_led_4_z);
   int default_led_5_z = 0;
   seti(LED_5_Z, default_led_5_z);
+  int default_led_6_z = 0;
+  seti(LED_6_Z, default_led_6_z);
   int default_led_0_enabled = 1;
   seti(LED_0_ENABLED, default_led_0_enabled);
   int default_led_1_enabled = 1;
@@ -645,6 +673,8 @@ void reset_defaults() {
   seti(LED_4_ENABLED, default_led_4_enabled);
   int default_led_5_enabled = 1;
   seti(LED_5_ENABLED, default_led_5_enabled);
+  int default_led_6_enabled = 1;
+  seti(LED_6_ENABLED, default_led_6_enabled);
   int default_led_0_box = 0;
   seti(LED_0_BOX, default_led_0_box);
   int default_led_1_box = 0;
@@ -657,6 +687,8 @@ void reset_defaults() {
   seti(LED_4_BOX, default_led_4_box);
   int default_led_5_box = 1;
   seti(LED_5_BOX, default_led_5_box);
+  int default_led_6_box = 1;
+  seti(LED_6_BOX, default_led_6_box);
   int default_led_0_dim = 100;
   seti(LED_0_DIM, default_led_0_dim);
   int default_led_1_dim = 100;
@@ -669,6 +701,8 @@ void reset_defaults() {
   seti(LED_4_DIM, default_led_4_dim);
   int default_led_5_dim = 100;
   seti(LED_5_DIM, default_led_5_dim);
+  int default_led_6_dim = 100;
+  seti(LED_6_DIM, default_led_6_dim);
   int default_led_0_fade = 1;
   seti(LED_0_FADE, default_led_0_fade);
   int default_led_1_fade = 1;
@@ -681,6 +715,8 @@ void reset_defaults() {
   seti(LED_4_FADE, default_led_4_fade);
   int default_led_5_fade = 1;
   seti(LED_5_FADE, default_led_5_fade);
+  int default_led_6_fade = 1;
+  seti(LED_6_FADE, default_led_6_fade);
 }
 
 bool hasi(const char * key) {

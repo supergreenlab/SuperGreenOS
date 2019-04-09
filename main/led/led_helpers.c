@@ -39,6 +39,8 @@
       return get_led_4_## param(ledId); \
     case 5: \
       return get_led_5_## param(ledId); \
+    case 6: \
+      return get_led_6_## param(ledId); \
   } \
   return 0; \
 }
@@ -63,6 +65,9 @@
     case 5: \
       set_led_5_## param(value); \
       break; \
+    case 6: \
+      set_led_6_## param(value); \
+      break; \
   } \
 }
 
@@ -72,12 +77,14 @@ LED_CB(2, duty)
 LED_CB(3, duty)
 LED_CB(4, duty)
 LED_CB(5, duty)
+LED_CB(6, duty)
 LED_CB(0, dim)
 LED_CB(1, dim)
 LED_CB(2, dim)
 LED_CB(3, dim)
 LED_CB(4, dim)
 LED_CB(5, dim)
+LED_CB(6, dim)
 
 LED_SETTER(duty)
 LED_GETTER(duty)

@@ -78,6 +78,7 @@ void refresh_led(int boxId, int ledId, int fade_time);
 #define DEFAULT_LED_3_GPIO 16
 #define DEFAULT_LED_4_GPIO 25
 #define DEFAULT_LED_5_GPIO 4
+#define DEFAULT_LED_6_GPIO 5
 
 /* BLE Callbacks */
 

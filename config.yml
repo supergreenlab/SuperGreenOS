@@ -107,6 +107,7 @@ led_loop_i:
   - 3
   - 4
   - 5
+  - 6
 
 keys:
 
@@ -1369,6 +1370,19 @@ keys:
     write_cb: true
     default: 0
 
+  - name: led_6_duty
+    caps_name: LED_6_DUTY
+    integer: true
+    led:
+      index: 6
+      param: duty
+    nvs:
+      key: L_6_D
+    http:
+      write: true
+    write_cb: true
+    default: 0
+
   - name: led_0_gpio
     caps_name: LED_0_GPIO
     integer: true
@@ -1441,6 +1455,18 @@ keys:
       write: true
     default_var: DEFAULT_LED_5_GPIO
 
+  - name: led_6_gpio
+    caps_name: LED_6_GPIO
+    integer: true
+    led:
+      index: 6
+      param: gpio
+    nvs:
+      key: L_6_IO
+    http:
+      write: true
+    default_var: DEFAULT_LED_6_GPIO
+
   - name: led_0_x
     caps_name: LED_0_X
     integer: true
@@ -1509,6 +1535,18 @@ keys:
       param: x
     nvs:
       key: L_5_X
+    http:
+      write: true
+    default: 0
+
+  - name: led_6_x
+    caps_name: LED_6_X
+    integer: true
+    led:
+      index: 6
+      param: x
+    nvs:
+      key: L_6_X
     http:
       write: true
     default: 0
@@ -1585,6 +1623,18 @@ keys:
       write: true
     default: 0
 
+  - name: led_6_y
+    caps_name: LED_6_Y
+    integer: true
+    led:
+      index: 6
+      param: y
+    nvs:
+      key: L_6_Y
+    http:
+      write: true
+    default: 0
+
   - name: led_0_z
     caps_name: LED_0_Z
     integer: true
@@ -1653,6 +1703,18 @@ keys:
       param: z
     nvs:
       key: L_5_Z
+    http:
+      write: true
+    default: 0
+
+  - name: led_6_z
+    caps_name: LED_6_Z
+    integer: true
+    led:
+      index: 6
+      param: z
+    nvs:
+      key: L_6_Z
     http:
       write: true
     default: 0
@@ -1729,6 +1791,18 @@ keys:
       write: true
     default: 1
 
+  - name: led_6_enabled
+    caps_name: LED_6_ENABLED
+    integer: true
+    led:
+      index: 6
+      param: enabled
+    nvs:
+      key: L_6_E
+    http:
+      write: true
+    default: 1
+
   - name: led_0_box
     caps_name: LED_0_BOX
     integer: true
@@ -1797,6 +1871,18 @@ keys:
       param: box
     nvs:
       key: L_5_B
+    http:
+      write: true
+    default: 1
+
+  - name: led_6_box
+    caps_name: LED_6_BOX
+    integer: true
+    led:
+      index: 6
+      param: box
+    nvs:
+      key: L_6_B
     http:
       write: true
     default: 1
@@ -1879,6 +1965,19 @@ keys:
     write_cb: true
     default: 100
 
+  - name: led_6_dim
+    caps_name: LED_6_DIM
+    integer: true
+    led:
+      index: 6
+      param: dim
+    nvs:
+      key: L_6_DI
+    http:
+      write: true
+    write_cb: true
+    default: 100
+
   - name: led_0_fade
     caps_name: LED_0_FADE
     led:
@@ -1947,6 +2046,18 @@ keys:
     integer: true
     nvs:
       key: L_5_F
+    http:
+      write: true
+    default: 1
+
+  - name: led_6_fade
+    caps_name: LED_6_FADE
+    led:
+      index: 6
+      param: fade
+    integer: true
+    nvs:
+      key: L_6_F
     http:
       write: true
     default: 1

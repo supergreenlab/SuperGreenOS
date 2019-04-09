@@ -773,6 +773,16 @@ void internal_set_led_5_duty(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_led_6_duty(int value) {
+  set_led_6_duty(value);
+
+  value = on_set_led_6_duty(value);
+
+  set_led_6_duty(value);
+
+
+  // TODO: httpd notify
+}
 void internal_set_led_0_gpio(int value) {
   set_led_0_gpio(value);
 
@@ -810,6 +820,13 @@ void internal_set_led_4_gpio(int value) {
 }
 void internal_set_led_5_gpio(int value) {
   set_led_5_gpio(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_6_gpio(int value) {
+  set_led_6_gpio(value);
 
 
 
@@ -857,6 +874,13 @@ void internal_set_led_5_x(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_led_6_x(int value) {
+  set_led_6_x(value);
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_led_0_y(int value) {
   set_led_0_y(value);
 
@@ -894,6 +918,13 @@ void internal_set_led_4_y(int value) {
 }
 void internal_set_led_5_y(int value) {
   set_led_5_y(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_6_y(int value) {
+  set_led_6_y(value);
 
 
 
@@ -941,6 +972,13 @@ void internal_set_led_5_z(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_led_6_z(int value) {
+  set_led_6_z(value);
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_led_0_enabled(int value) {
   set_led_0_enabled(value);
 
@@ -983,6 +1021,13 @@ void internal_set_led_5_enabled(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_led_6_enabled(int value) {
+  set_led_6_enabled(value);
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_led_0_box(int value) {
   set_led_0_box(value);
 
@@ -1020,6 +1065,13 @@ void internal_set_led_4_box(int value) {
 }
 void internal_set_led_5_box(int value) {
   set_led_5_box(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_6_box(int value) {
+  set_led_6_box(value);
 
 
 
@@ -1085,6 +1137,16 @@ void internal_set_led_5_dim(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_led_6_dim(int value) {
+  set_led_6_dim(value);
+
+  value = on_set_led_6_dim(value);
+
+  set_led_6_dim(value);
+
+
+  // TODO: httpd notify
+}
 void internal_set_led_0_fade(int value) {
   set_led_0_fade(value);
 
@@ -1122,6 +1184,13 @@ void internal_set_led_4_fade(int value) {
 }
 void internal_set_led_5_fade(int value) {
   set_led_5_fade(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_led_6_fade(int value) {
+  set_led_6_fade(value);
 
 
 

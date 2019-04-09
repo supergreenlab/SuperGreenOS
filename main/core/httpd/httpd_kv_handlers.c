@@ -455,6 +455,11 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_led_5_duty,
   },
   {
+    .name = "LED_6_DUTY",
+    .handler = internal_set_led_6_duty,
+    .getter = get_led_6_duty,
+  },
+  {
     .name = "LED_0_GPIO",
     .handler = internal_set_led_0_gpio,
     .getter = get_led_0_gpio,
@@ -483,6 +488,11 @@ const kvi_handler kvi_handlers[] = {
     .name = "LED_5_GPIO",
     .handler = internal_set_led_5_gpio,
     .getter = get_led_5_gpio,
+  },
+  {
+    .name = "LED_6_GPIO",
+    .handler = internal_set_led_6_gpio,
+    .getter = get_led_6_gpio,
   },
   {
     .name = "LED_0_X",
@@ -515,6 +525,11 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_led_5_x,
   },
   {
+    .name = "LED_6_X",
+    .handler = internal_set_led_6_x,
+    .getter = get_led_6_x,
+  },
+  {
     .name = "LED_0_Y",
     .handler = internal_set_led_0_y,
     .getter = get_led_0_y,
@@ -543,6 +558,11 @@ const kvi_handler kvi_handlers[] = {
     .name = "LED_5_Y",
     .handler = internal_set_led_5_y,
     .getter = get_led_5_y,
+  },
+  {
+    .name = "LED_6_Y",
+    .handler = internal_set_led_6_y,
+    .getter = get_led_6_y,
   },
   {
     .name = "LED_0_Z",
@@ -575,6 +595,11 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_led_5_z,
   },
   {
+    .name = "LED_6_Z",
+    .handler = internal_set_led_6_z,
+    .getter = get_led_6_z,
+  },
+  {
     .name = "LED_0_ENABLED",
     .handler = internal_set_led_0_enabled,
     .getter = get_led_0_enabled,
@@ -603,6 +628,11 @@ const kvi_handler kvi_handlers[] = {
     .name = "LED_5_ENABLED",
     .handler = internal_set_led_5_enabled,
     .getter = get_led_5_enabled,
+  },
+  {
+    .name = "LED_6_ENABLED",
+    .handler = internal_set_led_6_enabled,
+    .getter = get_led_6_enabled,
   },
   {
     .name = "LED_0_BOX",
@@ -635,6 +665,11 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_led_5_box,
   },
   {
+    .name = "LED_6_BOX",
+    .handler = internal_set_led_6_box,
+    .getter = get_led_6_box,
+  },
+  {
     .name = "LED_0_DIM",
     .handler = internal_set_led_0_dim,
     .getter = get_led_0_dim,
@@ -665,6 +700,11 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_led_5_dim,
   },
   {
+    .name = "LED_6_DIM",
+    .handler = internal_set_led_6_dim,
+    .getter = get_led_6_dim,
+  },
+  {
     .name = "LED_0_FADE",
     .handler = internal_set_led_0_fade,
     .getter = get_led_0_fade,
@@ -693,6 +733,11 @@ const kvi_handler kvi_handlers[] = {
     .name = "LED_5_FADE",
     .handler = internal_set_led_5_fade,
     .getter = get_led_5_fade,
+  },
+  {
+    .name = "LED_6_FADE",
+    .handler = internal_set_led_6_fade,
+    .getter = get_led_6_fade,
   },
 
 /*
