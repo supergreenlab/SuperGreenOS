@@ -35,6 +35,7 @@
 
 #define SUN_MOVING_MULTI 800
 #define min(x, y) (((x) < (y)) ? (x) : (y))
+#define max(x, y) (((x) > (y)) ? (x) : (y))
 
 static int get_output_for_hour_min(int boxId) {
   int on_hour = get_box_on_hour(boxId);
@@ -51,10 +52,13 @@ static int get_output_for_hour_min(int boxId) {
   double off_sec = off_hour * 3600 + off_min * 60;
   double cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
 
+  if (on_sec == off_sec) return 100;
+
   if (on_sec < off_sec && on_sec < cur_sec && off_sec > cur_sec) {
-    return min(100, sin((cur_sec - on_sec) / (off_sec - on_sec) * M_PI) * SUN_MOVING_MULTI);
+    return max(0, min(100, sin((cur_sec - on_sec) / (off_sec - on_sec) * M_PI) * SUN_MOVING_MULTI));
   } else if (on_sec > off_sec && (on_sec < cur_sec || cur_sec < off_sec)) {
-    return min(100, sin((24*60*60-(cur_sec - on_sec)) / (24*60*60-(on_sec - off_sec)) * M_PI) * SUN_MOVING_MULTI);
+    float on_since = (cur_sec > on_sec ? cur_sec - on_sec : (24*60*60 - on_sec) + cur_sec);
+    return max(0, min(100, sin(on_since / (24*60*60-(on_sec - off_sec)) * M_PI) * SUN_MOVING_MULTI));
   }
 
   return 0; 
