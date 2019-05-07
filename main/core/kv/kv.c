@@ -126,10 +126,10 @@ void preinit_kv() {
   defaulti(BOX_0_STRETCH, default_box_0_stretch);
   int default_box_0_led_dim = 0;
   defaulti(BOX_0_LED_DIM, default_box_0_led_dim);
-  int default_box_0_blower = 50;
-  defaulti(BOX_0_BLOWER, default_box_0_blower);
-  int default_box_0_blower_mode = BLOWER_MODE_MANUAL;
-  defaulti(BOX_0_BLOWER_MODE, default_box_0_blower_mode);
+  int default_box_0_blower_day = 50;
+  defaulti(BOX_0_BLOWER_DAY, default_box_0_blower_day);
+  int default_box_0_blower_night = 50;
+  defaulti(BOX_0_BLOWER_NIGHT, default_box_0_blower_night);
   int default_box_0_blower_gpio = DEFAULT_BOX_0_BLOWER_GPIO;
   defaulti(BOX_0_BLOWER_GPIO, default_box_0_blower_gpio);
   int default_box_0_blower_enabled = 1;
@@ -170,10 +170,10 @@ void preinit_kv() {
   defaulti(BOX_1_STRETCH, default_box_1_stretch);
   int default_box_1_led_dim = 0;
   defaulti(BOX_1_LED_DIM, default_box_1_led_dim);
-  int default_box_1_blower = 50;
-  defaulti(BOX_1_BLOWER, default_box_1_blower);
-  int default_box_1_blower_mode = BLOWER_MODE_MANUAL;
-  defaulti(BOX_1_BLOWER_MODE, default_box_1_blower_mode);
+  int default_box_1_blower_day = 50;
+  defaulti(BOX_1_BLOWER_DAY, default_box_1_blower_day);
+  int default_box_1_blower_night = 50;
+  defaulti(BOX_1_BLOWER_NIGHT, default_box_1_blower_night);
   int default_box_1_blower_gpio = DEFAULT_BOX_1_BLOWER_GPIO;
   defaulti(BOX_1_BLOWER_GPIO, default_box_1_blower_gpio);
   int default_box_1_blower_enabled = 1;
@@ -214,10 +214,10 @@ void preinit_kv() {
   defaulti(BOX_2_STRETCH, default_box_2_stretch);
   int default_box_2_led_dim = 0;
   defaulti(BOX_2_LED_DIM, default_box_2_led_dim);
-  int default_box_2_blower = 50;
-  defaulti(BOX_2_BLOWER, default_box_2_blower);
-  int default_box_2_blower_mode = BLOWER_MODE_MANUAL;
-  defaulti(BOX_2_BLOWER_MODE, default_box_2_blower_mode);
+  int default_box_2_blower_day = 50;
+  defaulti(BOX_2_BLOWER_DAY, default_box_2_blower_day);
+  int default_box_2_blower_night = 50;
+  defaulti(BOX_2_BLOWER_NIGHT, default_box_2_blower_night);
   int default_box_2_blower_gpio = DEFAULT_BOX_2_BLOWER_GPIO;
   defaulti(BOX_2_BLOWER_GPIO, default_box_2_blower_gpio);
   int default_box_2_blower_enabled = 0;
@@ -388,7 +388,6 @@ void postinit_kv() {
   sync_ble_i(BOX_0_OFF_MIN, IDX_VALUE(BOX_0_OFF_MIN));
   sync_ble_i(BOX_0_STRETCH, IDX_VALUE(BOX_0_STRETCH));
   sync_ble_i(BOX_0_LED_DIM, IDX_VALUE(BOX_0_LED_DIM));
-  sync_ble_i(BOX_0_BLOWER, IDX_VALUE(BOX_0_BLOWER));
 
   // Initialize non-nvs keys
   int default_wifi_status = DISCONNECTED;
@@ -479,10 +478,10 @@ void reset_defaults() {
   seti(BOX_0_STRETCH, default_box_0_stretch);
   int default_box_0_led_dim = 0;
   seti(BOX_0_LED_DIM, default_box_0_led_dim);
-  int default_box_0_blower = 50;
-  seti(BOX_0_BLOWER, default_box_0_blower);
-  int default_box_0_blower_mode = BLOWER_MODE_MANUAL;
-  seti(BOX_0_BLOWER_MODE, default_box_0_blower_mode);
+  int default_box_0_blower_day = 50;
+  seti(BOX_0_BLOWER_DAY, default_box_0_blower_day);
+  int default_box_0_blower_night = 50;
+  seti(BOX_0_BLOWER_NIGHT, default_box_0_blower_night);
   int default_box_0_blower_gpio = DEFAULT_BOX_0_BLOWER_GPIO;
   seti(BOX_0_BLOWER_GPIO, default_box_0_blower_gpio);
   int default_box_0_blower_enabled = 1;
@@ -523,10 +522,10 @@ void reset_defaults() {
   seti(BOX_1_STRETCH, default_box_1_stretch);
   int default_box_1_led_dim = 0;
   seti(BOX_1_LED_DIM, default_box_1_led_dim);
-  int default_box_1_blower = 50;
-  seti(BOX_1_BLOWER, default_box_1_blower);
-  int default_box_1_blower_mode = BLOWER_MODE_MANUAL;
-  seti(BOX_1_BLOWER_MODE, default_box_1_blower_mode);
+  int default_box_1_blower_day = 50;
+  seti(BOX_1_BLOWER_DAY, default_box_1_blower_day);
+  int default_box_1_blower_night = 50;
+  seti(BOX_1_BLOWER_NIGHT, default_box_1_blower_night);
   int default_box_1_blower_gpio = DEFAULT_BOX_1_BLOWER_GPIO;
   seti(BOX_1_BLOWER_GPIO, default_box_1_blower_gpio);
   int default_box_1_blower_enabled = 1;
@@ -567,10 +566,10 @@ void reset_defaults() {
   seti(BOX_2_STRETCH, default_box_2_stretch);
   int default_box_2_led_dim = 0;
   seti(BOX_2_LED_DIM, default_box_2_led_dim);
-  int default_box_2_blower = 50;
-  seti(BOX_2_BLOWER, default_box_2_blower);
-  int default_box_2_blower_mode = BLOWER_MODE_MANUAL;
-  seti(BOX_2_BLOWER_MODE, default_box_2_blower_mode);
+  int default_box_2_blower_day = 50;
+  seti(BOX_2_BLOWER_DAY, default_box_2_blower_day);
+  int default_box_2_blower_night = 50;
+  seti(BOX_2_BLOWER_NIGHT, default_box_2_blower_night);
   int default_box_2_blower_gpio = DEFAULT_BOX_2_BLOWER_GPIO;
   seti(BOX_2_BLOWER_GPIO, default_box_2_blower_gpio);
   int default_box_2_blower_enabled = 0;

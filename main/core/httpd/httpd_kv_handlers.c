@@ -145,14 +145,14 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_box_0_led_dim,
   },
   {
-    .name = "BOX_0_BLOWER",
-    .handler = internal_set_box_0_blower,
-    .getter = get_box_0_blower,
+    .name = "BOX_0_BLOWER_DAY",
+    .handler = internal_set_box_0_blower_day,
+    .getter = get_box_0_blower_day,
   },
   {
-    .name = "BOX_0_BLOWER_MODE",
-    .handler = internal_set_box_0_blower_mode,
-    .getter = get_box_0_blower_mode,
+    .name = "BOX_0_BLOWER_NIGHT",
+    .handler = internal_set_box_0_blower_night,
+    .getter = get_box_0_blower_night,
   },
   {
     .name = "BOX_0_BLOWER_GPIO",
@@ -255,14 +255,14 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_box_1_led_dim,
   },
   {
-    .name = "BOX_1_BLOWER",
-    .handler = internal_set_box_1_blower,
-    .getter = get_box_1_blower,
+    .name = "BOX_1_BLOWER_DAY",
+    .handler = internal_set_box_1_blower_day,
+    .getter = get_box_1_blower_day,
   },
   {
-    .name = "BOX_1_BLOWER_MODE",
-    .handler = internal_set_box_1_blower_mode,
-    .getter = get_box_1_blower_mode,
+    .name = "BOX_1_BLOWER_NIGHT",
+    .handler = internal_set_box_1_blower_night,
+    .getter = get_box_1_blower_night,
   },
   {
     .name = "BOX_1_BLOWER_GPIO",
@@ -365,14 +365,14 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_box_2_led_dim,
   },
   {
-    .name = "BOX_2_BLOWER",
-    .handler = internal_set_box_2_blower,
-    .getter = get_box_2_blower,
+    .name = "BOX_2_BLOWER_DAY",
+    .handler = internal_set_box_2_blower_day,
+    .getter = get_box_2_blower_day,
   },
   {
-    .name = "BOX_2_BLOWER_MODE",
-    .handler = internal_set_box_2_blower_mode,
-    .getter = get_box_2_blower_mode,
+    .name = "BOX_2_BLOWER_NIGHT",
+    .handler = internal_set_box_2_blower_night,
+    .getter = get_box_2_blower_night,
   },
   {
     .name = "BOX_2_BLOWER_GPIO",

@@ -284,20 +284,22 @@ void internal_set_box_0_led_dim(int value) {
 
   // TODO: httpd notify
 }
-void internal_set_box_0_blower(int value) {
-  set_box_0_blower(value);
+void internal_set_box_0_blower_day(int value) {
+  set_box_0_blower_day(value);
 
-  value = on_set_box_0_blower(value);
+  value = on_set_box_0_blower_day(value);
 
-  set_box_0_blower(value);
+  set_box_0_blower_day(value);
 
-  set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_BLOWER, (uint8_t *)&value, sizeof(int));
 
   // TODO: httpd notify
 }
-void internal_set_box_0_blower_mode(int value) {
-  set_box_0_blower_mode(value);
+void internal_set_box_0_blower_night(int value) {
+  set_box_0_blower_night(value);
 
+  value = on_set_box_0_blower_night(value);
+
+  set_box_0_blower_night(value);
 
 
   // TODO: httpd notify
@@ -454,19 +456,22 @@ void internal_set_box_1_led_dim(int value) {
 
   // TODO: httpd notify
 }
-void internal_set_box_1_blower(int value) {
-  set_box_1_blower(value);
+void internal_set_box_1_blower_day(int value) {
+  set_box_1_blower_day(value);
 
-  value = on_set_box_1_blower(value);
+  value = on_set_box_1_blower_day(value);
 
-  set_box_1_blower(value);
+  set_box_1_blower_day(value);
 
 
   // TODO: httpd notify
 }
-void internal_set_box_1_blower_mode(int value) {
-  set_box_1_blower_mode(value);
+void internal_set_box_1_blower_night(int value) {
+  set_box_1_blower_night(value);
 
+  value = on_set_box_1_blower_night(value);
+
+  set_box_1_blower_night(value);
 
 
   // TODO: httpd notify
@@ -622,19 +627,22 @@ void internal_set_box_2_led_dim(int value) {
 
   // TODO: httpd notify
 }
-void internal_set_box_2_blower(int value) {
-  set_box_2_blower(value);
+void internal_set_box_2_blower_day(int value) {
+  set_box_2_blower_day(value);
 
-  value = on_set_box_2_blower(value);
+  value = on_set_box_2_blower_day(value);
 
-  set_box_2_blower(value);
+  set_box_2_blower_day(value);
 
 
   // TODO: httpd notify
 }
-void internal_set_box_2_blower_mode(int value) {
-  set_box_2_blower_mode(value);
+void internal_set_box_2_blower_night(int value) {
+  set_box_2_blower_night(value);
 
+  value = on_set_box_2_blower_night(value);
+
+  set_box_2_blower_night(value);
 
 
   // TODO: httpd notify

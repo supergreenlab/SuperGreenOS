@@ -48,8 +48,8 @@
     "off_min",
     "stretch",
     "led_dim",
-    "blower",
-    "blower_mode",
+    "blower_day",
+    "blower_night",
     "blower_gpio",
     "blower_enabled",
     "sht1x_temp_c",
@@ -661,19 +661,15 @@
       "default": 0
     },
     {
-      "name": "box_0_blower",
-      "caps_name": "BOX_0_BLOWER",
+      "name": "box_0_blower_day",
+      "caps_name": "BOX_0_BLOWER_DAY",
       "integer": true,
       "box": {
         "index": 0,
-        "param": "blower"
+        "param": "blower_day"
       },
       "nvs": {
-        "key": "B_0_BLWR"
-      },
-      "ble": {
-        "uuid": "{0x7b,0x5e,0x0a,0xb7,0x2a,0x7f,0xfd,0x1b,0x7f,0xe3,0xdc,0xbe,0xa7,0xce,0xb7,0x03}",
-        "notify": true
+        "key": "B_0_BLWR_D"
       },
       "http": {
         "write": true
@@ -682,20 +678,21 @@
       "default": 50
     },
     {
-      "name": "box_0_blower_mode",
-      "caps_name": "BOX_0_BLOWER_MODE",
+      "name": "box_0_blower_night",
+      "caps_name": "BOX_0_BLOWER_NIGHT",
       "integer": true,
       "box": {
         "index": 0,
-        "param": "blower_mode"
+        "param": "blower_night"
       },
       "nvs": {
-        "key": "B_0_BLWR_M"
+        "key": "B_0_BLWR_N"
       },
       "http": {
         "write": true
       },
-      "default_var": "BLOWER_MODE_MANUAL"
+      "write_cb": true,
+      "default": 50
     },
     {
       "name": "box_0_blower_gpio",
@@ -1039,15 +1036,15 @@
       "default": 0
     },
     {
-      "name": "box_1_blower",
-      "caps_name": "BOX_1_BLOWER",
+      "name": "box_1_blower_day",
+      "caps_name": "BOX_1_BLOWER_DAY",
       "integer": true,
       "box": {
         "index": 1,
-        "param": "blower"
+        "param": "blower_day"
       },
       "nvs": {
-        "key": "B_1_BLWR"
+        "key": "B_1_BLWR_D"
       },
       "http": {
         "write": true
@@ -1056,20 +1053,21 @@
       "default": 50
     },
     {
-      "name": "box_1_blower_mode",
-      "caps_name": "BOX_1_BLOWER_MODE",
+      "name": "box_1_blower_night",
+      "caps_name": "BOX_1_BLOWER_NIGHT",
       "integer": true,
       "box": {
         "index": 1,
-        "param": "blower_mode"
+        "param": "blower_night"
       },
       "nvs": {
-        "key": "B_1_BLWR_M"
+        "key": "B_1_BLWR_N"
       },
       "http": {
         "write": true
       },
-      "default_var": "BLOWER_MODE_MANUAL"
+      "write_cb": true,
+      "default": 50
     },
     {
       "name": "box_1_blower_gpio",
@@ -1409,15 +1407,15 @@
       "default": 0
     },
     {
-      "name": "box_2_blower",
-      "caps_name": "BOX_2_BLOWER",
+      "name": "box_2_blower_day",
+      "caps_name": "BOX_2_BLOWER_DAY",
       "integer": true,
       "box": {
         "index": 2,
-        "param": "blower"
+        "param": "blower_day"
       },
       "nvs": {
-        "key": "B_2_BLWR"
+        "key": "B_2_BLWR_D"
       },
       "http": {
         "write": true
@@ -1426,20 +1424,21 @@
       "default": 50
     },
     {
-      "name": "box_2_blower_mode",
-      "caps_name": "BOX_2_BLOWER_MODE",
+      "name": "box_2_blower_night",
+      "caps_name": "BOX_2_BLOWER_NIGHT",
       "integer": true,
       "box": {
         "index": 2,
-        "param": "blower_mode"
+        "param": "blower_night"
       },
       "nvs": {
-        "key": "B_2_BLWR_M"
+        "key": "B_2_BLWR_N"
       },
       "http": {
         "write": true
       },
-      "default_var": "BLOWER_MODE_MANUAL"
+      "write_cb": true,
+      "default": 50
     },
     {
       "name": "box_2_blower_gpio",

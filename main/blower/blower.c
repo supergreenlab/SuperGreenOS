@@ -50,12 +50,10 @@ static void blower_task(void *param) {
   while (1) {
     for (int i = 0; i < N_BOXES; ++i) {
       if (get_box_enabled(i) != 1 || get_box_blower_enabled(i) != 1) continue;
-      int v = get_box_blower(i);
-      int mode = get_box_blower_mode(i);
-      if (mode == BLOWER_MODE_TIMER) {
-        int timerOutput = get_box_timer_output(i);
-        v = (float)v * (float)timerOutput / 100.0f;
-      }
+      int vday = get_box_blower_day(i);
+      int vnight = get_box_blower_night(i);
+      int timerOutput = get_box_timer_output(i);
+      int v = (float)vnight + ((vday - vnight) * (float)timerOutput / 100.0f);
       set_duty(i, v);
     }
     xQueueReceive(cmd, &c, 3000 / portTICK_PERIOD_MS);
@@ -89,7 +87,13 @@ void init_blower() {
 
 /* BLE Callbacks */
 
-int on_set_box_blower(int boxId, int value) {
+int on_set_box_blower_day(int boxId, int value) {
+  value = min(100, max(value, 0));
+  xQueueSend(cmd, &value, 0);
+  return value;
+}
+
+int on_set_box_blower_night(int boxId, int value) {
   value = min(100, max(value, 0));
   xQueueSend(cmd, &value, 0);
   return value;

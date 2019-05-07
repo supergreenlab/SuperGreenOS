@@ -19,11 +19,6 @@
 #ifndef BLOWER_H_
 #define BLOWER_H_
 
-typedef enum {
-  BLOWER_MODE_MANUAL,
-  BLOWER_MODE_TIMER,
-} blower_mode;
-
 #define DEFAULT_BOX_0_BLOWER_GPIO (22)
 #define DEFAULT_BOX_1_BLOWER_GPIO (21)
 #define DEFAULT_BOX_2_BLOWER_GPIO (20)
@@ -32,6 +27,7 @@ void init_blower();
 
 /* BLE Callbacks */
 
-int on_set_box_blower(int boxId, int value);
+int on_set_box_blower_day(int boxId, int value);
+int on_set_box_blower_night(int boxId, int value);
 
 #endif
