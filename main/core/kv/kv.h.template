@@ -47,6 +47,7 @@ void defaultstr(const char * key, const char * value);
 {{#keys}}
 void reset_{{name}}_changed();
 bool is_{{name}}_changed();
+bool is_{{name}}_undefined();
 {{#integer}}
 int get_{{name}}();
 void set_{{name}}(int value);

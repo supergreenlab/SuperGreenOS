@@ -117,8 +117,6 @@ static void start_ap() {
 
   esp_wifi_stop();
 
-  set_wifi_status(AP);
-
   wifi_config_t wifi_config = {0};
   wifi_config.ap.authmode = WIFI_AUTH_WPA2_PSK;
   wifi_config.ap.max_connection = 1;
@@ -192,6 +190,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
       break;
     case SYSTEM_EVENT_AP_START:
       xQueueSend(cmd, &CMD_AP_START, 0);
+      set_wifi_status(AP);
       set_ip(TCPIP_ADAPTER_IF_AP);
       break;
     case SYSTEM_EVENT_AP_STACONNECTED:
@@ -300,11 +299,10 @@ const char *on_set_wifi_password(const char *pass) {
 // utils
 
 static bool is_valid() {
-  uint8_t ssid[32] = {0}; 
-  uint8_t pass[64] = {0};
+  char ssid[MAX_KVALUE_SIZE] = {0};
+  get_wifi_ssid(ssid, MAX_KVALUE_SIZE-1);
+  char password[MAX_KVALUE_SIZE] = {0};
+  get_wifi_password(password, MAX_KVALUE_SIZE-1);
 
-  get_wifi_ssid((char *)ssid, sizeof(ssid) - 1);
-  get_wifi_password((char *)pass, sizeof(pass) - 1);
-
-  return strlen((char *)ssid) != 0 && strlen((char *)pass) != 0;
+  return strlen(ssid) != 0 && strlen(password) != 0;
 }

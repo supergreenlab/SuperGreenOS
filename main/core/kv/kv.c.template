@@ -96,13 +96,15 @@ void postinit_kv() {
   // Initialize non-nvs keys
   {{#keys}}
   {{^nvs}}
-  {{#integer}}
-  int default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}{{default}}{{/default}};
-  {{/integer}}
-  {{#string}}
-  const char *default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}"{{default}}"{{/default}};
-  {{/string}}
-  set_{{name}}(default_{{name}});
+  if (is_{{name}}_undefined()) {
+    {{#integer}}
+    int default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}{{default}}{{/default}};
+    {{/integer}}
+    {{#string}}
+    const char *default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}"{{default}}"{{/default}};
+    {{/string}}
+    set_{{name}}(default_{{name}});
+  }
   {{/nvs}}
   {{/keys}}
 

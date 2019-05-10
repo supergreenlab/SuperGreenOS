@@ -390,18 +390,30 @@ void postinit_kv() {
   sync_ble_i(BOX_0_LED_DIM, IDX_VALUE(BOX_0_LED_DIM));
 
   // Initialize non-nvs keys
-  int default_wifi_status = DISCONNECTED;
-  set_wifi_status(default_wifi_status);
-  int default_ota_status = OTA_STATUS_IDLE;
-  set_ota_status(default_ota_status);
-  int default_reboot = 0;
-  set_reboot(default_reboot);
-  const char *default_box_0_led_info = "";
-  set_box_0_led_info(default_box_0_led_info);
-  const char *default_box_1_led_info = "";
-  set_box_1_led_info(default_box_1_led_info);
-  const char *default_box_2_led_info = "";
-  set_box_2_led_info(default_box_2_led_info);
+  if (is_wifi_status_undefined()) {
+    int default_wifi_status = DISCONNECTED;
+    set_wifi_status(default_wifi_status);
+  }
+  if (is_ota_status_undefined()) {
+    int default_ota_status = OTA_STATUS_IDLE;
+    set_ota_status(default_ota_status);
+  }
+  if (is_reboot_undefined()) {
+    int default_reboot = 0;
+    set_reboot(default_reboot);
+  }
+  if (is_box_0_led_info_undefined()) {
+    const char *default_box_0_led_info = "";
+    set_box_0_led_info(default_box_0_led_info);
+  }
+  if (is_box_1_led_info_undefined()) {
+    const char *default_box_1_led_info = "";
+    set_box_1_led_info(default_box_1_led_info);
+  }
+  if (is_box_2_led_info_undefined()) {
+    const char *default_box_2_led_info = "";
+    set_box_2_led_info(default_box_2_led_info);
+  }
 
 
   /*

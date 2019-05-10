@@ -36,6 +36,7 @@ StaticSemaphore_t mutex_buffer;
 
 static SemaphoreHandle_t _mutex_{{name}}; // TODO check RAM weight of creating so many semaphores :/
 static bool _{{name}}_changed = true;
+static bool _{{name}}_undefined = true;
 
 void reset_{{name}}_changed() {
   xSemaphoreTake(_mutex_{{name}}, 0);
@@ -50,10 +51,17 @@ bool is_{{name}}_changed() {
   return v;
 }
 
+bool is_{{name}}_undefined() {
+  xSemaphoreTake(_mutex_{{name}}, 0);
+  bool v = _{{name}}_undefined;
+  xSemaphoreGive(_mutex_{{name}});
+  return v;
+}
+
 {{#integer}}
 
 {{^nvs}}
-static int _{{name}} = 0;
+static int _{{name}} = INT_MAX;
 {{/nvs}}
 
 int get_{{name}}() {
@@ -79,6 +87,7 @@ void set_{{name}}(int value) {
   _{{name}} = value;
   {{/nvs}}
   _{{name}}_changed = true;
+  _{{name}}_undefined = false;
   xSemaphoreGive(_mutex_{{name}});
   {{#ble.notify}}
   {{^ble.no_sync}}
