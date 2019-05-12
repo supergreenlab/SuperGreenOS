@@ -109,6 +109,9 @@ static void stat_dump_task(void *param) {
     int value;
     char str[MAX_KVALUE_SIZE] = {0};
     if ((counter % 20) == 0 || is_wifi_status_changed()) {
+      value = get_wifi_status();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "WIFI_STATUS", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_wifi_status_changed();
     }
     if ((counter % 20) == 0 || is_wifi_ssid_changed()) {
@@ -190,6 +193,9 @@ static void stat_dump_task(void *param) {
       reset_ota_basedir_changed();
     }
     if ((counter % 20) == 0 || is_ota_status_changed()) {
+      value = get_ota_status();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "OTA_STATUS", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_ota_status_changed();
     }
     if ((counter % 20) == 0 || is_broker_url_changed()) {
@@ -247,6 +253,9 @@ static void stat_dump_task(void *param) {
       reset_i2c_1_enabled_changed();
     }
     if ((counter % 20) == 0 || is_reboot_changed()) {
+      value = get_reboot();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "REBOOT", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_reboot_changed();
     }
     if ((counter % 20) == 0 || is_state_changed()) {
@@ -394,6 +403,9 @@ static void stat_dump_task(void *param) {
       reset_box_0_dust_gpy2y10_changed();
     }
     if ((counter % 20) == 0 || is_box_0_led_info_changed()) {
+      get_box_0_led_info(str, MAX_KVALUE_SIZE-1);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "BOX_0_LED_INFO", str);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_box_0_led_info_changed();
     }
     if ((counter % 20) == 0 || is_box_1_enabled_changed()) {
@@ -529,6 +541,9 @@ static void stat_dump_task(void *param) {
       reset_box_1_dust_gpy2y10_changed();
     }
     if ((counter % 20) == 0 || is_box_1_led_info_changed()) {
+      get_box_1_led_info(str, MAX_KVALUE_SIZE-1);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "BOX_1_LED_INFO", str);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_box_1_led_info_changed();
     }
     if ((counter % 20) == 0 || is_box_2_enabled_changed()) {
@@ -664,6 +679,9 @@ static void stat_dump_task(void *param) {
       reset_box_2_dust_gpy2y10_changed();
     }
     if ((counter % 20) == 0 || is_box_2_led_info_changed()) {
+      get_box_2_led_info(str, MAX_KVALUE_SIZE-1);
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "BOX_2_LED_INFO", str);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_box_2_led_info_changed();
     }
     if ((counter % 20) == 0 || is_led_0_duty_changed()) {

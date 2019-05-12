@@ -110,7 +110,6 @@ static void stat_dump_task(void *param) {
     char str[MAX_KVALUE_SIZE] = {0};
     {{#keys}}
     if ((counter % 20) == 0 || is_{{name}}_changed()) {
-      {{#nvs}}
       {{#integer}}
       value = get_{{name}}();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "{{caps_name}}", value);
@@ -120,7 +119,6 @@ static void stat_dump_task(void *param) {
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "{{caps_name}}", str);
       {{/string}}
       vTaskDelay(200 / portTICK_PERIOD_MS);
-      {{/nvs}}
       reset_{{name}}_changed();
     }
     {{/keys}}

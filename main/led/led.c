@@ -150,7 +150,7 @@ void init_led() {
     speed_mode:       LEDC_HIGH_SPEED_MODE,
     { duty_resolution:  LED_DUTY_RESOLUTION, },
     timer_num:        LEDC_TIMER_0,
-    freq_hz:          1000,
+    freq_hz:          500,
   };
   ledc_timer_config(&ledc_timer);
 
