@@ -311,6 +311,13 @@ void internal_set_box_0_blower_gpio(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_box_0_blower_frequency(int value) {
+  set_box_0_blower_frequency(value);
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_box_0_blower_enabled(int value) {
   set_box_0_blower_enabled(value);
 
@@ -483,6 +490,13 @@ void internal_set_box_1_blower_gpio(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_box_1_blower_frequency(int value) {
+  set_box_1_blower_frequency(value);
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_box_1_blower_enabled(int value) {
   set_box_1_blower_enabled(value);
 
@@ -649,6 +663,13 @@ void internal_set_box_2_blower_night(int value) {
 }
 void internal_set_box_2_blower_gpio(int value) {
   set_box_2_blower_gpio(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_box_2_blower_frequency(int value) {
+  set_box_2_blower_frequency(value);
 
 
 

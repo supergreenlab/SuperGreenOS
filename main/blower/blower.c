@@ -71,9 +71,10 @@ void init_blower() {
   for (int i = 0; i < N_BOXES; ++i) {
     if (get_box_enabled(i) != 1 || get_box_blower_enabled(i) != 1) continue;
     int blower_gpio = get_box_blower_gpio(i);
+    int blower_frequency = get_box_blower_frequency(i);
     mcpwm_gpio_init(MCPWM_UNIT_0, i, blower_gpio);
     mcpwm_config_t pwm_config;
-    pwm_config.frequency = 15000;
+    pwm_config.frequency = blower_frequency;
     pwm_config.cmpr_a = 0;
     pwm_config.cmpr_b = 0;
     pwm_config.counter_mode = MCPWM_UP_COUNTER;

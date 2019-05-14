@@ -23,6 +23,8 @@
 #define DEFAULT_BOX_1_BLOWER_GPIO (21)
 #define DEFAULT_BOX_2_BLOWER_GPIO (20)
 
+#define DEFAULT_BLOWER_FREQUENCY 15000
+
 void init_blower();
 
 /* BLE Callbacks */

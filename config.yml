@@ -72,6 +72,7 @@ box_params:
   - blower_day
   - blower_night
   - blower_gpio 
+  - blower_frequency
   - blower_enabled
   - sht1x_temp_c
   - sht1x_temp_f
@@ -598,6 +599,18 @@ keys:
       write: true
     default_var: DEFAULT_BOX_0_BLOWER_GPIO
 
+  - name: box_0_blower_frequency
+    caps_name: BOX_0_BLOWER_FREQUENCY
+    integer: true
+    box:
+      index: 0
+      param: blower_frequency
+    nvs:
+      key: B_0_BLWR_HZ
+    http:
+      write: true
+    default_var: DEFAULT_BLOWER_FREQUENCY
+
   - name: box_0_blower_enabled
     caps_name: BOX_0_BLOWER_ENABLED
     integer: true
@@ -884,6 +897,18 @@ keys:
     http:
       write: true
     default_var: DEFAULT_BOX_1_BLOWER_GPIO
+
+  - name: box_1_blower_frequency
+    caps_name: BOX_1_BLOWER_FREQUENCY
+    integer: true
+    box:
+      index: 1
+      param: blower_frequency
+    nvs:
+      key: B_1_BLWR_HZ
+    http:
+      write: true
+    default_var: DEFAULT_BLOWER_FREQUENCY
  
   - name: box_1_blower_enabled
     caps_name: BOX_1_BLOWER_ENABLED
@@ -1168,6 +1193,18 @@ keys:
     http:
       write: true
     default_var: DEFAULT_BOX_2_BLOWER_GPIO
+
+  - name: box_2_blower_frequency
+    caps_name: BOX_2_BLOWER_FREQUENCY
+    integer: true
+    box:
+      index: 2
+      param: blower_frequency
+    nvs:
+      key: B_2_BLWR_HZ
+    http:
+      write: true
+    default_var: DEFAULT_BLOWER_FREQUENCY
 
   - name: box_2_blower_enabled
     caps_name: BOX_2_BLOWER_ENABLED

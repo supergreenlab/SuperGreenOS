@@ -132,6 +132,8 @@ void preinit_kv() {
   defaulti(BOX_0_BLOWER_NIGHT, default_box_0_blower_night);
   int default_box_0_blower_gpio = DEFAULT_BOX_0_BLOWER_GPIO;
   defaulti(BOX_0_BLOWER_GPIO, default_box_0_blower_gpio);
+  int default_box_0_blower_frequency = DEFAULT_BLOWER_FREQUENCY;
+  defaulti(BOX_0_BLOWER_FREQUENCY, default_box_0_blower_frequency);
   int default_box_0_blower_enabled = 1;
   defaulti(BOX_0_BLOWER_ENABLED, default_box_0_blower_enabled);
   int default_box_0_sht1x_temp_c = -1000000;
@@ -176,6 +178,8 @@ void preinit_kv() {
   defaulti(BOX_1_BLOWER_NIGHT, default_box_1_blower_night);
   int default_box_1_blower_gpio = DEFAULT_BOX_1_BLOWER_GPIO;
   defaulti(BOX_1_BLOWER_GPIO, default_box_1_blower_gpio);
+  int default_box_1_blower_frequency = DEFAULT_BLOWER_FREQUENCY;
+  defaulti(BOX_1_BLOWER_FREQUENCY, default_box_1_blower_frequency);
   int default_box_1_blower_enabled = 1;
   defaulti(BOX_1_BLOWER_ENABLED, default_box_1_blower_enabled);
   int default_box_1_sht1x_temp_c = -1000000;
@@ -220,6 +224,8 @@ void preinit_kv() {
   defaulti(BOX_2_BLOWER_NIGHT, default_box_2_blower_night);
   int default_box_2_blower_gpio = DEFAULT_BOX_2_BLOWER_GPIO;
   defaulti(BOX_2_BLOWER_GPIO, default_box_2_blower_gpio);
+  int default_box_2_blower_frequency = DEFAULT_BLOWER_FREQUENCY;
+  defaulti(BOX_2_BLOWER_FREQUENCY, default_box_2_blower_frequency);
   int default_box_2_blower_enabled = 0;
   defaulti(BOX_2_BLOWER_ENABLED, default_box_2_blower_enabled);
   int default_box_2_sht1x_temp_c = -1000000;
@@ -496,6 +502,8 @@ void reset_defaults() {
   seti(BOX_0_BLOWER_NIGHT, default_box_0_blower_night);
   int default_box_0_blower_gpio = DEFAULT_BOX_0_BLOWER_GPIO;
   seti(BOX_0_BLOWER_GPIO, default_box_0_blower_gpio);
+  int default_box_0_blower_frequency = DEFAULT_BLOWER_FREQUENCY;
+  seti(BOX_0_BLOWER_FREQUENCY, default_box_0_blower_frequency);
   int default_box_0_blower_enabled = 1;
   seti(BOX_0_BLOWER_ENABLED, default_box_0_blower_enabled);
   int default_box_0_sht1x_temp_c = -1000000;
@@ -540,6 +548,8 @@ void reset_defaults() {
   seti(BOX_1_BLOWER_NIGHT, default_box_1_blower_night);
   int default_box_1_blower_gpio = DEFAULT_BOX_1_BLOWER_GPIO;
   seti(BOX_1_BLOWER_GPIO, default_box_1_blower_gpio);
+  int default_box_1_blower_frequency = DEFAULT_BLOWER_FREQUENCY;
+  seti(BOX_1_BLOWER_FREQUENCY, default_box_1_blower_frequency);
   int default_box_1_blower_enabled = 1;
   seti(BOX_1_BLOWER_ENABLED, default_box_1_blower_enabled);
   int default_box_1_sht1x_temp_c = -1000000;
@@ -584,6 +594,8 @@ void reset_defaults() {
   seti(BOX_2_BLOWER_NIGHT, default_box_2_blower_night);
   int default_box_2_blower_gpio = DEFAULT_BOX_2_BLOWER_GPIO;
   seti(BOX_2_BLOWER_GPIO, default_box_2_blower_gpio);
+  int default_box_2_blower_frequency = DEFAULT_BLOWER_FREQUENCY;
+  seti(BOX_2_BLOWER_FREQUENCY, default_box_2_blower_frequency);
   int default_box_2_blower_enabled = 0;
   seti(BOX_2_BLOWER_ENABLED, default_box_2_blower_enabled);
   int default_box_2_sht1x_temp_c = -1000000;
