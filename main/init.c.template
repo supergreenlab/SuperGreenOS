@@ -16,16 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "status_led/status_led.h"
-#include "state/state.h"
-#include "led/led.h"
-#include "timer/timer.h"
-#include "mixer/mixer.h"
+{{#init_modules}}
+#include "{{.}}/{{.}}.h"
+{{/init_modules}}
 
 void init_app() {
-  init_status_led();
-  init_state();
-  init_led();
-  init_timer();
-  init_mixer();
+{{#init_modules}}
+  init_{{.}}();
+{{/init_modules}}
 }

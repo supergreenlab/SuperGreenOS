@@ -16,7 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-DATA="config.yml"
+DATA="$1"
+
+if [ ! -f "$DATA" ]; then
+  echo "USAGE: $0 /path/to/config.yml"
+  exit
+fi
+
 DIR="main"
 
 if [ "$#" -eq 2 ]; then

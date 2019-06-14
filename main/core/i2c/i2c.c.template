@@ -124,5 +124,5 @@ void start_i2c(int portId) {
 void stop_i2c(int portId) {
   if (!i2c_started[portId]) return;
   i2c_started[portId] = false;
-  i2c_driver_delete(I2C_NUM_0);
+  i2c_driver_delete(portId);
 }

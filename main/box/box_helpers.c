@@ -33,8 +33,6 @@
       return get_box_0_## param(boxId); \
     case 1: \
       return get_box_1_## param(boxId); \
-    case 2: \
-      return get_box_2_## param(boxId); \
   } \
   return 0; \
 }
@@ -47,27 +45,15 @@
     case 1: \
       set_box_1_## param(value); \
       break; \
-    case 2: \
-      set_box_2_## param(value); \
-      break; \
   } \
 }
 
 BOX_CB(0, timer_type)
 BOX_CB(0, stretch)
 BOX_CB(0, led_dim)
-BOX_CB(0, blower_day)
-BOX_CB(0, blower_night)
 BOX_CB(1, timer_type)
 BOX_CB(1, stretch)
 BOX_CB(1, led_dim)
-BOX_CB(1, blower_day)
-BOX_CB(1, blower_night)
-BOX_CB(2, timer_type)
-BOX_CB(2, stretch)
-BOX_CB(2, led_dim)
-BOX_CB(2, blower_day)
-BOX_CB(2, blower_night)
 
 BOX_SETTER(enabled)
 BOX_GETTER(enabled)
@@ -89,29 +75,9 @@ BOX_SETTER(stretch)
 BOX_GETTER(stretch)
 BOX_SETTER(led_dim)
 BOX_GETTER(led_dim)
-BOX_SETTER(blower_day)
-BOX_GETTER(blower_day)
-BOX_SETTER(blower_night)
-BOX_GETTER(blower_night)
-BOX_SETTER(blower_gpio)
-BOX_GETTER(blower_gpio)
-BOX_SETTER(blower_frequency)
-BOX_GETTER(blower_frequency)
-BOX_SETTER(blower_enabled)
-BOX_GETTER(blower_enabled)
-BOX_SETTER(sht1x_temp_c)
-BOX_GETTER(sht1x_temp_c)
-BOX_SETTER(sht1x_temp_f)
-BOX_GETTER(sht1x_temp_f)
-BOX_SETTER(sht1x_humi)
-BOX_GETTER(sht1x_humi)
 BOX_SETTER(sht21_temp_c)
 BOX_GETTER(sht21_temp_c)
 BOX_SETTER(sht21_temp_f)
 BOX_GETTER(sht21_temp_f)
 BOX_SETTER(sht21_humi)
 BOX_GETTER(sht21_humi)
-BOX_SETTER(arduino_co2)
-BOX_GETTER(arduino_co2)
-BOX_SETTER(dust_gpy2y10)
-BOX_GETTER(dust_gpy2y10)

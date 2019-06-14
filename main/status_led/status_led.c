@@ -26,17 +26,15 @@
 
 #include "status_led.h"
 #include "../core/log/log.h"
+#include "../core/kv/kv.h"
 
 #define LEDC_FADE_TIME         (50)
 
 #define LED_MIN_DUTY           (0)
 #define LED_MAX_DUTY           (511)
 
-#define RED_GPIO  19
-#define BLUE_GPIO 18
-
 ledc_channel_config_t red;
-ledc_channel_config_t blue;
+ledc_channel_config_t green;
 
 static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
   ledc_set_fade_with_time(ledc_channel.speed_mode,
@@ -49,7 +47,7 @@ static void status_led_task(void *param) {
   double i = 0;
   while (1) {
     fade_no_wait_led(red, (int)((cosf(i) + 1) / 2 * LED_MAX_DUTY));
-    fade_no_wait_led(blue, (int)((-cosf(i / 2) + 1) / 2 * LED_MAX_DUTY));
+    fade_no_wait_led(green, (int)((-cosf(i / 2) + 1) / 2 * LED_MAX_DUTY));
 
     i += M_PI / 10;
     vTaskDelay(2 * LEDC_FADE_TIME / portTICK_PERIOD_MS);
@@ -67,8 +65,9 @@ void init_status_led() {
   };
   ledc_timer_config(&ledc_timer);
 
+  int red_gpio = get_status_led_red_gpio();
   red = (ledc_channel_config_t) {
-    gpio_num:    RED_GPIO,
+    gpio_num:    red_gpio,
     speed_mode:  LEDC_LOW_SPEED_MODE,
     channel:     LEDC_CHANNEL_0,
     timer_sel:   LEDC_TIMER_1,
@@ -77,15 +76,16 @@ void init_status_led() {
   };
   ledc_channel_config(&red);
 
-  blue = (ledc_channel_config_t) {
-    gpio_num:    BLUE_GPIO,
+  int green_gpio = get_status_led_green_gpio();
+  green = (ledc_channel_config_t) {
+    gpio_num:    green_gpio,
     speed_mode:  LEDC_LOW_SPEED_MODE,
     channel:     LEDC_CHANNEL_1,
     timer_sel:   LEDC_TIMER_1,
     hpoint:      0,
     duty:        0,
   };
-  ledc_channel_config(&blue);
+  ledc_channel_config(&green);
 
   ledc_fade_func_install(0);
 

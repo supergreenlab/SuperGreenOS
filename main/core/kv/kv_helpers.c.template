@@ -108,11 +108,11 @@ void get_{{name}}(char *dest, size_t len) {
   {{#nvs}}
   getstr({{caps_name}}, dest, len);
   {{/nvs}}
-  xSemaphoreTake(_mutex_{{name}}, 0);
   {{^nvs}}
+  xSemaphoreTake(_mutex_{{name}}, 0);
   strncpy(dest, _{{name}}, len);
-  {{/nvs}}
   xSemaphoreGive(_mutex_{{name}});
+  {{/nvs}}
 }
 
 void set_{{name}}(const char *value) {

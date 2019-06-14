@@ -24,7 +24,7 @@
 #define I2C_SETTER_H(param) void set_i2c_## param(int i2cId, int value);
 
 I2C_CB_H(0, sda)
-I2C_CB_H(0, sdc)
+I2C_CB_H(0, scl)
 I2C_CB_H(0, enabled)
 I2C_CB_H(1, sda)
 I2C_CB_H(1, scl)

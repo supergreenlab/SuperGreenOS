@@ -21,11 +21,6 @@
 
 #include "i2c_helpers.h"
 
-#define DEFAULT_I2C_0_SDA 26
-#define DEFAULT_I2C_0_SCL 27
-#define DEFAULT_I2C_1_SDA 23
-#define DEFAULT_I2C_1_SCL 24
-
 void init_i2c();
 void start_i2c(int portId);
 void stop_i2c(int portId);

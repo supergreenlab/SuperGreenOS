@@ -2,7 +2,7 @@ menu "SuperGreenOS Configuration"
 
 config VERSION
   string "A name to give to this version"
-  default "PicklePreRelease"
+  default "{{name}}"
   help
     Version displayed in the logs
 

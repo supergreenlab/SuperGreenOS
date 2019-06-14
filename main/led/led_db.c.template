@@ -16,16 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "status_led/status_led.h"
-#include "state/state.h"
-#include "led/led.h"
-#include "timer/timer.h"
-#include "mixer/mixer.h"
+#include <stdlib.h>
 
-void init_app() {
-  init_status_led();
-  init_state();
-  init_led();
-  init_timer();
-  init_mixer();
-}
+#include "led_db.h"
+#include "../core/kv/kv.h"
+
+#include "driver/ledc.h"
+
+// Warning: this values should be synced with config.yml defaults,
+// will fix later TODO
+led_config_t ledc_channels[] = {
+  {{#led_loop_i}}
+  CHANNEL({{.}}, 0, 0, 0, 0, 0, 0, 0, 0),
+  {{/led_loop_i}}
+};
+const unsigned int N_LEDS = sizeof(ledc_channels) / sizeof(ledc_channels[0]);

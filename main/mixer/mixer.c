@@ -135,12 +135,12 @@ static void set_all_duty(int boxId, int value) {
 
 int on_set_box_led_dim(int boxId, int value) {
   set_all_duty(boxId, 5);
-  refresh_led(boxId, -1, 1000);
+  refresh_led(boxId, -1, -1);
   return value;
 }
 
 int on_set_box_stretch(int boxId, int value) {
   mixer_duty(boxId);
-  refresh_led(boxId, -1, 1000);
+  refresh_led(boxId, -1, -1);
   return value;
 }

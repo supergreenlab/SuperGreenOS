@@ -72,14 +72,6 @@ extern const unsigned int N_LEDS;
 void init_led();
 void refresh_led(int boxId, int ledId, int fade_time);
 
-#define DEFAULT_LED_0_GPIO 32
-#define DEFAULT_LED_1_GPIO 17
-#define DEFAULT_LED_2_GPIO 33
-#define DEFAULT_LED_3_GPIO 16
-#define DEFAULT_LED_4_GPIO 25
-#define DEFAULT_LED_5_GPIO 4
-#define DEFAULT_LED_6_GPIO 5
-
 /* BLE Callbacks */
 
 int on_set_led_duty(int ledId, int value);

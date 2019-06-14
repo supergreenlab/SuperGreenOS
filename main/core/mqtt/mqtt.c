@@ -81,16 +81,16 @@ static void mqtt_task(void *param) {
   uint64_t _chipmacid;
   esp_efuse_mac_get_default((uint8_t*) (&_chipmacid));
 
-  char log_channel[64] = {0};
-  get_broker_channel(log_channel, 64 - 1);
+  char log_channel[MAX_KVALUE_SIZE] = {0};
+  get_broker_channel(log_channel, sizeof(log_channel) - 1);
   if (strlen(log_channel) == 0) {
     sprintf(log_channel, "%llx.log", _chipmacid);
     set_broker_channel(log_channel);
   }
   ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log channel: %s", log_channel);
 
-  char client_id[64] = {0};
-  get_broker_clientid(client_id, 64 - 1);
+  char client_id[MAX_KVALUE_SIZE] = {0};
+  get_broker_clientid(client_id, sizeof(client_id) - 1);
   if (strlen(client_id) == 0) {
     sprintf(client_id, "%llx", _chipmacid);
     set_broker_clientid(client_id);
@@ -100,7 +100,7 @@ static void mqtt_task(void *param) {
   ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log clientid: %s", client_id);
 
   char broker_url[MAX_KVALUE_SIZE] = {0};
-  getstr(BROKER_URL, broker_url, MAX_KVALUE_SIZE-1);
+  getstr(BROKER_URL, broker_url, sizeof(broker_url)-1);
   esp_mqtt_client_config_t mqtt_cfg = {
     .uri = broker_url,
     .event_handle = mqtt_event_handler,
