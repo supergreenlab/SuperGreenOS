@@ -52,6 +52,7 @@ void internal_set_state(int value);
 void internal_set_device_name(const char *value);
 void internal_set_status_led_red_gpio(int value);
 void internal_set_status_led_green_gpio(int value);
+void internal_set_status_led_dim(int value);
 void internal_set_box_0_enabled(int value);
 void internal_set_box_0_timer_type(int value);
 void internal_set_box_0_timer_output(int value);

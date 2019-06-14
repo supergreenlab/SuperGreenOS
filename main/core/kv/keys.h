@@ -49,6 +49,7 @@
 #define DEVICE_NAME "DEV_NAME"
 #define STATUS_LED_RED_GPIO "SL_R_IO"
 #define STATUS_LED_GREEN_GPIO "SL_G_IO"
+#define STATUS_LED_DIM "SL_R_D"
 #define BOX_0_ENABLED "B_0_E"
 #define BOX_0_TIMER_TYPE "B_0_TT"
 #define BOX_0_TIMER_OUTPUT "B_0_TO"

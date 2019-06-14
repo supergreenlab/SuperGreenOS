@@ -110,6 +110,8 @@ void preinit_kv() {
   defaulti(STATUS_LED_RED_GPIO, default_status_led_red_gpio);
   int default_status_led_green_gpio = 22;
   defaulti(STATUS_LED_GREEN_GPIO, default_status_led_green_gpio);
+  int default_status_led_dim = 50;
+  defaulti(STATUS_LED_DIM, default_status_led_dim);
   int default_box_0_enabled = 1;
   defaulti(BOX_0_ENABLED, default_box_0_enabled);
   int default_box_0_timer_type = TIMER_MANUAL;
@@ -188,7 +190,7 @@ void preinit_kv() {
   defaulti(LED_1_ENABLED, default_led_1_enabled);
   int default_led_0_box = 0;
   defaulti(LED_0_BOX, default_led_0_box);
-  int default_led_1_box = 0;
+  int default_led_1_box = 1;
   defaulti(LED_1_BOX, default_led_1_box);
   int default_led_0_dim = 100;
   defaulti(LED_0_DIM, default_led_0_dim);
@@ -304,6 +306,8 @@ void reset_defaults() {
   seti(STATUS_LED_RED_GPIO, default_status_led_red_gpio);
   int default_status_led_green_gpio = 22;
   seti(STATUS_LED_GREEN_GPIO, default_status_led_green_gpio);
+  int default_status_led_dim = 50;
+  seti(STATUS_LED_DIM, default_status_led_dim);
   int default_box_0_enabled = 1;
   seti(BOX_0_ENABLED, default_box_0_enabled);
   int default_box_0_timer_type = TIMER_MANUAL;
@@ -382,7 +386,7 @@ void reset_defaults() {
   seti(LED_1_ENABLED, default_led_1_enabled);
   int default_led_0_box = 0;
   seti(LED_0_BOX, default_led_0_box);
-  int default_led_1_box = 0;
+  int default_led_1_box = 1;
   seti(LED_1_BOX, default_led_1_box);
   int default_led_0_dim = 100;
   seti(LED_0_DIM, default_led_0_dim);

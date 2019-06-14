@@ -105,6 +105,11 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_status_led_green_gpio,
   },
   {
+    .name = "STATUS_LED_DIM",
+    .handler = internal_set_status_led_dim,
+    .getter = get_status_led_dim,
+  },
+  {
     .name = "BOX_0_ENABLED",
     .handler = internal_set_box_0_enabled,
     .getter = get_box_0_enabled,

@@ -218,6 +218,13 @@ void internal_set_status_led_green_gpio(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_status_led_dim(int value) {
+  set_status_led_dim(value);
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_box_0_enabled(int value) {
   set_box_0_enabled(value);
 

@@ -335,7 +335,7 @@
       "integer": true,
       "i2c": {
         "index": 0,
-        "param": "sdc"
+        "param": "scl"
       },
       "nvs": {
         "key": "I2C_0_SCL"
@@ -475,6 +475,18 @@
         "write": true
       },
       "default": 22
+    },
+    {
+      "name": "status_led_dim",
+      "caps_name": "STATUS_LED_DIM",
+      "integer": true,
+      "nvs": {
+        "key": "SL_R_D"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 50
     },
     {
       "name": "box_0_enabled",
@@ -1187,7 +1199,7 @@
       "http": {
         "write": true
       },
-      "default": 0
+      "default": 1
     },
     {
       "name": "led_0_dim",

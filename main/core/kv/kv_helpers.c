@@ -1253,6 +1253,46 @@ void set_status_led_green_gpio(int value) {
 }
 
 
+static SemaphoreHandle_t _mutex_status_led_dim; // TODO check RAM weight of creating so many semaphores :/
+static bool _status_led_dim_changed = true;
+static bool _status_led_dim_undefined = true;
+
+void reset_status_led_dim_changed() {
+  xSemaphoreTake(_mutex_status_led_dim, 0);
+  _status_led_dim_changed = false;
+  xSemaphoreGive(_mutex_status_led_dim);
+}
+
+bool is_status_led_dim_changed() {
+  xSemaphoreTake(_mutex_status_led_dim, 0);
+  bool v = _status_led_dim_changed;
+  xSemaphoreGive(_mutex_status_led_dim);
+  return v;
+}
+
+bool is_status_led_dim_undefined() {
+  xSemaphoreTake(_mutex_status_led_dim, 0);
+  bool v = _status_led_dim_undefined;
+  xSemaphoreGive(_mutex_status_led_dim);
+  return v;
+}
+
+
+
+int get_status_led_dim() {
+  return geti(STATUS_LED_DIM);
+}
+
+void set_status_led_dim(int value) {
+  if (geti(STATUS_LED_DIM) == value) return;
+  seti(STATUS_LED_DIM, value);
+  xSemaphoreTake(_mutex_status_led_dim, 0);
+  _status_led_dim_changed = true;
+  _status_led_dim_undefined = false;
+  xSemaphoreGive(_mutex_status_led_dim);
+}
+
+
 static SemaphoreHandle_t _mutex_box_0_enabled; // TODO check RAM weight of creating so many semaphores :/
 static bool _box_0_enabled_changed = true;
 static bool _box_0_enabled_undefined = true;
@@ -3135,6 +3175,7 @@ void init_helpers() {
   _mutex_device_name = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_status_led_red_gpio = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_status_led_green_gpio = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_status_led_dim = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_enabled = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_timer_type = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_timer_output = xSemaphoreCreateMutexStatic(&mutex_buffer);

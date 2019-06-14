@@ -128,6 +128,7 @@ keys:
     default: ""
 
   - name: wifi_password
+    nosend: true
     caps_name: WIFI_PASSWORD
     string: true
     nvs:
@@ -408,6 +409,15 @@ keys:
     http:
       write: true
     default: 22
+
+  - name: status_led_dim
+    caps_name: STATUS_LED_DIM
+    integer: true
+    nvs:
+      key: SL_R_D
+    http:
+      write: true
+    default: 50
 
   #
   # Boxes configurations
@@ -961,7 +971,7 @@ keys:
       key: L_1_B
     http:
       write: true
-    default: 0
+    default: 1
 
   - name: led_0_dim
     caps_name: LED_0_DIM

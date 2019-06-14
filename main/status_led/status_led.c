@@ -28,29 +28,29 @@
 #include "../core/log/log.h"
 #include "../core/kv/kv.h"
 
-#define LEDC_FADE_TIME         (50)
-
-#define LED_MIN_DUTY           (0)
-#define LED_MAX_DUTY           (511)
+#define LED_MIN_DUTY           (0.0f)
+#define LED_MAX_DUTY           (511.0f)
 
 ledc_channel_config_t red;
 ledc_channel_config_t green;
 
-static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty) {
-  ledc_set_fade_with_time(ledc_channel.speed_mode,
-      ledc_channel.channel, duty, LEDC_FADE_TIME);
-  ledc_fade_start(ledc_channel.speed_mode,
-      ledc_channel.channel, LEDC_FADE_NO_WAIT);
+static void set_duty(ledc_channel_config_t ledc_channel, int duty) {
+  ledc_set_duty_and_update(ledc_channel.speed_mode, ledc_channel.channel, LED_MAX_DUTY - duty, 0);
 }
 
 static void status_led_task(void *param) {
+  double led_dim = (double)get_status_led_dim() / 100.0f;
   double i = 0;
   while (1) {
-    fade_no_wait_led(red, (int)((cosf(i) + 1) / 2 * LED_MAX_DUTY));
-    fade_no_wait_led(green, (int)((-cosf(i / 2) + 1) / 2 * LED_MAX_DUTY));
+    if (is_status_led_dim_changed()) {
+      led_dim = (double)get_status_led_dim() / 100.0f;
+      reset_status_led_dim_changed();
+    }
+    set_duty(red, (int)((cosf(i) + 1) / 2 * LED_MAX_DUTY * led_dim));
+    set_duty(green, (int)((-cosf(i / 2) + 1) / 2 * LED_MAX_DUTY * led_dim));
 
     i += M_PI / 10;
-    vTaskDelay(2 * LEDC_FADE_TIME / portTICK_PERIOD_MS);
+    vTaskDelay(100 / portTICK_PERIOD_MS);
   }
 }
 
