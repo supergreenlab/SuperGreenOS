@@ -31,8 +31,6 @@
   switch(boxId) { \
     case 0: \
       return get_box_0_## param(boxId); \
-    case 1: \
-      return get_box_1_## param(boxId); \
   } \
   return 0; \
 }
@@ -42,18 +40,12 @@
     case 0: \
       set_box_0_## param(value); \
       break; \
-    case 1: \
-      set_box_1_## param(value); \
-      break; \
   } \
 }
 
 BOX_CB(0, timer_type)
 BOX_CB(0, stretch)
 BOX_CB(0, led_dim)
-BOX_CB(1, timer_type)
-BOX_CB(1, stretch)
-BOX_CB(1, led_dim)
 
 BOX_SETTER(enabled)
 BOX_GETTER(enabled)

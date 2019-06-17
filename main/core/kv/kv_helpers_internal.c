@@ -161,27 +161,6 @@ void internal_set_i2c_0_enabled(int value) {
 
   // TODO: httpd notify
 }
-void internal_set_i2c_1_sda(int value) {
-  set_i2c_1_sda(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_i2c_1_scl(int value) {
-  set_i2c_1_scl(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_i2c_1_enabled(int value) {
-  set_i2c_1_enabled(value);
-
-
-
-  // TODO: httpd notify
-}
 void internal_set_reboot(int value) {
 
   value = on_set_reboot(value);
@@ -331,108 +310,6 @@ void internal_set_box_0_led_info(const char *value) {
 
   set_attr_value_and_notify(IDX_CHAR_VAL_BOX_0_LED_INFO, (uint8_t *)value, strlen(value));
 }
-void internal_set_box_1_enabled(int value) {
-  set_box_1_enabled(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_timer_type(int value) {
-
-  value = on_set_box_1_timer_type(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_timer_output(int value) {
-  set_box_1_timer_output(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_started_at(int value) {
-  set_box_1_started_at(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_on_hour(int value) {
-  set_box_1_on_hour(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_on_min(int value) {
-  set_box_1_on_min(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_off_hour(int value) {
-  set_box_1_off_hour(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_off_min(int value) {
-  set_box_1_off_min(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_stretch(int value) {
-  set_box_1_stretch(value);
-
-  value = on_set_box_1_stretch(value);
-
-  set_box_1_stretch(value);
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_led_dim(int value) {
-  set_box_1_led_dim(value);
-
-  value = on_set_box_1_led_dim(value);
-
-  set_box_1_led_dim(value);
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_sht21_temp_c(int value) {
-  set_box_1_sht21_temp_c(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_sht21_temp_f(int value) {
-  set_box_1_sht21_temp_f(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_sht21_humi(int value) {
-  set_box_1_sht21_humi(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_box_1_led_info(const char *value) {
-
-
-}
 void internal_set_led_0_duty(int value) {
   set_led_0_duty(value);
 
@@ -443,25 +320,8 @@ void internal_set_led_0_duty(int value) {
 
   // TODO: httpd notify
 }
-void internal_set_led_1_duty(int value) {
-  set_led_1_duty(value);
-
-  value = on_set_led_1_duty(value);
-
-  set_led_1_duty(value);
-
-
-  // TODO: httpd notify
-}
 void internal_set_led_0_gpio(int value) {
   set_led_0_gpio(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_led_1_gpio(int value) {
-  set_led_1_gpio(value);
 
 
 
@@ -474,22 +334,8 @@ void internal_set_led_0_x(int value) {
 
   // TODO: httpd notify
 }
-void internal_set_led_1_x(int value) {
-  set_led_1_x(value);
-
-
-
-  // TODO: httpd notify
-}
 void internal_set_led_0_y(int value) {
   set_led_0_y(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_led_1_y(int value) {
-  set_led_1_y(value);
 
 
 
@@ -502,13 +348,6 @@ void internal_set_led_0_z(int value) {
 
   // TODO: httpd notify
 }
-void internal_set_led_1_z(int value) {
-  set_led_1_z(value);
-
-
-
-  // TODO: httpd notify
-}
 void internal_set_led_0_enabled(int value) {
   set_led_0_enabled(value);
 
@@ -516,22 +355,8 @@ void internal_set_led_0_enabled(int value) {
 
   // TODO: httpd notify
 }
-void internal_set_led_1_enabled(int value) {
-  set_led_1_enabled(value);
-
-
-
-  // TODO: httpd notify
-}
 void internal_set_led_0_box(int value) {
   set_led_0_box(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_led_1_box(int value) {
-  set_led_1_box(value);
 
 
 
@@ -547,25 +372,8 @@ void internal_set_led_0_dim(int value) {
 
   // TODO: httpd notify
 }
-void internal_set_led_1_dim(int value) {
-  set_led_1_dim(value);
-
-  value = on_set_led_1_dim(value);
-
-  set_led_1_dim(value);
-
-
-  // TODO: httpd notify
-}
 void internal_set_led_0_fade(int value) {
   set_led_0_fade(value);
-
-
-
-  // TODO: httpd notify
-}
-void internal_set_led_1_fade(int value) {
-  set_led_1_fade(value);
 
 
 

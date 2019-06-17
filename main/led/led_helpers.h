@@ -24,23 +24,14 @@
 #define LED_SETTER_H(param) void set_led_## param(int ledId, int value);
 
 LED_CB_H(0, duty)
-LED_CB_H(1, duty)
 LED_CB_H(0, gpio)
-LED_CB_H(1, gpio)
 LED_CB_H(0, x)
-LED_CB_H(1, x)
 LED_CB_H(0, y)
-LED_CB_H(1, y)
 LED_CB_H(0, z)
-LED_CB_H(1, z)
 LED_CB_H(0, enabled)
-LED_CB_H(1, enabled)
 LED_CB_H(0, box)
-LED_CB_H(1, box)
 LED_CB_H(0, dim)
-LED_CB_H(1, dim)
 LED_CB_H(0, fade)
-LED_CB_H(1, fade)
 
 LED_SETTER_H(duty)
 LED_GETTER_H(duty)

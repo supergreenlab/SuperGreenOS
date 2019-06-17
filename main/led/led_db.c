@@ -27,6 +27,5 @@
 // will fix later TODO
 led_config_t ledc_channels[] = {
   CHANNEL(0, 0, 0, 0, 0, 0, 0, 0, 0),
-  CHANNEL(1, 0, 0, 0, 0, 0, 0, 0, 1),
 };
 const unsigned int N_LEDS = sizeof(ledc_channels) / sizeof(ledc_channels[0]);

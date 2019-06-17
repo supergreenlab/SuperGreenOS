@@ -70,21 +70,6 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_i2c_0_enabled,
   },
   {
-    .name = "I2C_1_SDA",
-    .handler = internal_set_i2c_1_sda,
-    .getter = get_i2c_1_sda,
-  },
-  {
-    .name = "I2C_1_SCL",
-    .handler = internal_set_i2c_1_scl,
-    .getter = get_i2c_1_scl,
-  },
-  {
-    .name = "I2C_1_ENABLED",
-    .handler = internal_set_i2c_1_enabled,
-    .getter = get_i2c_1_enabled,
-  },
-  {
     .name = "REBOOT",
     .handler = internal_set_reboot,
     .getter = get_reboot,
@@ -175,79 +160,9 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_box_0_sht21_humi,
   },
   {
-    .name = "BOX_1_ENABLED",
-    .handler = internal_set_box_1_enabled,
-    .getter = get_box_1_enabled,
-  },
-  {
-    .name = "BOX_1_TIMER_TYPE",
-    .handler = internal_set_box_1_timer_type,
-    .getter = get_box_1_timer_type,
-  },
-  {
-    .name = "BOX_1_TIMER_OUTPUT",
-    .handler = NULL,
-    .getter = get_box_1_timer_output,
-  },
-  {
-    .name = "BOX_1_STARTED_AT",
-    .handler = internal_set_box_1_started_at,
-    .getter = get_box_1_started_at,
-  },
-  {
-    .name = "BOX_1_ON_HOUR",
-    .handler = internal_set_box_1_on_hour,
-    .getter = get_box_1_on_hour,
-  },
-  {
-    .name = "BOX_1_ON_MIN",
-    .handler = internal_set_box_1_on_min,
-    .getter = get_box_1_on_min,
-  },
-  {
-    .name = "BOX_1_OFF_HOUR",
-    .handler = internal_set_box_1_off_hour,
-    .getter = get_box_1_off_hour,
-  },
-  {
-    .name = "BOX_1_OFF_MIN",
-    .handler = internal_set_box_1_off_min,
-    .getter = get_box_1_off_min,
-  },
-  {
-    .name = "BOX_1_STRETCH",
-    .handler = internal_set_box_1_stretch,
-    .getter = get_box_1_stretch,
-  },
-  {
-    .name = "BOX_1_LED_DIM",
-    .handler = internal_set_box_1_led_dim,
-    .getter = get_box_1_led_dim,
-  },
-  {
-    .name = "BOX_1_SHT21_TEMP_C",
-    .handler = NULL,
-    .getter = get_box_1_sht21_temp_c,
-  },
-  {
-    .name = "BOX_1_SHT21_TEMP_F",
-    .handler = NULL,
-    .getter = get_box_1_sht21_temp_f,
-  },
-  {
-    .name = "BOX_1_SHT21_HUMI",
-    .handler = NULL,
-    .getter = get_box_1_sht21_humi,
-  },
-  {
     .name = "LED_0_DUTY",
     .handler = internal_set_led_0_duty,
     .getter = get_led_0_duty,
-  },
-  {
-    .name = "LED_1_DUTY",
-    .handler = internal_set_led_1_duty,
-    .getter = get_led_1_duty,
   },
   {
     .name = "LED_0_GPIO",
@@ -255,19 +170,9 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_led_0_gpio,
   },
   {
-    .name = "LED_1_GPIO",
-    .handler = internal_set_led_1_gpio,
-    .getter = get_led_1_gpio,
-  },
-  {
     .name = "LED_0_X",
     .handler = internal_set_led_0_x,
     .getter = get_led_0_x,
-  },
-  {
-    .name = "LED_1_X",
-    .handler = internal_set_led_1_x,
-    .getter = get_led_1_x,
   },
   {
     .name = "LED_0_Y",
@@ -275,19 +180,9 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_led_0_y,
   },
   {
-    .name = "LED_1_Y",
-    .handler = internal_set_led_1_y,
-    .getter = get_led_1_y,
-  },
-  {
     .name = "LED_0_Z",
     .handler = internal_set_led_0_z,
     .getter = get_led_0_z,
-  },
-  {
-    .name = "LED_1_Z",
-    .handler = internal_set_led_1_z,
-    .getter = get_led_1_z,
   },
   {
     .name = "LED_0_ENABLED",
@@ -295,19 +190,9 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_led_0_enabled,
   },
   {
-    .name = "LED_1_ENABLED",
-    .handler = internal_set_led_1_enabled,
-    .getter = get_led_1_enabled,
-  },
-  {
     .name = "LED_0_BOX",
     .handler = internal_set_led_0_box,
     .getter = get_led_0_box,
-  },
-  {
-    .name = "LED_1_BOX",
-    .handler = internal_set_led_1_box,
-    .getter = get_led_1_box,
   },
   {
     .name = "LED_0_DIM",
@@ -315,19 +200,9 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_led_0_dim,
   },
   {
-    .name = "LED_1_DIM",
-    .handler = internal_set_led_1_dim,
-    .getter = get_led_1_dim,
-  },
-  {
     .name = "LED_0_FADE",
     .handler = internal_set_led_0_fade,
     .getter = get_led_0_fade,
-  },
-  {
-    .name = "LED_1_FADE",
-    .handler = internal_set_led_1_fade,
-    .getter = get_led_1_fade,
   },
 
 /*
@@ -427,11 +302,6 @@ const kvs_handler kvs_handlers[] = {
     .name = "BOX_0_LED_INFO",
     .handler = NULL,
     .getter = get_box_0_led_info,
-  },
-  {
-    .name = "BOX_1_LED_INFO",
-    .handler = NULL,
-    .getter = get_box_1_led_info,
   },
 
 /*

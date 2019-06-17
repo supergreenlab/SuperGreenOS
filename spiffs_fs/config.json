@@ -1,5 +1,5 @@
 {
-  "name": "PicklePreRelease",
+  "name": "SoloPreRelease",
   "core_modules": [
     "wifi",
     "ble",
@@ -38,8 +38,7 @@
     "enabled"
   ],
   "i2c_loop_i": [
-    0,
-    1
+    0
   ],
   "box_params": [
     "enabled",
@@ -57,8 +56,7 @@
     "sht21_humi"
   ],
   "box_loop_i": [
-    0,
-    1
+    0
   ],
   "led_params": [
     "duty",
@@ -72,8 +70,7 @@
     "fade"
   ],
   "led_loop_i": [
-    0,
-    1
+    0
   ],
   "keys": [
     {
@@ -109,6 +106,7 @@
     },
     {
       "name": "wifi_password",
+      "nosend": true,
       "caps_name": "WIFI_PASSWORD",
       "string": true,
       "nvs": {
@@ -266,7 +264,7 @@
       "http": {
         "write": true
       },
-      "default": "/PicklePreRelease"
+      "default": "/SoloPreRelease"
     },
     {
       "name": "ota_status",
@@ -327,7 +325,7 @@
       "http": {
         "write": true
       },
-      "default": 18
+      "default": 25
     },
     {
       "name": "i2c_0_scl",
@@ -343,7 +341,7 @@
       "http": {
         "write": true
       },
-      "default": 5
+      "default": 26
     },
     {
       "name": "i2c_0_enabled",
@@ -355,54 +353,6 @@
       },
       "nvs": {
         "key": "I2C_0_E"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 1
-    },
-    {
-      "name": "i2c_1_sda",
-      "caps_name": "I2C_1_SDA",
-      "integer": true,
-      "i2c": {
-        "index": 1,
-        "param": "sda"
-      },
-      "nvs": {
-        "key": "I2C_1_SDA"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 21
-    },
-    {
-      "name": "i2c_1_scl",
-      "caps_name": "I2C_1_SCL",
-      "integer": true,
-      "i2c": {
-        "index": 1,
-        "param": "scl"
-      },
-      "nvs": {
-        "key": "I2C_1_SCL"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 19
-    },
-    {
-      "name": "i2c_1_enabled",
-      "caps_name": "I2C_1_ENABLED",
-      "integer": true,
-      "i2c": {
-        "index": 1,
-        "param": "enabled"
-      },
-      "nvs": {
-        "key": "I2C_1_E"
       },
       "http": {
         "write": true
@@ -450,7 +400,7 @@
       "http": {
         "write": true
       },
-      "default": "Pickle"
+      "default": "Solo"
     },
     {
       "name": "status_led_red_gpio",
@@ -462,7 +412,7 @@
       "http": {
         "write": true
       },
-      "default": 23
+      "default": 12
     },
     {
       "name": "status_led_green_gpio",
@@ -474,7 +424,7 @@
       "http": {
         "write": true
       },
-      "default": 22
+      "default": 14
     },
     {
       "name": "status_led_dim",
@@ -751,231 +701,6 @@
       "default": ""
     },
     {
-      "name": "box_1_enabled",
-      "caps_name": "BOX_1_ENABLED",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "enabled"
-      },
-      "nvs": {
-        "key": "B_1_E"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 1
-    },
-    {
-      "name": "box_1_timer_type",
-      "caps_name": "BOX_1_TIMER_TYPE",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "timer_type"
-      },
-      "nvs": {
-        "key": "B_1_TT",
-        "manual": true
-      },
-      "http": {
-        "write": true
-      },
-      "write_cb": true,
-      "default_var": "TIMER_MANUAL"
-    },
-    {
-      "name": "box_1_timer_output",
-      "caps_name": "BOX_1_TIMER_OUTPUT",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "timer_output"
-      },
-      "nvs": {
-        "key": "B_1_TO"
-      },
-      "http": {
-        "noop": true
-      },
-      "default": 0
-    },
-    {
-      "name": "box_1_started_at",
-      "caps_name": "BOX_1_STARTED_AT",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "started_at"
-      },
-      "nvs": {
-        "key": "B_1_ST_AT"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 0
-    },
-    {
-      "name": "box_1_on_hour",
-      "caps_name": "BOX_1_ON_HOUR",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "on_hour"
-      },
-      "nvs": {
-        "key": "B_1_ON_H"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 1
-    },
-    {
-      "name": "box_1_on_min",
-      "caps_name": "BOX_1_ON_MIN",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "on_min"
-      },
-      "nvs": {
-        "key": "B_1_ON_M"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 0
-    },
-    {
-      "name": "box_1_off_hour",
-      "caps_name": "BOX_1_OFF_HOUR",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "off_hour"
-      },
-      "nvs": {
-        "key": "B_1_OFF_H"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 19
-    },
-    {
-      "name": "box_1_off_min",
-      "caps_name": "BOX_1_OFF_MIN",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "off_min"
-      },
-      "nvs": {
-        "key": "B_1_OFF_M"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 0
-    },
-    {
-      "name": "box_1_stretch",
-      "caps_name": "BOX_1_STRETCH",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "stretch"
-      },
-      "nvs": {
-        "key": "B_1_STRETCH"
-      },
-      "http": {
-        "write": true
-      },
-      "write_cb": true,
-      "default": 0
-    },
-    {
-      "name": "box_1_led_dim",
-      "caps_name": "BOX_1_LED_DIM",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "led_dim"
-      },
-      "nvs": {
-        "key": "B_1_L_DIM"
-      },
-      "http": {
-        "write": true
-      },
-      "write_cb": true,
-      "default": 0
-    },
-    {
-      "name": "box_1_sht21_temp_c",
-      "caps_name": "BOX_1_SHT21_TEMP_C",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "sht21_temp_c"
-      },
-      "nvs": {
-        "key": "B_1_SHT21_C"
-      },
-      "http": {
-        "noop": true
-      },
-      "default": -1000000
-    },
-    {
-      "name": "box_1_sht21_temp_f",
-      "caps_name": "BOX_1_SHT21_TEMP_F",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "sht21_temp_f"
-      },
-      "nvs": {
-        "key": "B_1_SHT21_F"
-      },
-      "http": {
-        "noop": true
-      },
-      "default": -1000000
-    },
-    {
-      "name": "box_1_sht21_humi",
-      "caps_name": "BOX_1_SHT21_HUMI",
-      "integer": true,
-      "box": {
-        "index": 1,
-        "param": "sht21_humi"
-      },
-      "nvs": {
-        "key": "B_1_SHT21_HU"
-      },
-      "http": {
-        "noop": true
-      },
-      "default": -1000000
-    },
-    {
-      "name": "box_1_led_info",
-      "caps_name": "BOX_1_LED_INFO",
-      "string": true,
-      "box": {
-        "index": 1,
-        "param": "led_info"
-      },
-      "http": {
-        "noop": true
-      },
-      "default": ""
-    },
-    {
       "name": "led_0_duty",
       "caps_name": "LED_0_DUTY",
       "led": {
@@ -985,23 +710,6 @@
       "integer": true,
       "nvs": {
         "key": "L_0_D"
-      },
-      "http": {
-        "write": true
-      },
-      "write_cb": true,
-      "default": 0
-    },
-    {
-      "name": "led_1_duty",
-      "caps_name": "LED_1_DUTY",
-      "integer": true,
-      "led": {
-        "index": 1,
-        "param": "duty"
-      },
-      "nvs": {
-        "key": "L_1_D"
       },
       "http": {
         "write": true
@@ -1023,23 +731,7 @@
       "http": {
         "write": true
       },
-      "default": 27
-    },
-    {
-      "name": "led_1_gpio",
-      "caps_name": "LED_1_GPIO",
-      "integer": true,
-      "led": {
-        "index": 1,
-        "param": "gpio"
-      },
-      "nvs": {
-        "key": "L_1_IO"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 26
+      "default": 23
     },
     {
       "name": "led_0_x",
@@ -1051,22 +743,6 @@
       },
       "nvs": {
         "key": "L_0_X"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 0
-    },
-    {
-      "name": "led_1_x",
-      "caps_name": "LED_1_X",
-      "integer": true,
-      "led": {
-        "index": 1,
-        "param": "x"
-      },
-      "nvs": {
-        "key": "L_1_X"
       },
       "http": {
         "write": true
@@ -1090,22 +766,6 @@
       "default": 0
     },
     {
-      "name": "led_1_y",
-      "caps_name": "LED_1_Y",
-      "integer": true,
-      "led": {
-        "index": 1,
-        "param": "y"
-      },
-      "nvs": {
-        "key": "L_1_Y"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 0
-    },
-    {
       "name": "led_0_z",
       "caps_name": "LED_0_Z",
       "integer": true,
@@ -1115,22 +775,6 @@
       },
       "nvs": {
         "key": "L_0_Z"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 0
-    },
-    {
-      "name": "led_1_z",
-      "caps_name": "LED_1_Z",
-      "integer": true,
-      "led": {
-        "index": 1,
-        "param": "z"
-      },
-      "nvs": {
-        "key": "L_1_Z"
       },
       "http": {
         "write": true
@@ -1154,22 +798,6 @@
       "default": 1
     },
     {
-      "name": "led_1_enabled",
-      "caps_name": "LED_1_ENABLED",
-      "integer": true,
-      "led": {
-        "index": 1,
-        "param": "enabled"
-      },
-      "nvs": {
-        "key": "L_1_E"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 1
-    },
-    {
       "name": "led_0_box",
       "caps_name": "LED_0_BOX",
       "integer": true,
@@ -1184,22 +812,6 @@
         "write": true
       },
       "default": 0
-    },
-    {
-      "name": "led_1_box",
-      "caps_name": "LED_1_BOX",
-      "integer": true,
-      "led": {
-        "index": 1,
-        "param": "box"
-      },
-      "nvs": {
-        "key": "L_1_B"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 1
     },
     {
       "name": "led_0_dim",
@@ -1219,23 +831,6 @@
       "default": 100
     },
     {
-      "name": "led_1_dim",
-      "caps_name": "LED_1_DIM",
-      "integer": true,
-      "led": {
-        "index": 1,
-        "param": "dim"
-      },
-      "nvs": {
-        "key": "L_1_DI"
-      },
-      "http": {
-        "write": true
-      },
-      "write_cb": true,
-      "default": 100
-    },
-    {
       "name": "led_0_fade",
       "caps_name": "LED_0_FADE",
       "led": {
@@ -1245,22 +840,6 @@
       "integer": true,
       "nvs": {
         "key": "L_0_F"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 1
-    },
-    {
-      "name": "led_1_fade",
-      "caps_name": "LED_1_FADE",
-      "led": {
-        "index": 1,
-        "param": "fade"
-      },
-      "integer": true,
-      "nvs": {
-        "key": "L_1_F"
       },
       "http": {
         "write": true

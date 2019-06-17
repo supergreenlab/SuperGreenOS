@@ -228,24 +228,6 @@ static void stat_dump_task(void *param) {
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_i2c_0_enabled_changed();
     }
-    if ((counter % 20) == 0 || is_i2c_1_sda_changed()) {
-      value = get_i2c_1_sda();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "I2C_1_SDA", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_i2c_1_sda_changed();
-    }
-    if ((counter % 20) == 0 || is_i2c_1_scl_changed()) {
-      value = get_i2c_1_scl();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "I2C_1_SCL", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_i2c_1_scl_changed();
-    }
-    if ((counter % 20) == 0 || is_i2c_1_enabled_changed()) {
-      value = get_i2c_1_enabled();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "I2C_1_ENABLED", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_i2c_1_enabled_changed();
-    }
     if ((counter % 20) == 0 || is_reboot_changed()) {
       value = get_reboot();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "REBOOT", value);
@@ -366,101 +348,11 @@ static void stat_dump_task(void *param) {
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_box_0_led_info_changed();
     }
-    if ((counter % 20) == 0 || is_box_1_enabled_changed()) {
-      value = get_box_1_enabled();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_ENABLED", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_enabled_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_timer_type_changed()) {
-      value = get_box_1_timer_type();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_TIMER_TYPE", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_timer_type_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_timer_output_changed()) {
-      value = get_box_1_timer_output();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_TIMER_OUTPUT", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_timer_output_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_started_at_changed()) {
-      value = get_box_1_started_at();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_STARTED_AT", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_started_at_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_on_hour_changed()) {
-      value = get_box_1_on_hour();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_ON_HOUR", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_on_hour_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_on_min_changed()) {
-      value = get_box_1_on_min();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_ON_MIN", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_on_min_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_off_hour_changed()) {
-      value = get_box_1_off_hour();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_OFF_HOUR", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_off_hour_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_off_min_changed()) {
-      value = get_box_1_off_min();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_OFF_MIN", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_off_min_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_stretch_changed()) {
-      value = get_box_1_stretch();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_STRETCH", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_stretch_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_led_dim_changed()) {
-      value = get_box_1_led_dim();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_LED_DIM", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_led_dim_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_sht21_temp_c_changed()) {
-      value = get_box_1_sht21_temp_c();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_SHT21_TEMP_C", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_sht21_temp_c_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_sht21_temp_f_changed()) {
-      value = get_box_1_sht21_temp_f();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_SHT21_TEMP_F", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_sht21_temp_f_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_sht21_humi_changed()) {
-      value = get_box_1_sht21_humi();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_1_SHT21_HUMI", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_sht21_humi_changed();
-    }
-    if ((counter % 20) == 0 || is_box_1_led_info_changed()) {
-      get_box_1_led_info(str, MAX_KVALUE_SIZE-1);
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "BOX_1_LED_INFO", str);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_box_1_led_info_changed();
-    }
     if ((counter % 20) == 0 || is_led_0_duty_changed()) {
       value = get_led_0_duty();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_0_DUTY", value);
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_led_0_duty_changed();
-    }
-    if ((counter % 20) == 0 || is_led_1_duty_changed()) {
-      value = get_led_1_duty();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_1_DUTY", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_led_1_duty_changed();
     }
     if ((counter % 20) == 0 || is_led_0_gpio_changed()) {
       value = get_led_0_gpio();
@@ -468,23 +360,11 @@ static void stat_dump_task(void *param) {
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_led_0_gpio_changed();
     }
-    if ((counter % 20) == 0 || is_led_1_gpio_changed()) {
-      value = get_led_1_gpio();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_1_GPIO", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_led_1_gpio_changed();
-    }
     if ((counter % 20) == 0 || is_led_0_x_changed()) {
       value = get_led_0_x();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_0_X", value);
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_led_0_x_changed();
-    }
-    if ((counter % 20) == 0 || is_led_1_x_changed()) {
-      value = get_led_1_x();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_1_X", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_led_1_x_changed();
     }
     if ((counter % 20) == 0 || is_led_0_y_changed()) {
       value = get_led_0_y();
@@ -492,23 +372,11 @@ static void stat_dump_task(void *param) {
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_led_0_y_changed();
     }
-    if ((counter % 20) == 0 || is_led_1_y_changed()) {
-      value = get_led_1_y();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_1_Y", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_led_1_y_changed();
-    }
     if ((counter % 20) == 0 || is_led_0_z_changed()) {
       value = get_led_0_z();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_0_Z", value);
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_led_0_z_changed();
-    }
-    if ((counter % 20) == 0 || is_led_1_z_changed()) {
-      value = get_led_1_z();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_1_Z", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_led_1_z_changed();
     }
     if ((counter % 20) == 0 || is_led_0_enabled_changed()) {
       value = get_led_0_enabled();
@@ -516,23 +384,11 @@ static void stat_dump_task(void *param) {
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_led_0_enabled_changed();
     }
-    if ((counter % 20) == 0 || is_led_1_enabled_changed()) {
-      value = get_led_1_enabled();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_1_ENABLED", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_led_1_enabled_changed();
-    }
     if ((counter % 20) == 0 || is_led_0_box_changed()) {
       value = get_led_0_box();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_0_BOX", value);
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_led_0_box_changed();
-    }
-    if ((counter % 20) == 0 || is_led_1_box_changed()) {
-      value = get_led_1_box();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_1_BOX", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_led_1_box_changed();
     }
     if ((counter % 20) == 0 || is_led_0_dim_changed()) {
       value = get_led_0_dim();
@@ -540,23 +396,11 @@ static void stat_dump_task(void *param) {
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_led_0_dim_changed();
     }
-    if ((counter % 20) == 0 || is_led_1_dim_changed()) {
-      value = get_led_1_dim();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_1_DIM", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_led_1_dim_changed();
-    }
     if ((counter % 20) == 0 || is_led_0_fade_changed()) {
       value = get_led_0_fade();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_0_FADE", value);
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_led_0_fade_changed();
-    }
-    if ((counter % 20) == 0 || is_led_1_fade_changed()) {
-      value = get_led_1_fade();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "LED_1_FADE", value);
-      vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_led_1_fade_changed();
     }
 
     vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);

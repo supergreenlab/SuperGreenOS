@@ -29,8 +29,6 @@
   switch(ledId) { \
     case 0: \
       return get_led_0_## param(ledId); \
-    case 1: \
-      return get_led_1_## param(ledId); \
   } \
   return 0; \
 }
@@ -40,16 +38,11 @@
     case 0: \
       set_led_0_## param(value); \
       break; \
-    case 1: \
-      set_led_1_## param(value); \
-      break; \
   } \
 }
 
 LED_CB(0, duty)
-LED_CB(1, duty)
 LED_CB(0, dim)
-LED_CB(1, dim)
 
 LED_SETTER(duty)
 LED_GETTER(duty)

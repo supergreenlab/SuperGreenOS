@@ -66,9 +66,6 @@ void i2c_task(void *param) {
     if (get_i2c_enabled(0)) {
       loop_devices(0);
     }
-    if (get_i2c_enabled(1)) {
-      loop_devices(1);
-    }
 
     vTaskDelay(2000 / portTICK_RATE_MS);
   }
@@ -84,13 +81,10 @@ void init_i2c() {
   if (get_i2c_enabled(0) == 1) {
     init_i2c_devices(0);
   }
-  if (get_i2c_enabled(1) == 1) {
-    init_i2c_devices(1);
-  }
   xTaskCreate(i2c_task, "I2C", 4096, NULL, 10, NULL);
 }
 
-static bool i2c_started[] = { false,false, };
+static bool i2c_started[] = { false, };
 
 static void initialize_i2c_port(int portId, int sda, int scl) {
   i2c_started[portId] = true;

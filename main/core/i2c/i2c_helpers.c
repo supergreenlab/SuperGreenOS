@@ -29,8 +29,6 @@
   switch(i2cId) { \
     case 0: \
       return get_i2c_0_## param(i2cId); \
-    case 1: \
-      return get_i2c_1_## param(i2cId); \
   } \
   return 0; \
 }
@@ -39,8 +37,6 @@
   switch(i2cId) { \
     case 0: \
       set_i2c_0_## param(value); \
-    case 1: \
-      set_i2c_1_## param(value); \
   } \
 }
 
