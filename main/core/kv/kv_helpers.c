@@ -1576,6 +1576,206 @@ void set_box_0_led_dim(int value) {
 }
 
 
+static SemaphoreHandle_t _mutex_box_0_blower_day; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_0_blower_day_changed = true;
+static bool _box_0_blower_day_undefined = true;
+
+void reset_box_0_blower_day_changed() {
+  xSemaphoreTake(_mutex_box_0_blower_day, 0);
+  _box_0_blower_day_changed = false;
+  xSemaphoreGive(_mutex_box_0_blower_day);
+}
+
+bool is_box_0_blower_day_changed() {
+  xSemaphoreTake(_mutex_box_0_blower_day, 0);
+  bool v = _box_0_blower_day_changed;
+  xSemaphoreGive(_mutex_box_0_blower_day);
+  return v;
+}
+
+bool is_box_0_blower_day_undefined() {
+  xSemaphoreTake(_mutex_box_0_blower_day, 0);
+  bool v = _box_0_blower_day_undefined;
+  xSemaphoreGive(_mutex_box_0_blower_day);
+  return v;
+}
+
+
+
+int get_box_0_blower_day() {
+  return geti(BOX_0_BLOWER_DAY);
+}
+
+void set_box_0_blower_day(int value) {
+  if (geti(BOX_0_BLOWER_DAY) == value) return;
+  seti(BOX_0_BLOWER_DAY, value);
+  xSemaphoreTake(_mutex_box_0_blower_day, 0);
+  _box_0_blower_day_changed = true;
+  _box_0_blower_day_undefined = false;
+  xSemaphoreGive(_mutex_box_0_blower_day);
+}
+
+
+static SemaphoreHandle_t _mutex_box_0_blower_night; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_0_blower_night_changed = true;
+static bool _box_0_blower_night_undefined = true;
+
+void reset_box_0_blower_night_changed() {
+  xSemaphoreTake(_mutex_box_0_blower_night, 0);
+  _box_0_blower_night_changed = false;
+  xSemaphoreGive(_mutex_box_0_blower_night);
+}
+
+bool is_box_0_blower_night_changed() {
+  xSemaphoreTake(_mutex_box_0_blower_night, 0);
+  bool v = _box_0_blower_night_changed;
+  xSemaphoreGive(_mutex_box_0_blower_night);
+  return v;
+}
+
+bool is_box_0_blower_night_undefined() {
+  xSemaphoreTake(_mutex_box_0_blower_night, 0);
+  bool v = _box_0_blower_night_undefined;
+  xSemaphoreGive(_mutex_box_0_blower_night);
+  return v;
+}
+
+
+
+int get_box_0_blower_night() {
+  return geti(BOX_0_BLOWER_NIGHT);
+}
+
+void set_box_0_blower_night(int value) {
+  if (geti(BOX_0_BLOWER_NIGHT) == value) return;
+  seti(BOX_0_BLOWER_NIGHT, value);
+  xSemaphoreTake(_mutex_box_0_blower_night, 0);
+  _box_0_blower_night_changed = true;
+  _box_0_blower_night_undefined = false;
+  xSemaphoreGive(_mutex_box_0_blower_night);
+}
+
+
+static SemaphoreHandle_t _mutex_box_0_blower_gpio; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_0_blower_gpio_changed = true;
+static bool _box_0_blower_gpio_undefined = true;
+
+void reset_box_0_blower_gpio_changed() {
+  xSemaphoreTake(_mutex_box_0_blower_gpio, 0);
+  _box_0_blower_gpio_changed = false;
+  xSemaphoreGive(_mutex_box_0_blower_gpio);
+}
+
+bool is_box_0_blower_gpio_changed() {
+  xSemaphoreTake(_mutex_box_0_blower_gpio, 0);
+  bool v = _box_0_blower_gpio_changed;
+  xSemaphoreGive(_mutex_box_0_blower_gpio);
+  return v;
+}
+
+bool is_box_0_blower_gpio_undefined() {
+  xSemaphoreTake(_mutex_box_0_blower_gpio, 0);
+  bool v = _box_0_blower_gpio_undefined;
+  xSemaphoreGive(_mutex_box_0_blower_gpio);
+  return v;
+}
+
+
+
+int get_box_0_blower_gpio() {
+  return geti(BOX_0_BLOWER_GPIO);
+}
+
+void set_box_0_blower_gpio(int value) {
+  if (geti(BOX_0_BLOWER_GPIO) == value) return;
+  seti(BOX_0_BLOWER_GPIO, value);
+  xSemaphoreTake(_mutex_box_0_blower_gpio, 0);
+  _box_0_blower_gpio_changed = true;
+  _box_0_blower_gpio_undefined = false;
+  xSemaphoreGive(_mutex_box_0_blower_gpio);
+}
+
+
+static SemaphoreHandle_t _mutex_box_0_blower_frequency; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_0_blower_frequency_changed = true;
+static bool _box_0_blower_frequency_undefined = true;
+
+void reset_box_0_blower_frequency_changed() {
+  xSemaphoreTake(_mutex_box_0_blower_frequency, 0);
+  _box_0_blower_frequency_changed = false;
+  xSemaphoreGive(_mutex_box_0_blower_frequency);
+}
+
+bool is_box_0_blower_frequency_changed() {
+  xSemaphoreTake(_mutex_box_0_blower_frequency, 0);
+  bool v = _box_0_blower_frequency_changed;
+  xSemaphoreGive(_mutex_box_0_blower_frequency);
+  return v;
+}
+
+bool is_box_0_blower_frequency_undefined() {
+  xSemaphoreTake(_mutex_box_0_blower_frequency, 0);
+  bool v = _box_0_blower_frequency_undefined;
+  xSemaphoreGive(_mutex_box_0_blower_frequency);
+  return v;
+}
+
+
+
+int get_box_0_blower_frequency() {
+  return geti(BOX_0_BLOWER_FREQUENCY);
+}
+
+void set_box_0_blower_frequency(int value) {
+  if (geti(BOX_0_BLOWER_FREQUENCY) == value) return;
+  seti(BOX_0_BLOWER_FREQUENCY, value);
+  xSemaphoreTake(_mutex_box_0_blower_frequency, 0);
+  _box_0_blower_frequency_changed = true;
+  _box_0_blower_frequency_undefined = false;
+  xSemaphoreGive(_mutex_box_0_blower_frequency);
+}
+
+
+static SemaphoreHandle_t _mutex_box_0_blower_enabled; // TODO check RAM weight of creating so many semaphores :/
+static bool _box_0_blower_enabled_changed = true;
+static bool _box_0_blower_enabled_undefined = true;
+
+void reset_box_0_blower_enabled_changed() {
+  xSemaphoreTake(_mutex_box_0_blower_enabled, 0);
+  _box_0_blower_enabled_changed = false;
+  xSemaphoreGive(_mutex_box_0_blower_enabled);
+}
+
+bool is_box_0_blower_enabled_changed() {
+  xSemaphoreTake(_mutex_box_0_blower_enabled, 0);
+  bool v = _box_0_blower_enabled_changed;
+  xSemaphoreGive(_mutex_box_0_blower_enabled);
+  return v;
+}
+
+bool is_box_0_blower_enabled_undefined() {
+  xSemaphoreTake(_mutex_box_0_blower_enabled, 0);
+  bool v = _box_0_blower_enabled_undefined;
+  xSemaphoreGive(_mutex_box_0_blower_enabled);
+  return v;
+}
+
+
+
+int get_box_0_blower_enabled() {
+  return geti(BOX_0_BLOWER_ENABLED);
+}
+
+void set_box_0_blower_enabled(int value) {
+  if (geti(BOX_0_BLOWER_ENABLED) == value) return;
+  seti(BOX_0_BLOWER_ENABLED, value);
+  xSemaphoreTake(_mutex_box_0_blower_enabled, 0);
+  _box_0_blower_enabled_changed = true;
+  _box_0_blower_enabled_undefined = false;
+  xSemaphoreGive(_mutex_box_0_blower_enabled);
+}
+
+
 static SemaphoreHandle_t _mutex_box_0_sht21_temp_c; // TODO check RAM weight of creating so many semaphores :/
 static bool _box_0_sht21_temp_c_changed = true;
 static bool _box_0_sht21_temp_c_undefined = true;
@@ -2139,6 +2339,11 @@ void init_helpers() {
   _mutex_box_0_off_min = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_stretch = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_led_dim = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_0_blower_day = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_0_blower_night = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_0_blower_gpio = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_0_blower_frequency = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  _mutex_box_0_blower_enabled = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_sht21_temp_c = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_sht21_temp_f = xSemaphoreCreateMutexStatic(&mutex_buffer);
   _mutex_box_0_sht21_humi = xSemaphoreCreateMutexStatic(&mutex_buffer);

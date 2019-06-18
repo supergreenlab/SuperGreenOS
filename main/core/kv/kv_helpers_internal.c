@@ -284,6 +284,47 @@ void internal_set_box_0_led_dim(int value) {
 
   // TODO: httpd notify
 }
+void internal_set_box_0_blower_day(int value) {
+  set_box_0_blower_day(value);
+
+  value = on_set_box_0_blower_day(value);
+
+  set_box_0_blower_day(value);
+
+
+  // TODO: httpd notify
+}
+void internal_set_box_0_blower_night(int value) {
+  set_box_0_blower_night(value);
+
+  value = on_set_box_0_blower_night(value);
+
+  set_box_0_blower_night(value);
+
+
+  // TODO: httpd notify
+}
+void internal_set_box_0_blower_gpio(int value) {
+  set_box_0_blower_gpio(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_box_0_blower_frequency(int value) {
+  set_box_0_blower_frequency(value);
+
+
+
+  // TODO: httpd notify
+}
+void internal_set_box_0_blower_enabled(int value) {
+  set_box_0_blower_enabled(value);
+
+
+
+  // TODO: httpd notify
+}
 void internal_set_box_0_sht21_temp_c(int value) {
   set_box_0_sht21_temp_c(value);
 

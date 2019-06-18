@@ -19,10 +19,6 @@
 #ifndef BLOWER_H_
 #define BLOWER_H_
 
-#define DEFAULT_BOX_0_BLOWER_GPIO (22)
-#define DEFAULT_BOX_1_BLOWER_GPIO (21)
-#define DEFAULT_BOX_2_BLOWER_GPIO (20)
-
 #define DEFAULT_BLOWER_FREQUENCY 15000
 
 void init_blower();

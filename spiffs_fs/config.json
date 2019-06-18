@@ -13,6 +13,7 @@
     "reboot"
   ],
   "custom_modules": [
+    "blower",
     "led",
     "mixer",
     "state",
@@ -51,6 +52,11 @@
     "off_min",
     "stretch",
     "led_dim",
+    "blower_day",
+    "blower_night",
+    "blower_gpio",
+    "blower_frequency",
+    "blower_enabled",
     "sht21_temp_c",
     "sht21_temp_f",
     "sht21_humi"
@@ -158,7 +164,7 @@
       "http": {
         "write": true
       },
-      "default_var": "DEFAULT_MDNS_DOMAIN"
+      "default_var": "solo"
     },
     {
       "name": "wifi_ip",
@@ -436,7 +442,7 @@
       "http": {
         "write": true
       },
-      "default": 50
+      "default": 10
     },
     {
       "name": "box_0_enabled",
@@ -634,6 +640,88 @@
       },
       "write_cb": true,
       "default": 0
+    },
+    {
+      "name": "box_0_blower_day",
+      "caps_name": "BOX_0_BLOWER_DAY",
+      "integer": true,
+      "box": {
+        "index": 0,
+        "param": "blower_day"
+      },
+      "nvs": {
+        "key": "B_0_BLWR_D"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 50
+    },
+    {
+      "name": "box_0_blower_night",
+      "caps_name": "BOX_0_BLOWER_NIGHT",
+      "integer": true,
+      "box": {
+        "index": 0,
+        "param": "blower_night"
+      },
+      "nvs": {
+        "key": "B_0_BLWR_N"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 50
+    },
+    {
+      "name": "box_0_blower_gpio",
+      "caps_name": "BOX_0_BLOWER_GPIO",
+      "integer": true,
+      "box": {
+        "index": 0,
+        "param": "blower_gpio"
+      },
+      "nvs": {
+        "key": "B_0_BLWR_IO"
+      },
+      "http": {
+        "write": true
+      },
+      "default_var": 17
+    },
+    {
+      "name": "box_0_blower_frequency",
+      "caps_name": "BOX_0_BLOWER_FREQUENCY",
+      "integer": true,
+      "box": {
+        "index": 0,
+        "param": "blower_frequency"
+      },
+      "nvs": {
+        "key": "B_0_BLWR_HZ"
+      },
+      "http": {
+        "write": true
+      },
+      "default_var": "DEFAULT_BLOWER_FREQUENCY"
+    },
+    {
+      "name": "box_0_blower_enabled",
+      "caps_name": "BOX_0_BLOWER_ENABLED",
+      "integer": true,
+      "box": {
+        "index": 0,
+        "param": "blower_enabled"
+      },
+      "nvs": {
+        "key": "B_0_BLWR_E"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
     },
     {
       "name": "box_0_sht21_temp_c",

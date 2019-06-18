@@ -145,6 +145,31 @@ const kvi_handler kvi_handlers[] = {
     .getter = get_box_0_led_dim,
   },
   {
+    .name = "BOX_0_BLOWER_DAY",
+    .handler = internal_set_box_0_blower_day,
+    .getter = get_box_0_blower_day,
+  },
+  {
+    .name = "BOX_0_BLOWER_NIGHT",
+    .handler = internal_set_box_0_blower_night,
+    .getter = get_box_0_blower_night,
+  },
+  {
+    .name = "BOX_0_BLOWER_GPIO",
+    .handler = internal_set_box_0_blower_gpio,
+    .getter = get_box_0_blower_gpio,
+  },
+  {
+    .name = "BOX_0_BLOWER_FREQUENCY",
+    .handler = internal_set_box_0_blower_frequency,
+    .getter = get_box_0_blower_frequency,
+  },
+  {
+    .name = "BOX_0_BLOWER_ENABLED",
+    .handler = internal_set_box_0_blower_enabled,
+    .getter = get_box_0_blower_enabled,
+  },
+  {
     .name = "BOX_0_SHT21_TEMP_C",
     .handler = NULL,
     .getter = get_box_0_sht21_temp_c,

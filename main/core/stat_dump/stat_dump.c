@@ -324,6 +324,36 @@ static void stat_dump_task(void *param) {
       vTaskDelay(200 / portTICK_PERIOD_MS);
       reset_box_0_led_dim_changed();
     }
+    if ((counter % 20) == 0 || is_box_0_blower_day_changed()) {
+      value = get_box_0_blower_day();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_BLOWER_DAY", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
+      reset_box_0_blower_day_changed();
+    }
+    if ((counter % 20) == 0 || is_box_0_blower_night_changed()) {
+      value = get_box_0_blower_night();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_BLOWER_NIGHT", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
+      reset_box_0_blower_night_changed();
+    }
+    if ((counter % 20) == 0 || is_box_0_blower_gpio_changed()) {
+      value = get_box_0_blower_gpio();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_BLOWER_GPIO", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
+      reset_box_0_blower_gpio_changed();
+    }
+    if ((counter % 20) == 0 || is_box_0_blower_frequency_changed()) {
+      value = get_box_0_blower_frequency();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_BLOWER_FREQUENCY", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
+      reset_box_0_blower_frequency_changed();
+    }
+    if ((counter % 20) == 0 || is_box_0_blower_enabled_changed()) {
+      value = get_box_0_blower_enabled();
+      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_BLOWER_ENABLED", value);
+      vTaskDelay(200 / portTICK_PERIOD_MS);
+      reset_box_0_blower_enabled_changed();
+    }
     if ((counter % 20) == 0 || is_box_0_sht21_temp_c_changed()) {
       value = get_box_0_sht21_temp_c();
       ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "BOX_0_SHT21_TEMP_C", value);
