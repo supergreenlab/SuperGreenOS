@@ -839,7 +839,7 @@ keys:
       key: L_0_IO
     http:
       write: true
-    default: 27
+    default: 26
 
   - name: led_1_gpio
     caps_name: LED_1_GPIO
@@ -851,7 +851,7 @@ keys:
       key: L_1_IO
     http:
       write: true
-    default: 26
+    default: 27
 
   - name: led_0_x
     caps_name: LED_0_X

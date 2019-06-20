@@ -28,7 +28,8 @@
     "state",
     "led",
     "timer",
-    "mixer"
+    "mixer",
+    "blower"
   ],
   "i2c_devices": [
     "sht21"
@@ -164,7 +165,7 @@
       "http": {
         "write": true
       },
-      "default_var": "solo"
+      "default": "solo"
     },
     {
       "name": "wifi_ip",
