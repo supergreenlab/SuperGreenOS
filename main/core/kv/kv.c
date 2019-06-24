@@ -100,9 +100,9 @@ void preinit_kv() {
   defaulti(STATE, default_state);
   const char *default_device_name = "SuperGreenDriver";
   defaultstr(DEVICE_NAME, default_device_name);
-  int default_status_led_red_gpio = 12;
+  int default_status_led_red_gpio = 19;
   defaulti(STATUS_LED_RED_GPIO, default_status_led_red_gpio);
-  int default_status_led_green_gpio = 14;
+  int default_status_led_green_gpio = 18;
   defaulti(STATUS_LED_GREEN_GPIO, default_status_led_green_gpio);
   int default_status_led_dim = 10;
   defaulti(STATUS_LED_DIM, default_status_led_dim);
@@ -452,9 +452,9 @@ void reset_defaults() {
   seti(STATE, default_state);
   const char *default_device_name = "SuperGreenDriver";
   setstr(DEVICE_NAME, default_device_name);
-  int default_status_led_red_gpio = 12;
+  int default_status_led_red_gpio = 19;
   seti(STATUS_LED_RED_GPIO, default_status_led_red_gpio);
-  int default_status_led_green_gpio = 14;
+  int default_status_led_green_gpio = 18;
   seti(STATUS_LED_GREEN_GPIO, default_status_led_green_gpio);
   int default_status_led_dim = 10;
   seti(STATUS_LED_DIM, default_status_led_dim);

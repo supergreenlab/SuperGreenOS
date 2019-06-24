@@ -375,7 +375,7 @@ keys:
       key: SL_R_IO
     http:
       write: true
-    default: 12
+    default: 19
     
   - name: status_led_green_gpio
     caps_name: STATUS_LED_GREEN_GPIO
@@ -384,7 +384,7 @@ keys:
       key: SL_G_IO
     http:
       write: true
-    default: 14
+    default: 18
 
   - name: status_led_dim
     caps_name: STATUS_LED_DIM

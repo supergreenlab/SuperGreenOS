@@ -16,8 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-if [ "$#" -ne 2 ]; then
-  echo "[Usage] $0 template_name module_name"
+if [ "$#" -ne 3 ]; then
+  echo "[Usage] $0 template_name module_name config_file"
   exit
 fi
 
@@ -27,6 +27,7 @@ NC="\033[0m"
 
 TEMPLATE_NAME="$1"
 MODULE_NAME="$2"
+CONFIG="$3"
 
 mkdir -p main/$MODULE_NAME
 echo -e "Copying files to main/$MODULE_NAME: ${GREEN}Done${NC}"
@@ -45,18 +46,18 @@ do
 done
 
 
-if ! grep -q -- "- $MODULE_NAME" config.yml; then
+if ! grep -q -- "- $MODULE_NAME" $CONFIG; then
 
   if [ "$TEMPLATE_NAME" == "new_module" ]; then
-    sed -i "/custom_modules:/ a \  - $MODULE_NAME" config.yml
-    echo -e "Adding module to custom_modules in config.yml: ${GREEN}Done${NC}"
+    sed -i "/custom_modules:/ a \  - $MODULE_NAME" $CONFIG
+    echo -e "Adding module to custom_modules in $CONFIG: ${GREEN}Done${NC}"
   elif [ "$TEMPLATE_NAME" == "new_i2c_device" ]; then
-    sed -i "/i2c_devices:/ a \  - $MODULE_NAME" config.yml
-    echo -e "Adding i2c device to i2c_devices in config.yml: ${GREEN}Done${NC}"
+    sed -i "/i2c_devices:/ a \  - $MODULE_NAME" $CONFIG
+    echo -e "Adding i2c device to i2c_devices in $CONFIG: ${GREEN}Done${NC}"
   fi
 
   echo "==="
   echo "Running ./update_template.sh...."
-  ./update_template.sh
+  ./update_template.sh $CONFIG
 
 fi
