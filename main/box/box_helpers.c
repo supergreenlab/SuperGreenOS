@@ -31,6 +31,10 @@
   switch(boxId) { \
     case 0: \
       return get_box_0_## param(boxId); \
+    case 1: \
+      return get_box_1_## param(boxId); \
+    case 2: \
+      return get_box_2_## param(boxId); \
   } \
   return 0; \
 }
@@ -40,6 +44,12 @@
     case 0: \
       set_box_0_## param(value); \
       break; \
+    case 1: \
+      set_box_1_## param(value); \
+      break; \
+    case 2: \
+      set_box_2_## param(value); \
+      break; \
   } \
 }
 
@@ -48,6 +58,16 @@ BOX_CB(0, stretch)
 BOX_CB(0, led_dim)
 BOX_CB(0, blower_day)
 BOX_CB(0, blower_night)
+BOX_CB(1, timer_type)
+BOX_CB(1, stretch)
+BOX_CB(1, led_dim)
+BOX_CB(1, blower_day)
+BOX_CB(1, blower_night)
+BOX_CB(2, timer_type)
+BOX_CB(2, stretch)
+BOX_CB(2, led_dim)
+BOX_CB(2, blower_day)
+BOX_CB(2, blower_night)
 
 BOX_SETTER(enabled)
 BOX_GETTER(enabled)

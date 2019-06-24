@@ -29,6 +29,16 @@
   switch(ledId) { \
     case 0: \
       return get_led_0_## param(ledId); \
+    case 1: \
+      return get_led_1_## param(ledId); \
+    case 2: \
+      return get_led_2_## param(ledId); \
+    case 3: \
+      return get_led_3_## param(ledId); \
+    case 4: \
+      return get_led_4_## param(ledId); \
+    case 5: \
+      return get_led_5_## param(ledId); \
   } \
   return 0; \
 }
@@ -38,11 +48,36 @@
     case 0: \
       set_led_0_## param(value); \
       break; \
+    case 1: \
+      set_led_1_## param(value); \
+      break; \
+    case 2: \
+      set_led_2_## param(value); \
+      break; \
+    case 3: \
+      set_led_3_## param(value); \
+      break; \
+    case 4: \
+      set_led_4_## param(value); \
+      break; \
+    case 5: \
+      set_led_5_## param(value); \
+      break; \
   } \
 }
 
 LED_CB(0, duty)
+LED_CB(1, duty)
+LED_CB(2, duty)
+LED_CB(3, duty)
+LED_CB(4, duty)
+LED_CB(5, duty)
 LED_CB(0, dim)
+LED_CB(1, dim)
+LED_CB(2, dim)
+LED_CB(3, dim)
+LED_CB(4, dim)
+LED_CB(5, dim)
 
 LED_SETTER(duty)
 LED_GETTER(duty)
