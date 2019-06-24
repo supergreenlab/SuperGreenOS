@@ -115,6 +115,7 @@ static void led_task(void *param) {
       }
       update_led(i, c.fade_time);
     }
+    vTaskDelay((LEDC_FADE_TIME * 1.1) / portTICK_RATE_MS);
   }
 }
 

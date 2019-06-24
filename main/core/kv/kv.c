@@ -90,9 +90,9 @@ void preinit_kv() {
   defaultstr(BROKER_CHANNEL, default_broker_channel);
   const char *default_broker_clientid = "";
   defaultstr(BROKER_CLIENTID, default_broker_clientid);
-  int default_i2c_0_sda = 25;
+  int default_i2c_0_sda = 26;
   defaulti(I2C_0_SDA, default_i2c_0_sda);
-  int default_i2c_0_scl = 26;
+  int default_i2c_0_scl = 27;
   defaulti(I2C_0_SCL, default_i2c_0_scl);
   int default_i2c_0_enabled = 1;
   defaulti(I2C_0_ENABLED, default_i2c_0_enabled);
@@ -442,9 +442,9 @@ void reset_defaults() {
   setstr(BROKER_CHANNEL, default_broker_channel);
   const char *default_broker_clientid = "";
   setstr(BROKER_CLIENTID, default_broker_clientid);
-  int default_i2c_0_sda = 25;
+  int default_i2c_0_sda = 26;
   seti(I2C_0_SDA, default_i2c_0_sda);
-  int default_i2c_0_scl = 26;
+  int default_i2c_0_scl = 27;
   seti(I2C_0_SCL, default_i2c_0_scl);
   int default_i2c_0_enabled = 1;
   seti(I2C_0_ENABLED, default_i2c_0_enabled);

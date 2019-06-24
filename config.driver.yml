@@ -89,7 +89,6 @@ box_params:
 box_loop_i:
   - 0
   - 1
-  - 2
 
 led_params:
   - duty
@@ -180,7 +179,7 @@ keys:
       key: MDNSD
     http:
       write: true
-    default: solo
+    default: supergreendriver
 
   - name: wifi_ip
     caps_name: WIFI_IP
@@ -260,7 +259,7 @@ keys:
       key: OTA_BASEDIR
     http:
       write: true
-    default: /SoloPreRelease
+    default: /SuperGreenDriver1.0
 
   - name: ota_status
     caps_name: OTA_STATUS
@@ -306,7 +305,7 @@ keys:
       key: I2C_0_SDA
     http:
       write: true
-    default: 25
+    default: 26
 
   - name: i2c_0_scl
     caps_name: I2C_0_SCL
@@ -318,7 +317,7 @@ keys:
       key: I2C_0_SCL
     http:
       write: true
-    default: 26
+    default: 27
 
   - name: i2c_0_enabled
     caps_name: I2C_0_ENABLED

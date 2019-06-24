@@ -33,8 +33,6 @@
       return get_box_0_## param(boxId); \
     case 1: \
       return get_box_1_## param(boxId); \
-    case 2: \
-      return get_box_2_## param(boxId); \
   } \
   return 0; \
 }
@@ -46,9 +44,6 @@
       break; \
     case 1: \
       set_box_1_## param(value); \
-      break; \
-    case 2: \
-      set_box_2_## param(value); \
       break; \
   } \
 }

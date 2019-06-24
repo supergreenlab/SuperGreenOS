@@ -64,8 +64,7 @@
   ],
   "box_loop_i": [
     0,
-    1,
-    2
+    1
   ],
   "led_params": [
     "duty",
@@ -339,7 +338,7 @@
       "http": {
         "write": true
       },
-      "default": 25
+      "default": 26
     },
     {
       "name": "i2c_0_scl",
@@ -355,7 +354,7 @@
       "http": {
         "write": true
       },
-      "default": 26
+      "default": 27
     },
     {
       "name": "i2c_0_enabled",

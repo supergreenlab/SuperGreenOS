@@ -115,6 +115,7 @@ static void led_task(void *param) {
       }
       update_led(i, c.fade_time);
     }
+    vTaskDelay((LEDC_FADE_TIME * 1.1) / portTICK_RATE_MS);
   }
 }
 
@@ -176,7 +177,6 @@ void init_led() {
   char led_info[CHAR_VAL_LEN_MAX] = {0};
   init_led_info(0, led_info); set_box_0_led_info(led_info);
   init_led_info(1, led_info); set_box_1_led_info(led_info);
-  init_led_info(2, led_info); set_box_2_led_info(led_info);
 
   cmd = xQueueCreate(10, sizeof(cmd_refresh_led));
   if (cmd == NULL) {
