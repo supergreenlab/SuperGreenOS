@@ -21,7 +21,6 @@
 #include "led/led.h"
 #include "timer/timer.h"
 #include "mixer/mixer.h"
-#include "blower/blower.h"
 
 void init_app() {
   init_status_led();
@@ -29,5 +28,4 @@ void init_app() {
   init_led();
   init_timer();
   init_mixer();
-  init_blower();
 }

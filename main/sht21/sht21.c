@@ -104,7 +104,7 @@ void loop_sht21(int portId, int sda, int sck) {
 			v &= ~0x0003;
 			float vd = -46.85 + 175.72 * (float)(v) / 65536.0;
 			set_box_sht21_temp_c(boxId, vd);
-			set_box_sht21_temp_f(boxId, vd * (5.0f/9) + 32);
+			set_box_sht21_temp_f(boxId, vd * (9.0f/5.0f) + 32.0f);
 		}
 	}
 	vTaskDelay(500 / portTICK_RATE_MS);

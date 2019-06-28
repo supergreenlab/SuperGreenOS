@@ -168,7 +168,7 @@ keys:
       key: MDNSD
     http:
       write: true
-    default_var: DEFAULT_MDNS_DOMAIN
+    default: pickle
 
   - name: wifi_ip
     caps_name: WIFI_IP

@@ -89,6 +89,7 @@ box_params:
 box_loop_i:
   - 0
   - 1
+  - 2
 
 led_params:
   - duty

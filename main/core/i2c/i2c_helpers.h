@@ -26,6 +26,9 @@
 I2C_CB_H(0, sda)
 I2C_CB_H(0, scl)
 I2C_CB_H(0, enabled)
+I2C_CB_H(1, sda)
+I2C_CB_H(1, scl)
+I2C_CB_H(1, enabled)
 
 I2C_SETTER_H(sda)
 I2C_GETTER_H(sda)

@@ -36,7 +36,6 @@
 #include "reboot/reboot.h"
 
 // Custom modules
-#include "../blower/blower.h"
 #include "../led/led.h"
 #include "../mixer/mixer.h"
 #include "../state/state.h"
