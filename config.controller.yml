@@ -41,11 +41,16 @@ custom_modules:
   - manual
   - box
 
+init_modules:
+  - status_led
+  - state
+  - led
+  - timer
+  - mixer
+  - blower
+
 i2c_devices:
   - sht21
-  - dust_gpy2y10
-  - sht1x
-  - arduino_co2
 
 # This is why I intend to move away from mustache templates
 
@@ -57,6 +62,7 @@ i2c_params:
 i2c_loop_i:
   - 0
   - 1
+  - 2
 
 # TODO generate this with a command
 
@@ -76,14 +82,9 @@ box_params:
   - blower_gpio 
   - blower_frequency
   - blower_enabled
-  - sht1x_temp_c
-  - sht1x_temp_f
-  - sht1x_humi 
   - sht21_temp_c
   - sht21_temp_f
   - sht21_humi 
-  - arduino_co2
-  - dust_gpy2y10
 
 # This is why I intend to move away from mustache templates
 
@@ -110,7 +111,6 @@ led_loop_i:
   - 3
   - 4
   - 5
-  - 6
 
 keys:
 
@@ -181,7 +181,7 @@ keys:
       key: MDNSD
     http:
       write: true
-    default_var: DEFAULT_MDNS_DOMAIN
+    default: supergreencontroller
 
   - name: wifi_ip
     caps_name: WIFI_IP
@@ -234,7 +234,7 @@ keys:
       key: OTA_SRV_IP
     http:
       write: true
-    default_var: CONFIG_OTA_SERVER_IP
+    default: 142.93.167.50
 
   - name: ota_server_hostname
     caps_name: OTA_SERVER_HOSTNAME
@@ -243,7 +243,7 @@ keys:
       key: OTA_SRV_HN
     http:
       write: true
-    default_var: CONFIG_OTA_SERVER_HOSTNAME
+    default: update.supergreenlab.com
 
   - name: ota_server_port
     caps_name: OTA_SERVER_PORT
@@ -252,7 +252,7 @@ keys:
       key: OTA_SRV_PRT
     http:
       write: true
-    default_var: CONFIG_OTA_SERVER_PORT
+    default: 80
 
   - name: ota_basedir
     caps_name: OTA_BASEDIR
@@ -261,7 +261,7 @@ keys:
       key: OTA_BASEDIR
     http:
       write: true
-    default_var: CONFIG_OTA_BASEDIR
+    default: /SuperGreenDriver1.0
 
   - name: ota_status
     caps_name: OTA_STATUS
@@ -277,7 +277,7 @@ keys:
       key: BRKR_URL
     http:
       write: true
-    default_var: CONFIG_BROKER_URL
+    default: mqtt://sink.supergreenlab.com:1883
 
   - name: broker_channel
     caps_name: BROKER_CHANNEL
@@ -307,7 +307,7 @@ keys:
       key: I2C_0_SDA
     http:
       write: true
-    default_var: DEFAULT_I2C_0_SDA
+    default: 18
 
   - name: i2c_0_scl
     caps_name: I2C_0_SCL
@@ -319,7 +319,7 @@ keys:
       key: I2C_0_SCL
     http:
       write: true
-    default_var: DEFAULT_I2C_0_SCL
+    default: 5
 
   - name: i2c_0_enabled
     caps_name: I2C_0_ENABLED
@@ -333,7 +333,6 @@ keys:
       write: true
     default: 1
 
-
   - name: i2c_1_sda
     caps_name: I2C_1_SDA
     integer: true
@@ -344,7 +343,7 @@ keys:
       key: I2C_1_SDA
     http:
       write: true
-    default_var: DEFAULT_I2C_1_SDA
+    default: 21
 
   - name: i2c_1_scl
     caps_name: I2C_1_SCL
@@ -356,7 +355,7 @@ keys:
       key: I2C_1_SCL
     http:
       write: true
-    default_var: DEFAULT_I2C_1_SCL
+    default: 19
 
   - name: i2c_1_enabled
     caps_name: I2C_1_ENABLED
@@ -366,6 +365,42 @@ keys:
       param: enabled
     nvs:
       key: I2C_1_E
+    http:
+      write: true
+    default: 0
+
+  - name: i2c_2_sda
+    caps_name: I2C_2_SDA
+    integer: true
+    i2c:
+      index: 2
+      param: sda
+    nvs:
+      key: I2C_2_SDA
+    http:
+      write: true
+    default_var: 21
+
+  - name: i2c_2_scl
+    caps_name: I2C_2_SCL
+    integer: true
+    i2c:
+      index: 2
+      param: scl
+    nvs:
+      key: I2C_2_SCL
+    http:
+      write: true
+    default_var: 19
+
+  - name: i2c_2_enabled
+    caps_name: I2C_2_ENABLED
+    integer: true
+    i2c:
+      index: 2
+      param: enabled
+    nvs:
+      key: I2C_2_E
     http:
       write: true
     default: 0
@@ -404,7 +439,34 @@ keys:
       write: true
     http:
       write: true
-    default: SuperGreenDriver
+    default: SuperGreenController
+
+  - name: status_led_red_gpio
+    caps_name: STATUS_LED_RED_GPIO
+    integer: true
+    nvs:
+      key: SL_R_IO
+    http:
+      write: true
+    default: 23
+    
+  - name: status_led_green_gpio
+    caps_name: STATUS_LED_GREEN_GPIO
+    integer: true
+    nvs:
+      key: SL_G_IO
+    http:
+      write: true
+    default: 22
+
+  - name: status_led_dim
+    caps_name: STATUS_LED_DIM
+    integer: true
+    nvs:
+      key: SL_R_D
+    http:
+      write: true
+    default: 10
 
   #
   # Boxes configurations
@@ -599,7 +661,7 @@ keys:
       key: B_0_BLWR_IO
     http:
       write: true
-    default_var: DEFAULT_BOX_0_BLOWER_GPIO
+    default: 4
 
   - name: box_0_blower_frequency
     caps_name: BOX_0_BLOWER_FREQUENCY
@@ -625,42 +687,6 @@ keys:
       write: true
     default: 1
  
-  - name: box_0_sht1x_temp_c
-    caps_name: BOX_0_SHT1X_TEMP_C
-    integer: true
-    box:
-      index: 0
-      param: sht1x_temp_c
-    nvs:
-      key: B_0_SHT1X_C
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_0_sht1x_temp_f
-    caps_name: BOX_0_SHT1X_TEMP_F
-    integer: true
-    box:
-      index: 0
-      param: sht1x_temp_f
-    nvs:
-      key: B_0_SHT1X_F
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_0_sht1x_humi
-    caps_name: BOX_0_SHT1X_HUMI
-    integer: true
-    box:
-      index: 0
-      param: sht1x_humi
-    nvs:
-      key: B_0_SHT1X_HU
-    http:
-      noop: true
-    default: -1000000
-
   - name: box_0_sht21_temp_c
     caps_name: BOX_0_SHT21_TEMP_C
     integer: true
@@ -693,30 +719,6 @@ keys:
       param: sht21_humi
     nvs:
       key: B_0_SHT21_HU
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_0_arduino_co2
-    caps_name: BOX_0_ARDUINO_CO2
-    integer: true
-    box:
-      index: 0
-      param: arduino_co2
-    nvs:
-      key: B_0_ARDU_CO2
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_0_dust_gpy2y10
-    caps_name: BOX_0_DUST_GPY2Y10
-    integer: true
-    box:
-      index: 0
-      param: dust_gpy2y10
-    nvs:
-      key: B_0_DUST_G2Y1
     http:
       noop: true
     default: -1000000
@@ -898,7 +900,7 @@ keys:
       key: B_1_BLWR_IO
     http:
       write: true
-    default_var: DEFAULT_BOX_1_BLOWER_GPIO
+    default: 16
 
   - name: box_1_blower_frequency
     caps_name: BOX_1_BLOWER_FREQUENCY
@@ -924,42 +926,6 @@ keys:
       write: true
     default: 1
  
-  - name: box_1_sht1x_temp_c
-    caps_name: BOX_1_SHT1X_TEMP_C
-    integer: true
-    box:
-      index: 1
-      param: sht1x_temp_c
-    nvs:
-      key: B_1_SHT1X_C
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_1_sht1x_temp_f
-    caps_name: BOX_1_SHT1X_TEMP_F
-    integer: true
-    box:
-      index: 1
-      param: sht1x_temp_f
-    nvs:
-      key: B_1_SHT1X_F
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_1_sht1x_humi
-    caps_name: BOX_1_SHT1X_HUMI
-    integer: true
-    box:
-      index: 1
-      param: sht1x_humi
-    nvs:
-      key: B_1_SHT1X_HU
-    http:
-      noop: true
-    default: -1000000
-
   - name: box_1_sht21_temp_c
     caps_name: BOX_1_SHT21_TEMP_C
     integer: true
@@ -992,30 +958,6 @@ keys:
       param: sht21_humi
     nvs:
       key: B_1_SHT21_HU
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_1_arduino_co2
-    caps_name: BOX_1_ARDUINO_CO2
-    integer: true
-    box:
-      index: 1
-      param: arduino_co2
-    nvs:
-      key: B_1_ARDU_CO2
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_1_dust_gpy2y10
-    caps_name: BOX_1_DUST_GPY2Y10
-    integer: true
-    box:
-      index: 1
-      param: dust_gpy2y10
-    nvs:
-      key: B_1_DUST_G2Y1
     http:
       noop: true
     default: -1000000
@@ -1194,7 +1136,7 @@ keys:
       key: B_2_BLWR_IO
     http:
       write: true
-    default_var: DEFAULT_BOX_2_BLOWER_GPIO
+    default: 17
 
   - name: box_2_blower_frequency
     caps_name: BOX_2_BLOWER_FREQUENCY
@@ -1220,42 +1162,6 @@ keys:
       write: true
     default: 0
  
-  - name: box_2_sht1x_temp_c
-    caps_name: BOX_2_SHT1X_TEMP_C
-    integer: true
-    box:
-      index: 2
-      param: sht1x_temp_c
-    nvs:
-      key: B_2_SHT1X_C
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_2_sht1x_temp_f
-    caps_name: BOX_2_SHT1X_TEMP_F
-    integer: true
-    box:
-      index: 2
-      param: sht1x_temp_f
-    nvs:
-      key: B_2_SHT1X_F
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_2_sht1x_humi
-    caps_name: BOX_2_SHT1X_HUMI
-    integer: true
-    box:
-      index: 2
-      param: sht1x_humi
-    nvs:
-      key: B_2_SHT1X_HU
-    http:
-      noop: true
-    default: -1000000
-
   - name: box_2_sht21_temp_c
     caps_name: BOX_2_SHT21_TEMP_C
     integer: true
@@ -1288,31 +1194,6 @@ keys:
       param: sht21_humi
     nvs:
       key: B_2_SHT21_HU
-    http:
-      noop: true
-    default: -1000000
-
-
-  - name: box_2_arduino_co2
-    caps_name: BOX_2_ARDUINO_CO2
-    integer: true
-    box:
-      index: 2
-      param: arduino_co2
-    nvs:
-      key: B_2_ARDU_CO2
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_2_dust_gpy2y10
-    caps_name: BOX_2_DUST_GPY2Y10
-    integer: true
-    box:
-      index: 2
-      param: dust_gpy2y10
-    nvs:
-      key: B_2_DUST_G2Y1
     http:
       noop: true
     default: -1000000
@@ -1409,19 +1290,6 @@ keys:
     write_cb: true
     default: 0
 
-  - name: led_6_duty
-    caps_name: LED_6_DUTY
-    integer: true
-    led:
-      index: 6
-      param: duty
-    nvs:
-      key: L_6_D
-    http:
-      write: true
-    write_cb: true
-    default: 0
-
   - name: led_0_gpio
     caps_name: LED_0_GPIO
     integer: true
@@ -1432,7 +1300,7 @@ keys:
       key: L_0_IO
     http:
       write: true
-    default_var: DEFAULT_LED_0_GPIO
+    default: 33
 
   - name: led_1_gpio
     caps_name: LED_1_GPIO
@@ -1444,7 +1312,7 @@ keys:
       key: L_1_IO
     http:
       write: true
-    default_var: DEFAULT_LED_1_GPIO
+    default: 25
 
   - name: led_2_gpio
     caps_name: LED_2_GPIO
@@ -1456,7 +1324,7 @@ keys:
       key: L_2_IO
     http:
       write: true
-    default_var: DEFAULT_LED_2_GPIO
+    default: 26
 
   - name: led_3_gpio
     caps_name: LED_3_GPIO
@@ -1468,7 +1336,7 @@ keys:
       key: L_3_IO
     http:
       write: true
-    default_var: DEFAULT_LED_3_GPIO
+    default: 27
 
   - name: led_4_gpio
     caps_name: LED_4_GPIO
@@ -1480,7 +1348,7 @@ keys:
       key: L_4_IO
     http:
       write: true
-    default_var: DEFAULT_LED_4_GPIO
+    default: 14
 
   - name: led_5_gpio
     caps_name: LED_5_GPIO
@@ -1492,19 +1360,7 @@ keys:
       key: L_5_IO
     http:
       write: true
-    default_var: DEFAULT_LED_5_GPIO
-
-  - name: led_6_gpio
-    caps_name: LED_6_GPIO
-    integer: true
-    led:
-      index: 6
-      param: gpio
-    nvs:
-      key: L_6_IO
-    http:
-      write: true
-    default_var: DEFAULT_LED_6_GPIO
+    default: 12
 
   - name: led_0_x
     caps_name: LED_0_X
@@ -1574,18 +1430,6 @@ keys:
       param: x
     nvs:
       key: L_5_X
-    http:
-      write: true
-    default: 0
-
-  - name: led_6_x
-    caps_name: LED_6_X
-    integer: true
-    led:
-      index: 6
-      param: x
-    nvs:
-      key: L_6_X
     http:
       write: true
     default: 0
@@ -1662,18 +1506,6 @@ keys:
       write: true
     default: 0
 
-  - name: led_6_y
-    caps_name: LED_6_Y
-    integer: true
-    led:
-      index: 6
-      param: y
-    nvs:
-      key: L_6_Y
-    http:
-      write: true
-    default: 0
-
   - name: led_0_z
     caps_name: LED_0_Z
     integer: true
@@ -1742,18 +1574,6 @@ keys:
       param: z
     nvs:
       key: L_5_Z
-    http:
-      write: true
-    default: 0
-
-  - name: led_6_z
-    caps_name: LED_6_Z
-    integer: true
-    led:
-      index: 6
-      param: z
-    nvs:
-      key: L_6_Z
     http:
       write: true
     default: 0
@@ -1830,18 +1650,6 @@ keys:
       write: true
     default: 1
 
-  - name: led_6_enabled
-    caps_name: LED_6_ENABLED
-    integer: true
-    led:
-      index: 6
-      param: enabled
-    nvs:
-      key: L_6_E
-    http:
-      write: true
-    default: 1
-
   - name: led_0_box
     caps_name: LED_0_BOX
     integer: true
@@ -1910,18 +1718,6 @@ keys:
       param: box
     nvs:
       key: L_5_B
-    http:
-      write: true
-    default: 1
-
-  - name: led_6_box
-    caps_name: LED_6_BOX
-    integer: true
-    led:
-      index: 6
-      param: box
-    nvs:
-      key: L_6_B
     http:
       write: true
     default: 1
@@ -2004,19 +1800,6 @@ keys:
     write_cb: true
     default: 100
 
-  - name: led_6_dim
-    caps_name: LED_6_DIM
-    integer: true
-    led:
-      index: 6
-      param: dim
-    nvs:
-      key: L_6_DI
-    http:
-      write: true
-    write_cb: true
-    default: 100
-
   - name: led_0_fade
     caps_name: LED_0_FADE
     led:
@@ -2085,18 +1868,6 @@ keys:
     integer: true
     nvs:
       key: L_5_F
-    http:
-      write: true
-    default: 1
-
-  - name: led_6_fade
-    caps_name: LED_6_FADE
-    led:
-      index: 6
-      param: fade
-    integer: true
-    nvs:
-      key: L_6_F
     http:
       write: true
     default: 1

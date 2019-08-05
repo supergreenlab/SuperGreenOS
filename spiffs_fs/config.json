@@ -1,5 +1,5 @@
 {
-  "name": "PicklePreRelease",
+  "name": "SuperGreenController1.0",
   "core_modules": [
     "wifi",
     "ble",
@@ -13,6 +13,7 @@
     "reboot"
   ],
   "custom_modules": [
+    "blower",
     "led",
     "mixer",
     "state",
@@ -27,7 +28,8 @@
     "state",
     "led",
     "timer",
-    "mixer"
+    "mixer",
+    "blower"
   ],
   "i2c_devices": [
     "sht21"
@@ -39,7 +41,8 @@
   ],
   "i2c_loop_i": [
     0,
-    1
+    1,
+    2
   ],
   "box_params": [
     "enabled",
@@ -52,13 +55,19 @@
     "off_min",
     "stretch",
     "led_dim",
+    "blower_day",
+    "blower_night",
+    "blower_gpio",
+    "blower_frequency",
+    "blower_enabled",
     "sht21_temp_c",
     "sht21_temp_f",
     "sht21_humi"
   ],
   "box_loop_i": [
     0,
-    1
+    1,
+    2
   ],
   "led_params": [
     "duty",
@@ -73,7 +82,11 @@
   ],
   "led_loop_i": [
     0,
-    1
+    1,
+    2,
+    3,
+    4,
+    5
   ],
   "keys": [
     {
@@ -109,7 +122,6 @@
     },
     {
       "name": "wifi_password",
-      "nosend": true,
       "caps_name": "WIFI_PASSWORD",
       "string": true,
       "nvs": {
@@ -161,7 +173,7 @@
       "http": {
         "write": true
       },
-      "default": "pickle"
+      "default": "supergreencontroller"
     },
     {
       "name": "wifi_ip",
@@ -219,7 +231,7 @@
       "http": {
         "write": true
       },
-      "default": "OTA_BUILD_TIMESTAMP"
+      "default_var": "OTA_BUILD_TIMESTAMP"
     },
     {
       "name": "ota_server_ip",
@@ -267,7 +279,7 @@
       "http": {
         "write": true
       },
-      "default": "/PicklePreRelease"
+      "default": "/SuperGreenDriver1.0"
     },
     {
       "name": "ota_status",
@@ -276,7 +288,7 @@
       "http": {
         "noop": true
       },
-      "default": "OTA_STATUS_IDLE"
+      "default_var": "OTA_STATUS_IDLE"
     },
     {
       "name": "broker_url",
@@ -408,7 +420,55 @@
       "http": {
         "write": true
       },
-      "default": 1
+      "default": 0
+    },
+    {
+      "name": "i2c_2_sda",
+      "caps_name": "I2C_2_SDA",
+      "integer": true,
+      "i2c": {
+        "index": 2,
+        "param": "sda"
+      },
+      "nvs": {
+        "key": "I2C_2_SDA"
+      },
+      "http": {
+        "write": true
+      },
+      "default_var": 21
+    },
+    {
+      "name": "i2c_2_scl",
+      "caps_name": "I2C_2_SCL",
+      "integer": true,
+      "i2c": {
+        "index": 2,
+        "param": "scl"
+      },
+      "nvs": {
+        "key": "I2C_2_SCL"
+      },
+      "http": {
+        "write": true
+      },
+      "default_var": 19
+    },
+    {
+      "name": "i2c_2_enabled",
+      "caps_name": "I2C_2_ENABLED",
+      "integer": true,
+      "i2c": {
+        "index": 2,
+        "param": "enabled"
+      },
+      "nvs": {
+        "key": "I2C_2_E"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
     },
     {
       "name": "reboot",
@@ -451,7 +511,7 @@
       "http": {
         "write": true
       },
-      "default": "Pickle"
+      "default": "SuperGreenController"
     },
     {
       "name": "status_led_red_gpio",
@@ -487,7 +547,7 @@
       "http": {
         "write": true
       },
-      "default": 50
+      "default": 10
     },
     {
       "name": "box_0_enabled",
@@ -685,6 +745,88 @@
       },
       "write_cb": true,
       "default": 0
+    },
+    {
+      "name": "box_0_blower_day",
+      "caps_name": "BOX_0_BLOWER_DAY",
+      "integer": true,
+      "box": {
+        "index": 0,
+        "param": "blower_day"
+      },
+      "nvs": {
+        "key": "B_0_BLWR_D"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 50
+    },
+    {
+      "name": "box_0_blower_night",
+      "caps_name": "BOX_0_BLOWER_NIGHT",
+      "integer": true,
+      "box": {
+        "index": 0,
+        "param": "blower_night"
+      },
+      "nvs": {
+        "key": "B_0_BLWR_N"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 50
+    },
+    {
+      "name": "box_0_blower_gpio",
+      "caps_name": "BOX_0_BLOWER_GPIO",
+      "integer": true,
+      "box": {
+        "index": 0,
+        "param": "blower_gpio"
+      },
+      "nvs": {
+        "key": "B_0_BLWR_IO"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 4
+    },
+    {
+      "name": "box_0_blower_frequency",
+      "caps_name": "BOX_0_BLOWER_FREQUENCY",
+      "integer": true,
+      "box": {
+        "index": 0,
+        "param": "blower_frequency"
+      },
+      "nvs": {
+        "key": "B_0_BLWR_HZ"
+      },
+      "http": {
+        "write": true
+      },
+      "default_var": "DEFAULT_BLOWER_FREQUENCY"
+    },
+    {
+      "name": "box_0_blower_enabled",
+      "caps_name": "BOX_0_BLOWER_ENABLED",
+      "integer": true,
+      "box": {
+        "index": 0,
+        "param": "blower_enabled"
+      },
+      "nvs": {
+        "key": "B_0_BLWR_E"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
     },
     {
       "name": "box_0_sht21_temp_c",
@@ -916,6 +1058,88 @@
       "default": 0
     },
     {
+      "name": "box_1_blower_day",
+      "caps_name": "BOX_1_BLOWER_DAY",
+      "integer": true,
+      "box": {
+        "index": 1,
+        "param": "blower_day"
+      },
+      "nvs": {
+        "key": "B_1_BLWR_D"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 50
+    },
+    {
+      "name": "box_1_blower_night",
+      "caps_name": "BOX_1_BLOWER_NIGHT",
+      "integer": true,
+      "box": {
+        "index": 1,
+        "param": "blower_night"
+      },
+      "nvs": {
+        "key": "B_1_BLWR_N"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 50
+    },
+    {
+      "name": "box_1_blower_gpio",
+      "caps_name": "BOX_1_BLOWER_GPIO",
+      "integer": true,
+      "box": {
+        "index": 1,
+        "param": "blower_gpio"
+      },
+      "nvs": {
+        "key": "B_1_BLWR_IO"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 16
+    },
+    {
+      "name": "box_1_blower_frequency",
+      "caps_name": "BOX_1_BLOWER_FREQUENCY",
+      "integer": true,
+      "box": {
+        "index": 1,
+        "param": "blower_frequency"
+      },
+      "nvs": {
+        "key": "B_1_BLWR_HZ"
+      },
+      "http": {
+        "write": true
+      },
+      "default_var": "DEFAULT_BLOWER_FREQUENCY"
+    },
+    {
+      "name": "box_1_blower_enabled",
+      "caps_name": "BOX_1_BLOWER_ENABLED",
+      "integer": true,
+      "box": {
+        "index": 1,
+        "param": "blower_enabled"
+      },
+      "nvs": {
+        "key": "B_1_BLWR_E"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
       "name": "box_1_sht21_temp_c",
       "caps_name": "BOX_1_SHT21_TEMP_C",
       "integer": true,
@@ -977,6 +1201,313 @@
       "default": ""
     },
     {
+      "name": "box_2_enabled",
+      "caps_name": "BOX_2_ENABLED",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "enabled"
+      },
+      "nvs": {
+        "key": "B_2_E"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "box_2_timer_type",
+      "caps_name": "BOX_2_TIMER_TYPE",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "timer_type"
+      },
+      "nvs": {
+        "key": "B_2_TT",
+        "manual": true
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default_var": "TIMER_MANUAL"
+    },
+    {
+      "name": "box_2_timer_output",
+      "caps_name": "BOX_2_TIMER_OUTPUT",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "timer_output"
+      },
+      "nvs": {
+        "key": "B_2_TO"
+      },
+      "http": {
+        "noop": true
+      },
+      "default": 0
+    },
+    {
+      "name": "box_2_started_at",
+      "caps_name": "BOX_2_STARTED_AT",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "started_at"
+      },
+      "nvs": {
+        "key": "B_2_ST_AT"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "box_2_on_hour",
+      "caps_name": "BOX_2_ON_HOUR",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "on_hour"
+      },
+      "nvs": {
+        "key": "B_2_ON_H"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "box_2_on_min",
+      "caps_name": "BOX_2_ON_MIN",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "on_min"
+      },
+      "nvs": {
+        "key": "B_2_ON_M"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "box_2_off_hour",
+      "caps_name": "BOX_2_OFF_HOUR",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "off_hour"
+      },
+      "nvs": {
+        "key": "B_2_OFF_H"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 19
+    },
+    {
+      "name": "box_2_off_min",
+      "caps_name": "BOX_2_OFF_MIN",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "off_min"
+      },
+      "nvs": {
+        "key": "B_2_OFF_M"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "box_2_stretch",
+      "caps_name": "BOX_2_STRETCH",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "stretch"
+      },
+      "nvs": {
+        "key": "B_2_STRETCH"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 0
+    },
+    {
+      "name": "box_2_led_dim",
+      "caps_name": "BOX_2_LED_DIM",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "led_dim"
+      },
+      "nvs": {
+        "key": "B_2_L_DIM"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 0
+    },
+    {
+      "name": "box_2_blower_day",
+      "caps_name": "BOX_2_BLOWER_DAY",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "blower_day"
+      },
+      "nvs": {
+        "key": "B_2_BLWR_D"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 50
+    },
+    {
+      "name": "box_2_blower_night",
+      "caps_name": "BOX_2_BLOWER_NIGHT",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "blower_night"
+      },
+      "nvs": {
+        "key": "B_2_BLWR_N"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 50
+    },
+    {
+      "name": "box_2_blower_gpio",
+      "caps_name": "BOX_2_BLOWER_GPIO",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "blower_gpio"
+      },
+      "nvs": {
+        "key": "B_2_BLWR_IO"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 17
+    },
+    {
+      "name": "box_2_blower_frequency",
+      "caps_name": "BOX_2_BLOWER_FREQUENCY",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "blower_frequency"
+      },
+      "nvs": {
+        "key": "B_2_BLWR_HZ"
+      },
+      "http": {
+        "write": true
+      },
+      "default_var": "DEFAULT_BLOWER_FREQUENCY"
+    },
+    {
+      "name": "box_2_blower_enabled",
+      "caps_name": "BOX_2_BLOWER_ENABLED",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "blower_enabled"
+      },
+      "nvs": {
+        "key": "B_2_BLWR_E"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "box_2_sht21_temp_c",
+      "caps_name": "BOX_2_SHT21_TEMP_C",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "sht21_temp_c"
+      },
+      "nvs": {
+        "key": "B_2_SHT21_C"
+      },
+      "http": {
+        "noop": true
+      },
+      "default": -1000000
+    },
+    {
+      "name": "box_2_sht21_temp_f",
+      "caps_name": "BOX_2_SHT21_TEMP_F",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "sht21_temp_f"
+      },
+      "nvs": {
+        "key": "B_2_SHT21_F"
+      },
+      "http": {
+        "noop": true
+      },
+      "default": -1000000
+    },
+    {
+      "name": "box_2_sht21_humi",
+      "caps_name": "BOX_2_SHT21_HUMI",
+      "integer": true,
+      "box": {
+        "index": 2,
+        "param": "sht21_humi"
+      },
+      "nvs": {
+        "key": "B_2_SHT21_HU"
+      },
+      "http": {
+        "noop": true
+      },
+      "default": -1000000
+    },
+    {
+      "name": "box_2_led_info",
+      "caps_name": "BOX_2_LED_INFO",
+      "string": true,
+      "box": {
+        "index": 2,
+        "param": "led_info"
+      },
+      "http": {
+        "noop": true
+      },
+      "default": ""
+    },
+    {
       "name": "led_0_duty",
       "caps_name": "LED_0_DUTY",
       "led": {
@@ -1011,6 +1542,91 @@
       "default": 0
     },
     {
+      "name": "led_2_duty",
+      "caps_name": "LED_2_DUTY",
+      "integer": true,
+      "led": {
+        "index": 2,
+        "param": "duty"
+      },
+      "nvs": {
+        "key": "L_2_D"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 0
+    },
+    {
+      "name": "led_3_duty",
+      "caps_name": "LED_3_DUTY",
+      "integer": true,
+      "led": {
+        "index": 3,
+        "param": "duty"
+      },
+      "nvs": {
+        "key": "L_3_D"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 0
+    },
+    {
+      "name": "led_4_duty",
+      "caps_name": "LED_4_DUTY",
+      "integer": true,
+      "led": {
+        "index": 4,
+        "param": "duty"
+      },
+      "nvs": {
+        "key": "L_4_D"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 0
+    },
+    {
+      "name": "led_5_duty",
+      "caps_name": "LED_5_DUTY",
+      "integer": true,
+      "led": {
+        "index": 5,
+        "param": "duty"
+      },
+      "nvs": {
+        "key": "L_5_D"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 0
+    },
+    {
+      "name": "led_6_duty",
+      "caps_name": "LED_6_DUTY",
+      "integer": true,
+      "led": {
+        "index": 6,
+        "param": "duty"
+      },
+      "nvs": {
+        "key": "L_6_D"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 0
+    },
+    {
       "name": "led_0_gpio",
       "caps_name": "LED_0_GPIO",
       "integer": true,
@@ -1024,7 +1640,7 @@
       "http": {
         "write": true
       },
-      "default": 26
+      "default": 33
     },
     {
       "name": "led_1_gpio",
@@ -1040,7 +1656,71 @@
       "http": {
         "write": true
       },
+      "default": 25
+    },
+    {
+      "name": "led_2_gpio",
+      "caps_name": "LED_2_GPIO",
+      "integer": true,
+      "led": {
+        "index": 2,
+        "param": "gpio"
+      },
+      "nvs": {
+        "key": "L_2_IO"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 26
+    },
+    {
+      "name": "led_3_gpio",
+      "caps_name": "LED_3_GPIO",
+      "integer": true,
+      "led": {
+        "index": 3,
+        "param": "gpio"
+      },
+      "nvs": {
+        "key": "L_3_IO"
+      },
+      "http": {
+        "write": true
+      },
       "default": 27
+    },
+    {
+      "name": "led_4_gpio",
+      "caps_name": "LED_4_GPIO",
+      "integer": true,
+      "led": {
+        "index": 4,
+        "param": "gpio"
+      },
+      "nvs": {
+        "key": "L_4_IO"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 14
+    },
+    {
+      "name": "led_5_gpio",
+      "caps_name": "LED_5_GPIO",
+      "integer": true,
+      "led": {
+        "index": 5,
+        "param": "gpio"
+      },
+      "nvs": {
+        "key": "L_5_IO"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 12
     },
     {
       "name": "led_0_x",
@@ -1068,6 +1748,86 @@
       },
       "nvs": {
         "key": "L_1_X"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_2_x",
+      "caps_name": "LED_2_X",
+      "integer": true,
+      "led": {
+        "index": 2,
+        "param": "x"
+      },
+      "nvs": {
+        "key": "L_2_X"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_3_x",
+      "caps_name": "LED_3_X",
+      "integer": true,
+      "led": {
+        "index": 3,
+        "param": "x"
+      },
+      "nvs": {
+        "key": "L_3_X"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_4_x",
+      "caps_name": "LED_4_X",
+      "integer": true,
+      "led": {
+        "index": 4,
+        "param": "x"
+      },
+      "nvs": {
+        "key": "L_4_X"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_5_x",
+      "caps_name": "LED_5_X",
+      "integer": true,
+      "led": {
+        "index": 5,
+        "param": "x"
+      },
+      "nvs": {
+        "key": "L_5_X"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_6_x",
+      "caps_name": "LED_6_X",
+      "integer": true,
+      "led": {
+        "index": 6,
+        "param": "x"
+      },
+      "nvs": {
+        "key": "L_6_X"
       },
       "http": {
         "write": true
@@ -1107,6 +1867,86 @@
       "default": 0
     },
     {
+      "name": "led_2_y",
+      "caps_name": "LED_2_Y",
+      "integer": true,
+      "led": {
+        "index": 2,
+        "param": "y"
+      },
+      "nvs": {
+        "key": "L_2_Y"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_3_y",
+      "caps_name": "LED_3_Y",
+      "integer": true,
+      "led": {
+        "index": 3,
+        "param": "y"
+      },
+      "nvs": {
+        "key": "L_3_Y"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_4_y",
+      "caps_name": "LED_4_Y",
+      "integer": true,
+      "led": {
+        "index": 4,
+        "param": "y"
+      },
+      "nvs": {
+        "key": "L_4_Y"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_5_y",
+      "caps_name": "LED_5_Y",
+      "integer": true,
+      "led": {
+        "index": 5,
+        "param": "y"
+      },
+      "nvs": {
+        "key": "L_5_Y"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_6_y",
+      "caps_name": "LED_6_Y",
+      "integer": true,
+      "led": {
+        "index": 6,
+        "param": "y"
+      },
+      "nvs": {
+        "key": "L_6_Y"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
       "name": "led_0_z",
       "caps_name": "LED_0_Z",
       "integer": true,
@@ -1132,6 +1972,86 @@
       },
       "nvs": {
         "key": "L_1_Z"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_2_z",
+      "caps_name": "LED_2_Z",
+      "integer": true,
+      "led": {
+        "index": 2,
+        "param": "z"
+      },
+      "nvs": {
+        "key": "L_2_Z"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_3_z",
+      "caps_name": "LED_3_Z",
+      "integer": true,
+      "led": {
+        "index": 3,
+        "param": "z"
+      },
+      "nvs": {
+        "key": "L_3_Z"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_4_z",
+      "caps_name": "LED_4_Z",
+      "integer": true,
+      "led": {
+        "index": 4,
+        "param": "z"
+      },
+      "nvs": {
+        "key": "L_4_Z"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_5_z",
+      "caps_name": "LED_5_Z",
+      "integer": true,
+      "led": {
+        "index": 5,
+        "param": "z"
+      },
+      "nvs": {
+        "key": "L_5_Z"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_6_z",
+      "caps_name": "LED_6_Z",
+      "integer": true,
+      "led": {
+        "index": 6,
+        "param": "z"
+      },
+      "nvs": {
+        "key": "L_6_Z"
       },
       "http": {
         "write": true
@@ -1171,6 +2091,86 @@
       "default": 1
     },
     {
+      "name": "led_2_enabled",
+      "caps_name": "LED_2_ENABLED",
+      "integer": true,
+      "led": {
+        "index": 2,
+        "param": "enabled"
+      },
+      "nvs": {
+        "key": "L_2_E"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_3_enabled",
+      "caps_name": "LED_3_ENABLED",
+      "integer": true,
+      "led": {
+        "index": 3,
+        "param": "enabled"
+      },
+      "nvs": {
+        "key": "L_3_E"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_4_enabled",
+      "caps_name": "LED_4_ENABLED",
+      "integer": true,
+      "led": {
+        "index": 4,
+        "param": "enabled"
+      },
+      "nvs": {
+        "key": "L_4_E"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_5_enabled",
+      "caps_name": "LED_5_ENABLED",
+      "integer": true,
+      "led": {
+        "index": 5,
+        "param": "enabled"
+      },
+      "nvs": {
+        "key": "L_5_E"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_6_enabled",
+      "caps_name": "LED_6_ENABLED",
+      "integer": true,
+      "led": {
+        "index": 6,
+        "param": "enabled"
+      },
+      "nvs": {
+        "key": "L_6_E"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
       "name": "led_0_box",
       "caps_name": "LED_0_BOX",
       "integer": true,
@@ -1196,6 +2196,86 @@
       },
       "nvs": {
         "key": "L_1_B"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_2_box",
+      "caps_name": "LED_2_BOX",
+      "integer": true,
+      "led": {
+        "index": 2,
+        "param": "box"
+      },
+      "nvs": {
+        "key": "L_2_B"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_3_box",
+      "caps_name": "LED_3_BOX",
+      "integer": true,
+      "led": {
+        "index": 3,
+        "param": "box"
+      },
+      "nvs": {
+        "key": "L_3_B"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 0
+    },
+    {
+      "name": "led_4_box",
+      "caps_name": "LED_4_BOX",
+      "integer": true,
+      "led": {
+        "index": 4,
+        "param": "box"
+      },
+      "nvs": {
+        "key": "L_4_B"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_5_box",
+      "caps_name": "LED_5_BOX",
+      "integer": true,
+      "led": {
+        "index": 5,
+        "param": "box"
+      },
+      "nvs": {
+        "key": "L_5_B"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_6_box",
+      "caps_name": "LED_6_BOX",
+      "integer": true,
+      "led": {
+        "index": 6,
+        "param": "box"
+      },
+      "nvs": {
+        "key": "L_6_B"
       },
       "http": {
         "write": true
@@ -1237,6 +2317,91 @@
       "default": 100
     },
     {
+      "name": "led_2_dim",
+      "caps_name": "LED_2_DIM",
+      "integer": true,
+      "led": {
+        "index": 2,
+        "param": "dim"
+      },
+      "nvs": {
+        "key": "L_2_DI"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 100
+    },
+    {
+      "name": "led_3_dim",
+      "caps_name": "LED_3_DIM",
+      "integer": true,
+      "led": {
+        "index": 3,
+        "param": "dim"
+      },
+      "nvs": {
+        "key": "L_3_DI"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 100
+    },
+    {
+      "name": "led_4_dim",
+      "caps_name": "LED_4_DIM",
+      "integer": true,
+      "led": {
+        "index": 4,
+        "param": "dim"
+      },
+      "nvs": {
+        "key": "L_4_DI"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 100
+    },
+    {
+      "name": "led_5_dim",
+      "caps_name": "LED_5_DIM",
+      "integer": true,
+      "led": {
+        "index": 5,
+        "param": "dim"
+      },
+      "nvs": {
+        "key": "L_5_DI"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 100
+    },
+    {
+      "name": "led_6_dim",
+      "caps_name": "LED_6_DIM",
+      "integer": true,
+      "led": {
+        "index": 6,
+        "param": "dim"
+      },
+      "nvs": {
+        "key": "L_6_DI"
+      },
+      "http": {
+        "write": true
+      },
+      "write_cb": true,
+      "default": 100
+    },
+    {
       "name": "led_0_fade",
       "caps_name": "LED_0_FADE",
       "led": {
@@ -1262,6 +2427,86 @@
       "integer": true,
       "nvs": {
         "key": "L_1_F"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_2_fade",
+      "caps_name": "LED_2_FADE",
+      "led": {
+        "index": 2,
+        "param": "fade"
+      },
+      "integer": true,
+      "nvs": {
+        "key": "L_2_F"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_3_fade",
+      "caps_name": "LED_3_FADE",
+      "led": {
+        "index": 3,
+        "param": "fade"
+      },
+      "integer": true,
+      "nvs": {
+        "key": "L_3_F"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_4_fade",
+      "caps_name": "LED_4_FADE",
+      "led": {
+        "index": 4,
+        "param": "fade"
+      },
+      "integer": true,
+      "nvs": {
+        "key": "L_4_F"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_5_fade",
+      "caps_name": "LED_5_FADE",
+      "led": {
+        "index": 5,
+        "param": "fade"
+      },
+      "integer": true,
+      "nvs": {
+        "key": "L_5_F"
+      },
+      "http": {
+        "write": true
+      },
+      "default": 1
+    },
+    {
+      "name": "led_6_fade",
+      "caps_name": "LED_6_FADE",
+      "led": {
+        "index": 6,
+        "param": "fade"
+      },
+      "integer": true,
+      "nvs": {
+        "key": "L_6_F"
       },
       "http": {
         "write": true

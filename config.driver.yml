@@ -614,42 +614,6 @@ keys:
       write: true
     default: 1
  
-  - name: box_0_sht1x_temp_c
-    caps_name: BOX_0_SHT1X_TEMP_C
-    integer: true
-    box:
-      index: 0
-      param: sht1x_temp_c
-    nvs:
-      key: B_0_SHT1X_C
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_0_sht1x_temp_f
-    caps_name: BOX_0_SHT1X_TEMP_F
-    integer: true
-    box:
-      index: 0
-      param: sht1x_temp_f
-    nvs:
-      key: B_0_SHT1X_F
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_0_sht1x_humi
-    caps_name: BOX_0_SHT1X_HUMI
-    integer: true
-    box:
-      index: 0
-      param: sht1x_humi
-    nvs:
-      key: B_0_SHT1X_HU
-    http:
-      noop: true
-    default: -1000000
-
   - name: box_0_sht21_temp_c
     caps_name: BOX_0_SHT21_TEMP_C
     integer: true
@@ -682,30 +646,6 @@ keys:
       param: sht21_humi
     nvs:
       key: B_0_SHT21_HU
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_0_arduino_co2
-    caps_name: BOX_0_ARDUINO_CO2
-    integer: true
-    box:
-      index: 0
-      param: arduino_co2
-    nvs:
-      key: B_0_ARDU_CO2
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_0_dust_gpy2y10
-    caps_name: BOX_0_DUST_GPY2Y10
-    integer: true
-    box:
-      index: 0
-      param: dust_gpy2y10
-    nvs:
-      key: B_0_DUST_G2Y1
     http:
       noop: true
     default: -1000000
@@ -913,42 +853,6 @@ keys:
       write: true
     default: 1
  
-  - name: box_1_sht1x_temp_c
-    caps_name: BOX_1_SHT1X_TEMP_C
-    integer: true
-    box:
-      index: 1
-      param: sht1x_temp_c
-    nvs:
-      key: B_1_SHT1X_C
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_1_sht1x_temp_f
-    caps_name: BOX_1_SHT1X_TEMP_F
-    integer: true
-    box:
-      index: 1
-      param: sht1x_temp_f
-    nvs:
-      key: B_1_SHT1X_F
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_1_sht1x_humi
-    caps_name: BOX_1_SHT1X_HUMI
-    integer: true
-    box:
-      index: 1
-      param: sht1x_humi
-    nvs:
-      key: B_1_SHT1X_HU
-    http:
-      noop: true
-    default: -1000000
-
   - name: box_1_sht21_temp_c
     caps_name: BOX_1_SHT21_TEMP_C
     integer: true
@@ -981,30 +885,6 @@ keys:
       param: sht21_humi
     nvs:
       key: B_1_SHT21_HU
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_1_arduino_co2
-    caps_name: BOX_1_ARDUINO_CO2
-    integer: true
-    box:
-      index: 1
-      param: arduino_co2
-    nvs:
-      key: B_1_ARDU_CO2
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_1_dust_gpy2y10
-    caps_name: BOX_1_DUST_GPY2Y10
-    integer: true
-    box:
-      index: 1
-      param: dust_gpy2y10
-    nvs:
-      key: B_1_DUST_G2Y1
     http:
       noop: true
     default: -1000000
@@ -1209,42 +1089,6 @@ keys:
       write: true
     default: 0
  
-  - name: box_2_sht1x_temp_c
-    caps_name: BOX_2_SHT1X_TEMP_C
-    integer: true
-    box:
-      index: 2
-      param: sht1x_temp_c
-    nvs:
-      key: B_2_SHT1X_C
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_2_sht1x_temp_f
-    caps_name: BOX_2_SHT1X_TEMP_F
-    integer: true
-    box:
-      index: 2
-      param: sht1x_temp_f
-    nvs:
-      key: B_2_SHT1X_F
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_2_sht1x_humi
-    caps_name: BOX_2_SHT1X_HUMI
-    integer: true
-    box:
-      index: 2
-      param: sht1x_humi
-    nvs:
-      key: B_2_SHT1X_HU
-    http:
-      noop: true
-    default: -1000000
-
   - name: box_2_sht21_temp_c
     caps_name: BOX_2_SHT21_TEMP_C
     integer: true
@@ -1281,30 +1125,6 @@ keys:
       noop: true
     default: -1000000
 
-
-  - name: box_2_arduino_co2
-    caps_name: BOX_2_ARDUINO_CO2
-    integer: true
-    box:
-      index: 2
-      param: arduino_co2
-    nvs:
-      key: B_2_ARDU_CO2
-    http:
-      noop: true
-    default: -1000000
-
-  - name: box_2_dust_gpy2y10
-    caps_name: BOX_2_DUST_GPY2Y10
-    integer: true
-    box:
-      index: 2
-      param: dust_gpy2y10
-    nvs:
-      key: B_2_DUST_G2Y1
-    http:
-      noop: true
-    default: -1000000
 
   - name: box_2_led_info
     caps_name: BOX_2_LED_INFO
