@@ -19,7 +19,7 @@
 #ifndef BLOWER_H_
 #define BLOWER_H_
 
-#define DEFAULT_BLOWER_FREQUENCY 15000
+#define DEFAULT_BLOWER_FREQUENCY 150
 
 void init_blower();
 

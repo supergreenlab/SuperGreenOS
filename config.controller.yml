@@ -636,7 +636,7 @@ keys:
     http:
       write: true
     write_cb: true
-    default: 50
+    default: 40
 
   - name: box_0_blower_night
     caps_name: BOX_0_BLOWER_NIGHT
@@ -649,7 +649,7 @@ keys:
     http:
       write: true
     write_cb: true
-    default: 50
+    default: 20
 
   - name: box_0_blower_gpio
     caps_name: BOX_0_BLOWER_GPIO
@@ -875,7 +875,7 @@ keys:
     http:
       write: true
     write_cb: true
-    default: 50
+    default: 40
 
   - name: box_1_blower_night
     caps_name: BOX_1_BLOWER_NIGHT
@@ -888,7 +888,7 @@ keys:
     http:
       write: true
     write_cb: true
-    default: 50
+    default: 20
 
   - name: box_1_blower_gpio
     caps_name: BOX_1_BLOWER_GPIO
@@ -1111,7 +1111,7 @@ keys:
     http:
       write: true
     write_cb: true
-    default: 50
+    default: 40
 
   - name: box_2_blower_night
     caps_name: BOX_2_BLOWER_NIGHT
@@ -1124,7 +1124,7 @@ keys:
     http:
       write: true
     write_cb: true
-    default: 50
+    default: 20
 
   - name: box_2_blower_gpio
     caps_name: BOX_2_BLOWER_GPIO

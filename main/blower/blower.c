@@ -41,7 +41,7 @@ static QueueHandle_t cmd;
 
 static void set_duty(int i, float duty_cycle)
 {
-  mcpwm_set_duty(MCPWM_UNIT_0, i / MCPWM_TIMER_MAX, i % MCPWM_OPR_MAX, duty_cycle);
+  mcpwm_set_duty(MCPWM_UNIT_0, i, MCPWM_OPR_A, duty_cycle);
 }
 
 static void blower_task(void *param) {
@@ -72,14 +72,14 @@ void init_blower() {
     if (get_box_enabled(i) != 1 || get_box_blower_enabled(i) != 1) continue;
     int blower_gpio = get_box_blower_gpio(i);
     int blower_frequency = get_box_blower_frequency(i);
-    mcpwm_gpio_init(MCPWM_UNIT_0, i, blower_gpio);
+    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A + i * 2, blower_gpio);
     mcpwm_config_t pwm_config;
     pwm_config.frequency = blower_frequency;
     pwm_config.cmpr_a = 0;
     pwm_config.cmpr_b = 0;
     pwm_config.counter_mode = MCPWM_UP_COUNTER;
     pwm_config.duty_mode = MCPWM_DUTY_MODE_0;
-    mcpwm_init(MCPWM_UNIT_0, i / MCPWM_TIMER_MAX, &pwm_config);
+    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0 + i, &pwm_config);
 
     set_duty(i, 0.0);
   }
