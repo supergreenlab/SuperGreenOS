@@ -600,6 +600,7 @@ keys:
       key: B_0_BLWR_HZ
     http:
       write: true
+    write_cb: true
     default_var: DEFAULT_BLOWER_FREQUENCY
 
   - name: box_0_blower_enabled
@@ -839,6 +840,7 @@ keys:
       key: B_1_BLWR_HZ
     http:
       write: true
+    write_cb: true
     default_var: DEFAULT_BLOWER_FREQUENCY
  
   - name: box_1_blower_enabled
@@ -1075,6 +1077,7 @@ keys:
       key: B_2_BLWR_HZ
     http:
       write: true
+    write_cb: true
     default_var: DEFAULT_BLOWER_FREQUENCY
 
   - name: box_2_blower_enabled

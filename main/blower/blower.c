@@ -39,13 +39,24 @@
 
 static QueueHandle_t cmd;
 
+typedef enum {
+  CMD_NO_ACTION,
+  CMD_CHANGED_FREQUENCY,
+} blower_action;
+
+typedef struct {
+  blower_action cmd;
+  int boxId;
+  int value;
+} blower_cmd;
+
 static void set_duty(int i, float duty_cycle)
 {
-  mcpwm_set_duty(MCPWM_UNIT_0, i, MCPWM_OPR_A, duty_cycle);
+  mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0 + i, MCPWM_OPR_A, duty_cycle);
 }
 
 static void blower_task(void *param) {
-  int c;
+  blower_cmd c = {.cmd = -1};
 
   while (1) {
     for (int i = 0; i < N_BOXES; ++i) {
@@ -56,14 +67,20 @@ static void blower_task(void *param) {
       int v = (float)vnight + ((vday - vnight) * (float)timerOutput / 100.0f);
       set_duty(i, v);
     }
-    xQueueReceive(cmd, &c, 3000 / portTICK_PERIOD_MS);
+    if (xQueueReceive(cmd, &c, 3000 / portTICK_PERIOD_MS) == pdTRUE) {
+      if (c.cmd == CMD_CHANGED_FREQUENCY) {
+        int blower_frequency = c.value;
+        ESP_LOGI(SGO_LOG_EVENT, "@BLOWER CMD_CHANGED_FREQUENCY %d %d", c.boxId, blower_frequency);
+        mcpwm_set_frequency(MCPWM_UNIT_0, MCPWM_TIMER_0 + c.boxId, blower_frequency);
+      }
+    }
   }
 }
 
 void init_blower() {
   ESP_LOGI(SGO_LOG_EVENT, "@BLOWER Initializing blower task");
 
-  cmd = xQueueCreate(10, sizeof(int));
+  cmd = xQueueCreate(10, sizeof(blower_cmd));
   if (cmd == NULL) {
     ESP_LOGE(SGO_LOG_EVENT, "@BLOWER Unable to create blower queue");
   }
@@ -88,14 +105,23 @@ void init_blower() {
 
 /* BLE Callbacks */
 
+int on_set_box_blower_frequency(int boxId, int value) {
+  value = min(40000, max(value, 2));
+  blower_cmd c = {.cmd = CMD_CHANGED_FREQUENCY, .boxId = boxId, .value = value};
+  xQueueSend(cmd, &c, 0);
+  return value;
+}
+
 int on_set_box_blower_day(int boxId, int value) {
   value = min(100, max(value, 0));
-  xQueueSend(cmd, &value, 0);
+  blower_cmd c = {.cmd = CMD_NO_ACTION, .boxId = boxId, .value = value};
+  xQueueSend(cmd, &c, 0);
   return value;
 }
 
 int on_set_box_blower_night(int boxId, int value) {
   value = min(100, max(value, 0));
-  xQueueSend(cmd, &value, 0);
+  blower_cmd c = {.cmd = CMD_NO_ACTION, .boxId = boxId, .value = value};
+  xQueueSend(cmd, &c, 0);
   return value;
 }

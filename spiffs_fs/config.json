@@ -122,6 +122,7 @@
     },
     {
       "name": "wifi_password",
+      "nosend": true,
       "caps_name": "WIFI_PASSWORD",
       "string": true,
       "nvs": {
@@ -279,7 +280,7 @@
       "http": {
         "write": true
       },
-      "default": "/SuperGreenDriver1.0"
+      "default": "/SuperGreenController"
     },
     {
       "name": "ota_status",
@@ -420,7 +421,7 @@
       "http": {
         "write": true
       },
-      "default": 0
+      "default": 1
     },
     {
       "name": "i2c_2_sda",
@@ -761,7 +762,7 @@
         "write": true
       },
       "write_cb": true,
-      "default": 50
+      "default": 40
     },
     {
       "name": "box_0_blower_night",
@@ -778,7 +779,7 @@
         "write": true
       },
       "write_cb": true,
-      "default": 50
+      "default": 20
     },
     {
       "name": "box_0_blower_gpio",
@@ -810,6 +811,7 @@
       "http": {
         "write": true
       },
+      "write_cb": true,
       "default_var": "DEFAULT_BLOWER_FREQUENCY"
     },
     {
@@ -1072,7 +1074,7 @@
         "write": true
       },
       "write_cb": true,
-      "default": 50
+      "default": 40
     },
     {
       "name": "box_1_blower_night",
@@ -1089,7 +1091,7 @@
         "write": true
       },
       "write_cb": true,
-      "default": 50
+      "default": 20
     },
     {
       "name": "box_1_blower_gpio",
@@ -1121,6 +1123,7 @@
       "http": {
         "write": true
       },
+      "write_cb": true,
       "default_var": "DEFAULT_BLOWER_FREQUENCY"
     },
     {
@@ -1379,7 +1382,7 @@
         "write": true
       },
       "write_cb": true,
-      "default": 50
+      "default": 40
     },
     {
       "name": "box_2_blower_night",
@@ -1396,7 +1399,7 @@
         "write": true
       },
       "write_cb": true,
-      "default": 50
+      "default": 20
     },
     {
       "name": "box_2_blower_gpio",
@@ -1428,6 +1431,7 @@
       "http": {
         "write": true
       },
+      "write_cb": true,
       "default_var": "DEFAULT_BLOWER_FREQUENCY"
     },
     {

@@ -142,6 +142,7 @@ keys:
     default: ""
 
   - name: wifi_password
+    nosend: true
     caps_name: WIFI_PASSWORD
     string: true
     nvs:
@@ -261,7 +262,7 @@ keys:
       key: OTA_BASEDIR
     http:
       write: true
-    default: /SuperGreenDriver1.0
+    default: /SuperGreenController
 
   - name: ota_status
     caps_name: OTA_STATUS
@@ -367,7 +368,7 @@ keys:
       key: I2C_1_E
     http:
       write: true
-    default: 0
+    default: 1
 
   - name: i2c_2_sda
     caps_name: I2C_2_SDA
@@ -673,6 +674,7 @@ keys:
       key: B_0_BLWR_HZ
     http:
       write: true
+    write_cb: true
     default_var: DEFAULT_BLOWER_FREQUENCY
 
   - name: box_0_blower_enabled
@@ -912,6 +914,7 @@ keys:
       key: B_1_BLWR_HZ
     http:
       write: true
+    write_cb: true
     default_var: DEFAULT_BLOWER_FREQUENCY
  
   - name: box_1_blower_enabled
@@ -1148,6 +1151,7 @@ keys:
       key: B_2_BLWR_HZ
     http:
       write: true
+    write_cb: true
     default_var: DEFAULT_BLOWER_FREQUENCY
 
   - name: box_2_blower_enabled
