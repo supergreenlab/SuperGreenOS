@@ -5,8 +5,16 @@ import (
 )
 
 _MODULE: {
+  field_prefix: string
   init: bool | *true
+  code: bool | *true
+  is_array: bool | *false
+  array_len: int | *0 if is_array == true
   fields: {}
+}
+
+_CORE_MODULE: _MODULE & {
+  init: false
 }
 
 _FIELD: {
@@ -31,7 +39,7 @@ _FIELD: {
 
 _STRING: _FIELD & {
   type: "string"
-  default: ""
+  default: string | *""
 }
 
 _INT: _FIELD & {
@@ -67,7 +75,6 @@ _BLE: {
 }
 
 _BLE_RW: {
-  write_cb: true
   ble: _BLE.ble & {
     write: true
   }
@@ -80,13 +87,17 @@ _HTTP: {
 }
 
 _HTTP_RW: {
-  write_cb: true
   http: _HTTP.http & {
     write: true
   }
 }
 
-modules <Module> fields <Status>: {
-  name: string | *"\(Module)_\(Status)"
+modules <Module>: {
+  field_prefix: string | *Module
+}
+
+modules <Module> fields <Field>: {
+  name: string | *"\(modules[Module].field_prefix)_\(Field)"
   caps_name: string | *strings.ToUpper(name)
+  nvs key: string | *caps_name if modules[Module].fields[Field].nvs.enable
 }

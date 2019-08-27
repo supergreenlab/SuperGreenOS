@@ -1,8 +1,6 @@
 package config
 
-modules wifi: _MODULE & {
-  init: false
-}
+modules wifi: _CORE_MODULE
 
 modules wifi fields status: _INT8 & _BLE & _HTTP & {
   _default_var: "DISCONNECTED"
@@ -35,6 +33,7 @@ modules wifi fields ap_password: _STRING & _NVS & _HTTP_RW & {
 modules wifi fields mdns_domain: _STRING & _NVS & _HTTP_RW & {
   name: "mdns_domain"
   nvs key: "MDNSD"
+  default: "supergreendriver"
 }
 
 modules wifi fields ip: _STRING & _BLE & _HTTP & {
