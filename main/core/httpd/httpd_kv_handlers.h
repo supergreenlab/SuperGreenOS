@@ -24,11 +24,29 @@
 typedef struct {
   const char *name;
   void (*handler)(int);
-  int (*getter)();
+  int8_t (*getter)();
+} kvi8_handler;
+
+extern const kvi8_handler kvi8_handlers[];
+const kvi8_handler *get_kvi8_handler(const char *name);
+
+typedef struct {
+  const char *name;
+  void (*handler)(int16_t);
+  int16_t (*getter)();
 } kvi_handler;
 
-extern const kvi_handler kvi_handlers[];
-const kvi_handler *get_kvi_handler(const char *name);
+extern const kvi16_handler kvi_handlers[];
+const kvi16_handler *get_kvi16_handler(const char *name);
+
+typedef struct {
+  const char *name;
+  void (*handler)(int);
+  int (*getter)();
+} kvi32_handler;
+
+extern const kvi_handler kvi32_handlers[];
+const kvi32_handler *get_kvi32_handler(const char *name);
 
 typedef struct {
   const char *name;

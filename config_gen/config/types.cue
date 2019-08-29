@@ -23,9 +23,11 @@ _I2C_MODULE: _MODULE & {
 
 _FIELD: {
   type: "string" | "integer"
+  nosend: bool | *false
   nvs: {
     enable: bool | *false
     key: string if enable == true
+    manual: bool | *false
   }
   ble: {
     enable: bool | *false
@@ -102,7 +104,8 @@ modules <Module>: {
 }
 
 modules <Module> fields <Field>: {
-  name: string | *"\(modules[Module].field_prefix)_\(Field)"
+  suffix: string | *"\(Field)"
+  name: string | *"\(modules[Module].field_prefix)_\(suffix)"
   caps_name: string | *strings.ToUpper(name)
   nvs key: string | *caps_name if modules[Module].fields[Field].nvs.enable
 }

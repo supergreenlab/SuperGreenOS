@@ -16,21 +16,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef KEYS_H_
-#define KEYS_H_
+#include "kv.h"
 
-/*
- * [GENERATED]
- */
-
-<% Object.keys(modules).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].nvs.enable).forEach(f => {
-    f = modules[m].fields[f] %>
-  #define <%= f.caps_name %> "<%= f.nvs.key %>"
+<% Object.keys(modules).filter(m => modules[m].array_len).forEach(m => {
+  m = modules[m]
+  Object.keys(m.fields).forEach(f => { 
+    f = m.fields[f]
+    i = parseInt(f.name.split('_')[1])
+    p = f.name.split('_').splice(0, 2).join('_') %>
+    <% if (f.write_cb) { %>
+    int on_set_<%= m.field_prefix %>_<%= f.suffix %>(int value) {
+      return on_set_led_<%= f.suffix %>(<%= i %>, value);
+    }
+    <% } %>
 <% })}) %>
 
-/*
- * [/GENERATED]
- */
-
-#endif
+<% Object.keys(modules).filter(m => modules[m].array_len).forEach(m => { %>
+  int get_led_<%= p %>(int i) {
+    switch(ledId) {
+    <% if (led_loop_i) { %>
+      case {{.}}:
+        return get_led_<%=  %>_## param(ledId);
+    <% } %>
+    }
+    return 0;
+  }
+<% }) %>

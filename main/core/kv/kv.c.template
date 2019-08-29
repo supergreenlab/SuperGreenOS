@@ -97,7 +97,7 @@ void postinit_kv() {
       <% } else { %>
         const char *default_<%= f.name %> = <% if (f.default_var) { %><%= f.default_var %><% } else { %>"<%= f.default %>"<% } %>;
       <% } %>
-      set_<%= f.name %>(default_<%= name %>);
+      set_<%= f.name %>(default_<%= f.name %>);
     }
   <% })}) %>
 
