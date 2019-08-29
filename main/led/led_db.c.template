@@ -23,11 +23,19 @@
 
 #include "driver/ledc.h"
 
-// Warning: this values should be synced with config.yml defaults,
-// will fix later TODO
 led_config_t ledc_channels[] = {
-  {{#led_loop_i}}
-  CHANNEL({{.}}, 0, 0, 0, 0, 0, 0, 0, {{.}}),
-  {{/led_loop_i}}
+  <% Array(modules.led.array_len).fill().forEach((m, i) => { %>
+    CHANNEL(
+      <%= i %>,
+      <%= modules.led.fields[`${i}_enabled`].default %>,
+      <%= modules.led.fields[`${i}_x`].default %>,
+      <%= modules.led.fields[`${i}_y`].default %>,
+      <%= modules.led.fields[`${i}_z`].default %>,
+      <%= modules.led.fields[`${i}_box`].default %>,
+      <%= modules.led.fields[`${i}_gpio`].default %>,
+      0,
+      <%= i %>
+  ),
+  <% }) %>
 };
 const unsigned int N_LEDS = sizeof(ledc_channels) / sizeof(ledc_channels[0]);

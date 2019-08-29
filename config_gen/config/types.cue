@@ -6,15 +6,19 @@ import (
 
 _MODULE: {
   field_prefix: string
-  init: bool | *true
   code: bool | *true
-  is_array: bool | *false
-  array_len: int | *0 if is_array == true
+  core: bool | *false
+  i2c: bool | *false
+  array_len: int | *0
   fields: {}
 }
 
 _CORE_MODULE: _MODULE & {
-  init: false
+  core: true
+}
+
+_I2C_MODULE: _MODULE & {
+  i2c: true
 }
 
 _FIELD: {
@@ -93,6 +97,7 @@ _HTTP_RW: {
 }
 
 modules <Module>: {
+  name: string | *Module
   field_prefix: string | *Module
 }
 

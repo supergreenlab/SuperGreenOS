@@ -3,7 +3,6 @@ package config
 _i2c_conf: [...]
 
 modules i2c: _CORE_MODULE & {
-  is_array: true
   array_len: len(_i2c_conf)
 }
 

@@ -119,7 +119,7 @@ static void led_task(void *param) {
   }
 }
 
-void init_led_info(int box_id, char *led_info) {
+/*void init_led_info(int box_id, char *led_info) {
   sprintf(led_info, "n:%d", N_LEDS);
   for (int i = 0; i < N_LEDS; ++i) {
     int bi = get_led_box(i);
@@ -142,7 +142,7 @@ void init_led_info(int box_id, char *led_info) {
     min_z = min(min_z, ledc_channels[i].z);
     max_z = max(max_z, ledc_channels[i].z);
   }
-}
+}*/
 
 void init_led() {
   ESP_LOGI(SGO_LOG_EVENT, "@LED Initializing led task");
@@ -174,10 +174,10 @@ void init_led() {
     ledc_channel_config(&ledc_channels[i].channel_config);
   }
 
-  char led_info[CHAR_VAL_LEN_MAX] = {0};
+  /*char led_info[CHAR_VAL_LEN_MAX] = {0};
   {{#box_loop_i}}
   init_led_info({{.}}, led_info); set_box_{{.}}_led_info(led_info);
-  {{/box_loop_i}}
+  {{/box_loop_i}}*/
 
   cmd = xQueueCreate(10, sizeof(cmd_refresh_led));
   if (cmd == NULL) {

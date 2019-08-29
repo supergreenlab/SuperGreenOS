@@ -3,7 +3,6 @@ package config
 _box_conf: [...]
 
 modules box: _MODULE & {
-  is_array: true
   array_len: len(_box_conf)
 }
 

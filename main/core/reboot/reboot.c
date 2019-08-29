@@ -20,6 +20,7 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "nvs_flash.h"
 #include "esp_system.h"
 
 #include "../log/log.h"
@@ -35,8 +36,7 @@ void init_reboot() {
   defaulti(N_SHORT_REBOOTS, 0);
   int n = geti(N_SHORT_REBOOTS);
   if (n >= MAX_SHORT_REBOOTS) {
-    seti(N_SHORT_REBOOTS, 0);
-    reset_defaults();
+    ESP_ERROR_CHECK(nvs_flash_erase());
     esp_restart();
   }
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=%d", n);
@@ -51,15 +51,6 @@ static void reboot_task() {
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=0");
   seti(N_SHORT_REBOOTS, 0);
 
-  // Temporary failsafe restart after 2 hours
-  /* vTaskDelay(2 * 60 * 60 * 1000 / portTICK_PERIOD_MS);
-  while(true) {
-    // avoid interrupting OTA
-    if (get_ota_status() != OTA_STATUS_IN_PROGRESS) {
-      esp_restart();
-    }
-    vTaskDelay(60 * 1000 / portTICK_PERIOD_MS);
-  }*/
   vTaskDelete(NULL);
 }
 

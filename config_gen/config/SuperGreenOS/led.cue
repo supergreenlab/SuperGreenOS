@@ -3,7 +3,6 @@ package config
 _led_conf: [...]
 
 modules led: _MODULE & {
-  is_array: true
   array_len: len(_led_conf)
 }
 

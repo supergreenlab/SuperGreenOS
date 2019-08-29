@@ -2,7 +2,6 @@ package config
 
 modules onoff: _MODULE & {
   field_prefix: "box"
-  is_array: true
   array_len: len(_box_conf)
 }
 

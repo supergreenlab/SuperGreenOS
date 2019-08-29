@@ -1,8 +1,13 @@
+<%
+  const core = Object.keys(modules).filter(m => modules[m].core).map(m => modules[m])
+  const custom = Object.keys(modules).filter(m => !modules[m].core && !modules[m].i2c).map(m => modules[m])
+  const i2c = Object.keys(modules).filter(m => modules[m].i2c).map(m => modules[m])
+%>
 # Core modules
-COMPONENT_SRCDIRS := . core{{#core_modules}} core/{{.}}{{/core_modules}}
+COMPONENT_SRCDIRS := . core<% core.forEach((m) => { %> <%= `core/${m.name}` %><% }) %>
 
 # Custom modules
-COMPONENT_SRCDIRS +={{#custom_modules}} {{.}}{{/custom_modules}}
+COMPONENT_SRCDIRS +=<% custom.forEach((m) => { %> <%= m.name %><% }) %>
 
 # I2C devices
-COMPONENT_SRCDIRS +={{#i2c_devices}} {{.}}{{/i2c_devices}}
+COMPONENT_SRCDIRS +=<% i2c.forEach((m) => { %> <%= m.name %><% }) %>
