@@ -60,7 +60,12 @@ const kvi8_handler *get_kvi8_handler(const char *name) {
   return NULL;
 }
 
-<% Object.keys(modules).forEach(m => {
+const kvi16_handler kvi16_handlers[] = {
+/*
+* [GENERATED]
+*/
+
+ <% Object.keys(modules).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16).forEach(f => { f = modules[m].fields[f]%>
   {
     .name = "<%= f.caps_name %>",
@@ -91,7 +96,12 @@ const kvi16_handler *get_kvi16_handler(const char *name) {
   return NULL;
 }
 
-<% Object.keys(modules).forEach(m => {
+const kvi32_handler kvi32_handlers[] = {
+/*
+* [GENERATED]
+*/
+
+ <% Object.keys(modules).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32).forEach(f => { f = modules[m].fields[f]%>
   {
     .name = "<%= f.caps_name %>",

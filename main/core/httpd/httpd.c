@@ -88,7 +88,7 @@ static esp_err_t geti_handler(httpd_req_t *req) {
     return httpd_resp_send_404(req);
   }
 
-  int v
+  int v = 0;
   if (hi8) {
     v = hi8->getter();
   } else if (hi16) {
@@ -109,11 +109,11 @@ static esp_err_t seti_handler(httpd_req_t *req) {
   char name[50] = {0};
   find_str_param(req->uri, "k", name, &len);
   const kvi8_handler *hi8 = get_kvi8_handler(name);
-  bool is_i8 = hi8 && hi8->handler
+  bool is_i8 = hi8 && hi8->handler;
   const kvi16_handler *hi16 = get_kvi16_handler(name);
-  bool is_i16 = hi16 && hi16->handler
+  bool is_i16 = hi16 && hi16->handler;
   const kvi32_handler *hi32 = get_kvi32_handler(name);
-  bool is_i32 = hi32 && hi32->handler
+  bool is_i32 = hi32 && hi32->handler;
 
   if (!is_i8 && !is_i16 && !is_i32) {
     return httpd_resp_send_404(req);

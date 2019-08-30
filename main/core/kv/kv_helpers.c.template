@@ -61,7 +61,7 @@ StaticSemaphore_t mutex_buffer;
 
   <% if (f.type == 'integer') { %>
 
-    <% if (f.nvs.enable) { %>
+    <% if (!f.nvs.enable) { %>
     static int<%= f.intlen %>_t _<%= f.name %> = INT<%= f.intlen %>_MAX;
     <% } %>
 
@@ -69,7 +69,7 @@ StaticSemaphore_t mutex_buffer;
       <% if (f.nvs.enable) { %>
         return geti<%= f.intlen %>(<%= f.caps_name %>);
       <% } else { %>
-        xSemaphoreTake(_mutex_<% f.name %>, 0);
+        xSemaphoreTake(_mutex_<%= f.name %>, 0);
         int v = _<%= f.name %>;
         xSemaphoreGive(_mutex_<%= f.name %>);
         return v;
@@ -82,7 +82,7 @@ StaticSemaphore_t mutex_buffer;
         seti<%= f.intlen %>(<%= f.caps_name %>, value);
       <% } %>
       xSemaphoreTake(_mutex_<%= f.name %>, 0);
-      <% if (f.nvs.enable) { %>
+      <% if (!f.nvs.enable) { %>
         if (_<%= f.name %> == value) return;
         _<%= f.name %> = value;
       <% } %>
@@ -96,7 +96,7 @@ StaticSemaphore_t mutex_buffer;
 
   <% } else { %>
 
-    <% if (f.nvs) { %>
+    <% if (!f.nvs.enable) { %>
       static char _<%= f.name %>[MAX_KVALUE_SIZE] = {0};
     <% } %>
 
@@ -121,7 +121,6 @@ StaticSemaphore_t mutex_buffer;
       <% } %>
       xSemaphoreTake(_mutex_<%= f.name %>, 0);
       <% if (!f.nvs.enable) { %>
-      char old_value[MAX_KVALUE_SIZE] = {0};
       if (!strcmp(_<%= f.name %>, value)) return;
       strncpy(_<%= f.name %>, value, strlen(value));
       <% } %>

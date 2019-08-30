@@ -16,27 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "kv.h"
-#include "../include_modules.h"
+#ifndef BOX_HELPERS_H_
+#define BOX_HELPERS_H_
+
 #include <stdint.h>
 
 <% Object.keys(modules).filter(m => modules[m].array_len).forEach(m => {
   m = modules[m]
   Object.keys(m.fields).forEach(f => { 
     f = m.fields[f]
-    let p = f.name.split('_')
-    p.splice(0, 2)
-    p = p.join('_')
     i = parseInt(f.name.split('_')[1]) %>
     <% if (f.write_cb) { %>
-    int on_set_<%= m.field_prefix %>_<%= f.suffix %>(int value) {
-      return on_set_<%= m.field_prefix %>_<%= p %>(<%= i %>, value);
-    }
+      int on_set_<%= m.field_prefix %>_<%= f.suffix %>(int value);
     <% } %>
 <% })}) %>
 
 <% 
-  // TODO DRY (with .h)
   const arrays = Object.keys(modules)
                        .filter(m => modules[m].array_len > 0)
                        .reduce((acc, m) => {
@@ -53,31 +48,12 @@
                                 })
                           return acc
                        }, {})
-%>
-<%
+
   Object.keys(arrays).forEach(a => { a = arrays[a]
-    Object.keys(a.fields).forEach(f => { f = a.fields[f] %>
-    int<%= f.intlen %>_t get_<%= a.name %>_<%= f.name %>(int i) {
-      switch(i) {
-      <% Array(a.array_len).fill().forEach((v, i) => { %>
-        case <%= i %>:
-          return get_<%= a.name %>_<%= i %>_<%= f.name %>();
-      <% }) %>
-      }
-      return 0;
-    }
+    Object.keys(a.fields).forEach(f => { f = a.fields[f]
+%>
+  int<%= f.intlen %>_t get_<%= a.name %>_<%= f.name %>(int i);
+  void set_<%= a.name %>_<%= f.name %>(int i, int<%= f.intlen %>_t v);
 <% })}) %>
 
-<%
-  Object.keys(arrays).forEach(a => { a = arrays[a]
-    Object.keys(a.fields).forEach(f => { f = a.fields[f] %>
-    void set_<%= a.name %>_<%= f.name %>(int i, int<%= f.intlen %>_t v) {
-      switch(i) {
-      <% Array(a.array_len).fill().forEach((v, i) => { %>
-        case <%= i %>:
-          set_<%= a.name %>_<%= i %>_<%= f.name %>(v);
-          break;
-      <% }) %>
-      }
-    }
-<% })}) %>
+#endif

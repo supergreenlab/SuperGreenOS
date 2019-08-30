@@ -19,8 +19,6 @@
 #ifndef BOX_H_
 #define BOX_H_
 
-#include "box_helpers.h"
-
 #define N_BOXES 3
 
 #endif

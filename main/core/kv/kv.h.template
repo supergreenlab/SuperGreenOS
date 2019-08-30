@@ -21,7 +21,9 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include "keys.h"
+#include "kv_arrays.h"
 
 #define MAX_KVALUE_SIZE 517
 
@@ -29,17 +31,17 @@ void open_kv();
 void preinit_kv();
 void postinit_kv();
 
-int geti8(const char * key);
+int8_t geti8(const char * key);
 void seti8(const char * key, int8_t value);
 bool hasi8(const char * key);
 void defaulti8(const char * key, int8_t value);
 
-int geti16(const char * key);
+int16_t geti16(const char * key);
 void seti16(const char * key, int16_t value);
 bool hasi16(const char * key);
 void defaulti16(const char * key, int16_t value);
 
-int geti32(const char * key);
+int32_t geti32(const char * key);
 void seti32(const char * key, int32_t value);
 bool hasi32(const char * key);
 void defaulti32(const char * key, int32_t value);
@@ -59,8 +61,8 @@ void defaultstr(const char * key, const char * value);
   bool is_<%= f.name %>_changed();
   bool is_<%= f.name %>_undefined();
   <% if (f.type == 'integer') { %>
-    int get_<%= f.name %>();
-    void set_<%= f.name %>(int value);
+    int<%= f.intlen %>_t get_<%= f.name %>();
+    void set_<%= f.name %>(int<%= f.intlen %>_t value);
   <% } else { %>
     void get_<%= f.name %>(char *dest, size_t len);
     void set_<%= f.name %>(const char *value);

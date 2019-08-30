@@ -1,5 +1,5 @@
 {
-  "name": "SuperGreenController1.0",
+  "name": "SuperGreenDriver1.0",
   "core_modules": [
     "wifi",
     "ble",
@@ -40,9 +40,7 @@
     "enabled"
   ],
   "i2c_loop_i": [
-    0,
-    1,
-    2
+    0
   ],
   "box_params": [
     "enabled",
@@ -174,7 +172,7 @@
       "http": {
         "write": true
       },
-      "default": "supergreencontroller"
+      "default": "supergreendriver"
     },
     {
       "name": "wifi_ip",
@@ -280,7 +278,7 @@
       "http": {
         "write": true
       },
-      "default": "/SuperGreenController"
+      "default": "/SuperGreenDriver1.0"
     },
     {
       "name": "ota_status",
@@ -341,7 +339,7 @@
       "http": {
         "write": true
       },
-      "default": 18
+      "default": 26
     },
     {
       "name": "i2c_0_scl",
@@ -357,7 +355,7 @@
       "http": {
         "write": true
       },
-      "default": 5
+      "default": 27
     },
     {
       "name": "i2c_0_enabled",
@@ -374,102 +372,6 @@
         "write": true
       },
       "default": 1
-    },
-    {
-      "name": "i2c_1_sda",
-      "caps_name": "I2C_1_SDA",
-      "integer": true,
-      "i2c": {
-        "index": 1,
-        "param": "sda"
-      },
-      "nvs": {
-        "key": "I2C_1_SDA"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 21
-    },
-    {
-      "name": "i2c_1_scl",
-      "caps_name": "I2C_1_SCL",
-      "integer": true,
-      "i2c": {
-        "index": 1,
-        "param": "scl"
-      },
-      "nvs": {
-        "key": "I2C_1_SCL"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 19
-    },
-    {
-      "name": "i2c_1_enabled",
-      "caps_name": "I2C_1_ENABLED",
-      "integer": true,
-      "i2c": {
-        "index": 1,
-        "param": "enabled"
-      },
-      "nvs": {
-        "key": "I2C_1_E"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 1
-    },
-    {
-      "name": "i2c_2_sda",
-      "caps_name": "I2C_2_SDA",
-      "integer": true,
-      "i2c": {
-        "index": 2,
-        "param": "sda"
-      },
-      "nvs": {
-        "key": "I2C_2_SDA"
-      },
-      "http": {
-        "write": true
-      },
-      "default_var": 21
-    },
-    {
-      "name": "i2c_2_scl",
-      "caps_name": "I2C_2_SCL",
-      "integer": true,
-      "i2c": {
-        "index": 2,
-        "param": "scl"
-      },
-      "nvs": {
-        "key": "I2C_2_SCL"
-      },
-      "http": {
-        "write": true
-      },
-      "default_var": 19
-    },
-    {
-      "name": "i2c_2_enabled",
-      "caps_name": "I2C_2_ENABLED",
-      "integer": true,
-      "i2c": {
-        "index": 2,
-        "param": "enabled"
-      },
-      "nvs": {
-        "key": "I2C_2_E"
-      },
-      "http": {
-        "write": true
-      },
-      "default": 0
     },
     {
       "name": "reboot",
@@ -512,7 +414,7 @@
       "http": {
         "write": true
       },
-      "default": "SuperGreenController"
+      "default": "SuperGreenDriver"
     },
     {
       "name": "status_led_red_gpio",
@@ -524,7 +426,7 @@
       "http": {
         "write": true
       },
-      "default": 23
+      "default": 19
     },
     {
       "name": "status_led_green_gpio",
@@ -536,7 +438,7 @@
       "http": {
         "write": true
       },
-      "default": 22
+      "default": 18
     },
     {
       "name": "status_led_dim",
@@ -762,7 +664,7 @@
         "write": true
       },
       "write_cb": true,
-      "default": 40
+      "default": 50
     },
     {
       "name": "box_0_blower_night",
@@ -779,7 +681,7 @@
         "write": true
       },
       "write_cb": true,
-      "default": 20
+      "default": 50
     },
     {
       "name": "box_0_blower_gpio",
@@ -795,7 +697,7 @@
       "http": {
         "write": true
       },
-      "default": 4
+      "default": 22
     },
     {
       "name": "box_0_blower_frequency",
@@ -1074,7 +976,7 @@
         "write": true
       },
       "write_cb": true,
-      "default": 40
+      "default": 50
     },
     {
       "name": "box_1_blower_night",
@@ -1091,7 +993,7 @@
         "write": true
       },
       "write_cb": true,
-      "default": 20
+      "default": 50
     },
     {
       "name": "box_1_blower_gpio",
@@ -1107,7 +1009,7 @@
       "http": {
         "write": true
       },
-      "default": 16
+      "default": 21
     },
     {
       "name": "box_1_blower_frequency",
@@ -1382,7 +1284,7 @@
         "write": true
       },
       "write_cb": true,
-      "default": 40
+      "default": 50
     },
     {
       "name": "box_2_blower_night",
@@ -1399,7 +1301,7 @@
         "write": true
       },
       "write_cb": true,
-      "default": 20
+      "default": 50
     },
     {
       "name": "box_2_blower_gpio",
@@ -1415,7 +1317,7 @@
       "http": {
         "write": true
       },
-      "default": 17
+      "default": 20
     },
     {
       "name": "box_2_blower_frequency",
@@ -1627,7 +1529,7 @@
       "http": {
         "write": true
       },
-      "default": 33
+      "default": 32
     },
     {
       "name": "led_1_gpio",
@@ -1643,7 +1545,7 @@
       "http": {
         "write": true
       },
-      "default": 25
+      "default": 17
     },
     {
       "name": "led_2_gpio",
@@ -1659,7 +1561,7 @@
       "http": {
         "write": true
       },
-      "default": 26
+      "default": 33
     },
     {
       "name": "led_3_gpio",
@@ -1675,7 +1577,7 @@
       "http": {
         "write": true
       },
-      "default": 27
+      "default": 16
     },
     {
       "name": "led_4_gpio",
@@ -1691,7 +1593,7 @@
       "http": {
         "write": true
       },
-      "default": 14
+      "default": 25
     },
     {
       "name": "led_5_gpio",
@@ -1707,7 +1609,7 @@
       "http": {
         "write": true
       },
-      "default": 12
+      "default": 4
     },
     {
       "name": "led_0_x",

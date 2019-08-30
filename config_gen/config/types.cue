@@ -6,7 +6,7 @@ import (
 
 _MODULE: {
   field_prefix: string
-  code: bool | *true
+  init: bool | *true
   core: bool | *false
   i2c: bool | *false
   array_len: int | *0

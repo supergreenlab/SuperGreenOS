@@ -31,7 +31,7 @@ static const uint16_t GATTS_SERVICE_UUID      = 0x00FF;
 
 <% Object.keys(modules).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].ble.enable).forEach(f => { f = modules[m].fields[f]%>
-  const uint8_t <%= f.caps_name %>_UUID[ESP_UUID_LEN_128] = "<%= f.ble.uuid %>";
+  const uint8_t <%= f.caps_name %>_UUID[ESP_UUID_LEN_128] = <%= f.ble.uuid %>;
 <% })}) %>
 
 const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
@@ -60,7 +60,7 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
   
 <% Object.keys(modules).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].ble.enable && modules[m].fields[f].ble.write).forEach((f, i) => { f = modules[m].fields[f] %>
-      <%= i == 0 ? ' else ' : '' %>if (param->write.handle == handle_table[IDX_VALUE(<%= f.caps_name %>)]) {
+      <%= i != 0 ? ' else ' : '' %>if (param->write.handle == handle_table[IDX_VALUE(<%= f.caps_name %>)]) {
         <% if (f.type == 'integer') { %>
           uint32_t value = *(uint32_t *)(&param->write.value[0]);
           internal_set_<%= f.name %>(value);

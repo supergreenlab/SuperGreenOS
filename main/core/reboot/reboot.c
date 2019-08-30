@@ -33,14 +33,14 @@
 static void reboot_task();
 
 void init_reboot() {
-  defaulti(N_SHORT_REBOOTS, 0);
-  int n = geti(N_SHORT_REBOOTS);
+  defaulti8(N_SHORT_REBOOTS, 0);
+  int n = geti8(N_SHORT_REBOOTS);
   if (n >= MAX_SHORT_REBOOTS) {
     ESP_ERROR_CHECK(nvs_flash_erase());
     esp_restart();
   }
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=%d", n);
-  seti(N_SHORT_REBOOTS, ++n);
+  seti8(N_SHORT_REBOOTS, ++n);
 
   xTaskCreate(reboot_task, "REBOOT", 2048, NULL, 10, NULL);
 }
@@ -49,7 +49,7 @@ static void reboot_task() {
   // reset n_short_reboots to zero
   vTaskDelay(60 * 1000 / portTICK_PERIOD_MS);
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=0");
-  seti(N_SHORT_REBOOTS, 0);
+  seti8(N_SHORT_REBOOTS, 0);
 
   vTaskDelete(NULL);
 }

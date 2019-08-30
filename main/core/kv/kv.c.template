@@ -63,7 +63,7 @@ void preinit_kv() {
     Object.keys(modules[m].fields).filter(f => modules[m].fields[f].nvs.enable).forEach(f => { f = modules[m].fields[f]%>
     <% if (f.type == 'integer') { %>
       int default_<%= f.name %> = <% if (f.default_var) { %><%= f.default_var %><% } else { %><%= f.default %><% } %>;
-      defaulti<%= f.intlen %>(<%= f.caps_name %>, default_<%= f.name %>}});
+      defaulti<%= f.intlen %>(<%= f.caps_name %>, default_<%= f.name %>);
     <% } else { %>
       const char *default_<%= f.name %> = <% if (f.default_var) { %><%= f.default_var %><% } else { %>"<%= f.default %>"<% } %>;
       defaultstr(<%= f.caps_name %>, default_<%= f.name %>);
@@ -127,7 +127,7 @@ void seti8(const char * key, int8_t value) {
 
 void defaulti8(const char * key, int8_t value) {
   if (!hasi8(key)) {
-    setia8(key, value);
+    seti8(key, value);
   }
 }
 
@@ -152,7 +152,7 @@ void seti16(const char * key, int16_t value) {
 
 void defaulti16(const char * key, int16_t value) {
   if (!hasi16(key)) {
-    setia16(key, value);
+    seti16(key, value);
   }
 }
 

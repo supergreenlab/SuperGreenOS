@@ -21,7 +21,6 @@
 
 #include "../core/ble/ble_db.h"
 #include "driver/ledc.h"
-#include "led_helpers.h"
 
 typedef struct led_config {
   bool enabled;
@@ -33,7 +32,7 @@ typedef struct led_config {
   int box;
 
   ledc_channel_config_t channel_config;
-  void (*setter)(int);
+  void (*setter)(int8_t);
 } led_config_t;
 
 extern int min_x;

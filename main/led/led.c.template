@@ -119,31 +119,6 @@ static void led_task(void *param) {
   }
 }
 
-/*void init_led_info(int box_id, char *led_info) {
-  sprintf(led_info, "n:%d", N_LEDS);
-  for (int i = 0; i < N_LEDS; ++i) {
-    int bi = get_led_box(i);
-    if (ledc_channels[i].enabled != 1 || bi != box_id || get_box_enabled(bi) != 1) {
-      continue;
-    }
-    char led[32] = {0};
-    sprintf(led, "i:%d;x:%d;y:%d;z:%d;gpio_num:%d", i, ledc_channels[i].x, ledc_channels[i].y, ledc_channels[i].z, ledc_channels[i].channel_config.gpio_num);
-    if (strlen(led_info) + strlen(led) + 1 >= CHAR_VAL_LEN_MAX) {
-      ESP_LOGE(SGO_LOG_EVENT, "@LED Not enough space to build LED_INFO !!!");
-      break;
-    }
-    sprintf(led_info, "%s|%s", led_info, led);
-    min_x = min(min_x, ledc_channels[i].x);
-    max_x = max(max_x, ledc_channels[i].x);
-
-    min_y = min(min_y, ledc_channels[i].y);
-    max_y = max(max_y, ledc_channels[i].y);
-
-    min_z = min(min_z, ledc_channels[i].z);
-    max_z = max(max_z, ledc_channels[i].z);
-  }
-}*/
-
 void init_led() {
   ESP_LOGI(SGO_LOG_EVENT, "@LED Initializing led task");
 
@@ -173,11 +148,6 @@ void init_led() {
 
     ledc_channel_config(&ledc_channels[i].channel_config);
   }
-
-  /*char led_info[CHAR_VAL_LEN_MAX] = {0};
-  {{#box_loop_i}}
-  init_led_info({{.}}, led_info); set_box_{{.}}_led_info(led_info);
-  {{/box_loop_i}}*/
 
   cmd = xQueueCreate(10, sizeof(cmd_refresh_led));
   if (cmd == NULL) {

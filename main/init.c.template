@@ -16,11 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 <%
-  const init = Object.keys(modules).filter(m => modules[m].code && !modules[m].core).map(m => modules[m])
+  const init = Object.keys(modules).filter(m => modules[m].init && !modules[m].core).map(m => modules[m])
 %>
 
 <% init.forEach(m => { %>
-#include <%= `${m.name}/${m.name}.h` %>
+#include "<%= `${m.name}/${m.name}.h` %>"
 <% }) %>
 
 void init_app() {

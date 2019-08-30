@@ -118,6 +118,7 @@ keys:
   - name: wifi_status
     caps_name: WIFI_STATUS
     integer: true
+    intlen: 8
     ble:
       uuid: "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x5c}"
       notify: true
@@ -217,6 +218,14 @@ keys:
       noop: true
     default: 0
  
+  - name: reboot
+    caps_name: REBOOT
+    integer: true
+    http:
+      write: true
+    write_cb: true
+    default: 0
+
   - name: ota_timestamp
     caps_name: OTA_TIMESTAMP
     integer: true
@@ -224,7 +233,7 @@ keys:
       key: OTA_TMSTP
     http:
       write: true
-    default: OTA_BUILD_TIMESTAMP
+    default_var: OTA_BUILD_TIMESTAMP
 
   - name: ota_server_ip
     caps_name: OTA_SERVER_IP
@@ -267,7 +276,7 @@ keys:
     integer: true
     http:
       noop: true
-    default: OTA_STATUS_IDLE
+    default_var: OTA_STATUS_IDLE
 
   - name: broker_url
     caps_name: BROKER_URL
@@ -295,6 +304,8 @@ keys:
     http:
       write: true
     default: ""
+
+    ====== here
 
   - name: i2c_0_sda
     caps_name: I2C_0_SDA
@@ -331,14 +342,6 @@ keys:
     http:
       write: true
     default: 1
-
-  - name: reboot
-    caps_name: REBOOT
-    integer: true
-    http:
-      write: true
-    write_cb: true
-    default: 0
 
   #
   # Custom keys
@@ -651,19 +654,6 @@ keys:
       noop: true
     default: -1000000
 
-  - name: box_0_led_info
-    caps_name: BOX_0_LED_INFO
-    string: true
-    box:
-      index: 0
-      param: led_info
-    ble:
-      uuid: "{0x96,0xc5,0x14,0x21,0x97,0x6a,0x70,0x18,0x34,0x52,0xce,0x6d,0xfe,0x81,0xf7,0x6d}"
-      notify: true
-    http:
-      noop: true
-    default: ""
-
   #
   # BOX 1
   #
@@ -890,16 +880,6 @@ keys:
     http:
       noop: true
     default: -1000000
-
-  - name: box_1_led_info
-    caps_name: BOX_1_LED_INFO
-    string: true
-    box:
-      index: 1
-      param: led_info
-    http:
-      noop: true
-    default: ""
 
   #
   # BOX 2
@@ -1128,16 +1108,6 @@ keys:
       noop: true
     default: -1000000
 
-
-  - name: box_2_led_info
-    caps_name: BOX_2_LED_INFO
-    string: true
-    box:
-      index: 2
-      param: led_info
-    http:
-      noop: true
-    default: ""
 
   #
   # LEDs Configurations

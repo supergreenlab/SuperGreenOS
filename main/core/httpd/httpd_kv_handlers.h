@@ -20,10 +20,11 @@
 #define HTTPD_KV_HANDLERS_H_
 
 #include <string.h>
+#include <stdint.h>
 
 typedef struct {
   const char *name;
-  void (*handler)(int);
+  void (*handler)(int8_t);
   int8_t (*getter)();
 } kvi8_handler;
 
@@ -34,18 +35,18 @@ typedef struct {
   const char *name;
   void (*handler)(int16_t);
   int16_t (*getter)();
-} kvi_handler;
+} kvi16_handler;
 
-extern const kvi16_handler kvi_handlers[];
+extern const kvi16_handler kvi16_handlers[];
 const kvi16_handler *get_kvi16_handler(const char *name);
 
 typedef struct {
   const char *name;
-  void (*handler)(int);
-  int (*getter)();
+  void (*handler)(int32_t);
+  int32_t (*getter)();
 } kvi32_handler;
 
-extern const kvi_handler kvi32_handlers[];
+extern const kvi32_handler kvi32_handlers[];
 const kvi32_handler *get_kvi32_handler(const char *name);
 
 typedef struct {

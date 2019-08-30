@@ -34,6 +34,10 @@ GREEN="\033[0;32m"
 NC="\033[0m"
 for i in $(find $DIR -name '*.template')
 do
-  mustache $DATA $i > "${i/.template/}"
+  #if [ ${i: -11} == ".c.template" ] || [ ${i: -11} == ".h.template" ]; then
+  #  ejs-cli -O $DATA -f $i | clang-format > "${i/.template/}"
+  #else
+    ejs-cli -O $DATA -f $i > "${i/.template/}"
+  #fi
   echo -e "Processing $i: ${GREEN}Done${NC}"
 done
