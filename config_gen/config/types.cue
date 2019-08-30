@@ -41,6 +41,8 @@ _FIELD: {
     write: bool | *false if enable == true
   }
   write_cb: bool | *false
+  default_var: string | *_default_var if _default_var != null
+  _default_var: string | *null
 }
 
 _STRING: _FIELD & {
@@ -52,8 +54,6 @@ _INT: _FIELD & {
   type: "integer"
   intlen: int
   default: int if _default_var == null
-  default_var: string | *_default_var if _default_var != null
-  _default_var: string | *null
 }
 
 _INT8: _INT & {
