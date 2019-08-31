@@ -96,6 +96,7 @@ void start_i2c(int i2cId) {
 
 void stop_i2c(int i2cId) {
   if (!i2c_started[i2cId]) return;
+  int port = get_i2c_port(i2cId);
   i2c_started[i2cId] = false;
-  i2c_driver_delete(i2cId);
+  i2c_driver_delete(port);
 }

@@ -98,7 +98,7 @@ void init_motor() {
 
 /* BLE Callbacks */
 
-int on_set_box_motor_frequency(int motorId, int value) {
+int on_set_motor_frequency(int motorId, int value) {
   value = min(40000, max(value, 2));
   motor_cmd c = {.cmd = CMD_CHANGED_FREQUENCY, .motorId = motorId, .value = value};
   xQueueSend(cmd, &c, 0);

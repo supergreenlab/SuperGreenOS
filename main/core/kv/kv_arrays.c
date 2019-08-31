@@ -21,353 +21,89 @@
 #include <stdint.h>
 
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
     int on_set_motor_0_frequency(int value) {
       return on_set_motor_frequency(0, value);
     }
-    
 
-    
     int on_set_motor_1_frequency(int value) {
       return on_set_motor_frequency(1, value);
     }
-    
 
-    
     int on_set_motor_2_frequency(int value) {
       return on_set_motor_frequency(2, value);
     }
-    
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
     int on_set_box_0_blower_day(int value) {
       return on_set_box_blower_day(0, value);
     }
-    
 
-    
     int on_set_box_1_blower_day(int value) {
       return on_set_box_blower_day(1, value);
     }
-    
 
-    
     int on_set_box_2_blower_day(int value) {
       return on_set_box_blower_day(2, value);
     }
-    
 
-    
     int on_set_box_0_blower_night(int value) {
       return on_set_box_blower_night(0, value);
     }
-    
 
-    
     int on_set_box_1_blower_night(int value) {
       return on_set_box_blower_night(1, value);
     }
-    
 
-    
     int on_set_box_2_blower_night(int value) {
       return on_set_box_blower_night(2, value);
     }
-    
 
-    
-
-    
-
-    
-
-    
     int on_set_box_0_stretch(int value) {
       return on_set_box_stretch(0, value);
     }
-    
 
-    
     int on_set_box_1_stretch(int value) {
       return on_set_box_stretch(1, value);
     }
-    
 
-    
     int on_set_box_2_stretch(int value) {
       return on_set_box_stretch(2, value);
     }
-    
 
-    
     int on_set_box_0_led_dim(int value) {
       return on_set_box_led_dim(0, value);
     }
-    
 
-    
     int on_set_box_1_led_dim(int value) {
       return on_set_box_led_dim(1, value);
     }
-    
 
-    
     int on_set_box_2_led_dim(int value) {
       return on_set_box_led_dim(2, value);
     }
-    
 
-    
-
-    
-
-    
-
-    
     int on_set_led_0_duty(int value) {
       return on_set_led_duty(0, value);
     }
-    
 
-    
     int on_set_led_1_duty(int value) {
       return on_set_led_duty(1, value);
     }
-    
 
-    
     int on_set_led_2_duty(int value) {
       return on_set_led_duty(2, value);
     }
-    
 
-    
-
-    
-
-    
-
-    
     int on_set_led_3_duty(int value) {
       return on_set_led_duty(3, value);
     }
-    
 
-    
     int on_set_led_4_duty(int value) {
       return on_set_led_duty(4, value);
     }
-    
 
-    
     int on_set_led_5_duty(int value) {
       return on_set_led_duty(5, value);
     }
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
 
 
 

@@ -22,17 +22,15 @@
 
 <% Object.keys(modules).filter(m => modules[m].array_len).forEach(m => {
   m = modules[m]
-  Object.keys(m.fields).filter(f => !m.fields[f].indir.enable).forEach(f => { 
+  Object.keys(m.fields).filter(f => m.fields[f].write_cb && !m.fields[f].indir.enable).forEach(f => { 
     f = m.fields[f]
     let p = f.name.split('_')
     p.splice(0, 2)
     p = p.join('_')
     i = parseInt(f.name.split('_')[1]) %>
-    <% if (f.write_cb) { %>
     int on_set_<%= m.field_prefix %>_<%= f.suffix %>(int value) {
       return on_set_<%= m.field_prefix %>_<%= p %>(<%= i %>, value);
     }
-    <% } %>
 <% })}) %>
 
 <% 
