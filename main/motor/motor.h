@@ -1,4 +1,7 @@
 /*
+ * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
+ * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -13,10 +16,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SHT21_H_
-#define SHT21_H_
+#ifndef MOTOR_H_
+#define MOTOR_H_
 
-void init_sht21(int i2cId);
-void loop_sht21(int i2cId);
+#define DEFAULT_MOTOR_FREQUENCY 150
+
+void init_motor();
+
+/* BLE Callbacks */
+
+int on_set_motor_frequency(int motorId, int value);
 
 #endif

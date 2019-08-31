@@ -5,6 +5,11 @@ modules blower: _MODULE & {
   array_len: len(_box_conf)
 }
 
+modules blower fields "\(k)_blower_duty": _INT8 & _HTTP & {
+  motor_input: 0x1 + k 
+  default: 0
+} for k, v in _box_conf
+
 modules blower fields "\(k)_blower_day": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "B_\(k)_BLWR_D"
   default: 40
@@ -13,17 +18,6 @@ modules blower fields "\(k)_blower_day": _INT8 & _NVS & _HTTP_RW & {
 
 modules blower fields "\(k)_blower_night": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "B_\(k)_BLWR_N"
-  default: 20
-  write_cb: true
-} for k, v in _box_conf
-
-modules blower fields "\(k)_blower_gpio": _INT8 & _NVS & _HTTP_RW & {
-  nvs key: "B_\(k)_BLWR_IO"
-  default: v.blower_gpio
-} for k, v in _box_conf
-
-modules blower fields "\(k)_blower_frequency": _INT16 & _NVS & _HTTP_RW & {
-  nvs key: "B_\(k)_BLWR_HZ"
   default: 20
   write_cb: true
 } for k, v in _box_conf

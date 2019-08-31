@@ -56,7 +56,7 @@ void defaultstr(const char * key, const char * value);
  */
 
 <% Object.keys(modules).forEach(m => {
-  Object.keys(modules[m].fields).forEach(f => { f = modules[m].fields[f] %>
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
   void reset_<%= f.name %>_changed();
   bool is_<%= f.name %>_changed();
   bool is_<%= f.name %>_undefined();
@@ -66,6 +66,15 @@ void defaultstr(const char * key, const char * value);
   <% } else { %>
     void get_<%= f.name %>(char *dest, size_t len);
     void set_<%= f.name %>(const char *value);
+  <% } %>
+<% })}) %>
+
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
+  <% if (f.type == 'integer') { %>
+    int<%= f.intlen %>_t get_<%= f.name %>();
+  <% } else { %>
+    void get_<%= f.name %>(char *dest, size_t len);
   <% } %>
 <% })}) %>
 

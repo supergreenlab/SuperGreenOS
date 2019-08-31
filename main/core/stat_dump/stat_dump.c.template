@@ -110,7 +110,7 @@ static void stat_dump_task(void *param) {
     char str[MAX_KVALUE_SIZE] = {0};
     <% Object.keys(modules).forEach(m => {
       Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].nosend).forEach(f => { f = modules[m].fields[f] %>
-    if ((counter % 20) == 0 || is_<%= f.name %>_changed()) {
+    if ((counter % 20) == 0<% if (!f.indir.enable) { %> || is_<%= f.name %>_changed()<% } %>) {
       <% if (f.type == 'integer') { %>
         value = get_<%= f.name %>();
         ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "<%= f.caps_name %>", value);
@@ -119,7 +119,9 @@ static void stat_dump_task(void *param) {
         ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "<%= f.caps_name %>", str);
       <% } %>
       vTaskDelay(200 / portTICK_PERIOD_MS);
+      <% if (!f.indir.enable) { %>
       reset_<%= f.name %>_changed();
+      <% } %>
     }
 
     <% })}) %>

@@ -22,7 +22,7 @@
 
 <% Object.keys(modules).filter(m => modules[m].array_len).forEach(m => {
   m = modules[m]
-  Object.keys(m.fields).forEach(f => { 
+  Object.keys(m.fields).filter(f => !m.fields[f].indir.enable).forEach(f => { 
     f = m.fields[f]
     let p = f.name.split('_')
     p.splice(0, 2)
@@ -49,7 +49,7 @@
                                   p = f.name.split('_')
                                   p.splice(0, 2)
                                   p = p.join('_')
-                                  acc[name].fields[p] = {name: p, intlen: f.intlen}
+                                  acc[name].fields[p] = {name: p, indir: f.indir.enable, intlen: f.intlen}
                                 })
                           return acc
                        }, {})
@@ -70,7 +70,7 @@
 
 <%
   Object.keys(arrays).forEach(a => { a = arrays[a]
-    Object.keys(a.fields).forEach(f => { f = a.fields[f] %>
+    Object.keys(a.fields).filter(f => !a.fields[f].indir).forEach(f => { f = a.fields[f] %>
     void set_<%= a.name %>_<%= f.name %>(int i, int<%= f.intlen %>_t v) {
       switch(i) {
       <% Array(a.array_len).fill().forEach((v, i) => { %>

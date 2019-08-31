@@ -50,7 +50,9 @@
                        }, {})
 
   Object.keys(arrays).forEach(a => { a = arrays[a]
-    Object.keys(a.fields).forEach(f => { f = a.fields[f]
+%>
+  #define N_<%= a.name.toUpperCase() %> <%= a.array_len %>
+<%    Object.keys(a.fields).forEach(f => { f = a.fields[f]
 %>
   int<%= f.intlen %>_t get_<%= a.name %>_<%= f.name %>(int i);
   void set_<%= a.name %>_<%= f.name %>(int i, int<%= f.intlen %>_t v);

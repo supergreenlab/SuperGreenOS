@@ -89,6 +89,54 @@
     
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+      int on_set_motor_0_frequency(int value);
+    
+
+    
+      int on_set_motor_1_frequency(int value);
+    
+
+    
+      int on_set_motor_2_frequency(int value);
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
       int on_set_box_0_blower_day(int value);
     
 
@@ -110,24 +158,6 @@
 
     
       int on_set_box_2_blower_night(int value);
-    
-
-    
-
-    
-
-    
-
-    
-      int on_set_box_0_blower_frequency(int value);
-    
-
-    
-      int on_set_box_1_blower_frequency(int value);
-    
-
-    
-      int on_set_box_2_blower_frequency(int value);
     
 
     
@@ -176,6 +206,12 @@
 
     
       int on_set_led_2_duty(int value);
+    
+
+    
+
+    
+
     
 
     
@@ -298,7 +334,21 @@
 
     
 
+    
 
+    
+
+    
+
+    
+
+    
+
+    
+
+
+
+  #define N_I2C 3
 
   int8_t get_i2c_sda(int i);
   void set_i2c_sda(int i, int8_t v);
@@ -309,17 +359,16 @@
   int8_t get_i2c_enabled(int i);
   void set_i2c_enabled(int i, int8_t v);
 
+  int8_t get_i2c_port(int i);
+  void set_i2c_port(int i, int8_t v);
+
+  #define N_BOX 3
+
   int8_t get_box_timer_type(int i);
   void set_box_timer_type(int i, int8_t v);
 
   int8_t get_box_timer_output(int i);
   void set_box_timer_output(int i, int8_t v);
-
-  int8_t get_box_enabled(int i);
-  void set_box_enabled(int i, int8_t v);
-
-  int32_t get_box_started_at(int i);
-  void set_box_started_at(int i, int32_t v);
 
   int8_t get_box_on_hour(int i);
   void set_box_on_hour(int i, int8_t v);
@@ -333,17 +382,14 @@
   int8_t get_box_off_min(int i);
   void set_box_off_min(int i, int8_t v);
 
+  int8_t get_box_blower_duty(int i);
+  void set_box_blower_duty(int i, int8_t v);
+
   int8_t get_box_blower_day(int i);
   void set_box_blower_day(int i, int8_t v);
 
   int8_t get_box_blower_night(int i);
   void set_box_blower_night(int i, int8_t v);
-
-  int8_t get_box_blower_gpio(int i);
-  void set_box_blower_gpio(int i, int8_t v);
-
-  int16_t get_box_blower_frequency(int i);
-  void set_box_blower_frequency(int i, int16_t v);
 
   int8_t get_box_blower_enabled(int i);
   void set_box_blower_enabled(int i, int8_t v);
@@ -354,14 +400,50 @@
   int8_t get_box_led_dim(int i);
   void set_box_led_dim(int i, int8_t v);
 
-  int8_t get_box_sht21_temp_c(int i);
-  void set_box_sht21_temp_c(int i, int8_t v);
+  int8_t get_box_enabled(int i);
+  void set_box_enabled(int i, int8_t v);
 
-  int8_t get_box_sht21_temp_f(int i);
-  void set_box_sht21_temp_f(int i, int8_t v);
+  int8_t get_box_temp(int i);
+  void set_box_temp(int i, int8_t v);
 
-  int8_t get_box_sht21_humi(int i);
-  void set_box_sht21_humi(int i, int8_t v);
+  int8_t get_box_humi(int i);
+  void set_box_humi(int i, int8_t v);
+
+  int8_t get_box_temp_source(int i);
+  void set_box_temp_source(int i, int8_t v);
+
+  int8_t get_box_humi_source(int i);
+  void set_box_humi_source(int i, int8_t v);
+
+  int32_t get_box_started_at(int i);
+  void set_box_started_at(int i, int32_t v);
+
+  #define N_MOTOR 3
+
+  int8_t get_motor_duty(int i);
+  void set_motor_duty(int i, int8_t v);
+
+  int8_t get_motor_source(int i);
+  void set_motor_source(int i, int8_t v);
+
+  int8_t get_motor_gpio(int i);
+  void set_motor_gpio(int i, int8_t v);
+
+  int16_t get_motor_frequency(int i);
+  void set_motor_frequency(int i, int16_t v);
+
+  #define N_SHT21 3
+
+  int8_t get_sht21_present(int i);
+  void set_sht21_present(int i, int8_t v);
+
+  int8_t get_sht21_temp(int i);
+  void set_sht21_temp(int i, int8_t v);
+
+  int8_t get_sht21_humi(int i);
+  void set_sht21_humi(int i, int8_t v);
+
+  #define N_LED 6
 
   int8_t get_led_enabled(int i);
   void set_led_enabled(int i, int8_t v);

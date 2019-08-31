@@ -40,6 +40,9 @@ _FIELD: {
     enable: bool | *false
     write: bool | *false if enable == true
   }
+  indir: {
+    enable: bool | *false
+  }
   write_cb: bool | *false
   default_var: string | *_default_var if _default_var != null
   _default_var: string | *null
@@ -47,7 +50,7 @@ _FIELD: {
 
 _STRING: _FIELD & {
   type: "string"
-  default: string | *""
+  default: string | *"" if _default_var == null
 }
 
 _INT: _FIELD & {
@@ -95,6 +98,14 @@ _HTTP: {
 _HTTP_RW: {
   http: _HTTP.http & {
     write: true
+  }
+}
+
+_INDIR: {
+  indir: {
+    enable: true
+    key: string
+    source: string
   }
 }
 
