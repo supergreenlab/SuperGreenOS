@@ -32,12 +32,19 @@
 
 static void reboot_task();
 
+static void reset_nvs() {
+  ESP_ERROR_CHECK(nvs_flash_erase());
+  esp_restart();
+}
+
 void init_reboot() {
+  if (hasi32(N_SHORT_REBOOTS)) { // detect old version
+    reset_nvs();
+  }
   defaulti8(N_SHORT_REBOOTS, 0);
   int n = geti8(N_SHORT_REBOOTS);
   if (n >= MAX_SHORT_REBOOTS) {
-    ESP_ERROR_CHECK(nvs_flash_erase());
-    esp_restart();
+    reset_nvs();
   }
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=%d", n);
   seti8(N_SHORT_REBOOTS, ++n);

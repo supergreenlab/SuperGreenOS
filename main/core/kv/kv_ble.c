@@ -26,17 +26,17 @@
 #include "../ble/ble.h"
 
 void sync_ble_i8(const char *key, enum idx i) {
-  int8_t value = geti8(key);
+  int value = geti8(key);
   set_attr_value(i, (const uint8_t *)&value, sizeof(value));
 }
 
 void sync_ble_i16(const char *key, enum idx i) {
-  int16_t value = geti16(key);
+  int value = geti16(key);
   set_attr_value(i, (const uint8_t *)&value, sizeof(value));
 }
 
 void sync_ble_i32(const char *key, enum idx i) {
-  int32_t value = geti32(key);
+  int value = geti32(key);
   set_attr_value(i, (const uint8_t *)&value, sizeof(value));
 }
 

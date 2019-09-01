@@ -1,0 +1,67 @@
+{
+  "name": "<%= name %>",
+  "keys": [
+    <%
+      const ms = Object.keys(modules)
+      const indirs = ms.reduce((acc, i) => Object.keys(modules[i].fields).reduce((acc, f) => {
+        f = modules[i].fields[f]
+        if (f.indir.enable) {
+          acc[f.indir.key] = {
+            source: f.indir.source,
+            values: []
+          }
+        }
+        return acc
+      }, acc), {})
+      
+      ms.forEach(m => {
+        m = modules[m]
+        const fields = Object.keys(m.fields)
+        fields.forEach(f => {
+          f = m.fields[f]
+          const indir = Object.keys(f).find(k => indirs[k])
+          if (!indir) {
+            return
+          }
+          indirs[indir].values.push(f[indir])
+        })
+      })
+
+      ms.forEach((m, i) => {
+        m = modules[m]
+        const fields = Object.keys(m.fields)
+        fields.forEach((f, j) => {
+          f = m.fields[f]
+          const indir = Object.keys(f).find(k => indirs[k])
+          %>
+            {
+              "core": <%= m.core %>,
+              "name": "<%= f.name %>",
+              "caps_name": "<%= f.caps_name %>",
+              "module": "<%= m.name %>",
+              <% if (f.ble.enable) { %>
+                "ble": {
+                  "uuid": "<%= f.ble.uuid %>",
+                  "write": <%= f.ble.write %>
+                },
+              <% } %>
+              "write": <%= f.http.write %>,
+              <% if (m.array_len) { %>
+                "array": {
+                  "name": "<%= m.field_prefix %>",
+                  "len": <%= m.array_len %>
+                },
+              <% if (indir) { %>
+                "indir": {
+                  "source": "<%= indirs[indir].source %>",
+                  "": 
+                },
+              <% } %>
+              <% } %>
+              "default": <% if (f.type == 'integer') { %><%= f.default || 0 %><% } else { %>"<%= f.default || '' %>"<% } %>
+            }<% if (!(i == ms.length - 1 && j == fields.length - 1)) { %>,<% } %>
+          <%
+      })})
+    %>
+  ]
+}

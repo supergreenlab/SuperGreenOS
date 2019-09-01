@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8"> 
     <title>SuperGreenDriver</title>
-     <style type="text/css">
-      {{> style.css}}
+    <style type="text/css">
+      <%- include('style.css') %>
     </style>
   </head>
   <body>
-    {{> body.html}}
     <script>
-      {{> script.js}}
+      <%- include('utils.js') %>
+      <%- include('onload.js') %>
     </script>
   </body>
 </html>

@@ -33,7 +33,7 @@ modules wifi fields ap_password: _STRING & _NVS & _HTTP_RW & {
 modules wifi fields mdns_domain: _STRING & _NVS & _HTTP_RW & {
   name: "mdns_domain"
   nvs key: "MDNSD"
-  default: "supergreendriver"
+  default: string | *"supergreendriver"
 }
 
 modules wifi fields ip: _STRING & _BLE & _HTTP & {

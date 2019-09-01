@@ -172,38 +172,6 @@
       return 0;
     }
 
-    int8_t get_box_timer_type(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_timer_type();
-      
-        case 1:
-          return get_box_1_timer_type();
-      
-        case 2:
-          return get_box_2_timer_type();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_timer_output(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_timer_output();
-      
-        case 1:
-          return get_box_1_timer_output();
-      
-        case 2:
-          return get_box_2_timer_output();
-      
-      }
-      return 0;
-    }
-
     int8_t get_box_on_hour(int i) {
       switch(i) {
       
@@ -327,6 +295,38 @@
       
         case 2:
           return get_box_2_blower_enabled();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_timer_type(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_timer_type();
+      
+        case 1:
+          return get_box_1_timer_type();
+      
+        case 2:
+          return get_box_2_timer_type();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_timer_output(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_timer_output();
+      
+        case 1:
+          return get_box_1_timer_output();
+      
+        case 2:
+          return get_box_2_timer_output();
       
       }
       return 0;
@@ -871,42 +871,6 @@
       }
     }
 
-    void set_box_timer_type(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_timer_type(v);
-          break;
-      
-        case 1:
-          set_box_1_timer_type(v);
-          break;
-      
-        case 2:
-          set_box_2_timer_type(v);
-          break;
-      
-      }
-    }
-
-    void set_box_timer_output(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_timer_output(v);
-          break;
-      
-        case 1:
-          set_box_1_timer_output(v);
-          break;
-      
-        case 2:
-          set_box_2_timer_output(v);
-          break;
-      
-      }
-    }
-
     void set_box_on_hour(int i, int8_t v) {
       switch(i) {
       
@@ -1046,6 +1010,42 @@
       
         case 2:
           set_box_2_blower_enabled(v);
+          break;
+      
+      }
+    }
+
+    void set_box_timer_type(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_timer_type(v);
+          break;
+      
+        case 1:
+          set_box_1_timer_type(v);
+          break;
+      
+        case 2:
+          set_box_2_timer_type(v);
+          break;
+      
+      }
+    }
+
+    void set_box_timer_output(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_timer_output(v);
+          break;
+      
+        case 1:
+          set_box_1_timer_output(v);
+          break;
+      
+        case 2:
+          set_box_2_timer_output(v);
           break;
       
       }

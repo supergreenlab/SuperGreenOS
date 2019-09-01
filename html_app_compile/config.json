@@ -1,0 +1,19 @@
+{ TypeError: config.json:4
+    2|   "name": "<%= name %>",
+    3|   "keys": [
+ >> 4|     <%
+    5|       const ms = Object.keys(modules)
+    6|       const indirs = ms.reduce((acc, i) => ms[i].fields.reduce((acc, f) => {
+    7|         if (f.indir.enable) {
+
+Cannot read property 'fields' of undefined
+    at ms.reduce (eval at compile (/usr/lib/node_modules/ejs-cli/node_modules/ejs/lib/ejs.js:633:12), <anonymous>:16:50)
+    at Array.reduce (<anonymous>)
+    at eval (eval at compile (/usr/lib/node_modules/ejs-cli/node_modules/ejs/lib/ejs.js:633:12), <anonymous>:16:25)
+    at returnedFn (/usr/lib/node_modules/ejs-cli/node_modules/ejs/lib/ejs.js:668:17)
+    at tryHandleCache (/usr/lib/node_modules/ejs-cli/node_modules/ejs/lib/ejs.js:254:36)
+    at Object.exports.renderFile (/usr/lib/node_modules/ejs-cli/node_modules/ejs/lib/ejs.js:485:10)
+    at /usr/lib/node_modules/ejs-cli/lib/cli.js:128:17
+    at /usr/lib/node_modules/ejs-cli/node_modules/async/dist/async.js:2158:44
+    at eachOfArrayLike (/usr/lib/node_modules/ejs-cli/node_modules/async/dist/async.js:504:13)
+    at eachOf (/usr/lib/node_modules/ejs-cli/node_modules/async/dist/async.js:555:16) path: 'config.json' }

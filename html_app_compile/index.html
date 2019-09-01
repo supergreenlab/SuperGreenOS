@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"> 
+    <title>SuperGreenDriver</title>
+    <style type="text/css">
+      {{< normalize.css}}
+
+body, html {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0; margin: 0;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  min-height: 100vh;
+}
+
+/**
+ * Header stuffs
+ */
+
+#header {
+  display: flex;
+  padding: 10pt;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#header h3 {
+  display: inline;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* left part */
+
+#device_name {
+  display: block;
+}
+
+/* right part */
+
+#controller_infos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/**
+ * Menu
+ */
+
+#menu {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style-type: none;
+  background-color: #333333;
+}
+
+#menu li {
+  float: left;
+}
+
+#menu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+#menu li a:hover {
+  background-color: #111111;
+}
+
+#menu li.selected {
+  background-color: #111111;
+}
+
+/**
+ * Box stuffs
+ */
+
+#box {
+}
+
+#box_advance {
+  overflow-y: auto;
+}
+
+/**
+ * Controller
+ */
+
+#controller {
+  border-top: 1px solid #ababab;
+  background-color: #efefef;
+  overflow: hidden;
+}
+
+.controller_hidden {
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+}
+
+.controller_visible {
+  max-height: 100000px;
+  transition: max-height 0.3s ease-in;
+}
+
+/**
+ * Common
+ */
+
+.params {
+  flex: 1;
+  display: flex;
+}
+
+.param_list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 5pt;
+  max-width: 50%;
+}
+
+.param {
+  display: flex;
+  align-items: center;
+  word-wrap: break-word;
+  margin: 3pt;
+}
+
+.param label, .param b {
+  display: block;
+  flex: 1;
+}
+
+.param span {
+  overflow-x: auto;
+}
+
+.param_loading {
+  opacity: 0.5;
+}
+
+    </style>
+  </head>
+  <body>
+    <script>
+      const fetchConfig = async function() {
+  return new Promise(function(resolve, reject) {
+    const r = new XMLHttpRequest()
+    r.open('GET', 'config.json', true)
+    r.onreadystatechange = function () {
+      if (r.readyState != 4) return
+      if (r.status != 200) {
+        reject(r.status, r.responseText)
+        return
+      }
+      resolve(JSON.parse(r.responseText))
+    }
+    r.send()
+  })
+}
+
+const fetchParam = async function(type, paramName) {
+  return new Promise(function(resolve, reject) {
+    const r = new XMLHttpRequest()
+    r.open('GET', '/'+type+'?k='+paramName, true)
+    r.onreadystatechange = function () {
+      if (r.readyState != 4) return
+      if (r.status != 200) {
+        reject(r.status, r.responseText)
+        return
+      }
+      if (type == 'i') {
+        resolve(parseInt(r.responseText))
+      } else {
+        resolve(r.responseText);
+      }
+    }
+    r.send()
+  })
+}
+
+const updateParam = async function(type, paramName, value) {
+  return new Promise(function(resolve, reject) {
+    const r = new XMLHttpRequest()
+    r.open('POST', `/${type}?k=${paramName}&v=${value}`, true)
+    r.onreadystatechange = function () {
+      if (r.readyState != 4) return
+      if (r.status != 200) {
+        reject(r.status, r.responseText)
+        return
+      }
+      resolve(r.responseText);
+    }
+    r.send()
+  })
+}
+
+const updateDiv = function(id, value) {
+  document.getElementById(id).innerText = value
+}
+
+      let config = {}
+
+async function start() {
+  config = await fetchConfig()
+  const arrays = config.keys.reduce((acc, k) => {
+    const n = k.array ? k.array.name : 'global'
+    acc[n] = acc[n] || {fields: {}, core: k.core}
+    acc[n].fields[k.name] = k
+    return acc
+  }, {})
+  console.log(arrays)
+}
+
+window.onload = () => {
+  start()
+}
+
+    </script>
+  </body>
+</html>
+

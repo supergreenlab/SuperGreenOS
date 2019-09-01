@@ -1,7 +1,7 @@
 const fetchConfig = async function() {
   return new Promise(function(resolve, reject) {
     const r = new XMLHttpRequest()
-    r.open('GET', '/fs/config.json', true)
+    r.open('GET', 'config.json', true)
     r.onreadystatechange = function () {
       if (r.readyState != 4) return
       if (r.status != 200) {

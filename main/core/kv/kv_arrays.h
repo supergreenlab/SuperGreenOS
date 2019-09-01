@@ -89,18 +89,6 @@
     
 
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
       int on_set_motor_0_frequency(int value);
     
 
@@ -158,6 +146,18 @@
 
     
       int on_set_box_2_blower_night(int value);
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
@@ -364,12 +364,6 @@
 
   #define N_BOX 3
 
-  int8_t get_box_timer_type(int i);
-  void set_box_timer_type(int i, int8_t v);
-
-  int8_t get_box_timer_output(int i);
-  void set_box_timer_output(int i, int8_t v);
-
   int8_t get_box_on_hour(int i);
   void set_box_on_hour(int i, int8_t v);
 
@@ -393,6 +387,12 @@
 
   int8_t get_box_blower_enabled(int i);
   void set_box_blower_enabled(int i, int8_t v);
+
+  int8_t get_box_timer_type(int i);
+  void set_box_timer_type(int i, int8_t v);
+
+  int8_t get_box_timer_output(int i);
+  void set_box_timer_output(int i, int8_t v);
 
   int8_t get_box_stretch(int i);
   void set_box_stretch(int i, int8_t v);
