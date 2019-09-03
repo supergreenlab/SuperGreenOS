@@ -7,6 +7,7 @@ modules blower: _MODULE & {
 
 modules blower fields "\(k)_blower_duty": _INT8 & _HTTP & {
   motor_input: 0x1 + k 
+  indir_help: "Blower control for box#\(k)"
   default: 0
 } for k, v in _box_conf
 

@@ -1,19 +1,2933 @@
-{ TypeError: config.json:4
-    2|   "name": "<%= name %>",
-    3|   "keys": [
- >> 4|     <%
-    5|       const ms = Object.keys(modules)
-    6|       const indirs = ms.reduce((acc, i) => ms[i].fields.reduce((acc, f) => {
-    7|         if (f.indir.enable) {
+{
+  "name": "SuperGreenController",
+  "keys": [
+    
+            {
+              "core": true,
+              "name": "time",
+              "caps_name": "TIME",
+              "module": "time",
+              
+              
+                "ble": {
+                  "uuid": "{0x9b,0x6a,0x3b,0xe2,0xaa,0xb4,0x33,0xaa,0x8a,0x4a,0x9e,0xe1,0x4f,0xee,0xf9,0x40}",
+                  "write": true
+                },
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "broker_url",
+              "caps_name": "BROKER_URL",
+              "module": "mqtt",
+              
+              
+              "write": true,
+              
+              
+              "default": "mqtt://sink.supergreenlab.com:1883"
+            },
+          
+            {
+              "core": true,
+              "name": "broker_channel",
+              "caps_name": "BROKER_CHANNEL",
+              "module": "mqtt",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "broker_clientid",
+              "caps_name": "BROKER_CLIENTID",
+              "module": "mqtt",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0x42,0x42}",
+                  "write": false
+                },
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "reboot",
+              "caps_name": "REBOOT",
+              "module": "reboot",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "n_restarts",
+              "caps_name": "N_RESTARTS",
+              "module": "reboot",
+              
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_0_sda",
+              "caps_name": "I2C_0_SDA",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3
+                },
+              
+              
+              "default": 26
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_1_sda",
+              "caps_name": "I2C_1_SDA",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3
+                },
+              
+              
+              "default": 21
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_2_sda",
+              "caps_name": "I2C_2_SDA",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3
+                },
+              
+              
+              "default": 21
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_0_scl",
+              "caps_name": "I2C_0_SCL",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3
+                },
+              
+              
+              "default": 27
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_1_scl",
+              "caps_name": "I2C_1_SCL",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3
+                },
+              
+              
+              "default": 19
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_2_scl",
+              "caps_name": "I2C_2_SCL",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3
+                },
+              
+              
+              "default": 19
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_0_enabled",
+              "caps_name": "I2C_0_ENABLED",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_1_enabled",
+              "caps_name": "I2C_1_ENABLED",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_2_enabled",
+              "caps_name": "I2C_2_ENABLED",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_0_port",
+              "caps_name": "I2C_0_PORT",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_1_port",
+              "caps_name": "I2C_1_PORT",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_2_port",
+              "caps_name": "I2C_2_PORT",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": true,
+              "name": "ota_status",
+              "caps_name": "OTA_STATUS",
+              "module": "ota",
+              
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "ota_timestamp",
+              "caps_name": "OTA_TIMESTAMP",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "ota_server_ip",
+              "caps_name": "OTA_SERVER_IP",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": "142.93.167.50"
+            },
+          
+            {
+              "core": true,
+              "name": "ota_server_hostname",
+              "caps_name": "OTA_SERVER_HOSTNAME",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": "update.supergreenlab.com"
+            },
+          
+            {
+              "core": true,
+              "name": "ota_server_port",
+              "caps_name": "OTA_SERVER_PORT",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": 80
+            },
+          
+            {
+              "core": true,
+              "name": "ota_basedir",
+              "caps_name": "OTA_BASEDIR",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": "/SuperGreenController"
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_status",
+              "caps_name": "WIFI_STATUS",
+              "module": "wifi",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x5c}",
+                  "write": false
+                },
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ssid",
+              "caps_name": "WIFI_SSID",
+              "module": "wifi",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x6c}",
+                  "write": true
+                },
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_password",
+              "caps_name": "WIFI_PASSWORD",
+              "module": "wifi",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x7c}",
+                  "write": true
+                },
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ap_ssid",
+              "caps_name": "WIFI_AP_SSID",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ap_password",
+              "caps_name": "WIFI_AP_PASSWORD",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "mdns_domain",
+              "caps_name": "MDNS_DOMAIN",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": "supergreencontroller"
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ip",
+              "caps_name": "WIFI_IP",
+              "module": "wifi",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x8c}",
+                  "write": false
+                },
+              
+              "write": false,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_enabled",
+              "caps_name": "LED_0_ENABLED",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_enabled",
+              "caps_name": "LED_1_ENABLED",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_enabled",
+              "caps_name": "LED_2_ENABLED",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_duty",
+              "caps_name": "LED_0_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_duty",
+              "caps_name": "LED_1_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_duty",
+              "caps_name": "LED_2_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_duty",
+              "caps_name": "LED_3_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_duty",
+              "caps_name": "LED_4_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_duty",
+              "caps_name": "LED_5_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_gpio",
+              "caps_name": "LED_0_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 33
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_gpio",
+              "caps_name": "LED_1_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 25
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_gpio",
+              "caps_name": "LED_2_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 26
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_gpio",
+              "caps_name": "LED_3_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 27
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_gpio",
+              "caps_name": "LED_4_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 14
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_gpio",
+              "caps_name": "LED_5_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 12
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_x",
+              "caps_name": "LED_0_X",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_x",
+              "caps_name": "LED_1_X",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_x",
+              "caps_name": "LED_2_X",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_x",
+              "caps_name": "LED_3_X",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_x",
+              "caps_name": "LED_4_X",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_x",
+              "caps_name": "LED_5_X",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_y",
+              "caps_name": "LED_0_Y",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_y",
+              "caps_name": "LED_1_Y",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_y",
+              "caps_name": "LED_2_Y",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_y",
+              "caps_name": "LED_3_Y",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_y",
+              "caps_name": "LED_4_Y",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_y",
+              "caps_name": "LED_5_Y",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_z",
+              "caps_name": "LED_0_Z",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_z",
+              "caps_name": "LED_1_Z",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_z",
+              "caps_name": "LED_2_Z",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_z",
+              "caps_name": "LED_3_Z",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_z",
+              "caps_name": "LED_4_Z",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_z",
+              "caps_name": "LED_5_Z",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_enabled",
+              "caps_name": "LED_3_ENABLED",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_enabled",
+              "caps_name": "LED_4_ENABLED",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_enabled",
+              "caps_name": "LED_5_ENABLED",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_box",
+              "caps_name": "LED_0_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_box",
+              "caps_name": "LED_1_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_box",
+              "caps_name": "LED_2_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_box",
+              "caps_name": "LED_3_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_box",
+              "caps_name": "LED_4_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_box",
+              "caps_name": "LED_5_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_dim",
+              "caps_name": "LED_0_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_dim",
+              "caps_name": "LED_1_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_dim",
+              "caps_name": "LED_2_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_dim",
+              "caps_name": "LED_3_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_dim",
+              "caps_name": "LED_4_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_dim",
+              "caps_name": "LED_5_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_fade",
+              "caps_name": "LED_0_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_fade",
+              "caps_name": "LED_1_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_fade",
+              "caps_name": "LED_2_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_fade",
+              "caps_name": "LED_3_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_fade",
+              "caps_name": "LED_4_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_fade",
+              "caps_name": "LED_5_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_on_hour",
+              "caps_name": "BOX_0_ON_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_on_hour",
+              "caps_name": "BOX_1_ON_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_on_hour",
+              "caps_name": "BOX_2_ON_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_on_min",
+              "caps_name": "BOX_0_ON_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_on_min",
+              "caps_name": "BOX_1_ON_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_on_min",
+              "caps_name": "BOX_2_ON_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_off_hour",
+              "caps_name": "BOX_0_OFF_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 19
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_off_hour",
+              "caps_name": "BOX_1_OFF_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 19
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_off_hour",
+              "caps_name": "BOX_2_OFF_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 19
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_off_min",
+              "caps_name": "BOX_0_OFF_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_off_min",
+              "caps_name": "BOX_1_OFF_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_off_min",
+              "caps_name": "BOX_2_OFF_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_0_duty",
+              "caps_name": "MOTOR_0_DUTY",
+              "module": "motor",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_1_duty",
+              "caps_name": "MOTOR_1_DUTY",
+              "module": "motor",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_2_duty",
+              "caps_name": "MOTOR_2_DUTY",
+              "module": "motor",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_0_gpio",
+              "caps_name": "MOTOR_0_GPIO",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3
+                },
+              
+              
+              "default": 4
+            },
+          
+            {
+              "core": false,
+              "name": "motor_1_gpio",
+              "caps_name": "MOTOR_1_GPIO",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3
+                },
+              
+              
+              "default": 16
+            },
+          
+            {
+              "core": false,
+              "name": "motor_2_gpio",
+              "caps_name": "MOTOR_2_GPIO",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3
+                },
+              
+              
+              "default": 17
+            },
+          
+            {
+              "core": false,
+              "name": "motor_0_source",
+              "caps_name": "MOTOR_0_SOURCE",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_1_source",
+              "caps_name": "MOTOR_1_SOURCE",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_2_source",
+              "caps_name": "MOTOR_2_SOURCE",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_0_frequency",
+              "caps_name": "MOTOR_0_FREQUENCY",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "motor_1_frequency",
+              "caps_name": "MOTOR_1_FREQUENCY",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "motor_2_frequency",
+              "caps_name": "MOTOR_2_FREQUENCY",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "state",
+              "caps_name": "STATE",
+              "module": "state",
+              
+              
+                "ble": {
+                  "uuid": "{0x94,0x28,0x12,0x63,0x56,0xde,0xec,0x43,0xb4,0xfe,0xd6,0x3b,0xd2,0xdf,0xf6,0x8f}",
+                  "write": true
+                },
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "device_name",
+              "caps_name": "DEVICE_NAME",
+              "module": "state",
+              
+              
+                "ble": {
+                  "uuid": "{0x25,0x8b,0x4f,0x3d,0xf1,0x61,0xee,0x68,0x6e,0xee,0x0e,0x8c,0x32,0x77,0x31,0xa6}",
+                  "write": true
+                },
+              
+              "write": true,
+              
+              
+              "default": "SuperGreenController"
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_timer_type",
+              "caps_name": "BOX_0_TIMER_TYPE",
+              "module": "timer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_timer_type",
+              "caps_name": "BOX_1_TIMER_TYPE",
+              "module": "timer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_timer_type",
+              "caps_name": "BOX_2_TIMER_TYPE",
+              "module": "timer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_timer_output",
+              "caps_name": "BOX_0_TIMER_OUTPUT",
+              "module": "timer",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_timer_output",
+              "caps_name": "BOX_1_TIMER_OUTPUT",
+              "module": "timer",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_timer_output",
+              "caps_name": "BOX_2_TIMER_OUTPUT",
+              "module": "timer",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_0_present",
+              "caps_name": "SHT21_0_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_1_present",
+              "caps_name": "SHT21_1_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_2_present",
+              "caps_name": "SHT21_2_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_0_temp",
+              "caps_name": "SHT21_0_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature sensor on sensor port #0",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_1_temp",
+              "caps_name": "SHT21_1_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature sensor on sensor port #1",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_2_temp",
+              "caps_name": "SHT21_2_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature sensor on sensor port #2",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_0_humi",
+              "caps_name": "SHT21_0_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity sensor on sensor port #0",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_1_humi",
+              "caps_name": "SHT21_1_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity sensor on sensor port #1",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_2_humi",
+              "caps_name": "SHT21_2_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity sensor on sensor port #2",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_blower_duty",
+              "caps_name": "BOX_0_BLOWER_DUTY",
+              "module": "blower",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_blower_duty",
+              "caps_name": "BOX_1_BLOWER_DUTY",
+              "module": "blower",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_blower_duty",
+              "caps_name": "BOX_2_BLOWER_DUTY",
+              "module": "blower",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_blower_day",
+              "caps_name": "BOX_0_BLOWER_DAY",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 40
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_blower_day",
+              "caps_name": "BOX_1_BLOWER_DAY",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 40
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_blower_day",
+              "caps_name": "BOX_2_BLOWER_DAY",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 40
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_blower_night",
+              "caps_name": "BOX_0_BLOWER_NIGHT",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_blower_night",
+              "caps_name": "BOX_1_BLOWER_NIGHT",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_blower_night",
+              "caps_name": "BOX_2_BLOWER_NIGHT",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_blower_enabled",
+              "caps_name": "BOX_0_BLOWER_ENABLED",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_blower_enabled",
+              "caps_name": "BOX_1_BLOWER_ENABLED",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_blower_enabled",
+              "caps_name": "BOX_2_BLOWER_ENABLED",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_stretch",
+              "caps_name": "BOX_0_STRETCH",
+              "module": "mixer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_stretch",
+              "caps_name": "BOX_1_STRETCH",
+              "module": "mixer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_stretch",
+              "caps_name": "BOX_2_STRETCH",
+              "module": "mixer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_led_dim",
+              "caps_name": "BOX_0_LED_DIM",
+              "module": "mixer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_led_dim",
+              "caps_name": "BOX_1_LED_DIM",
+              "module": "mixer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_led_dim",
+              "caps_name": "BOX_2_LED_DIM",
+              "module": "mixer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_enabled",
+              "caps_name": "BOX_0_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_enabled",
+              "caps_name": "BOX_1_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_enabled",
+              "caps_name": "BOX_2_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_temp",
+              "caps_name": "BOX_0_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_temp",
+              "caps_name": "BOX_1_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_temp",
+              "caps_name": "BOX_2_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi",
+              "caps_name": "BOX_0_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_humi",
+              "caps_name": "BOX_1_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_humi",
+              "caps_name": "BOX_2_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_temp_source",
+              "caps_name": "BOX_0_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_temp_source",
+              "caps_name": "BOX_1_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_temp_source",
+              "caps_name": "BOX_2_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi_source",
+              "caps_name": "BOX_0_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_humi_source",
+              "caps_name": "BOX_1_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_humi_source",
+              "caps_name": "BOX_2_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_started_at",
+              "caps_name": "BOX_0_STARTED_AT",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_started_at",
+              "caps_name": "BOX_1_STARTED_AT",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_started_at",
+              "caps_name": "BOX_2_STARTED_AT",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "status_led_red_gpio",
+              "caps_name": "STATUS_LED_RED_GPIO",
+              "module": "status_led",
+              
+              
+              "write": true,
+              
+              
+              "default": 23
+            },
+          
+            {
+              "core": false,
+              "name": "status_led_green_gpio",
+              "caps_name": "STATUS_LED_GREEN_GPIO",
+              "module": "status_led",
+              
+              
+              "write": true,
+              
+              
+              "default": 22
+            },
+          
+            {
+              "core": false,
+              "name": "status_led_dim",
+              "caps_name": "STATUS_LED_DIM",
+              "module": "status_led",
+              
+              
+              "write": true,
+              
+              
+              "default": 10
+            }
+          
+  ]
+}
 
-Cannot read property 'fields' of undefined
-    at ms.reduce (eval at compile (/usr/lib/node_modules/ejs-cli/node_modules/ejs/lib/ejs.js:633:12), <anonymous>:16:50)
-    at Array.reduce (<anonymous>)
-    at eval (eval at compile (/usr/lib/node_modules/ejs-cli/node_modules/ejs/lib/ejs.js:633:12), <anonymous>:16:25)
-    at returnedFn (/usr/lib/node_modules/ejs-cli/node_modules/ejs/lib/ejs.js:668:17)
-    at tryHandleCache (/usr/lib/node_modules/ejs-cli/node_modules/ejs/lib/ejs.js:254:36)
-    at Object.exports.renderFile (/usr/lib/node_modules/ejs-cli/node_modules/ejs/lib/ejs.js:485:10)
-    at /usr/lib/node_modules/ejs-cli/lib/cli.js:128:17
-    at /usr/lib/node_modules/ejs-cli/node_modules/async/dist/async.js:2158:44
-    at eachOfArrayLike (/usr/lib/node_modules/ejs-cli/node_modules/async/dist/async.js:504:13)
-    at eachOf (/usr/lib/node_modules/ejs-cli/node_modules/async/dist/async.js:555:16) path: 'config.json' }

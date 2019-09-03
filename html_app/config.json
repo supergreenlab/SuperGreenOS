@@ -6,24 +6,25 @@
       const indirs = ms.reduce((acc, i) => Object.keys(modules[i].fields).reduce((acc, f) => {
         f = modules[i].fields[f]
         if (f.indir.enable) {
-          acc[f.indir.key] = {
-            source: f.indir.source,
+          acc[f.indir.source] = {
+            key: f.indir.key,
             values: []
           }
         }
         return acc
       }, acc), {})
       
-      ms.forEach(m => {
-        m = modules[m]
-        const fields = Object.keys(m.fields)
-        fields.forEach(f => {
-          f = m.fields[f]
-          const indir = Object.keys(f).find(k => indirs[k])
-          if (!indir) {
-            return
-          }
-          indirs[indir].values.push(f[indir])
+      Object.keys(indirs).forEach(i => {
+        ms.forEach(m => {
+          m = modules[m]
+          const fields = Object.keys(m.fields)
+          fields.forEach(f => {
+            f = m.fields[f]
+            if (!f[indirs[i].key]) {
+              return
+            }
+            indirs[i].values.push(f[indirs[i].key])
+          })
         })
       })
 
@@ -31,14 +32,15 @@
         m = modules[m]
         const fields = Object.keys(m.fields)
         fields.forEach((f, j) => {
+          const indir = indirs[f]
           f = m.fields[f]
-          const indir = Object.keys(f).find(k => indirs[k])
           %>
             {
               "core": <%= m.core %>,
               "name": "<%= f.name %>",
               "caps_name": "<%= f.caps_name %>",
               "module": "<%= m.name %>",
+              <% if (f.helper) { %>"helper": "<%= f.helper %>",<% } %>
               <% if (f.ble.enable) { %>
                 "ble": {
                   "uuid": "<%= f.ble.uuid %>",
@@ -51,12 +53,11 @@
                   "name": "<%= m.field_prefix %>",
                   "len": <%= m.array_len %>
                 },
+              <% } %>
               <% if (indir) { %>
                 "indir": {
-                  "source": "<%= indirs[indir].source %>",
-                  "": 
+                  "values": [<%= indir.values %>]
                 },
-              <% } %>
               <% } %>
               "default": <% if (f.type == 'integer') { %><%= f.default || 0 %><% } else { %>"<%= f.default || '' %>"<% } %>
             }<% if (!(i == ms.length - 1 && j == fields.length - 1)) { %>,<% } %>

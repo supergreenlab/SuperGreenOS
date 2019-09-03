@@ -24,6 +24,7 @@ _I2C_MODULE: _MODULE & {
 _FIELD: {
   type: "string" | "integer"
   nosend: bool | *false
+  helper: string | *""
   nvs: {
     enable: bool | *false
     key: string if enable == true
