@@ -116,6 +116,8 @@ function renderModule(title, module, in_array) {
     let name = f
     if (in_array) {
       name = f.split('_').splice(2).join('_')
+    } else if (f.indexOf(`${module[f].module}_`) == 0) {
+      name = f.replace(new RegExp(`^${module[f].module}_`), '')
     }
     field.appendChild(renderField(name, module[f]))
     fields.appendChild(field)

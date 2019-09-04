@@ -401,7 +401,7 @@ body, html {
 }
 
 .fields > div {
-  flex-basis: 30%;
+  flex-basis: 25%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -455,7 +455,6 @@ body, html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #efefef;
   padding: 10pt 0;
 }
 
@@ -485,6 +484,9 @@ body, html {
 
 .module {
   padding: 10pt 10pt;
+  background-color: #f5f5f5;
+  margin: 5pt;
+  border-radius: 5pt;
 }
 
 .array_title {
@@ -494,6 +496,8 @@ body, html {
   padding: 10pt 10pt;
   text-transform: uppercase;
   border-bottom: 1pt solid #ececec;
+  background-color: #717171;
+  color: white;
 }
 
 .array_title > h2 {
@@ -511,7 +515,7 @@ body, html {
 
 .array_title > a {
   margin: 0 10pt;
-  color: #717171;
+  color: white;
 }
 
 .array_container {
@@ -738,6 +742,8 @@ function renderModule(title, module, in_array) {
     let name = f
     if (in_array) {
       name = f.split('_').splice(2).join('_')
+    } else if (f.indexOf(`${module[f].module}_`) == 0) {
+      name = f.replace(new RegExp(`^${module[f].module}_`), '')
     }
     field.appendChild(renderField(name, module[f]))
     fields.appendChild(field)
