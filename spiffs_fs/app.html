@@ -672,11 +672,11 @@ function renderField(title, field) {
       error.innerText = `Failed to load ${field.name}`;
     })
   }
-  if (field.write) {
+  
+  if (field.write && !field.indir) {
     body.setAttribute('class', 'field')
     const input = document.createElement('input')
     input.setAttribute('class', 'value')
-    input.setAttribute('id', field.name)
     input.addEventListener('keyup', (e) => {
       let value = e.target.value
       if (field.type == 'integer') {
@@ -704,6 +704,34 @@ function renderField(title, field) {
           body.setAttribute('class', 'field')
         }
       }
+    })
+    body.appendChild(input)
+    setValue = (v) => {input.value = v}
+  } else if (field.write && field.indir) {
+    body.setAttribute('class', 'field')
+    const input = document.createElement('select')
+    input.setAttribute('class', 'value')
+    input.addEventListener('change', (e) => {
+      body.setAttribute('class', 'field loading')
+        updateParam(field.type.charAt(0), field.caps_name, e.target.value)
+          .then(() => {
+            body.setAttribute('class', 'field')
+            fetchField()
+            error.innerText = ''
+          })
+          .catch(() => {
+            error.innerText = `Failed to update ${field.name}`
+          })
+        })
+    const opt = document.createElement('option')
+    opt.value = 0
+    opt.innerText = 'Disabled'
+    input.appendChild(opt)
+    field.indir.values.forEach(i => {
+      const opt = document.createElement('option')
+      opt.value = i
+      opt.innerText = i
+      input.appendChild(opt)
     })
     body.appendChild(input)
     setValue = (v) => {input.value = v}
