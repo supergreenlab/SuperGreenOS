@@ -33,7 +33,7 @@ body, html {
   margin: 20pt 10pt;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .section_title {
     text-align: center;
     font-size: 1.2em;
@@ -49,7 +49,7 @@ body, html {
   flex-basis: 25%;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .fields > div {
     flex-basis: 100%;
   }
@@ -72,7 +72,7 @@ body, html {
   font-weight: 800;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .field {
     padding: 10pt 0pt;
   }
@@ -121,7 +121,7 @@ body, html {
   border-bottom: 1pt solid #ececec;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .module_title {
     font-size: 1em;
   }
@@ -149,7 +149,7 @@ body, html {
   font-size: 1.1em;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .array_title > h2 {
     font-size: 1em;
   }
@@ -167,7 +167,7 @@ body, html {
   margin: 20pt 20pt;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
   .array_container {
     margin: 10pt 10pt;
   }
