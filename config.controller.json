@@ -162,7 +162,7 @@
                     "ble": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",

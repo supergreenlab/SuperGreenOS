@@ -21,6 +21,30 @@
 #include <stdint.h>
 
 
+    int on_set_led_0_duty(int value) {
+      return on_set_led_duty(0, value);
+    }
+
+    int on_set_led_1_duty(int value) {
+      return on_set_led_duty(1, value);
+    }
+
+    int on_set_led_2_duty(int value) {
+      return on_set_led_duty(2, value);
+    }
+
+    int on_set_led_3_duty(int value) {
+      return on_set_led_duty(3, value);
+    }
+
+    int on_set_led_4_duty(int value) {
+      return on_set_led_duty(4, value);
+    }
+
+    int on_set_led_5_duty(int value) {
+      return on_set_led_duty(5, value);
+    }
+
     int on_set_motor_0_frequency(int value) {
       return on_set_motor_frequency(0, value);
     }
@@ -79,30 +103,6 @@
 
     int on_set_box_2_led_dim(int value) {
       return on_set_box_led_dim(2, value);
-    }
-
-    int on_set_led_0_duty(int value) {
-      return on_set_led_duty(0, value);
-    }
-
-    int on_set_led_1_duty(int value) {
-      return on_set_led_duty(1, value);
-    }
-
-    int on_set_led_2_duty(int value) {
-      return on_set_led_duty(2, value);
-    }
-
-    int on_set_led_3_duty(int value) {
-      return on_set_led_duty(3, value);
-    }
-
-    int on_set_led_4_duty(int value) {
-      return on_set_led_duty(4, value);
-    }
-
-    int on_set_led_5_duty(int value) {
-      return on_set_led_duty(5, value);
     }
 
 
@@ -167,406 +167,6 @@
       
         case 2:
           return get_i2c_2_port();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_on_hour(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_on_hour();
-      
-        case 1:
-          return get_box_1_on_hour();
-      
-        case 2:
-          return get_box_2_on_hour();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_on_min(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_on_min();
-      
-        case 1:
-          return get_box_1_on_min();
-      
-        case 2:
-          return get_box_2_on_min();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_off_hour(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_off_hour();
-      
-        case 1:
-          return get_box_1_off_hour();
-      
-        case 2:
-          return get_box_2_off_hour();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_off_min(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_off_min();
-      
-        case 1:
-          return get_box_1_off_min();
-      
-        case 2:
-          return get_box_2_off_min();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_blower_duty(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_blower_duty();
-      
-        case 1:
-          return get_box_1_blower_duty();
-      
-        case 2:
-          return get_box_2_blower_duty();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_blower_day(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_blower_day();
-      
-        case 1:
-          return get_box_1_blower_day();
-      
-        case 2:
-          return get_box_2_blower_day();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_blower_night(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_blower_night();
-      
-        case 1:
-          return get_box_1_blower_night();
-      
-        case 2:
-          return get_box_2_blower_night();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_blower_enabled(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_blower_enabled();
-      
-        case 1:
-          return get_box_1_blower_enabled();
-      
-        case 2:
-          return get_box_2_blower_enabled();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_timer_type(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_timer_type();
-      
-        case 1:
-          return get_box_1_timer_type();
-      
-        case 2:
-          return get_box_2_timer_type();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_timer_output(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_timer_output();
-      
-        case 1:
-          return get_box_1_timer_output();
-      
-        case 2:
-          return get_box_2_timer_output();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_stretch(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_stretch();
-      
-        case 1:
-          return get_box_1_stretch();
-      
-        case 2:
-          return get_box_2_stretch();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_led_dim(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_led_dim();
-      
-        case 1:
-          return get_box_1_led_dim();
-      
-        case 2:
-          return get_box_2_led_dim();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_enabled(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_enabled();
-      
-        case 1:
-          return get_box_1_enabled();
-      
-        case 2:
-          return get_box_2_enabled();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_temp(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_temp();
-      
-        case 1:
-          return get_box_1_temp();
-      
-        case 2:
-          return get_box_2_temp();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_humi(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_humi();
-      
-        case 1:
-          return get_box_1_humi();
-      
-        case 2:
-          return get_box_2_humi();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_temp_source(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_temp_source();
-      
-        case 1:
-          return get_box_1_temp_source();
-      
-        case 2:
-          return get_box_2_temp_source();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_box_humi_source(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_humi_source();
-      
-        case 1:
-          return get_box_1_humi_source();
-      
-        case 2:
-          return get_box_2_humi_source();
-      
-      }
-      return 0;
-    }
-
-    int32_t get_box_started_at(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_box_0_started_at();
-      
-        case 1:
-          return get_box_1_started_at();
-      
-        case 2:
-          return get_box_2_started_at();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_motor_duty(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_motor_0_duty();
-      
-        case 1:
-          return get_motor_1_duty();
-      
-        case 2:
-          return get_motor_2_duty();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_motor_source(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_motor_0_source();
-      
-        case 1:
-          return get_motor_1_source();
-      
-        case 2:
-          return get_motor_2_source();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_motor_gpio(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_motor_0_gpio();
-      
-        case 1:
-          return get_motor_1_gpio();
-      
-        case 2:
-          return get_motor_2_gpio();
-      
-      }
-      return 0;
-    }
-
-    int16_t get_motor_frequency(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_motor_0_frequency();
-      
-        case 1:
-          return get_motor_1_frequency();
-      
-        case 2:
-          return get_motor_2_frequency();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_sht21_present(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_sht21_0_present();
-      
-        case 1:
-          return get_sht21_1_present();
-      
-        case 2:
-          return get_sht21_2_present();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_sht21_temp(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_sht21_0_temp();
-      
-        case 1:
-          return get_sht21_1_temp();
-      
-        case 2:
-          return get_sht21_2_temp();
-      
-      }
-      return 0;
-    }
-
-    int8_t get_sht21_humi(int i) {
-      switch(i) {
-      
-        case 0:
-          return get_sht21_0_humi();
-      
-        case 1:
-          return get_sht21_1_humi();
-      
-        case 2:
-          return get_sht21_2_humi();
       
       }
       return 0;
@@ -797,6 +397,406 @@
       return 0;
     }
 
+    int8_t get_box_on_hour(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_on_hour();
+      
+        case 1:
+          return get_box_1_on_hour();
+      
+        case 2:
+          return get_box_2_on_hour();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_on_min(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_on_min();
+      
+        case 1:
+          return get_box_1_on_min();
+      
+        case 2:
+          return get_box_2_on_min();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_off_hour(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_off_hour();
+      
+        case 1:
+          return get_box_1_off_hour();
+      
+        case 2:
+          return get_box_2_off_hour();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_off_min(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_off_min();
+      
+        case 1:
+          return get_box_1_off_min();
+      
+        case 2:
+          return get_box_2_off_min();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_timer_type(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_timer_type();
+      
+        case 1:
+          return get_box_1_timer_type();
+      
+        case 2:
+          return get_box_2_timer_type();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_timer_output(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_timer_output();
+      
+        case 1:
+          return get_box_1_timer_output();
+      
+        case 2:
+          return get_box_2_timer_output();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_blower_duty(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_blower_duty();
+      
+        case 1:
+          return get_box_1_blower_duty();
+      
+        case 2:
+          return get_box_2_blower_duty();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_blower_day(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_blower_day();
+      
+        case 1:
+          return get_box_1_blower_day();
+      
+        case 2:
+          return get_box_2_blower_day();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_blower_night(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_blower_night();
+      
+        case 1:
+          return get_box_1_blower_night();
+      
+        case 2:
+          return get_box_2_blower_night();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_blower_enabled(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_blower_enabled();
+      
+        case 1:
+          return get_box_1_blower_enabled();
+      
+        case 2:
+          return get_box_2_blower_enabled();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_stretch(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_stretch();
+      
+        case 1:
+          return get_box_1_stretch();
+      
+        case 2:
+          return get_box_2_stretch();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_led_dim(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_led_dim();
+      
+        case 1:
+          return get_box_1_led_dim();
+      
+        case 2:
+          return get_box_2_led_dim();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_enabled(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_enabled();
+      
+        case 1:
+          return get_box_1_enabled();
+      
+        case 2:
+          return get_box_2_enabled();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_temp(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_temp();
+      
+        case 1:
+          return get_box_1_temp();
+      
+        case 2:
+          return get_box_2_temp();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_humi(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_humi();
+      
+        case 1:
+          return get_box_1_humi();
+      
+        case 2:
+          return get_box_2_humi();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_temp_source(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_temp_source();
+      
+        case 1:
+          return get_box_1_temp_source();
+      
+        case 2:
+          return get_box_2_temp_source();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_box_humi_source(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_humi_source();
+      
+        case 1:
+          return get_box_1_humi_source();
+      
+        case 2:
+          return get_box_2_humi_source();
+      
+      }
+      return 0;
+    }
+
+    int32_t get_box_started_at(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_box_0_started_at();
+      
+        case 1:
+          return get_box_1_started_at();
+      
+        case 2:
+          return get_box_2_started_at();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_motor_duty(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_motor_0_duty();
+      
+        case 1:
+          return get_motor_1_duty();
+      
+        case 2:
+          return get_motor_2_duty();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_motor_gpio(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_motor_0_gpio();
+      
+        case 1:
+          return get_motor_1_gpio();
+      
+        case 2:
+          return get_motor_2_gpio();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_motor_source(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_motor_0_source();
+      
+        case 1:
+          return get_motor_1_source();
+      
+        case 2:
+          return get_motor_2_source();
+      
+      }
+      return 0;
+    }
+
+    int16_t get_motor_frequency(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_motor_0_frequency();
+      
+        case 1:
+          return get_motor_1_frequency();
+      
+        case 2:
+          return get_motor_2_frequency();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_sht21_present(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_sht21_0_present();
+      
+        case 1:
+          return get_sht21_1_present();
+      
+        case 2:
+          return get_sht21_2_present();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_sht21_temp(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_sht21_0_temp();
+      
+        case 1:
+          return get_sht21_1_temp();
+      
+        case 2:
+          return get_sht21_2_temp();
+      
+      }
+      return 0;
+    }
+
+    int8_t get_sht21_humi(int i) {
+      switch(i) {
+      
+        case 0:
+          return get_sht21_0_humi();
+      
+        case 1:
+          return get_sht21_1_humi();
+      
+        case 2:
+          return get_sht21_2_humi();
+      
+      }
+      return 0;
+    }
+
 
 
     void set_i2c_sda(int i, int8_t v) {
@@ -866,402 +866,6 @@
       
         case 2:
           set_i2c_2_port(v);
-          break;
-      
-      }
-    }
-
-    void set_box_on_hour(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_on_hour(v);
-          break;
-      
-        case 1:
-          set_box_1_on_hour(v);
-          break;
-      
-        case 2:
-          set_box_2_on_hour(v);
-          break;
-      
-      }
-    }
-
-    void set_box_on_min(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_on_min(v);
-          break;
-      
-        case 1:
-          set_box_1_on_min(v);
-          break;
-      
-        case 2:
-          set_box_2_on_min(v);
-          break;
-      
-      }
-    }
-
-    void set_box_off_hour(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_off_hour(v);
-          break;
-      
-        case 1:
-          set_box_1_off_hour(v);
-          break;
-      
-        case 2:
-          set_box_2_off_hour(v);
-          break;
-      
-      }
-    }
-
-    void set_box_off_min(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_off_min(v);
-          break;
-      
-        case 1:
-          set_box_1_off_min(v);
-          break;
-      
-        case 2:
-          set_box_2_off_min(v);
-          break;
-      
-      }
-    }
-
-    void set_box_blower_duty(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_blower_duty(v);
-          break;
-      
-        case 1:
-          set_box_1_blower_duty(v);
-          break;
-      
-        case 2:
-          set_box_2_blower_duty(v);
-          break;
-      
-      }
-    }
-
-    void set_box_blower_day(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_blower_day(v);
-          break;
-      
-        case 1:
-          set_box_1_blower_day(v);
-          break;
-      
-        case 2:
-          set_box_2_blower_day(v);
-          break;
-      
-      }
-    }
-
-    void set_box_blower_night(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_blower_night(v);
-          break;
-      
-        case 1:
-          set_box_1_blower_night(v);
-          break;
-      
-        case 2:
-          set_box_2_blower_night(v);
-          break;
-      
-      }
-    }
-
-    void set_box_blower_enabled(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_blower_enabled(v);
-          break;
-      
-        case 1:
-          set_box_1_blower_enabled(v);
-          break;
-      
-        case 2:
-          set_box_2_blower_enabled(v);
-          break;
-      
-      }
-    }
-
-    void set_box_timer_type(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_timer_type(v);
-          break;
-      
-        case 1:
-          set_box_1_timer_type(v);
-          break;
-      
-        case 2:
-          set_box_2_timer_type(v);
-          break;
-      
-      }
-    }
-
-    void set_box_timer_output(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_timer_output(v);
-          break;
-      
-        case 1:
-          set_box_1_timer_output(v);
-          break;
-      
-        case 2:
-          set_box_2_timer_output(v);
-          break;
-      
-      }
-    }
-
-    void set_box_stretch(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_stretch(v);
-          break;
-      
-        case 1:
-          set_box_1_stretch(v);
-          break;
-      
-        case 2:
-          set_box_2_stretch(v);
-          break;
-      
-      }
-    }
-
-    void set_box_led_dim(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_led_dim(v);
-          break;
-      
-        case 1:
-          set_box_1_led_dim(v);
-          break;
-      
-        case 2:
-          set_box_2_led_dim(v);
-          break;
-      
-      }
-    }
-
-    void set_box_enabled(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_enabled(v);
-          break;
-      
-        case 1:
-          set_box_1_enabled(v);
-          break;
-      
-        case 2:
-          set_box_2_enabled(v);
-          break;
-      
-      }
-    }
-
-    void set_box_temp_source(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_temp_source(v);
-          break;
-      
-        case 1:
-          set_box_1_temp_source(v);
-          break;
-      
-        case 2:
-          set_box_2_temp_source(v);
-          break;
-      
-      }
-    }
-
-    void set_box_humi_source(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_humi_source(v);
-          break;
-      
-        case 1:
-          set_box_1_humi_source(v);
-          break;
-      
-        case 2:
-          set_box_2_humi_source(v);
-          break;
-      
-      }
-    }
-
-    void set_box_started_at(int i, int32_t v) {
-      switch(i) {
-      
-        case 0:
-          set_box_0_started_at(v);
-          break;
-      
-        case 1:
-          set_box_1_started_at(v);
-          break;
-      
-        case 2:
-          set_box_2_started_at(v);
-          break;
-      
-      }
-    }
-
-    void set_motor_source(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_motor_0_source(v);
-          break;
-      
-        case 1:
-          set_motor_1_source(v);
-          break;
-      
-        case 2:
-          set_motor_2_source(v);
-          break;
-      
-      }
-    }
-
-    void set_motor_gpio(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_motor_0_gpio(v);
-          break;
-      
-        case 1:
-          set_motor_1_gpio(v);
-          break;
-      
-        case 2:
-          set_motor_2_gpio(v);
-          break;
-      
-      }
-    }
-
-    void set_motor_frequency(int i, int16_t v) {
-      switch(i) {
-      
-        case 0:
-          set_motor_0_frequency(v);
-          break;
-      
-        case 1:
-          set_motor_1_frequency(v);
-          break;
-      
-        case 2:
-          set_motor_2_frequency(v);
-          break;
-      
-      }
-    }
-
-    void set_sht21_present(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_sht21_0_present(v);
-          break;
-      
-        case 1:
-          set_sht21_1_present(v);
-          break;
-      
-        case 2:
-          set_sht21_2_present(v);
-          break;
-      
-      }
-    }
-
-    void set_sht21_temp(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_sht21_0_temp(v);
-          break;
-      
-        case 1:
-          set_sht21_1_temp(v);
-          break;
-      
-        case 2:
-          set_sht21_2_temp(v);
-          break;
-      
-      }
-    }
-
-    void set_sht21_humi(int i, int8_t v) {
-      switch(i) {
-      
-        case 0:
-          set_sht21_0_humi(v);
-          break;
-      
-        case 1:
-          set_sht21_1_humi(v);
-          break;
-      
-        case 2:
-          set_sht21_2_humi(v);
           break;
       
       }
@@ -1532,6 +1136,402 @@
       
         case 5:
           set_led_5_fade(v);
+          break;
+      
+      }
+    }
+
+    void set_box_on_hour(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_on_hour(v);
+          break;
+      
+        case 1:
+          set_box_1_on_hour(v);
+          break;
+      
+        case 2:
+          set_box_2_on_hour(v);
+          break;
+      
+      }
+    }
+
+    void set_box_on_min(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_on_min(v);
+          break;
+      
+        case 1:
+          set_box_1_on_min(v);
+          break;
+      
+        case 2:
+          set_box_2_on_min(v);
+          break;
+      
+      }
+    }
+
+    void set_box_off_hour(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_off_hour(v);
+          break;
+      
+        case 1:
+          set_box_1_off_hour(v);
+          break;
+      
+        case 2:
+          set_box_2_off_hour(v);
+          break;
+      
+      }
+    }
+
+    void set_box_off_min(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_off_min(v);
+          break;
+      
+        case 1:
+          set_box_1_off_min(v);
+          break;
+      
+        case 2:
+          set_box_2_off_min(v);
+          break;
+      
+      }
+    }
+
+    void set_box_timer_type(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_timer_type(v);
+          break;
+      
+        case 1:
+          set_box_1_timer_type(v);
+          break;
+      
+        case 2:
+          set_box_2_timer_type(v);
+          break;
+      
+      }
+    }
+
+    void set_box_timer_output(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_timer_output(v);
+          break;
+      
+        case 1:
+          set_box_1_timer_output(v);
+          break;
+      
+        case 2:
+          set_box_2_timer_output(v);
+          break;
+      
+      }
+    }
+
+    void set_box_blower_duty(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_blower_duty(v);
+          break;
+      
+        case 1:
+          set_box_1_blower_duty(v);
+          break;
+      
+        case 2:
+          set_box_2_blower_duty(v);
+          break;
+      
+      }
+    }
+
+    void set_box_blower_day(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_blower_day(v);
+          break;
+      
+        case 1:
+          set_box_1_blower_day(v);
+          break;
+      
+        case 2:
+          set_box_2_blower_day(v);
+          break;
+      
+      }
+    }
+
+    void set_box_blower_night(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_blower_night(v);
+          break;
+      
+        case 1:
+          set_box_1_blower_night(v);
+          break;
+      
+        case 2:
+          set_box_2_blower_night(v);
+          break;
+      
+      }
+    }
+
+    void set_box_blower_enabled(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_blower_enabled(v);
+          break;
+      
+        case 1:
+          set_box_1_blower_enabled(v);
+          break;
+      
+        case 2:
+          set_box_2_blower_enabled(v);
+          break;
+      
+      }
+    }
+
+    void set_box_stretch(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_stretch(v);
+          break;
+      
+        case 1:
+          set_box_1_stretch(v);
+          break;
+      
+        case 2:
+          set_box_2_stretch(v);
+          break;
+      
+      }
+    }
+
+    void set_box_led_dim(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_led_dim(v);
+          break;
+      
+        case 1:
+          set_box_1_led_dim(v);
+          break;
+      
+        case 2:
+          set_box_2_led_dim(v);
+          break;
+      
+      }
+    }
+
+    void set_box_enabled(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_enabled(v);
+          break;
+      
+        case 1:
+          set_box_1_enabled(v);
+          break;
+      
+        case 2:
+          set_box_2_enabled(v);
+          break;
+      
+      }
+    }
+
+    void set_box_temp_source(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_temp_source(v);
+          break;
+      
+        case 1:
+          set_box_1_temp_source(v);
+          break;
+      
+        case 2:
+          set_box_2_temp_source(v);
+          break;
+      
+      }
+    }
+
+    void set_box_humi_source(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_humi_source(v);
+          break;
+      
+        case 1:
+          set_box_1_humi_source(v);
+          break;
+      
+        case 2:
+          set_box_2_humi_source(v);
+          break;
+      
+      }
+    }
+
+    void set_box_started_at(int i, int32_t v) {
+      switch(i) {
+      
+        case 0:
+          set_box_0_started_at(v);
+          break;
+      
+        case 1:
+          set_box_1_started_at(v);
+          break;
+      
+        case 2:
+          set_box_2_started_at(v);
+          break;
+      
+      }
+    }
+
+    void set_motor_gpio(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_motor_0_gpio(v);
+          break;
+      
+        case 1:
+          set_motor_1_gpio(v);
+          break;
+      
+        case 2:
+          set_motor_2_gpio(v);
+          break;
+      
+      }
+    }
+
+    void set_motor_source(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_motor_0_source(v);
+          break;
+      
+        case 1:
+          set_motor_1_source(v);
+          break;
+      
+        case 2:
+          set_motor_2_source(v);
+          break;
+      
+      }
+    }
+
+    void set_motor_frequency(int i, int16_t v) {
+      switch(i) {
+      
+        case 0:
+          set_motor_0_frequency(v);
+          break;
+      
+        case 1:
+          set_motor_1_frequency(v);
+          break;
+      
+        case 2:
+          set_motor_2_frequency(v);
+          break;
+      
+      }
+    }
+
+    void set_sht21_present(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_sht21_0_present(v);
+          break;
+      
+        case 1:
+          set_sht21_1_present(v);
+          break;
+      
+        case 2:
+          set_sht21_2_present(v);
+          break;
+      
+      }
+    }
+
+    void set_sht21_temp(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_sht21_0_temp(v);
+          break;
+      
+        case 1:
+          set_sht21_1_temp(v);
+          break;
+      
+        case 2:
+          set_sht21_2_temp(v);
+          break;
+      
+      }
+    }
+
+    void set_sht21_humi(int i, int8_t v) {
+      switch(i) {
+      
+        case 0:
+          set_sht21_0_humi(v);
+          break;
+      
+        case 1:
+          set_sht21_1_humi(v);
+          break;
+      
+        case 2:
+          set_sht21_2_humi(v);
           break;
       
       }

@@ -38,6 +38,7 @@
             {
               "core": <%= m.core %>,
               "name": "<%= f.name %>",
+              "type": "<%= f.type %>",
               "caps_name": "<%= f.caps_name %>",
               "module": "<%= m.name %>",
               <% if (f.helper) { %>"helper": "<%= f.helper %>",<% } %>

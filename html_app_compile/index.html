@@ -354,46 +354,6 @@ template {
   display: none;
 }
 
-.params {
-  flex: 1;
-  display: flex;
-}
-
-.param_list {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin: 5pt;
-  max-width: 50%;
-}
-
-.param {
-  display: flex;
-  align-items: center;
-  word-wrap: break-word;
-  margin: 3pt;
-}
-
-.param label, .param b {
-  display: block;
-  flex: 1;
-}
-
-.param span {
-  overflow-x: auto;
-}
-
-.param_loading {
-  opacity: 0.5;
-}
-
-.menu {
-  display: flex;
-}
-
-.menu_item {
-}
-
 
 body, html {
   display: flex;
@@ -403,6 +363,20 @@ body, html {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   min-height: 100vh;
   color: #717171;
+}
+
+.menu {
+  display: flex;
+}
+
+.modules > .menu_item_modules, .system > .menu_item_system {
+  color: white;
+  background-color: #717171;
+}
+
+.menu_item_modules, .menu_item_system {
+  cursor: pointer;
+  padding: 10pt 10pt;
 }
 
 .params {
@@ -427,7 +401,13 @@ body, html {
 }
 
 .fields > div {
-  flex-basis: 50%;
+  flex-basis: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+  .fields > div {
+    flex-basis: 100%;
+  }
 }
 
 .field {
@@ -436,10 +416,39 @@ body, html {
   padding: 10pt 20pt;
 }
 
+.ro {
+  flex-direction: row;
+}
+
+.ro > .value {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  font-weight: 800;
+}
+
+@media only screen and (max-width: 600px) {
+  .field {
+    padding: 10pt 0pt;
+  }
+}
+
 .field > label {
   display: block;
   font-weight: 800;
   margin-bottom: 10pt;
+}
+
+.loading > .value {
+  opacity: 0.5;
+}
+
+.error {
+  color: red;
+}
+
+.modified > label::after {
+  content: '*'
 }
 
 .pagination {
@@ -456,25 +465,33 @@ body, html {
   color: #717171;
 }
 
-.module {
-  padding: 10pt 10pt;
+.module_title {
+  font-size: 1.1em;
+  padding-bottom: 5pt;
+  border-bottom: 1pt solid #ececec;
 }
 
 @media only screen and (max-width: 600px) {
-  .module > h2 {
+  .module_title {
     font-size: 1em;
   }
+}
+
+.module {
+  padding: 10pt 10pt;
 }
 
 .array_title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #717171;
-  color: white;
   padding: 10pt 10pt;
   text-transform: uppercase;
-  border-bottom: 1pt solid white;
+  border-bottom: 1pt solid #ececec;
+}
+
+.array_title > h2 {
+  font-size: 1.1em;
 }
 
 @media only screen and (max-width: 600px) {
@@ -488,7 +505,17 @@ body, html {
 
 .array_title > a {
   margin: 0 10pt;
-  color: white;
+  color: #717171;
+}
+
+.array_container {
+  margin: 20pt 20pt;
+}
+
+@media only screen and (max-width: 600px) {
+  .array_container {
+    margin: 10pt 10pt;
+  }
 }
 
     </style>
@@ -497,13 +524,12 @@ body, html {
     <div id='body'>
     </div>
     <script>
-      function renderMenus() {
-}
+      const URL = 'http://192.168.1.11'
 
-      const fetchConfig = async function() {
+const fetchConfig = async function() {
   return new Promise(function(resolve, reject) {
     const r = new XMLHttpRequest()
-    r.open('GET', 'config.json', true)
+    r.open('GET', `config.json?id=${parseInt(Math.random()*999999)}`, true)
     r.onreadystatechange = function () {
       if (r.readyState != 4) return
       if (r.status != 200) {
@@ -519,7 +545,7 @@ body, html {
 const fetchParam = async function(type, paramName) {
   return new Promise(function(resolve, reject) {
     const r = new XMLHttpRequest()
-    r.open('GET', '/'+type+'?k='+paramName, true)
+    r.open('GET', `${URL}/${type}?k=${paramName}`, true)
     r.onreadystatechange = function () {
       if (r.readyState != 4) return
       if (r.status != 200) {
@@ -539,7 +565,7 @@ const fetchParam = async function(type, paramName) {
 const updateParam = async function(type, paramName, value) {
   return new Promise(function(resolve, reject) {
     const r = new XMLHttpRequest()
-    r.open('POST', `/${type}?k=${paramName}&v=${value}`, true)
+    r.open('POST', `${URL}/${type}?k=${paramName}&v=${value}`, true)
     r.onreadystatechange = function () {
       if (r.readyState != 4) return
       if (r.status != 200) {
@@ -559,15 +585,9 @@ const updateDiv = function(id, value) {
       let config = {}
 let arrays = {}
 
-function sectionTitle(text) {
-  const title = document.createElement('h1')
-  title.setAttribute('class', 'section_title')
-  title.innerText = text
-  return title
-}
-
 function moduleTitle(text) {
-  const title = document.createElement('h2')
+  const title = document.createElement('h3')
+  title.setAttribute('class', 'module_title')
   title.innerText = text
   return title
 }
@@ -588,28 +608,83 @@ function arrayTitle(text, onShowHide) {
 
 function renderField(title, field) {
   const body = document.createElement('div')
-  body.setAttribute('class', 'field')
 
   const label = document.createElement('label')
   label.innerText = title
   body.appendChild(label)
 
+  const error = document.createElement('div')
+  error.setAttribute('class', 'error')
+
+  let setValue, currentValue
+  const fetchField = () => {
+    fetchParam(field.type.charAt(0), field.caps_name)
+    .then(v => {
+      currentValue = v
+      setValue(v)
+      body.setAttribute('class', body.getAttribute('class').replace('loading', ''))
+      error.innerText = ''
+    })
+    .catch((e) => {
+      error.innerText = `Failed to load ${field.name}`;
+    })
+  }
   if (field.write) {
+    body.setAttribute('class', 'field')
     const input = document.createElement('input')
+    input.setAttribute('class', 'value')
     input.setAttribute('id', field.name)
+    input.addEventListener('keyup', (e) => {
+      let value = e.target.value
+      if (field.type == 'integer') {
+        value = parseInt(e.target.value)
+        if (isNaN(value)) {
+          return
+        }
+      }
+      if (e.keyCode == 13) {
+        body.setAttribute('class', 'field loading')
+        updateParam(field.type.charAt(0), field.caps_name, value)
+          .then(() => {
+            body.setAttribute('class', 'field')
+            fetchField()
+            error.innerText = ''
+          })
+          .catch(() => {
+            error.innerText = `Failed to update ${field.name}`
+          })
+      } else {
+        error.innerText = ''
+        if (currentValue != value) {
+          body.setAttribute('class', 'field modified')
+        } else {
+          body.setAttribute('class', 'field')
+        }
+      }
+    })
     body.appendChild(input)
+    setValue = (v) => {input.value = v}
   } else {
+    body.setAttribute('class', 'field ro')
     const value = document.createElement('div')
+    value.setAttribute('class', 'value')
     value.setAttribute('id', field.name)
     body.appendChild(value)
+    setValue = (v) => {value.innerText = v}
   }
+  body.appendChild(error)
+  body.setAttribute('class', body.getAttribute('class') + ' loading')
+  fetchField()
   return body
 }
 
 function renderModule(title, module) {
   const body = document.createElement('div')
-  body.appendChild(moduleTitle(title))
   body.setAttribute('class', 'module')
+
+  if (title) {
+    body.appendChild(moduleTitle(title))
+  }
 
   const fields = document.createElement('div')
   fields.setAttribute('class', 'fields')
@@ -617,7 +692,7 @@ function renderModule(title, module) {
     if (module[m1].write) {
       return 1
     } else if (module[m2].write) {
-      return 1
+      return -1
     }
     return m1.localeCompare(m2)
   }).forEach(f => {
@@ -639,7 +714,7 @@ function renderModules(modules, array) {
     }
     return m1.localeCompare(m2)
   }).forEach(m => {
-    body.appendChild(renderModule(m, modules[m]))
+    body.appendChild(renderModule(m == array ? '' : m, modules[m]))
   })
   return body
 }
@@ -663,6 +738,7 @@ function renderArray(title, array) {
   let shown = false;
   const body = document.createElement('div')
   const container = document.createElement('div')
+  container.setAttribute('class', 'array_container')
 
   const render = () => {
     const modules = document.createElement('div')
@@ -687,10 +763,9 @@ function renderArray(title, array) {
   return body
 }
 
-function renderParams(title, data) {
+function renderParams(data) {
   const body = document.createElement('div')
   body.setAttribute('class', 'params')
-  body.appendChild(sectionTitle(title))
 
   Object.keys(data).sort((d1, d2) => {
     if (data[d1].array) {
@@ -706,6 +781,28 @@ function renderParams(title, data) {
       body.appendChild(renderModules(data[d].modules))
     }
   })
+  return body
+}
+
+function renderTopMenuItem(id, title, onSelect) {
+  const body = document.createElement('div')
+  body.setAttribute('class', `menu_item_${id}`)
+  body.innerText = title
+  body.addEventListener('click', onSelect)
+  return body
+}
+
+function renderTopMenu(onSelect) {
+  const body = document.createElement('div')
+  body.setAttribute('class', 'menu modules')
+  body.appendChild(renderTopMenuItem('modules', config.name, () => {
+    body.setAttribute('class', 'menu modules')
+    onSelect('modules')
+  }))
+  body.appendChild(renderTopMenuItem('system', 'System', () => {
+    body.setAttribute('class', 'menu system')
+    onSelect('system')
+  }))
   document.body.appendChild(body)
 }
 
@@ -728,8 +825,13 @@ async function start() {
     return acc
   }, {system: {}, modules: {}})
 
-  renderParams(config.name, modules.modules)
-  renderParams('System', modules.system)
+  const params = document.createElement('div')
+  renderTopMenu((s) => {
+    while (params.firstChild) params.removeChild(params.firstChild)
+    params.appendChild(renderParams(modules[s]))
+  })
+  params.appendChild(renderParams(modules.modules))
+  document.body.appendChild(params)
 }
 
 window.onload = () => {

@@ -1,6 +1,4 @@
 <%- include('normalize.css') %>
-<%- include('param.css') %>
-<%- include('menu.css') %>
 
 body, html {
   display: flex;
@@ -10,6 +8,20 @@ body, html {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   min-height: 100vh;
   color: #717171;
+}
+
+.menu {
+  display: flex;
+}
+
+.modules > .menu_item_modules, .system > .menu_item_system {
+  color: white;
+  background-color: #717171;
+}
+
+.menu_item_modules, .menu_item_system {
+  cursor: pointer;
+  padding: 10pt 10pt;
 }
 
 .params {
@@ -34,7 +46,13 @@ body, html {
 }
 
 .fields > div {
-  flex-basis: 50%;
+  flex-basis: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+  .fields > div {
+    flex-basis: 100%;
+  }
 }
 
 .field {
@@ -43,10 +61,39 @@ body, html {
   padding: 10pt 20pt;
 }
 
+.ro {
+  flex-direction: row;
+}
+
+.ro > .value {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  font-weight: 800;
+}
+
+@media only screen and (max-width: 600px) {
+  .field {
+    padding: 10pt 0pt;
+  }
+}
+
 .field > label {
   display: block;
   font-weight: 800;
   margin-bottom: 10pt;
+}
+
+.loading > .value {
+  opacity: 0.5;
+}
+
+.error {
+  color: red;
+}
+
+.modified > label::after {
+  content: '*'
 }
 
 .pagination {
@@ -63,25 +110,33 @@ body, html {
   color: #717171;
 }
 
-.module {
-  padding: 10pt 10pt;
+.module_title {
+  font-size: 1.1em;
+  padding-bottom: 5pt;
+  border-bottom: 1pt solid #ececec;
 }
 
 @media only screen and (max-width: 600px) {
-  .module > h2 {
+  .module_title {
     font-size: 1em;
   }
+}
+
+.module {
+  padding: 10pt 10pt;
 }
 
 .array_title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #717171;
-  color: white;
   padding: 10pt 10pt;
   text-transform: uppercase;
-  border-bottom: 1pt solid white;
+  border-bottom: 1pt solid #ececec;
+}
+
+.array_title > h2 {
+  font-size: 1.1em;
 }
 
 @media only screen and (max-width: 600px) {
@@ -95,5 +150,15 @@ body, html {
 
 .array_title > a {
   margin: 0 10pt;
-  color: white;
+  color: #717171;
+}
+
+.array_container {
+  margin: 20pt 20pt;
+}
+
+@media only screen and (max-width: 600px) {
+  .array_container {
+    margin: 10pt 10pt;
+  }
 }

@@ -1,7 +1,9 @@
+const URL = 'http://192.168.1.11'
+
 const fetchConfig = async function() {
   return new Promise(function(resolve, reject) {
     const r = new XMLHttpRequest()
-    r.open('GET', 'config.json', true)
+    r.open('GET', `config.json?id=${parseInt(Math.random()*999999)}`, true)
     r.onreadystatechange = function () {
       if (r.readyState != 4) return
       if (r.status != 200) {
@@ -17,7 +19,7 @@ const fetchConfig = async function() {
 const fetchParam = async function(type, paramName) {
   return new Promise(function(resolve, reject) {
     const r = new XMLHttpRequest()
-    r.open('GET', '/'+type+'?k='+paramName, true)
+    r.open('GET', `${URL}/${type}?k=${paramName}`, true)
     r.onreadystatechange = function () {
       if (r.readyState != 4) return
       if (r.status != 200) {
@@ -37,7 +39,7 @@ const fetchParam = async function(type, paramName) {
 const updateParam = async function(type, paramName, value) {
   return new Promise(function(resolve, reject) {
     const r = new XMLHttpRequest()
-    r.open('POST', `/${type}?k=${paramName}&v=${value}`, true)
+    r.open('POST', `${URL}/${type}?k=${paramName}&v=${value}`, true)
     r.onreadystatechange = function () {
       if (r.readyState != 4) return
       if (r.status != 200) {

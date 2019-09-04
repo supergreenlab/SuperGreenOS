@@ -1,15 +1,9 @@
 let config = {}
 let arrays = {}
 
-function sectionTitle(text) {
-  const title = document.createElement('h1')
-  title.setAttribute('class', 'section_title')
-  title.innerText = text
-  return title
-}
-
 function moduleTitle(text) {
-  const title = document.createElement('h2')
+  const title = document.createElement('h3')
+  title.setAttribute('class', 'module_title')
   title.innerText = text
   return title
 }
@@ -30,28 +24,83 @@ function arrayTitle(text, onShowHide) {
 
 function renderField(title, field) {
   const body = document.createElement('div')
-  body.setAttribute('class', 'field')
 
   const label = document.createElement('label')
   label.innerText = title
   body.appendChild(label)
 
+  const error = document.createElement('div')
+  error.setAttribute('class', 'error')
+
+  let setValue, currentValue
+  const fetchField = () => {
+    fetchParam(field.type.charAt(0), field.caps_name)
+    .then(v => {
+      currentValue = v
+      setValue(v)
+      body.setAttribute('class', body.getAttribute('class').replace('loading', ''))
+      error.innerText = ''
+    })
+    .catch((e) => {
+      error.innerText = `Failed to load ${field.name}`;
+    })
+  }
   if (field.write) {
+    body.setAttribute('class', 'field')
     const input = document.createElement('input')
+    input.setAttribute('class', 'value')
     input.setAttribute('id', field.name)
+    input.addEventListener('keyup', (e) => {
+      let value = e.target.value
+      if (field.type == 'integer') {
+        value = parseInt(e.target.value)
+        if (isNaN(value)) {
+          return
+        }
+      }
+      if (e.keyCode == 13) {
+        body.setAttribute('class', 'field loading')
+        updateParam(field.type.charAt(0), field.caps_name, value)
+          .then(() => {
+            body.setAttribute('class', 'field')
+            fetchField()
+            error.innerText = ''
+          })
+          .catch(() => {
+            error.innerText = `Failed to update ${field.name}`
+          })
+      } else {
+        error.innerText = ''
+        if (currentValue != value) {
+          body.setAttribute('class', 'field modified')
+        } else {
+          body.setAttribute('class', 'field')
+        }
+      }
+    })
     body.appendChild(input)
+    setValue = (v) => {input.value = v}
   } else {
+    body.setAttribute('class', 'field ro')
     const value = document.createElement('div')
+    value.setAttribute('class', 'value')
     value.setAttribute('id', field.name)
     body.appendChild(value)
+    setValue = (v) => {value.innerText = v}
   }
+  body.appendChild(error)
+  body.setAttribute('class', body.getAttribute('class') + ' loading')
+  fetchField()
   return body
 }
 
 function renderModule(title, module) {
   const body = document.createElement('div')
-  body.appendChild(moduleTitle(title))
   body.setAttribute('class', 'module')
+
+  if (title) {
+    body.appendChild(moduleTitle(title))
+  }
 
   const fields = document.createElement('div')
   fields.setAttribute('class', 'fields')
@@ -59,7 +108,7 @@ function renderModule(title, module) {
     if (module[m1].write) {
       return 1
     } else if (module[m2].write) {
-      return 1
+      return -1
     }
     return m1.localeCompare(m2)
   }).forEach(f => {
@@ -81,7 +130,7 @@ function renderModules(modules, array) {
     }
     return m1.localeCompare(m2)
   }).forEach(m => {
-    body.appendChild(renderModule(m, modules[m]))
+    body.appendChild(renderModule(m == array ? '' : m, modules[m]))
   })
   return body
 }
@@ -105,6 +154,7 @@ function renderArray(title, array) {
   let shown = false;
   const body = document.createElement('div')
   const container = document.createElement('div')
+  container.setAttribute('class', 'array_container')
 
   const render = () => {
     const modules = document.createElement('div')
@@ -129,10 +179,9 @@ function renderArray(title, array) {
   return body
 }
 
-function renderParams(title, data) {
+function renderParams(data) {
   const body = document.createElement('div')
   body.setAttribute('class', 'params')
-  body.appendChild(sectionTitle(title))
 
   Object.keys(data).sort((d1, d2) => {
     if (data[d1].array) {
@@ -148,6 +197,28 @@ function renderParams(title, data) {
       body.appendChild(renderModules(data[d].modules))
     }
   })
+  return body
+}
+
+function renderTopMenuItem(id, title, onSelect) {
+  const body = document.createElement('div')
+  body.setAttribute('class', `menu_item_${id}`)
+  body.innerText = title
+  body.addEventListener('click', onSelect)
+  return body
+}
+
+function renderTopMenu(onSelect) {
+  const body = document.createElement('div')
+  body.setAttribute('class', 'menu modules')
+  body.appendChild(renderTopMenuItem('modules', config.name, () => {
+    body.setAttribute('class', 'menu modules')
+    onSelect('modules')
+  }))
+  body.appendChild(renderTopMenuItem('system', 'System', () => {
+    body.setAttribute('class', 'menu system')
+    onSelect('system')
+  }))
   document.body.appendChild(body)
 }
 
@@ -170,8 +241,13 @@ async function start() {
     return acc
   }, {system: {}, modules: {}})
 
-  renderParams(config.name, modules.modules)
-  renderParams('System', modules.system)
+  const params = document.createElement('div')
+  renderTopMenu((s) => {
+    while (params.firstChild) params.removeChild(params.firstChild)
+    params.appendChild(renderParams(modules[s]))
+  })
+  params.appendChild(renderParams(modules.modules))
+  document.body.appendChild(params)
 }
 
 window.onload = () => {

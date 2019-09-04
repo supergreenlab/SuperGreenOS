@@ -10,5 +10,6 @@ modules reboot fields n_restarts: _INT8 & _HTTP & _NVS & {
 
 modules reboot fields reboot: _INT8 & _HTTP_RW & {
   name: "reboot"
+  write_cb: true
   default: 0
 }
