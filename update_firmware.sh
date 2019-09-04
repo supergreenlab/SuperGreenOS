@@ -60,6 +60,7 @@ for i in $(ls ./spiffs_fs); do
   echo -e "Created spiffs_fs_gq/$i: ${GREEN}Done${NC}"
 done
 mkspiffs -c spiffs_fs_gz/ -b 4096 -p 256 -s 0x8000 $DEST/spiffs.bin
+cp -r spiffs_fs_gz $DEST/html_app
 rm -rf spiffs_fs_gz
 
 echo -e "Created $DEST/spiffs.bin: ${GREEN}Done${NC}"
