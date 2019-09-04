@@ -143,15 +143,27 @@
     
 
     
-
+      int on_set_led_0_dim(int value);
     
 
     
-
+      int on_set_led_1_dim(int value);
     
 
     
+      int on_set_led_2_dim(int value);
+    
 
+    
+      int on_set_led_3_dim(int value);
+    
+
+    
+      int on_set_led_4_dim(int value);
+    
+
+    
+      int on_set_led_5_dim(int value);
     
 
     
@@ -221,9 +233,15 @@
     
 
     
-
+      int on_set_box_0_timer_type(int value);
     
 
+    
+      int on_set_box_1_timer_type(int value);
+    
+
+    
+      int on_set_box_2_timer_type(int value);
     
 
     

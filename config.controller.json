@@ -767,7 +767,7 @@
                         "notify": false,
                         "no_sync": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "string",
                     "nosend": false,
                     "helper": "",
@@ -795,7 +795,7 @@
                         "notify": true,
                         "no_sync": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "string",
                     "nosend": false,
                     "helper": "",
@@ -2025,7 +2025,7 @@
                     "ble": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2051,7 +2051,7 @@
                     "ble": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2077,7 +2077,7 @@
                     "ble": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2103,7 +2103,7 @@
                     "ble": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2129,7 +2129,7 @@
                     "ble": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2155,7 +2155,7 @@
                     "ble": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3062,7 +3062,7 @@
                     "ble": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3088,7 +3088,7 @@
                     "ble": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3114,7 +3114,7 @@
                     "ble": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",

@@ -9,6 +9,7 @@ modules timer fields "\(k)_timer_type": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "B_\(k)_TT"
   nvs manual: true
   _default_var: "TIMER_MANUAL"
+  write_cb: true
 } for k, v in _box_conf
 
 modules timer fields "\(k)_timer_output": _INT8 & _NVS & _HTTP & {

@@ -94,7 +94,7 @@ function renderField(title, field) {
   return body
 }
 
-function renderModule(title, module) {
+function renderModule(title, module, in_array) {
   const body = document.createElement('div')
   body.setAttribute('class', 'module')
 
@@ -113,7 +113,11 @@ function renderModule(title, module) {
     return m1.localeCompare(m2)
   }).forEach(f => {
     const field = document.createElement('div')
-    field.appendChild(renderField(f, module[f]))
+    let name = f
+    if (in_array) {
+      name = f.split('_').splice(2).join('_')
+    }
+    field.appendChild(renderField(name, module[f]))
     fields.appendChild(field)
   })
   body.appendChild(fields)
@@ -130,7 +134,7 @@ function renderModules(modules, array) {
     }
     return m1.localeCompare(m2)
   }).forEach(m => {
-    body.appendChild(renderModule(m == array ? '' : m, modules[m]))
+    body.appendChild(renderModule(m == array ? '' : m, modules[m], !!array))
   })
   return body
 }
@@ -139,14 +143,21 @@ function renderPagination(n, onSelect) {
   const body = document.createElement('div')
   body.setAttribute('class', 'pagination')
 
+  const links = []
   for (let i = 0; i < n; ++i) {
     const a = document.createElement('a')
+    links.push(a)
     const isel = i
     a.innerText = i+1
     a.setAttribute('href', 'javascript:void(0)')
-    a.addEventListener('click', () => onSelect(isel), false);
+    a.addEventListener('click', () => {
+      links.forEach(l => l.setAttribute('class', ''))
+      a.setAttribute('class', 'selected')
+      onSelect(isel)
+    }, false);
     body.appendChild(a)
   }
+  links[0].setAttribute('class', 'selected')
   return body
 }
 

@@ -110,6 +110,12 @@ body, html {
   color: #717171;
 }
 
+.selected {
+  font-size: 1.3em;
+  text-decoration: none;
+  color: black !important;
+}
+
 .module_title {
   font-size: 1.1em;
   padding-bottom: 5pt;

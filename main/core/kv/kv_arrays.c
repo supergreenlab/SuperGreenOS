@@ -45,6 +45,30 @@
       return on_set_led_duty(5, value);
     }
 
+    int on_set_led_0_dim(int value) {
+      return on_set_led_dim(0, value);
+    }
+
+    int on_set_led_1_dim(int value) {
+      return on_set_led_dim(1, value);
+    }
+
+    int on_set_led_2_dim(int value) {
+      return on_set_led_dim(2, value);
+    }
+
+    int on_set_led_3_dim(int value) {
+      return on_set_led_dim(3, value);
+    }
+
+    int on_set_led_4_dim(int value) {
+      return on_set_led_dim(4, value);
+    }
+
+    int on_set_led_5_dim(int value) {
+      return on_set_led_dim(5, value);
+    }
+
     int on_set_motor_0_frequency(int value) {
       return on_set_motor_frequency(0, value);
     }
@@ -55,6 +79,18 @@
 
     int on_set_motor_2_frequency(int value) {
       return on_set_motor_frequency(2, value);
+    }
+
+    int on_set_box_0_timer_type(int value) {
+      return on_set_box_timer_type(0, value);
+    }
+
+    int on_set_box_1_timer_type(int value) {
+      return on_set_box_timer_type(1, value);
+    }
+
+    int on_set_box_2_timer_type(int value) {
+      return on_set_box_timer_type(2, value);
     }
 
     int on_set_box_0_blower_day(int value) {
