@@ -58,13 +58,14 @@ static void motor_task(void *param) {
 
   while (1) {
     for (int i = 0; i < N_MOTOR; ++i) {
-      if (get_motor_source(i) != 0) continue;
+      if (get_motor_source(i) == 0) continue;
+      ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR Motor: %d, duty: %d", c.motorId, get_motor_duty(i));
       set_duty(i, get_motor_duty(i));
     }
     if (xQueueReceive(cmd, &c, 3000 / portTICK_PERIOD_MS) == pdTRUE) {
       if (c.cmd == CMD_CHANGED_FREQUENCY) {
         int motor_frequency = c.value;
-        ESP_LOGI(SGO_LOG_EVENT, "@MOTOR CMD_CHANGED_FREQUENCY %d %d", c.motorId, motor_frequency);
+        ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR CMD_CHANGED_FREQUENCY %d %d", c.motorId, motor_frequency);
         mcpwm_set_frequency(MCPWM_UNIT_0, MCPWM_TIMER_0 + c.motorId, motor_frequency);
       }
     }

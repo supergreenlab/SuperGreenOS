@@ -903,7 +903,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 33,
+                    "default": 32,
                     "ble": {
                         "enable": false
                     },
@@ -929,7 +929,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 25,
+                    "default": 17,
                     "ble": {
                         "enable": false
                     },
@@ -955,7 +955,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 26,
+                    "default": 33,
                     "ble": {
                         "enable": false
                     },
@@ -981,7 +981,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 27,
+                    "default": 16,
                     "ble": {
                         "enable": false
                     },
@@ -1007,7 +1007,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 14,
+                    "default": 25,
                     "ble": {
                         "enable": false
                     },
@@ -1033,7 +1033,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 12,
+                    "default": 4,
                     "ble": {
                         "enable": false
                     },
@@ -2511,7 +2511,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 4,
+                    "default": 22,
                     "ble": {
                         "enable": false
                     },
@@ -2537,7 +2537,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 16,
+                    "default": 21,
                     "ble": {
                         "enable": false
                     },
