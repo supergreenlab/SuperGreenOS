@@ -2824,7 +2824,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 0,
+                    "default": 1,
                     "ble": {
                         "enable": false
                     },
@@ -2850,7 +2850,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 0,
+                    "default": 2,
                     "ble": {
                         "enable": false
                     },
@@ -2876,7 +2876,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 0,
+                    "default": 3,
                     "ble": {
                         "enable": false
                     },
@@ -4197,7 +4197,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 0,
+                    "default": 1,
                     "ble": {
                         "enable": false
                     },
@@ -4223,7 +4223,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 0,
+                    "default": 2,
                     "ble": {
                         "enable": false
                     },
@@ -4275,7 +4275,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 0,
+                    "default": 1,
                     "ble": {
                         "enable": false
                     },
@@ -4301,7 +4301,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 0,
+                    "default": 2,
                     "ble": {
                         "enable": false
                     },
@@ -4489,7 +4489,7 @@
                 "dim": {
                     "name": "status_led_dim",
                     "nvs": {
-                        "key": "SL_R_IO",
+                        "key": "SL_R_D",
                         "enable": true,
                         "manual": false
                     },

@@ -13,5 +13,7 @@ _box_conf: [
   },
   {
     enabled: 0
+    temp_source: 0
+    humi_source: 0
   }
 ]
