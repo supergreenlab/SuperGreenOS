@@ -15,7 +15,7 @@ modules box fields "\(k)_temp": _INT8 & _HTTP & _INDIR & {
 
 modules box fields "\(k)_temp_source": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "B_\(k)_T_SRC"
-  default: 0
+  default: v.temp_source
 } for k, v in _box_conf
 
 modules box fields "\(k)_humi": _INT8 & _HTTP & _INDIR & {
@@ -26,7 +26,7 @@ modules box fields "\(k)_humi": _INT8 & _HTTP & _INDIR & {
 
 modules box fields "\(k)_humi_source": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "B_\(k)_H_SRC"
-  default: 0
+  default: v.humi_source
 } for k, v in _box_conf
 
 modules box fields "\(k)_enabled": _INT8 & _NVS & _HTTP_RW & {

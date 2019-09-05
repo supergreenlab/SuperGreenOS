@@ -24,6 +24,6 @@ if [ ! -f "$DATA" ]; then
 fi
 
 pushd html_app/
-ejs-cli -O ../config.controller.json -f ../html_app/config.json > ../spiffs_fs/config.json
-ejs-cli -O ../config.controller.json -f ../html_app/index.html > ../spiffs_fs/app.html
+ejs-cli -O "../$DATA" -f ../html_app/config.json > ../spiffs_fs/config.json
+ejs-cli -O "../$DATA" -f ../html_app/index.html > ../spiffs_fs/app.html
 popd

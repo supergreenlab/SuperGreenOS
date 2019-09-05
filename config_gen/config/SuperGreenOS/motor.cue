@@ -14,7 +14,7 @@ modules motor fields "\(k)_duty": _INT8 & _HTTP & _INDIR & {
 
 modules motor fields "\(k)_source": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "M_\(k)_D_SRC"
-  default: 0
+  default: v.source
 } for k, v in _motor_conf
 
 modules motor fields "\(k)_gpio": _INT8 & _NVS & _HTTP_RW & {

@@ -133,9 +133,9 @@ function renderModule(title, module, in_array) {
   const fields = document.createElement('div')
   fields.setAttribute('class', 'fields')
   Object.keys(module).sort((m1, m2) => {
-    if (module[m1].write) {
+    if (module[m1].write && !module[m2].write) {
       return 1
-    } else if (module[m2].write) {
+    } else if (module[m2].write && !module[m1].write) {
       return -1
     }
     return m1.localeCompare(m2)

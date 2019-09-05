@@ -11,6 +11,6 @@ modules status_led fields green_gpio: _INT8 & _NVS & _HTTP_RW & {
 }
 
 modules status_led fields dim: _INT8 & _NVS & _HTTP_RW & {
-  nvs key: "SL_R_IO"
+  nvs key: "SL_R_D"
   default: 10
 }
