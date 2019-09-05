@@ -39,6 +39,7 @@
               "core": <%= m.core %>,
               "name": "<%= f.name %>",
               "type": "<%= f.type %>",
+              "integer": <%= f.type == 'integer' %>,
               "caps_name": "<%= f.caps_name %>",
               "module": "<%= m.name %>",
               <% if (f.helper) { %>"helper": "<%= f.helper %>",<% } %>
@@ -53,6 +54,10 @@
                 "array": {
                   "name": "<%= m.field_prefix %>",
                   "len": <%= m.array_len %>
+                },
+                "<%= m.field_prefix %>": {
+                  "index": <%= parseInt(f.suffix.split('_')[0]) %>,
+                  "param": "<%= f.suffix.split('_').splice(1).join('_') %>"
                 },
               <% } %>
               <% if (indir) { %>
