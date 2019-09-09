@@ -1,7 +1,6 @@
 package config
 
 modules sht21: _I2C_MODULE & {
-  init: false
   array_len: len(_i2c_conf)
 }
 

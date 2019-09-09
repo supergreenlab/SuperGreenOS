@@ -95,6 +95,7 @@ void loop_sht21(int i2cId) {
   {
     if (!send_sht21_cmd(i2cId, TRIGGER_TEMP_MEASURE_NOHOLD)) {
       set_sht21_present(i2cId, 0);
+      stop_i2c(i2cId);
       return;
     }
     vTaskDelay(100 / portTICK_RATE_MS);
@@ -110,6 +111,7 @@ void loop_sht21(int i2cId) {
   {
     if (!send_sht21_cmd(i2cId, TRIGGER_HUMD_MEASURE_NOHOLD)) {
       set_sht21_present(i2cId, 0);
+      stop_i2c(i2cId);
       return;
     }
     vTaskDelay(100 / portTICK_RATE_MS);

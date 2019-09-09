@@ -19,6 +19,7 @@ _CORE_MODULE: _MODULE & {
 
 _I2C_MODULE: _MODULE & {
   i2c: true
+  init: false
 }
 
 _FIELD: {
