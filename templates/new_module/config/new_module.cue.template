@@ -1,0 +1,3 @@
+package config
+
+modules <%= name %>: _MODULE

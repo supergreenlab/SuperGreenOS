@@ -13,30 +13,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdlib.h>
-#include "{{name}}.h"
+#ifndef <%= name.toUpperCase() %>_H_
+#define <%= name.toUpperCase() %>_H_
 
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+void init_<%= name %>();
 
-#include "../core/kv/kv.h"
-#include "../core/log/log.h"
-
-static void {{name}}_task(void *param);
-
-void init_{{name}}() {
-  ESP_LOGI(SGO_LOG_EVENT, "@{{caps_name}} Initializing {{name}} module\n");
-
-  // TODO: write you setup code here
-
-  xTaskCreate({{name}}_task, "{{caps_name}}", 4096, NULL, 10, NULL);
-}
-
-static void {{name}}_task(void *param) {
-  while (true) {
-
-    // TODO: write your loop code here
-
-    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
-  }
-}
+#endif

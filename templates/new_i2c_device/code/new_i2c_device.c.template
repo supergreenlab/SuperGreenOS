@@ -13,10 +13,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef {{caps_name}}_H_
-#define {{caps_name}}_H_
+#include <stdlib.h>
+#include "<%= name %>.h"
+#include "driver/i2c.h"
 
-void init_{{name}}(int portId, int sda, int sck);
-void loop_{{name}}(int portId, int sda, int sck);
+#include "../core/kv/kv.h"
+#include "../core/log/log.h"
 
-#endif
+#define <%= name.toUpperCase() %>_ADDR 0x42
+
+void init_<%= name %>(int i2cId) {
+  ESP_LOGI(SGO_LOG_EVENT, "@<%= name.toUpperCase() %> Initializing <%= name %> i2c device\n");
+  // TODO: write you setup code here
+}
+
+void loop_<%= name %>(int i2cId) {
+  // start_i2c();
+  // TODO: write you i2c device read code here
+  // stop_i2c();
+}
