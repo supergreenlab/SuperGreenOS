@@ -21,6 +21,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include <float.h>
+#include <math.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -39,10 +40,11 @@
 #include "../state/state.h"
 #include "../box/box.h"
 
-#define LED_MIN_ZERO           (5)
-#define LED_DUTY_RESOLUTION 9
-#define LED_MIN_DUTY           (0)
-#define LED_MAX_DUTY           (511)
+#define LED_MIN_ZERO           5
+#define LED_DUTY_RESOLUTION    10
+#define LED_MIN_DUTY           0
+#define LED_MAX_DUTY           pow(2, LED_DUTY_RESOLUTION)
+#define LED_FREQ               40000
 
 int min_x = INT_MAX;
 int max_x = INT_MIN;
@@ -126,7 +128,7 @@ void init_led() {
     speed_mode:       LEDC_HIGH_SPEED_MODE,
     { duty_resolution:  LED_DUTY_RESOLUTION, },
     timer_num:        LEDC_TIMER_0,
-    freq_hz:          500,
+    freq_hz:          LED_FREQ,
   };
   ledc_timer_config(&ledc_timer);
 
