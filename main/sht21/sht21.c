@@ -29,112 +29,115 @@
 #define ACK_VAL 0x0
 #define NACK_VAL 0x1
 
-static uint16_t read_sht21(int portId);
+static uint16_t read_sht21(int i2cId);
 
-void init_sht21(int portId, int sda, int sck) {
+void init_sht21(int i2cId) {
   ESP_LOGI(SGO_LOG_EVENT, "@SHT21 Initializing sht21 i2c device\n");
   // TODO: write you setup code here
 }
 
-static bool send_sht21_cmd(int portId, uint8_t cmd_b) {
-  int boxId = portId;
+static bool send_sht21_cmd(int i2cId, uint8_t cmd_b) {
+  int port = get_i2c_port(i2cId);
 
   i2c_cmd_handle_t cmd = i2c_cmd_link_create();
   i2c_master_start(cmd);
   i2c_master_write_byte(cmd, SHT21_ADDR << 1 | I2C_MASTER_WRITE, ACK_CHECK_EN);
   i2c_master_write_byte(cmd, cmd_b, ACK_CHECK_EN);
-	i2c_master_stop(cmd);
+  i2c_master_stop(cmd);
 
-	esp_err_t ret = i2c_master_cmd_begin(portId, cmd, 1000 / portTICK_RATE_MS);
-	i2c_cmd_link_delete(cmd);
-	if (ret == ESP_ERR_TIMEOUT) {
-		ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Write bus is busy", boxId);
-		return false;
-	} else if (ret != ESP_OK) {
-		ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Write failed", boxId);
-		return false;
-	}
-	return true;
+  esp_err_t ret = i2c_master_cmd_begin(port, cmd, 1000 / portTICK_RATE_MS);
+  i2c_cmd_link_delete(cmd);
+  if (ret == ESP_ERR_TIMEOUT) {
+    ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Write bus is busy", i2cId);
+    return false;
+  } else if (ret != ESP_OK) {
+    ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Write failed", i2cId);
+    return false;
+  }
+  return true;
 }
 
 static bool crc_checksum(uint8_t data[], uint8_t no_of_bytes, uint8_t checksum);
-static uint16_t read_sht21(int portId) {
-  int boxId = portId;
+static uint16_t read_sht21(int i2cId) {
   uint8_t v[3] = {0};
+  int port = get_i2c_port(i2cId);
 
   i2c_cmd_handle_t cmd = i2c_cmd_link_create();
-	i2c_master_start(cmd);
-	i2c_master_write_byte(cmd, SHT21_ADDR << 1 | I2C_MASTER_READ, ACK_CHECK_EN);
-	i2c_master_read_byte(cmd, &v[0], ACK_VAL);
-	i2c_master_read_byte(cmd, &v[1], ACK_VAL);
-	i2c_master_read_byte(cmd, &v[2], NACK_VAL);
-	i2c_master_stop(cmd);
+  i2c_master_start(cmd);
+  i2c_master_write_byte(cmd, SHT21_ADDR << 1 | I2C_MASTER_READ, ACK_CHECK_EN);
+  i2c_master_read_byte(cmd, &v[0], ACK_VAL);
+  i2c_master_read_byte(cmd, &v[1], ACK_VAL);
+  i2c_master_read_byte(cmd, &v[2], NACK_VAL);
+  i2c_master_stop(cmd);
 
-	esp_err_t ret = i2c_master_cmd_begin(portId, cmd, 1000 / portTICK_RATE_MS);
-	i2c_cmd_link_delete(cmd);
-	if (ret == ESP_ERR_TIMEOUT) {
-		ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Read bus is busy", boxId);
-		return 255;
-	} else if (ret != ESP_OK) {
-		ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Read failed", boxId);
-		return 255;
-	}
+  esp_err_t ret = i2c_master_cmd_begin(port, cmd, 1000 / portTICK_RATE_MS);
+  i2c_cmd_link_delete(cmd);
+  if (ret == ESP_ERR_TIMEOUT) {
+    ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Read bus is busy", i2cId);
+    return 255;
+  } else if (ret != ESP_OK) {
+    ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Read failed", i2cId);
+    return 255;
+  }
 
-	if(!crc_checksum(v, 2, v[2])) {
-		//reset();
-		ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Wrong crc", boxId);
-		return 255;
-	}
+  if(!crc_checksum(v, 2, v[2])) {
+    //reset();
+    ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Wrong crc", i2cId);
+    return 255;
+  }
 
-	return (v[0] << 8) | v[1];
+  return (v[0] << 8) | v[1];
 }
 
-void loop_sht21(int portId, int sda, int sck) {
-  int boxId = portId;
+void loop_sht21(int i2cId) {
+  start_i2c(i2cId);
 
-  start_i2c(portId);
+  {
+    if (!send_sht21_cmd(i2cId, TRIGGER_TEMP_MEASURE_NOHOLD)) {
+      set_sht21_present(i2cId, 0);
+      stop_i2c(i2cId);
+      return;
+    }
+    vTaskDelay(100 / portTICK_RATE_MS);
+    int16_t v = read_sht21(i2cId);
+    if (v != 255) {
+      v &= ~0x0003;
+      float vd = -46.85 + 175.72 * (float)(v) / 65536.0;
+      set_sht21_temp(i2cId, vd);
+      set_sht21_present(i2cId, 1);
+    }
+  }
+  vTaskDelay(500 / portTICK_RATE_MS);
+  {
+    if (!send_sht21_cmd(i2cId, TRIGGER_HUMD_MEASURE_NOHOLD)) {
+      set_sht21_present(i2cId, 0);
+      stop_i2c(i2cId);
+      return;
+    }
+    vTaskDelay(100 / portTICK_RATE_MS);
+    uint16_t v = read_sht21(i2cId);
+    if (v != 255) {
+      v &= ~0x0003;
+      float vd = -6.0 + 125.0 * (float)(v) / 65536.0;
+      set_sht21_humi(i2cId, vd);
+      set_sht21_present(i2cId, 1);
+    }
+  }
 
-	{
-		if (!send_sht21_cmd(portId, TRIGGER_TEMP_MEASURE_NOHOLD)) {
-			return;
-		}
-		vTaskDelay(100 / portTICK_RATE_MS);
-		int16_t v = read_sht21(portId);
-		if (v != 255) {
-			v &= ~0x0003;
-			float vd = -46.85 + 175.72 * (float)(v) / 65536.0;
-			set_box_sht21_temp_c(boxId, vd);
-			set_box_sht21_temp_f(boxId, vd * (9.0f/5.0f) + 32.0f);
-		}
-	}
-	vTaskDelay(500 / portTICK_RATE_MS);
-	{
-		if (!send_sht21_cmd(portId, TRIGGER_HUMD_MEASURE_NOHOLD)) {
-			return;
-		}
-		vTaskDelay(100 / portTICK_RATE_MS);
-		uint16_t v = read_sht21(portId);
-		if (v != 255) {
-			v &= ~0x0003;
-			float vd = -6.0 + 125.0 * (float)(v) / 65536.0;
-			set_box_sht21_humi(boxId, vd);
-		}
-	}
-
-  stop_i2c(portId);
+  stop_i2c(i2cId);
 }
 
 const uint16_t POLYNOMIAL = 0x131;
 static bool crc_checksum(uint8_t data[], uint8_t no_of_bytes, uint8_t checksum) {
-	uint8_t crc = 0;
-	uint8_t byteCtr;
+  uint8_t crc = 0;
+  uint8_t byteCtr;
 
-	for (byteCtr = 0; byteCtr < no_of_bytes; ++byteCtr)
-	{ crc ^= (data[byteCtr]);
-		for (uint8_t bit = 8; bit > 0; --bit)
-		{ if (crc & 0x80) crc = (crc << 1) ^ POLYNOMIAL;
-			else crc = (crc << 1);
-		}
-	}
-	return crc == checksum;
+  for (byteCtr = 0; byteCtr < no_of_bytes; ++byteCtr)
+  { crc ^= (data[byteCtr]);
+    for (uint8_t bit = 8; bit > 0; --bit)
+    { if (crc & 0x80) crc = (crc << 1) ^ POLYNOMIAL;
+      else crc = (crc << 1);
+    }
+  }
+  return crc == checksum;
 }

@@ -2,910 +2,927 @@
 <html>
   <head>
     <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>SuperGreenDriver</title>
-     <style type="text/css">
+    <style type="text/css">
       /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-      
-      /* Document
-         ========================================================================== */
-      
-      /**
-       * 1. Correct the line height in all browsers.
-       * 2. Prevent adjustments of font size after orientation changes in iOS.
-       */
-      
-      html {
-        line-height: 1.15; /* 1 */
-        -webkit-text-size-adjust: 100%; /* 2 */
-      }
-      
-      /* Sections
-         ========================================================================== */
-      
-      /**
-       * Remove the margin in all browsers.
-       */
-      
-      body {
-        margin: 0;
-      }
-      
-      /**
-       * Render the `main` element consistently in IE.
-       */
-      
-      main {
-        display: block;
-      }
-      
-      /**
-       * Correct the font size and margin on `h1` elements within `section` and
-       * `article` contexts in Chrome, Firefox, and Safari.
-       */
-      
-      h1 {
-        font-size: 2em;
-        margin: 0.67em 0;
-      }
-      
-      /* Grouping content
-         ========================================================================== */
-      
-      /**
-       * 1. Add the correct box sizing in Firefox.
-       * 2. Show the overflow in Edge and IE.
-       */
-      
-      hr {
-        box-sizing: content-box; /* 1 */
-        height: 0; /* 1 */
-        overflow: visible; /* 2 */
-      }
-      
-      /**
-       * 1. Correct the inheritance and scaling of font size in all browsers.
-       * 2. Correct the odd `em` font sizing in all browsers.
-       */
-      
-      pre {
-        font-family: monospace, monospace; /* 1 */
-        font-size: 1em; /* 2 */
-      }
-      
-      /* Text-level semantics
-         ========================================================================== */
-      
-      /**
-       * Remove the gray background on active links in IE 10.
-       */
-      
-      a {
-        background-color: transparent;
-      }
-      
-      /**
-       * 1. Remove the bottom border in Chrome 57-
-       * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
-       */
-      
-      abbr[title] {
-        border-bottom: none; /* 1 */
-        text-decoration: underline; /* 2 */
-        text-decoration: underline dotted; /* 2 */
-      }
-      
-      /**
-       * Add the correct font weight in Chrome, Edge, and Safari.
-       */
-      
-      b,
-      strong {
-        font-weight: bolder;
-      }
-      
-      /**
-       * 1. Correct the inheritance and scaling of font size in all browsers.
-       * 2. Correct the odd `em` font sizing in all browsers.
-       */
-      
-      code,
-      kbd,
-      samp {
-        font-family: monospace, monospace; /* 1 */
-        font-size: 1em; /* 2 */
-      }
-      
-      /**
-       * Add the correct font size in all browsers.
-       */
-      
-      small {
-        font-size: 80%;
-      }
-      
-      /**
-       * Prevent `sub` and `sup` elements from affecting the line height in
-       * all browsers.
-       */
-      
-      sub,
-      sup {
-        font-size: 75%;
-        line-height: 0;
-        position: relative;
-        vertical-align: baseline;
-      }
-      
-      sub {
-        bottom: -0.25em;
-      }
-      
-      sup {
-        top: -0.5em;
-      }
-      
-      /* Embedded content
-         ========================================================================== */
-      
-      /**
-       * Remove the border on images inside links in IE 10.
-       */
-      
-      img {
-        border-style: none;
-      }
-      
-      /* Forms
-         ========================================================================== */
-      
-      /**
-       * 1. Change the font styles in all browsers.
-       * 2. Remove the margin in Firefox and Safari.
-       */
-      
-      button,
-      input,
-      optgroup,
-      select,
-      textarea {
-        font-family: inherit; /* 1 */
-        font-size: 100%; /* 1 */
-        line-height: 1.15; /* 1 */
-        margin: 0; /* 2 */
-      }
-      
-      /**
-       * Show the overflow in IE.
-       * 1. Show the overflow in Edge.
-       */
-      
-      button,
-      input { /* 1 */
-        overflow: visible;
-      }
-      
-      /**
-       * Remove the inheritance of text transform in Edge, Firefox, and IE.
-       * 1. Remove the inheritance of text transform in Firefox.
-       */
-      
-      button,
-      select { /* 1 */
-        text-transform: none;
-      }
-      
-      /**
-       * Correct the inability to style clickable types in iOS and Safari.
-       */
-      
-      button,
-      [type="button"],
-      [type="reset"],
-      [type="submit"] {
-        -webkit-appearance: button;
-      }
-      
-      /**
-       * Remove the inner border and padding in Firefox.
-       */
-      
-      button::-moz-focus-inner,
-      [type="button"]::-moz-focus-inner,
-      [type="reset"]::-moz-focus-inner,
-      [type="submit"]::-moz-focus-inner {
-        border-style: none;
-        padding: 0;
-      }
-      
-      /**
-       * Restore the focus styles unset by the previous rule.
-       */
-      
-      button:-moz-focusring,
-      [type="button"]:-moz-focusring,
-      [type="reset"]:-moz-focusring,
-      [type="submit"]:-moz-focusring {
-        outline: 1px dotted ButtonText;
-      }
-      
-      /**
-       * Correct the padding in Firefox.
-       */
-      
-      fieldset {
-        padding: 0.35em 0.75em 0.625em;
-      }
-      
-      /**
-       * 1. Correct the text wrapping in Edge and IE.
-       * 2. Correct the color inheritance from `fieldset` elements in IE.
-       * 3. Remove the padding so developers are not caught out when they zero out
-       *    `fieldset` elements in all browsers.
-       */
-      
-      legend {
-        box-sizing: border-box; /* 1 */
-        color: inherit; /* 2 */
-        display: table; /* 1 */
-        max-width: 100%; /* 1 */
-        padding: 0; /* 3 */
-        white-space: normal; /* 1 */
-      }
-      
-      /**
-       * Add the correct vertical alignment in Chrome, Firefox, and Opera.
-       */
-      
-      progress {
-        vertical-align: baseline;
-      }
-      
-      /**
-       * Remove the default vertical scrollbar in IE 10+.
-       */
-      
-      textarea {
-        overflow: auto;
-      }
-      
-      /**
-       * 1. Add the correct box sizing in IE 10.
-       * 2. Remove the padding in IE 10.
-       */
-      
-      [type="checkbox"],
-      [type="radio"] {
-        box-sizing: border-box; /* 1 */
-        padding: 0; /* 2 */
-      }
-      
-      /**
-       * Correct the cursor style of increment and decrement buttons in Chrome.
-       */
-      
-      [type="number"]::-webkit-inner-spin-button,
-      [type="number"]::-webkit-outer-spin-button {
-        height: auto;
-      }
-      
-      /**
-       * 1. Correct the odd appearance in Chrome and Safari.
-       * 2. Correct the outline style in Safari.
-       */
-      
-      [type="search"] {
-        -webkit-appearance: textfield; /* 1 */
-        outline-offset: -2px; /* 2 */
-      }
-      
-      /**
-       * Remove the inner padding in Chrome and Safari on macOS.
-       */
-      
-      [type="search"]::-webkit-search-decoration {
-        -webkit-appearance: none;
-      }
-      
-      /**
-       * 1. Correct the inability to style clickable types in iOS and Safari.
-       * 2. Change font properties to `inherit` in Safari.
-       */
-      
-      ::-webkit-file-upload-button {
-        -webkit-appearance: button; /* 1 */
-        font: inherit; /* 2 */
-      }
-      
-      /* Interactive
-         ========================================================================== */
-      
-      /*
-       * Add the correct display in Edge, IE 10+, and Firefox.
-       */
-      
-      details {
-        display: block;
-      }
-      
-      /*
-       * Add the correct display in all browsers.
-       */
-      
-      summary {
-        display: list-item;
-      }
-      
-      /* Misc
-         ========================================================================== */
-      
-      /**
-       * Add the correct display in IE 10+.
-       */
-      
-      template {
-        display: none;
-      }
-      
-      /**
-       * Add the correct display in IE 10.
-       */
-      
-      [hidden] {
-        display: none;
-      }
-      
-      body, html {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        padding: 0; margin: 0;
-        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-        min-height: 100vh;
-      }
-      
-      /**
-       * Header stuffs
-       */
-      
-      #header {
-        display: flex;
-        padding: 10pt;
-        align-items: center;
-        justify-content: space-between;
-      }
-      
-      #header h3 {
-        display: inline;
-      }
-      
-      .hidden {
-        display: none !important;
-      }
-      
-      /* left part */
-      
-      #device_name {
-        display: block;
-      }
-      
-      /* right part */
-      
-      #controller_infos {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .status_box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      /**
-       * Menu
-       */
-      
-      #menu {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        list-style-type: none;
-        background-color: #333333;
-      }
-      
-      #menu li {
-        float: left;
-      }
-      
-      #menu li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 16px;
-        text-decoration: none;
-      }
-      
-      #menu li a:hover {
-        background-color: #111111;
-      }
-      
-      #menu li.selected {
-        background-color: #111111;
-      }
-      
-      /**
-       * Box stuffs
-       */
-      
-      #box {
-      }
-      
-      #box_advance {
-        overflow-y: auto;
-      }
-      
-      /**
-       * Controller
-       */
-      
-      #controller {
-        border-top: 1px solid #ababab;
-        background-color: #efefef;
-        overflow: hidden;
-      }
-      
-      .controller_hidden {
-        max-height: 0;
-        transition: max-height 0.3s ease-out;
-      }
-      
-      .controller_visible {
-        max-height: 100000px;
-        transition: max-height 0.3s ease-in;
-      }
-      
-      /**
-       * Common
-       */
-      
-      .params {
-        flex: 1;
-        display: flex;
-      }
-      
-      .param_list {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        margin: 5pt;
-        max-width: 50%;
-      }
-      
-      .param {
-        display: flex;
-        align-items: center;
-        word-wrap: break-word;
-        margin: 3pt;
-      }
-      
-      .param label, .param b {
-        display: block;
-        flex: 1;
-      }
-      
-      .param span {
-        overflow-x: auto;
-      }
-      
-      .param_loading {
-        opacity: 0.5;
-      }
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+
+
+body, html {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0; margin: 0;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  min-height: 100vh;
+  color: #717171;
+}
+
+.menu {
+  display: flex;
+}
+
+.modules > .menu_item_modules, .system > .menu_item_system {
+  color: white;
+  background-color: #717171;
+}
+
+.menu_item_modules, .menu_item_system {
+  cursor: pointer;
+  padding: 10pt 10pt;
+}
+
+.params {
+  display: flex;
+  flex-direction: column;
+}
+
+.section_title {
+  margin: 20pt 10pt;
+}
+
+@media only screen and (max-width: 800px) {
+  .section_title {
+    text-align: center;
+    font-size: 1.2em;
+  }
+}
+
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.fields > div {
+  flex-basis: 25%;
+}
+
+@media only screen and (max-width: 800px) {
+  .fields > div {
+    flex-basis: 100%;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  padding: 10pt 20pt;
+}
+
+.ro {
+  flex-direction: row;
+}
+
+.ro > .value {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  font-weight: 800;
+}
+
+@media only screen and (max-width: 800px) {
+  .field {
+    padding: 10pt 0pt;
+  }
+}
+
+.field > label {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 10pt;
+}
+
+.loading > .value {
+  opacity: 0.5;
+}
+
+.error {
+  color: red;
+}
+
+.modified > label::after {
+  content: '*'
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10pt 0;
+}
+
+.pagination > a {
+  font-weight: 800;
+  margin: 0 5pt;
+  color: #717171;
+}
+
+.selected {
+  font-size: 1.3em;
+  text-decoration: none;
+  color: black !important;
+}
+
+.module_title {
+  font-size: 1.1em;
+  padding-bottom: 5pt;
+  border-bottom: 1pt solid #ececec;
+}
+
+@media only screen and (max-width: 800px) {
+  .module_title {
+    font-size: 1em;
+  }
+}
+
+.module {
+  padding: 10pt 10pt;
+  background-color: #f5f5f5;
+  margin: 5pt;
+  border-radius: 5pt;
+}
+
+.array_title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10pt 10pt;
+  text-transform: uppercase;
+  border-bottom: 1pt solid #ececec;
+  background-color: #717171;
+  color: white;
+}
+
+.array_title > h2 {
+  font-size: 1.1em;
+}
+
+@media only screen and (max-width: 800px) {
+  .array_title > h2 {
+    font-size: 1em;
+  }
+  .array_title > a {
+    font-size: 0.7em;
+  }
+}
+
+.array_title > a {
+  margin: 0 10pt;
+  color: white;
+}
+
+.array_container {
+  margin: 20pt 20pt;
+}
+
+@media only screen and (max-width: 800px) {
+  .array_container {
+    margin: 10pt 10pt;
+  }
+}
+
     </style>
   </head>
   <body>
-    <div id='header'>
-    <div>
-      <h3 id='device_name'></h3>&nbsp;<a href='javascript:void(0)' onclick='onToggleControllerSettings()'>Settings</a>
-    </div>
-    <div id='controller_infos'>
-      <div class='status_box'>
-        <span id='state'></span>
-      </div>
-      &nbsp;
-      <div class='status_box'>
-        <span id='wifi_status'>-</span>
-      </div>
-    </div>
-    </div>
-    <div id='controller' class='controller_hidden'>
-      <div class='params' id='controller_readonly'>
-        <div class='param_list' id='controller_readonly_0'>
-          loading...
-        </div>
-        <div class='param_list' id='controller_readonly_1'>
-          loading...
-        </div>
-      </div>
-      <div class='params' id='controller_advance'>
-        <div class='param_list' id='controller_advance_0'>
-          loading...
-        </div>
-        <div class='param_list' id='controller_advance_1'>
-          loading...
-        </div>
-      </div>
-    </div>
-    <div>
-      <ul id='menu'>
-        <li id='box_tab_0' class='selected'><a href='javascript:void(0)' onclick='onMenuTabSelected(this.parentNode)'>Box 1</a></li>
-        <li id='box_tab_1'><a href='javascript:void(0)' onclick='onMenuTabSelected(this.parentNode)'>Box 2</a></li>
-        <li id='box_tab_2'><a href='javascript:void(0)' onclick='onMenuTabSelected(this.parentNode)'>Box 3</a></li>
-        <li id='led_tab'><a href='javascript:void(0)' onclick='onMenuTabSelected(this.parentNode)'>Leds</a></li>
-      </ul>
-      
-      <div id='leds' class='hidden'>
-        <div class='params' id='led_advance'>
-          <div class='param_list' id='led_advance_0'>
-            loading...
-          </div>
-          <div class='param_list' id='led_advance_1'>
-            loading...
-          </div>
-        </div>
-      </div>
-      <div id='box'>
-        <div class='params' id='box_readonly'>
-          <div class='param_list' id='box_readonly_0'>
-            loading...
-          </div>
-          <div class='param_list' id='box_readonly_1'>
-            loading...
-          </div>
-        </div>
-        <div class='params' id='box_advance'>
-          <div class='param_list' id='box_advance_0'>
-            loading...
-          </div>
-          <div class='param_list' id='box_advance_1'>
-            loading...
-          </div>
-        </div>
-      </div>
+    <div id='body'>
     </div>
     <script>
-      (function() {
-        document.body.onload = function() {
-          let config = {}
-          
-          const fetchConfig = async function() {
-            return new Promise(function(resolve, reject) {
-              const r = new XMLHttpRequest()
-              r.open('GET', '/fs/config.json', true)
-              r.onreadystatechange = function () {
-                if (r.readyState != 4) return
-                if (r.status != 200) {
-                  reject(r.status, r.responseText)
-                  return
-                }
-                resolve(JSON.parse(r.responseText))
-              }
-              r.send()
-            })
+      const URL = 'http://192.168.1.11'
+const DEBUG = false
+
+const schedule_promise = (n, retries) => {
+  let loading_param_promise = Promise.resolve(),
+      promises = []
+  return function(req_func, ret_func) {
+    let resolve, reject
+    const p = new Promise((res, rej) => {resolve = res; reject = rej})
+    loading_param_promise.then(async () => {
+      let error
+      for (let i = 0; i < retries; ++i) {
+        try {
+          resolve(await req_func())
+          return
+        } catch(e) {
+          error = e
+          if (e.status == 404) {
+            break
           }
-          
-          const fetchParam = async function(type, paramName) {
-            return new Promise(function(resolve, reject) {
-              const r = new XMLHttpRequest()
-              r.open('GET', '/'+type+'?k='+paramName, true)
-              r.onreadystatechange = function () {
-                if (r.readyState != 4) return
-                if (r.status != 200) {
-                  reject(r.status, r.responseText)
-                  return
-                }
-                if (type == 'i') {
-                  resolve(parseInt(r.responseText))
-                } else {
-                  resolve(r.responseText);
-                }
-              }
-              r.send()
-            })
-          }
-          
-          const updateParam = async function(type, paramName, value) {
-            return new Promise(function(resolve, reject) {
-              const r = new XMLHttpRequest()
-              r.open('POST', `/${type}?k=${paramName}&v=${value}`, true)
-              r.onreadystatechange = function () {
-                if (r.readyState != 4) return
-                if (r.status != 200) {
-                  reject(r.status, r.responseText)
-                  return
-                }
-                resolve(r.responseText);
-              }
-              r.send()
-            })
-          }
-          
-          const updateDiv = function(id, value) {
-            document.getElementById(id).innerText = value
-          }
-          window.onSubmitBoxParam = async function(keyId) {
-            const key = config.keys[keyId]
-            let value = document.getElementById(`value_${key.caps_name}`).value
-            document.getElementById(`param_${key.caps_name}`).classList.add('param_loading')
-            await updateParam(key.integer ? 'i' : 's', `${key.caps_name}`, value)
-            value = await fetchParam(key.integer ? 'i' : 's', key.caps_name)
-            document.getElementById(`value_${key.caps_name}`).value = value
-            document.getElementById(`param_${key.caps_name}`).classList.remove('param_loading')
-          }
-          
-          const loadBoxParams = async function(id) {
-            let p = Promise.resolve()
-            for (let i = 0; i < config.keys.length; ++i) {
-              const key = config.keys[i]
-              if (!key.box || key.box.index != id || !key.http) continue
-              const np = p.then(((keyId, key) => async () => {
-                const value = await fetchParam(key.integer ? 'i' : 's', key.caps_name)
-                document.getElementById(`param_${key.caps_name}`).classList.remove('param_loading')
-                const el = document.getElementById(`value_${key.caps_name}`)
-                if (el.value) {
-                  el.value = value
-                } else {
-                  el.innerText = value
-                }
-              })(i, key))
-              if (i % 3 == 0) {
-                p = np;
-              }
-            }
-            return p
-          }
-          
-          const renderBoxReadonly = async function(id) {
-            let html = []
-            for (let i = 0; i < config.keys.length; ++i) {
-              const key = config.keys[i]
-              if (!key.box || key.box.index != id || !key.http || key.http.write) continue
-              // replace with mustache template
-              html.push(`<div class='param param_loading' id='param_${key.caps_name}'>
-                    <b>${key.box.param}:</b>&nbsp;<span id='value_${key.caps_name}'>-</span>
-                </div>`)
-            }
-            document.getElementById('box_readonly_0').innerHTML = html.sort().slice(0, html.length / 2).join('')
-            document.getElementById('box_readonly_1').innerHTML = html.sort().slice(html.length / 2).join('')
-          }
-          
-          const renderBoxAdvance = async function(id) {
-            let html = []
-            for (let i = 0; i < config.keys.length; ++i) {
-              const key = config.keys[i]
-              if (!key.box || key.box.index != id || !key.http || !key.http.write) continue
-              // replace with mustache template
-              html.push(`<div class='param_loading' id='param_${key.caps_name}'>
-                  <form class='param' onSubmit='onSubmitBoxParam(${i}); return false'>
-                    <label for='${key.caps_name}'>${key.box.param}</label>
-                    <input type='text' value='-' name='${key.caps_name}' id='value_${key.caps_name}' />
-                  </form>
-          
-                </div>`)
-            }
-            document.getElementById('box_advance_0').innerHTML = html.sort().slice(0, html.length / 2).join('')
-            document.getElementById('box_advance_1').innerHTML = html.sort().slice(html.length / 2).join('')
-          }
-          
-          const renderBox = async function(id) {
-            renderBoxReadonly(id)
-            renderBoxAdvance(id)
-            await loadBoxParams(id);
-          }
-          window.onSubmitLedParam = async function(keyId) {
-            const key = config.keys[keyId]
-            let value = document.getElementById(`value_${key.caps_name}`).value
-            document.getElementById(`param_${key.caps_name}`).classList.add('param_loading')
-            await updateParam(key.integer ? 'i' : 's', `${key.caps_name}`, value)
-            value = await fetchParam(key.integer ? 'i' : 's', key.caps_name)
-            document.getElementById(`value_${key.caps_name}`).value = value
-            document.getElementById(`param_${key.caps_name}`).classList.remove('param_loading')
-          }
-          
-          const loadLedParams = async function() {
-            let p = Promise.resolve(), c = 0
-          
-            for (let j = 0; j < config.led_loop_i.length; ++j) {
-              for (let i = 0; i < config.keys.length; ++i) {
-                const key = config.keys[i]
-                if (!key.led || key.led.index != j || !key.http) continue
-                const np = p.then(((keyId, key) => async () => {
-                  const value = await fetchParam(key.integer ? 'i' : 's', key.caps_name)
-                  document.getElementById(`param_${key.caps_name}`).classList.remove('param_loading')
-                  const el = document.getElementById(`value_${key.caps_name}`)
-                  if (el.value) {
-                    el.value = value
-                  } else {
-                    el.innerText = value
-                  }
-                })(i, key))
-                if ((c++) % 3 == 0) {
-                  p = np;
-                }
-              }
-            }
-            return p
-          }
-          
-          const renderLedAdvance = async function() {
-            let html = []
-            for (let j = 0; j < config.led_loop_i.length; ++j) {
-              let led_html = `<h3>Led ${j+1}</h3>`
-              for (let i = 0; i < config.keys.length; ++i) {
-                const key = config.keys[i]
-                if (!key.led || key.led.index != j || !key.http || !key.http.write) continue
-                // replace with mustache template
-                led_html += `<div class='param_loading' id='param_${key.caps_name}'>
-                  <form class='param' onSubmit='onSubmitLedParam(${i}); return false'>
-                    <label for='${key.caps_name}'>${key.led.param}</label>
-                    <input type='text' value='-' name='${key.caps_name}' id='value_${key.caps_name}' />
-                  </form>
-          
-                </div>`
-              }
-              html.push(`<div class='param_list'>${led_html}</div>`)
-            }
-            document.getElementById('led_advance_0').innerHTML = html.sort().slice(0, html.length / 2).join('')
-            document.getElementById('led_advance_1').innerHTML = html.sort().slice(html.length / 2).join('')
-          }
-          
-          const renderLeds = async function() {
-            renderLedAdvance()
-            await loadLedParams()
-          }
-          window.onSubmitControllerParam = async function(keyId) {
-            const key = config.keys[keyId]
-            let value = document.getElementById(`value_${key.caps_name}`).value
-            document.getElementById(`param_${key.caps_name}`).classList.add('param_loading')
-            await updateParam(key.integer ? 'i' : 's', `${key.caps_name}`, value)
-            value = await fetchParam(key.integer ? 'i' : 's', key.caps_name)
-            document.getElementById(`value_${key.caps_name}`).value = value
-            document.getElementById(`param_${key.caps_name}`).classList.remove('param_loading')
-          }
-          
-          const loadControllerParams = async function() {
-            let p = Promise.resolve()
-            for (let i = 0; i < config.keys.length; ++i) {
-              const key = config.keys[i]
-              if (key.led || key.box || !key.http) continue
-              const np = p.then(((keyId, key) => async () => {
-                const value = await fetchParam(key.integer ? 'i' : 's', key.caps_name)
-                document.getElementById(`param_${key.caps_name}`).classList.remove('param_loading')
-                const el = document.getElementById(`value_${key.caps_name}`)
-                if (el.value) {
-                  el.value = value
-                } else {
-                  el.innerText = value
-                }
-              })(i, key))
-              if (i % 3 == 0) {
-                p = np;
-              }
-            }
-            return p
-          }
-          
-          const renderControllerReadonly = async function() {
-            let html = []
-            for (let i = 0; i < config.keys.length; ++i) {
-              const key = config.keys[i]
-              if (key.led || key.box || !key.http || key.http.write) continue
-              // replace with mustache template
-              html.push(`<div class='param param_loading' id='param_${key.caps_name}'>
-                    <b>${key.name}:</b>&nbsp;<span id='value_${key.caps_name}'>-</span>
-                </div>`)
-            }
-            document.getElementById('controller_readonly_0').innerHTML = html.sort().slice(0, html.length / 2).join('')
-            document.getElementById('controller_readonly_1').innerHTML = html.sort().slice(html.length / 2).join('')
-          }
-          
-          const renderControllerAdvance = async function() {
-            let html = []
-            for (let i = 0; i < config.keys.length; ++i) {
-              const key = config.keys[i]
-              if (key.led || key.box || !key.http || !key.http.write) continue
-              // replace with mustache template
-              html.push(`<div class='param_loading' id='param_${key.caps_name}'>
-                  <form class='param' onSubmit='onSubmitControllerParam(${i}); return false'>
-                    <label for='${key.caps_name}'>${key.name}</label>
-                    <input type='text' value='-' name='${key.caps_name}' id='value_${key.caps_name}' />
-                  </form>
-          
-                </div>`)
-            }
-            document.getElementById('controller_advance_0').innerHTML = html.sort().slice(0, html.length / 2).join('')
-            document.getElementById('controller_advance_1').innerHTML = html.sort().slice(html.length / 2).join('')
-          }
-          
-          window.onToggleControllerSettings = function() {
-            var el = document.getElementById('controller')
-            if (el.classList.contains('controller_visible')) {
-              el.classList.remove('controller_visible')
-              el.classList.add('controller_hidden')
-            } else {
-              el.classList.add('controller_visible')
-              el.classList.remove('controller_hidden')
-            }
-          }
-          
-          const renderController = async function() {
-            renderControllerReadonly()
-            renderControllerAdvance()
-            await loadControllerParams();
-          }
-          
-          const updateHeader = async function() {
-            const device_name = await fetchParam('s', 'DEVICE_NAME')
-            updateDiv('device_name', device_name)
-          
-            const state = await fetchParam('i', 'STATE')
-            if (state == 0) {
-              updateDiv('state', 'First run')
-            } else if (state == 2) {
-              updateDiv('state', 'Running')
-            }
-          
-            const wifi_status = await fetchParam('i', 'WIFI_STATUS')
-            if (wifi_status == 5) {
-              const ip = await fetchParam('s', 'WIFI_IP')
-              updateDiv('wifi_status', `AP (${ip})`)
-            } else if (wifi_status == 3) {
-              const ip = await fetchParam('s', 'WIFI_IP')
-              updateDiv('wifi_status', `STA (${ip})`)
-            } else {
-              updateDiv('wifi_status', '-')
-            }
-          }
-          
-          let lastMenuEl = document.getElementById('box_tab_0')
-          window.onMenuTabSelected = function(el) {
-            if (lastMenuEl == el) return
-            if (lastMenuEl) {
-              lastMenuEl.classList.remove('selected')
-            }
-            lastMenuEl = el
-            lastMenuEl.classList.add('selected')
-            console.log(el.id)
-            if (el.id == 'box_tab_0') {
-              document.getElementById('leds').classList.add('hidden')
-              document.getElementById('box').classList.remove('hidden')
-              renderBox(0)
-            } else if (el.id == 'box_tab_1') {
-              document.getElementById('leds').classList.add('hidden')
-              document.getElementById('box').classList.remove('hidden')
-              renderBox(1)
-            } else if (el.id == 'box_tab_2') {
-              renderBox(2)
-              document.getElementById('leds').classList.add('hidden')
-              document.getElementById('box').classList.remove('hidden')
-            } else if (el.id == 'led_tab') {
-              renderLeds()
-              document.getElementById('leds').classList.remove('hidden')
-              document.getElementById('box').classList.add('hidden')
-            }
-          }
-          
-          async function start() {
-            config = await fetchConfig()
-            updateHeader()
-            await renderBox(0)
-            await renderController()
-          }
-          
-          start()
+          ret_func && ret_func(e, i + 1)
         }
-      })()
+      }
+      reject(error)
+    })
+    promises.push(p)
+    if (promises.length >= n) {
+      loading_param_promise = Promise.all(promises).catch((e) => {
+        console.log('promise.all', e)
+      })
+      promises = []
+    }
+
+    return p
+  }
+}
+const fetchQueue = schedule_promise(3, 3)
+
+const fetchConfig = async function() {
+  return new Promise(function(resolve, reject) {
+    const r = new XMLHttpRequest()
+    r.open('GET', DEBUG ? '/config.json' : '/fs/config.json', true)
+    r.onreadystatechange = function () {
+      if (r.readyState != 4) return
+      if (r.status != 200) {
+        reject(r.status, r.responseText)
+        return
+      }
+      resolve(JSON.parse(r.responseText))
+    }
+    r.send()
+  })
+}
+
+const fetchParam = async function(type, paramName) {
+  return fetchQueue(() => new Promise(function(resolve, reject) {
+    const r = new XMLHttpRequest()
+    r.open('GET', `${DEBUG ? URL : ''}/${type}?k=${paramName}`, true)
+    r.onreadystatechange = function () {
+      if (r.readyState != 4) return
+      if (r.status != 200) {
+        reject(r.status, r.responseText)
+        return
+      }
+      if (type == 'i') {
+        resolve(parseInt(r.responseText))
+      } else {
+        resolve(r.responseText);
+      }
+    }
+    r.send()
+  }))
+}
+
+const updateParam = async function(type, paramName, value) {
+  return fetchQueue(() => new Promise(function(resolve, reject) {
+    const r = new XMLHttpRequest()
+    r.open('POST', `${DEBUG ? URL : ''}/${type}?k=${paramName}&v=${value}`, true)
+    r.onreadystatechange = function () {
+      if (r.readyState != 4) return
+      if (r.status != 200) {
+        reject(r.status, r.responseText)
+        return
+      }
+      resolve(r.responseText);
+    }
+    r.send()
+  }))
+}
+
+      let config = {}
+let arrays = {}
+
+function moduleTitle(text) {
+  const title = document.createElement('h3')
+  title.setAttribute('class', 'module_title')
+  title.innerText = text
+  return title
+}
+
+function arrayTitle(text, onShowHide) {
+  const body = document.createElement('div')
+  body.setAttribute('class', 'array_title')
+  const title = document.createElement('h2')
+  title.innerText = text
+  body.appendChild(title)
+  const expand = document.createElement('a')
+  expand.innerText = 'show/hide'
+  expand.setAttribute('href', 'javascript:void(0)')
+  expand.addEventListener('click', onShowHide)
+  body.appendChild(expand)
+  return body
+}
+
+function renderField(title, field) {
+  const body = document.createElement('div')
+
+  const label = document.createElement('label')
+  label.innerText = title
+  body.appendChild(label)
+
+  const error = document.createElement('div')
+  error.setAttribute('class', 'error')
+
+  let setValue, currentValue
+  const fetchField = () => {
+    fetchParam(field.type.charAt(0), field.caps_name)
+    .then(v => {
+      currentValue = v
+      setValue(v)
+      body.setAttribute('class', body.getAttribute('class').replace('loading', ''))
+      error.innerText = ''
+    })
+    .catch((e) => {
+      error.innerText = `Failed to load ${field.name}`;
+    })
+  }
+  
+  if (field.write && !field.indir) {
+    body.setAttribute('class', 'field')
+    const input = document.createElement('input')
+    input.setAttribute('class', 'value')
+    input.addEventListener('keyup', (e) => {
+      let value = e.target.value
+      if (field.type == 'integer') {
+        value = parseInt(e.target.value)
+        if (isNaN(value)) {
+          return
+        }
+      }
+      if (e.keyCode == 13) {
+        body.setAttribute('class', 'field loading')
+        updateParam(field.type.charAt(0), field.caps_name, value)
+          .then(() => {
+            body.setAttribute('class', 'field')
+            fetchField()
+            error.innerText = ''
+          })
+          .catch(() => {
+            error.innerText = `Failed to update ${field.name}`
+          })
+      } else {
+        error.innerText = ''
+        if (currentValue != value) {
+          body.setAttribute('class', 'field modified')
+        } else {
+          body.setAttribute('class', 'field')
+        }
+      }
+    })
+    body.appendChild(input)
+    setValue = (v) => {input.value = v}
+  } else if (field.write && field.indir) {
+    body.setAttribute('class', 'field')
+    const input = document.createElement('select')
+    input.setAttribute('class', 'value')
+    input.addEventListener('change', (e) => {
+      body.setAttribute('class', 'field loading')
+        updateParam(field.type.charAt(0), field.caps_name, e.target.value)
+          .then(() => {
+            body.setAttribute('class', 'field')
+            fetchField()
+            error.innerText = ''
+          })
+          .catch(() => {
+            error.innerText = `Failed to update ${field.name}`
+          })
+        })
+    const opt = document.createElement('option')
+    opt.value = 0
+    opt.innerText = 'Disabled'
+    input.appendChild(opt)
+    field.indir.values.forEach(i => {
+      const opt = document.createElement('option')
+      opt.value = i
+      opt.innerText = i
+      input.appendChild(opt)
+    })
+    body.appendChild(input)
+    setValue = (v) => {input.value = v}
+  } else {
+    body.setAttribute('class', 'field ro')
+    const value = document.createElement('div')
+    value.setAttribute('class', 'value')
+    value.setAttribute('id', field.name)
+    body.appendChild(value)
+    setValue = (v) => {value.innerText = v}
+  }
+  body.appendChild(error)
+  body.setAttribute('class', body.getAttribute('class') + ' loading')
+  fetchField()
+  return body
+}
+
+function renderModule(title, module, in_array) {
+  const body = document.createElement('div')
+  body.setAttribute('class', 'module')
+
+  if (title) {
+    body.appendChild(moduleTitle(title))
+  }
+
+  const fields = document.createElement('div')
+  fields.setAttribute('class', 'fields')
+  Object.keys(module).sort((m1, m2) => {
+    if (module[m1].write && !module[m2].write) {
+      return 1
+    } else if (module[m2].write && !module[m1].write) {
+      return -1
+    }
+    return m1.localeCompare(m2)
+  }).forEach(f => {
+    const field = document.createElement('div')
+    let name = f
+    if (in_array) {
+      name = f.split('_').splice(2).join('_')
+    } else if (f.indexOf(`${module[f].module}_`) == 0) {
+      name = f.replace(new RegExp(`^${module[f].module}_`), '')
+    }
+    field.appendChild(renderField(name, module[f]))
+    fields.appendChild(field)
+  })
+  body.appendChild(fields)
+  return body
+}
+
+function renderModules(modules, array) {
+  const body = document.createElement('div')
+  Object.keys(modules).sort((m1, m2) => {
+    if (m1 == array) {
+      return -1
+    } else if (m2 == array) {
+      return 1
+    }
+    return m1.localeCompare(m2)
+  }).forEach(m => {
+    body.appendChild(renderModule(m == array ? '' : m, modules[m], !!array))
+  })
+  return body
+}
+
+function renderPagination(n, onSelect) {
+  const body = document.createElement('div')
+  body.setAttribute('class', 'pagination')
+
+  const links = []
+  for (let i = 0; i < n; ++i) {
+    const a = document.createElement('a')
+    links.push(a)
+    const isel = i
+    a.innerText = i+1
+    a.setAttribute('href', 'javascript:void(0)')
+    a.addEventListener('click', () => {
+      links.forEach(l => l.setAttribute('class', ''))
+      a.setAttribute('class', 'selected')
+      onSelect(isel)
+    }, false);
+    body.appendChild(a)
+  }
+  links[0].setAttribute('class', 'selected')
+  return body
+}
+
+function renderArray(title, array) {
+  let shown = false;
+  const body = document.createElement('div')
+  const container = document.createElement('div')
+  container.setAttribute('class', 'array_container')
+
+  const render = () => {
+    const modules = document.createElement('div')
+    modules.appendChild(renderModules(array[0].modules, title))
+    container.appendChild(modules)
+
+    container.appendChild(renderPagination(array.length, (i) => {
+      while (modules.firstChild) modules.removeChild(modules.firstChild)
+      modules.appendChild(renderModules(array[i].modules, title))
+    }))
+  }
+
+  body.appendChild(arrayTitle(title, () => {
+    shown = !shown
+    if (shown) {
+      render()
+    } else {
+      while (container.firstChild) container.removeChild(container.firstChild)
+    }
+  }))
+  body.appendChild(container)
+  return body
+}
+
+function renderParams(data) {
+  const body = document.createElement('div')
+  body.setAttribute('class', 'params')
+
+  Object.keys(data).sort((d1, d2) => {
+    if (data[d1].array) {
+      return 1
+    } else if (data[d2].array) {
+      return -1
+    }
+    return d1.localeCompare(d2)
+  }).forEach(d => {
+    if (data[d].array) {
+      body.appendChild(renderArray(d, data[d].array))
+    } else {
+      body.appendChild(renderModules(data[d].modules))
+    }
+  })
+  return body
+}
+
+function renderTopMenuItem(id, title, onSelect) {
+  const body = document.createElement('div')
+  body.setAttribute('class', `menu_item_${id}`)
+  body.innerText = title
+  body.addEventListener('click', onSelect)
+  return body
+}
+
+function renderTopMenu(onSelect) {
+  const body = document.createElement('div')
+  body.setAttribute('class', 'menu modules')
+  body.appendChild(renderTopMenuItem('modules', config.name, () => {
+    body.setAttribute('class', 'menu modules')
+    onSelect('modules')
+  }))
+  body.appendChild(renderTopMenuItem('system', 'System', () => {
+    body.setAttribute('class', 'menu system')
+    onSelect('system')
+  }))
+  document.body.appendChild(body)
+}
+
+async function start() {
+  config = await fetchConfig()
+  modules = config.keys.reduce((acc, k) => {
+    const d = acc[k.core ? 'system' : 'modules']
+    const n = (k.array ? k.array.name : k.module)
+    if (k.array) {
+      const i = parseInt(k.name.split('_')[1])
+      d[n] = d[n] || {array: []}
+      d[n].array[i] = d[n].array[i] || {modules: {}}
+      d[n].array[i].modules[k.module] = d[n].array[i].modules[k.module] || {}
+      d[n].array[i].modules[k.module][k.name] = k
+    } else {
+      d[n] = d[n] || {modules: {}}
+      d[n].modules[k.module] = d[n].modules[k.module] || {}
+      d[n].modules[k.module][k.name] = k
+    }
+    return acc
+  }, {system: {}, modules: {}})
+
+  const params = document.createElement('div')
+  renderTopMenu((s) => {
+    while (params.firstChild) params.removeChild(params.firstChild)
+    params.appendChild(renderParams(modules[s]))
+  })
+  params.appendChild(renderParams(modules.modules))
+  document.body.appendChild(params)
+}
+
+window.onload = () => {
+  start()
+}
+
     </script>
   </body>
 </html>
+

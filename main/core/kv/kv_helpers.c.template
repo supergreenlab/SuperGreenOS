@@ -32,117 +32,139 @@
 
 StaticSemaphore_t mutex_buffer;
 
-{{#keys}}
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
 
-static SemaphoreHandle_t _mutex_{{name}}; // TODO check RAM weight of creating so many semaphores :/
-static bool _{{name}}_changed = true;
-static bool _{{name}}_undefined = true;
+  static SemaphoreHandle_t _mutex_<%= f.name %>; // TODO check RAM weight of creating so many semaphores :/
+  static bool _<%= f.name %>_changed = true;
+  static bool _<%= f.name %>_undefined = true;
 
-void reset_{{name}}_changed() {
-  xSemaphoreTake(_mutex_{{name}}, 0);
-  _{{name}}_changed = false;
-  xSemaphoreGive(_mutex_{{name}});
-}
+  void reset_<%= f.name %>_changed() {
+    xSemaphoreTake(_mutex_<%= f.name %>, 0);
+    _<%= f.name %>_changed = false;
+    xSemaphoreGive(_mutex_<%= f.name %>);
+  }
 
-bool is_{{name}}_changed() {
-  xSemaphoreTake(_mutex_{{name}}, 0);
-  bool v = _{{name}}_changed;
-  xSemaphoreGive(_mutex_{{name}});
-  return v;
-}
+  bool is_<%= f.name %>_changed() {
+    xSemaphoreTake(_mutex_<%= f.name %>, 0);
+    bool v = _<%= f.name %>_changed;
+    xSemaphoreGive(_mutex_<%= f.name %>);
+    return v;
+  }
 
-bool is_{{name}}_undefined() {
-  xSemaphoreTake(_mutex_{{name}}, 0);
-  bool v = _{{name}}_undefined;
-  xSemaphoreGive(_mutex_{{name}});
-  return v;
-}
+  bool is_<%= f.name %>_undefined() {
+    xSemaphoreTake(_mutex_<%= f.name %>, 0);
+    bool v = _<%= f.name %>_undefined;
+    xSemaphoreGive(_mutex_<%= f.name %>);
+    return v;
+  }
 
-{{#integer}}
+  <% if (f.type == 'integer') { %>
 
-{{^nvs}}
-static int _{{name}} = INT_MAX;
-{{/nvs}}
+    <% if (!f.nvs.enable) { %>
+    static int<%= f.intlen %>_t _<%= f.name %> = INT<%= f.intlen %>_MAX;
+    <% } %>
 
-int get_{{name}}() {
-  {{#nvs}}
-  return geti({{caps_name}});
-  {{/nvs}}
-  {{^nvs}}
-  xSemaphoreTake(_mutex_{{name}}, 0);
-  int v = _{{name}};
-  xSemaphoreGive(_mutex_{{name}});
-  return v;
-  {{/nvs}}
-}
+    int<%= f.intlen %>_t get_<%= f.name %>() {
+      <% if (f.nvs.enable) { %>
+        return geti<%= f.intlen %>(<%= f.caps_name %>);
+      <% } else { %>
+        xSemaphoreTake(_mutex_<%= f.name %>, 0);
+        int v = _<%= f.name %>;
+        xSemaphoreGive(_mutex_<%= f.name %>);
+        return v;
+      <% } %>
+    }
 
-void set_{{name}}(int value) {
-  {{#nvs}}
-  if (geti({{caps_name}}) == value) return;
-  seti({{caps_name}}, value);
-  {{/nvs}}
-  xSemaphoreTake(_mutex_{{name}}, 0);
-  {{^nvs}}
-  if (_{{name}} == value) return;
-  _{{name}} = value;
-  {{/nvs}}
-  _{{name}}_changed = true;
-  _{{name}}_undefined = false;
-  xSemaphoreGive(_mutex_{{name}});
-  {{#ble.notify}}
-  {{^ble.no_sync}}
-  set_attr_value_and_notify(IDX_CHAR_VAL_{{caps_name}}, (uint8_t *)&value, sizeof(int));
-  {{/ble.no_sync}}
-  {{/ble.notify}}
-}
-{{/integer}}
+    void set_<%= f.name %>(int<%= f.intlen %>_t value) {
+      <% if (f.nvs.enable) { %>
+        if (geti<%= f.intlen %>(<%= f.caps_name %>) == value) return;
+        seti<%= f.intlen %>(<%= f.caps_name %>, value);
+      <% } %>
+      xSemaphoreTake(_mutex_<%= f.name %>, 0);
+      <% if (!f.nvs.enable) { %>
+        if (_<%= f.name %> == value) return;
+        _<%= f.name %> = value;
+      <% } %>
+      _<%= f.name %>_changed = true;
+      _<%= f.name %>_undefined = false;
+      xSemaphoreGive(_mutex_<%= f.name %>);
+      <% if (f.ble.notify && !f.ble.no_sync) { %>
+        set_attr_value_and_notify(IDX_CHAR_VAL_<%= f.caps_name %>, (uint8_t *)&value, sizeof(int<%= f.intlen %>_t));
+      <% } %>
+    }
 
-{{#string}}
+  <% } else { %>
 
-{{^nvs}}
-static char _{{name}}[MAX_KVALUE_SIZE] = {0};
-{{/nvs}}
+    <% if (!f.nvs.enable) { %>
+      static char _<%= f.name %>[MAX_KVALUE_SIZE] = {0};
+    <% } %>
 
-void get_{{name}}(char *dest, size_t len) {
-  assert(len <= MAX_KVALUE_SIZE - 1);
-  {{#nvs}}
-  getstr({{caps_name}}, dest, len);
-  {{/nvs}}
-  {{^nvs}}
-  xSemaphoreTake(_mutex_{{name}}, 0);
-  strncpy(dest, _{{name}}, len);
-  xSemaphoreGive(_mutex_{{name}});
-  {{/nvs}}
-}
+    void get_<%= f.name %>(char *dest, size_t len) {
+      assert(len <= MAX_KVALUE_SIZE - 1);
+      <% if (f.nvs.enable) { %>
+        getstr(<%= f.caps_name %>, dest, len);
+      <% } else { %>
+        xSemaphoreTake(_mutex_<%= f.name%>, 0);
+        strncpy(dest, _<%= f.name %>, len);
+        xSemaphoreGive(_mutex_<%= f.name %>);
+      <% } %>
+    }
 
-void set_{{name}}(const char *value) {
-  assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
-  {{#nvs}}
-  char old_value[MAX_KVALUE_SIZE] = {0};
-  getstr({{caps_name}}, old_value, MAX_KVALUE_SIZE - 1);
-  if (!strcmp(old_value, value)) return;
-  setstr({{caps_name}}, value);
-  {{/nvs}}
-  xSemaphoreTake(_mutex_{{name}}, 0);
-  {{^nvs}}
-  if (!strcmp(_{{name}}, value)) return;
-  strncpy(_{{name}}, value, strlen(value));
-  {{/nvs}}
-  _{{name}}_changed = true;
-  xSemaphoreGive(_mutex_{{name}});
-  {{#ble}}
-  {{^ble.no_sync}}
-  set_attr_value{{#ble.notify}}_and_notify{{/ble.notify}}(IDX_CHAR_VAL_{{caps_name}}, (uint8_t *)value, strlen(value));
-  {{/ble.no_sync}}
-  {{/ble}}
-}
-{{/string}}
-{{/keys}}
+    void set_<%= f.name %>(const char *value) {
+      assert(strlen(value) <= MAX_KVALUE_SIZE - 1);
+      <% if (f.nvs.enable) { %>
+      char old_value[MAX_KVALUE_SIZE] = {0};
+      getstr(<%= f.caps_name %>, old_value, MAX_KVALUE_SIZE - 1);
+      if (!strcmp(old_value, value)) return;
+      setstr(<%= f.caps_name %>, value);
+      <% } %>
+      xSemaphoreTake(_mutex_<%= f.name %>, 0);
+      <% if (!f.nvs.enable) { %>
+      if (!strcmp(_<%= f.name %>, value)) return;
+      strncpy(_<%= f.name %>, value, strlen(value));
+      <% } %>
+      _<%= f.name %>_changed = true;
+      xSemaphoreGive(_mutex_<%= f.name %>);
+      <% if (f.ble.enable && !f.ble.no_sync) { %>
+        set_attr_value<% if (f.ble.notify) { %>_and_notify<% } %>(IDX_CHAR_VAL_<%= f.caps_name %>, (uint8_t *)value, strlen(value));
+      <% } %>
+    }
+  <% } %>
+<% })}) %>
+
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
+  <% if (f.type == 'integer') { %>
+    int<%= f.intlen %>_t get_<%= f.name %>() {
+      switch(get_<%= modules[m].fields[f.indir.source].name %>()) {
+      <% Object.keys(modules).forEach(m => {
+        Object.keys(modules[m].fields).filter(f2 => modules[m].fields[f2][f.indir.key]).forEach(f2 => { f2 = modules[m].fields[f2] %>
+        case <%= f2[f.indir.key] %>:
+          return get_<%= f2.name %>();
+      <% })}) %>
+      }
+      return <%= f.default %>;
+    }
+  <% } else { %>
+    void get_<%= f.name %>(char *dest, size_t len) {
+      switch(get_<%= modules[m].fields[f.indir.source].name %>()) {
+      <% Object.keys(modules).forEach(m => {
+        Object.keys(modules[m].fields).filter(f2 => modules[m].fields[f2][f.indir.key]).forEach(f2 => { f2 = modules[m].fields[f2] %>
+        case <%= f2[f.indir.key] %>:
+          return get_<%= f2.name %>(dest, len);
+      <% })}) %>
+      }
+      return <%= f.default %>;
+    }
+  <% } %>
+<% })}) %>
 
 void init_helpers() {
-  {{#keys}}
-  _mutex_{{name}} = xSemaphoreCreateMutexStatic(&mutex_buffer);
-  {{/keys}}
+  <% Object.keys(modules).forEach(m => {
+    Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f]%>
+    _mutex_<%= f.name %> = xSemaphoreCreateMutexStatic(&mutex_buffer);
+  <% })}) %>
 }
 
 /*

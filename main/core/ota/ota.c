@@ -348,14 +348,14 @@ static void ota_task(void *pvParameter) {
 
 void init_ota() {
   ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA_BUILD_TIMESTAMP=%d", OTA_BUILD_TIMESTAMP);
-  if (hasi(OTA_BUILD_TIMESTAMP_BCK)) {
-    int ota_build_timestamp_bck = geti(OTA_BUILD_TIMESTAMP_BCK);
+  if (hasi32(OTA_BUILD_TIMESTAMP_BCK)) {
+    int ota_build_timestamp_bck = geti32(OTA_BUILD_TIMESTAMP_BCK);
     if (ota_build_timestamp_bck != OTA_BUILD_TIMESTAMP) {
       ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA build update detected, OTA_BUILD_TIMESTAMP_BCK=%d OTA_BUILD_TIMESTAMP=%d", ota_build_timestamp_bck, OTA_BUILD_TIMESTAMP);
       set_ota_timestamp(OTA_BUILD_TIMESTAMP);
     }
   }
-  seti(OTA_BUILD_TIMESTAMP_BCK, OTA_BUILD_TIMESTAMP);
+  seti32(OTA_BUILD_TIMESTAMP_BCK, OTA_BUILD_TIMESTAMP);
 
   int ota_build_timestamp = get_ota_timestamp();
   ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA initialization timestamp=%d", ota_build_timestamp);

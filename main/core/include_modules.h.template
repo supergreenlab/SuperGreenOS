@@ -24,14 +24,14 @@
 */
 
 // Core modules
-{{#core_modules}}
-#include "{{.}}/{{.}}.h"
-{{/core_modules}}
+<% Object.keys(modules).filter(m => modules[m].core).map(m => modules[m]).forEach(m => { %>
+#include "<%= m.name %>/<%= m.name %>.h"
+<% }) %>
 
 // Custom modules
-{{#custom_modules}}
-#include "../{{.}}/{{.}}.h"
-{{/custom_modules}}
+<% Object.keys(modules).filter(m => !modules[m].core).map(m => modules[m]).forEach(m => { %>
+#include "../<%= m.name %>/<%= m.name %>.h"
+<% }) %>
 
 /*
 * [/GENERATED]

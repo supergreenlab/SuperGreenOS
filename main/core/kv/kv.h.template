@@ -21,19 +21,30 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include "keys.h"
+#include "kv_arrays.h"
 
 #define MAX_KVALUE_SIZE 517
 
 void open_kv();
 void preinit_kv();
 void postinit_kv();
-void reset_defaults();
 
-int geti(const char * key);
-void seti(const char * key, int value);
-bool hasi(const char * key);
-void defaulti(const char * key, int value);
+int8_t geti8(const char * key);
+void seti8(const char * key, int8_t value);
+bool hasi8(const char * key);
+void defaulti8(const char * key, int8_t value);
+
+int16_t geti16(const char * key);
+void seti16(const char * key, int16_t value);
+bool hasi16(const char * key);
+void defaulti16(const char * key, int16_t value);
+
+int32_t geti32(const char * key);
+void seti32(const char * key, int32_t value);
+bool hasi32(const char * key);
+void defaulti32(const char * key, int32_t value);
 
 void getstr(const char * key, char *value, const size_t length);
 void setstr(const char * key, const char * value);
@@ -44,19 +55,28 @@ void defaultstr(const char * key, const char * value);
  * [GENERATED]
  */
 
-{{#keys}}
-void reset_{{name}}_changed();
-bool is_{{name}}_changed();
-bool is_{{name}}_undefined();
-{{#integer}}
-int get_{{name}}();
-void set_{{name}}(int value);
-{{/integer}}
-{{#string}}
-void get_{{name}}(char *dest, size_t len);
-void set_{{name}}(const char *value);
-{{/string}}
-{{/keys}}
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
+  void reset_<%= f.name %>_changed();
+  bool is_<%= f.name %>_changed();
+  bool is_<%= f.name %>_undefined();
+  <% if (f.type == 'integer') { %>
+    int<%= f.intlen %>_t get_<%= f.name %>();
+    void set_<%= f.name %>(int<%= f.intlen %>_t value);
+  <% } else { %>
+    void get_<%= f.name %>(char *dest, size_t len);
+    void set_<%= f.name %>(const char *value);
+  <% } %>
+<% })}) %>
+
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
+  <% if (f.type == 'integer') { %>
+    int<%= f.intlen %>_t get_<%= f.name %>();
+  <% } else { %>
+    void get_<%= f.name %>(char *dest, size_t len);
+  <% } %>
+<% })}) %>
 
 /*
  * [/GENERATED]

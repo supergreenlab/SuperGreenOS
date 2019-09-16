@@ -20,6 +20,7 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "nvs_flash.h"
 #include "esp_system.h"
 
 #include "../log/log.h"
@@ -31,16 +32,22 @@
 
 static void reboot_task();
 
+static void reset_nvs() {
+  ESP_ERROR_CHECK(nvs_flash_erase());
+  esp_restart();
+}
+
 void init_reboot() {
-  defaulti(N_SHORT_REBOOTS, 0);
-  int n = geti(N_SHORT_REBOOTS);
+  if (hasi32(N_SHORT_REBOOTS)) { // detect old version
+    reset_nvs();
+  }
+  defaulti8(N_SHORT_REBOOTS, 0);
+  int n = geti8(N_SHORT_REBOOTS);
   if (n >= MAX_SHORT_REBOOTS) {
-    seti(N_SHORT_REBOOTS, 0);
-    reset_defaults();
-    esp_restart();
+    reset_nvs();
   }
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=%d", n);
-  seti(N_SHORT_REBOOTS, ++n);
+  seti8(N_SHORT_REBOOTS, ++n);
 
   xTaskCreate(reboot_task, "REBOOT", 2048, NULL, 10, NULL);
 }
@@ -49,17 +56,8 @@ static void reboot_task() {
   // reset n_short_reboots to zero
   vTaskDelay(60 * 1000 / portTICK_PERIOD_MS);
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=0");
-  seti(N_SHORT_REBOOTS, 0);
+  seti8(N_SHORT_REBOOTS, 0);
 
-  // Temporary failsafe restart after 2 hours
-  /* vTaskDelay(2 * 60 * 60 * 1000 / portTICK_PERIOD_MS);
-  while(true) {
-    // avoid interrupting OTA
-    if (get_ota_status() != OTA_STATUS_IN_PROGRESS) {
-      esp_restart();
-    }
-    vTaskDelay(60 * 1000 / portTICK_PERIOD_MS);
-  }*/
   vTaskDelete(NULL);
 }
 

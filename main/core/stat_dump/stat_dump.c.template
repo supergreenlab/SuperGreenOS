@@ -108,22 +108,23 @@ static void stat_dump_task(void *param) {
 
     int value;
     char str[MAX_KVALUE_SIZE] = {0};
-    {{#keys}}
-    {{^nosend}}
-    if ((counter % 20) == 0 || is_{{name}}_changed()) {
-      {{#integer}}
-      value = get_{{name}}();
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "{{caps_name}}", value);
-      {{/integer}}
-      {{#string}}
-      get_{{name}}(str, MAX_KVALUE_SIZE-1);
-      ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "{{caps_name}}", str);
-      {{/string}}
+    <% Object.keys(modules).forEach(m => {
+      Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].nosend).forEach(f => { f = modules[m].fields[f] %>
+    if ((counter % 20) == 0<% if (!f.indir.enable) { %> || is_<%= f.name %>_changed()<% } %>) {
+      <% if (f.type == 'integer') { %>
+        value = get_<%= f.name %>();
+        ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "<%= f.caps_name %>", value);
+      <% } else { %>
+        get_<%= f.name %>(str, MAX_KVALUE_SIZE-1);
+        ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "<%= f.caps_name %>", str);
+      <% } %>
       vTaskDelay(200 / portTICK_PERIOD_MS);
-      reset_{{name}}_changed();
+      <% if (!f.indir.enable) { %>
+      reset_<%= f.name %>_changed();
+      <% } %>
     }
-    {{/nosend}}
-    {{/keys}}
+
+    <% })}) %>
 
     vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
     ++counter;

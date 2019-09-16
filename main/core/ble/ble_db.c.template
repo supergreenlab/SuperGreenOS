@@ -29,29 +29,24 @@
 
 static const uint16_t GATTS_SERVICE_UUID      = 0x00FF;
 
-{{#keys}}
-{{#ble}}
-const uint8_t {{caps_name}}_UUID[ESP_UUID_LEN_128] = {{uuid}};
-{{/ble}}
-{{/keys}}
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].ble.enable).forEach(f => { f = modules[m].fields[f]%>
+  const uint8_t <%= f.caps_name %>_UUID[ESP_UUID_LEN_128] = <%= f.ble.uuid %>;
+<% })}) %>
 
 const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
-  {{=||| |||=}}
-
   [IDX_SVC]    =
   {{ESP_GATT_AUTO_RSP}, {ESP_UUID_LEN_16, (uint8_t *)&primary_service_uuid, ESP_GATT_PERM_READ,
     sizeof(uint16_t), sizeof(GATTS_SERVICE_UUID), (uint8_t *)&GATTS_SERVICE_UUID}},
 
-  |||={{ }}=|||
   /*
    * [GENERATED]
    */
 
-  {{#keys}}
-    {{#ble}}
-    R{{#ble.write}}W{{/ble.write}}_{{#integer}}I{{/integer}}{{#string}}STR{{/string}}{{#ble.notify}}_NOTIFIABLE{{/ble.notify}}_CHAR({{caps_name}}),
-    {{/ble}}
-  {{/keys}}
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].ble.enable).forEach(f => { f = modules[m].fields[f]%>
+    R<%= f.ble.write ? 'W' : '' %>_<%= f.type == 'integer' ? 'I' : 'STR' %><%= f.ble.notify ? '_NOTIFIABLE' : '' %>_CHAR(<%= f.caps_name %>),
+<% })}) %>
 
   /*
    * [/GENERATED]
@@ -63,21 +58,19 @@ void on_write(esp_ble_gatts_cb_param_t *param) {
    * [GENERATED]
    */
   
-  {{#keys}}
-    {{#ble.write}}
-      {{^ble.first}} else {{/ble.first}}if (param->write.handle == handle_table[IDX_VALUE({{caps_name}})]) {
-        {{#integer}}
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].ble.enable && modules[m].fields[f].ble.write).forEach((f, i) => { f = modules[m].fields[f] %>
+      <%= i != 0 ? ' else ' : '' %>if (param->write.handle == handle_table[IDX_VALUE(<%= f.caps_name %>)]) {
+        <% if (f.type == 'integer') { %>
           uint32_t value = *(uint32_t *)(&param->write.value[0]);
-          internal_set_{{name}}(value);
-        {{/integer}}
-        {{#string}}
+          internal_set_<%= f.name %>(value);
+        <% } else { %>
           char value[MAX_KVALUE_SIZE] = {0};
           strncpy(value, (const char *)param->write.value, param->write.len);
-          internal_set_{{name}}(value);
-        {{/string}}
+          internal_set_<%= f.name %>(value);
+        <% } %>
       }
-    {{/ble.write}}
-  {{/keys}}
+<% })}) %>
 
   /*
    * [/GENERATED]

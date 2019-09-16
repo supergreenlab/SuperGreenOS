@@ -24,25 +24,23 @@
 #include "httpd_kv_handlers.h"
 #include "../include_modules.h"
 
-const kvi_handler kvi_handlers[] = {
+const kvi8_handler kvi8_handlers[] = {
 /*
 * [GENERATED]
 */
   
-  {{#keys}}
-  {{#integer}}
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 8).forEach(f => { f = modules[m].fields[f]%>
   {
-    .name = "{{caps_name}}",
-    {{#http.write}}
-    .handler = internal_set_{{name}},
-    {{/http.write}}
-    {{^http.write}}
-    .handler = NULL,
-    {{/http.write}}
-    .getter = get_{{name}},
+    .name = "<%= f.caps_name %>",
+    <% if (f.http.write) { %>
+      .handler = internal_set_<%= f.name %>,
+    <% } else { %>
+      .handler = NULL,
+    <% } %>
+    .getter = get_<%= f.name %>,
   },
-  {{/integer}}
-  {{/keys}}
+<% })}) %>
 
 /*
 * [/GENERATED]
@@ -53,34 +51,106 @@ const kvi_handler kvi_handlers[] = {
   },
 };
 
-const kvi_handler *get_kvi_handler(const char *name) {
-  for (int i = 0; kvi_handlers[i].name != NULL; ++i) {
-    if (strcmp(kvi_handlers[i].name, name) == 0) {
-      return &kvi_handlers[i];
+const kvi8_handler *get_kvi8_handler(const char *name) {
+  for (int i = 0; kvi8_handlers[i].name != NULL; ++i) {
+    if (strcmp(kvi8_handlers[i].name, name) == 0) {
+      return &kvi8_handlers[i];
     }
   }
   return NULL;
 }
+
+const kvi16_handler kvi16_handlers[] = {
+/*
+* [GENERATED]
+*/
+
+ <% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16).forEach(f => { f = modules[m].fields[f]%>
+  {
+    .name = "<%= f.caps_name %>",
+    <% if (f.http.write) { %>
+      .handler = internal_set_<%= f.name %>,
+    <% } else { %>
+      .handler = NULL,
+    <% } %>
+    .getter = get_<%= f.name %>,
+  },
+<% })}) %>
+
+/*
+* [/GENERATED]
+*/
+  {
+    .name = NULL,
+    .handler = NULL,
+  },
+};
+
+const kvi16_handler *get_kvi16_handler(const char *name) {
+  for (int i = 0; kvi16_handlers[i].name != NULL; ++i) {
+    if (strcmp(kvi16_handlers[i].name, name) == 0) {
+      return &kvi16_handlers[i];
+    }
+  }
+  return NULL;
+}
+
+const kvi32_handler kvi32_handlers[] = {
+/*
+* [GENERATED]
+*/
+
+ <% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32).forEach(f => { f = modules[m].fields[f]%>
+  {
+    .name = "<%= f.caps_name %>",
+    <% if (f.http.write) { %>
+      .handler = internal_set_<%= f.name %>,
+    <% } else { %>
+      .handler = NULL,
+    <% } %>
+    .getter = get_<%= f.name %>,
+  },
+<% })}) %>
+
+/*
+* [/GENERATED]
+*/
+  {
+    .name = NULL,
+    .handler = NULL,
+  },
+};
+
+const kvi32_handler *get_kvi32_handler(const char *name) {
+  for (int i = 0; kvi32_handlers[i].name != NULL; ++i) {
+    if (strcmp(kvi32_handlers[i].name, name) == 0) {
+      return &kvi32_handlers[i];
+    }
+  }
+  return NULL;
+}
+
+
 
 const kvs_handler kvs_handlers[] = {
 /*
 * [GENERATED]
 */
 
-  {{#keys}}
-  {{#string}}
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'string').forEach(f => { f = modules[m].fields[f]%>
   {
-    .name = "{{caps_name}}",
-    {{#http.write}}
-    .handler = internal_set_{{name}},
-    {{/http.write}}
-    {{^http.write}}
+    .name = "<%= f.caps_name %>",
+    <% if (f.http.write) { %>
+    .handler = internal_set_<%= f.name %>,
+    <% } else { %>
     .handler = NULL,
-    {{/http.write}}
-    .getter = get_{{name}},
+    <% } %>
+    .getter = get_<%= f.name %>,
   },
-  {{/string}}
-  {{/keys}}
+<% })}) %>
 
 /*
 * [/GENERATED]

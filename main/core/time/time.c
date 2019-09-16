@@ -43,7 +43,7 @@ void init_time() {
 }
 
 static void time_task(void *param) {
-  if (hasi(TIME)) {
+  if (hasi32(TIME)) {
     time_t now = (time_t)get_time();
     struct timeval tv = { .tv_sec = now, .tv_usec = 0 };
     settimeofday(&tv, NULL);

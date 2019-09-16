@@ -17,6 +17,8 @@ main/core/kv/kv_helpers_internal.c
 main/core/kv/kv_helpers.c
 main/core/kv/keys.h
 main/core/kv/kv.h
+main/core/kv/kv_arrays.h
+main/core/kv/kv_arrays.c
 main/core/i2c/i2c_helpers.h
 main/core/i2c/i2c.c
 main/core/i2c/i2c_helpers.c

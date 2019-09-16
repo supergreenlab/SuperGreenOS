@@ -21,7 +21,9 @@
 
 #include "../ble/ble_db.h"
 
-void sync_ble_i(const char *key, enum idx i);
+void sync_ble_i8(const char *key, enum idx i);
+void sync_ble_i16(const char *key, enum idx i);
+void sync_ble_i32(const char *key, enum idx i);
 void sync_ble_str(const char *key, enum idx i);
 
 #endif

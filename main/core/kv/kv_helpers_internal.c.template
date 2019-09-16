@@ -29,60 +29,36 @@
  * [GENERATED]
  */
 
-{{#keys}}
-{{#integer}}
-void internal_set_{{name}}(int value) {
-  {{#nvs}}
-  {{^nvs.manual}}
-  set_{{name}}(value);
-  {{/nvs.manual}}
-  {{/nvs}}
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
+  <% if (f.type == 'integer') { %>
+    void internal_set_<%= f.name %>(int<%= f.intlen %>_t value) {
+  <% } else { %>
+    void internal_set_<%= f.name %>(const char *value) {
+  <% } %>
 
-  {{#write_cb}}
-  value = on_set_{{name}}(value);
+    <% if (f.write_cb) { %>
+      value = on_set_<%= f.name %>(value);
+    <% } %>
+    <% if (f.nvs && !f.nvs.manual) { %>
+      set_<%= f.name %>(value);
+    <% } %>
 
-  {{#nvs}}
-  {{^nvs.manual}}
-  set_{{name}}(value);
-  {{/nvs.manual}}
-  {{/nvs}}
-  {{/write_cb}}
+    <% if (f.ble && f.ble.notify && !f.ble.no_sync) { %>
+      <% if (f.type == 'integer') { %>
+        int32_t v = (int32_t)value;
+        int len = sizeof(int32_t);
+        set_attr_value_and_notify(IDX_CHAR_VAL_<%= f.caps_name %>, (uint8_t *)&v, len);
+      <% } else { %>
+        int len = strlen(value);
+        set_attr_value_and_notify(IDX_CHAR_VAL_<%= f.caps_name %>, (uint8_t *)value, len);
+      <% } %>
 
-  {{#ble.notify}}
-  {{^ble.no_sync}}
-  set_attr_value_and_notify(IDX_CHAR_VAL_{{caps_name}}, (uint8_t *)&value, sizeof(int));
-  {{/ble.no_sync}}
-  {{/ble.notify}}
+    <% } %>
 
-  // TODO: httpd notify
-}
-{{/integer}}
-{{#string}}
-void internal_set_{{name}}(const char *value) {
-  {{#nvs}}
-  {{^nvs.manual}}
-  set_{{name}}(value);
-  {{/nvs.manual}}
-  {{/nvs}}
-
-  {{#write_cb}}
-  value = on_set_{{name}}(value);
-
-  {{#nvs}}
-  {{^nvs.manual}}
-  set_{{name}}(value);
-  {{/nvs.manual}}
-  {{/nvs}}
-  {{/write_cb}}
-
-  {{#ble}}
-  {{^ble.no_sync}}
-  set_attr_value{{#ble.notify}}_and_notify{{/ble.notify}}(IDX_CHAR_VAL_{{caps_name}}, (uint8_t *)value, strlen(value));
-  {{/ble.no_sync}}
-  {{/ble}}
-}
-{{/string}}
-{{/keys}}
+    // TODO: httpd notify
+  }
+<% })}) %>
 
 /*
  * [/GENERATED]

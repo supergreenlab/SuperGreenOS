@@ -23,9 +23,6 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
-#include "driver/mcpwm.h"
-#include "soc/mcpwm_reg.h"
-#include "soc/mcpwm_struct.h"
 
 #include "../core/log/log.h"
 #include "../core/ble/ble_db.h"
@@ -37,91 +34,34 @@
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
-static QueueHandle_t cmd;
-
-typedef enum {
-  CMD_NO_ACTION,
-  CMD_CHANGED_FREQUENCY,
-} blower_action;
-
-typedef struct {
-  blower_action cmd;
-  int boxId;
-  int value;
-} blower_cmd;
-
-static void set_duty(int i, float duty_cycle)
-{
-  mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0 + i, MCPWM_OPR_A, duty_cycle);
-}
-
 static void blower_task(void *param) {
-  blower_cmd c = {.cmd = -1};
-
   while (1) {
-    for (int i = 0; i < N_BOXES; ++i) {
+    for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1 || get_box_blower_enabled(i) != 1) continue;
       int vday = get_box_blower_day(i);
       int vnight = get_box_blower_night(i);
       int timerOutput = get_box_timer_output(i);
       int v = (float)vnight + ((vday - vnight) * (float)timerOutput / 100.0f);
-      set_duty(i, v);
+      set_box_blower_duty(i, v);
     }
-    if (xQueueReceive(cmd, &c, 3000 / portTICK_PERIOD_MS) == pdTRUE) {
-      if (c.cmd == CMD_CHANGED_FREQUENCY) {
-        int blower_frequency = c.value;
-        ESP_LOGI(SGO_LOG_EVENT, "@BLOWER CMD_CHANGED_FREQUENCY %d %d", c.boxId, blower_frequency);
-        mcpwm_set_frequency(MCPWM_UNIT_0, MCPWM_TIMER_0 + c.boxId, blower_frequency);
-      }
-    }
+    vTaskDelay(2000 / portTICK_PERIOD_MS);
   }
 }
 
 void init_blower() {
   ESP_LOGI(SGO_LOG_EVENT, "@BLOWER Initializing blower task");
 
-  cmd = xQueueCreate(10, sizeof(blower_cmd));
-  if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@BLOWER Unable to create blower queue");
-  }
-
-  for (int i = 0; i < N_BOXES; ++i) {
-    if (get_box_enabled(i) != 1 || get_box_blower_enabled(i) != 1) continue;
-    int blower_gpio = get_box_blower_gpio(i);
-    int blower_frequency = get_box_blower_frequency(i);
-    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A + i * 2, blower_gpio);
-    mcpwm_config_t pwm_config;
-    pwm_config.frequency = blower_frequency;
-    pwm_config.cmpr_a = 0;
-    pwm_config.cmpr_b = 0;
-    pwm_config.counter_mode = MCPWM_UP_COUNTER;
-    pwm_config.duty_mode = MCPWM_DUTY_MODE_0;
-    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0 + i, &pwm_config);
-
-    set_duty(i, 0.0);
-  }
   xTaskCreate(blower_task, "BLOWER", 2048, NULL, 10, NULL);
 }
 
 /* BLE Callbacks */
 
-int on_set_box_blower_frequency(int boxId, int value) {
-  value = min(40000, max(value, 2));
-  blower_cmd c = {.cmd = CMD_CHANGED_FREQUENCY, .boxId = boxId, .value = value};
-  xQueueSend(cmd, &c, 0);
-  return value;
-}
-
 int on_set_box_blower_day(int boxId, int value) {
   value = min(100, max(value, 0));
-  blower_cmd c = {.cmd = CMD_NO_ACTION, .boxId = boxId, .value = value};
-  xQueueSend(cmd, &c, 0);
   return value;
 }
 
 int on_set_box_blower_night(int boxId, int value) {
   value = min(100, max(value, 0));
-  blower_cmd c = {.cmd = CMD_NO_ACTION, .boxId = boxId, .value = value};
-  xQueueSend(cmd, &c, 0);
   return value;
 }

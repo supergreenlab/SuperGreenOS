@@ -39,11 +39,10 @@ enum idx
   /*
    * [GENERATED]
    */
-  {{#keys}}
-    {{#ble}}
-    CHAR_VAL{{#ble.notify}}_CFG{{/ble.notify}}({{caps_name}}),
-    {{/ble}}
-  {{/keys}}
+  <% Object.keys(modules).forEach(m => {
+    Object.keys(modules[m].fields).filter(f => modules[m].fields[f].ble.enable).forEach(f => { f = modules[m].fields[f]%>
+    CHAR_VAL<% if (f.ble.notify) { %>_CFG<% } %>(<%= f.caps_name %>),
+  <% })}) %>
   /*
    * [/GENERATED]
    */

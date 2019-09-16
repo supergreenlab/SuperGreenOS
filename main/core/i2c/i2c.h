@@ -19,8 +19,6 @@
 #ifndef I2C_H_
 #define I2C_H_
 
-#include "i2c_helpers.h"
-
 void init_i2c();
 void start_i2c(int portId);
 void stop_i2c(int portId);

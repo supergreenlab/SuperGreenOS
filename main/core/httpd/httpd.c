@@ -80,13 +80,22 @@ static esp_err_t geti_handler(httpd_req_t *req) {
   size_t len = 50;
   char name[50] = {0};
   find_str_param(req->uri, "k", name, &len);
+  const kvi8_handler *hi8 = get_kvi8_handler(name);
+  const kvi16_handler *hi16 = get_kvi16_handler(name);
+  const kvi32_handler *hi32 = get_kvi32_handler(name);
 
-  const kvi_handler *h = get_kvi_handler(name);
-  if (!h) {
+  if (!hi8 && !hi16 && !hi32) {
     return httpd_resp_send_404(req);
   }
 
-  int v = h->getter();
+  int v = 0;
+  if (hi8) {
+    v = hi8->getter();
+  } else if (hi16) {
+    v = hi16->getter();
+  } else if (hi32) {
+    v = hi32->getter();
+  }
   char ret[12] = {0};
   sprintf(ret, "%d", v);
 
@@ -99,9 +108,14 @@ static esp_err_t seti_handler(httpd_req_t *req) {
   size_t len = 50;
   char name[50] = {0};
   find_str_param(req->uri, "k", name, &len);
+  const kvi8_handler *hi8 = get_kvi8_handler(name);
+  bool is_i8 = hi8 && hi8->handler;
+  const kvi16_handler *hi16 = get_kvi16_handler(name);
+  bool is_i16 = hi16 && hi16->handler;
+  const kvi32_handler *hi32 = get_kvi32_handler(name);
+  bool is_i32 = hi32 && hi32->handler;
 
-  const kvi_handler *h = get_kvi_handler(name);
-  if (!h || !h->handler) {
+  if (!is_i8 && !is_i16 && !is_i32) {
     return httpd_resp_send_404(req);
   }
 
@@ -110,7 +124,13 @@ static esp_err_t seti_handler(httpd_req_t *req) {
   find_str_param(req->uri, "v", value, &len);
   int res = atoi(value);
 
-  h->handler(res);
+  if (is_i8) {
+    hi8->handler((int8_t)res);
+  } else if (is_i16) {
+    hi16->handler((int16_t)res);
+  } else if (is_i32) {
+    hi32->handler((int32_t)res);
+  }
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_send(req, "OK", 2);
   return ESP_OK;

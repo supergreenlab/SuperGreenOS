@@ -48,7 +48,7 @@ echo $TS > "$DEST/timestamp"
 echo "#!/bin/bash" > $DEST/flash.sh
 echo 'DIR=`dirname "$0"`' >> $DEST/flash.sh
 echo 'DIR=`( cd "$DIR" && pwd )`' >> $DEST/flash.sh
-echo 'python2 $DIR/esptool.py --chip esp32 --port /dev/ttyUSB1 --baud 115200 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size detect 0xd000 $DIR/ota_data_initial.bin 0x1000 $DIR/bootloader.bin 0x10000 $DIR/firmware.bin 0x8000 $DIR/partitions.bin' >> $DEST/flash.sh
+echo 'python2 $DIR/esptool.py --chip esp32 --port /dev/ttyUSB1 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size detect 0xd000 $DIR/ota_data_initial.bin 0x1000 $DIR/bootloader.bin 0x10000 $DIR/firmware.bin 0x8000 $DIR/partitions.bin' >> $DEST/flash.sh
 chmod +x $DEST/flash.sh
 echo -e "Created $DEST/flash.sh: ${GREEN}Done${NC}"
 
@@ -60,13 +60,14 @@ for i in $(ls ./spiffs_fs); do
   echo -e "Created spiffs_fs_gq/$i: ${GREEN}Done${NC}"
 done
 mkspiffs -c spiffs_fs_gz/ -b 4096 -p 256 -s 0x8000 $DEST/spiffs.bin
+cp -r spiffs_fs_gz $DEST/html_app
 rm -rf spiffs_fs_gz
 
 echo -e "Created $DEST/spiffs.bin: ${GREEN}Done${NC}"
 echo "#!/bin/bash" > $DEST/write_spiffs.sh
 echo 'DIR=`dirname "$0"`' >> $DEST/write_spiffs.sh
 echo 'DIR=`( cd "$DIR" && pwd )`' >> $DEST/write_spiffs.sh
-echo 'python $DIR/esptool.py --chip esp32 --port /dev/ttyUSB1 --baud 115200 write_flash -z 0x3f0000 spiffs.bin' >> $DEST/write_spiffs.sh
+echo 'python $DIR/esptool.py --chip esp32 --port /dev/ttyUSB1 --baud 921600 write_flash -z 0x3f0000 spiffs.bin' >> $DEST/write_spiffs.sh
 chmod +x $DEST/write_spiffs.sh
 echo -e "Created $DEST/write_spiffs.sh: ${GREEN}Done${NC}"
 

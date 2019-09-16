@@ -58,20 +58,17 @@ void preinit_kv() {
    */
 
   init_helpers();
-  {{#keys}}
-  {{#integer}}
-  {{#nvs}}
-  int default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}{{default}}{{/default}};
-  defaulti({{caps_name}}, default_{{name}});
-  {{/nvs}}
-  {{/integer}}
-  {{#string}}
-  {{#nvs}}
-  const char *default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}"{{default}}"{{/default}};
-  defaultstr({{caps_name}}, default_{{name}});
-  {{/nvs}}
-  {{/string}}
-  {{/keys}}
+  
+  <% Object.keys(modules).forEach(m => {
+    Object.keys(modules[m].fields).filter(f => modules[m].fields[f].nvs.enable).forEach(f => { f = modules[m].fields[f]%>
+    <% if (f.type == 'integer') { %>
+      int default_<%= f.name %> = <% if (f.default_var) { %><%= f.default_var %><% } else { %><%= f.default %><% } %>;
+      defaulti<%= f.intlen %>(<%= f.caps_name %>, default_<%= f.name %>);
+    <% } else { %>
+      const char *default_<%= f.name %> = <% if (f.default_var) { %><%= f.default_var %><% } else { %>"<%= f.default %>"<% } %>;
+      defaultstr(<%= f.caps_name %>, default_<%= f.name %>);
+    <% } %>
+  <% })}) %>
 
   /*
    * [/GENERATED]
@@ -82,77 +79,105 @@ void postinit_kv() {
   /*
    * [GENERATED]
    */
-
-  {{#keys}}
-  {{#ble}}
-  {{^ble.no_sync}}
-  {{#nvs}}
-  sync_ble_{{#string}}str{{/string}}{{#integer}}i{{/integer}}({{caps_name}}, IDX_VALUE({{caps_name}}));
-  {{/nvs}}
-  {{/ble.no_sync}}
-  {{/ble}}
-  {{/keys}}
+  <% Object.keys(modules).forEach(m => {
+    Object.keys(modules[m].fields).filter(f => modules[m].fields[f].nvs.enable && modules[m].fields[f].ble.enable && !modules[m].fields[f].ble.no_sync).forEach(f => { f = modules[m].fields[f]%>
+    <% if (f.type == 'integer') { %>
+        sync_ble_i<%= f.intlen %>(<%= f.caps_name %>, IDX_VALUE(<%= f.caps_name %>));
+    <% } else {%>
+        sync_ble_str(<%= f.caps_name %>, IDX_VALUE(<%= f.caps_name %>));
+    <% } %>
+  <% })}) %>
 
   // Initialize non-nvs keys
-  {{#keys}}
-  {{^nvs}}
-  if (is_{{name}}_undefined()) {
-    {{#integer}}
-    int default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}{{default}}{{/default}};
-    {{/integer}}
-    {{#string}}
-    const char *default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}"{{default}}"{{/default}};
-    {{/string}}
-    set_{{name}}(default_{{name}});
-  }
-  {{/nvs}}
-  {{/keys}}
-
+  <% Object.keys(modules).forEach(m => {
+    Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].nvs.enable && !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f]%>
+    if (is_<%= f.name %>_undefined()) {
+      <% if(f.type == 'integer') { %>
+        int default_<%= f.name %> = <% if (f.default_var) { %><%= f.default_var %><% } else { %><%= f.default %><% } %>;
+      <% } else { %>
+        const char *default_<%= f.name %> = <% if (f.default_var) { %><%= f.default_var %><% } else { %>"<%= f.default %>"<% } %>;
+      <% } %>
+      set_<%= f.name %>(default_<%= f.name %>);
+    }
+  <% })}) %>
 
   /*
    * [/GENERATED]
    */
 }
 
-void reset_defaults() {
-  {{#keys}}
-  {{#integer}}
-  {{#nvs}}
-  int default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}{{default}}{{/default}};
-  seti({{caps_name}}, default_{{name}});
-  {{/nvs}}
-  {{/integer}}
-  {{#string}}
-  {{#nvs}}
-  const char *default_{{name}} = {{#default_var}}{{default_var}}{{/default_var}}{{#default}}"{{default}}"{{/default}};
-  setstr({{caps_name}}, default_{{name}});
-  {{/nvs}}
-  {{/string}}
-  {{/keys}}
+bool hasi8(const char * key) {
+  int8_t value;
+  esp_err_t err = nvs_get_i8(kv_handle, (const char *)key, &value);
+  return err == ESP_OK;
 }
 
-bool hasi(const char * key) {
+int8_t geti8(const char * key) {
+  int8_t value;
+  esp_err_t err = nvs_get_i8(kv_handle, (const char *)key, &value);
+  ESP_ERROR_CHECK(err);
+  return (int)value;
+}
+
+void seti8(const char * key, int8_t value) {
+  esp_err_t err = nvs_set_i8(kv_handle, (const char *)key, value);
+  ESP_ERROR_CHECK(err);
+  nvs_commit(kv_handle);
+}
+
+void defaulti8(const char * key, int8_t value) {
+  if (!hasi8(key)) {
+    seti8(key, value);
+  }
+}
+
+bool hasi16(const char * key) {
+  int16_t value;
+  esp_err_t err = nvs_get_i16(kv_handle, (const char *)key, &value);
+  return err == ESP_OK;
+}
+
+int16_t geti16(const char * key) {
+  int16_t value;
+  esp_err_t err = nvs_get_i16(kv_handle, (const char *)key, &value);
+  ESP_ERROR_CHECK(err);
+  return (int)value;
+}
+
+void seti16(const char * key, int16_t value) {
+  esp_err_t err = nvs_set_i16(kv_handle, (const char *)key, value);
+  ESP_ERROR_CHECK(err);
+  nvs_commit(kv_handle);
+}
+
+void defaulti16(const char * key, int16_t value) {
+  if (!hasi16(key)) {
+    seti16(key, value);
+  }
+}
+
+bool hasi32(const char * key) {
   int32_t value;
   esp_err_t err = nvs_get_i32(kv_handle, (const char *)key, &value);
   return err == ESP_OK;
 }
 
-int geti(const char * key) {
+int32_t geti32(const char * key) {
   int32_t value;
   esp_err_t err = nvs_get_i32(kv_handle, (const char *)key, &value);
   ESP_ERROR_CHECK(err);
   return (int)value;
 }
 
-void seti(const char * key, int value) {
-  esp_err_t err = nvs_set_i32(kv_handle, (const char *)key, (int32_t)value);
+void seti32(const char * key, int32_t value) {
+  esp_err_t err = nvs_set_i32(kv_handle, (const char *)key, value);
   ESP_ERROR_CHECK(err);
   nvs_commit(kv_handle);
 }
 
-void defaulti(const char * key, int value) {
-  if (!hasi(key)) {
-    seti(key, value);
+void defaulti32(const char * key, int32_t value) {
+  if (!hasi32(key)) {
+    seti32(key, value);
   }
 }
 

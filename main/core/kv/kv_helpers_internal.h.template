@@ -19,18 +19,20 @@
 #ifndef KV_HELPERS_INTERNAL_H_
 #define KV_HELPERS_INTERNAL_H_
 
+#include <stdint.h>
+
 /*
  * [GENERATED]
  */
 
-{{#keys}}
-{{#integer}}
-void internal_set_{{name}}(int value);
-{{/integer}}
-{{#string}}
-void internal_set_{{name}}(const char *value);
-{{/string}}
-{{/keys}}
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).forEach(f => { f = modules[m].fields[f]%>
+  <% if (f.type == 'integer') { %>
+    void internal_set_<%= f.name %>(int<%= f.intlen %>_t value);
+  <% } else { %>
+    void internal_set_<%= f.name %>(const char *value);
+  <% } %>
+<% })}) %>
 
 /*
  * [/GENERATED]

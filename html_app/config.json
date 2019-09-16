@@ -1,0 +1,74 @@
+{
+  "name": "<%= name %>",
+  "keys": [
+    <%
+      const ms = Object.keys(modules)
+      const indirs = ms.reduce((acc, i) => Object.keys(modules[i].fields).reduce((acc, f) => {
+        f = modules[i].fields[f]
+        if (f.indir.enable) {
+          acc[f.indir.source] = {
+            key: f.indir.key,
+            values: []
+          }
+        }
+        return acc
+      }, acc), {})
+      
+      Object.keys(indirs).forEach(i => {
+        ms.forEach(m => {
+          m = modules[m]
+          const fields = Object.keys(m.fields)
+          fields.forEach(f => {
+            f = m.fields[f]
+            if (!f[indirs[i].key]) {
+              return
+            }
+            indirs[i].values.push(f[indirs[i].key])
+          })
+        })
+      })
+
+      ms.forEach((m, i) => {
+        m = modules[m]
+        const fields = Object.keys(m.fields)
+        fields.forEach((f, j) => {
+          const indir = indirs[f]
+          f = m.fields[f]
+          %>
+            {
+              "core": <%= m.core %>,
+              "name": "<%= f.name %>",
+              "type": "<%= f.type %>",
+              "integer": <%= f.type == 'integer' %>,
+              "caps_name": "<%= f.caps_name %>",
+              "module": "<%= m.name %>",
+              <% if (f.helper) { %>"helper": "<%= f.helper %>",<% } %>
+              <% if (f.ble.enable) { %>
+                "ble": {
+                  "uuid": "<%= f.ble.uuid %>",
+                  "write": <%= f.ble.write %>
+                },
+              <% } %>
+              "write": <%= f.http.write %>,
+              <% if (m.array_len) { %>
+                "array": {
+                  "name": "<%= m.field_prefix %>",
+                  "len": <%= m.array_len %>
+                },
+                "<%= m.field_prefix %>": {
+                  "index": <%= parseInt(f.suffix.split('_')[0]) %>,
+                  "param": "<%= f.suffix.split('_').splice(1).join('_') %>"
+                },
+              <% } %>
+              <% if (indir) { %>
+                "indir": {
+                  "values": [<%= indir.values %>]
+                },
+              <% } %>
+              "default": <% if (f.type == 'integer') { %><%= f.default || 0 %><% } else { %>"<%= f.default || '' %>"<% } %>
+            }<% if (!(i == ms.length - 1 && j == fields.length - 1)) { %>,<% } %>
+          <%
+      })})
+    %>
+  ]
+}

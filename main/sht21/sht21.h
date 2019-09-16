@@ -16,7 +16,7 @@
 #ifndef SHT21_H_
 #define SHT21_H_
 
-void init_sht21(int portId, int sda, int sck);
-void loop_sht21(int portId, int sda, int sck);
+void init_sht21(int i2cId);
+void loop_sht21(int i2cId);
 
 #endif
