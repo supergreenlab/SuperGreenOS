@@ -101,8 +101,8 @@ static bool read_past_http_header(char text[], int total_len, esp_ota_handle_t u
 static bool connect_to_http_server()
 {
   char server_ip[20] = {0}; get_ota_server_ip(server_ip, 20);
-  char port[6] = {0}; get_ota_server_port(port, 6);
-  ESP_LOGI(SGO_LOG_EVENT, "@OTA Server IP: %s Server Port:%s", server_ip, port);
+  int16_t port = get_ota_server_port();
+  ESP_LOGI(SGO_LOG_EVENT, "@OTA Server IP: %s Server Port: %d", server_ip, port);
 
   int  http_connect_flag = -1;
   struct sockaddr_in sock_info;
@@ -117,7 +117,7 @@ static bool connect_to_http_server()
   memset(&sock_info, 0, sizeof(struct sockaddr_in));
   sock_info.sin_family = AF_INET;
   sock_info.sin_addr.s_addr = inet_addr(server_ip);
-  sock_info.sin_port = htons(atoi(port));
+  sock_info.sin_port = htons(port);
 
   // connect to http server
   http_connect_flag = connect(socket_id, (struct sockaddr *)&sock_info, sizeof(sock_info));
@@ -134,7 +134,7 @@ static bool connect_to_http_server()
 
 static bool check_new_version(char *new_timestamp) {
   char hostname[128] = {0}; get_ota_server_hostname(hostname, 128);
-  char port[6] = {0}; get_ota_server_port(port, 6);
+  int16_t port = get_ota_server_port();
   char basedir[128] = {0}; get_ota_basedir(basedir, 128);
   /*connect to http server*/
   if (connect_to_http_server()) {
@@ -148,7 +148,7 @@ static bool check_new_version(char *new_timestamp) {
   /*send GET request to http server*/
   const char *GET_FORMAT =
     "GET %s/last_timestamp HTTP/1.0\r\n"
-    "Host: %s:%s\r\n"
+    "Host: %s:%d\r\n"
     "User-Agent: esp-idf/1.0 esp32\r\n\r\n";
 
   char *http_request = NULL;
@@ -194,7 +194,7 @@ static void try_ota(const char *new_timestamp)
 {
   char server_ip[20] = {0}; get_ota_server_ip(server_ip, 20);
   char hostname[128] = {0}; get_ota_server_hostname(hostname, 128);
-  char port[6] = {0}; get_ota_server_port(port, 6);
+  int16_t port = get_ota_server_port();
   char basedir[128] = {0}; get_ota_basedir(basedir, 128);
 
   esp_err_t err;
@@ -227,7 +227,7 @@ static void try_ota(const char *new_timestamp)
   /*send GET request to http server*/
   const char *GET_FORMAT =
     "GET %s/%s/firmware.bin HTTP/1.0\r\n"
-    "Host: %s:%s\r\n"
+    "Host: %s:%d\r\n"
     "User-Agent: esp-idf/1.0 esp32\r\n\r\n";
 
   char *http_request = NULL;
