@@ -38,6 +38,10 @@
 #define min(a, b) (((a) < (b)) ? (a) : (b)) 
 #define max(a, b) (((a) > (b)) ? (a) : (b)) 
 
+static int max_x = INT_MIN;
+static int max_y = INT_MIN;
+static int max_z = INT_MIN;
+
 static void mixer_task();
 static void set_all_duty(int boxId, int value);
 
@@ -49,33 +53,33 @@ void init_mixer() {
 }
 
 static void set_duty(int i, int duty) {
-  if (ledc_channels[i].enabled != 1) {
+  if (get_led_enabled(i) != 1) {
     return;
   }
 
   duty = min(100, max(duty, 0));
-  ledc_channels[i].setter(duty);
+  set_led_duty(i, duty);
 }
 
 static void set_duty_3d(int boxId, double x, double y, double z, int duty, int min_duty) {
   double min_dist = DBL_MAX;
   double max_dist = DBL_MIN;
   for (int i = 0; i < N_LEDS; ++i) {
-    if (ledc_channels[i].enabled != 1 || ledc_channels[i].box != boxId) {
+    if (get_led_enabled(i) != 1 || get_led_box(i) != boxId) {
       continue;
     }
 
-    double dist = sqrtf(pow(fabs(x - ledc_channels[i].x), 2) + pow(fabs(y - ledc_channels[i].y), 2) + pow(fabs(z - ledc_channels[i].z), 2));
+    double dist = sqrtf(pow(fabs(x - get_led_x(i)), 2) + pow(fabs(y - get_led_y(i)), 2) + pow(fabs(z - get_led_z(i)), 2));
     min_dist = min(min_dist, dist);
     max_dist = max(max_dist, dist);
   }
 
   for (int i = 0; i < N_LEDS; ++i) {
-    if (ledc_channels[i].enabled != 1 || ledc_channels[i].box != boxId) {
+    if (get_led_enabled(i) != 1 || get_led_box(i) != boxId) {
       continue;
     }
 
-    double dist = sqrtf(pow(fabs(x - ledc_channels[i].x), 2) + pow(fabs(y - ledc_channels[i].y), 2) + pow(fabs(z - ledc_channels[i].z), 2));
+    double dist = sqrtf(pow(fabs(x - get_led_x(i)), 2) + pow(fabs(y - get_led_y(i)), 2) + pow(fabs(z - get_led_z(i)), 2));
     double d = min_duty + (double)(duty - min_duty) * ((max_dist - dist) / (max_dist - min_dist));
     set_duty(i, d);
   }
@@ -123,7 +127,7 @@ static void mixer_task() {
 
 static void set_all_duty(int boxId, int value) {
   for (int i = 0; i < N_LEDS; ++i) {
-    if (ledc_channels[i].enabled != 1 || ledc_channels[i].box != boxId) {
+    if (get_led_enabled(i) != 1 || get_led_box(i) != boxId) {
       continue;
     }
 

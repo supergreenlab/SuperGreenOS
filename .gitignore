@@ -7,9 +7,7 @@ sdkconfig.old
 main/component.mk
 main/Kconfig.projbuild
 main/init.c
-main/led/led_helpers.c
-main/led/led_db.c
-main/led/led_helpers.h
+main/led/led.h
 main/led/led.c
 main/core/kv/kv.c
 main/core/kv/kv_helpers_internal.h
@@ -19,13 +17,9 @@ main/core/kv/keys.h
 main/core/kv/kv.h
 main/core/kv/kv_arrays.h
 main/core/kv/kv_arrays.c
-main/core/i2c/i2c_helpers.h
 main/core/i2c/i2c.c
-main/core/i2c/i2c_helpers.c
 main/core/httpd/httpd_kv_handlers.c
 main/core/ble/ble_db.h
 main/core/ble/ble_db.c
 main/core/include_modules.h
 main/core/stat_dump/stat_dump.c
-main/box/box_helpers.c
-main/box/box_helpers.h

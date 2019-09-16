@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
 # Author: Constantin Clauzel <constantin.clauzel@gmail.com>
 #
@@ -17,11 +18,11 @@
 CONFIG_PATH="$1"
 CONFIG_FILE="$2"
 
-if [ -z "$CONFIG_PATH$CONFIG_FILE" ]; then
+if [ -z "$CONFIG_PATH" ] || [ -z "$CONFIG_FILE" ]; then
   echo "USAGE: $0 config_path config.json"
   exit
 fi
 
 pushd $CONFIG_PATH
-cue export ./... > "../../../$CONFIG_FILE"
+cue export ./... > "../../../../$CONFIG_FILE"
 popd

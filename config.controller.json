@@ -220,7 +220,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 26,
+                    "default": 18,
                     "ble": {
                         "enable": false
                     },
@@ -298,7 +298,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 27,
+                    "default": 5,
                     "ble": {
                         "enable": false
                     },

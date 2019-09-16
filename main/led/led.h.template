@@ -16,9 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LED_DB_H_
-#define LED_DB_H_
+#ifndef LED_H_
+#define LED_H_
 
-#include "../led/led.h"
+#include "driver/ledc.h"
+
+#define N_LEDS <%= modules.led.array_len %>
+
+void init_led();
+void refresh_led(int boxId, int ledId, int fade_time);
+
+/* BLE Callbacks */
+
+int on_set_led_duty(int ledId, int value);
+int on_set_led_dim(int ledId, int value);
 
 #endif

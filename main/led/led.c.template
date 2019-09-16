@@ -29,16 +29,8 @@
 #include "esp_err.h"
 
 #include "led.h"
-#include "led_db.h"
-#include "../core/ble/ble_db.h"
 #include "../core/kv/kv.h"
-#include "../core/kv/kv_ble.h"
-#include "../core/ble/ble.h"
-#include "../core/ble/ble_utils.h"
 #include "../core/log/log.h"
-#include "../core/time/time.h"
-#include "../state/state.h"
-#include "../box/box.h"
 
 #define LED_MIN_ZERO           5
 #define LED_DUTY_RESOLUTION    10
@@ -46,19 +38,12 @@
 #define LED_MAX_DUTY           pow(2, LED_DUTY_RESOLUTION)
 #define LED_FREQ               40000
 
-int min_x = INT_MAX;
-int max_x = INT_MIN;
-
-int min_y = INT_MAX;
-int max_y = INT_MIN;
-
-int min_z = INT_MAX;
-int max_z = INT_MIN;
-
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
 #define LEDC_FADE_TIME         (1000)
+#define SPEED_MODE LEDC_HIGH_SPEED_MODE
+#define LEDC_CHANNEL(i) LEDC_CHANNEL_0+i
 
 typedef struct {
   int box_id;
@@ -67,22 +52,16 @@ typedef struct {
 } cmd_refresh_led;
 static QueueHandle_t cmd;
 
-static void fade_no_wait_led(ledc_channel_config_t ledc_channel, int duty, int fade_time) {
-  uint32_t current_duty = ledc_get_duty(ledc_channel.speed_mode, ledc_channel.channel); 
+static void fade_no_wait_led(int i, int duty, int fade_time) {
+  uint32_t current_duty = ledc_get_duty(SPEED_MODE, LEDC_CHANNEL(i)); 
   if (current_duty == duty) {
     return;
   }
-  ledc_set_fade_with_time(ledc_channel.speed_mode,
-      ledc_channel.channel, duty, fade_time);
-  ledc_fade_start(ledc_channel.speed_mode,
-      ledc_channel.channel, LEDC_FADE_NO_WAIT);
+  ledc_set_fade_with_time(SPEED_MODE, LEDC_CHANNEL(i), duty, fade_time);
+  ledc_fade_start(SPEED_MODE, LEDC_CHANNEL(i), LEDC_FADE_NO_WAIT);
 }
 
 static void update_led(int i, int fade_time) {
-  if (ledc_channels[i].enabled != 1) {
-    return;
-  }
-
   double dim = get_led_dim(i);
   double duty = get_led_duty(i) * dim / 100;
   duty = (duty < LED_MIN_ZERO) ? 0 : duty;
@@ -90,11 +69,11 @@ static void update_led(int i, int fade_time) {
     double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
     ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
 
-    fade_no_wait_led(ledc_channels[i].channel_config, real_duty, fade_time);
+    fade_no_wait_led(i, real_duty, fade_time);
   } else {
     duty = (duty == 0 ? duty : LED_MAX_DUTY);
-    ledc_set_duty(ledc_channels[i].channel_config.speed_mode, ledc_channels[i].channel_config.channel, duty);
-    ledc_update_duty(ledc_channels[i].channel_config.speed_mode, ledc_channels[i].channel_config.channel);
+    ledc_set_duty(SPEED_MODE, LEDC_CHANNEL(i), duty);
+    ledc_update_duty(SPEED_MODE, LEDC_CHANNEL(i));
   }
 }
 
@@ -109,10 +88,10 @@ static void led_task(void *param) {
       c.fade_time = LEDC_FADE_TIME;
     }
     for (int i = 0; i < N_LEDS; ++i) {
-      if (c.box_id != -1 && (c.box_id != ledc_channels[i].box || get_box_enabled(ledc_channels[i].box) != 1)) {
+      if (c.box_id != -1 && (c.box_id != get_led_box(i) || get_box_enabled(get_led_box(i)) != 1)) {
         continue;
       }
-      if (c.led_id != -1 && (i != c.led_id || ledc_channels[i].enabled != 1)) {
+      if (c.led_id != -1 && i != c.led_id) {
         continue;
       }
       update_led(i, c.fade_time);
@@ -134,21 +113,15 @@ void init_led() {
 
   // TODO remove led array, it's useless now
   for (int i = 0; i < N_LEDS; ++i) {
-    ledc_channels[i].enabled = get_led_enabled(i);
-
-    ledc_channels[i].x = get_led_x(i);
-    ledc_channels[i].y = get_led_y(i);
-    ledc_channels[i].z = get_led_z(i);
-
-    ledc_channels[i].box = get_led_box(i);
-
-    ledc_channels[i].channel_config.gpio_num = get_led_gpio(i);
-
-    if (ledc_channels[i].enabled != 1 || get_box_enabled(ledc_channels[i].box) != 1) {
-      continue;
-    }
-
-    ledc_channel_config(&ledc_channels[i].channel_config);
+    ledc_channel_config_t channel_config = {
+      gpio_num:    get_led_gpio(i),
+      speed_mode:  SPEED_MODE,
+      channel:     LEDC_CHANNEL(i),
+      timer_sel:   LEDC_TIMER_0,
+      hpoint:      0,
+      duty:        0,
+    };
+    ledc_channel_config(&channel_config);
   }
 
   cmd = xQueueCreate(10, sizeof(cmd_refresh_led));
