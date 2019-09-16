@@ -25,22 +25,13 @@
 #include "freertos/task.h"
 #include "time.h"
 
-#include "../core/ble/ble_db.h"
 #include "../core/kv/kv.h"
-#include "../core/kv/kv_ble.h"
-#include "../core/ble/ble.h"
 #include "../core/log/log.h"
-#include "../led/led.h"
 #include "../state/state.h"
-#include "../timer/timer.h"
-#include "../box/box.h"
+#include "../led/led.h"
 
 #define min(a, b) (((a) < (b)) ? (a) : (b)) 
 #define max(a, b) (((a) > (b)) ? (a) : (b)) 
-
-static int max_x = INT_MIN;
-static int max_y = INT_MIN;
-static int max_z = INT_MIN;
 
 static void mixer_task();
 static void set_all_duty(int boxId, int value);
@@ -53,10 +44,6 @@ void init_mixer() {
 }
 
 static void set_duty(int i, int duty) {
-  if (get_led_enabled(i) != 1) {
-    return;
-  }
-
   duty = min(100, max(duty, 0));
   set_led_duty(i, duty);
 }
@@ -64,8 +51,9 @@ static void set_duty(int i, int duty) {
 static void set_duty_3d(int boxId, double x, double y, double z, int duty, int min_duty) {
   double min_dist = DBL_MAX;
   double max_dist = DBL_MIN;
-  for (int i = 0; i < N_LEDS; ++i) {
-    if (get_led_enabled(i) != 1 || get_led_box(i) != boxId) {
+
+  for (int i = 0; i < N_LED; ++i) {
+    if (get_led_box(i) != boxId) {
       continue;
     }
 
@@ -74,8 +62,8 @@ static void set_duty_3d(int boxId, double x, double y, double z, int duty, int m
     max_dist = max(max_dist, dist);
   }
 
-  for (int i = 0; i < N_LEDS; ++i) {
-    if (get_led_enabled(i) != 1 || get_led_box(i) != boxId) {
+  for (int i = 0; i < N_LED; ++i) {
+    if (get_led_box(i) != boxId) {
       continue;
     }
 
@@ -86,14 +74,28 @@ static void set_duty_3d(int boxId, double x, double y, double z, int duty, int m
 }
 
 static void mixer_duty(int boxId) {
-  double timerOutput = get_box_timer_output(boxId);
-  double duty = max(0, min(100, timerOutput));
+  double timer_output = get_box_timer_output(boxId);
+  double duty = max(0, min(100, timer_output));
 
   int stretch = get_box_stretch(boxId);
 
   if (stretch == 0 || duty == 0) {
     set_all_duty(boxId, duty);
   } else if (duty != 0) {
+    int max_x = INT_MIN;
+    int max_y = INT_MIN;
+    int max_z = INT_MIN;
+
+    for (int i = 0; i < N_LED; ++i) {
+      if (get_led_box(i) != boxId) {
+        continue;
+      }
+
+      max_x = max(max_x, get_led_x(i));
+      max_y = max(max_y, get_led_y(i));
+      max_z = max(max_z, get_led_z(i));
+    }
+
     set_duty_3d(boxId, (double)max_x / 2, (double)max_y / 2, max_z * 1.25, duty + ((double)stretch / 100 * 25), 30 - ((double)stretch / 100 * 25));
   }
   refresh_led(boxId, -1, -1);
@@ -110,7 +112,7 @@ static void mixer_task() {
     }
 
     time(&now);
-    for (int i = 0; i < N_BOXES; ++i) {
+    for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1) continue;
 
       int led_dim = get_box_led_dim(i);
@@ -126,8 +128,8 @@ static void mixer_task() {
 }
 
 static void set_all_duty(int boxId, int value) {
-  for (int i = 0; i < N_LEDS; ++i) {
-    if (get_led_enabled(i) != 1 || get_led_box(i) != boxId) {
+  for (int i = 0; i < N_LED; ++i) {
+    if (get_led_box(i) != boxId) {
       continue;
     }
 

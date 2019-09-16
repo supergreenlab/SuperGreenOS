@@ -39,7 +39,7 @@ static void stop(int boxId, enum timer t);
 static void start(int boxId, enum timer t);
 
 void init_timer() {
-  for (int i = 0; i < N_BOXES; ++i) {
+  for (int i = 0; i < N_BOX; ++i) {
     if (get_box_enabled(i) != 1) continue;
     start(i, get_box_timer_type(i));
   }
@@ -72,10 +72,6 @@ static void start(int boxId, enum timer t) {
   }
 }
 
-void update_output(int boxId, int output) {
-  ESP_LOGI(SGO_LOG_EVENT, "@TIMER_%d update_output %d", boxId, output);
-}
-
 static void timer_task(void *param) {
   while (1) {
     enum state s = get_state();
@@ -84,7 +80,7 @@ static void timer_task(void *param) {
       continue;
     }
 
-    for (int i = 0; i < N_BOXES; ++i) {
+    for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1) continue;
       enum timer t = get_box_timer_type(i);
 

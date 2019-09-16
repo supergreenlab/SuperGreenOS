@@ -27,7 +27,6 @@ enum timer {
 };
 
 void init_timer();
-void update_output(int boxId, int output);
 
 /* BLE callbacks */
 

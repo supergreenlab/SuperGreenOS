@@ -123,7 +123,7 @@
                 },
               
               
-              "default": 26
+              "default": 18
             },
           
             {
@@ -195,7 +195,7 @@
                 },
               
               
-              "default": 27
+              "default": 5
             },
           
             {
@@ -603,78 +603,6 @@
               
               
               "default": ""
-            },
-          
-            {
-              "core": false,
-              "name": "led_0_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_0_ENABLED",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 0,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "led_1_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_1_ENABLED",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 1,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "led_2_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_2_ENABLED",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 2,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 1
             },
           
             {
@@ -1395,78 +1323,6 @@
               
               
               "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_3_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_3_ENABLED",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 3,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "led_4_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_4_ENABLED",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 4,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "led_5_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_5_ENABLED",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 5,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 1
             },
           
             {

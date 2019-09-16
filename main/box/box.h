@@ -19,6 +19,4 @@
 #ifndef BOX_H_
 #define BOX_H_
 
-#define N_BOXES 3
-
 #endif

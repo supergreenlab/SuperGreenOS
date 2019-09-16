@@ -21,8 +21,6 @@
 
 #include "driver/ledc.h"
 
-#define N_LEDS 6
-
 void init_led();
 void refresh_led(int boxId, int ledId, int fade_time);
 

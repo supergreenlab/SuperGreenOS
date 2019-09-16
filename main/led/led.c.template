@@ -32,14 +32,14 @@
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
+#define min(a, b) (((a) < (b)) ? (a) : (b)) 
+#define max(a, b) (((a) > (b)) ? (a) : (b)) 
+
 #define LED_MIN_ZERO           5
 #define LED_DUTY_RESOLUTION    10
 #define LED_MIN_DUTY           0
 #define LED_MAX_DUTY           pow(2, LED_DUTY_RESOLUTION)
 #define LED_FREQ               40000
-
-#define max(x, y) (((x) > (y)) ? (x) : (y))
-#define min(x, y) (((x) < (y)) ? (x) : (y))
 
 #define LEDC_FADE_TIME         (1000)
 #define SPEED_MODE LEDC_HIGH_SPEED_MODE
@@ -65,6 +65,9 @@ static void update_led(int i, int fade_time) {
   double dim = get_led_dim(i);
   double duty = get_led_duty(i) * dim / 100;
   duty = (duty < LED_MIN_ZERO) ? 0 : duty;
+  if (get_box_enabled(get_led_box(i)) != 1) {
+    duty = 0;
+  }
   if (get_led_fade(i) == 1) {
     double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
     ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
@@ -87,8 +90,8 @@ static void led_task(void *param) {
       c.led_id = -1;
       c.fade_time = LEDC_FADE_TIME;
     }
-    for (int i = 0; i < N_LEDS; ++i) {
-      if (c.box_id != -1 && (c.box_id != get_led_box(i) || get_box_enabled(get_led_box(i)) != 1)) {
+    for (int i = 0; i < N_LED; ++i) {
+      if (c.box_id != -1 && c.box_id != get_led_box(i)) {
         continue;
       }
       if (c.led_id != -1 && i != c.led_id) {
@@ -112,7 +115,7 @@ void init_led() {
   ledc_timer_config(&ledc_timer);
 
   // TODO remove led array, it's useless now
-  for (int i = 0; i < N_LEDS; ++i) {
+  for (int i = 0; i < N_LED; ++i) {
     ledc_channel_config_t channel_config = {
       gpio_num:    get_led_gpio(i),
       speed_mode:  SPEED_MODE,

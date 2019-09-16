@@ -32,11 +32,6 @@ modules led fields "\(k)_z": _INT8 & _NVS & _HTTP_RW & {
   default: 0
 } for k, v in _led_conf
 
-modules led fields "\(k)_enabled": _INT8 & _NVS & _HTTP_RW & {
-  nvs key: "L_\(k)_E"
-  default: 1
-} for k, v in _led_conf
-
 modules led fields "\(k)_box": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "L_\(k)_BOX"
   default: 0
