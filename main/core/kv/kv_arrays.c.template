@@ -52,6 +52,7 @@
                           return acc
                        }, {})
 %>
+
 <%
   Object.keys(arrays).forEach(a => { a = arrays[a]
     Object.keys(a.fields).forEach(f => { f = a.fields[f] %>

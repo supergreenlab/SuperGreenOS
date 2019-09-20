@@ -29,22 +29,20 @@
 #include "../core/kv/kv.h"
 #include "../core/kv/kv_ble.h"
 
-#include "../box/box.h"
-
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
 static void blower_task(void *param) {
   while (1) {
     for (int i = 0; i < N_BOX; ++i) {
-      if (get_box_enabled(i) != 1 || get_box_blower_enabled(i) != 1) continue;
+      if (get_box_enabled(i) != 1) continue;
       int vday = get_box_blower_day(i);
       int vnight = get_box_blower_night(i);
       int timerOutput = get_box_timer_output(i);
       int v = (float)vnight + ((vday - vnight) * (float)timerOutput / 100.0f);
       set_box_blower_duty(i, v);
     }
-    vTaskDelay(2000 / portTICK_PERIOD_MS);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 }
 

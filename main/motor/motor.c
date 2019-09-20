@@ -62,7 +62,7 @@ static void motor_task(void *param) {
       ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR Motor: %d, duty: %d", c.motorId, get_motor_duty(i));
       set_duty(i, get_motor_duty(i));
     }
-    if (xQueueReceive(cmd, &c, 3000 / portTICK_PERIOD_MS) == pdTRUE) {
+    if (xQueueReceive(cmd, &c, 1000 / portTICK_PERIOD_MS) == pdTRUE) {
       if (c.cmd == CMD_CHANGED_FREQUENCY) {
         int motor_frequency = c.value;
         ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR CMD_CHANGED_FREQUENCY %d %d", c.motorId, motor_frequency);

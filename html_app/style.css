@@ -15,8 +15,7 @@ body, html {
 }
 
 .modules > .menu_item_modules, .system > .menu_item_system {
-  color: white;
-  background-color: #717171;
+  border-bottom: 2pt solid #454545;
 }
 
 .menu_item_modules, .menu_item_system {
@@ -141,8 +140,7 @@ body, html {
   padding: 10pt 10pt;
   text-transform: uppercase;
   border-bottom: 1pt solid #ececec;
-  background-color: #717171;
-  color: white;
+  color: #717171;
 }
 
 .array_title > h2 {
@@ -160,7 +158,7 @@ body, html {
 
 .array_title > a {
   margin: 0 10pt;
-  color: white;
+  color: #717171;
 }
 
 .array_container {

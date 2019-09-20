@@ -22,8 +22,3 @@ modules blower fields "\(k)_blower_night": _INT8 & _NVS & _HTTP_RW & {
   default: 20
   write_cb: true
 } for k, v in _box_conf
-
-modules blower fields "\(k)_blower_enabled": _INT8 & _NVS & _HTTP_RW & {
-  nvs key: "B_\(k)_BLWR_E"
-  default: 1
-} for k, v in _box_conf
