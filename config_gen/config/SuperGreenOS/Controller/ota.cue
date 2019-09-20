@@ -1,3 +1,3 @@
 package config
 
-modules ota fields basedir default: "/controllerV2"
+modules ota fields basedir default: "/ControllerV2"

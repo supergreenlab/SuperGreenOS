@@ -1,3 +1,3 @@
 package config
 
-modules ota fields basedir default: "/soloV2"
+modules ota fields basedir default: "/SoloV2"

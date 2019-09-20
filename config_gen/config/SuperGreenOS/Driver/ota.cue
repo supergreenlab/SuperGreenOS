@@ -1,3 +1,3 @@
 package config
 
-modules ota fields basedir default: "/driverV2"
+modules ota fields basedir default: "/DriverV2"
