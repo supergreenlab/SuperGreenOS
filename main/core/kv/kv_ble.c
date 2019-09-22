@@ -27,18 +27,18 @@
 #include "../ble/ble_utils.h"
 
 void sync_ble_i8(const char *key, enum idx i) {
-  int value = geti8(key);
-  set_attr_value(i, (const uint8_t *)&value, sizeof(value));
+  int32_t value = (int32_t)geti8(key);
+  set_attr_value(i, (const uint8_t *)&value, sizeof(int32_t));
 }
 
 void sync_ble_i16(const char *key, enum idx i) {
-  int value = geti16(key);
-  set_attr_value(i, (const uint8_t *)&value, sizeof(value));
+  int32_t value = (int32_t)geti16(key);
+  set_attr_value(i, (const uint8_t *)&value, sizeof(int32_t));
 }
 
 void sync_ble_i32(const char *key, enum idx i) {
-  int value = geti32(key);
-  set_attr_value(i, (const uint8_t *)&value, sizeof(value));
+  int32_t value = (int32_t)geti32(key);
+  set_attr_value(i, (const uint8_t *)&value, sizeof(int32_t));
 }
 
 void sync_ble_str(const char *key, enum idx i) {

@@ -125,6 +125,7 @@ StaticSemaphore_t mutex_buffer;
       strncpy(_<%= f.name %>, value, strlen(value));
       <% } %>
       _<%= f.name %>_changed = true;
+      _<%= f.name %>_undefined = false;
       xSemaphoreGive(_mutex_<%= f.name %>);
       <% if (f.ble.enable && !f.ble.no_sync) { %>
         set_attr_value<% if (f.ble.notify) { %>_and_notify<% } %>(IDX_CHAR_VAL_<%= f.caps_name %>, (uint8_t *)value, strlen(value));

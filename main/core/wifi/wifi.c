@@ -241,7 +241,6 @@ static void wifi_task(void *param) {
 
   for (;;) {
     if (xQueueReceive(cmd, &c, 20000 / portTICK_PERIOD_MS)) {
-      ESP_LOGI(SGO_LOG_EVENT, "@WIFI xQueueReceive %d", c);
 
       // Wifi STA conf change
       if ((c == CMD_SSID_CHANGED || c == CMD_PASS_CHANGED)) {
