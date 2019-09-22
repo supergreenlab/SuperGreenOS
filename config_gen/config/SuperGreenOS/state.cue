@@ -1,6 +1,8 @@
 package config
 
-modules state: _MODULE
+modules state: _MODULE & {
+  init_priority: 100
+}
 
 modules state fields state: _INT8 & _NVS & _BLE_RW & _HTTP_RW & {
   name: "state"

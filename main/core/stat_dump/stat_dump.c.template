@@ -33,9 +33,9 @@
 static void dump_heap_infos(const char *name, uint32_t cap) {
   multi_heap_info_t heap_infos;
   heap_caps_get_info(&heap_infos, cap);
-  ESP_LOGI(SGO_LOG_NOSEND, "@MALLOC_CAP_%s total_free_bytes=%d, total_allocated_bytes=%d", name, heap_infos.total_free_bytes, heap_infos.total_allocated_bytes);
-  ESP_LOGI(SGO_LOG_NOSEND, "@MALLOC_CAP_%s largest_free_block=%d, minimum_free_bytes=%d", name, heap_infos.largest_free_block, heap_infos.minimum_free_bytes);
-  ESP_LOGI(SGO_LOG_NOSEND, "@MALLOC_CAP_%s allocated_blocks=%d, free_blocks=%d, total_blocks=%d", name, heap_infos.allocated_blocks, heap_infos.free_blocks, heap_infos.total_blocks);
+  ESP_LOGI(SGO_LOG_METRIC, "@MALLOC_CAP_%s total_free_bytes=%d, total_allocated_bytes=%d", name, heap_infos.total_free_bytes, heap_infos.total_allocated_bytes);
+  ESP_LOGI(SGO_LOG_METRIC, "@MALLOC_CAP_%s largest_free_block=%d, minimum_free_bytes=%d", name, heap_infos.largest_free_block, heap_infos.minimum_free_bytes);
+  ESP_LOGI(SGO_LOG_METRIC, "@MALLOC_CAP_%s allocated_blocks=%d, free_blocks=%d, total_blocks=%d", name, heap_infos.allocated_blocks, heap_infos.free_blocks, heap_infos.total_blocks);
 }
 
 static void stat_dump_task(void *param) {
@@ -44,7 +44,7 @@ static void stat_dump_task(void *param) {
   vTaskDelay(30 * 1000 / portTICK_PERIOD_MS);
   //uint32_t ulTotalRunTime, ulStatsAsPercentage;
   while(1) {
-    dump_heap_infos("32BIT", MALLOC_CAP_32BIT);
+    /*dump_heap_infos("32BIT", MALLOC_CAP_32BIT);
     vTaskDelay(200 / portTICK_PERIOD_MS);
 
     dump_heap_infos("8BIT", MALLOC_CAP_8BIT);
@@ -83,22 +83,22 @@ static void stat_dump_task(void *param) {
     dump_heap_infos("INVALID", MALLOC_CAP_INVALID);
     vTaskDelay(200 / portTICK_PERIOD_MS);
 
-    ESP_LOGI(SGO_LOG_NOSEND, "@HEAP free=%d, min=%d", esp_get_free_heap_size(), esp_get_minimum_free_heap_size());
+    ESP_LOGI(SGO_LOG_METRIC, "@HEAP free=%d, min=%d", esp_get_free_heap_size(), esp_get_minimum_free_heap_size());
 
-    ESP_LOGI(SGO_LOG_NOSEND, "@SYS n_tasks=%d", uxTaskGetNumberOfTasks());
-    /* int n_tasks = uxTaskGetNumberOfTasks();
+    ESP_LOGI(SGO_LOG_METRIC, "@SYS n_tasks=%d", uxTaskGetNumberOfTasks());
+    int n_tasks = uxTaskGetNumberOfTasks();
     TaskStatus_t *statuses = malloc(n_tasks * sizeof(TaskStatus_t));
     if (statuses) {
       uxTaskGetSystemState(statuses, n_tasks, &ulTotalRunTime);
       ulTotalRunTime /= 100UL;
       for (int i = 0; i < n_tasks; ++i) {
-        ESP_LOGI(SGO_LOG_NOSEND, "@%s stack_left=%d", statuses[i].pcTaskName, statuses[i].usStackHighWaterMark);
+        ESP_LOGI(SGO_LOG_METRIC, "@%s stack_left=%d", statuses[i].pcTaskName, statuses[i].usStackHighWaterMark);
         if (ulTotalRunTime != 0) {
           ulStatsAsPercentage = statuses[i].ulRunTimeCounter / ulTotalRunTime;
-          ESP_LOGI(SGO_LOG_NOSEND, "@%s task_counter=%d, task_percent=%d", statuses[i].pcTaskName, statuses[i].ulRunTimeCounter, ulStatsAsPercentage);
+          ESP_LOGI(SGO_LOG_METRIC, "@%s task_counter=%d, task_percent=%d", statuses[i].pcTaskName, statuses[i].ulRunTimeCounter, ulStatsAsPercentage);
         }
+        vTaskDelay(200 / portTICK_PERIOD_MS);
       }
-      vTaskDelay(5000 / portTICK_PERIOD_MS);
       free(statuses);
     }*/
 
@@ -110,7 +110,7 @@ static void stat_dump_task(void *param) {
     char str[MAX_KVALUE_SIZE] = {0};
     <% Object.keys(modules).forEach(m => {
       Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].nosend).forEach(f => { f = modules[m].fields[f] %>
-    if ((counter % 20) == 0<% if (!f.indir.enable) { %> || is_<%= f.name %>_changed()<% } %>) {
+    if ((counter % 10) == 0<% if (!f.indir.enable) { %> || is_<%= f.name %>_changed()<% } %>) {
       <% if (f.type == 'integer') { %>
         value = get_<%= f.name %>();
         ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "<%= f.caps_name %>", value);
@@ -135,10 +135,10 @@ static void stat_dump_task(void *param) {
   }
 }
 
-void init_stat_dump_queues() {
-}
-
 void init_stat_dump() {
   ESP_LOGI(SGO_LOG_EVENT, "@SYS reset_reason=%d", esp_reset_reason());
-  xTaskCreate(stat_dump_task, "STAT_DUMP", 4096, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreate(stat_dump_task, "STAT_DUMP", 4096, NULL, 10, NULL);
+  if (ret != pdPASS) {
+    ESP_LOGE(SGO_LOG_EVENT, "@STAT_DUMP Failed to create task");
+  }
 }

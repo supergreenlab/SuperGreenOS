@@ -34,7 +34,7 @@
 static void loop_devices(int i2cId) {
   <% Object.keys(modules).filter(m => modules[m].i2c).forEach(m => { %>
   loop_<%= modules[m].name %>(i2cId);
-  vTaskDelay(200 / portTICK_RATE_MS);
+  vTaskDelay(1000 / portTICK_RATE_MS);
   <% }) %>
 }
 
@@ -62,7 +62,10 @@ void init_i2c() {
     init_i2c_devices(<%= i %>);
   }
   <% }) %>
-  xTaskCreate(i2c_task, "I2C", 4096, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreate(i2c_task, "I2C", 4096, NULL, 10, NULL);
+  if (ret != pdPASS) {
+    ESP_LOGE(SGO_LOG_EVENT, "@I2C Failed to create task");
+  }
 }
 
 static bool i2c_started[] = { <% Array(modules.i2c.array_len).fill().forEach((v, i) => { %>false,<% }) %> };

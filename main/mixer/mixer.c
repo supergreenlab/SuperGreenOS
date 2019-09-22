@@ -37,7 +37,9 @@ static void mixer_task();
 static void set_all_duty(int boxId, int value);
 
 void init_mixer() {
-  BaseType_t ret = xTaskCreate(mixer_task, "MIXER", 6084, NULL, tskIDLE_PRIORITY, NULL);
+  ESP_LOGI(SGO_LOG_EVENT, "@MIXER Initializing mixer module");
+
+  BaseType_t ret = xTaskCreate(mixer_task, "MIXER", 4096, NULL, tskIDLE_PRIORITY, NULL);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@MIXER Failed to create task");
   }
@@ -107,7 +109,7 @@ static void mixer_task() {
   while (1) {
     enum state s = get_state();
     if (s != RUNNING) {
-      vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
+      vTaskDelay(5000 / portTICK_PERIOD_MS);
       continue;
     }
 
@@ -123,7 +125,7 @@ static void mixer_task() {
       mixer_duty(i);
     }
 
-    vTaskDelay(2 * 1000 / portTICK_PERIOD_MS);
+    vTaskDelay(2000 / portTICK_PERIOD_MS);
   }
 }
 

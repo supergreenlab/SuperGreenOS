@@ -77,7 +77,10 @@ void init_wifi() {
     ESP_LOGE(SGO_LOG_EVENT, "@WIFI Failed to create queue");
   }
 
-  xTaskCreate(wifi_task, "WIFI", 4096, NULL, tskIDLE_PRIORITY, NULL);
+  BaseType_t ret = xTaskCreate(wifi_task, "WIFI", 4096, NULL, tskIDLE_PRIORITY, NULL);
+  if (ret != pdPASS) {
+    ESP_LOGE(SGO_LOG_EVENT, "@WIFI Failed to create task");
+  }
 
   if (is_valid()) {
     start_sta();
@@ -91,8 +94,7 @@ void wait_connected() {
       false, true, portMAX_DELAY);
 }
 
-static void init_mdns_service()
-{
+static void init_mdns_service() {
 	esp_err_t err = mdns_init();
 	if (err) {
 		ESP_LOGE(SGO_LOG_EVENT, "@WIFI MDNS Init failed: %d\n", err);
@@ -106,6 +108,11 @@ static void init_mdns_service()
   mdns_service_add(NULL, "_http", "_tcp", 80, NULL, 0);
 
   ESP_LOGI(SGO_LOG_EVENT, "@WIFI Started MDNS advertising as %s.local", domain);
+}
+
+static void restart_mdns() {
+  mdns_free();
+  init_mdns_service();
 }
 
 static void start_ap() {
@@ -219,9 +226,9 @@ static bool try_sta_connection() {
     /*} else {
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI unable to esp_wifi_ap_get_sta_list");
     }*/
-  } else {
+  }/* else {
     ESP_LOGI(SGO_LOG_EVENT, "@WIFI unable to get_mode");
-  }
+  }*/
   return false;
 }
 
@@ -253,6 +260,7 @@ static void wifi_task(void *param) {
         n_connected_sta = 0;
       } else if (c == CMD_STA_CONNECTED) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_STA_CONNECTED");
+        restart_mdns();
       } else if (c == CMD_AP_STACONNECTED) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_AP_STACONNECTED");
         ++n_connected_sta;

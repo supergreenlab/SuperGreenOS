@@ -41,7 +41,6 @@ void app_main() {
   open_kv();
   init_reboot();
 
-  init_stat_dump_queues();
   mqtt_intercept_log();
 
   preinit_kv();

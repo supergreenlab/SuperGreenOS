@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 <%
-  const init = Object.keys(modules).filter(m => modules[m].init && !modules[m].core).map(m => modules[m])
+  const init = Object.keys(modules).filter(m => modules[m].init && !modules[m].core).map(m => modules[m]).sort((m1, m2) => m2.init_priority - m1.init_priority)
 %>
 
 <% init.forEach(m => { %>

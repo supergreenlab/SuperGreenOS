@@ -115,8 +115,8 @@ const uint8_t char_prop_read_write         = ESP_GATT_CHAR_PROP_BIT_READ | ESP_G
 const uint8_t char_prop_read_write_notify   = ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_NOTIFY;
 const uint8_t char_prop_read_notify   = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_NOTIFY;
 const uint8_t client_configuration[2]    = {0x01, 0x00};
-const uint8_t i_char_value[4]         = {0x00, 0x0, 0x0, 0x0};
-const uint8_t str_char_value[1]         = {0};
+const uint8_t i_char_value[4]         = {0x0, 0x0, 0x0, 0x0};
+const uint8_t str_char_value[1]         = "";
 
 /* Full Database Description - Used to add attributes into the database */
 static void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param)

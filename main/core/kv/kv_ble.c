@@ -24,6 +24,7 @@
 #include "./kv_ble.h"
 
 #include "../ble/ble.h"
+#include "../ble/ble_utils.h"
 
 void sync_ble_i8(const char *key, enum idx i) {
   int value = geti8(key);
@@ -41,7 +42,7 @@ void sync_ble_i32(const char *key, enum idx i) {
 }
 
 void sync_ble_str(const char *key, enum idx i) {
-  char value[517] = {0};
+  char value[CHAR_VAL_LEN_MAX] = {0};
   getstr(key, value, sizeof(value) - 1);
   set_attr_value(i, (const uint8_t *)value, strlen(value));
 }

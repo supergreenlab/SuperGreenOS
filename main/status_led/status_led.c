@@ -55,7 +55,7 @@ static void status_led_task(void *param) {
 }
 
 void init_status_led() {
-  ESP_LOGI(SGO_LOG_EVENT, "@STATUS_LED Status led");
+  ESP_LOGI(SGO_LOG_EVENT, "@STATUS_LED Initializing status_led module");
 
   ledc_timer_config_t ledc_timer = {
     speed_mode:       LEDC_LOW_SPEED_MODE,
@@ -89,5 +89,8 @@ void init_status_led() {
 
   ledc_fade_func_install(0);
 
-  xTaskCreate(status_led_task, "STATUS_LED", 4096, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreate(status_led_task, "STATUS_LED", 4096, NULL, 10, NULL);
+  if (ret != pdPASS) {
+    ESP_LOGE(SGO_LOG_EVENT, "@STATUS_LED Failed to create task");
+  }
 }

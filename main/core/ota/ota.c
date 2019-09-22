@@ -360,5 +360,8 @@ void init_ota() {
   int ota_build_timestamp = get_ota_timestamp();
   ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA initialization timestamp=%d", ota_build_timestamp);
 
-  xTaskCreate(&ota_task, "OTA", 8192, NULL, 5, NULL);
+  BaseType_t ret = xTaskCreate(&ota_task, "OTA", 8192, NULL, 5, NULL);
+  if (ret != pdPASS) {
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA Failed to create task");
+  }
 }

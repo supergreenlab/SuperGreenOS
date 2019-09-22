@@ -49,7 +49,10 @@ void init_reboot() {
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=%d", n);
   seti8(N_SHORT_REBOOTS, ++n);
 
-  xTaskCreate(reboot_task, "REBOOT", 2048, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreate(reboot_task, "REBOOT", 2048, NULL, 10, NULL);
+  if (ret != pdPASS) {
+    ESP_LOGE(SGO_LOG_EVENT, "@REBOOT Failed to create task");
+  }
 }
 
 static void reboot_task() {

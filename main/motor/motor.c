@@ -59,13 +59,13 @@ static void motor_task(void *param) {
   while (1) {
     for (int i = 0; i < N_MOTOR; ++i) {
       if (get_motor_source(i) == 0) continue;
-      ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR Motor: %d, duty: %d", c.motorId, get_motor_duty(i));
+      //ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR Motor: %d, duty: %d", c.motorId, get_motor_duty(i));
       set_duty(i, get_motor_duty(i));
     }
-    if (xQueueReceive(cmd, &c, 1000 / portTICK_PERIOD_MS) == pdTRUE) {
+    if (xQueueReceive(cmd, &c, 2000 / portTICK_PERIOD_MS) == pdTRUE) {
       if (c.cmd == CMD_CHANGED_FREQUENCY) {
         int motor_frequency = c.value;
-        ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR CMD_CHANGED_FREQUENCY %d %d", c.motorId, motor_frequency);
+        //ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR CMD_CHANGED_FREQUENCY %d %d", c.motorId, motor_frequency);
         mcpwm_set_frequency(MCPWM_UNIT_0, MCPWM_TIMER_0 + c.motorId, motor_frequency);
       }
     }
@@ -94,7 +94,10 @@ void init_motor() {
 
     set_duty(i, 0.0);
   }
-  xTaskCreate(motor_task, "MOTOR", 2048, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreate(motor_task, "MOTOR", 4096, NULL, 10, NULL);
+  if (ret != pdPASS) {
+    ESP_LOGE(SGO_LOG_EVENT, "@MOTOR Failed to create task");
+  }
 }
 
 /* BLE Callbacks */

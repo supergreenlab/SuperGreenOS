@@ -42,14 +42,17 @@ static void blower_task(void *param) {
       int v = (float)vnight + ((vday - vnight) * (float)timerOutput / 100.0f);
       set_box_blower_duty(i, v);
     }
-    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    vTaskDelay(2000 / portTICK_PERIOD_MS);
   }
 }
 
 void init_blower() {
   ESP_LOGI(SGO_LOG_EVENT, "@BLOWER Initializing blower task");
 
-  xTaskCreate(blower_task, "BLOWER", 2048, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreate(blower_task, "BLOWER", 4096, NULL, 10, NULL);
+  if (ret != pdPASS) {
+    ESP_LOGE(SGO_LOG_EVENT, "@BLOWER Failed to create task");
+  }
 }
 
 /* BLE Callbacks */

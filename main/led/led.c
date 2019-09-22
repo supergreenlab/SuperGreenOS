@@ -70,7 +70,7 @@ static void update_led(int i, int fade_time) {
   }
   if (get_led_fade(i) == 1) {
     double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
-    ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
+    //ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
 
     fade_no_wait_led(i, real_duty, fade_time);
   } else {
@@ -85,7 +85,7 @@ static void led_task(void *param) {
   cmd_refresh_led c;
 
   while(1) {
-    if (!xQueueReceive(cmd, &c, 5 * 1000 / portTICK_PERIOD_MS)) {
+    if (!xQueueReceive(cmd, &c, 5000 / portTICK_PERIOD_MS)) {
       c.box_id = -1;
       c.led_id = -1;
       c.fade_time = LEDC_FADE_TIME;
@@ -134,7 +134,10 @@ void init_led() {
 
   ledc_fade_func_install(0);
 
-  xTaskCreate(led_task, "LED", 4096, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreate(led_task, "LED", 4096, NULL, 10, NULL);
+  if (ret != pdPASS) {
+    ESP_LOGE(SGO_LOG_EVENT, "@LED Failed to create task");
+  }
 }
 
 void refresh_led(int box_id, int led_id, int fade_time) {

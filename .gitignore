@@ -7,7 +7,6 @@ sdkconfig.old
 main/component.mk
 main/Kconfig.projbuild
 main/init.c
-main/led/led.c
 main/core/kv/kv.c
 main/core/kv/kv_helpers_internal.h
 main/core/kv/kv_helpers_internal.c

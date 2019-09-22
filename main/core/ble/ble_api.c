@@ -36,6 +36,7 @@ void notify_attr(enum idx i) {
 }
 
 void set_attr_value(enum idx i, const uint8_t *value, uint16_t value_length) {
+  value_length = value_length == 0 ? 1 : value_length;
   ESP_ERROR_CHECK(esp_ble_gatts_set_attr_value(handle_table[i], value_length, value));
 }
 
