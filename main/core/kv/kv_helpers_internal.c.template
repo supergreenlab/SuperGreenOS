@@ -20,7 +20,6 @@
 
 #include "kv.h"
 #include "keys.h"
-#include "kv_ble.h"
 #include "../ble/ble.h"
 
 #include "../include_modules.h"

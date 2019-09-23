@@ -23,7 +23,6 @@
 #include "../include_modules.h"
 #include "../log/log.h"
 #include "ble_utils.h"
-#include "../kv/kv_ble.h"
 #include "../kv/kv.h"
 #include "../kv/kv_helpers_internal.h"
 
@@ -55,12 +54,16 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
 };
 
 void init_ble_characteristics() {
+  int32_t ivalue;
+  char svalue[CHAR_VAL_LEN_MAX] = {0};
   <% Object.keys(modules).forEach(m => {
-    Object.keys(modules[m].fields).filter(f => modules[m].fields[f].nvs.enable && modules[m].fields[f].ble.enable && !modules[m].fields[f].ble.no_sync).forEach(f => { f = modules[m].fields[f]%>
+    Object.keys(modules[m].fields).filter(f => modules[m].fields[f].ble.enable && !modules[m].fields[f].ble.no_sync).forEach(f => { f = modules[m].fields[f]%>
     <% if (f.type == 'integer') { %>
-        sync_ble_i<%= f.intlen %>(<%= f.caps_name %>, IDX_VALUE(<%= f.caps_name %>));
+      ivalue = (int32_t)get_<%= f.name %>();
+      set_attr_value(IDX_VALUE(<%= f.caps_name %>), (const uint8_t *)&ivalue, sizeof(int32_t));
     <% } else {%>
-        sync_ble_str(<%= f.caps_name %>, IDX_VALUE(<%= f.caps_name %>));
+      get_<%= f.name %>(svalue, sizeof(svalue) - 1);
+      set_attr_value(IDX_VALUE(<%= f.caps_name %>), (const uint8_t *)svalue, strlen(svalue));
     <% } %>
   <% })}) %>
 }

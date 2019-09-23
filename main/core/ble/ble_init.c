@@ -35,7 +35,6 @@
 #include "ble_private.h"
 #include "ble_db.h"
 #include "../kv/kv.h"
-#include "../kv/kv_ble.h"
 
 #define ESP_APP_ID          0x55
 #define BLE_DEVICE_NAME "🤖🍁"
@@ -221,6 +220,7 @@ static void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
       break;
     case ESP_GATTS_START_EVT:
       ESP_LOGI(SGO_LOG_EVENT, "@BLE SERVICE_START_EVT, status = %d, service_handle = %d", param->start.status, param->start.service_handle);
+      init_ble_characteristics();
       break;
     case ESP_GATTS_CONNECT_EVT:
       ESP_LOGI(SGO_LOG_EVENT, "@BLE ESP_GATTS_CONNECT_EVT, conn_id = %d", param->write.conn_id);
@@ -365,8 +365,6 @@ static void start_ble()
     ESP_LOGE(SGO_LOG_EVENT, "@BLE Gatts app register error, error code = %x", ret);
     return;
   }
-
-  init_ble_characteristics();
 
   BaseType_t tret = xTaskCreatePinnedToCore(stop_ble_after_delay_task, "BLE_STOP", 2048, NULL, 10, NULL, 0);
   if (tret != pdPASS) {

@@ -25,9 +25,7 @@
 #include "freertos/queue.h"
 
 #include "../core/log/log.h"
-#include "../core/ble/ble_db.h"
 #include "../core/kv/kv.h"
-#include "../core/kv/kv_ble.h"
 
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 #define min(x, y) (((x) < (y)) ? (x) : (y))

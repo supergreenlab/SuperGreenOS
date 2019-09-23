@@ -23,8 +23,8 @@
 #include "freertos/semphr.h"
 
 #include "kv.h"
-#include "kv_ble.h"
 #include "../ble/ble.h"
+#include "../ble/ble_db.h"
 
 /*
  * [GENERATED]

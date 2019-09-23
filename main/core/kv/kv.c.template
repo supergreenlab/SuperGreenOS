@@ -29,7 +29,6 @@
 #include "nvs.h"
 
 #include "kv.h"
-#include "kv_ble.h"
 #include "../include_modules.h"
 
 void init_helpers();

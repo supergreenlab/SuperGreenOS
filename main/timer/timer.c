@@ -23,10 +23,7 @@
 #include "freertos/task.h"
 
 #include "../core/kv/kv.h"
-#include "../core/ble/ble.h"
-#include "../core/kv/kv_ble.h"
 #include "../core/log/log.h"
-#include "../core/ble/ble_db.h"
 #include "../led/led.h"
 #include "../box/box.h"
 
