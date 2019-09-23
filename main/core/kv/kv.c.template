@@ -79,14 +79,6 @@ void postinit_kv() {
   /*
    * [GENERATED]
    */
-  <% Object.keys(modules).forEach(m => {
-    Object.keys(modules[m].fields).filter(f => modules[m].fields[f].nvs.enable && modules[m].fields[f].ble.enable && !modules[m].fields[f].ble.no_sync).forEach(f => { f = modules[m].fields[f]%>
-    <% if (f.type == 'integer') { %>
-        sync_ble_i<%= f.intlen %>(<%= f.caps_name %>, IDX_VALUE(<%= f.caps_name %>));
-    <% } else {%>
-        sync_ble_str(<%= f.caps_name %>, IDX_VALUE(<%= f.caps_name %>));
-    <% } %>
-  <% })}) %>
 
   // Initialize non-nvs keys
   <% Object.keys(modules).forEach(m => {

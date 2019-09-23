@@ -298,11 +298,30 @@ static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_
   } while (0);
 }
 
-void init_ble()
+static void stop_ble() {
+  esp_bluedroid_disable();
+  esp_bluedroid_deinit();
+  esp_bt_controller_disable();
+  esp_bt_controller_deinit();
+}
+
+static void stop_ble_after_delay_task(void* param) {
+  vTaskDelay(30 * 1000 / portTICK_RATE_MS);
+  ESP_LOGI(SGO_LOG_NOSEND, "@BLE_STOP stopping ble");
+  set_ble_enabled(0);
+  stop_ble();
+  vTaskDelete(NULL);
+}
+
+static void start_ble()
 {
+  static int8_t already_enabled_once = false;
   esp_err_t ret;
 
-  ESP_ERROR_CHECK(esp_bt_controller_mem_release(ESP_BT_MODE_CLASSIC_BT));
+  if (already_enabled_once == false) {
+    ESP_ERROR_CHECK(esp_bt_controller_mem_release(ESP_BT_MODE_CLASSIC_BT));
+  }
+  already_enabled_once = true;
 
   esp_bt_controller_config_t bt_cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();
   ret = esp_bt_controller_init(&bt_cfg);
@@ -346,4 +365,23 @@ void init_ble()
     ESP_LOGE(SGO_LOG_EVENT, "@BLE Gatts app register error, error code = %x", ret);
     return;
   }
+
+  init_ble_characteristics();
+
+  BaseType_t tret = xTaskCreatePinnedToCore(stop_ble_after_delay_task, "BLE_STOP", 2048, NULL, 10, NULL, 0);
+  if (tret != pdPASS) {
+    ESP_LOGE(SGO_LOG_EVENT, "@BLE_STOP Failed to create task");
+  }
+}
+
+int8_t on_set_ble_enabled(int8_t enabled) {
+  if (get_ble_enabled() == enabled) {
+    return enabled;
+  }
+  if (enabled) {
+    start_ble();
+  } else {
+    stop_ble();
+  }
+  return enabled;
 }

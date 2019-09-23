@@ -22,7 +22,8 @@
 
 #include "../include_modules.h"
 #include "../log/log.h"
-#include "../ble/ble_utils.h"
+#include "ble_utils.h"
+#include "../kv/kv_ble.h"
 #include "../kv/kv.h"
 #include "../kv/kv_helpers_internal.h"
 
@@ -52,6 +53,17 @@ const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB] = {
    * [/GENERATED]
    */
 };
+
+void init_ble_characteristics() {
+  <% Object.keys(modules).forEach(m => {
+    Object.keys(modules[m].fields).filter(f => modules[m].fields[f].nvs.enable && modules[m].fields[f].ble.enable && !modules[m].fields[f].ble.no_sync).forEach(f => { f = modules[m].fields[f]%>
+    <% if (f.type == 'integer') { %>
+        sync_ble_i<%= f.intlen %>(<%= f.caps_name %>, IDX_VALUE(<%= f.caps_name %>));
+    <% } else {%>
+        sync_ble_str(<%= f.caps_name %>, IDX_VALUE(<%= f.caps_name %>));
+    <% } %>
+  <% })}) %>
+}
 
 void on_write(esp_ble_gatts_cb_param_t *param) {
   /*

@@ -182,7 +182,7 @@ void init_mqtt() {
     ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt queue");
   }
 
-  BaseType_t ret = xTaskCreate(mqtt_task, "MQTT", 8192, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreatePinnedToCore(mqtt_task, "MQTT", 8192, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@MQTT Failed to create task");
   }

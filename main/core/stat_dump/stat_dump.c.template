@@ -30,13 +30,13 @@
 
 #define MAX_KEY_SIZE 21
 
-static void dump_heap_infos(const char *name, uint32_t cap) {
+/*static void dump_heap_infos(const char *name, uint32_t cap) {
   multi_heap_info_t heap_infos;
   heap_caps_get_info(&heap_infos, cap);
   ESP_LOGI(SGO_LOG_METRIC, "@MALLOC_CAP_%s total_free_bytes=%d, total_allocated_bytes=%d", name, heap_infos.total_free_bytes, heap_infos.total_allocated_bytes);
   ESP_LOGI(SGO_LOG_METRIC, "@MALLOC_CAP_%s largest_free_block=%d, minimum_free_bytes=%d", name, heap_infos.largest_free_block, heap_infos.minimum_free_bytes);
   ESP_LOGI(SGO_LOG_METRIC, "@MALLOC_CAP_%s allocated_blocks=%d, free_blocks=%d, total_blocks=%d", name, heap_infos.allocated_blocks, heap_infos.free_blocks, heap_infos.total_blocks);
-}
+}*/
 
 static void stat_dump_task(void *param) {
   int counter = 0;
@@ -137,7 +137,7 @@ static void stat_dump_task(void *param) {
 
 void init_stat_dump() {
   ESP_LOGI(SGO_LOG_EVENT, "@SYS reset_reason=%d", esp_reset_reason());
-  BaseType_t ret = xTaskCreate(stat_dump_task, "STAT_DUMP", 4096, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreatePinnedToCore(stat_dump_task, "STAT_DUMP", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@STAT_DUMP Failed to create task");
   }

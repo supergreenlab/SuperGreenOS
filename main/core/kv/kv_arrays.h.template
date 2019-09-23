@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BOX_HELPERS_H_
-#define BOX_HELPERS_H_
+#ifndef KV_ARRAY_H_
+#define KV_ARRAY_H_
 
 #include <stdint.h>
 

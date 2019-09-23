@@ -44,7 +44,7 @@ void init_timer() {
     start(i, get_box_timer_type(i));
   }
 
-  BaseType_t ret = xTaskCreate(timer_task, "TIMER", 4096, NULL, tskIDLE_PRIORITY, NULL);
+  BaseType_t ret = xTaskCreatePinnedToCore(timer_task, "TIMER", 4096, NULL, tskIDLE_PRIORITY, NULL, 1);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@TIMER Failed to create task");
   }
@@ -106,6 +106,6 @@ int on_set_box_timer_type(int boxId, int value) {
   set_box_timer_type(boxId, value);
   stop(boxId, old);
   start(boxId, value);
-  refresh_led(boxId, -1 , -1);
+  refresh_led(boxId, -1);
   return value;
 }

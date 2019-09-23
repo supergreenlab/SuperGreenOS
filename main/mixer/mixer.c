@@ -39,7 +39,7 @@ static void set_all_duty(int boxId, int value);
 void init_mixer() {
   ESP_LOGI(SGO_LOG_EVENT, "@MIXER Initializing mixer module");
 
-  BaseType_t ret = xTaskCreate(mixer_task, "MIXER", 4096, NULL, tskIDLE_PRIORITY, NULL);
+  BaseType_t ret = xTaskCreatePinnedToCore(mixer_task, "MIXER", 4096, NULL, tskIDLE_PRIORITY, NULL, 1);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@MIXER Failed to create task");
   }
@@ -100,7 +100,7 @@ static void mixer_duty(int boxId) {
 
     set_duty_3d(boxId, (double)max_x / 2, (double)max_y / 2, max_z * 1.25, duty + ((double)stretch / 100 * 25), 30 - ((double)stretch / 100 * 25));
   }
-  refresh_led(boxId, -1, -1);
+  refresh_led(boxId, -1);
 }
 
 static void mixer_task() {
@@ -143,12 +143,12 @@ static void set_all_duty(int boxId, int value) {
 
 int on_set_box_led_dim(int boxId, int value) {
   set_all_duty(boxId, 5);
-  refresh_led(boxId, -1, -1);
+  refresh_led(boxId, -1);
   return value;
 }
 
 int on_set_box_stretch(int boxId, int value) {
   mixer_duty(boxId);
-  refresh_led(boxId, -1, -1);
+  refresh_led(boxId, -1);
   return value;
 }

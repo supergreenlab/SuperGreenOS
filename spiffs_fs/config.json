@@ -74,6 +74,21 @@
           
             {
               "core": true,
+              "name": "ble_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BLE_ENABLED",
+              "module": "ble",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
               "name": "reboot",
               "type": "integer",
               "integer": true,

@@ -94,7 +94,7 @@ void init_motor() {
 
     set_duty(i, 0.0);
   }
-  BaseType_t ret = xTaskCreate(motor_task, "MOTOR", 4096, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreatePinnedToCore(motor_task, "MOTOR", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@MOTOR Failed to create task");
   }

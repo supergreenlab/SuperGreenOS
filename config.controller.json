@@ -135,7 +135,33 @@
         "ble": {
             "name": "ble",
             "field_prefix": "ble",
-            "fields": {},
+            "fields": {
+                "enabled": {
+                    "name": "ble_enabled",
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "default": false,
+                    "ble": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "intlen": 8,
+                    "suffix": "enabled",
+                    "caps_name": "BLE_ENABLED"
+                }
+            },
             "init": true,
             "init_priority": 0,
             "core": true,

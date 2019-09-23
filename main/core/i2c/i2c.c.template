@@ -62,7 +62,7 @@ void init_i2c() {
     init_i2c_devices(<%= i %>);
   }
   <% }) %>
-  BaseType_t ret = xTaskCreate(i2c_task, "I2C", 4096, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreatePinnedToCore(i2c_task, "I2C", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@I2C Failed to create task");
   }

@@ -29,7 +29,7 @@ void init_<%= name %>() {
 
   // TODO: write you setup code here
 
-  xTaskCreate(<%= name %>_task, "<%= name.toUpperCase() %>", 4096, NULL, 10, NULL);
+  xTaskCreatePinnedToCore(<%= name %>_task, "<%= name.toUpperCase() %>", 4096, NULL, 10, NULL, 1);
 }
 
 static void <%= name %>_task(void *param) {

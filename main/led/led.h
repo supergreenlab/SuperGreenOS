@@ -22,7 +22,7 @@
 #include "driver/ledc.h"
 
 void init_led();
-void refresh_led(int boxId, int ledId, int fade_time);
+void refresh_led(int boxId, int ledId);
 
 /* BLE Callbacks */
 

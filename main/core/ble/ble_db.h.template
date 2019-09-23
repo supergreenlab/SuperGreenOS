@@ -50,5 +50,6 @@ enum idx
 };
 
 extern const esp_gatts_attr_db_t gatt_db[HRS_IDX_NB];
+void init_ble_characteristics();
 
 #endif

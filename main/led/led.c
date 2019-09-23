@@ -41,27 +41,26 @@
 #define LED_MAX_DUTY           pow(2, LED_DUTY_RESOLUTION)
 #define LED_FREQ               40000
 
-#define LEDC_FADE_TIME         (1000)
+#define LEDC_FADE_TIME         (500)
 #define SPEED_MODE LEDC_HIGH_SPEED_MODE
 #define LEDC_CHANNEL(i) LEDC_CHANNEL_0+i
 
 typedef struct {
   int box_id;
   int led_id;
-  int fade_time;
 } cmd_refresh_led;
 static QueueHandle_t cmd;
 
-static void fade_no_wait_led(int i, int duty, int fade_time) {
+static void fade_no_wait_led(int i, int duty) {
   uint32_t current_duty = ledc_get_duty(SPEED_MODE, LEDC_CHANNEL(i)); 
   if (current_duty == duty) {
     return;
   }
-  ledc_set_fade_with_time(SPEED_MODE, LEDC_CHANNEL(i), duty, fade_time);
+  ledc_set_fade_with_time(SPEED_MODE, LEDC_CHANNEL(i), duty, LEDC_FADE_TIME);
   ledc_fade_start(SPEED_MODE, LEDC_CHANNEL(i), LEDC_FADE_NO_WAIT);
 }
 
-static void update_led(int i, int fade_time) {
+static void update_led(int i) {
   double dim = get_led_dim(i);
   double duty = get_led_duty(i) * dim / 100;
   duty = (duty < LED_MIN_ZERO) ? 0 : duty;
@@ -72,7 +71,7 @@ static void update_led(int i, int fade_time) {
     double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
     //ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
 
-    fade_no_wait_led(i, real_duty, fade_time);
+    fade_no_wait_led(i, real_duty);
   } else {
     duty = (duty == 0 ? duty : LED_MAX_DUTY);
     ledc_set_duty(SPEED_MODE, LEDC_CHANNEL(i), duty);
@@ -88,7 +87,6 @@ static void led_task(void *param) {
     if (!xQueueReceive(cmd, &c, 5000 / portTICK_PERIOD_MS)) {
       c.box_id = -1;
       c.led_id = -1;
-      c.fade_time = LEDC_FADE_TIME;
     }
     for (int i = 0; i < N_LED; ++i) {
       if (c.box_id != -1 && c.box_id != get_led_box(i)) {
@@ -97,7 +95,7 @@ static void led_task(void *param) {
       if (c.led_id != -1 && i != c.led_id) {
         continue;
       }
-      update_led(i, c.fade_time);
+      update_led(i);
     }
     vTaskDelay((LEDC_FADE_TIME * 1.1) / portTICK_RATE_MS);
   }
@@ -134,17 +132,16 @@ void init_led() {
 
   ledc_fade_func_install(0);
 
-  BaseType_t ret = xTaskCreate(led_task, "LED", 4096, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreatePinnedToCore(led_task, "LED", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@LED Failed to create task");
   }
 }
 
-void refresh_led(int box_id, int led_id, int fade_time) {
+void refresh_led(int box_id, int led_id) {
   cmd_refresh_led cmd_data = {
     box_id: box_id,
     led_id: led_id,
-    fade_time: fade_time < 0 ? LEDC_FADE_TIME : fade_time,
   };
   xQueueSend(cmd, &cmd_data, 0);
 }
@@ -154,13 +151,13 @@ void refresh_led(int box_id, int led_id, int fade_time) {
 int on_set_led_duty(int led_id, int value) {
   value = min(100, max(value, 0));
   set_led_duty(led_id, value);
-  refresh_led(-1, led_id, 500);
+  refresh_led(-1, led_id);
   return value;
 }
 
 int on_set_led_dim(int led_id, int value) {
   value = min(100, max(value, 0));
   set_led_dim(led_id, value);
-  refresh_led(-1, led_id, 500);
+  refresh_led(-1, led_id);
   return value;
 }

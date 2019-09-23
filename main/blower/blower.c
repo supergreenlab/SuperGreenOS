@@ -49,7 +49,7 @@ static void blower_task(void *param) {
 void init_blower() {
   ESP_LOGI(SGO_LOG_EVENT, "@BLOWER Initializing blower task");
 
-  BaseType_t ret = xTaskCreate(blower_task, "BLOWER", 4096, NULL, 10, NULL);
+  BaseType_t ret = xTaskCreatePinnedToCore(blower_task, "BLOWER", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@BLOWER Failed to create task");
   }

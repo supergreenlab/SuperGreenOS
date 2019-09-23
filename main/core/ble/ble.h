@@ -21,12 +21,13 @@
 
 #include "ble_db.h"
 
-void init_ble();
 void notify_handle(enum idx i, const uint8_t *notify_data, uint16_t notify_data_length);
 void notify_attr(enum idx i);
 
 void set_attr_value(enum idx i, const uint8_t *value, uint16_t value_length);
 
 void set_attr_value_and_notify(enum idx i, const uint8_t *value, uint16_t value_length);
+
+int8_t on_set_ble_enabled(int8_t enabled);
 
 #endif
