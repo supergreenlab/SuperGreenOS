@@ -54,6 +54,33 @@ static const char *move_to_key_value(const char *uri, const char *name) {
   return move_to_next_elem(uri);
 }
 
+inline int ishex(int x)
+{
+  return	(x >= '0' && x <= '9')	||
+    (x >= 'a' && x <= 'f')	||
+    (x >= 'A' && x <= 'F');
+}
+
+int url_decode(const char *s, char *dec)
+{
+  char *o;
+  const char *end = s + strlen(s);
+  int c;
+
+  for (o = dec; s <= end; o++) {
+    c = *s++;
+    if (c == '+') c = ' ';
+    else if (c == '%' && (	!ishex(*s++)	||
+          !ishex(*s++)	||
+          !sscanf(s - 2, "%2x", &c)))
+      return -1;
+
+    if (dec) *o = c;
+  }
+
+  return o - dec;
+}
+
 /*static int find_int_param(const char *uri, const char *name) {
   int res = 0;
   const char *uri_offset = move_to_key_value(uri, name);
@@ -164,9 +191,11 @@ static esp_err_t setstr_handler(httpd_req_t *req) {
     return httpd_resp_send_404(req);
   }
 
-  len = 50;
-  char value[50] = {0};
-  find_str_param(req->uri, "v", value, &len);
+  len = MAX_KVALUE_SIZE;
+  char raw[MAX_KVALUE_SIZE] = {0};
+  char value[MAX_KVALUE_SIZE] = {0};
+  find_str_param(req->uri, "v", raw, &len);
+  url_decode(raw, value);
 
   h->handler(value);
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");

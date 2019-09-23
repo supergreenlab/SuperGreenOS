@@ -75,7 +75,7 @@ const fetchParam = async function(type, paramName) {
 const updateParam = async function(type, paramName, value) {
   return fetchQueue(() => new Promise(function(resolve, reject) {
     const r = new XMLHttpRequest()
-    r.open('POST', `${DEBUG ? URL : ''}/${type}?k=${paramName}&v=${value}`, true)
+    r.open('POST', `${DEBUG ? URL : ''}/${type}?k=${paramName}&v=${encodeURIComponent(value)}`, true)
     r.onreadystatechange = function () {
       if (r.readyState != 4) return
       if (r.status != 200) {
