@@ -299,6 +299,7 @@ static void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_
 }
 
 static void stop_ble() {
+  if (get_ble_enabled() == 0) return;
   esp_bluedroid_disable();
   esp_bluedroid_deinit();
   esp_bt_controller_disable();
@@ -315,6 +316,7 @@ static void stop_ble_after_delay_task(void* param) {
 
 static void start_ble()
 {
+  if (get_ble_enabled() == 1) return;
   static int8_t already_enabled_once = false;
   esp_err_t ret;
 

@@ -906,7 +906,7 @@
                     "ble": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "string",
                     "nosend": false,
                     "helper": "",
