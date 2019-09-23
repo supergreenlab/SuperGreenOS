@@ -37,6 +37,7 @@
                 }
             },
             "init": true,
+            "init_priority": 0,
             "core": true,
             "i2c": false,
             "array_len": 0
@@ -126,6 +127,7 @@
                 }
             },
             "init": true,
+            "init_priority": 0,
             "core": true,
             "i2c": false,
             "array_len": 0
@@ -133,8 +135,35 @@
         "ble": {
             "name": "ble",
             "field_prefix": "ble",
-            "fields": {},
+            "fields": {
+                "enabled": {
+                    "name": "ble_enabled",
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "default": false,
+                    "ble": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "intlen": 8,
+                    "suffix": "enabled",
+                    "caps_name": "BLE_ENABLED"
+                }
+            },
             "init": true,
+            "init_priority": 0,
             "core": true,
             "i2c": false,
             "array_len": 0
@@ -144,6 +173,7 @@
             "field_prefix": "stat_dump",
             "fields": {},
             "init": true,
+            "init_priority": 0,
             "core": true,
             "i2c": false,
             "array_len": 0
@@ -205,6 +235,7 @@
                 }
             },
             "init": true,
+            "init_priority": 0,
             "core": true,
             "i2c": false,
             "array_len": 0
@@ -319,6 +350,7 @@
                 }
             },
             "init": true,
+            "init_priority": 0,
             "core": true,
             "i2c": false,
             "array_len": 1
@@ -328,6 +360,7 @@
             "field_prefix": "manual",
             "fields": {},
             "init": false,
+            "init_priority": 0,
             "core": false,
             "i2c": false,
             "array_len": 0
@@ -490,6 +523,7 @@
                 }
             },
             "init": true,
+            "init_priority": 0,
             "core": true,
             "i2c": false,
             "array_len": 0
@@ -499,6 +533,7 @@
             "field_prefix": "kv",
             "fields": {},
             "init": true,
+            "init_priority": 0,
             "core": true,
             "i2c": false,
             "array_len": 0
@@ -508,6 +543,7 @@
             "field_prefix": "httpd",
             "fields": {},
             "init": true,
+            "init_priority": 0,
             "core": true,
             "i2c": false,
             "array_len": 0
@@ -585,11 +621,11 @@
                         "enable": true,
                         "write": true,
                         "notify": true,
-                        "no_sync": false
+                        "no_sync": true
                     },
                     "write_cb": true,
                     "type": "string",
-                    "nosend": false,
+                    "nosend": true,
                     "helper": "",
                     "http": {
                         "enable": true,
@@ -599,8 +635,7 @@
                         "enable": false
                     },
                     "suffix": "password",
-                    "caps_name": "WIFI_PASSWORD",
-                    "no_sync": true
+                    "caps_name": "WIFI_PASSWORD"
                 },
                 "ap_ssid": {
                     "name": "wifi_ap_ssid",
@@ -663,7 +698,7 @@
                     "ble": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "string",
                     "nosend": false,
                     "helper": "",
@@ -706,6 +741,7 @@
                 }
             },
             "init": true,
+            "init_priority": 0,
             "core": true,
             "i2c": false,
             "array_len": 0
@@ -1190,6 +1226,7 @@
                 }
             },
             "init": false,
+            "init_priority": 0,
             "core": false,
             "i2c": false,
             "array_len": 3
@@ -1410,6 +1447,7 @@
                 }
             },
             "init": true,
+            "init_priority": 0,
             "core": false,
             "i2c": false,
             "array_len": 2
@@ -1576,6 +1614,7 @@
                 }
             },
             "init": true,
+            "init_priority": 0,
             "core": false,
             "i2c": false,
             "array_len": 3
@@ -1898,6 +1937,7 @@
                 }
             },
             "init": false,
+            "init_priority": 0,
             "core": false,
             "i2c": false,
             "array_len": 3
@@ -1967,6 +2007,7 @@
                 }
             },
             "init": true,
+            "init_priority": 100,
             "core": false,
             "i2c": false,
             "array_len": 0
@@ -2055,6 +2096,7 @@
                 }
             },
             "init": true,
+            "init_priority": 80,
             "core": false,
             "i2c": false,
             "array_len": 0
@@ -2221,6 +2263,7 @@
                 }
             },
             "init": true,
+            "init_priority": 0,
             "core": false,
             "i2c": false,
             "array_len": 3
@@ -2468,6 +2511,7 @@
                 }
             },
             "init": true,
+            "init_priority": 0,
             "core": false,
             "i2c": false,
             "array_len": 3
@@ -3726,6 +3770,7 @@
                 }
             },
             "init": true,
+            "init_priority": 90,
             "core": false,
             "i2c": false,
             "array_len": 6
@@ -3813,6 +3858,7 @@
                 }
             },
             "init": false,
+            "init_priority": 0,
             "core": false,
             "i2c": true,
             "array_len": 1

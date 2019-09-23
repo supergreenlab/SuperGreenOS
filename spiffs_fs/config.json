@@ -1,5 +1,5 @@
 {
-  "name": "SuperGreenController",
+  "name": "SuperGreenDriver",
   "keys": [
     
             {
@@ -130,7 +130,7 @@
               
                 "array": {
                   "name": "i2c",
-                  "len": 3
+                  "len": 1
                 },
                 "i2c": {
                   "index": 0,
@@ -138,55 +138,7 @@
                 },
               
               
-              "default": 18
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_1_sda",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_1_SDA",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3
-                },
-                "i2c": {
-                  "index": 1,
-                  "param": "sda"
-                },
-              
-              
-              "default": 21
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_2_sda",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_2_SDA",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3
-                },
-                "i2c": {
-                  "index": 2,
-                  "param": "sda"
-                },
-              
-              
-              "default": 21
+              "default": 26
             },
           
             {
@@ -202,7 +154,7 @@
               
                 "array": {
                   "name": "i2c",
-                  "len": 3
+                  "len": 1
                 },
                 "i2c": {
                   "index": 0,
@@ -210,55 +162,7 @@
                 },
               
               
-              "default": 5
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_1_scl",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_1_SCL",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3
-                },
-                "i2c": {
-                  "index": 1,
-                  "param": "scl"
-                },
-              
-              
-              "default": 19
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_2_scl",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_2_SCL",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3
-                },
-                "i2c": {
-                  "index": 2,
-                  "param": "scl"
-                },
-              
-              
-              "default": 19
+              "default": 27
             },
           
             {
@@ -274,58 +178,10 @@
               
                 "array": {
                   "name": "i2c",
-                  "len": 3
+                  "len": 1
                 },
                 "i2c": {
                   "index": 0,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_1_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_1_ENABLED",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3
-                },
-                "i2c": {
-                  "index": 1,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_2_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_2_ENABLED",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3
-                },
-                "i2c": {
-                  "index": 2,
                   "param": "enabled"
                 },
               
@@ -346,7 +202,7 @@
               
                 "array": {
                   "name": "i2c",
-                  "len": 3
+                  "len": 1
                 },
                 "i2c": {
                   "index": 0,
@@ -355,54 +211,6 @@
               
               
               "default": 0
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_1_port",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_1_PORT",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3
-                },
-                "i2c": {
-                  "index": 1,
-                  "param": "port"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_2_port",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_2_PORT",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3
-                },
-                "i2c": {
-                  "index": 2,
-                  "param": "port"
-                },
-              
-              
-              "default": 1
             },
           
             {
@@ -492,7 +300,7 @@
               "write": true,
               
               
-              "default": "/ControllerV2"
+              "default": "/DriverV2"
             },
           
             {
@@ -597,7 +405,7 @@
               "write": true,
               
               
-              "default": "supergreencontroller"
+              "default": "supergreendriver"
             },
           
             {
@@ -642,54 +450,6 @@
               
               
               "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 0
             },
           
             {
@@ -786,7 +546,7 @@
               
               
                 "indir": {
-                  "values": [1,2,3]
+                  "values": [1]
                 },
               
               "default": 1
@@ -814,10 +574,10 @@
               
               
                 "indir": {
-                  "values": [1,2,3]
+                  "values": [1]
                 },
               
-              "default": 2
+              "default": 0
             },
           
             {
@@ -842,7 +602,7 @@
               
               
                 "indir": {
-                  "values": [1,2,3]
+                  "values": [1]
                 },
               
               "default": 0
@@ -942,7 +702,7 @@
               
               
                 "indir": {
-                  "values": [1,2,3]
+                  "values": [1]
                 },
               
               "default": 1
@@ -970,10 +730,10 @@
               
               
                 "indir": {
-                  "values": [1,2,3]
+                  "values": [1]
                 },
               
-              "default": 2
+              "default": 0
             },
           
             {
@@ -998,8 +758,56 @@
               
               
                 "indir": {
-                  "values": [1,2,3]
+                  "values": [1]
                 },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+                "box": {
+                  "index": 1,
+                  "param": "enabled"
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3
+                },
+                "box": {
+                  "index": 2,
+                  "param": "enabled"
+                },
+              
               
               "default": 0
             },
@@ -1089,7 +897,7 @@
               
                 "array": {
                   "name": "motor",
-                  "len": 3
+                  "len": 2
                 },
                 "motor": {
                   "index": 0,
@@ -1113,34 +921,10 @@
               
                 "array": {
                   "name": "motor",
-                  "len": 3
+                  "len": 2
                 },
                 "motor": {
                   "index": 1,
-                  "param": "duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "motor_2_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_2_DUTY",
-              "module": "motor",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3
-                },
-                "motor": {
-                  "index": 2,
                   "param": "duty"
                 },
               
@@ -1161,7 +945,7 @@
               
                 "array": {
                   "name": "motor",
-                  "len": 3
+                  "len": 2
                 },
                 "motor": {
                   "index": 0,
@@ -1189,7 +973,7 @@
               
                 "array": {
                   "name": "motor",
-                  "len": 3
+                  "len": 2
                 },
                 "motor": {
                   "index": 1,
@@ -1206,34 +990,6 @@
           
             {
               "core": false,
-              "name": "motor_2_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_2_SOURCE",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3
-                },
-                "motor": {
-                  "index": 2,
-                  "param": "source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 3
-            },
-          
-            {
-              "core": false,
               "name": "motor_0_gpio",
               "type": "integer",
               "integer": true,
@@ -1245,7 +1001,7 @@
               
                 "array": {
                   "name": "motor",
-                  "len": 3
+                  "len": 2
                 },
                 "motor": {
                   "index": 0,
@@ -1253,7 +1009,7 @@
                 },
               
               
-              "default": 4
+              "default": 22
             },
           
             {
@@ -1269,7 +1025,7 @@
               
                 "array": {
                   "name": "motor",
-                  "len": 3
+                  "len": 2
                 },
                 "motor": {
                   "index": 1,
@@ -1277,31 +1033,7 @@
                 },
               
               
-              "default": 16
-            },
-          
-            {
-              "core": false,
-              "name": "motor_2_gpio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_2_GPIO",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3
-                },
-                "motor": {
-                  "index": 2,
-                  "param": "gpio"
-                },
-              
-              
-              "default": 17
+              "default": 21
             },
           
             {
@@ -1317,7 +1049,7 @@
               
                 "array": {
                   "name": "motor",
-                  "len": 3
+                  "len": 2
                 },
                 "motor": {
                   "index": 0,
@@ -1341,34 +1073,10 @@
               
                 "array": {
                   "name": "motor",
-                  "len": 3
+                  "len": 2
                 },
                 "motor": {
                   "index": 1,
-                  "param": "frequency"
-                },
-              
-              
-              "default": 20
-            },
-          
-            {
-              "core": false,
-              "name": "motor_2_frequency",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_2_FREQUENCY",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3
-                },
-                "motor": {
-                  "index": 2,
                   "param": "frequency"
                 },
               
@@ -1845,7 +1553,7 @@
               "write": true,
               
               
-              "default": "SuperGreenController"
+              "default": "SuperGreenDriver"
             },
           
             {
@@ -1860,7 +1568,7 @@
               "write": true,
               
               
-              "default": 23
+              "default": 19
             },
           
             {
@@ -1875,7 +1583,7 @@
               "write": true,
               
               
-              "default": 22
+              "default": 18
             },
           
             {
@@ -2303,30 +2011,6 @@
           
             {
               "core": false,
-              "name": "led_2_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_2_DUTY",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 2,
-                  "param": "duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
               "name": "led_0_gpio",
               "type": "integer",
               "integer": true,
@@ -2346,7 +2030,7 @@
                 },
               
               
-              "default": 33
+              "default": 32
             },
           
             {
@@ -2370,15 +2054,15 @@
                 },
               
               
-              "default": 25
+              "default": 17
             },
           
             {
               "core": false,
-              "name": "led_2_gpio",
+              "name": "led_2_duty",
               "type": "integer",
               "integer": true,
-              "caps_name": "LED_2_GPIO",
+              "caps_name": "LED_2_DUTY",
               "module": "led",
               
               
@@ -2390,11 +2074,11 @@
                 },
                 "led": {
                   "index": 2,
-                  "param": "gpio"
+                  "param": "duty"
                 },
               
               
-              "default": 26
+              "default": 0
             },
           
             {
@@ -2471,6 +2155,30 @@
           
             {
               "core": false,
+              "name": "led_2_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_2_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6
+                },
+                "led": {
+                  "index": 2,
+                  "param": "gpio"
+                },
+              
+              
+              "default": 33
+            },
+          
+            {
+              "core": false,
               "name": "led_3_gpio",
               "type": "integer",
               "integer": true,
@@ -2490,7 +2198,7 @@
                 },
               
               
-              "default": 27
+              "default": 16
             },
           
             {
@@ -2514,7 +2222,7 @@
                 },
               
               
-              "default": 14
+              "default": 25
             },
           
             {
@@ -2538,7 +2246,7 @@
                 },
               
               
-              "default": 12
+              "default": 4
             },
           
             {
@@ -3418,58 +3126,10 @@
               
                 "array": {
                   "name": "sht21",
-                  "len": 3
+                  "len": 1
                 },
                 "sht21": {
                   "index": 0,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_1_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_1_TEMP",
-              "module": "sht21",
-              "helper": "SHT21 temperature sensor on sensor port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3
-                },
-                "sht21": {
-                  "index": 1,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_2_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_2_TEMP",
-              "module": "sht21",
-              "helper": "SHT21 temperature sensor on sensor port #2",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3
-                },
-                "sht21": {
-                  "index": 2,
                   "param": "temp"
                 },
               
@@ -3490,58 +3150,10 @@
               
                 "array": {
                   "name": "sht21",
-                  "len": 3
+                  "len": 1
                 },
                 "sht21": {
                   "index": 0,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_1_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_1_HUMI",
-              "module": "sht21",
-              "helper": "SHT21 humidity sensor on sensor port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3
-                },
-                "sht21": {
-                  "index": 1,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_2_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_2_HUMI",
-              "module": "sht21",
-              "helper": "SHT21 humidity sensor on sensor port #2",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3
-                },
-                "sht21": {
-                  "index": 2,
                   "param": "humi"
                 },
               
@@ -3562,58 +3174,10 @@
               
                 "array": {
                   "name": "sht21",
-                  "len": 3
+                  "len": 1
                 },
                 "sht21": {
                   "index": 0,
-                  "param": "present"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_1_present",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_1_PRESENT",
-              "module": "sht21",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3
-                },
-                "sht21": {
-                  "index": 1,
-                  "param": "present"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_2_present",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_2_PRESENT",
-              "module": "sht21",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3
-                },
-                "sht21": {
-                  "index": 2,
                   "param": "present"
                 },
               

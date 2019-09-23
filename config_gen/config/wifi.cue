@@ -36,6 +36,7 @@ modules wifi fields mdns_domain: _STRING & _NVS & _HTTP_RW & {
   name: "mdns_domain"
   nvs key: "MDNSD"
   default: string | *"supergreendriver"
+  write_cb: true
 }
 
 modules wifi fields ip: _STRING & _BLE & _HTTP & {

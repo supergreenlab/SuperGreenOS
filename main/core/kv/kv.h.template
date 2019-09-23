@@ -28,8 +28,7 @@
 #define MAX_KVALUE_SIZE 517
 
 void open_kv();
-void preinit_kv();
-void postinit_kv();
+void init_kv();
 
 int8_t geti8(const char * key);
 void seti8(const char * key, int8_t value);

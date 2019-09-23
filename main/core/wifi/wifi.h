@@ -36,5 +36,6 @@ void wait_connected();
 
 const char *on_set_wifi_ssid(const char *ssid);
 const char *on_set_wifi_password(const char *pass);
+const char *on_set_mdns_domain(const char *mdns);
 
 #endif

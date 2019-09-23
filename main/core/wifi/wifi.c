@@ -44,6 +44,7 @@ static wifi_cmd CMD_STA_CONNECTION_FAILED = 5;
 static wifi_cmd CMD_AP_STACONNECTED = 6;
 static wifi_cmd CMD_AP_STADISCONNECTED = 7;
 static wifi_cmd CMD_AP_START = 8;
+static wifi_cmd CMD_MDNS_CHANGED = 9;
 
 static QueueHandle_t cmd;
 
@@ -276,7 +277,9 @@ static void wifi_task(void *param) {
           n_connection_failed = 0;
           start_ap();
         }
-      }
+      } else if (c == CMD_MDNS_CHANGED) {
+        restart_mdns();
+      } 
     } else {
       // if AP mode and noone's watching, try STA mode.
       ++counter;
@@ -298,6 +301,11 @@ const char *on_set_wifi_ssid(const char *ssid) {
 const char *on_set_wifi_password(const char *pass) {
   xQueueSend(cmd, &CMD_PASS_CHANGED, 0);
   return pass;
+}
+
+const char *on_set_mdns_domain(const char *mdns) {
+  xQueueSend(cmd, &CMD_MDNS_CHANGED, 0);
+  return mdns;
 }
 
 // utils
