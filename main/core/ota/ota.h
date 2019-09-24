@@ -19,7 +19,7 @@
 #ifndef OTA_H_
 #define OTA_H_
 
-#define OTA_BUILD_TIMESTAMP 1569252481
+#define OTA_BUILD_TIMESTAMP 0
 
 typedef enum {
   OTA_STATUS_IDLE,
