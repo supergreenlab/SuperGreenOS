@@ -84,7 +84,7 @@ static void mqtt_task(void *param) {
   char log_channel[MAX_KVALUE_SIZE] = {0};
   get_broker_channel(log_channel, sizeof(log_channel) - 1);
   if (strlen(log_channel) == 0) {
-    sprintf(log_channel, "%llx.log", _chipmacid);
+    snprintf(log_channel, sizeof(log_channel)-1, "%llx.log", _chipmacid);
     set_broker_channel(log_channel);
   }
   ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log channel: %s", log_channel);
@@ -92,7 +92,7 @@ static void mqtt_task(void *param) {
   char client_id[MAX_KVALUE_SIZE] = {0};
   get_broker_clientid(client_id, sizeof(client_id) - 1);
   if (strlen(client_id) == 0) {
-    sprintf(client_id, "%llx", _chipmacid);
+    snprintf(client_id, sizeof(client_id), "%llx", _chipmacid);
     set_broker_clientid(client_id);
   } else if (strlen(client_id) == 1 && client_id[0] == '-') {
     client_id[0] = 0;
@@ -154,7 +154,7 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
     xQueueReceive(log_queue, buf_in, 0);
   }
   memset(buf_in, 0, MAX_LOG_QUEUE_ITEM_SIZE);
-  int len = vsprintf((char*)buf_in, str, l);
+  int len = vsnprintf((char*)buf_in, MAX_LOG_QUEUE_ITEM_SIZE-1, str, l);
   buf_in[len] = 0;
   xQueueSend(log_queue, buf_in, 0);
   if (cmd && uxQueueMessagesWaiting(log_queue) > 5) {

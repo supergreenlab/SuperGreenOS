@@ -163,7 +163,7 @@ static void set_ip(tcpip_adapter_if_t interface) {
   }
 
   char ip[20] = {0};
-  sprintf(ip, "%d.%d.%d.%d", ((uint8_t*)&(info.ip.addr))[0], ((uint8_t*)&(info.ip.addr))[1], ((uint8_t*)&(info.ip.addr))[2], ((uint8_t*)&(info.ip.addr))[3]);
+  snprintf(ip, sizeof(ip)-1, "%d.%d.%d.%d", ((uint8_t*)&(info.ip.addr))[0], ((uint8_t*)&(info.ip.addr))[1], ((uint8_t*)&(info.ip.addr))[2], ((uint8_t*)&(info.ip.addr))[3]);
   set_wifi_ip(ip);
 }
 

@@ -132,7 +132,7 @@ static bool connect_to_http_server()
  return false;
 }
 
-static bool check_new_version(char *new_timestamp) {
+static bool check_new_version(char *new_timestamp, int len) {
   char hostname[128] = {0}; get_ota_server_hostname(hostname, 128);
   int16_t port = get_ota_server_port();
   char basedir[128] = {0}; get_ota_basedir(basedir, 128);
@@ -186,7 +186,7 @@ static bool check_new_version(char *new_timestamp) {
   close(socket_id);
 
   int itimestamp = atoi(timestamp);
-  sprintf(new_timestamp, "%d", itimestamp);
+  snprintf(new_timestamp, len, "%d", itimestamp);
   return ota_build_timestamp < itimestamp;
 }
 
@@ -333,7 +333,7 @@ static void ota_task(void *pvParameter) {
       ESP_LOGI(SGO_LOG_EVENT, "@OTA Checking firmware update available");
       ESP_LOGI(SGO_LOG_EVENT, "@OTA timestamp=%d", ota_build_timestamp);
       char new_timestamp[15] = {0};
-      if (check_new_version(new_timestamp)) {
+      if (check_new_version(new_timestamp, sizeof(new_timestamp))) {
         ESP_LOGI(SGO_LOG_EVENT, "@OTA Start OTA procedure");
         set_ota_status(OTA_STATUS_IN_PROGRESS);
         try_ota(new_timestamp);
