@@ -1,5 +1,5 @@
 {
-  "name": "SuperGreenDriver",
+  "name": "Solo",
   "keys": [
     
             {
@@ -138,7 +138,7 @@
                 },
               
               
-              "default": 26
+              "default": 25
             },
           
             {
@@ -162,7 +162,7 @@
                 },
               
               
-              "default": 27
+              "default": 26
             },
           
             {
@@ -300,7 +300,7 @@
               "write": true,
               
               
-              "default": "/DriverV2"
+              "default": "/SoloV2"
             },
           
             {
@@ -405,7 +405,7 @@
               "write": true,
               
               
-              "default": "supergreendriver"
+              "default": "solo"
             },
           
             {
@@ -441,7 +441,7 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
@@ -465,58 +465,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_TEMP",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_TEMP",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "temp"
                 },
               
@@ -537,7 +489,7 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
@@ -554,62 +506,6 @@
           
             {
               "core": false,
-              "name": "box_1_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1]
-                },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1]
-                },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
               "name": "box_0_humi",
               "type": "integer",
               "integer": true,
@@ -621,58 +517,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_HUMI",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_HUMI",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "humi"
                 },
               
@@ -693,7 +541,7 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
@@ -706,110 +554,6 @@
                 },
               
               "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1]
-                },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1]
-                },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 0
             },
           
             {
@@ -825,58 +569,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "started_at"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_started_at",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_STARTED_AT",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "started_at"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_started_at",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_STARTED_AT",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "started_at"
                 },
               
@@ -897,34 +593,10 @@
               
                 "array": {
                   "name": "motor",
-                  "len": 2
+                  "len": 1
                 },
                 "motor": {
                   "index": 0,
-                  "param": "duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "motor_1_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_1_DUTY",
-              "module": "motor",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 2
-                },
-                "motor": {
-                  "index": 1,
                   "param": "duty"
                 },
               
@@ -945,7 +617,7 @@
               
                 "array": {
                   "name": "motor",
-                  "len": 2
+                  "len": 1
                 },
                 "motor": {
                   "index": 0,
@@ -954,38 +626,10 @@
               
               
                 "indir": {
-                  "values": [1,2,3]
+                  "values": [1]
                 },
               
               "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "motor_1_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_1_SOURCE",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 2
-                },
-                "motor": {
-                  "index": 1,
-                  "param": "source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 2
             },
           
             {
@@ -1001,7 +645,7 @@
               
                 "array": {
                   "name": "motor",
-                  "len": 2
+                  "len": 1
                 },
                 "motor": {
                   "index": 0,
@@ -1009,31 +653,7 @@
                 },
               
               
-              "default": 22
-            },
-          
-            {
-              "core": false,
-              "name": "motor_1_gpio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_1_GPIO",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 2
-                },
-                "motor": {
-                  "index": 1,
-                  "param": "gpio"
-                },
-              
-              
-              "default": 21
+              "default": 17
             },
           
             {
@@ -1049,34 +669,10 @@
               
                 "array": {
                   "name": "motor",
-                  "len": 2
+                  "len": 1
                 },
                 "motor": {
                   "index": 0,
-                  "param": "frequency"
-                },
-              
-              
-              "default": 20
-            },
-          
-            {
-              "core": false,
-              "name": "motor_1_frequency",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_1_FREQUENCY",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 2
-                },
-                "motor": {
-                  "index": 1,
                   "param": "frequency"
                 },
               
@@ -1097,58 +693,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "stretch"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_stretch",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_STRETCH",
-              "module": "mixer",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "stretch"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_stretch",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_STRETCH",
-              "module": "mixer",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "stretch"
                 },
               
@@ -1169,58 +717,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "led_dim"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_led_dim",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_LED_DIM",
-              "module": "mixer",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "led_dim"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_led_dim",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_LED_DIM",
-              "module": "mixer",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "led_dim"
                 },
               
@@ -1241,58 +741,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "on_hour"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_on_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_ON_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "on_hour"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_on_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_ON_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "on_hour"
                 },
               
@@ -1313,58 +765,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "on_min"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_on_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_ON_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "on_min"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_on_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_ON_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "on_min"
                 },
               
@@ -1385,58 +789,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "off_hour"
-                },
-              
-              
-              "default": 19
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_off_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_OFF_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "off_hour"
-                },
-              
-              
-              "default": 19
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_off_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_OFF_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "off_hour"
                 },
               
@@ -1457,58 +813,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "off_min"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_off_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_OFF_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "off_min"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_off_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_OFF_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "off_min"
                 },
               
@@ -1553,7 +861,7 @@
               "write": true,
               
               
-              "default": "SuperGreenDriver"
+              "default": "Solo"
             },
           
             {
@@ -1568,7 +876,7 @@
               "write": true,
               
               
-              "default": 19
+              "default": 12
             },
           
             {
@@ -1583,7 +891,7 @@
               "write": true,
               
               
-              "default": 18
+              "default": 14
             },
           
             {
@@ -1614,58 +922,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "timer_type"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_timer_type",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_TIMER_TYPE",
-              "module": "timer",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "timer_type"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_timer_type",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_TIMER_TYPE",
-              "module": "timer",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "timer_type"
                 },
               
@@ -1686,58 +946,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_TIMER_OUTPUT",
-              "module": "timer",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_TIMER_OUTPUT",
-              "module": "timer",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "timer_output"
                 },
               
@@ -1758,58 +970,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "blower_duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_blower_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_BLOWER_DUTY",
-              "module": "blower",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "blower_duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_blower_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_BLOWER_DUTY",
-              "module": "blower",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "blower_duty"
                 },
               
@@ -1830,58 +994,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "blower_day"
-                },
-              
-              
-              "default": 40
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_blower_day",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_BLOWER_DAY",
-              "module": "blower",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "blower_day"
-                },
-              
-              
-              "default": 40
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_blower_day",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_BLOWER_DAY",
-              "module": "blower",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "blower_day"
                 },
               
@@ -1902,58 +1018,10 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3
+                  "len": 1
                 },
                 "box": {
                   "index": 0,
-                  "param": "blower_night"
-                },
-              
-              
-              "default": 20
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_blower_night",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_BLOWER_NIGHT",
-              "module": "blower",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 1,
-                  "param": "blower_night"
-                },
-              
-              
-              "default": 20
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_blower_night",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_BLOWER_NIGHT",
-              "module": "blower",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3
-                },
-                "box": {
-                  "index": 2,
                   "param": "blower_night"
                 },
               
@@ -1974,34 +1042,10 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6
+                  "len": 1
                 },
                 "led": {
                   "index": 0,
-                  "param": "duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_1_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_1_DUTY",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 1,
                   "param": "duty"
                 },
               
@@ -2022,7 +1066,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6
+                  "len": 1
                 },
                 "led": {
                   "index": 0,
@@ -2030,223 +1074,7 @@
                 },
               
               
-              "default": 32
-            },
-          
-            {
-              "core": false,
-              "name": "led_1_gpio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_1_GPIO",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 1,
-                  "param": "gpio"
-                },
-              
-              
-              "default": 17
-            },
-          
-            {
-              "core": false,
-              "name": "led_2_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_2_DUTY",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 2,
-                  "param": "duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_3_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_3_DUTY",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 3,
-                  "param": "duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_4_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_4_DUTY",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 4,
-                  "param": "duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_5_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_5_DUTY",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 5,
-                  "param": "duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_2_gpio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_2_GPIO",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 2,
-                  "param": "gpio"
-                },
-              
-              
-              "default": 33
-            },
-          
-            {
-              "core": false,
-              "name": "led_3_gpio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_3_GPIO",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 3,
-                  "param": "gpio"
-                },
-              
-              
-              "default": 16
-            },
-          
-            {
-              "core": false,
-              "name": "led_4_gpio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_4_GPIO",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 4,
-                  "param": "gpio"
-                },
-              
-              
-              "default": 25
-            },
-          
-            {
-              "core": false,
-              "name": "led_5_gpio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_5_GPIO",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 5,
-                  "param": "gpio"
-                },
-              
-              
-              "default": 4
+              "default": 23
             },
           
             {
@@ -2262,130 +1090,10 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6
+                  "len": 1
                 },
                 "led": {
                   "index": 0,
-                  "param": "x"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_1_x",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_1_X",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 1,
-                  "param": "x"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_2_x",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_2_X",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 2,
-                  "param": "x"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_3_x",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_3_X",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 3,
-                  "param": "x"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_4_x",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_4_X",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 4,
-                  "param": "x"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_5_x",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_5_X",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 5,
                   "param": "x"
                 },
               
@@ -2406,130 +1114,10 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6
+                  "len": 1
                 },
                 "led": {
                   "index": 0,
-                  "param": "y"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_1_y",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_1_Y",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 1,
-                  "param": "y"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_2_y",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_2_Y",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 2,
-                  "param": "y"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_3_y",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_3_Y",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 3,
-                  "param": "y"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_4_y",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_4_Y",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 4,
-                  "param": "y"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_5_y",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_5_Y",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 5,
                   "param": "y"
                 },
               
@@ -2550,130 +1138,10 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6
+                  "len": 1
                 },
                 "led": {
                   "index": 0,
-                  "param": "z"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_1_z",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_1_Z",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 1,
-                  "param": "z"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_2_z",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_2_Z",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 2,
-                  "param": "z"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_3_z",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_3_Z",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 3,
-                  "param": "z"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_4_z",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_4_Z",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 4,
-                  "param": "z"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_5_z",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_5_Z",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 5,
                   "param": "z"
                 },
               
@@ -2694,130 +1162,10 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6
+                  "len": 1
                 },
                 "led": {
                   "index": 0,
-                  "param": "box"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_1_box",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_1_BOX",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 1,
-                  "param": "box"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_2_box",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_2_BOX",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 2,
-                  "param": "box"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_3_box",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_3_BOX",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 3,
-                  "param": "box"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_4_box",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_4_BOX",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 4,
-                  "param": "box"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "led_5_box",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_5_BOX",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 5,
                   "param": "box"
                 },
               
@@ -2838,130 +1186,10 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6
+                  "len": 1
                 },
                 "led": {
                   "index": 0,
-                  "param": "dim"
-                },
-              
-              
-              "default": 100
-            },
-          
-            {
-              "core": false,
-              "name": "led_1_dim",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_1_DIM",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 1,
-                  "param": "dim"
-                },
-              
-              
-              "default": 100
-            },
-          
-            {
-              "core": false,
-              "name": "led_2_dim",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_2_DIM",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 2,
-                  "param": "dim"
-                },
-              
-              
-              "default": 100
-            },
-          
-            {
-              "core": false,
-              "name": "led_3_dim",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_3_DIM",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 3,
-                  "param": "dim"
-                },
-              
-              
-              "default": 100
-            },
-          
-            {
-              "core": false,
-              "name": "led_4_dim",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_4_DIM",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 4,
-                  "param": "dim"
-                },
-              
-              
-              "default": 100
-            },
-          
-            {
-              "core": false,
-              "name": "led_5_dim",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_5_DIM",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 5,
                   "param": "dim"
                 },
               
@@ -2982,130 +1210,10 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6
+                  "len": 1
                 },
                 "led": {
                   "index": 0,
-                  "param": "fade"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "led_1_fade",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_1_FADE",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 1,
-                  "param": "fade"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "led_2_fade",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_2_FADE",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 2,
-                  "param": "fade"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "led_3_fade",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_3_FADE",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 3,
-                  "param": "fade"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "led_4_fade",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_4_FADE",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 4,
-                  "param": "fade"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "led_5_fade",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_5_FADE",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6
-                },
-                "led": {
-                  "index": 5,
                   "param": "fade"
                 },
               

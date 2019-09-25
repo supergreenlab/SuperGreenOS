@@ -22,6 +22,8 @@
 #include <stdlib.h>
 
 #include <esp_http_server.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 
 #include "../kv/kv.h"
 #include "../log/log.h"
@@ -211,6 +213,22 @@ static esp_err_t option_handler(httpd_req_t *req) {
   return ESP_OK;
 }
 
+static esp_err_t get_ip_handler(httpd_req_t *req) {
+  int socket = httpd_req_to_sockfd(req);
+
+  struct sockaddr_in6 destAddr;
+  unsigned socklen=sizeof(destAddr);
+
+  if(getpeername(socket, (struct sockaddr *)&destAddr, &socklen)<0) {
+    return httpd_resp_send_500(req);
+  }
+  char ip[16] = {0};
+  uint8_t *iphex = (uint8_t *)&(destAddr.sin6_addr.un.u32_addr[3]);
+  sprintf(ip, "%d.%d.%d.%d", iphex[0], iphex[1], iphex[2], iphex[3]);
+  httpd_resp_send(req, ip, strlen(ip));
+  return ESP_OK;
+}
+
 httpd_uri_t uri_geti = {
   .uri      = "/i",
   .method   = HTTP_GET,
@@ -236,6 +254,13 @@ httpd_uri_t uri_setstr = {
   .uri      = "/s",
   .method   = HTTP_POST,
   .handler  = setstr_handler,
+  .user_ctx = NULL
+};
+
+httpd_uri_t uri_get_ip = {
+  .uri      = "/myip",
+  .method   = HTTP_GET,
+  .handler  = get_ip_handler,
   .user_ctx = NULL
 };
 
@@ -275,6 +300,7 @@ static httpd_handle_t start_webserver(void) {
     httpd_register_uri_handler(server, &uri_seti);
     httpd_register_uri_handler(server, &uri_getstr);
     httpd_register_uri_handler(server, &uri_setstr);
+    httpd_register_uri_handler(server, &uri_get_ip);
 		httpd_register_uri_handler(server, &file_upload);
   }
   return server;
