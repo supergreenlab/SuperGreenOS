@@ -126,7 +126,7 @@ static esp_err_t geti_handler(httpd_req_t *req) {
     v = hi32->getter();
   }
   char ret[12] = {0};
-  sprintf(ret, "%d", v);
+  snprintf(ret, sizeof(ret) - 1, "%d", v);
 
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_send(req, ret, strlen(ret));
