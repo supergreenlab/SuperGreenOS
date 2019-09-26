@@ -255,6 +255,7 @@ esp_err_t upload_post_handler(httpd_req_t *req)
 		return ESP_FAIL;
 	}
 
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
 	ESP_LOGI(SGO_LOG_EVENT, "Receiving file : %s...", filename);
 
 	/* Retrieve the pointer to scratch buffer for temporary storage */

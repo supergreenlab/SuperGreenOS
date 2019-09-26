@@ -322,8 +322,8 @@ static void try_ota(const char *new_timestamp)
 
 static void ota_task(void *pvParameter) {
   while (true) {
-    ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA waiting for wifi");
-    wait_connected();
+    //ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA waiting for wifi");
+    //wait_connected();
 
     int ota_build_timestamp = get_ota_timestamp();
     if (ota_build_timestamp == 0) {
