@@ -92,7 +92,7 @@ static void mqtt_task(void *param) {
   char client_id[MAX_KVALUE_SIZE] = {0};
   get_broker_clientid(client_id, sizeof(client_id) - 1);
   if (strlen(client_id) == 0) {
-    snprintf(client_id, sizeof(client_id), "%llx", _chipmacid);
+    snprintf(client_id, sizeof(client_id)-1, "%llx", _chipmacid);
     set_broker_clientid(client_id);
   } else if (strlen(client_id) == 1 && client_id[0] == '-') {
     client_id[0] = 0;

@@ -321,6 +321,7 @@ static void try_ota(const char *new_timestamp)
 }
 
 static void ota_task(void *pvParameter) {
+  vTaskDelay((20 * 1000) / portTICK_PERIOD_MS);
   while (true) {
     //ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA waiting for wifi");
     //wait_connected();
@@ -333,7 +334,7 @@ static void ota_task(void *pvParameter) {
       ESP_LOGI(SGO_LOG_EVENT, "@OTA Checking firmware update available");
       ESP_LOGI(SGO_LOG_EVENT, "@OTA timestamp=%d", ota_build_timestamp);
       char new_timestamp[15] = {0};
-      if (check_new_version(new_timestamp, sizeof(new_timestamp))) {
+      if (check_new_version(new_timestamp, sizeof(new_timestamp)-1)) {
         ESP_LOGI(SGO_LOG_EVENT, "@OTA Start OTA procedure");
         set_ota_status(OTA_STATUS_IN_PROGRESS);
         try_ota(new_timestamp);
