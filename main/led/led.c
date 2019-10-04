@@ -39,7 +39,7 @@
 #define LED_DUTY_RESOLUTION    10
 #define LED_MIN_DUTY           0
 #define LED_MAX_DUTY           pow(2, LED_DUTY_RESOLUTION)
-#define LED_FREQ               40000
+#define LED_FREQ               20000
 
 #define LEDC_FADE_TIME         (500)
 #define SPEED_MODE LEDC_HIGH_SPEED_MODE
