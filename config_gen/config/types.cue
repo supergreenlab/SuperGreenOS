@@ -5,6 +5,7 @@ import (
 )
 
 _MODULE: {
+  enabled: bool | *true
   field_prefix: string
   init: bool | *true
   init_priority: int | *0

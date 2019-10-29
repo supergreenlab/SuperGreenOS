@@ -1,7 +1,7 @@
 <%
-  const core = Object.keys(modules).filter(m => modules[m].core).map(m => modules[m])
-  const custom = Object.keys(modules).filter(m => !modules[m].core && !modules[m].i2c).map(m => modules[m])
-  const i2c = Object.keys(modules).filter(m => modules[m].i2c).map(m => modules[m])
+  const core = Object.keys(modules).filter(m => modules[m].core && modules[m].enabled).map(m => modules[m])
+  const custom = Object.keys(modules).filter(m => !modules[m].core && modules[m].enabled && !modules[m].i2c).map(m => modules[m])
+  const i2c = Object.keys(modules).filter(m => modules[m].i2c && modules[m].enabled).map(m => modules[m])
 %>
 # Core modules
 COMPONENT_SRCDIRS := . core<% core.forEach((m) => { %> <%= `core/${m.name}` %><% }) %>
