@@ -62,12 +62,12 @@ StaticSemaphore_t mutex_buffer;
   <% if (f.type == 'integer') { %>
 
     <% if (!f.nvs.enable) { %>
-    static int<%= f.intlen %>_t _<%= f.name %> = INT<%= f.intlen %>_MAX;
+    static <%= f.signedness %>int<%= f.intlen %>_t _<%= f.name %> = <%= f.signedness.toUpperCase() %>INT<%= f.intlen %>_MAX;
     <% } %>
 
-    int<%= f.intlen %>_t get_<%= f.name %>() {
+    <%= f.signedness %>int<%= f.intlen %>_t get_<%= f.name %>() {
       <% if (f.nvs.enable) { %>
-        return geti<%= f.intlen %>(<%= f.caps_name %>);
+        return get<%= f.signedness %>i<%= f.intlen %>(<%= f.caps_name %>);
       <% } else { %>
         xSemaphoreTake(_mutex_<%= f.name %>, 0);
         int v = _<%= f.name %>;
@@ -76,10 +76,10 @@ StaticSemaphore_t mutex_buffer;
       <% } %>
     }
 
-    void set_<%= f.name %>(int<%= f.intlen %>_t value) {
+    void set_<%= f.name %>(<%= f.signedness %>int<%= f.intlen %>_t value) {
       <% if (f.nvs.enable) { %>
-        if (geti<%= f.intlen %>(<%= f.caps_name %>) == value) return;
-        seti<%= f.intlen %>(<%= f.caps_name %>, value);
+        if (get<%= f.signedness %>i<%= f.intlen %>(<%= f.caps_name %>) == value) return;
+        set<%= f.signedness %>i<%= f.intlen %>(<%= f.caps_name %>, value);
       <% } %>
       xSemaphoreTake(_mutex_<%= f.name %>, 0);
       <% if (!f.nvs.enable) { %>
@@ -90,7 +90,7 @@ StaticSemaphore_t mutex_buffer;
       _<%= f.name %>_undefined = false;
       xSemaphoreGive(_mutex_<%= f.name %>);
       <% if (f.ble.notify && !f.ble.no_sync) { %>
-        set_attr_value_and_notify(IDX_CHAR_VAL_<%= f.caps_name %>, (uint8_t *)&value, sizeof(int<%= f.intlen %>_t));
+        set_attr_value_and_notify(IDX_CHAR_VAL_<%= f.caps_name %>, (uint8_t *)&value, sizeof(<%= f.signedness %>int<%= f.intlen %>_t));
       <% } %>
     }
 
@@ -137,7 +137,7 @@ StaticSemaphore_t mutex_buffer;
 <% Object.keys(modules).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
   <% if (f.type == 'integer') { %>
-    int<%= f.intlen %>_t get_<%= f.name %>() {
+    <%= f.signedness %>int<%= f.intlen %>_t get_<%= f.name %>() {
       switch(get_<%= modules[m].fields[f.indir.source].name %>()) {
       <% Object.keys(modules).forEach(m => {
         Object.keys(modules[m].fields).filter(f2 => modules[m].fields[f2][f.indir.key]).forEach(f2 => { f2 = modules[m].fields[f2] %>

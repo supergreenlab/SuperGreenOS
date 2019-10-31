@@ -33,6 +33,15 @@ const kvi8_handler *get_kvi8_handler(const char *name);
 
 typedef struct {
   const char *name;
+  void (*handler)(uint8_t);
+  uint8_t (*getter)();
+} kvui8_handler;
+
+extern const kvui8_handler kvui8_handlers[];
+const kvui8_handler *get_kvui8_handler(const char *name);
+
+typedef struct {
+  const char *name;
   void (*handler)(int16_t);
   int16_t (*getter)();
 } kvi16_handler;
@@ -42,12 +51,30 @@ const kvi16_handler *get_kvi16_handler(const char *name);
 
 typedef struct {
   const char *name;
+  void (*handler)(uint16_t);
+  uint16_t (*getter)();
+} kvui16_handler;
+
+extern const kvui16_handler kvui16_handlers[];
+const kvui16_handler *get_kvui16_handler(const char *name);
+
+typedef struct {
+  const char *name;
   void (*handler)(int32_t);
   int32_t (*getter)();
 } kvi32_handler;
 
 extern const kvi32_handler kvi32_handlers[];
 const kvi32_handler *get_kvi32_handler(const char *name);
+
+typedef struct {
+  const char *name;
+  void (*handler)(uint32_t);
+  uint32_t (*getter)();
+} kvui32_handler;
+
+extern const kvui32_handler kviui32_handlers[];
+const kvui32_handler *get_kvui32_handler(const char *name);
 
 typedef struct {
   const char *name;

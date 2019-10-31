@@ -31,11 +31,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 32,
                     "suffix": "time",
                     "caps_name": "TIME"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": true,
@@ -126,6 +128,7 @@
                     "caps_name": "BROKER_CLIENTID"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": true,
@@ -157,11 +160,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "enabled",
                     "caps_name": "BLE_ENABLED"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": true,
@@ -172,6 +177,7 @@
             "name": "stat_dump",
             "field_prefix": "stat_dump",
             "fields": {},
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": true,
@@ -203,6 +209,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "reboot",
                     "caps_name": "REBOOT"
@@ -229,11 +236,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "n_restarts",
                     "caps_name": "N_RESTARTS"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": true,
@@ -266,6 +275,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_sda",
                     "caps_name": "I2C_0_SDA"
@@ -292,6 +302,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_scl",
                     "caps_name": "I2C_0_SCL"
@@ -318,6 +329,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_enabled",
                     "caps_name": "I2C_0_ENABLED"
@@ -344,11 +356,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_port",
                     "caps_name": "I2C_0_PORT"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": true,
@@ -359,6 +373,7 @@
             "name": "manual",
             "field_prefix": "manual",
             "fields": {},
+            "enabled": true,
             "init": false,
             "init_priority": 0,
             "core": false,
@@ -389,6 +404,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "status",
                     "caps_name": "OTA_STATUS",
@@ -415,6 +431,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 32,
                     "suffix": "timestamp",
                     "caps_name": "OTA_TIMESTAMP",
@@ -492,6 +509,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 16,
                     "suffix": "server_port",
                     "caps_name": "OTA_SERVER_PORT"
@@ -522,6 +540,7 @@
                     "caps_name": "OTA_BASEDIR"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": true,
@@ -532,6 +551,7 @@
             "name": "kv",
             "field_prefix": "kv",
             "fields": {},
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": true,
@@ -542,6 +562,7 @@
             "name": "httpd",
             "field_prefix": "httpd",
             "fields": {},
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": true,
@@ -576,6 +597,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "status",
                     "caps_name": "WIFI_STATUS",
@@ -740,6 +762,7 @@
                     "caps_name": "WIFI_IP"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": true,
@@ -772,6 +795,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_enabled",
                     "caps_name": "BOX_0_ENABLED"
@@ -799,6 +823,7 @@
                         "enable": true,
                         "source": "0_temp_source"
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_temp",
                     "caps_name": "BOX_0_TEMP"
@@ -826,6 +851,7 @@
                         "enable": true,
                         "source": "1_temp_source"
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_temp",
                     "caps_name": "BOX_1_TEMP"
@@ -853,6 +879,7 @@
                         "enable": true,
                         "source": "2_temp_source"
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_temp",
                     "caps_name": "BOX_2_TEMP"
@@ -879,6 +906,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_temp_source",
                     "caps_name": "BOX_0_TEMP_SOURCE"
@@ -905,6 +933,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_temp_source",
                     "caps_name": "BOX_1_TEMP_SOURCE"
@@ -931,6 +960,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_temp_source",
                     "caps_name": "BOX_2_TEMP_SOURCE"
@@ -958,6 +988,7 @@
                         "enable": true,
                         "source": "0_humi_source"
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_humi",
                     "caps_name": "BOX_0_HUMI"
@@ -985,6 +1016,7 @@
                         "enable": true,
                         "source": "1_humi_source"
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_humi",
                     "caps_name": "BOX_1_HUMI"
@@ -1012,6 +1044,7 @@
                         "enable": true,
                         "source": "2_humi_source"
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_humi",
                     "caps_name": "BOX_2_HUMI"
@@ -1038,6 +1071,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_humi_source",
                     "caps_name": "BOX_0_HUMI_SOURCE"
@@ -1064,6 +1098,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_humi_source",
                     "caps_name": "BOX_1_HUMI_SOURCE"
@@ -1090,6 +1125,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_humi_source",
                     "caps_name": "BOX_2_HUMI_SOURCE"
@@ -1116,6 +1152,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_enabled",
                     "caps_name": "BOX_1_ENABLED"
@@ -1142,6 +1179,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_enabled",
                     "caps_name": "BOX_2_ENABLED"
@@ -1168,6 +1206,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 32,
                     "suffix": "0_started_at",
                     "caps_name": "BOX_0_STARTED_AT"
@@ -1194,6 +1233,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 32,
                     "suffix": "1_started_at",
                     "caps_name": "BOX_1_STARTED_AT"
@@ -1220,11 +1260,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 32,
                     "suffix": "2_started_at",
                     "caps_name": "BOX_2_STARTED_AT"
                 }
             },
+            "enabled": true,
             "init": false,
             "init_priority": 0,
             "core": false,
@@ -1258,6 +1300,7 @@
                         "enable": true,
                         "source": "0_source"
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_duty",
                     "caps_name": "MOTOR_0_DUTY"
@@ -1285,6 +1328,7 @@
                         "enable": true,
                         "source": "1_source"
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_duty",
                     "caps_name": "MOTOR_1_DUTY"
@@ -1311,6 +1355,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_source",
                     "caps_name": "MOTOR_0_SOURCE"
@@ -1337,6 +1382,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_source",
                     "caps_name": "MOTOR_1_SOURCE"
@@ -1363,6 +1409,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_gpio",
                     "caps_name": "MOTOR_0_GPIO"
@@ -1389,6 +1436,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_gpio",
                     "caps_name": "MOTOR_1_GPIO"
@@ -1415,6 +1463,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "u",
                     "intlen": 16,
                     "suffix": "0_frequency",
                     "caps_name": "MOTOR_0_FREQUENCY"
@@ -1441,11 +1490,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "u",
                     "intlen": 16,
                     "suffix": "1_frequency",
                     "caps_name": "MOTOR_1_FREQUENCY"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": false,
@@ -1478,6 +1529,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_stretch",
                     "caps_name": "BOX_0_STRETCH"
@@ -1504,6 +1556,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_stretch",
                     "caps_name": "BOX_1_STRETCH"
@@ -1530,6 +1583,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_stretch",
                     "caps_name": "BOX_2_STRETCH"
@@ -1556,6 +1610,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_led_dim",
                     "caps_name": "BOX_0_LED_DIM"
@@ -1582,6 +1637,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_led_dim",
                     "caps_name": "BOX_1_LED_DIM"
@@ -1608,11 +1664,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_led_dim",
                     "caps_name": "BOX_2_LED_DIM"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": false,
@@ -1645,6 +1703,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_on_hour",
                     "caps_name": "BOX_0_ON_HOUR"
@@ -1671,6 +1730,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_on_hour",
                     "caps_name": "BOX_1_ON_HOUR"
@@ -1697,6 +1757,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_on_hour",
                     "caps_name": "BOX_2_ON_HOUR"
@@ -1723,6 +1784,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_on_min",
                     "caps_name": "BOX_0_ON_MIN"
@@ -1749,6 +1811,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_on_min",
                     "caps_name": "BOX_1_ON_MIN"
@@ -1775,6 +1838,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_on_min",
                     "caps_name": "BOX_2_ON_MIN"
@@ -1801,6 +1865,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_off_hour",
                     "caps_name": "BOX_0_OFF_HOUR"
@@ -1827,6 +1892,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_off_hour",
                     "caps_name": "BOX_1_OFF_HOUR"
@@ -1853,6 +1919,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_off_hour",
                     "caps_name": "BOX_2_OFF_HOUR"
@@ -1879,6 +1946,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_off_min",
                     "caps_name": "BOX_0_OFF_MIN"
@@ -1905,6 +1973,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_off_min",
                     "caps_name": "BOX_1_OFF_MIN"
@@ -1931,11 +2000,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_off_min",
                     "caps_name": "BOX_2_OFF_MIN"
                 }
             },
+            "enabled": true,
             "init": false,
             "init_priority": 0,
             "core": false,
@@ -1971,6 +2042,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "state",
                     "caps_name": "STATE",
@@ -2006,6 +2078,7 @@
                     "caps_name": "DEVICE_NAME"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 100,
             "core": false,
@@ -2038,6 +2111,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "red_gpio",
                     "caps_name": "STATUS_LED_RED_GPIO"
@@ -2064,6 +2138,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "green_gpio",
                     "caps_name": "STATUS_LED_GREEN_GPIO"
@@ -2090,11 +2165,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "dim",
                     "caps_name": "STATUS_LED_DIM"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 80,
             "core": false,
@@ -2126,6 +2203,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_timer_type",
                     "caps_name": "BOX_0_TIMER_TYPE",
@@ -2152,6 +2230,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_timer_type",
                     "caps_name": "BOX_1_TIMER_TYPE",
@@ -2178,6 +2257,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_timer_type",
                     "caps_name": "BOX_2_TIMER_TYPE",
@@ -2205,6 +2285,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_timer_output",
                     "caps_name": "BOX_0_TIMER_OUTPUT"
@@ -2231,6 +2312,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_timer_output",
                     "caps_name": "BOX_1_TIMER_OUTPUT"
@@ -2257,11 +2339,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_timer_output",
                     "caps_name": "BOX_2_TIMER_OUTPUT"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": false,
@@ -2293,6 +2377,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_blower_duty",
                     "caps_name": "BOX_0_BLOWER_DUTY",
@@ -2320,6 +2405,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_blower_duty",
                     "caps_name": "BOX_1_BLOWER_DUTY",
@@ -2347,6 +2433,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_blower_duty",
                     "caps_name": "BOX_2_BLOWER_DUTY",
@@ -2375,6 +2462,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_blower_day",
                     "caps_name": "BOX_0_BLOWER_DAY"
@@ -2401,6 +2489,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_blower_day",
                     "caps_name": "BOX_1_BLOWER_DAY"
@@ -2427,6 +2516,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_blower_day",
                     "caps_name": "BOX_2_BLOWER_DAY"
@@ -2453,6 +2543,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_blower_night",
                     "caps_name": "BOX_0_BLOWER_NIGHT"
@@ -2479,6 +2570,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_blower_night",
                     "caps_name": "BOX_1_BLOWER_NIGHT"
@@ -2505,11 +2597,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_blower_night",
                     "caps_name": "BOX_2_BLOWER_NIGHT"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 0,
             "core": false,
@@ -2542,6 +2636,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_duty",
                     "caps_name": "LED_0_DUTY"
@@ -2568,6 +2663,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_duty",
                     "caps_name": "LED_1_DUTY"
@@ -2594,6 +2690,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_gpio",
                     "caps_name": "LED_0_GPIO"
@@ -2620,6 +2717,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_gpio",
                     "caps_name": "LED_1_GPIO"
@@ -2646,6 +2744,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_duty",
                     "caps_name": "LED_2_DUTY"
@@ -2672,6 +2771,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "3_duty",
                     "caps_name": "LED_3_DUTY"
@@ -2698,6 +2798,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "4_duty",
                     "caps_name": "LED_4_DUTY"
@@ -2724,6 +2825,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "5_duty",
                     "caps_name": "LED_5_DUTY"
@@ -2750,6 +2852,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_gpio",
                     "caps_name": "LED_2_GPIO"
@@ -2776,6 +2879,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "3_gpio",
                     "caps_name": "LED_3_GPIO"
@@ -2802,6 +2906,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "4_gpio",
                     "caps_name": "LED_4_GPIO"
@@ -2828,6 +2933,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "5_gpio",
                     "caps_name": "LED_5_GPIO"
@@ -2854,6 +2960,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_x",
                     "caps_name": "LED_0_X"
@@ -2880,6 +2987,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_x",
                     "caps_name": "LED_1_X"
@@ -2906,6 +3014,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_x",
                     "caps_name": "LED_2_X"
@@ -2932,6 +3041,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "3_x",
                     "caps_name": "LED_3_X"
@@ -2958,6 +3068,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "4_x",
                     "caps_name": "LED_4_X"
@@ -2984,6 +3095,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "5_x",
                     "caps_name": "LED_5_X"
@@ -3010,6 +3122,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_y",
                     "caps_name": "LED_0_Y"
@@ -3036,6 +3149,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_y",
                     "caps_name": "LED_1_Y"
@@ -3062,6 +3176,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_y",
                     "caps_name": "LED_2_Y"
@@ -3088,6 +3203,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "3_y",
                     "caps_name": "LED_3_Y"
@@ -3114,6 +3230,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "4_y",
                     "caps_name": "LED_4_Y"
@@ -3140,6 +3257,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "5_y",
                     "caps_name": "LED_5_Y"
@@ -3166,6 +3284,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_z",
                     "caps_name": "LED_0_Z"
@@ -3192,6 +3311,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_z",
                     "caps_name": "LED_1_Z"
@@ -3218,6 +3338,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_z",
                     "caps_name": "LED_2_Z"
@@ -3244,6 +3365,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "3_z",
                     "caps_name": "LED_3_Z"
@@ -3270,6 +3392,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "4_z",
                     "caps_name": "LED_4_Z"
@@ -3296,6 +3419,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "5_z",
                     "caps_name": "LED_5_Z"
@@ -3322,6 +3446,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_box",
                     "caps_name": "LED_0_BOX"
@@ -3348,6 +3473,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_box",
                     "caps_name": "LED_1_BOX"
@@ -3374,6 +3500,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_box",
                     "caps_name": "LED_2_BOX"
@@ -3400,6 +3527,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "3_box",
                     "caps_name": "LED_3_BOX"
@@ -3426,6 +3554,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "4_box",
                     "caps_name": "LED_4_BOX"
@@ -3452,6 +3581,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "5_box",
                     "caps_name": "LED_5_BOX"
@@ -3478,6 +3608,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_dim",
                     "caps_name": "LED_0_DIM"
@@ -3504,6 +3635,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_dim",
                     "caps_name": "LED_1_DIM"
@@ -3530,6 +3662,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_dim",
                     "caps_name": "LED_2_DIM"
@@ -3556,6 +3689,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "3_dim",
                     "caps_name": "LED_3_DIM"
@@ -3582,6 +3716,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "4_dim",
                     "caps_name": "LED_4_DIM"
@@ -3608,6 +3743,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "5_dim",
                     "caps_name": "LED_5_DIM"
@@ -3634,6 +3770,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_fade",
                     "caps_name": "LED_0_FADE"
@@ -3660,6 +3797,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "1_fade",
                     "caps_name": "LED_1_FADE"
@@ -3686,6 +3824,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "2_fade",
                     "caps_name": "LED_2_FADE"
@@ -3712,6 +3851,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "3_fade",
                     "caps_name": "LED_3_FADE"
@@ -3738,6 +3878,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "4_fade",
                     "caps_name": "LED_4_FADE"
@@ -3764,11 +3905,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "5_fade",
                     "caps_name": "LED_5_FADE"
                 }
             },
+            "enabled": true,
             "init": true,
             "init_priority": 90,
             "core": false,
@@ -3800,6 +3943,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_temp",
                     "caps_name": "SHT21_0_TEMP",
@@ -3826,6 +3970,7 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_humi",
                     "caps_name": "SHT21_0_HUMI",
@@ -3852,11 +3997,13 @@
                     "indir": {
                         "enable": false
                     },
+                    "signedness": "",
                     "intlen": 8,
                     "suffix": "0_present",
                     "caps_name": "SHT21_0_PRESENT"
                 }
             },
+            "enabled": true,
             "init": false,
             "init_priority": 0,
             "core": false,

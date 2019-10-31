@@ -110,20 +110,29 @@ static esp_err_t geti_handler(httpd_req_t *req) {
   char name[50] = {0};
   find_str_param(req->uri, "k", name, &len);
   const kvi8_handler *hi8 = get_kvi8_handler(name);
+  const kvui8_handler *hui8 = get_kvui8_handler(name);
   const kvi16_handler *hi16 = get_kvi16_handler(name);
+  const kvui16_handler *hui16 = get_kvui16_handler(name);
   const kvi32_handler *hi32 = get_kvi32_handler(name);
+  const kvui32_handler *hui32 = get_kvui32_handler(name);
 
-  if (!hi8 && !hi16 && !hi32) {
+  if (!hi8 && !hui8 && !hi16 && !hui16 && !hi32 && !hui32) {
     return httpd_resp_send_404(req);
   }
 
   int v = 0;
   if (hi8) {
     v = hi8->getter();
+  } else if (hui8) {
+    v = hui8->getter();
   } else if (hi16) {
     v = hi16->getter();
+  } else if (hui16) {
+    v = hui16->getter();
   } else if (hi32) {
     v = hi32->getter();
+  } else if (hui32) {
+    v = hui32->getter();
   }
   char ret[12] = {0};
   snprintf(ret, sizeof(ret) - 1, "%d", v);
@@ -139,12 +148,18 @@ static esp_err_t seti_handler(httpd_req_t *req) {
   find_str_param(req->uri, "k", name, &len);
   const kvi8_handler *hi8 = get_kvi8_handler(name);
   bool is_i8 = hi8 && hi8->handler;
+  const kvui8_handler *hui8 = get_kvui8_handler(name);
+  bool is_ui8 = hui8 && hui8->handler;
   const kvi16_handler *hi16 = get_kvi16_handler(name);
   bool is_i16 = hi16 && hi16->handler;
+  const kvui16_handler *hui16 = get_kvui16_handler(name);
+  bool is_ui16 = hui16 && hui16->handler;
   const kvi32_handler *hi32 = get_kvi32_handler(name);
   bool is_i32 = hi32 && hi32->handler;
+  const kvui32_handler *hui32 = get_kvui32_handler(name);
+  bool is_ui32 = hui32 && hui32->handler;
 
-  if (!is_i8 && !is_i16 && !is_i32) {
+  if (!is_i8 && !is_ui8 && !is_i16 && !is_ui16 && !is_i32 && !is_ui32) {
     return httpd_resp_send_404(req);
   }
 
@@ -155,10 +170,16 @@ static esp_err_t seti_handler(httpd_req_t *req) {
 
   if (is_i8) {
     hi8->handler((int8_t)res);
+  } else if (is_ui8) {
+    hui8->handler((uint8_t)res);
   } else if (is_i16) {
     hi16->handler((int16_t)res);
+  } else if (is_ui16) {
+    hui16->handler((uint16_t)res);
   } else if (is_i32) {
     hi32->handler((int32_t)res);
+  } else if (is_ui32) {
+    hui32->handler((uint32_t)res);
   }
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_send(req, "OK", 2);

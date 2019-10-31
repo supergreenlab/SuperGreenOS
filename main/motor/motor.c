@@ -58,7 +58,13 @@ static void motor_task(void *param) {
     for (int i = 0; i < N_MOTOR; ++i) {
       if (get_motor_source(i) == 0) continue;
       //ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR Motor: %d, duty: %d", c.motorId, get_motor_duty(i));
-      set_duty(i, get_motor_duty(i));
+      double duty = get_motor_duty(i);
+      if (duty != 0 && duty != 100) {
+        duty = 8*pow(1.025, duty)+5;
+        duty = max(0, min(100, duty));
+      }
+      ESP_LOGI(SGO_LOG_NOSEND, "%f", duty);
+      set_duty(i, duty);
     }
     if (xQueueReceive(cmd, &c, 2000 / portTICK_PERIOD_MS) == pdTRUE) {
       if (c.cmd == CMD_CHANGED_FREQUENCY) {

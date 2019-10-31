@@ -30,7 +30,7 @@ const kvi8_handler kvi8_handlers[] = {
 */
   
 <% Object.keys(modules).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 8).forEach(f => { f = modules[m].fields[f]%>
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 8 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
   {
     .name = "<%= f.caps_name %>",
     <% if (f.http.write) { %>
@@ -60,13 +60,51 @@ const kvi8_handler *get_kvi8_handler(const char *name) {
   return NULL;
 }
 
+const kvui8_handler kvui8_handlers[] = {
+/*
+* [GENERATED]
+*/
+  
+<% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 8 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
+  {
+    .name = "<%= f.caps_name %>",
+    <% if (f.http.write) { %>
+      .handler = internal_set_<%= f.name %>,
+    <% } else { %>
+      .handler = NULL,
+    <% } %>
+    .getter = get_<%= f.name %>,
+  },
+<% })}) %>
+
+/*
+* [/GENERATED]
+*/
+  {
+    .name = NULL,
+    .handler = NULL,
+  },
+};
+
+const kvui8_handler *get_kvui8_handler(const char *name) {
+  for (int i = 0; kvui8_handlers[i].name != NULL; ++i) {
+    if (strcmp(kvui8_handlers[i].name, name) == 0) {
+      return &kvui8_handlers[i];
+    }
+  }
+  return NULL;
+}
+
+
+
 const kvi16_handler kvi16_handlers[] = {
 /*
 * [GENERATED]
 */
 
  <% Object.keys(modules).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16).forEach(f => { f = modules[m].fields[f]%>
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
   {
     .name = "<%= f.caps_name %>",
     <% if (f.http.write) { %>
@@ -96,13 +134,50 @@ const kvi16_handler *get_kvi16_handler(const char *name) {
   return NULL;
 }
 
+const kvui16_handler kvui16_handlers[] = {
+/*
+* [GENERATED]
+*/
+
+ <% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
+  {
+    .name = "<%= f.caps_name %>",
+    <% if (f.http.write) { %>
+      .handler = internal_set_<%= f.name %>,
+    <% } else { %>
+      .handler = NULL,
+    <% } %>
+    .getter = get_<%= f.name %>,
+  },
+<% })}) %>
+
+/*
+* [/GENERATED]
+*/
+  {
+    .name = NULL,
+    .handler = NULL,
+  },
+};
+
+const kvui16_handler *get_kvui16_handler(const char *name) {
+  for (int i = 0; kvui16_handlers[i].name != NULL; ++i) {
+    if (strcmp(kvui16_handlers[i].name, name) == 0) {
+      return &kvui16_handlers[i];
+    }
+  }
+  return NULL;
+}
+
+
 const kvi32_handler kvi32_handlers[] = {
 /*
 * [GENERATED]
 */
 
  <% Object.keys(modules).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32).forEach(f => { f = modules[m].fields[f]%>
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
   {
     .name = "<%= f.caps_name %>",
     <% if (f.http.write) { %>
@@ -132,7 +207,41 @@ const kvi32_handler *get_kvi32_handler(const char *name) {
   return NULL;
 }
 
+const kvui32_handler kvui32_handlers[] = {
+/*
+* [GENERATED]
+*/
 
+ <% Object.keys(modules).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
+  {
+    .name = "<%= f.caps_name %>",
+    <% if (f.http.write) { %>
+      .handler = internal_set_<%= f.name %>,
+    <% } else { %>
+      .handler = NULL,
+    <% } %>
+    .getter = get_<%= f.name %>,
+  },
+<% })}) %>
+
+/*
+* [/GENERATED]
+*/
+  {
+    .name = NULL,
+    .handler = NULL,
+  },
+};
+
+const kvui32_handler *get_kvui32_handler(const char *name) {
+  for (int i = 0; kvui32_handlers[i].name != NULL; ++i) {
+    if (strcmp(kvui32_handlers[i].name, name) == 0) {
+      return &kvui32_handlers[i];
+    }
+  }
+  return NULL;
+}
 
 const kvs_handler kvs_handlers[] = {
 /*

@@ -59,6 +59,7 @@ _STRING: _FIELD & {
 
 _INT: _FIELD & {
   type: "integer"
+  signedness: string | *""
   intlen: int
   default: int if _default_var == null
 }
@@ -68,6 +69,11 @@ _INT8: _INT & {
 }
 
 _INT16: _INT & {
+  intlen: 16
+}
+
+_UINT16: _INT & {
+  signedness: "u"
   intlen: 16
 }
 

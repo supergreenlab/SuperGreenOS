@@ -31,7 +31,7 @@
 <% Object.keys(modules).forEach(m => {
   Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
   <% if (f.type == 'integer') { %>
-    void internal_set_<%= f.name %>(int<%= f.intlen %>_t value) {
+    void internal_set_<%= f.name %>(<%= f.signedness %>int<%= f.intlen %>_t value) {
   <% } else { %>
     void internal_set_<%= f.name %>(const char *value) {
   <% } %>

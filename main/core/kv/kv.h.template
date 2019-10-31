@@ -35,15 +35,30 @@ void seti8(const char * key, int8_t value);
 bool hasi8(const char * key);
 void defaulti8(const char * key, int8_t value);
 
+uint8_t getui8(const char * key);
+void setui8(const char * key, uint8_t value);
+bool hasui8(const char * key);
+void defaultui8(const char * key, uint8_t value);
+
 int16_t geti16(const char * key);
 void seti16(const char * key, int16_t value);
 bool hasi16(const char * key);
 void defaulti16(const char * key, int16_t value);
 
+uint16_t getui16(const char * key);
+void setui16(const char * key, uint16_t value);
+bool hasui16(const char * key);
+void defaultui16(const char * key, uint16_t value);
+
 int32_t geti32(const char * key);
 void seti32(const char * key, int32_t value);
 bool hasi32(const char * key);
 void defaulti32(const char * key, int32_t value);
+
+uint32_t getui32(const char * key);
+void setui32(const char * key, uint32_t value);
+bool hasui32(const char * key);
+void defaultui32(const char * key, uint32_t value);
 
 void getstr(const char * key, char *value, const size_t length);
 void setstr(const char * key, const char * value);
@@ -60,8 +75,8 @@ void defaultstr(const char * key, const char * value);
   bool is_<%= f.name %>_changed();
   bool is_<%= f.name %>_undefined();
   <% if (f.type == 'integer') { %>
-    int<%= f.intlen %>_t get_<%= f.name %>();
-    void set_<%= f.name %>(int<%= f.intlen %>_t value);
+    <%= f.signedness %>int<%= f.intlen %>_t get_<%= f.name %>();
+    void set_<%= f.name %>(<%= f.signedness %>int<%= f.intlen %>_t value);
   <% } else { %>
     void get_<%= f.name %>(char *dest, size_t len);
     void set_<%= f.name %>(const char *value);
@@ -71,7 +86,7 @@ void defaultstr(const char * key, const char * value);
 <% Object.keys(modules).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
   <% if (f.type == 'integer') { %>
-    int<%= f.intlen %>_t get_<%= f.name %>();
+    <%= f.signedness %>int<%= f.intlen %>_t get_<%= f.name %>();
   <% } else { %>
     void get_<%= f.name %>(char *dest, size_t len);
   <% } %>
