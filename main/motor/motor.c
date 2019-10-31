@@ -63,7 +63,6 @@ static void motor_task(void *param) {
         duty = 8*pow(1.025, duty)+5;
         duty = max(0, min(100, duty));
       }
-      ESP_LOGI(SGO_LOG_NOSEND, "%f", duty);
       set_duty(i, duty);
     }
     if (xQueueReceive(cmd, &c, 2000 / portTICK_PERIOD_MS) == pdTRUE) {
