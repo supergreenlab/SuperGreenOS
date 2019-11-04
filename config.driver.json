@@ -1448,7 +1448,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 20,
+                    "default": 40000,
                     "ble": {
                         "enable": false
                     },
@@ -1475,7 +1475,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 20,
+                    "default": 40000,
                     "ble": {
                         "enable": false
                     },
@@ -1611,7 +1611,7 @@
                         "enable": false
                     },
                     "signedness": "",
-                    "intlen": 8,
+                    "intlen": 32,
                     "suffix": "0_led_dim",
                     "caps_name": "BOX_0_LED_DIM"
                 },
@@ -1638,7 +1638,7 @@
                         "enable": false
                     },
                     "signedness": "",
-                    "intlen": 8,
+                    "intlen": 32,
                     "suffix": "1_led_dim",
                     "caps_name": "BOX_1_LED_DIM"
                 },
@@ -1665,7 +1665,7 @@
                         "enable": false
                     },
                     "signedness": "",
-                    "intlen": 8,
+                    "intlen": 32,
                     "suffix": "2_led_dim",
                     "caps_name": "BOX_2_LED_DIM"
                 }
