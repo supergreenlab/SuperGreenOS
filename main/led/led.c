@@ -39,7 +39,8 @@
 #define LED_DUTY_RESOLUTION    10
 #define LED_MIN_DUTY           0
 #define LED_MAX_DUTY           pow(2, LED_DUTY_RESOLUTION)
-#define LED_FREQ               20000
+#define LED_FREQ_FAST          20000
+#define LED_FREQ_SLOW          2000
 
 #define LEDC_FADE_TIME         (500)
 #define SPEED_MODE LEDC_HIGH_SPEED_MODE
@@ -108,7 +109,7 @@ void init_led() {
     speed_mode:       LEDC_HIGH_SPEED_MODE,
     { duty_resolution:  LED_DUTY_RESOLUTION, },
     timer_num:        LEDC_TIMER_0,
-    freq_hz:          LED_FREQ,
+    freq_hz:          get_leds_fastmode() ? LED_FREQ_FAST : LED_FREQ_SLOW,
   };
   ledc_timer_config(&ledc_timer);
 
