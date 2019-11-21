@@ -304,12 +304,12 @@ static void stop_ble() {
   esp_bluedroid_deinit();
   esp_bt_controller_disable();
   esp_bt_controller_deinit();
+  set_ble_enabled(0);
 }
 
 static void stop_ble_after_delay_task(void* param) {
   vTaskDelay(30 * 1000 / portTICK_RATE_MS);
   ESP_LOGI(SGO_LOG_NOSEND, "@BLE_STOP stopping ble");
-  set_ble_enabled(0);
   stop_ble();
   vTaskDelete(NULL);
 }
