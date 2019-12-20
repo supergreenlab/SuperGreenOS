@@ -53,7 +53,9 @@
               <% if (m.array_len) { %>
                 "array": {
                   "name": "<%= m.field_prefix %>",
-                  "len": <%= m.array_len %>
+                  "len": <%= m.array_len %>,
+                  "index": <%= parseInt(f.suffix.split('_')[0]) %>,
+                  "param": "<%= f.suffix.split('_').splice(1).join('_') %>"
                 },
                 "<%= m.field_prefix %>": {
                   "index": <%= parseInt(f.suffix.split('_')[0]) %>,

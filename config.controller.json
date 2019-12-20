@@ -845,7 +845,7 @@
                     },
                     "write_cb": true,
                     "type": "string",
-                    "nosend": false,
+                    "nosend": true,
                     "helper": "",
                     "http": {
                         "enable": true,
