@@ -62,12 +62,12 @@ static int get_output_for_hour_min(int boxId) {
 }
 
 void start_onoff(int boxId) {
-  ESP_LOGI(SGO_LOG_EVENT, "@ONOFF_%d start_onoff", boxId);
+  ESP_LOGI(SGO_LOG_NOSEND, "@ONOFF_%d start_onoff", boxId);
   onoff_task(boxId);
 }
 
 void stop_onoff(int boxId) {
-  ESP_LOGI(SGO_LOG_EVENT, "@ONOFF_%d stop_onoff", boxId);
+  ESP_LOGI(SGO_LOG_NOSEND, "@ONOFF_%d stop_onoff", boxId);
   set_box_timer_output(boxId, 0);
 }
 

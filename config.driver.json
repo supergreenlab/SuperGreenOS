@@ -39,6 +39,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": true,
             "i2c": false,
@@ -130,6 +131,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": true,
             "i2c": false,
@@ -168,6 +170,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": true,
             "i2c": false,
@@ -179,6 +182,7 @@
             "fields": {},
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": true,
             "i2c": false,
@@ -244,6 +248,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": true,
             "i2c": false,
@@ -364,6 +369,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": true,
             "i2c": false,
@@ -375,6 +381,7 @@
             "fields": {},
             "enabled": true,
             "init": false,
+            "code": true,
             "init_priority": 0,
             "core": false,
             "i2c": false,
@@ -542,6 +549,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": true,
             "i2c": false,
@@ -553,6 +561,7 @@
             "fields": {},
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": true,
             "i2c": false,
@@ -564,6 +573,7 @@
             "fields": {},
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": true,
             "i2c": false,
@@ -619,7 +629,7 @@
                     },
                     "write_cb": true,
                     "type": "string",
-                    "nosend": false,
+                    "nosend": true,
                     "helper": "",
                     "http": {
                         "enable": true,
@@ -764,6 +774,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": true,
             "i2c": false,
@@ -1268,10 +1279,51 @@
             },
             "enabled": true,
             "init": false,
+            "code": true,
             "init_priority": 0,
             "core": false,
             "i2c": false,
             "array_len": 3
+        },
+        "motors": {
+            "name": "motors",
+            "field_prefix": "motors",
+            "fields": {
+                "curve": {
+                    "name": "motors_curve",
+                    "nvs": {
+                        "key": "M_C",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 0,
+                    "ble": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "curve",
+                    "caps_name": "MOTORS_CURVE"
+                }
+            },
+            "enabled": true,
+            "init": false,
+            "code": false,
+            "init_priority": 0,
+            "core": false,
+            "i2c": false,
+            "array_len": 0
         },
         "motor": {
             "name": "motor",
@@ -1498,6 +1550,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": false,
             "i2c": false,
@@ -1672,6 +1725,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": false,
             "i2c": false,
@@ -2008,6 +2062,7 @@
             },
             "enabled": true,
             "init": false,
+            "code": true,
             "init_priority": 0,
             "core": false,
             "i2c": false,
@@ -2080,6 +2135,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 100,
             "core": false,
             "i2c": false,
@@ -2173,6 +2229,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 80,
             "core": false,
             "i2c": false,
@@ -2347,6 +2404,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": false,
             "i2c": false,
@@ -2605,10 +2663,51 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 0,
             "core": false,
             "i2c": false,
             "array_len": 3
+        },
+        "leds": {
+            "name": "leds",
+            "field_prefix": "leds",
+            "fields": {
+                "fastmode": {
+                    "name": "leds_fastmode",
+                    "nvs": {
+                        "key": "L_FM",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 1,
+                    "ble": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "fastmode",
+                    "caps_name": "LEDS_FASTMODE"
+                }
+            },
+            "enabled": true,
+            "init": false,
+            "code": false,
+            "init_priority": 0,
+            "core": false,
+            "i2c": false,
+            "array_len": 0
         },
         "led": {
             "name": "led",
@@ -3913,6 +4012,7 @@
             },
             "enabled": true,
             "init": true,
+            "code": true,
             "init_priority": 90,
             "core": false,
             "i2c": false,
@@ -4005,6 +4105,7 @@
             },
             "enabled": true,
             "init": false,
+            "code": true,
             "init_priority": 0,
             "core": false,
             "i2c": true,

@@ -59,7 +59,7 @@ static void motor_task(void *param) {
       if (get_motor_source(i) == 0) continue;
       //ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR Motor: %d, duty: %d", c.motorId, get_motor_duty(i));
       double duty = get_motor_duty(i);
-      if (duty != 0 && duty != 100) {
+      if (get_motors_curve() && duty != 0 && duty != 100) {
         duty = 8*pow(1.025, duty)+5;
         duty = max(0, min(100, duty));
       }

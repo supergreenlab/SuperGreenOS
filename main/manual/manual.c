@@ -21,13 +21,13 @@
 #include "../core/log/log.h"
 
 void start_manual(int boxId) {
-  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL_%d start_manual", boxId);
+  ESP_LOGI(SGO_LOG_NOSEND, "@MANUAL_%d start_manual", boxId);
 }
 
 void stop_manual(int boxId) {
-  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL_%d stop_manual", boxId);
+  ESP_LOGI(SGO_LOG_NOSEND, "@MANUAL_%d stop_manual", boxId);
 }
 
 void manual_task(int boxId) {
-  ESP_LOGI(SGO_LOG_EVENT, "@MANUAL_%d manual_task", boxId);
+  ESP_LOGI(SGO_LOG_NOSEND, "@MANUAL_%d manual_task", boxId);
 }

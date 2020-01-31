@@ -123,6 +123,7 @@ StaticSemaphore_t mutex_buffer;
       <% if (!f.nvs.enable) { %>
       if (!strcmp(_<%= f.name %>, value)) return;
       strncpy(_<%= f.name %>, value, strlen(value));
+      _<%= f.name %>[strlen(value)] = 0;
       <% } %>
       _<%= f.name %>_changed = true;
       _<%= f.name %>_undefined = false;
