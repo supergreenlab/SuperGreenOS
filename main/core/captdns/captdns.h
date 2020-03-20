@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2020  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,13 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MIXER_H_
-#define MIXER_H_
+#ifndef CAPTDNS_H
+#define CAPTDNS_H
 
-void init_mixer();
-
-// BLE Callbacks
-
-int on_set_box_led_dim(int boxId, int value);
+void init_captdns(void);
 
 #endif

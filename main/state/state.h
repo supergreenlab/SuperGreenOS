@@ -19,8 +19,6 @@
 #ifndef STATE_H_
 #define STATE_H_
 
-#include "esp_gatt_common_api.h"
-
 enum state {
   FIRST_RUN,
   IDLE,

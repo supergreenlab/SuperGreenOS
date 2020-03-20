@@ -65,9 +65,6 @@ static void update_led(int i) {
   double dim = get_led_dim(i);
   double duty = get_led_duty(i) * dim / 100;
   duty = (duty < LED_MIN_ZERO) ? 0 : duty;
-  if (get_box_enabled(get_led_box(i)) != 1) {
-    duty = 0;
-  }
   if (get_led_fade(i) == 1) {
     double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
     //ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);

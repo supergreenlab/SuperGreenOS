@@ -25,7 +25,6 @@
 #include "kv/kv.h"
 #include "reboot/reboot.h"
 #include "mqtt/mqtt.h"
-#include "ble/ble.h"
 #include "wifi/wifi.h"
 #include "time/time.h"
 #include "i2c/i2c.h"

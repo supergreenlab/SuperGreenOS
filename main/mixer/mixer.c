@@ -50,56 +50,11 @@ static void set_duty(int i, int duty) {
   set_led_duty(i, duty);
 }
 
-static void set_duty_3d(int boxId, double x, double y, double z, int duty, int min_duty) {
-  double min_dist = DBL_MAX;
-  double max_dist = DBL_MIN;
-
-  for (int i = 0; i < N_LED; ++i) {
-    if (get_led_box(i) != boxId) {
-      continue;
-    }
-
-    double dist = sqrtf(pow(fabs(x - get_led_x(i)), 2) + pow(fabs(y - get_led_y(i)), 2) + pow(fabs(z - get_led_z(i)), 2));
-    min_dist = min(min_dist, dist);
-    max_dist = max(max_dist, dist);
-  }
-
-  for (int i = 0; i < N_LED; ++i) {
-    if (get_led_box(i) != boxId) {
-      continue;
-    }
-
-    double dist = sqrtf(pow(fabs(x - get_led_x(i)), 2) + pow(fabs(y - get_led_y(i)), 2) + pow(fabs(z - get_led_z(i)), 2));
-    double d = min_duty + (double)(duty - min_duty) * ((max_dist - dist) / (max_dist - min_dist));
-    set_duty(i, d);
-  }
-}
-
 static void mixer_duty(int boxId) {
   double timer_output = get_box_timer_output(boxId);
   double duty = max(0, min(100, timer_output));
 
-  int stretch = get_box_stretch(boxId);
-
-  if (stretch == 0 || duty == 0) {
-    set_all_duty(boxId, duty);
-  } else if (duty != 0) {
-    int max_x = INT_MIN;
-    int max_y = INT_MIN;
-    int max_z = INT_MIN;
-
-    for (int i = 0; i < N_LED; ++i) {
-      if (get_led_box(i) != boxId) {
-        continue;
-      }
-
-      max_x = max(max_x, get_led_x(i));
-      max_y = max(max_y, get_led_y(i));
-      max_z = max(max_z, get_led_z(i));
-    }
-
-    set_duty_3d(boxId, (double)max_x / 2, (double)max_y / 2, max_z * 1.25, duty + ((double)stretch / 100 * 25), 30 - ((double)stretch / 100 * 25));
-  }
+  set_all_duty(boxId, duty);
   refresh_led(boxId, -1);
 }
 
@@ -143,12 +98,6 @@ static void set_all_duty(int boxId, int value) {
 
 int on_set_box_led_dim(int boxId, int value) {
   set_all_duty(boxId, 5);
-  refresh_led(boxId, -1);
-  return value;
-}
-
-int on_set_box_stretch(int boxId, int value) {
-  mixer_duty(boxId);
   refresh_led(boxId, -1);
   return value;
 }

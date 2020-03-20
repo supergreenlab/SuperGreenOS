@@ -20,7 +20,6 @@
 
 #include "kv.h"
 #include "keys.h"
-#include "../ble/ble.h"
 
 #include "../include_modules.h"
 
@@ -41,18 +40,6 @@
     <% } %>
     <% if (f.nvs && !f.nvs.manual) { %>
       set_<%= f.name %>(value);
-    <% } %>
-
-    <% if (f.ble && f.ble.notify && !f.ble.no_sync) { %>
-      <% if (f.type == 'integer') { %>
-        int32_t v = (int32_t)value;
-        int len = sizeof(int32_t);
-        set_attr_value_and_notify(IDX_CHAR_VAL_<%= f.caps_name %>, (uint8_t *)&v, len);
-      <% } else { %>
-        int len = strlen(value);
-        set_attr_value_and_notify(IDX_CHAR_VAL_<%= f.caps_name %>, (uint8_t *)value, len);
-      <% } %>
-
     <% } %>
 
     // TODO: httpd notify
