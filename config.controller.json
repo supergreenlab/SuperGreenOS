@@ -1479,20 +1479,21 @@
                     "nosend": false,
                     "helper": "",
                     "nvs": {
-                        "enable": false,
-                        "manual": false
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_BLWR_DD"
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": false
+                        "write": true
                     },
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_blower_duty",
@@ -1507,20 +1508,21 @@
                     "nosend": false,
                     "helper": "",
                     "nvs": {
-                        "enable": false,
-                        "manual": false
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_1_BLWR_DD"
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": false
+                        "write": true
                     },
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "1_blower_duty",
@@ -1535,20 +1537,21 @@
                     "nosend": false,
                     "helper": "",
                     "nvs": {
-                        "enable": false,
-                        "manual": false
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_2_BLWR_DD"
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": false
+                        "write": true
                     },
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "2_blower_duty",

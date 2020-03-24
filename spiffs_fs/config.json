@@ -1130,7 +1130,7 @@
               "module": "blower",
               
               
-              "write": false,
+              "write": true,
               
                 "array": {
                   "name": "box",
@@ -1156,7 +1156,7 @@
               "module": "blower",
               
               
-              "write": false,
+              "write": true,
               
                 "array": {
                   "name": "box",
@@ -1182,7 +1182,7 @@
               "module": "blower",
               
               
-              "write": false,
+              "write": true,
               
                 "array": {
                   "name": "box",

@@ -80,6 +80,13 @@ void init_blower() {
 
 /* BLE Callbacks */
 
+int on_set_box_blower_duty(int boxId, int value) {
+  value = min(100, max(value, 0));
+  set_box_blower_duty(boxId, value);
+  refresh_motors();
+  return value;
+}
+
 int on_set_box_blower_day(int boxId, int value) {
   value = min(100, max(value, 0));
   set_box_blower_day(boxId, value);
