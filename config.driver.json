@@ -772,7 +772,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_enabled",
@@ -1129,7 +1129,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "1_enabled",
@@ -1156,7 +1156,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "2_enabled",
@@ -1263,20 +1263,21 @@
                     "nosend": false,
                     "helper": "",
                     "nvs": {
-                        "enable": false,
-                        "manual": false
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_BLWR_DD"
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": false
+                        "write": true
                     },
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_blower_duty",
@@ -1291,20 +1292,21 @@
                     "nosend": false,
                     "helper": "",
                     "nvs": {
-                        "enable": false,
-                        "manual": false
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_1_BLWR_DD"
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": false
+                        "write": true
                     },
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "1_blower_duty",
@@ -1319,20 +1321,21 @@
                     "nosend": false,
                     "helper": "",
                     "nvs": {
-                        "enable": false,
-                        "manual": false
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_2_BLWR_DD"
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": false
+                        "write": true
                     },
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "2_blower_duty",
@@ -1366,7 +1369,7 @@
                     "intlen": 8,
                     "suffix": "0_blower_day",
                     "caps_name": "BOX_0_BLOWER_DAY",
-                    "default": 40
+                    "default": 20
                 },
                 "1_blower_day": {
                     "name": "box_1_blower_day",
@@ -1393,7 +1396,7 @@
                     "intlen": 8,
                     "suffix": "1_blower_day",
                     "caps_name": "BOX_1_BLOWER_DAY",
-                    "default": 40
+                    "default": 20
                 },
                 "2_blower_day": {
                     "name": "box_2_blower_day",
@@ -1420,7 +1423,7 @@
                     "intlen": 8,
                     "suffix": "2_blower_day",
                     "caps_name": "BOX_2_BLOWER_DAY",
-                    "default": 40
+                    "default": 20
                 },
                 "0_blower_night": {
                     "name": "box_0_blower_night",
@@ -1447,7 +1450,7 @@
                     "intlen": 8,
                     "suffix": "0_blower_night",
                     "caps_name": "BOX_0_BLOWER_NIGHT",
-                    "default": 20
+                    "default": 10
                 },
                 "1_blower_night": {
                     "name": "box_1_blower_night",
@@ -1474,7 +1477,7 @@
                     "intlen": 8,
                     "suffix": "1_blower_night",
                     "caps_name": "BOX_1_BLOWER_NIGHT",
-                    "default": 20
+                    "default": 10
                 },
                 "2_blower_night": {
                     "name": "box_2_blower_night",
@@ -1501,7 +1504,7 @@
                     "intlen": 8,
                     "suffix": "2_blower_night",
                     "caps_name": "BOX_2_BLOWER_NIGHT",
-                    "default": 20
+                    "default": 10
                 }
             }
         },
@@ -1725,7 +1728,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_source",
@@ -1752,7 +1755,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "1_source",
@@ -2943,7 +2946,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_box",
@@ -2970,7 +2973,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "1_box",
@@ -2997,7 +3000,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "2_box",
@@ -3024,7 +3027,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "3_box",
@@ -3051,7 +3054,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "4_box",
@@ -3078,7 +3081,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "5_box",

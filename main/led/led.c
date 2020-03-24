@@ -73,15 +73,15 @@ static void update_led(int i) {
   bool is_sunglasses_mode = false;
   if (box != -1) {
     int box_led_dim = get_box_led_dim(box);
-    is_sunglasses_mode = now - box_led_dim < 60;
+    is_sunglasses_mode = now - box_led_dim < 1200;
   }
   if (get_led_fade(i) == 1) {
-    if (is_sunglasses_mode) {
-      duty = 5;
-    }
-
     double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
     //ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
+
+    if (is_sunglasses_mode) {
+      real_duty = min(5, real_duty);
+    }
 
     fade_no_wait_led(i, real_duty);
   } else {
