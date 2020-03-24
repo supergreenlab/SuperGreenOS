@@ -16,8 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "../core/kv/kv.h"
+
 #include "../led/led.h"
+#include "../timer/timer.h"
 #include "../mixer/mixer.h"
+#include "../blower/blower.h"
 
 //  KV Callbacks
 
@@ -27,9 +31,15 @@ int on_set_box_led_dim(int boxId, int value) {
 }
 
 int on_set_box_enabled(int boxId, int value) {
+  if (value == get_box_enabled(boxId)) {
+    return value;
+  }
+  set_box_enabled(boxId, value);
   if (value == 0) {
     set_all_duty(boxId, 0);
+    set_box_blower_duty(boxId, 0);
   }
-  refresh_led(boxId, -1);
+  refresh_timer();
+  refresh_blower();
   return value;
 }

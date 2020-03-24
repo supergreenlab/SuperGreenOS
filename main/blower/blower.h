@@ -22,8 +22,9 @@
 #define DEFAULT_BLOWER_FREQUENCY 150
 
 void init_blower();
+void refresh_blower();
 
-/* BLE Callbacks */
+/* KV Callbacks */
 
 int on_set_box_blower_frequency(int boxId, int value);
 int on_set_box_blower_day(int boxId, int value);

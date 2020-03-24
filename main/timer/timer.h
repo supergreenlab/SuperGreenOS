@@ -25,6 +25,7 @@ enum timer {
 };
 
 void init_timer();
+void refresh_timer();
 
 /* BLE callbacks */
 

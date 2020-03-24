@@ -50,6 +50,7 @@ typedef struct {
   int box_id;
   int led_id;
 } cmd_refresh_led;
+
 static QueueHandle_t cmd;
 
 static void fade_no_wait_led(int i, int duty) {

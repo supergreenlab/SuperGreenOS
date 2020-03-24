@@ -38,6 +38,7 @@ static QueueHandle_t cmd;
 typedef enum {
   CMD_NO_ACTION,
   CMD_CHANGED_FREQUENCY,
+  CMD_REFRESH,
 } motor_action;
 
 typedef struct {
@@ -56,16 +57,19 @@ static void motor_task(void *param) {
 
   while (1) {
     for (int i = 0; i < N_MOTOR; ++i) {
-      if (get_motor_source(i) == 0) continue;
+      if (get_motor_source(i) == 0) {
+        set_duty(i, 0);
+        continue;
+      }
       //ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR Motor: %d, duty: %d", c.motorId, get_motor_duty(i));
       double duty = get_motor_duty(i);
-      if (get_motors_curve() && duty != 0 && duty != 100) {
+      if (get_motors_curve() == 1 && duty != 0 && duty != 100) {
         duty = 8*pow(1.025, duty)+5;
         duty = max(0, min(100, duty));
       }
       set_duty(i, duty);
     }
-    if (xQueueReceive(cmd, &c, 2000 / portTICK_PERIOD_MS) == pdTRUE) {
+    if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS) == pdTRUE) {
       if (c.cmd == CMD_CHANGED_FREQUENCY) {
         int motor_frequency = c.value;
         //ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR CMD_CHANGED_FREQUENCY %d %d", c.motorId, motor_frequency);
@@ -103,11 +107,22 @@ void init_motor() {
   }
 }
 
+void refresh_motors() {
+  motor_cmd c = {.cmd = CMD_REFRESH};
+  xQueueSend(cmd, &c, 0);
+}
+
 /* BLE Callbacks */
 
 int on_set_motor_frequency(int motorId, int value) {
   value = min(40000, max(value, 2));
   motor_cmd c = {.cmd = CMD_CHANGED_FREQUENCY, .motorId = motorId, .value = value};
   xQueueSend(cmd, &c, 0);
+  return value;
+}
+
+int on_set_motor_source(int motorId, int value) {
+  set_motor_source(motorId, value);
+  refresh_motors();
   return value;
 }

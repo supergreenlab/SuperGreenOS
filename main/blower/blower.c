@@ -26,11 +26,20 @@
 
 #include "../core/log/log.h"
 #include "../core/kv/kv.h"
+#include "../motor/motor.h"
 
 #define max(x, y) (((x) > (y)) ? (x) : (y))
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 
+static QueueHandle_t cmd;
+
+typedef enum {
+  CMD_NO_ACTION,
+  CMD_REFRESH,
+} blower_cmd;
+
 static void blower_task(void *param) {
+  blower_cmd c = CMD_NO_ACTION;
   while (1) {
     for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1) continue;
@@ -40,12 +49,28 @@ static void blower_task(void *param) {
       int v = (float)vnight + ((vday - vnight) * (float)timerOutput / 100.0f);
       set_box_blower_duty(i, v);
     }
-    vTaskDelay(2000 / portTICK_PERIOD_MS);
+    if (c == CMD_REFRESH) {
+      refresh_motors();
+      c = CMD_NO_ACTION;
+    }
+
+    if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS) == pdTRUE) {
+    }
   }
+}
+
+void refresh_blower() {
+  blower_cmd c = CMD_REFRESH;
+  xQueueSend(cmd, &c, 0);
 }
 
 void init_blower() {
   ESP_LOGI(SGO_LOG_EVENT, "@BLOWER Initializing blower task");
+
+  cmd = xQueueCreate(10, sizeof(blower_cmd));
+  if (cmd == NULL) {
+    ESP_LOGE(SGO_LOG_EVENT, "@BLOWER Unable to create blower queue");
+  }
 
   BaseType_t ret = xTaskCreatePinnedToCore(blower_task, "BLOWER", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
@@ -57,10 +82,14 @@ void init_blower() {
 
 int on_set_box_blower_day(int boxId, int value) {
   value = min(100, max(value, 0));
+  set_box_blower_day(boxId, value);
+  refresh_blower();
   return value;
 }
 
 int on_set_box_blower_night(int boxId, int value) {
   value = min(100, max(value, 0));
+  set_box_blower_night(boxId, value);
+  refresh_blower();
   return value;
 }

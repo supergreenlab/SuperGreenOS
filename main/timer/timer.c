@@ -21,21 +21,35 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/queue.h"
 
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 #include "../led/led.h"
+#include "../mixer/mixer.h"
 #include "../box/box.h"
 
 #include "../manual/manual.h"
 #include "../onoff/onoff.h"
 #include "../state/state.h"
 
+typedef enum {
+  CMD_NO_ACTION,
+  CMD_REFRESH,
+} timer_cmd;
+
+static QueueHandle_t cmd;
+
 static void timer_task(void *param);
 static void stop(int boxId, enum timer t);
 static void start(int boxId, enum timer t);
 
 void init_timer() {
+  cmd = xQueueCreate(10, sizeof(timer_cmd));
+  if (cmd == NULL) {
+    ESP_LOGE(SGO_LOG_EVENT, "@TIMER Unable to create timer queue");
+  }
+
   for (int i = 0; i < N_BOX; ++i) {
     if (get_box_enabled(i) != 1) continue;
     start(i, get_box_timer_type(i));
@@ -70,13 +84,9 @@ static void start(int boxId, enum timer t) {
 }
 
 static void timer_task(void *param) {
-  while (1) {
-    enum state s = get_state();
-    if (s != RUNNING) {
-      vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
-      continue;
-    }
+  timer_cmd c = CMD_NO_ACTION;
 
+  while (1) {
     for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1) continue;
       enum timer t = get_box_timer_type(i);
@@ -90,19 +100,33 @@ static void timer_task(void *param) {
           break;
       }
     }
-    vTaskDelay(1 * 1000 / portTICK_PERIOD_MS);
+    if (c == CMD_REFRESH) {
+      refresh_led(-1, -1);
+      c = CMD_NO_ACTION;
+    }
+    if (xQueueReceive(cmd, &c, 1000 / portTICK_PERIOD_MS) == pdTRUE) {
+    }
   }
+}
+
+void refresh_timer() {
+  timer_cmd c = CMD_REFRESH;
+  xQueueSend(cmd, &c, 0);
 }
 
 // KV Callbacks
 
 int on_set_box_timer_type(int boxId, int value) {
   int old = get_box_timer_type(boxId);
-
   if (old == value) return value;
+
   set_box_timer_type(boxId, value);
   stop(boxId, old);
   start(boxId, value);
+
+  if (value == 0) {
+    set_all_duty(boxId, 0);
+  }
   refresh_led(boxId, -1);
   return value;
 }

@@ -29,6 +29,7 @@
 #include "../core/log/log.h"
 #include "../state/state.h"
 #include "../led/led.h"
+#include "../timer/timer.h"
 
 #define min(a, b) (((a) < (b)) ? (a) : (b)) 
 #define max(a, b) (((a) > (b)) ? (a) : (b)) 
@@ -81,7 +82,7 @@ static void mixer_task() {
     }
 
     for (int i = 0; i < N_BOX; ++i) {
-      if (get_box_enabled(i) != 1) continue;
+      if (get_box_enabled(i) != 1 || get_box_timer_type(i) == TIMER_MANUAL) continue;
       mixer_duty(i);
     }
 

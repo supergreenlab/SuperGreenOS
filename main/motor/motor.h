@@ -22,9 +22,11 @@
 #define DEFAULT_MOTOR_FREQUENCY 150
 
 void init_motor();
+void refresh_motors();
 
-/* BLE Callbacks */
+/* KV Callbacks */
 
 int on_set_motor_frequency(int motorId, int value);
+int on_set_motor_source(int motorId, int value);
 
 #endif
