@@ -988,7 +988,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_enabled",
@@ -1015,7 +1015,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "1_enabled",
@@ -1042,7 +1042,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "2_enabled",
@@ -3428,7 +3428,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_box",
@@ -3455,7 +3455,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "1_box",
@@ -3482,7 +3482,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "2_box",
@@ -3509,7 +3509,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "3_box",
@@ -3536,7 +3536,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "4_box",
@@ -3563,7 +3563,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "5_box",

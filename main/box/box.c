@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2020  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,17 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LED_H_
-#define LED_H_
+#include "../led/led.h"
+#include "../mixer/mixer.h"
 
-void init_led();
-void refresh_led(int boxId, int ledId);
+//  KV Callbacks
 
-/* KV Callbacks */
+int on_set_box_led_dim(int boxId, int value) {
+  refresh_led(boxId, -1);
+  return value;
+}
 
-int on_set_led_duty(int ledId, int value);
-int on_set_led_dim(int ledId, int value);
-int on_set_led_box(int ledId, int boxId);
-
-#endif
-
+int on_set_box_enabled(int boxId, int value) {
+  if (value == 0) {
+    set_all_duty(boxId, 0);
+  }
+  refresh_led(boxId, -1);
+  return value;
+}

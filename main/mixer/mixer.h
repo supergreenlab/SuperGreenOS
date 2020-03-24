@@ -20,9 +20,6 @@
 #define MIXER_H_
 
 void init_mixer();
-
-// BLE Callbacks
-
-int on_set_box_led_dim(int boxId, int value);
+void set_all_duty(int boxId, int value);
 
 #endif

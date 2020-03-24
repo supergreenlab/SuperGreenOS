@@ -34,7 +34,9 @@
 #define max(a, b) (((a) > (b)) ? (a) : (b)) 
 
 static void mixer_task();
-static void set_all_duty(int boxId, int value);
+static void set_duty(int i, int duty);
+
+// Private methods
 
 void init_mixer() {
   ESP_LOGI(SGO_LOG_EVENT, "@MIXER Initializing mixer module");
@@ -44,6 +46,18 @@ void init_mixer() {
     ESP_LOGE(SGO_LOG_EVENT, "@MIXER Failed to create task");
   }
 }
+
+void set_all_duty(int boxId, int value) {
+  for (int i = 0; i < N_LED; ++i) {
+    if (boxId != -1 && get_led_box(i) != boxId) {
+      continue;
+    }
+
+    set_duty(i, value);
+  }
+}
+
+// Private functions
 
 static void set_duty(int i, int duty) {
   duty = min(100, max(duty, 0));
@@ -59,8 +73,6 @@ static void mixer_duty(int boxId) {
 }
 
 static void mixer_task() {
-  time_t now;
-
   while (1) {
     enum state s = get_state();
     if (s != RUNNING) {
@@ -68,15 +80,8 @@ static void mixer_task() {
       continue;
     }
 
-    time(&now);
     for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1) continue;
-
-      int led_dim = get_box_led_dim(i);
-      if (now - led_dim < 60) {
-        continue;
-      }
-
       mixer_duty(i);
     }
 
@@ -84,20 +89,4 @@ static void mixer_task() {
   }
 }
 
-static void set_all_duty(int boxId, int value) {
-  for (int i = 0; i < N_LED; ++i) {
-    if (get_led_box(i) != boxId) {
-      continue;
-    }
-
-    set_duty(i, value);
-  }
-}
-
 //  KV Callbacks
-
-int on_set_box_led_dim(int boxId, int value) {
-  set_all_duty(boxId, 10);
-  refresh_led(boxId, -1);
-  return value;
-}

@@ -94,7 +94,7 @@ static void timer_task(void *param) {
   }
 }
 
-// BLE Callbacks
+// KV Callbacks
 
 int on_set_box_timer_type(int boxId, int value) {
   int old = get_box_timer_type(boxId);

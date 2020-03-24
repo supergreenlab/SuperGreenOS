@@ -27,8 +27,8 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include "esp_err.h"
+#include "driver/ledc.h"
 
-#include "led.h"
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
@@ -65,12 +65,29 @@ static void update_led(int i) {
   double dim = get_led_dim(i);
   double duty = get_led_duty(i) * dim / 100;
   duty = (duty < LED_MIN_ZERO) ? 0 : duty;
+
+  time_t now;
+  time(&now);
+  int box = get_led_box(i);
+  bool is_sunglasses_mode = false;
+  if (box != -1) {
+    int box_led_dim = get_box_led_dim(box);
+    is_sunglasses_mode = now - box_led_dim < 60;
+  }
   if (get_led_fade(i) == 1) {
+    if (is_sunglasses_mode) {
+      duty = 5;
+    }
+
     double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
     //ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
 
     fade_no_wait_led(i, real_duty);
   } else {
+    if (is_sunglasses_mode) {
+      duty = 0;
+    }
+
     duty = (duty == 0 ? duty : LED_MAX_DUTY);
     ledc_set_duty(SPEED_MODE, LEDC_CHANNEL(i), duty);
     ledc_update_duty(SPEED_MODE, LEDC_CHANNEL(i));
@@ -158,4 +175,12 @@ int on_set_led_dim(int led_id, int value) {
   set_led_dim(led_id, value);
   refresh_led(-1, led_id);
   return value;
+}
+
+int on_set_led_box(int led_id, int boxId) {
+  if (boxId == -1) {
+    set_led_duty(led_id, 0);
+  }
+  refresh_led(-1, led_id);
+  return boxId;
 }

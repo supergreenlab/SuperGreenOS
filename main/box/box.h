@@ -19,4 +19,7 @@
 #ifndef BOX_H_
 #define BOX_H_
 
+int on_set_box_led_dim(int boxId, int value);
+int on_set_box_enabled(int boxId, int value);
+
 #endif

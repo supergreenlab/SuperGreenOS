@@ -32,7 +32,7 @@ modules box fields "\(k)_humi_source": _INT8 & _NVS & _HTTP_RW & {
 modules box fields "\(k)_enabled": _INT8 & _NVS & _HTTP_RW & {
   default: v.enabled
   nvs key: "B_\(k)_E"
-  write_cb: false
+  write_cb: true
 } for k, v in _box_conf
 
 modules box fields "\(k)_started_at": _INT32 & _NVS & _HTTP_RW & {
