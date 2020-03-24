@@ -97,7 +97,7 @@ static void set_all_duty(int boxId, int value) {
 //  KV Callbacks
 
 int on_set_box_led_dim(int boxId, int value) {
-  set_all_duty(boxId, 5);
+  set_all_duty(boxId, 10);
   refresh_led(boxId, -1);
   return value;
 }
