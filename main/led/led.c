@@ -179,7 +179,7 @@ int on_set_led_dim(int led_id, int value) {
 }
 
 int on_set_led_box(int led_id, int boxId) {
-  if (boxId == -1) {
+  if (boxId == -1 || get_box_enabled(boxId) == 0) {
     set_led_duty(led_id, 0);
   }
   refresh_led(-1, led_id);

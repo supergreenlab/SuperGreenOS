@@ -1585,7 +1585,7 @@
                     "intlen": 8,
                     "suffix": "0_blower_day",
                     "caps_name": "BOX_0_BLOWER_DAY",
-                    "default": 40
+                    "default": 20
                 },
                 "1_blower_day": {
                     "name": "box_1_blower_day",
@@ -1612,7 +1612,7 @@
                     "intlen": 8,
                     "suffix": "1_blower_day",
                     "caps_name": "BOX_1_BLOWER_DAY",
-                    "default": 40
+                    "default": 20
                 },
                 "2_blower_day": {
                     "name": "box_2_blower_day",
@@ -1639,7 +1639,7 @@
                     "intlen": 8,
                     "suffix": "2_blower_day",
                     "caps_name": "BOX_2_BLOWER_DAY",
-                    "default": 40
+                    "default": 20
                 },
                 "0_blower_night": {
                     "name": "box_0_blower_night",
@@ -1666,7 +1666,7 @@
                     "intlen": 8,
                     "suffix": "0_blower_night",
                     "caps_name": "BOX_0_BLOWER_NIGHT",
-                    "default": 20
+                    "default": 10
                 },
                 "1_blower_night": {
                     "name": "box_1_blower_night",
@@ -1693,7 +1693,7 @@
                     "intlen": 8,
                     "suffix": "1_blower_night",
                     "caps_name": "BOX_1_BLOWER_NIGHT",
-                    "default": 20
+                    "default": 10
                 },
                 "2_blower_night": {
                     "name": "box_2_blower_night",
@@ -1720,7 +1720,7 @@
                     "intlen": 8,
                     "suffix": "2_blower_night",
                     "caps_name": "BOX_2_BLOWER_NIGHT",
-                    "default": 20
+                    "default": 10
                 }
             }
         },
