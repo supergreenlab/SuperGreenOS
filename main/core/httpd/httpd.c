@@ -250,14 +250,6 @@ static esp_err_t get_ip_handler(httpd_req_t *req) {
   return ESP_OK;
 }
 
-static esp_err_t catchall_handler(httpd_req_t *req) {
-  ESP_LOGI(SGO_LOG_EVENT, "@HTTPS catchall_handler");
-
-  httpd_resp_set_status(req, HTTPD_204);
-  httpd_resp_send(req, "", 2);
-  return ESP_OK;
-}
-
 httpd_uri_t uri_geti = {
   .uri      = "/i",
   .method   = HTTP_GET,
@@ -314,13 +306,6 @@ httpd_uri_t uri_option = {
   .user_ctx = NULL
 };
 
-httpd_uri_t uri_catchall = {
-  .uri      = "/*",
-  .method   = HTTP_GET,
-  .handler  = catchall_handler,
-  .user_ctx = NULL
-};
-
 static httpd_handle_t server = NULL;
 
 static httpd_handle_t start_webserver(void) {
@@ -334,11 +319,10 @@ static httpd_handle_t start_webserver(void) {
     httpd_register_uri_handler(server, &uri_seti);
     httpd_register_uri_handler(server, &uri_getstr);
     httpd_register_uri_handler(server, &uri_setstr);
-    //httpd_register_uri_handler(server, &uri_get_ip);
+    httpd_register_uri_handler(server, &uri_get_ip);
     httpd_register_uri_handler(server, &file_download);
 		httpd_register_uri_handler(server, &file_upload);
     httpd_register_uri_handler(server, &uri_option);
-		httpd_register_uri_handler(server, &uri_catchall);
   }
   return server;
 }
