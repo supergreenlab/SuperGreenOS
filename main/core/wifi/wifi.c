@@ -247,10 +247,10 @@ static void wifi_task(void *param) {
         if (_is_valid != was_valid) {
           was_valid = _is_valid;
           if (_is_valid) {
+            // little wait to allow http response to go through
+            vTaskDelay(100 / portTICK_PERIOD_MS);
             start_sta();
-          }/* else {
-            start_ap();
-          }*/
+          }
         }
       } else if (c == CMD_AP_START) {
         ESP_LOGI(SGO_LOG_EVENT, "@WIFI CMD_AP_START");
