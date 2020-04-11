@@ -9,12 +9,12 @@ modules ota fields timestamp: _INT32 & _NVS & _HTTP_RW & {
 
 modules ota fields server_ip: _STRING & _NVS & _HTTP_RW & {
   nvs key: "OTA_SRV_IP"
-  default: "142.93.167.50"
+  default: "198.211.123.192"
 }
 
 modules ota fields server_hostname: _STRING & _NVS & _HTTP_RW & {
   nvs key: "OTA_SRV_HN"
-  default: "update.supergreenlab.com"
+  default: "update2.supergreenlab.com"
 }
 
 modules ota fields server_port: _INT16 & _NVS & _HTTP_RW & {

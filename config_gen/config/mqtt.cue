@@ -6,7 +6,7 @@ modules mqtt: _CORE_MODULE & {
 
 modules mqtt fields url: _STRING & _NVS & _HTTP_RW & {
   nvs key: "BRKR_URL"
-  default: "mqtt://sink.supergreenlab.com:1883"
+  default: "mqtt://sink2.supergreenlab.com:1883"
 }
 
 modules mqtt fields channel: _STRING & _NVS & _HTTP_RW & {
