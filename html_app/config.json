@@ -2,7 +2,7 @@
   "name": "<%= name %>",
   "keys": [
     <%
-      const ms = Object.keys(modules)
+      const ms = Object.keys(modules).filter(m => modules[m].enabled)
       const indirs = ms.reduce((acc, i) => Object.keys(modules[i].fields).reduce((acc, f) => {
         f = modules[i].fields[f]
         if (f.indir.enable) {

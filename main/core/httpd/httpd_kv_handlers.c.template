@@ -29,7 +29,7 @@ const kvi8_handler kvi8_handlers[] = {
 * [GENERATED]
 */
   
-<% Object.keys(modules).forEach(m => {
+<% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 8 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
   {
     .name = "<%= f.caps_name %>",
@@ -65,7 +65,7 @@ const kvui8_handler kvui8_handlers[] = {
 * [GENERATED]
 */
   
-<% Object.keys(modules).forEach(m => {
+<% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 8 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
   {
     .name = "<%= f.caps_name %>",
@@ -103,7 +103,7 @@ const kvi16_handler kvi16_handlers[] = {
 * [GENERATED]
 */
 
- <% Object.keys(modules).forEach(m => {
+ <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
   {
     .name = "<%= f.caps_name %>",
@@ -139,7 +139,7 @@ const kvui16_handler kvui16_handlers[] = {
 * [GENERATED]
 */
 
- <% Object.keys(modules).forEach(m => {
+ <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
   {
     .name = "<%= f.caps_name %>",
@@ -176,7 +176,7 @@ const kvi32_handler kvi32_handlers[] = {
 * [GENERATED]
 */
 
- <% Object.keys(modules).forEach(m => {
+ <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
   {
     .name = "<%= f.caps_name %>",
@@ -212,7 +212,7 @@ const kvui32_handler kvui32_handlers[] = {
 * [GENERATED]
 */
 
- <% Object.keys(modules).forEach(m => {
+ <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
   {
     .name = "<%= f.caps_name %>",
@@ -248,7 +248,7 @@ const kvs_handler kvs_handlers[] = {
 * [GENERATED]
 */
 
-<% Object.keys(modules).forEach(m => {
+<% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'string').forEach(f => { f = modules[m].fields[f]%>
   {
     .name = "<%= f.caps_name %>",

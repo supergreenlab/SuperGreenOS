@@ -343,7 +343,7 @@
                     "write_cb": false,
                     "suffix": "server_ip",
                     "caps_name": "OTA_SERVER_IP",
-                    "default": "142.93.167.50"
+                    "default": "198.211.123.192"
                 },
                 "server_hostname": {
                     "name": "ota_server_hostname",
@@ -368,7 +368,7 @@
                     "write_cb": false,
                     "suffix": "server_hostname",
                     "caps_name": "OTA_SERVER_HOSTNAME",
-                    "default": "update.supergreenlab.com"
+                    "default": "update2.supergreenlab.com"
                 },
                 "server_port": {
                     "name": "ota_server_port",
@@ -458,7 +458,7 @@
                     "write_cb": false,
                     "suffix": "url",
                     "caps_name": "BROKER_URL",
-                    "default": "mqtt://sink.supergreenlab.com:1883"
+                    "default": "mqtt://sink2.supergreenlab.com:1883"
                 },
                 "channel": {
                     "name": "broker_channel",

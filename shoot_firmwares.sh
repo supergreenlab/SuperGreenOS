@@ -11,3 +11,15 @@ cp -r ./releases/DriverV2.1Testing ../backend/SuperGreenCloud/www/update/
 ./update_htmlapp.sh config.controller.json
 ./update_firmware.sh ControllerV2.1Testing
 cp -r ./releases/ControllerV2.1Testing ../backend/SuperGreenCloud/www/update/
+
+./update_config.sh config_gen/config/SuperGreenOS/Solo config.solo.json
+./update_templates.sh config.solo.json
+./update_htmlapp.sh config.solo.json
+./update_firmware.sh SoloV2.1Testing
+cp -r ./releases/SoloV2.1Testing ../backend/SuperGreenCloud/www/update/
+
+./update_config.sh config_gen/config/SuperGreenOS/Pickle config.pickle.json
+./update_templates.sh config.pickle.json
+./update_htmlapp.sh config.pickle.json
+./update_firmware.sh PickleV2.1Testing
+cp -r ./releases/PickleV2.1Testing ../backend/SuperGreenCloud/www/update/
