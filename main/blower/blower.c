@@ -18,6 +18,8 @@
 
 #include "blower.h"
 
+#include "../core/modules.h"
+
 #include "math.h"
 
 #include "freertos/FreeRTOS.h"
@@ -50,7 +52,9 @@ static void blower_task(void *param) {
       set_box_blower_duty(i, v);
     }
     if (c == CMD_REFRESH) {
+#if defined(MODULE_MOTOR)
       refresh_motors();
+#endif
       c = CMD_NO_ACTION;
     }
 
@@ -83,7 +87,9 @@ void init_blower() {
 int on_set_box_blower_duty(int boxId, int value) {
   value = min(100, max(value, 0));
   set_box_blower_duty(boxId, value);
+#if defined(MODULE_MOTOR)
   refresh_motors();
+#endif
   return value;
 }
 

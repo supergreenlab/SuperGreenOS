@@ -16,39 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../core/kv/kv.h"
+#ifndef MODULE_H_
+#define MODULE_H_
 
-#include "../core/modules.h"
 
-#include "../led/led.h"
-#include "../timer/timer.h"
-#include "../mixer/mixer.h"
+<% Object.keys(modules).filter((m) => modules[m].enabled).forEach(m => { %>
+#define MODULE_<%= m.toUpperCase() %> 1
+<% }) %>
 
-#if defined(MODULE_BLOWER)
-#include "../blower/blower.h"
 #endif
-
-//  KV Callbacks
-
-int on_set_box_led_dim(int boxId, int value) {
-  refresh_led(boxId, -1);
-  return value;
-}
-
-int on_set_box_enabled(int boxId, int value) {
-  if (value == get_box_enabled(boxId)) {
-    return value;
-  }
-  set_box_enabled(boxId, value);
-  if (value == 0) {
-    set_all_duty(boxId, 0);
-#if defined(MODULE_BLOWER)
-    set_box_blower_duty(boxId, 0);
-#endif
-  }
-  refresh_timer();
-#if defined(MODULE_BLOWER)
-  refresh_blower();
-#endif
-  return value;
-}

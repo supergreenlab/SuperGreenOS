@@ -58,7 +58,7 @@ void init_kv() {
 
   init_helpers();
   
-  <% Object.keys(modules).forEach(m => {
+  <% Object.keys(modules).filter((m) => modules[m].enabled).forEach(m => {
     Object.keys(modules[m].fields).filter(f => modules[m].fields[f].nvs.enable).forEach(f => { f = modules[m].fields[f]%>
     <% if (f.type == 'integer') { %>
       int default_<%= f.name %> = <% if (f.default_var) { %><%= f.default_var %><% } else { %><%= f.default %><% } %>;
@@ -70,7 +70,7 @@ void init_kv() {
   <% })}) %>
 
   // Initialize non-nvs keys
-  <% Object.keys(modules).forEach(m => {
+  <% Object.keys(modules).filter((m) => modules[m].enabled).forEach(m => {
     Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].nvs.enable && !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f]%>
     if (is_<%= f.name %>_undefined()) {
       <% if(f.type == 'integer') { %>

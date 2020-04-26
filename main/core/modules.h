@@ -16,39 +16,49 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../core/kv/kv.h"
+#ifndef MODULE_H_
+#define MODULE_H_
 
-#include "../core/modules.h"
 
-#include "../led/led.h"
-#include "../timer/timer.h"
-#include "../mixer/mixer.h"
 
-#if defined(MODULE_BLOWER)
-#include "../blower/blower.h"
+#define MODULE_TIME 1
+
+#define MODULE_WIFI 1
+
+#define MODULE_STAT_DUMP 1
+
+#define MODULE_REBOOT 1
+
+#define MODULE_OTA 1
+
+#define MODULE_MQTT 1
+
+#define MODULE_KV 1
+
+#define MODULE_I2C 1
+
+#define MODULE_HTTPD 1
+
+#define MODULE_MANUAL 1
+
+#define MODULE_SHT21 1
+
+#define MODULE_MIXER 1
+
+#define MODULE_BOX 1
+
+#define MODULE_STATE 1
+
+#define MODULE_STATUS_LED 1
+
+#define MODULE_LEDS 1
+
+#define MODULE_LED 1
+
+#define MODULE_TIMER 1
+
+#define MODULE_ONOFF 1
+
+
 #endif
 
-//  KV Callbacks
-
-int on_set_box_led_dim(int boxId, int value) {
-  refresh_led(boxId, -1);
-  return value;
-}
-
-int on_set_box_enabled(int boxId, int value) {
-  if (value == get_box_enabled(boxId)) {
-    return value;
-  }
-  set_box_enabled(boxId, value);
-  if (value == 0) {
-    set_all_duty(boxId, 0);
-#if defined(MODULE_BLOWER)
-    set_box_blower_duty(boxId, 0);
-#endif
-  }
-  refresh_timer();
-#if defined(MODULE_BLOWER)
-  refresh_blower();
-#endif
-  return value;
-}
