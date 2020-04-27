@@ -16,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "../core/log/log.h"
 #include "../core/kv/kv.h"
 
 #include "../core/modules.h"
@@ -24,7 +25,7 @@
 #include "../timer/timer.h"
 #include "../mixer/mixer.h"
 
-#if defined(MODULE_BLOWER)
+#ifdef MODULE_BLOWER
 #include "../blower/blower.h"
 #endif
 
@@ -42,12 +43,12 @@ int on_set_box_enabled(int boxId, int value) {
   set_box_enabled(boxId, value);
   if (value == 0) {
     set_all_duty(boxId, 0);
-#if defined(MODULE_BLOWER)
+#ifdef MODULE_BLOWER
     set_box_blower_duty(boxId, 0);
 #endif
   }
   refresh_timer();
-#if defined(MODULE_BLOWER)
+#ifdef MODULE_BLOWER
   refresh_blower();
 #endif
   return value;
