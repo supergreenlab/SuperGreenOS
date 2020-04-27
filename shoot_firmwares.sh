@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 ./update_config.sh config_gen/config/SuperGreenOS/Driver config.driver.json
 ./update_templates.sh config.driver.json
 ./update_htmlapp.sh config.driver.json

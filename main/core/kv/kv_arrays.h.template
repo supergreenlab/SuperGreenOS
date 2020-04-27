@@ -32,8 +32,7 @@
 <% })}) %>
 
 <% 
-  const arrays = Object.keys(modules)
-                       .filter((m) => modules[m].enabled)
+  const arrays = Object.keys(modules).filter((m) => modules[m].enabled)
                        .filter(m => modules[m].array_len > 0)
                        .reduce((acc, m) => {
                           const name = modules[m].field_prefix
