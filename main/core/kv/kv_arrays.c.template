@@ -20,7 +20,7 @@
 #include "../include_modules.h"
 #include <stdint.h>
 
-<% Object.keys(modules).filter(m => modules[m].array_len > 0 && modules[m].enabled).forEach(m => {
+<% Object.keys(modules).filter(m => modules[m].enabled).filter(m => modules[m].array_len > 0 && modules[m].enabled).forEach(m => {
   m = modules[m]
   Object.keys(m.fields).filter(f => m.fields[f].write_cb && !m.fields[f].indir.enable).forEach(f => { 
     f = m.fields[f]

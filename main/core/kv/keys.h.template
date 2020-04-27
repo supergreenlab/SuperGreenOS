@@ -23,7 +23,7 @@
  * [GENERATED]
  */
 
-<% Object.keys(modules).forEach(m => {
+<% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].nvs.enable).forEach(f => {
     f = modules[m].fields[f] %>
   #define <%= f.caps_name %> "<%= f.nvs.key %>"

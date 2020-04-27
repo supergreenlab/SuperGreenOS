@@ -23,7 +23,7 @@
 #include "../kv/kv.h"
 #include "../log/log.h"
 
-<% Object.keys(modules).filter(m => modules[m].i2c).forEach(m => { m = modules[m]%>
+<% Object.keys(modules).filter(m => modules[m].enabled).filter(m => modules[m].i2c).forEach(m => { m = modules[m]%>
 #include "../../<%= `${m.name}/${m.name}.h` %>"
 <% }) %>
 
@@ -32,7 +32,7 @@
 #define MASTER_FREQ_HZ         100000
 
 static void loop_devices(int i2cId) {
-  <% Object.keys(modules).filter(m => modules[m].i2c).forEach(m => { %>
+  <% Object.keys(modules).filter(m => modules[m].enabled).filter(m => modules[m].i2c).forEach(m => { %>
   loop_<%= modules[m].name %>(i2cId);
   vTaskDelay(1000 / portTICK_RATE_MS);
   <% }) %>
@@ -51,7 +51,7 @@ void i2c_task(void *param) {
 }
 
 void init_i2c_devices(int i2cId) {
-  <% Object.keys(modules).filter(m => modules[m].i2c).forEach(m => { %>
+  <% Object.keys(modules).filter(m => modules[m].enabled).filter(m => modules[m].i2c).forEach(m => { %>
   init_<%= modules[m].name %>(i2cId);
   <% }) %>
 }

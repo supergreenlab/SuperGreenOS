@@ -24,12 +24,12 @@
 */
 
 // Core modules
-<% Object.keys(modules).filter(m => modules[m].core && modules[m].code).map(m => modules[m]).forEach(m => { %>
+<% Object.keys(modules).filter(m => modules[m].enabled).filter(m => modules[m].core && modules[m].code).map(m => modules[m]).forEach(m => { %>
 #include "<%= m.name %>/<%= m.name %>.h"
 <% }) %>
 
 // Custom modules
-<% Object.keys(modules).filter(m => !modules[m].core && modules[m].code).map(m => modules[m]).forEach(m => { %>
+<% Object.keys(modules).filter(m => modules[m].enabled).filter(m => !modules[m].core && modules[m].code).map(m => modules[m]).forEach(m => { %>
 #include "../<%= m.name %>/<%= m.name %>.h"
 <% }) %>
 
