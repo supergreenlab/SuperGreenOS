@@ -25,9 +25,6 @@ NC="\033[0m"
 NAME="SuperGreenOSBoilerplate"
 SERIAL_PORT=${SERIAL_PORT:-"/dev/ttyUSB1"}
 
-echo $SERIAL_PORT
-exit
-
 if [ "$#" -eq 1 ]; then
   NAME=$1
 else
