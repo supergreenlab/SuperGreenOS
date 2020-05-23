@@ -19,7 +19,7 @@
 DATA="$1"
 
 if [ ! -f "$DATA" ]; then
-  echo "USAGE: $0 /path/to/config.yml"
+  echo "USAGE: $0 /path/to/config.json"
   exit
 fi
 
