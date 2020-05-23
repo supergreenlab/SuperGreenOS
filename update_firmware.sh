@@ -16,11 +16,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-set -e 
+set -e
+
+. ${0%/*}/build.env
 
 GREEN="\033[0;32m"
 NC="\033[0m"
 NAME="SuperGreenOSBoilerplate"
+SERIAL_PORT=${SERIAL_PORT:-"/dev/ttyUSB1"}
+
 if [ "$#" -eq 1 ]; then
   NAME=$1
 else
@@ -48,7 +52,7 @@ echo $TS > "$DEST/timestamp"
 echo "#!/bin/bash" > $DEST/flash.sh
 echo 'DIR=`dirname "$0"`' >> $DEST/flash.sh
 echo 'DIR=`( cd "$DIR" && pwd )`' >> $DEST/flash.sh
-echo 'python2 $DIR/esptool.py --chip esp32 --port /dev/ttyUSB1 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size detect 0xd000 $DIR/ota_data_initial.bin 0x1000 $DIR/bootloader.bin 0x10000 $DIR/firmware.bin 0x8000 $DIR/partitions.bin' >> $DEST/flash.sh
+echo 'python2 $DIR/esptool.py --chip esp32 --port ${SERIAL_PORT} --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size detect 0xd000 $DIR/ota_data_initial.bin 0x1000 $DIR/bootloader.bin 0x10000 $DIR/firmware.bin 0x8000 $DIR/partitions.bin' >> $DEST/flash.sh
 chmod +x $DEST/flash.sh
 echo -e "Created $DEST/flash.sh: ${GREEN}Done${NC}"
 
@@ -67,7 +71,7 @@ echo -e "Created $DEST/spiffs.bin: ${GREEN}Done${NC}"
 echo "#!/bin/bash" > $DEST/write_spiffs.sh
 echo 'DIR=`dirname "$0"`' >> $DEST/write_spiffs.sh
 echo 'DIR=`( cd "$DIR" && pwd )`' >> $DEST/write_spiffs.sh
-echo 'python $DIR/esptool.py --chip esp32 --port /dev/ttyUSB1 --baud 921600 write_flash -z 0x3f0000 spiffs.bin' >> $DEST/write_spiffs.sh
+echo 'python $DIR/esptool.py --chip esp32 --port ${SERIAL_PORT} --baud 921600 write_flash -z 0x3f0000 spiffs.bin' >> $DEST/write_spiffs.sh
 chmod +x $DEST/write_spiffs.sh
 echo -e "Created $DEST/write_spiffs.sh: ${GREEN}Done${NC}"
 
