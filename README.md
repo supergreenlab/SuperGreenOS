@@ -90,3 +90,26 @@ this will display the html embedded admin interface, which allows you to easily 
 
 ![Admin](assets/admin.png?raw=true "Admin")
 
+
+# Updated dev environment setup
+
+## ESP-IDF
+
+Docs reference:
+https://docs.espressif.com/projects/esp-idf/en/v3.3.2/get-started/index.html
+
+```bash
+mkdir -p $HOME/esp && cd $HOME/esp
+git clone --recursive https://github.com/espressif/esp-idf.git esp-idf_release_3.3.1
+cd esp-idf_release_3.3.1
+git checkout 143d26aa49df524e10fb8e41a71d12e731b9b71d
+```
+
+```bash
+export IDF_PATH=$HOME/esp/esp-idf_release_3.3.1
+source $IDF_PATH/export.sh
+```
+
+```bash
+python2.7 -m pip install --user -r $IDF_PATH/requirements.txt
+```
