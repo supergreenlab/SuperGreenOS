@@ -113,3 +113,27 @@ source $IDF_PATH/export.sh
 ```bash
 python2.7 -m pip install --user -r $IDF_PATH/requirements.txt
 ```
+
+## ejs-cli
+```bash
+npm -g install ejs-cli
+```
+
+## mkspiffs
+```bash
+mkspiffs ver. 0.2.3
+Build configuration name: generic
+SPIFFS ver. 0.3.7-5-gf5e26c4
+Extra build flags: (none)
+SPIFFS configuration:
+  SPIFFS_OBJ_NAME_LEN: 32
+  SPIFFS_OBJ_META_LEN: 0
+  SPIFFS_USE_MAGIC: 1
+  SPIFFS_USE_MAGIC_LENGTH: 1
+  SPIFFS_ALIGNED_OBJECT_INDEX_TABLES: 0
+```
+
+## cue
+```bash
+cue version 0.0.8 darwin/amd64
+```
