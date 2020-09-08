@@ -90,3 +90,68 @@ this will display the html embedded admin interface, which allows you to easily 
 
 ![Admin](assets/admin.png?raw=true "Admin")
 
+
+# Up-2-date dev environment setup 06/2020
+
+## Python 2.7
+
+### macos
+```bash
+brew install python@2
+```
+
+## ESP-IDF
+
+
+```bash
+mkdir -p $HOME/esp && cd $HOME/esp
+git clone --recursive https://github.com/espressif/esp-idf.git esp-idf_release_3.3.1
+cd esp-idf_release_3.3.1
+git checkout 143d26aa49df524e10fb8e41a71d12e731b9b71d
+```
+
+Install Docs reference:
+https://docs.espressif.com/projects/esp-idf/en/v3.3.2/get-started/index.html
+
+```bash
+python2.7 -m pip install --user -r $IDF_PATH/requirements.txt
+```
+
+Practically, a virtualenv is created in ~/.espressif where packages are installed and will be activated with the following addition to shell (.bashrc / .zshrc)
+
+```bash
+export IDF_PATH=$HOME/esp/esp-idf_release_3.3.1
+source $IDF_PATH/export.sh
+```
+
+## ejs-cli
+```bash
+npm -g install ejs-cli
+```
+
+## mkspiffs
+
+Please pay attention to *Build configuration name: generic* and version.
+
+https://github.com/igrr/mkspiffs/releases
+
+```bash
+mkspiffs ver. 0.2.3
+Build configuration name: generic
+SPIFFS ver. 0.3.7-5-gf5e26c4
+Extra build flags: (none)
+SPIFFS configuration:
+  SPIFFS_OBJ_NAME_LEN: 32
+  SPIFFS_OBJ_META_LEN: 0
+  SPIFFS_USE_MAGIC: 1
+  SPIFFS_USE_MAGIC_LENGTH: 1
+  SPIFFS_ALIGNED_OBJECT_INDEX_TABLES: 0
+```
+
+## cue
+
+https://github.com/cuelang/cue/releases
+
+```bash
+cue version 0.0.8 darwin/amd64
+```
