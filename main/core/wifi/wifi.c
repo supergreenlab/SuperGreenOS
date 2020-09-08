@@ -249,7 +249,7 @@ static void wifi_task(void *param) {
           was_valid = _is_valid;
           if (_is_valid) {
             // little wait to allow http response to go through
-            vTaskDelay(100 / portTICK_PERIOD_MS);
+            vTaskDelay(300 / portTICK_PERIOD_MS);
             start_sta();
           }
         }

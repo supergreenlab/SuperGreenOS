@@ -134,6 +134,12 @@ static void mqtt_task(void *param) {
 }
 
 static int mqtt_logging_vprintf(const char *str, va_list l) {
+  if (strlen(str) <= 9+7 ||
+      (strncmp("I (%d) %s", &(str[7]), 9) != 0 &&
+       strncmp("W (%d) %s", &(str[7]), 9) != 0 &&
+       strncmp("E (%d) %s", &(str[7]), 9) != 0)) {
+    return vprintf(str, l); 
+  }
   int totalsize = vsnprintf(NULL, 0, str, l);
   if (totalsize >= MAX_LOG_QUEUE_ITEM_SIZE - 1) {
     return vprintf(str, l);
