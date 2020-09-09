@@ -50,5 +50,5 @@ done
 ./update_config.sh config_gen/config/$PROJECT_NAME/ $CONFIG
 
 echo "==="
-echo "Running ./update_template.sh...."
+echo "Running ./update_templates.sh...."
 ./update_templates.sh $CONFIG

@@ -24,6 +24,301 @@
           
             {
               "core": true,
+              "name": "wifi_status",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "WIFI_STATUS",
+              "module": "wifi",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x5c}",
+                  "write": false
+                },
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ssid",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_SSID",
+              "module": "wifi",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x6c}",
+                  "write": true
+                },
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_password",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_PASSWORD",
+              "module": "wifi",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x7c}",
+                  "write": true
+                },
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ap_ssid",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_AP_SSID",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ap_password",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_AP_PASSWORD",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "mdns_domain",
+              "type": "string",
+              "integer": false,
+              "caps_name": "MDNS_DOMAIN",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": "supergreencontroller"
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ip",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_IP",
+              "module": "wifi",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x8c}",
+                  "write": false
+                },
+              
+              "write": false,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "reboot",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "REBOOT",
+              "module": "reboot",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "n_restarts",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "N_RESTARTS",
+              "module": "reboot",
+              
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "ota_status",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "OTA_STATUS",
+              "module": "ota",
+              
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "ota_timestamp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "OTA_TIMESTAMP",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "ota_server_ip",
+              "type": "string",
+              "integer": false,
+              "caps_name": "OTA_SERVER_IP",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": "198.211.123.192"
+            },
+          
+            {
+              "core": true,
+              "name": "ota_server_hostname",
+              "type": "string",
+              "integer": false,
+              "caps_name": "OTA_SERVER_HOSTNAME",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": "update2.supergreenlab.com"
+            },
+          
+            {
+              "core": true,
+              "name": "ota_server_port",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "OTA_SERVER_PORT",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": 80
+            },
+          
+            {
+              "core": true,
+              "name": "ota_basedir",
+              "type": "string",
+              "integer": false,
+              "caps_name": "OTA_BASEDIR",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": "/ControllerV2.1"
+            },
+          
+            {
+              "core": true,
+              "name": "broker_url",
+              "type": "string",
+              "integer": false,
+              "caps_name": "BROKER_URL",
+              "module": "mqtt",
+              
+              
+              "write": true,
+              
+              
+              "default": "mqtt://sink2.supergreenlab.com:1883"
+            },
+          
+            {
+              "core": true,
+              "name": "broker_channel",
+              "type": "string",
+              "integer": false,
+              "caps_name": "BROKER_CHANNEL",
+              "module": "mqtt",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "broker_clientid",
+              "type": "string",
+              "integer": false,
+              "caps_name": "BROKER_CLIENTID",
+              "module": "mqtt",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0x42,0x42}",
+                  "write": false
+                },
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
               "name": "i2c_0_sda",
               "type": "integer",
               "integer": true,
@@ -332,301 +627,6 @@
               
               
               "default": 1
-            },
-          
-            {
-              "core": true,
-              "name": "reboot",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "REBOOT",
-              "module": "reboot",
-              
-              
-              "write": true,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": true,
-              "name": "n_restarts",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "N_RESTARTS",
-              "module": "reboot",
-              
-              
-              "write": false,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": true,
-              "name": "ota_status",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "OTA_STATUS",
-              "module": "ota",
-              
-              
-              "write": false,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": true,
-              "name": "ota_timestamp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "OTA_TIMESTAMP",
-              "module": "ota",
-              
-              
-              "write": true,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": true,
-              "name": "ota_server_ip",
-              "type": "string",
-              "integer": false,
-              "caps_name": "OTA_SERVER_IP",
-              "module": "ota",
-              
-              
-              "write": true,
-              
-              
-              "default": "198.211.123.192"
-            },
-          
-            {
-              "core": true,
-              "name": "ota_server_hostname",
-              "type": "string",
-              "integer": false,
-              "caps_name": "OTA_SERVER_HOSTNAME",
-              "module": "ota",
-              
-              
-              "write": true,
-              
-              
-              "default": "update2.supergreenlab.com"
-            },
-          
-            {
-              "core": true,
-              "name": "ota_server_port",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "OTA_SERVER_PORT",
-              "module": "ota",
-              
-              
-              "write": true,
-              
-              
-              "default": 80
-            },
-          
-            {
-              "core": true,
-              "name": "ota_basedir",
-              "type": "string",
-              "integer": false,
-              "caps_name": "OTA_BASEDIR",
-              "module": "ota",
-              
-              
-              "write": true,
-              
-              
-              "default": "/ControllerV2.1"
-            },
-          
-            {
-              "core": true,
-              "name": "broker_url",
-              "type": "string",
-              "integer": false,
-              "caps_name": "BROKER_URL",
-              "module": "mqtt",
-              
-              
-              "write": true,
-              
-              
-              "default": "mqtt://sink2.supergreenlab.com:1883"
-            },
-          
-            {
-              "core": true,
-              "name": "broker_channel",
-              "type": "string",
-              "integer": false,
-              "caps_name": "BROKER_CHANNEL",
-              "module": "mqtt",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "broker_clientid",
-              "type": "string",
-              "integer": false,
-              "caps_name": "BROKER_CLIENTID",
-              "module": "mqtt",
-              
-              
-                "ble": {
-                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0x42,0x42}",
-                  "write": false
-                },
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_status",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "WIFI_STATUS",
-              "module": "wifi",
-              
-              
-                "ble": {
-                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x5c}",
-                  "write": false
-                },
-              
-              "write": false,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ssid",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_SSID",
-              "module": "wifi",
-              
-              
-                "ble": {
-                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x6c}",
-                  "write": true
-                },
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_password",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_PASSWORD",
-              "module": "wifi",
-              
-              
-                "ble": {
-                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x7c}",
-                  "write": true
-                },
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ap_ssid",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_AP_SSID",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ap_password",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_AP_PASSWORD",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "mdns_domain",
-              "type": "string",
-              "integer": false,
-              "caps_name": "MDNS_DOMAIN",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": "supergreencontroller"
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ip",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_IP",
-              "module": "wifi",
-              
-              
-                "ble": {
-                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x8c}",
-                  "write": false
-                },
-              
-              "write": false,
-              
-              
-              "default": ""
             },
           
             {
@@ -1357,24 +1357,24 @@
           
             {
               "core": false,
-              "name": "sht21_0_temp",
+              "name": "box_0_led_dim",
               "type": "integer",
               "integer": true,
-              "caps_name": "SHT21_0_TEMP",
-              "module": "sht21",
-              "helper": "SHT21 temperature sensor on sensor port #0",
+              "caps_name": "BOX_0_LED_DIM",
+              "module": "mixer",
               
-              "write": false,
+              
+              "write": true,
               
                 "array": {
-                  "name": "sht21",
+                  "name": "box",
                   "len": 3,
                   "index": 0,
-                  "param": "temp"
+                  "param": "led_dim"
                 },
-                "sht21": {
+                "box": {
                   "index": 0,
-                  "param": "temp"
+                  "param": "led_dim"
                 },
               
               
@@ -1383,24 +1383,24 @@
           
             {
               "core": false,
-              "name": "sht21_1_temp",
+              "name": "box_1_led_dim",
               "type": "integer",
               "integer": true,
-              "caps_name": "SHT21_1_TEMP",
-              "module": "sht21",
-              "helper": "SHT21 temperature sensor on sensor port #1",
+              "caps_name": "BOX_1_LED_DIM",
+              "module": "mixer",
               
-              "write": false,
+              
+              "write": true,
               
                 "array": {
-                  "name": "sht21",
+                  "name": "box",
                   "len": 3,
                   "index": 1,
-                  "param": "temp"
+                  "param": "led_dim"
                 },
-                "sht21": {
+                "box": {
                   "index": 1,
-                  "param": "temp"
+                  "param": "led_dim"
                 },
               
               
@@ -1409,180 +1409,24 @@
           
             {
               "core": false,
-              "name": "sht21_2_temp",
+              "name": "box_2_led_dim",
               "type": "integer",
               "integer": true,
-              "caps_name": "SHT21_2_TEMP",
-              "module": "sht21",
-              "helper": "SHT21 temperature sensor on sensor port #2",
+              "caps_name": "BOX_2_LED_DIM",
+              "module": "mixer",
               
-              "write": false,
+              
+              "write": true,
               
                 "array": {
-                  "name": "sht21",
+                  "name": "box",
                   "len": 3,
                   "index": 2,
-                  "param": "temp"
+                  "param": "led_dim"
                 },
-                "sht21": {
+                "box": {
                   "index": 2,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_0_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_0_HUMI",
-              "module": "sht21",
-              "helper": "SHT21 humidity sensor on sensor port #0",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 0,
-                  "param": "humi"
-                },
-                "sht21": {
-                  "index": 0,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_1_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_1_HUMI",
-              "module": "sht21",
-              "helper": "SHT21 humidity sensor on sensor port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 1,
-                  "param": "humi"
-                },
-                "sht21": {
-                  "index": 1,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_2_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_2_HUMI",
-              "module": "sht21",
-              "helper": "SHT21 humidity sensor on sensor port #2",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 2,
-                  "param": "humi"
-                },
-                "sht21": {
-                  "index": 2,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_0_present",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_0_PRESENT",
-              "module": "sht21",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 0,
-                  "param": "present"
-                },
-                "sht21": {
-                  "index": 0,
-                  "param": "present"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_1_present",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_1_PRESENT",
-              "module": "sht21",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 1,
-                  "param": "present"
-                },
-                "sht21": {
-                  "index": 1,
-                  "param": "present"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_2_present",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_2_PRESENT",
-              "module": "sht21",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 2,
-                  "param": "present"
-                },
-                "sht21": {
-                  "index": 2,
-                  "param": "present"
+                  "param": "led_dim"
                 },
               
               
@@ -1951,7 +1795,7 @@
                 },
               
               
-              "default": 1
+              "default": 3
             },
           
             {
@@ -1977,7 +1821,7 @@
                 },
               
               
-              "default": 1
+              "default": 3
             },
           
             {
@@ -2003,7 +1847,7 @@
                 },
               
               
-              "default": 1
+              "default": 3
             },
           
             {
@@ -2107,7 +1951,7 @@
                 },
               
               
-              "default": 19
+              "default": 21
             },
           
             {
@@ -2133,7 +1977,7 @@
                 },
               
               
-              "default": 19
+              "default": 21
             },
           
             {
@@ -2159,7 +2003,7 @@
                 },
               
               
-              "default": 19
+              "default": 21
             },
           
             {
@@ -3278,24 +3122,24 @@
           
             {
               "core": false,
-              "name": "box_0_led_dim",
+              "name": "sht21_0_temp",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_LED_DIM",
-              "module": "mixer",
+              "caps_name": "SHT21_0_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature sensor on sensor port #0",
               
-              
-              "write": true,
+              "write": false,
               
                 "array": {
-                  "name": "box",
+                  "name": "sht21",
                   "len": 3,
                   "index": 0,
-                  "param": "led_dim"
+                  "param": "temp"
                 },
-                "box": {
+                "sht21": {
                   "index": 0,
-                  "param": "led_dim"
+                  "param": "temp"
                 },
               
               
@@ -3304,24 +3148,24 @@
           
             {
               "core": false,
-              "name": "box_1_led_dim",
+              "name": "sht21_1_temp",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_1_LED_DIM",
-              "module": "mixer",
+              "caps_name": "SHT21_1_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature sensor on sensor port #1",
               
-              
-              "write": true,
+              "write": false,
               
                 "array": {
-                  "name": "box",
+                  "name": "sht21",
                   "len": 3,
                   "index": 1,
-                  "param": "led_dim"
+                  "param": "temp"
                 },
-                "box": {
+                "sht21": {
                   "index": 1,
-                  "param": "led_dim"
+                  "param": "temp"
                 },
               
               
@@ -3330,24 +3174,180 @@
           
             {
               "core": false,
-              "name": "box_2_led_dim",
+              "name": "sht21_2_temp",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_2_LED_DIM",
-              "module": "mixer",
+              "caps_name": "SHT21_2_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature sensor on sensor port #2",
               
-              
-              "write": true,
+              "write": false,
               
                 "array": {
-                  "name": "box",
+                  "name": "sht21",
                   "len": 3,
                   "index": 2,
-                  "param": "led_dim"
+                  "param": "temp"
                 },
-                "box": {
+                "sht21": {
                   "index": 2,
-                  "param": "led_dim"
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_0_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity sensor on sensor port #0",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "humi"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_1_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity sensor on sensor port #1",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "humi"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_2_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity sensor on sensor port #2",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "humi"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_0_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_1_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_2_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "present"
                 },
               
               
