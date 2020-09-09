@@ -243,7 +243,7 @@ static esp_err_t get_ip_handler(httpd_req_t *req) {
   if(getpeername(socket, (struct sockaddr *)&destAddr, &socklen)<0) {
     return httpd_resp_send_500(req);
   }
-  char ip[16] = {0};
+  char ip[17] = {0};
   uint8_t *iphex = (uint8_t *)&(destAddr.sin6_addr.un.u32_addr[3]);
   snprintf(ip, sizeof(ip)-1, "%d.%d.%d.%d", iphex[0], iphex[1], iphex[2], iphex[3]);
   httpd_resp_send(req, ip, strlen(ip));

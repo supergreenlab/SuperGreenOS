@@ -7,6 +7,7 @@ sdkconfig
 sdkconfig.old
 
 main/component.mk
+main/component.cmake
 main/Kconfig.projbuild
 main/init.c
 main/core/kv/kv.c
