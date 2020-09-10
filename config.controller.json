@@ -2879,7 +2879,419 @@
         },
         "watering": {
             "name": "watering",
-            "fields": {},
+            "fields": {
+                "0_watering_duty": {
+                    "name": "box_0_watering_duty",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_WAT_DD",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_watering_duty",
+                    "caps_name": "BOX_0_WATERING_DUTY",
+                    "motor_input": 8,
+                    "indir_help": "Watering control for box#0"
+                },
+                "1_watering_duty": {
+                    "name": "box_1_watering_duty",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_WAT_DD",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_watering_duty",
+                    "caps_name": "BOX_1_WATERING_DUTY",
+                    "motor_input": 9,
+                    "indir_help": "Watering control for box#1"
+                },
+                "2_watering_duty": {
+                    "name": "box_2_watering_duty",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_WAT_DD",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_watering_duty",
+                    "caps_name": "BOX_2_WATERING_DUTY",
+                    "motor_input": 10,
+                    "indir_help": "Watering control for box#2"
+                },
+                "0_watering_period": {
+                    "name": "box_0_watering_period",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_WAT_P",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 2880,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 16,
+                    "suffix": "0_watering_period",
+                    "caps_name": "BOX_0_WATERING_PERIOD"
+                },
+                "1_watering_period": {
+                    "name": "box_1_watering_period",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_WAT_P",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 2880,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 16,
+                    "suffix": "1_watering_period",
+                    "caps_name": "BOX_1_WATERING_PERIOD"
+                },
+                "2_watering_period": {
+                    "name": "box_2_watering_period",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_WAT_P",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 2880,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 16,
+                    "suffix": "2_watering_period",
+                    "caps_name": "BOX_2_WATERING_PERIOD"
+                },
+                "0_watering_duration": {
+                    "name": "box_0_watering_duration",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_WAT_D",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 600,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 16,
+                    "suffix": "0_watering_duration",
+                    "caps_name": "BOX_0_WATERING_DURATION"
+                },
+                "1_watering_duration": {
+                    "name": "box_1_watering_duration",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_WAT_D",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 600,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 16,
+                    "suffix": "1_watering_duration",
+                    "caps_name": "BOX_1_WATERING_DURATION"
+                },
+                "2_watering_duration": {
+                    "name": "box_2_watering_duration",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_WAT_D",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 600,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 16,
+                    "suffix": "2_watering_duration",
+                    "caps_name": "BOX_2_WATERING_DURATION"
+                },
+                "0_watering_last": {
+                    "name": "box_0_watering_last",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_WAT_L",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 32,
+                    "suffix": "0_watering_last",
+                    "caps_name": "BOX_0_WATERING_LAST"
+                },
+                "1_watering_last": {
+                    "name": "box_1_watering_last",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_WAT_L",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 32,
+                    "suffix": "1_watering_last",
+                    "caps_name": "BOX_1_WATERING_LAST"
+                },
+                "2_watering_last": {
+                    "name": "box_2_watering_last",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_WAT_L",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 32,
+                    "suffix": "2_watering_last",
+                    "caps_name": "BOX_2_WATERING_LAST"
+                },
+                "0_watering_power": {
+                    "name": "box_0_watering_power",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_WAT_PWR",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 20,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_watering_power",
+                    "caps_name": "BOX_0_WATERING_POWER"
+                },
+                "1_watering_power": {
+                    "name": "box_1_watering_power",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_WAT_PWR",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 20,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_watering_power",
+                    "caps_name": "BOX_1_WATERING_POWER"
+                },
+                "2_watering_power": {
+                    "name": "box_2_watering_power",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_WAT_PWR",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 20,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_watering_power",
+                    "caps_name": "BOX_2_WATERING_POWER"
+                }
+            },
             "field_prefix": "box",
             "i2c": false,
             "array_len": 3,
@@ -2887,8 +3299,7 @@
             "init": true,
             "code": true,
             "init_priority": 0,
-            "core": false,
-            "toto": "pouet"
+            "core": false
         },
         "leds": {
             "name": "leds",

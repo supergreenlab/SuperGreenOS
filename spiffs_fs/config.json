@@ -1550,7 +1550,7 @@
               
               
                 "indir": {
-                  "values": [1,2,3]
+                  "values": [1,2,3,8,9,10]
                 },
               
               "default": 1
@@ -1580,7 +1580,7 @@
               
               
                 "indir": {
-                  "values": [1,2,3]
+                  "values": [1,2,3,8,9,10]
                 },
               
               "default": 2
@@ -1610,7 +1610,7 @@
               
               
                 "indir": {
-                  "values": [1,2,3]
+                  "values": [1,2,3,8,9,10]
                 },
               
               "default": 3
@@ -2323,6 +2323,396 @@
               
               
               "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_DUTY",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_duty"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_DUTY",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_duty"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_DUTY",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_duty"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_period",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_PERIOD",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_period"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_period"
+                },
+              
+              
+              "default": 2880
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_period",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_PERIOD",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_period"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_period"
+                },
+              
+              
+              "default": 2880
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_period",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_PERIOD",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_period"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_period"
+                },
+              
+              
+              "default": 2880
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_duration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_DURATION",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_duration"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_duration"
+                },
+              
+              
+              "default": 600
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_duration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_DURATION",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_duration"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_duration"
+                },
+              
+              
+              "default": 600
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_duration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_DURATION",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_duration"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_duration"
+                },
+              
+              
+              "default": 600
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_last",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_LAST",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_last"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_last"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_last",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_LAST",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_last"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_last"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_last",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_LAST",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_last"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_last"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_POWER",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_power"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_power"
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_POWER",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_power"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_power"
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_POWER",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_power"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_power"
+                },
+              
+              
+              "default": 20
             },
           
             {

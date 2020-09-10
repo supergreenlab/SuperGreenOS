@@ -16,7 +16,17 @@
 #ifndef WATERING_H_
 #define WATERING_H_
 
+#include <stdlib.h>
+
 void init_watering();
+
+// KV callbacks
+
+int on_set_box_watering_duty(int boxId, int value);
+int on_set_box_watering_period(int boxId, int value);
+int on_set_box_watering_duration(int boxId, int value);
+int on_set_box_watering_last(int boxId, int value);
+int on_set_box_watering_power(int boxId, int value);
 
 #endif
 

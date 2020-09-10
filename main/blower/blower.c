@@ -82,7 +82,7 @@ void init_blower() {
   }
 }
 
-/* BLE Callbacks */
+/* KV Callbacks */
 
 int on_set_box_blower_duty(int boxId, int value) {
   value = min(100, max(value, 0));

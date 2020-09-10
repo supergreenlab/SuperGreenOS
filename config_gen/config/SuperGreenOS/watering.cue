@@ -25,9 +25,10 @@ modules watering fields "\(k)_watering_duration": _UINT16 & _NVS & _HTTP & _HTTP
   write_cb: true
 } for k, v in _box_conf
 
-modules watering fields "\(k)_watering_last": _INT32 & _NVS & _HTTP & {
+modules watering fields "\(k)_watering_last": _INT32 & _NVS & _HTTP_RW & {
   nvs key: "B_\(k)_WAT_L"
   default: 0
+  write_cb: true
 } for k, v in _box_conf
 
 modules watering fields "\(k)_watering_power": _INT8 & _NVS & _HTTP & _HTTP_RW & {
