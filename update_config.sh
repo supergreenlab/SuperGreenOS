@@ -23,6 +23,8 @@ if [ -z "$CONFIG_PATH" ] || [ -z "$CONFIG_FILE" ]; then
   exit
 fi
 
+CONFIG_DIR="$(pwd)"
+
 pushd $CONFIG_PATH
-cue export ./... > "../../../../$CONFIG_FILE"
+cue export ./... > "$CONFIG_DIR/$CONFIG_FILE"
 popd

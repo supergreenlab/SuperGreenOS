@@ -20,8 +20,14 @@ cp -r ./releases/PickleV2.1Testing ../backend/SuperGreenCloud/www/update/
 ./update_firmware.sh DriverV2.1Testing
 cp -r ./releases/DriverV2.1Testing ../backend/SuperGreenCloud/www/update/
 
-./update_config.sh config_gen/config/SuperGreenOS/Controller config.controller.json
+./update_config.sh config_gen/config/SuperGreenOS/Controller/v2.1 config.controller.json
 ./update_templates.sh config.controller.json
 ./update_htmlapp.sh config.controller.json
 ./update_firmware.sh ControllerV2.1Testing
 cp -r ./releases/ControllerV2.1Testing ../backend/SuperGreenCloud/www/update/
+
+./update_config.sh config_gen/config/SuperGreenOS/Controller/v3 config.controller.json
+./update_templates.sh config.controller.json
+./update_htmlapp.sh config.controller.json
+./update_firmware.sh ControllerV3Testing
+cp -r ./releases/ControllerV3Testing ../backend/SuperGreenCloud/www/update/
