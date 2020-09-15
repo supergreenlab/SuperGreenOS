@@ -45,10 +45,18 @@ static void blower_task(void *param) {
   while (1) {
     for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1) continue;
-      int vday = get_box_blower_day(i);
-      int vnight = get_box_blower_night(i);
-      int timerOutput = get_box_timer_output(i);
-      int v = (float)vnight + ((vday - vnight) * (float)timerOutput / 100.0f);
+      int vmin = get_box_blower_min(i);
+      int vmax = get_box_blower_max(i);
+      int rmin = get_box_blower_ref_min(i);
+      int rmax = get_box_blower_ref_max(i);
+
+      int refOutput = 50;
+      if (rmin != rmax) {
+        int ref = get_box_blower_ref(i);
+        refOutput = (float)(ref - rmin) / (float)(rmax - rmin) * 100.0f;
+        refOutput = min(100, max(refOutput, 0));
+      }
+      int v = (float)vmin + ((vmax - vmin) * (float)refOutput / 100.0f);
       set_box_blower_duty(i, v);
     }
     if (c == CMD_REFRESH) {
@@ -93,16 +101,32 @@ int on_set_box_blower_duty(int boxId, int value) {
   return value;
 }
 
-int on_set_box_blower_day(int boxId, int value) {
+int on_set_box_blower_min(int boxId, int value) {
   value = min(100, max(value, 0));
-  set_box_blower_day(boxId, value);
+  set_box_blower_min(boxId, value);
   refresh_blower();
   return value;
 }
 
-int on_set_box_blower_night(int boxId, int value) {
+int on_set_box_blower_max(int boxId, int value) {
   value = min(100, max(value, 0));
-  set_box_blower_night(boxId, value);
+  set_box_blower_max(boxId, value);
   refresh_blower();
   return value;
 }
+
+int on_set_box_blower_ref_min(int boxId, int value) {
+  value = min(100, max(value, 0));
+  set_box_blower_ref_min(boxId, value);
+  refresh_blower();
+  return value;
+}
+
+int on_set_box_blower_ref_max(int boxId, int value) {
+  value = min(100, max(value, 0));
+  set_box_blower_ref_max(boxId, value);
+  refresh_blower();
+  return value;
+}
+
+

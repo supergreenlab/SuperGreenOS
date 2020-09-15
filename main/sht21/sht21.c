@@ -14,6 +14,7 @@
  */
 
 #include <stdlib.h>
+#include <math.h>
 #include "sht21.h"
 #include "driver/i2c.h"
 
@@ -90,6 +91,8 @@ static uint16_t read_sht21(int i2cId) {
 }
 
 void loop_sht21(int i2cId) {
+  int temp = 0;
+  int humi = 0;
   start_i2c(i2cId);
 
   {
@@ -105,6 +108,7 @@ void loop_sht21(int i2cId) {
       float vd = -46.85 + 175.72 * (float)(v) / 65536.0;
       set_sht21_temp(i2cId, vd);
       set_sht21_present(i2cId, 1);
+      temp = vd;
     }
   }
   vTaskDelay(500 / portTICK_RATE_MS);
@@ -121,10 +125,20 @@ void loop_sht21(int i2cId) {
       float vd = -6.0 + 125.0 * (float)(v) / 65536.0;
       set_sht21_humi(i2cId, vd);
       set_sht21_present(i2cId, 1);
+      humi = vd;
     }
   }
 
   stop_i2c(i2cId);
+
+  float asvp = 610.78 * powf(2.71828, temp / (temp + 238.3) * 17.2694);
+
+  float leaf_temp_offset = get_sht21_vpd_leaf_offset(i2cId) / 10.0f;
+  float ltemp = temp - leaf_temp_offset;
+  float lsvp = 610.78 * powf(2.71828, ltemp / (ltemp + 238.3) * 17.2694);
+
+  float vpd = lsvp * (asvp * (float)humi / 100.0);
+  set_sht21_vpd(i2cId, vpd * 100);
 }
 
 const uint16_t POLYNOMIAL = 0x131;

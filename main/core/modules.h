@@ -43,6 +43,8 @@
 
 #define MODULE_BLOWER 1
 
+#define MODULE_BOX 1
+
 #define MODULE_SHT21 1
 
 #define MODULE_MIXER 1
@@ -50,8 +52,6 @@
 #define MODULE_MOTORS 1
 
 #define MODULE_MOTOR 1
-
-#define MODULE_BOX 1
 
 #define MODULE_STATE 1
 

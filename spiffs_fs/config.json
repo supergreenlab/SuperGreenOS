@@ -709,10 +709,10 @@
           
             {
               "core": false,
-              "name": "box_0_blower_day",
+              "name": "box_0_blower_min",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_BLOWER_DAY",
+              "caps_name": "BOX_0_BLOWER_MIN",
               "module": "blower",
               
               
@@ -722,101 +722,23 @@
                   "name": "box",
                   "len": 3,
                   "index": 0,
-                  "param": "blower_day"
+                  "param": "blower_min"
                 },
                 "box": {
                   "index": 0,
-                  "param": "blower_day"
+                  "param": "blower_min"
                 },
               
               
-              "default": 20
+              "default": 5
             },
           
             {
               "core": false,
-              "name": "box_1_blower_day",
+              "name": "box_1_blower_min",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_1_BLOWER_DAY",
-              "module": "blower",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "blower_day"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "blower_day"
-                },
-              
-              
-              "default": 20
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_blower_day",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_BLOWER_DAY",
-              "module": "blower",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "blower_day"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "blower_day"
-                },
-              
-              
-              "default": 20
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_blower_night",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_BLOWER_NIGHT",
-              "module": "blower",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "blower_night"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "blower_night"
-                },
-              
-              
-              "default": 10
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_blower_night",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_BLOWER_NIGHT",
+              "caps_name": "BOX_1_BLOWER_MIN",
               "module": "blower",
               
               
@@ -826,23 +748,23 @@
                   "name": "box",
                   "len": 3,
                   "index": 1,
-                  "param": "blower_night"
+                  "param": "blower_min"
                 },
                 "box": {
                   "index": 1,
-                  "param": "blower_night"
+                  "param": "blower_min"
                 },
               
               
-              "default": 10
+              "default": 5
             },
           
             {
               "core": false,
-              "name": "box_2_blower_night",
+              "name": "box_2_blower_min",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_2_BLOWER_NIGHT",
+              "caps_name": "BOX_2_BLOWER_MIN",
               "module": "blower",
               
               
@@ -852,37 +774,271 @@
                   "name": "box",
                   "len": 3,
                   "index": 2,
-                  "param": "blower_night"
+                  "param": "blower_min"
                 },
                 "box": {
                   "index": 2,
-                  "param": "blower_night"
+                  "param": "blower_min"
                 },
               
               
-              "default": 10
+              "default": 5
             },
           
             {
               "core": false,
-              "name": "sht21_0_present",
+              "name": "box_0_blower_max",
               "type": "integer",
               "integer": true,
-              "caps_name": "SHT21_0_PRESENT",
-              "module": "sht21",
+              "caps_name": "BOX_0_BLOWER_MAX",
+              "module": "blower",
               
               
-              "write": false,
+              "write": true,
               
                 "array": {
-                  "name": "sht21",
+                  "name": "box",
                   "len": 3,
                   "index": 0,
-                  "param": "present"
+                  "param": "blower_max"
                 },
-                "sht21": {
+                "box": {
                   "index": 0,
-                  "param": "present"
+                  "param": "blower_max"
+                },
+              
+              
+              "default": 60
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_blower_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_MAX",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "blower_max"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_max"
+                },
+              
+              
+              "default": 60
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_blower_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_MAX",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "blower_max"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_max"
+                },
+              
+              
+              "default": 60
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_blower_ref_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF_MIN",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "blower_ref_min"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_ref_min"
+                },
+              
+              
+              "default": 21
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_blower_ref_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_REF_MIN",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "blower_ref_min"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_ref_min"
+                },
+              
+              
+              "default": 21
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_blower_ref_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_REF_MIN",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "blower_ref_min"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_ref_min"
+                },
+              
+              
+              "default": 21
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_blower_ref_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF_MAX",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "blower_ref_max"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_ref_max"
+                },
+              
+              
+              "default": 30
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_blower_ref_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_REF_MAX",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "blower_ref_max"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_ref_max"
+                },
+              
+              
+              "default": 30
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_blower_ref_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_REF_MAX",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "blower_ref_max"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_ref_max"
+                },
+              
+              
+              "default": 30
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "enabled"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "enabled"
                 },
               
               
@@ -891,24 +1047,24 @@
           
             {
               "core": false,
-              "name": "sht21_1_present",
+              "name": "box_1_enabled",
               "type": "integer",
               "integer": true,
-              "caps_name": "SHT21_1_PRESENT",
-              "module": "sht21",
+              "caps_name": "BOX_1_ENABLED",
+              "module": "box",
               
               
-              "write": false,
+              "write": true,
               
                 "array": {
-                  "name": "sht21",
+                  "name": "box",
                   "len": 3,
                   "index": 1,
-                  "param": "present"
+                  "param": "enabled"
                 },
-                "sht21": {
+                "box": {
                   "index": 1,
-                  "param": "present"
+                  "param": "enabled"
                 },
               
               
@@ -917,24 +1073,774 @@
           
             {
               "core": false,
-              "name": "sht21_2_present",
+              "name": "box_2_enabled",
               "type": "integer",
               "integer": true,
-              "caps_name": "SHT21_2_PRESENT",
-              "module": "sht21",
+              "caps_name": "BOX_2_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "enabled"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "enabled"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_blower_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF",
+              "module": "box",
               
               
               "write": false,
               
                 "array": {
-                  "name": "sht21",
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "blower_ref"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_ref"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_blower_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_REF",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "blower_ref"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_ref"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_blower_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_REF",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
                   "len": 3,
                   "index": 2,
-                  "param": "present"
+                  "param": "blower_ref"
                 },
-                "sht21": {
+                "box": {
                   "index": 2,
-                  "param": "present"
+                  "param": "blower_ref"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_blower_ref_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "blower_ref_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_ref_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3,8,9,10]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_blower_ref_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_REF_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "blower_ref_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_ref_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3,8,9,10]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_blower_ref_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_REF_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "blower_ref_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_ref_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3,8,9,10]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "temp"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "temp"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "temp"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "humi"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "humi"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "humi"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_VPD",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_VPD",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_VPD_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_VPD_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_STARTED_AT",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "started_at"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_STARTED_AT",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "started_at"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_STARTED_AT",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "started_at"
                 },
               
               
@@ -1095,6 +2001,240 @@
               
               
               "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_0_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_VPD",
+              "module": "sht21",
+              "helper": "SHT21 humidity sensor on sensor port #0",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_1_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_VPD",
+              "module": "sht21",
+              "helper": "SHT21 humidity sensor on sensor port #1",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_2_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_VPD",
+              "module": "sht21",
+              "helper": "SHT21 humidity sensor on sensor port #2",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_0_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_1_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_2_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_0_vpd_leaf_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_VPD_LEAF_OFFSET",
+              "module": "sht21",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd_leaf_offset"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "vpd_leaf_offset"
+                },
+              
+              
+              "default": -15
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_1_vpd_leaf_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_VPD_LEAF_OFFSET",
+              "module": "sht21",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd_leaf_offset"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "vpd_leaf_offset"
+                },
+              
+              
+              "default": -15
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_2_vpd_leaf_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_VPD_LEAF_OFFSET",
+              "module": "sht21",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd_leaf_offset"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "vpd_leaf_offset"
+                },
+              
+              
+              "default": -15
             },
           
             {
@@ -1512,498 +2652,6 @@
               
               
               "default": 40000
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "enabled"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "enabled"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "enabled"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TEMP",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "temp"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_TEMP",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "temp"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_TEMP",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "temp"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_HUMI",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "humi"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_HUMI",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "humi"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_HUMI",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "humi"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "temp_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "temp_source"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 2
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "temp_source"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "humi_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "humi_source"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 2
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "humi_source"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_started_at",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_STARTED_AT",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "started_at"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "started_at"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_started_at",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_STARTED_AT",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "started_at"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "started_at"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_started_at",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_STARTED_AT",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "started_at"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "started_at"
-                },
-              
-              
-              "default": 0
             },
           
             {

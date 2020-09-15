@@ -27,8 +27,9 @@ void refresh_blower();
 /* KV Callbacks */
 
 int on_set_box_blower_duty(int boxId, int value);
-int on_set_box_blower_frequency(int boxId, int value);
-int on_set_box_blower_day(int boxId, int value);
-int on_set_box_blower_night(int boxId, int value);
+int on_set_box_blower_min(int boxId, int value);
+int on_set_box_blower_max(int boxId, int value);
+int on_set_box_blower_ref_min(int boxId, int value);
+int on_set_box_blower_ref_max(int boxId, int value);
 
 #endif
