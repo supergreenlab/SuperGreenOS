@@ -8,7 +8,7 @@ modules watering: _MODULE & {
 modules watering fields "\(k)_watering_duty": _INT8 & _NVS & _HTTP & _HTTP_RW & {
   nvs key: "B_\(k)_WAT_DD"
   motor_input: 0x8 + k 
-  indir_help: "Watering control for box#\(k)"
+  helper: "Watering control for box#\(k+1)"
   default: 0
   write_cb: true
 } for k, v in _box_conf

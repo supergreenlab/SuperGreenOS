@@ -636,7 +636,7 @@
               "integer": true,
               "caps_name": "BOX_0_BLOWER_DUTY",
               "module": "blower",
-              
+              "helper": "Blower control for box#1",
               
               "write": true,
               
@@ -662,7 +662,7 @@
               "integer": true,
               "caps_name": "BOX_1_BLOWER_DUTY",
               "module": "blower",
-              
+              "helper": "Blower control for box#2",
               
               "write": true,
               
@@ -688,7 +688,7 @@
               "integer": true,
               "caps_name": "BOX_2_BLOWER_DUTY",
               "module": "blower",
-              
+              "helper": "Blower control for box#3",
               
               "write": true,
               
@@ -1021,89 +1021,11 @@
           
             {
               "core": false,
-              "name": "box_0_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "enabled"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "enabled"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "enabled"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
               "name": "box_0_blower_ref",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_BLOWER_REF",
-              "module": "box",
+              "module": "blower",
               
               
               "write": false,
@@ -1129,7 +1051,7 @@
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_BLOWER_REF",
-              "module": "box",
+              "module": "blower",
               
               
               "write": false,
@@ -1155,7 +1077,7 @@
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_2_BLOWER_REF",
-              "module": "box",
+              "module": "blower",
               
               
               "write": false,
@@ -1181,7 +1103,7 @@
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_BLOWER_REF_SOURCE",
-              "module": "box",
+              "module": "blower",
               
               
               "write": true,
@@ -1199,7 +1121,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3,8,9,10]
+                  "values": [1,2,3,8,9,10],
+                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
                 },
               
               "default": 1
@@ -1211,7 +1134,7 @@
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_BLOWER_REF_SOURCE",
-              "module": "box",
+              "module": "blower",
               
               
               "write": true,
@@ -1229,7 +1152,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3,8,9,10]
+                  "values": [1,2,3,8,9,10],
+                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
                 },
               
               "default": 2
@@ -1241,7 +1165,7 @@
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_2_BLOWER_REF_SOURCE",
-              "module": "box",
+              "module": "blower",
               
               
               "write": true,
@@ -1259,824 +1183,9 @@
               
               
                 "indir": {
-                  "values": [1,2,3,8,9,10]
+                  "values": [1,2,3,8,9,10],
+                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
                 },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TEMP",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "temp"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_TEMP",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "temp"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_TEMP",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "temp"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "temp_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "temp_source"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 2
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "temp_source"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_HUMI",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "humi"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_HUMI",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "humi"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_HUMI",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "humi"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "humi_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "humi_source"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 2
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "humi_source"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_vpd",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_VPD",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "vpd"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "vpd"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_vpd",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_VPD",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "vpd"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "vpd"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_vpd",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_VPD",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "vpd"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "vpd"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_vpd_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_VPD_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "vpd_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "vpd_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_vpd_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_VPD_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "vpd_source"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "vpd_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 2
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_vpd_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_VPD_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "vpd_source"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "vpd_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1,2,3]
-                },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_started_at",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_STARTED_AT",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "started_at"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "started_at"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_started_at",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_STARTED_AT",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "started_at"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "started_at"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_started_at",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_STARTED_AT",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "started_at"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "started_at"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_0_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_0_TEMP",
-              "module": "sht21",
-              "helper": "SHT21 temperature sensor on sensor port #0",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 0,
-                  "param": "temp"
-                },
-                "sht21": {
-                  "index": 0,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_1_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_1_TEMP",
-              "module": "sht21",
-              "helper": "SHT21 temperature sensor on sensor port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 1,
-                  "param": "temp"
-                },
-                "sht21": {
-                  "index": 1,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_2_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_2_TEMP",
-              "module": "sht21",
-              "helper": "SHT21 temperature sensor on sensor port #2",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 2,
-                  "param": "temp"
-                },
-                "sht21": {
-                  "index": 2,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_0_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_0_HUMI",
-              "module": "sht21",
-              "helper": "SHT21 humidity sensor on sensor port #0",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 0,
-                  "param": "humi"
-                },
-                "sht21": {
-                  "index": 0,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_1_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_1_HUMI",
-              "module": "sht21",
-              "helper": "SHT21 humidity sensor on sensor port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 1,
-                  "param": "humi"
-                },
-                "sht21": {
-                  "index": 1,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_2_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_2_HUMI",
-              "module": "sht21",
-              "helper": "SHT21 humidity sensor on sensor port #2",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 2,
-                  "param": "humi"
-                },
-                "sht21": {
-                  "index": 2,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_0_vpd",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_0_VPD",
-              "module": "sht21",
-              "helper": "SHT21 humidity sensor on sensor port #0",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 0,
-                  "param": "vpd"
-                },
-                "sht21": {
-                  "index": 0,
-                  "param": "vpd"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_1_vpd",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_1_VPD",
-              "module": "sht21",
-              "helper": "SHT21 humidity sensor on sensor port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 1,
-                  "param": "vpd"
-                },
-                "sht21": {
-                  "index": 1,
-                  "param": "vpd"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_2_vpd",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_2_VPD",
-              "module": "sht21",
-              "helper": "SHT21 humidity sensor on sensor port #2",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 3,
-                  "index": 2,
-                  "param": "vpd"
-                },
-                "sht21": {
-                  "index": 2,
-                  "param": "vpd"
-                },
-              
               
               "default": 0
             },
@@ -2153,6 +1262,240 @@
                 "sht21": {
                   "index": 2,
                   "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_0_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature on port #1",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "temp"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_1_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature on port #2",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "temp"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_2_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature on port #3",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "temp"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_0_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #1",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "humi"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_1_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #2",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "humi"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_2_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #3",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "humi"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_0_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_VPD",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #1",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_1_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_VPD",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #2",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_2_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_VPD",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #3",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "vpd"
                 },
               
               
@@ -2432,7 +1775,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3,8,9,10]
+                  "values": [1,2,3,8,9,10],
+                  "helpers": ["Blower control for box#1","Blower control for box#2","Blower control for box#3","Watering control for box#1","Watering control for box#2","Watering control for box#3"]
                 },
               
               "default": 1
@@ -2462,7 +1806,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3,8,9,10]
+                  "values": [1,2,3,8,9,10],
+                  "helpers": ["Blower control for box#1","Blower control for box#2","Blower control for box#3","Watering control for box#1","Watering control for box#2","Watering control for box#3"]
                 },
               
               "default": 2
@@ -2492,7 +1837,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3,8,9,10]
+                  "values": [1,2,3,8,9,10],
+                  "helpers": ["Blower control for box#1","Blower control for box#2","Blower control for box#3","Watering control for box#1","Watering control for box#2","Watering control for box#3"]
                 },
               
               "default": 3
@@ -2652,6 +1998,675 @@
               
               
               "default": 40000
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "enabled"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "enabled"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "enabled"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "enabled"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "enabled"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "enabled"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "temp"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "temp"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "temp"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "humi"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "humi"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "humi"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_VPD",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_VPD",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_VPD_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_VPD_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_STARTED_AT",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "started_at"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_STARTED_AT",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "started_at"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_STARTED_AT",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "started_at"
+                },
+              
+              
+              "default": 0
             },
           
             {
@@ -3619,7 +3634,7 @@
               "integer": true,
               "caps_name": "BOX_0_TIMER_OUTPUT",
               "module": "timer",
-              
+              "helper": "Box #1 timer output",
               
               "write": false,
               
@@ -3645,7 +3660,7 @@
               "integer": true,
               "caps_name": "BOX_1_TIMER_OUTPUT",
               "module": "timer",
-              
+              "helper": "Box #2 timer output",
               
               "write": false,
               
@@ -3671,7 +3686,7 @@
               "integer": true,
               "caps_name": "BOX_2_TIMER_OUTPUT",
               "module": "timer",
-              
+              "helper": "Box #3 timer output",
               
               "write": false,
               
@@ -3697,7 +3712,7 @@
               "integer": true,
               "caps_name": "BOX_0_WATERING_DUTY",
               "module": "watering",
-              
+              "helper": "Watering control for box#1",
               
               "write": true,
               
@@ -3723,7 +3738,7 @@
               "integer": true,
               "caps_name": "BOX_1_WATERING_DUTY",
               "module": "watering",
-              
+              "helper": "Watering control for box#2",
               
               "write": true,
               
@@ -3749,7 +3764,7 @@
               "integer": true,
               "caps_name": "BOX_2_WATERING_DUTY",
               "module": "watering",
-              
+              "helper": "Watering control for box#3",
               
               "write": true,
               

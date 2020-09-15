@@ -131,14 +131,14 @@ void loop_sht21(int i2cId) {
 
   stop_i2c(i2cId);
 
-  float asvp = 610.78 * powf(2.71828, temp / (temp + 238.3) * 17.2694);
+  float asvp = 610.78 * powf(2.71828, (float)temp / (float)(temp + 238.3) * 17.2694);
 
-  float leaf_temp_offset = get_sht21_vpd_leaf_offset(i2cId) / 10.0f;
-  float ltemp = temp - leaf_temp_offset;
+  float leaf_temp_offset = (float)get_sht21_vpd_leaf_offset(i2cId) / 10.0f;
+  float ltemp = (float)temp + leaf_temp_offset;
   float lsvp = 610.78 * powf(2.71828, ltemp / (ltemp + 238.3) * 17.2694);
 
-  float vpd = lsvp * (asvp * (float)humi / 100.0);
-  set_sht21_vpd(i2cId, vpd * 100);
+  float vpd = lsvp - (asvp * (float)humi / 100.0);
+  set_sht21_vpd(i2cId, vpd / 100);
 }
 
 const uint16_t POLYNOMIAL = 0x131;

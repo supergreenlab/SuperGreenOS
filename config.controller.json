@@ -974,7 +974,7 @@
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Blower control for box#1",
                     "http": {
                         "enable": true,
                         "write": true
@@ -986,8 +986,7 @@
                     "intlen": 8,
                     "suffix": "0_blower_duty",
                     "caps_name": "BOX_0_BLOWER_DUTY",
-                    "motor_input": 1,
-                    "indir_help": "Blower control for box#0"
+                    "motor_input": 1
                 },
                 "1_blower_duty": {
                     "name": "box_1_blower_duty",
@@ -1003,7 +1002,7 @@
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Blower control for box#2",
                     "http": {
                         "enable": true,
                         "write": true
@@ -1015,8 +1014,7 @@
                     "intlen": 8,
                     "suffix": "1_blower_duty",
                     "caps_name": "BOX_1_BLOWER_DUTY",
-                    "motor_input": 2,
-                    "indir_help": "Blower control for box#1"
+                    "motor_input": 2
                 },
                 "2_blower_duty": {
                     "name": "box_2_blower_duty",
@@ -1032,7 +1030,7 @@
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Blower control for box#3",
                     "http": {
                         "enable": true,
                         "write": true
@@ -1044,8 +1042,7 @@
                     "intlen": 8,
                     "suffix": "2_blower_duty",
                     "caps_name": "BOX_2_BLOWER_DUTY",
-                    "motor_input": 3,
-                    "indir_help": "Blower control for box#2"
+                    "motor_input": 3
                 },
                 "0_blower_min": {
                     "name": "box_0_blower_min",
@@ -1370,100 +1367,6 @@
                     "intlen": 8,
                     "suffix": "2_blower_ref_max",
                     "caps_name": "BOX_2_BLOWER_REF_MAX"
-                }
-            },
-            "field_prefix": "box",
-            "i2c": false,
-            "array_len": 3,
-            "enabled": true,
-            "init": true,
-            "code": true,
-            "init_priority": 0,
-            "core": false
-        },
-        "box": {
-            "name": "box",
-            "fields": {
-                "0_enabled": {
-                    "name": "box_0_enabled",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_0_E",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": true,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_enabled",
-                    "caps_name": "BOX_0_ENABLED"
-                },
-                "1_enabled": {
-                    "name": "box_1_enabled",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_1_E",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": true,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_enabled",
-                    "caps_name": "BOX_1_ENABLED"
-                },
-                "2_enabled": {
-                    "name": "box_2_enabled",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_2_E",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": true,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_enabled",
-                    "caps_name": "BOX_2_ENABLED"
                 },
                 "0_blower_ref": {
                     "name": "box_0_blower_ref",
@@ -1629,589 +1532,13 @@
                     "intlen": 8,
                     "suffix": "2_blower_ref_source",
                     "caps_name": "BOX_2_BLOWER_REF_SOURCE"
-                },
-                "0_temp": {
-                    "name": "box_0_temp",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "key": "temp_sensor",
-                        "enable": true,
-                        "source": "0_temp_source"
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_temp",
-                    "caps_name": "BOX_0_TEMP"
-                },
-                "1_temp": {
-                    "name": "box_1_temp",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "key": "temp_sensor",
-                        "enable": true,
-                        "source": "1_temp_source"
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_temp",
-                    "caps_name": "BOX_1_TEMP"
-                },
-                "2_temp": {
-                    "name": "box_2_temp",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "key": "temp_sensor",
-                        "enable": true,
-                        "source": "2_temp_source"
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_temp",
-                    "caps_name": "BOX_2_TEMP"
-                },
-                "0_temp_source": {
-                    "name": "box_0_temp_source",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_0_T_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 1,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_temp_source",
-                    "caps_name": "BOX_0_TEMP_SOURCE"
-                },
-                "1_temp_source": {
-                    "name": "box_1_temp_source",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_1_T_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 2,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_temp_source",
-                    "caps_name": "BOX_1_TEMP_SOURCE"
-                },
-                "2_temp_source": {
-                    "name": "box_2_temp_source",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_2_T_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_temp_source",
-                    "caps_name": "BOX_2_TEMP_SOURCE"
-                },
-                "0_humi": {
-                    "name": "box_0_humi",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "key": "humi_sensor",
-                        "enable": true,
-                        "source": "0_humi_source"
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_humi",
-                    "caps_name": "BOX_0_HUMI"
-                },
-                "1_humi": {
-                    "name": "box_1_humi",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "key": "humi_sensor",
-                        "enable": true,
-                        "source": "1_humi_source"
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_humi",
-                    "caps_name": "BOX_1_HUMI"
-                },
-                "2_humi": {
-                    "name": "box_2_humi",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "key": "humi_sensor",
-                        "enable": true,
-                        "source": "2_humi_source"
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_humi",
-                    "caps_name": "BOX_2_HUMI"
-                },
-                "0_humi_source": {
-                    "name": "box_0_humi_source",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_0_H_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 1,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_humi_source",
-                    "caps_name": "BOX_0_HUMI_SOURCE"
-                },
-                "1_humi_source": {
-                    "name": "box_1_humi_source",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_1_H_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 2,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_humi_source",
-                    "caps_name": "BOX_1_HUMI_SOURCE"
-                },
-                "2_humi_source": {
-                    "name": "box_2_humi_source",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_2_H_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_humi_source",
-                    "caps_name": "BOX_2_HUMI_SOURCE"
-                },
-                "0_vpd": {
-                    "name": "box_0_vpd",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "key": "vpd_sensor",
-                        "enable": true,
-                        "source": "0_vpd_source"
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_vpd",
-                    "caps_name": "BOX_0_VPD"
-                },
-                "1_vpd": {
-                    "name": "box_1_vpd",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "key": "vpd_sensor",
-                        "enable": true,
-                        "source": "1_vpd_source"
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_vpd",
-                    "caps_name": "BOX_1_VPD"
-                },
-                "2_vpd": {
-                    "name": "box_2_vpd",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "key": "vpd_sensor",
-                        "enable": true,
-                        "source": "2_vpd_source"
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_vpd",
-                    "caps_name": "BOX_2_VPD"
-                },
-                "0_vpd_source": {
-                    "name": "box_0_vpd_source",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_0_VPD_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 1,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_vpd_source",
-                    "caps_name": "BOX_0_VPD_SOURCE"
-                },
-                "1_vpd_source": {
-                    "name": "box_1_vpd_source",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_1_VPD_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 2,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_vpd_source",
-                    "caps_name": "BOX_1_VPD_SOURCE"
-                },
-                "2_vpd_source": {
-                    "name": "box_2_vpd_source",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_2_VPD_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_vpd_source",
-                    "caps_name": "BOX_2_VPD_SOURCE"
-                },
-                "0_started_at": {
-                    "name": "box_0_started_at",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_0_ST_AT",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 32,
-                    "suffix": "0_started_at",
-                    "caps_name": "BOX_0_STARTED_AT"
-                },
-                "1_started_at": {
-                    "name": "box_1_started_at",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_1_ST_AT",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 32,
-                    "suffix": "1_started_at",
-                    "caps_name": "BOX_1_STARTED_AT"
-                },
-                "2_started_at": {
-                    "name": "box_2_started_at",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_2_ST_AT",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 32,
-                    "suffix": "2_started_at",
-                    "caps_name": "BOX_2_STARTED_AT"
                 }
             },
             "field_prefix": "box",
             "i2c": false,
             "array_len": 3,
             "enabled": true,
-            "init": false,
+            "init": true,
             "code": true,
             "init_priority": 0,
             "core": false
@@ -2219,252 +1546,6 @@
         "sht21": {
             "name": "sht21",
             "fields": {
-                "0_temp": {
-                    "name": "sht21_0_temp",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "SHT21 temperature sensor on sensor port #0",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_temp",
-                    "caps_name": "SHT21_0_TEMP",
-                    "temp_sensor": 1,
-                    "blower_ref": 1
-                },
-                "1_temp": {
-                    "name": "sht21_1_temp",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "SHT21 temperature sensor on sensor port #1",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_temp",
-                    "caps_name": "SHT21_1_TEMP",
-                    "temp_sensor": 2,
-                    "blower_ref": 2
-                },
-                "2_temp": {
-                    "name": "sht21_2_temp",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "SHT21 temperature sensor on sensor port #2",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_temp",
-                    "caps_name": "SHT21_2_TEMP",
-                    "temp_sensor": 3,
-                    "blower_ref": 3
-                },
-                "0_humi": {
-                    "name": "sht21_0_humi",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "SHT21 humidity sensor on sensor port #0",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_humi",
-                    "caps_name": "SHT21_0_HUMI",
-                    "humi_sensor": 1
-                },
-                "1_humi": {
-                    "name": "sht21_1_humi",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "SHT21 humidity sensor on sensor port #1",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_humi",
-                    "caps_name": "SHT21_1_HUMI",
-                    "humi_sensor": 2
-                },
-                "2_humi": {
-                    "name": "sht21_2_humi",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "SHT21 humidity sensor on sensor port #2",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_humi",
-                    "caps_name": "SHT21_2_HUMI",
-                    "humi_sensor": 3
-                },
-                "0_vpd": {
-                    "name": "sht21_0_vpd",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "SHT21 humidity sensor on sensor port #0",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_vpd",
-                    "caps_name": "SHT21_0_VPD",
-                    "vpd_sensor": 1
-                },
-                "1_vpd": {
-                    "name": "sht21_1_vpd",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "SHT21 humidity sensor on sensor port #1",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_vpd",
-                    "caps_name": "SHT21_1_VPD",
-                    "vpd_sensor": 2
-                },
-                "2_vpd": {
-                    "name": "sht21_2_vpd",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "SHT21 humidity sensor on sensor port #2",
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_vpd",
-                    "caps_name": "SHT21_2_VPD",
-                    "vpd_sensor": 3
-                },
                 "0_present": {
                     "name": "sht21_0_present",
                     "ble": {
@@ -2543,6 +1624,252 @@
                     "suffix": "2_present",
                     "caps_name": "SHT21_2_PRESENT"
                 },
+                "0_temp": {
+                    "name": "sht21_0_temp",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SHT21 temperature on port #1",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_temp",
+                    "caps_name": "SHT21_0_TEMP",
+                    "temp_sensor": 1,
+                    "blower_ref": 1
+                },
+                "1_temp": {
+                    "name": "sht21_1_temp",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SHT21 temperature on port #2",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_temp",
+                    "caps_name": "SHT21_1_TEMP",
+                    "temp_sensor": 2,
+                    "blower_ref": 2
+                },
+                "2_temp": {
+                    "name": "sht21_2_temp",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SHT21 temperature on port #3",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_temp",
+                    "caps_name": "SHT21_2_TEMP",
+                    "temp_sensor": 3,
+                    "blower_ref": 3
+                },
+                "0_humi": {
+                    "name": "sht21_0_humi",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SHT21 humidity on port #1",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_humi",
+                    "caps_name": "SHT21_0_HUMI",
+                    "humi_sensor": 1
+                },
+                "1_humi": {
+                    "name": "sht21_1_humi",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SHT21 humidity on port #2",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_humi",
+                    "caps_name": "SHT21_1_HUMI",
+                    "humi_sensor": 2
+                },
+                "2_humi": {
+                    "name": "sht21_2_humi",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SHT21 humidity on port #3",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_humi",
+                    "caps_name": "SHT21_2_HUMI",
+                    "humi_sensor": 3
+                },
+                "0_vpd": {
+                    "name": "sht21_0_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SHT21 humidity on port #1",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "0_vpd",
+                    "caps_name": "SHT21_0_VPD",
+                    "vpd_sensor": 1
+                },
+                "1_vpd": {
+                    "name": "sht21_1_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SHT21 humidity on port #2",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "1_vpd",
+                    "caps_name": "SHT21_1_VPD",
+                    "vpd_sensor": 2
+                },
+                "2_vpd": {
+                    "name": "sht21_2_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SHT21 humidity on port #3",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "2_vpd",
+                    "caps_name": "SHT21_2_VPD",
+                    "vpd_sensor": 3
+                },
                 "0_vpd_leaf_offset": {
                     "name": "sht21_0_vpd_leaf_offset",
                     "ble": {
@@ -2555,7 +1882,7 @@
                         "manual": false
                     },
                     "write_cb": false,
-                    "default": -15,
+                    "default": -20,
                     "type": "integer",
                     "helper": "",
                     "http": {
@@ -2582,7 +1909,7 @@
                         "manual": false
                     },
                     "write_cb": false,
-                    "default": -15,
+                    "default": -20,
                     "type": "integer",
                     "helper": "",
                     "http": {
@@ -2609,7 +1936,7 @@
                         "manual": false
                     },
                     "write_cb": false,
-                    "default": -15,
+                    "default": -20,
                     "type": "integer",
                     "helper": "",
                     "http": {
@@ -3104,6 +2431,676 @@
             "array_len": 3,
             "enabled": true,
             "init": true,
+            "code": true,
+            "init_priority": 0,
+            "core": false
+        },
+        "box": {
+            "name": "box",
+            "fields": {
+                "0_enabled": {
+                    "name": "box_0_enabled",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_E",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_enabled",
+                    "caps_name": "BOX_0_ENABLED"
+                },
+                "1_enabled": {
+                    "name": "box_1_enabled",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_E",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_enabled",
+                    "caps_name": "BOX_1_ENABLED"
+                },
+                "2_enabled": {
+                    "name": "box_2_enabled",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_E",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_enabled",
+                    "caps_name": "BOX_2_ENABLED"
+                },
+                "0_temp": {
+                    "name": "box_0_temp",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "temp_sensor",
+                        "enable": true,
+                        "source": "0_temp_source"
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_temp",
+                    "caps_name": "BOX_0_TEMP"
+                },
+                "1_temp": {
+                    "name": "box_1_temp",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "temp_sensor",
+                        "enable": true,
+                        "source": "1_temp_source"
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_temp",
+                    "caps_name": "BOX_1_TEMP"
+                },
+                "2_temp": {
+                    "name": "box_2_temp",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "temp_sensor",
+                        "enable": true,
+                        "source": "2_temp_source"
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_temp",
+                    "caps_name": "BOX_2_TEMP"
+                },
+                "0_humi": {
+                    "name": "box_0_humi",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "humi_sensor",
+                        "enable": true,
+                        "source": "0_humi_source"
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_humi",
+                    "caps_name": "BOX_0_HUMI"
+                },
+                "1_humi": {
+                    "name": "box_1_humi",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "humi_sensor",
+                        "enable": true,
+                        "source": "1_humi_source"
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_humi",
+                    "caps_name": "BOX_1_HUMI"
+                },
+                "2_humi": {
+                    "name": "box_2_humi",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "humi_sensor",
+                        "enable": true,
+                        "source": "2_humi_source"
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_humi",
+                    "caps_name": "BOX_2_HUMI"
+                },
+                "0_vpd": {
+                    "name": "box_0_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "vpd_sensor",
+                        "enable": true,
+                        "source": "0_vpd_source"
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "0_vpd",
+                    "caps_name": "BOX_0_VPD"
+                },
+                "1_vpd": {
+                    "name": "box_1_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "vpd_sensor",
+                        "enable": true,
+                        "source": "1_vpd_source"
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "1_vpd",
+                    "caps_name": "BOX_1_VPD"
+                },
+                "2_vpd": {
+                    "name": "box_2_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "vpd_sensor",
+                        "enable": true,
+                        "source": "2_vpd_source"
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "2_vpd",
+                    "caps_name": "BOX_2_VPD"
+                },
+                "0_temp_source": {
+                    "name": "box_0_temp_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_T_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 1,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_temp_source",
+                    "caps_name": "BOX_0_TEMP_SOURCE"
+                },
+                "1_temp_source": {
+                    "name": "box_1_temp_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_T_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 2,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_temp_source",
+                    "caps_name": "BOX_1_TEMP_SOURCE"
+                },
+                "2_temp_source": {
+                    "name": "box_2_temp_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_T_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_temp_source",
+                    "caps_name": "BOX_2_TEMP_SOURCE"
+                },
+                "0_humi_source": {
+                    "name": "box_0_humi_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_H_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 1,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_humi_source",
+                    "caps_name": "BOX_0_HUMI_SOURCE"
+                },
+                "1_humi_source": {
+                    "name": "box_1_humi_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_H_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 2,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_humi_source",
+                    "caps_name": "BOX_1_HUMI_SOURCE"
+                },
+                "2_humi_source": {
+                    "name": "box_2_humi_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_H_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_humi_source",
+                    "caps_name": "BOX_2_HUMI_SOURCE"
+                },
+                "0_vpd_source": {
+                    "name": "box_0_vpd_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_VPD_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 1,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_vpd_source",
+                    "caps_name": "BOX_0_VPD_SOURCE"
+                },
+                "1_vpd_source": {
+                    "name": "box_1_vpd_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_VPD_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 2,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_vpd_source",
+                    "caps_name": "BOX_1_VPD_SOURCE"
+                },
+                "2_vpd_source": {
+                    "name": "box_2_vpd_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_VPD_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_vpd_source",
+                    "caps_name": "BOX_2_VPD_SOURCE"
+                },
+                "0_started_at": {
+                    "name": "box_0_started_at",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_ST_AT",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 32,
+                    "suffix": "0_started_at",
+                    "caps_name": "BOX_0_STARTED_AT"
+                },
+                "1_started_at": {
+                    "name": "box_1_started_at",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_ST_AT",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 32,
+                    "suffix": "1_started_at",
+                    "caps_name": "BOX_1_STARTED_AT"
+                },
+                "2_started_at": {
+                    "name": "box_2_started_at",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_ST_AT",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 32,
+                    "suffix": "2_started_at",
+                    "caps_name": "BOX_2_STARTED_AT"
+                }
+            },
+            "field_prefix": "box",
+            "i2c": false,
+            "array_len": 3,
+            "enabled": true,
+            "init": false,
             "code": true,
             "init_priority": 0,
             "core": false
@@ -4236,7 +4233,7 @@
                     "write_cb": false,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Box #1 timer output",
                     "http": {
                         "enable": true,
                         "write": false
@@ -4264,7 +4261,7 @@
                     "write_cb": false,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Box #2 timer output",
                     "http": {
                         "enable": true,
                         "write": false
@@ -4292,7 +4289,7 @@
                     "write_cb": false,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Box #3 timer output",
                     "http": {
                         "enable": true,
                         "write": false
@@ -4333,7 +4330,7 @@
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Watering control for box#1",
                     "http": {
                         "enable": true,
                         "write": true
@@ -4345,8 +4342,7 @@
                     "intlen": 8,
                     "suffix": "0_watering_duty",
                     "caps_name": "BOX_0_WATERING_DUTY",
-                    "motor_input": 8,
-                    "indir_help": "Watering control for box#0"
+                    "motor_input": 8
                 },
                 "1_watering_duty": {
                     "name": "box_1_watering_duty",
@@ -4362,7 +4358,7 @@
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Watering control for box#2",
                     "http": {
                         "enable": true,
                         "write": true
@@ -4374,8 +4370,7 @@
                     "intlen": 8,
                     "suffix": "1_watering_duty",
                     "caps_name": "BOX_1_WATERING_DUTY",
-                    "motor_input": 9,
-                    "indir_help": "Watering control for box#1"
+                    "motor_input": 9
                 },
                 "2_watering_duty": {
                     "name": "box_2_watering_duty",
@@ -4391,7 +4386,7 @@
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Watering control for box#3",
                     "http": {
                         "enable": true,
                         "write": true
@@ -4403,8 +4398,7 @@
                     "intlen": 8,
                     "suffix": "2_watering_duty",
                     "caps_name": "BOX_2_WATERING_DUTY",
-                    "motor_input": 10,
-                    "indir_help": "Watering control for box#2"
+                    "motor_input": 10
                 },
                 "0_watering_period": {
                     "name": "box_0_watering_period",

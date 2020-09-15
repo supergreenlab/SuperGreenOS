@@ -69,6 +69,11 @@ _INT8: _INT & {
   intlen: 8
 }
 
+_UINT8: _INT & {
+  signedness: "u"
+  intlen: 8
+}
+
 _INT16: _INT & {
   intlen: 16
 }
@@ -79,6 +84,11 @@ _UINT16: _INT & {
 }
 
 _INT32: _INT & {
+  intlen: 32
+}
+
+_UINT32: _INT & {
+  signedness: "u"
   intlen: 32
 }
 

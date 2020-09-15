@@ -100,10 +100,10 @@ function renderField(title, field) {
     opt.value = 0
     opt.innerText = 'Disabled'
     input.appendChild(opt)
-    field.indir.values.forEach(i => {
+    field.indir.values.forEach((i, index) => {
       const opt = document.createElement('option')
       opt.value = i
-      opt.innerText = i
+      opt.innerText = field.indir.helpers[index] || i
       input.appendChild(opt)
     })
     body.appendChild(input)

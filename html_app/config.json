@@ -8,7 +8,8 @@
         if (f.indir.enable) {
           acc[f.indir.source] = {
             key: f.indir.key,
-            values: []
+            values: [],
+            helpers: []
           }
         }
         return acc
@@ -24,6 +25,7 @@
               return
             }
             indirs[i].values.push(f[indirs[i].key])
+            indirs[i].helpers.push(`"${f.helper}"`)
           })
         })
       })
@@ -64,7 +66,8 @@
               <% } %>
               <% if (indir) { %>
                 "indir": {
-                  "values": [<%= indir.values %>]
+                  "values": [<%= indir.values %>],
+                  "helpers": [<%- indir.helpers %>]
                 },
               <% } %>
               "default": <% if (f.type == 'integer') { %><%= f.default || 0 %><% } else { %>"<%= f.default || '' %>"<% } %>
