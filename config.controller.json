@@ -23,6 +23,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -65,6 +66,7 @@
                     "write_cb": false,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -96,6 +98,7 @@
                     "write_cb": true,
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -124,6 +127,7 @@
                     "write_cb": true,
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -148,6 +152,7 @@
                     "write_cb": false,
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -173,6 +178,7 @@
                     "write_cb": false,
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -199,6 +205,7 @@
                     "default": "supergreencontroller",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -226,6 +233,7 @@
                     "write_cb": false,
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -275,6 +283,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -302,6 +311,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -340,6 +350,7 @@
                     "write_cb": false,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -367,6 +378,7 @@
                     "write_cb": false,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -395,6 +407,7 @@
                     "default": "198.211.123.192",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -420,6 +433,7 @@
                     "default": "update2.supergreenlab.com",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -445,6 +459,7 @@
                     "default": 80,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -472,6 +487,7 @@
                     "default": "/ControllerV3",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -510,6 +526,7 @@
                     "default": "mqtt://sink2.supergreenlab.com:1883",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -535,6 +552,7 @@
                     "default": "",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -564,6 +582,7 @@
                     "default": "",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -614,6 +633,7 @@
                     "default": 18,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -641,6 +661,7 @@
                     "default": 21,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -668,6 +689,7 @@
                     "default": 21,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -695,6 +717,7 @@
                     "default": 5,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -722,6 +745,7 @@
                     "default": 19,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -749,6 +773,7 @@
                     "default": 19,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -776,6 +801,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -803,6 +829,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -830,6 +857,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -857,6 +885,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -884,6 +913,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -911,6 +941,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -975,6 +1006,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "Blower control for box#1",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1003,6 +1035,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "Blower control for box#2",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1031,6 +1064,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "Blower control for box#3",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1059,6 +1093,7 @@
                     "default": 5,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1086,6 +1121,7 @@
                     "default": 5,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1113,6 +1149,7 @@
                     "default": 5,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1140,6 +1177,7 @@
                     "default": 60,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1167,6 +1205,7 @@
                     "default": 60,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1194,6 +1233,7 @@
                     "default": 60,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1221,6 +1261,7 @@
                     "default": 21,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1248,6 +1289,7 @@
                     "default": 21,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1275,6 +1317,7 @@
                     "default": 21,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1302,6 +1345,7 @@
                     "default": 30,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1329,6 +1373,7 @@
                     "default": 30,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1356,6 +1401,7 @@
                     "default": 30,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1382,6 +1428,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1410,6 +1457,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1438,6 +1486,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1467,6 +1516,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1494,6 +1544,7 @@
                     "default": 2,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1521,6 +1572,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1560,6 +1612,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1586,6 +1639,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1612,6 +1666,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1638,6 +1693,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "SHT21 temperature on port #1",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1666,6 +1722,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "SHT21 temperature on port #2",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1694,6 +1751,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "SHT21 temperature on port #3",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1722,6 +1780,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "SHT21 humidity on port #1",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1749,6 +1808,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "SHT21 humidity on port #2",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1776,6 +1836,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "SHT21 humidity on port #3",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1803,6 +1864,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "SHT21 humidity on port #1",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1830,6 +1892,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "SHT21 humidity on port #2",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1857,6 +1920,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "SHT21 humidity on port #3",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1885,6 +1949,7 @@
                     "default": -20,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1912,6 +1977,7 @@
                     "default": -20,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1939,6 +2005,7 @@
                     "default": -20,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1979,6 +2046,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2006,6 +2074,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2033,6 +2102,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2073,6 +2143,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2112,6 +2183,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2140,6 +2212,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2168,6 +2241,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2197,6 +2271,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2224,6 +2299,7 @@
                     "default": 2,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2251,6 +2327,7 @@
                     "default": 3,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2278,6 +2355,7 @@
                     "default": 4,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2305,6 +2383,7 @@
                     "default": 16,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2332,6 +2411,7 @@
                     "default": 17,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2359,6 +2439,7 @@
                     "default": 40000,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2386,6 +2467,7 @@
                     "default": 40000,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2413,6 +2495,7 @@
                     "default": 40000,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2453,6 +2536,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2480,6 +2564,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2507,6 +2592,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2533,6 +2619,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2561,6 +2648,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2589,6 +2677,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2617,6 +2706,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2645,6 +2735,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2673,6 +2764,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2701,6 +2793,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2729,6 +2822,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2757,6 +2851,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2786,6 +2881,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2813,6 +2909,7 @@
                     "default": 2,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2840,6 +2937,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2867,6 +2965,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2894,6 +2993,7 @@
                     "default": 2,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2921,6 +3021,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2948,6 +3049,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2975,6 +3077,7 @@
                     "default": 2,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3002,6 +3105,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3029,6 +3133,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3056,6 +3161,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3083,6 +3189,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3126,6 +3233,7 @@
                     "write_cb": false,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3158,6 +3266,7 @@
                     "default": "SuperGreenController",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3196,6 +3305,7 @@
                     "default": 23,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3223,6 +3333,7 @@
                     "default": 22,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3250,6 +3361,7 @@
                     "default": 10,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3290,6 +3402,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3330,6 +3443,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3357,6 +3471,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3384,6 +3499,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3411,6 +3527,7 @@
                     "default": 33,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3438,6 +3555,7 @@
                     "default": 25,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3465,6 +3583,7 @@
                     "default": 26,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3492,6 +3611,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3519,6 +3639,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3546,6 +3667,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3573,6 +3695,7 @@
                     "default": 27,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3600,6 +3723,7 @@
                     "default": 14,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3627,6 +3751,7 @@
                     "default": 12,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3654,6 +3779,7 @@
                     "default": -1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3681,6 +3807,7 @@
                     "default": -1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3708,6 +3835,7 @@
                     "default": -1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3735,6 +3863,7 @@
                     "default": -1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3762,6 +3891,7 @@
                     "default": -1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3789,6 +3919,7 @@
                     "default": -1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3816,6 +3947,7 @@
                     "default": 100,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3843,6 +3975,7 @@
                     "default": 100,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3870,6 +4003,7 @@
                     "default": 100,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3897,6 +4031,7 @@
                     "default": 100,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3924,6 +4059,7 @@
                     "default": 100,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3951,6 +4087,7 @@
                     "default": 100,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3978,6 +4115,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4005,6 +4143,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4032,6 +4171,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4059,6 +4199,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4086,6 +4227,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4113,6 +4255,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4152,6 +4295,7 @@
                     "write_cb": true,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4179,6 +4323,7 @@
                     "write_cb": true,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4206,6 +4351,7 @@
                     "write_cb": true,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4234,6 +4380,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "Box #1 timer output",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -4262,6 +4409,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "Box #2 timer output",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -4290,6 +4438,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "Box #3 timer output",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -4331,6 +4480,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "Watering control for box#1",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4359,6 +4509,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "Watering control for box#2",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4387,6 +4538,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "Watering control for box#3",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4415,6 +4567,7 @@
                     "default": 2880,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4442,6 +4595,7 @@
                     "default": 2880,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4469,6 +4623,7 @@
                     "default": 2880,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4496,6 +4651,7 @@
                     "default": 600,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4523,6 +4679,7 @@
                     "default": 600,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4550,6 +4707,7 @@
                     "default": 600,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4577,6 +4735,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4604,6 +4763,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4631,6 +4791,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4658,6 +4819,7 @@
                     "default": 20,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4685,6 +4847,7 @@
                     "default": 20,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4712,6 +4875,7 @@
                     "default": 20,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4752,6 +4916,7 @@
                     "default": 3,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4779,6 +4944,7 @@
                     "default": 3,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4806,6 +4972,7 @@
                     "default": 3,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4833,6 +5000,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4860,6 +5028,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4887,6 +5056,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4914,6 +5084,7 @@
                     "default": 21,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4941,6 +5112,7 @@
                     "default": 21,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4968,6 +5140,7 @@
                     "default": 21,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -4995,6 +5168,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -5022,6 +5196,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -5049,6 +5224,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true

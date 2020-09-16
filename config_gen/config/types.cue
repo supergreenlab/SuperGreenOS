@@ -29,6 +29,7 @@ _FIELD: {
   type: "string" | "integer"
   nosend: bool | *false
   helper: string | *""
+  dump_freq: int | *60
   nvs: {
     enable: bool | *false
     key: string if enable == true

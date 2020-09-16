@@ -8,6 +8,7 @@ modules box: _MODULE & {
 }
 
 modules box fields "\(k)_temp": _INT8 & _HTTP & _INDIR & {
+  dump_freq: 1
   indir key: "temp_sensor"
   indir source: "\(k)_temp_source"
   default: 0
@@ -19,6 +20,7 @@ modules box fields "\(k)_temp_source": _INT8 & _NVS & _HTTP_RW & {
 } for k, v in _box_conf
 
 modules box fields "\(k)_humi": _INT8 & _HTTP & _INDIR & {
+  dump_freq: 1
   indir key: "humi_sensor"
   indir source: "\(k)_humi_source"
   default: 0
@@ -30,6 +32,7 @@ modules box fields "\(k)_humi_source": _INT8 & _NVS & _HTTP_RW & {
 } for k, v in _box_conf
 
 modules box fields "\(k)_vpd": _UINT8 & _HTTP & _INDIR & {
+  dump_freq: 1
   indir key: "vpd_sensor"
   indir source: "\(k)_vpd_source"
   default: 0
