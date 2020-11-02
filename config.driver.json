@@ -23,6 +23,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -65,6 +66,7 @@
                     "write_cb": false,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -96,6 +98,7 @@
                     "write_cb": true,
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -124,6 +127,7 @@
                     "write_cb": true,
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -148,6 +152,7 @@
                     "write_cb": false,
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -173,6 +178,7 @@
                     "write_cb": false,
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -199,6 +205,7 @@
                     "default": "supergreendriver",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -226,6 +233,7 @@
                     "write_cb": false,
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -275,6 +283,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -302,6 +311,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -340,6 +350,7 @@
                     "write_cb": false,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -367,6 +378,7 @@
                     "write_cb": false,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -395,6 +407,7 @@
                     "default": "198.211.123.192",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -420,6 +433,7 @@
                     "default": "update2.supergreenlab.com",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -445,6 +459,7 @@
                     "default": 80,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -472,6 +487,7 @@
                     "default": "/DriverV2.1",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -510,6 +526,7 @@
                     "default": "mqtt://sink2.supergreenlab.com:1883",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -535,6 +552,7 @@
                     "default": "",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -564,6 +582,7 @@
                     "default": "",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -614,6 +633,7 @@
                     "default": 26,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -641,6 +661,7 @@
                     "default": 27,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -668,6 +689,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -695,6 +717,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -759,6 +782,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -785,6 +809,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -813,6 +838,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -841,6 +867,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -870,6 +897,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -897,6 +925,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -924,6 +953,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -950,6 +980,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -978,6 +1009,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1006,6 +1038,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 1,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1035,6 +1068,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1062,6 +1096,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1089,6 +1124,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1100,6 +1136,177 @@
                     "intlen": 8,
                     "suffix": "2_humi_source",
                     "caps_name": "BOX_2_HUMI_SOURCE"
+                },
+                "0_vpd": {
+                    "name": "box_0_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 1,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "vpd_sensor",
+                        "enable": true,
+                        "source": "0_vpd_source"
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "0_vpd",
+                    "caps_name": "BOX_0_VPD"
+                },
+                "1_vpd": {
+                    "name": "box_1_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 1,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "vpd_sensor",
+                        "enable": true,
+                        "source": "1_vpd_source"
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "1_vpd",
+                    "caps_name": "BOX_1_VPD"
+                },
+                "2_vpd": {
+                    "name": "box_2_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 1,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "vpd_sensor",
+                        "enable": true,
+                        "source": "2_vpd_source"
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "2_vpd",
+                    "caps_name": "BOX_2_VPD"
+                },
+                "0_vpd_source": {
+                    "name": "box_0_vpd_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_VPD_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 1,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_vpd_source",
+                    "caps_name": "BOX_0_VPD_SOURCE"
+                },
+                "1_vpd_source": {
+                    "name": "box_1_vpd_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_VPD_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_vpd_source",
+                    "caps_name": "BOX_1_VPD_SOURCE"
+                },
+                "2_vpd_source": {
+                    "name": "box_2_vpd_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_VPD_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_vpd_source",
+                    "caps_name": "BOX_2_VPD_SOURCE"
                 },
                 "1_enabled": {
                     "name": "box_1_enabled",
@@ -1116,6 +1323,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1143,6 +1351,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1170,6 +1379,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1197,6 +1407,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1224,6 +1435,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1263,7 +1475,8 @@
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Blower control for box#1",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1275,8 +1488,7 @@
                     "intlen": 8,
                     "suffix": "0_blower_duty",
                     "caps_name": "BOX_0_BLOWER_DUTY",
-                    "motor_input": 1,
-                    "indir_help": "Blower control for box#0"
+                    "motor_input": 1
                 },
                 "1_blower_duty": {
                     "name": "box_1_blower_duty",
@@ -1292,7 +1504,8 @@
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Blower control for box#2",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1304,8 +1517,7 @@
                     "intlen": 8,
                     "suffix": "1_blower_duty",
                     "caps_name": "BOX_1_BLOWER_DUTY",
-                    "motor_input": 2,
-                    "indir_help": "Blower control for box#1"
+                    "motor_input": 2
                 },
                 "2_blower_duty": {
                     "name": "box_2_blower_duty",
@@ -1321,7 +1533,8 @@
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Blower control for box#3",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1333,24 +1546,24 @@
                     "intlen": 8,
                     "suffix": "2_blower_duty",
                     "caps_name": "BOX_2_BLOWER_DUTY",
-                    "motor_input": 3,
-                    "indir_help": "Blower control for box#2"
+                    "motor_input": 3
                 },
-                "0_blower_day": {
-                    "name": "box_0_blower_day",
+                "0_blower_min": {
+                    "name": "box_0_blower_min",
                     "ble": {
                         "enable": false
                     },
                     "nosend": false,
                     "nvs": {
-                        "key": "B_0_BLWR_D",
+                        "key": "B_0_BLWR_MI",
                         "enable": true,
                         "manual": false
                     },
                     "write_cb": true,
-                    "default": 20,
+                    "default": 8,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1360,24 +1573,25 @@
                     },
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "0_blower_day",
-                    "caps_name": "BOX_0_BLOWER_DAY"
+                    "suffix": "0_blower_min",
+                    "caps_name": "BOX_0_BLOWER_MIN"
                 },
-                "1_blower_day": {
-                    "name": "box_1_blower_day",
+                "1_blower_min": {
+                    "name": "box_1_blower_min",
                     "ble": {
                         "enable": false
                     },
                     "nosend": false,
                     "nvs": {
-                        "key": "B_1_BLWR_D",
+                        "key": "B_1_BLWR_MI",
                         "enable": true,
                         "manual": false
                     },
                     "write_cb": true,
-                    "default": 20,
+                    "default": 8,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1387,24 +1601,25 @@
                     },
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "1_blower_day",
-                    "caps_name": "BOX_1_BLOWER_DAY"
+                    "suffix": "1_blower_min",
+                    "caps_name": "BOX_1_BLOWER_MIN"
                 },
-                "2_blower_day": {
-                    "name": "box_2_blower_day",
+                "2_blower_min": {
+                    "name": "box_2_blower_min",
                     "ble": {
                         "enable": false
                     },
                     "nosend": false,
                     "nvs": {
-                        "key": "B_2_BLWR_D",
+                        "key": "B_2_BLWR_MI",
                         "enable": true,
                         "manual": false
                     },
                     "write_cb": true,
-                    "default": 20,
+                    "default": 8,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1414,24 +1629,25 @@
                     },
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "2_blower_day",
-                    "caps_name": "BOX_2_BLOWER_DAY"
+                    "suffix": "2_blower_min",
+                    "caps_name": "BOX_2_BLOWER_MIN"
                 },
-                "0_blower_night": {
-                    "name": "box_0_blower_night",
+                "0_blower_max": {
+                    "name": "box_0_blower_max",
                     "ble": {
                         "enable": false
                     },
                     "nosend": false,
                     "nvs": {
-                        "key": "B_0_BLWR_N",
+                        "key": "B_0_BLWR_MA",
                         "enable": true,
                         "manual": false
                     },
                     "write_cb": true,
-                    "default": 10,
+                    "default": 30,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1441,24 +1657,25 @@
                     },
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "0_blower_night",
-                    "caps_name": "BOX_0_BLOWER_NIGHT"
+                    "suffix": "0_blower_max",
+                    "caps_name": "BOX_0_BLOWER_MAX"
                 },
-                "1_blower_night": {
-                    "name": "box_1_blower_night",
+                "1_blower_max": {
+                    "name": "box_1_blower_max",
                     "ble": {
                         "enable": false
                     },
                     "nosend": false,
                     "nvs": {
-                        "key": "B_1_BLWR_N",
+                        "key": "B_1_BLWR_MA",
                         "enable": true,
                         "manual": false
                     },
                     "write_cb": true,
-                    "default": 10,
+                    "default": 30,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1468,24 +1685,25 @@
                     },
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "1_blower_night",
-                    "caps_name": "BOX_1_BLOWER_NIGHT"
+                    "suffix": "1_blower_max",
+                    "caps_name": "BOX_1_BLOWER_MAX"
                 },
-                "2_blower_night": {
-                    "name": "box_2_blower_night",
+                "2_blower_max": {
+                    "name": "box_2_blower_max",
                     "ble": {
                         "enable": false
                     },
                     "nosend": false,
                     "nvs": {
-                        "key": "B_2_BLWR_N",
+                        "key": "B_2_BLWR_MA",
                         "enable": true,
                         "manual": false
                     },
                     "write_cb": true,
-                    "default": 10,
+                    "default": 30,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1495,8 +1713,347 @@
                     },
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "2_blower_night",
-                    "caps_name": "BOX_2_BLOWER_NIGHT"
+                    "suffix": "2_blower_max",
+                    "caps_name": "BOX_2_BLOWER_MAX"
+                },
+                "0_blower_ref_min": {
+                    "name": "box_0_blower_ref_min",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_BLWR_RMI",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 21,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_blower_ref_min",
+                    "caps_name": "BOX_0_BLOWER_REF_MIN"
+                },
+                "1_blower_ref_min": {
+                    "name": "box_1_blower_ref_min",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_BLWR_RMI",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 21,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_blower_ref_min",
+                    "caps_name": "BOX_1_BLOWER_REF_MIN"
+                },
+                "2_blower_ref_min": {
+                    "name": "box_2_blower_ref_min",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_BLWR_RMI",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 21,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_blower_ref_min",
+                    "caps_name": "BOX_2_BLOWER_REF_MIN"
+                },
+                "0_blower_ref_max": {
+                    "name": "box_0_blower_ref_max",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_BLWR_RMA",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 30,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_blower_ref_max",
+                    "caps_name": "BOX_0_BLOWER_REF_MAX"
+                },
+                "1_blower_ref_max": {
+                    "name": "box_1_blower_ref_max",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_BLWR_RMA",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 30,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_blower_ref_max",
+                    "caps_name": "BOX_1_BLOWER_REF_MAX"
+                },
+                "2_blower_ref_max": {
+                    "name": "box_2_blower_ref_max",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_BLWR_RMA",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": true,
+                    "default": 30,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_blower_ref_max",
+                    "caps_name": "BOX_2_BLOWER_REF_MAX"
+                },
+                "0_blower_ref": {
+                    "name": "box_0_blower_ref",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "blower_ref",
+                        "enable": true,
+                        "source": "0_blower_ref_source"
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_blower_ref",
+                    "caps_name": "BOX_0_BLOWER_REF"
+                },
+                "1_blower_ref": {
+                    "name": "box_1_blower_ref",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "blower_ref",
+                        "enable": true,
+                        "source": "1_blower_ref_source"
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_blower_ref",
+                    "caps_name": "BOX_1_BLOWER_REF"
+                },
+                "2_blower_ref": {
+                    "name": "box_2_blower_ref",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "blower_ref",
+                        "enable": true,
+                        "source": "2_blower_ref_source"
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_blower_ref",
+                    "caps_name": "BOX_2_BLOWER_REF"
+                },
+                "0_blower_ref_source": {
+                    "name": "box_0_blower_ref_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_BLWR_RSRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 1,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_blower_ref_source",
+                    "caps_name": "BOX_0_BLOWER_REF_SOURCE"
+                },
+                "1_blower_ref_source": {
+                    "name": "box_1_blower_ref_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_BLWR_RSRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_blower_ref_source",
+                    "caps_name": "BOX_1_BLOWER_REF_SOURCE"
+                },
+                "2_blower_ref_source": {
+                    "name": "box_2_blower_ref_source",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_BLWR_RSRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_blower_ref_source",
+                    "caps_name": "BOX_2_BLOWER_REF_SOURCE"
                 }
             },
             "field_prefix": "box",
@@ -1526,6 +2083,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1553,6 +2111,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1580,6 +2139,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1620,6 +2180,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1659,6 +2220,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1687,6 +2249,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -1716,6 +2279,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1743,6 +2307,7 @@
                     "default": 2,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1770,6 +2335,7 @@
                     "default": 22,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1797,6 +2363,7 @@
                     "default": 21,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1824,6 +2391,7 @@
                     "default": 40000,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1851,6 +2419,7 @@
                     "default": 40000,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1891,6 +2460,7 @@
                     "default": 3,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1918,6 +2488,7 @@
                     "default": 3,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1945,6 +2516,7 @@
                     "default": 3,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1972,6 +2544,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -1999,6 +2572,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2026,6 +2600,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2053,6 +2628,7 @@
                     "default": 21,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2080,6 +2656,7 @@
                     "default": 21,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2107,6 +2684,7 @@
                     "default": 21,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2134,6 +2712,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2161,6 +2740,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2188,6 +2768,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2231,6 +2812,7 @@
                     "write_cb": false,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2263,6 +2845,7 @@
                     "default": "SuperGreenDriver",
                     "type": "string",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2301,6 +2884,7 @@
                     "default": 19,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2328,6 +2912,7 @@
                     "default": 18,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2355,6 +2940,7 @@
                     "default": 10,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2394,6 +2980,7 @@
                     "write_cb": true,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2421,6 +3008,7 @@
                     "write_cb": true,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2448,6 +3036,7 @@
                     "write_cb": true,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2475,7 +3064,8 @@
                     "write_cb": false,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Box #1 timer output",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2486,7 +3076,8 @@
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_timer_output",
-                    "caps_name": "BOX_0_TIMER_OUTPUT"
+                    "caps_name": "BOX_0_TIMER_OUTPUT",
+                    "blower_ref": 8
                 },
                 "1_timer_output": {
                     "name": "box_1_timer_output",
@@ -2502,7 +3093,8 @@
                     "write_cb": false,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Box #2 timer output",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2513,7 +3105,8 @@
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "1_timer_output",
-                    "caps_name": "BOX_1_TIMER_OUTPUT"
+                    "caps_name": "BOX_1_TIMER_OUTPUT",
+                    "blower_ref": 9
                 },
                 "2_timer_output": {
                     "name": "box_2_timer_output",
@@ -2529,7 +3122,8 @@
                     "write_cb": false,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Box #3 timer output",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -2540,7 +3134,8 @@
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "2_timer_output",
-                    "caps_name": "BOX_2_TIMER_OUTPUT"
+                    "caps_name": "BOX_2_TIMER_OUTPUT",
+                    "blower_ref": 10
                 }
             },
             "field_prefix": "box",
@@ -2569,7 +3164,8 @@
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Watering control for box#1",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2581,8 +3177,7 @@
                     "intlen": 8,
                     "suffix": "0_watering_duty",
                     "caps_name": "BOX_0_WATERING_DUTY",
-                    "motor_input": 8,
-                    "indir_help": "Watering control for box#0"
+                    "motor_input": 8
                 },
                 "1_watering_duty": {
                     "name": "box_1_watering_duty",
@@ -2598,7 +3193,8 @@
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Watering control for box#2",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2610,8 +3206,7 @@
                     "intlen": 8,
                     "suffix": "1_watering_duty",
                     "caps_name": "BOX_1_WATERING_DUTY",
-                    "motor_input": 9,
-                    "indir_help": "Watering control for box#1"
+                    "motor_input": 9
                 },
                 "2_watering_duty": {
                     "name": "box_2_watering_duty",
@@ -2627,7 +3222,8 @@
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Watering control for box#3",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2639,8 +3235,7 @@
                     "intlen": 8,
                     "suffix": "2_watering_duty",
                     "caps_name": "BOX_2_WATERING_DUTY",
-                    "motor_input": 10,
-                    "indir_help": "Watering control for box#2"
+                    "motor_input": 10
                 },
                 "0_watering_period": {
                     "name": "box_0_watering_period",
@@ -2657,6 +3252,7 @@
                     "default": 2880,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2684,6 +3280,7 @@
                     "default": 2880,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2711,6 +3308,7 @@
                     "default": 2880,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2738,6 +3336,7 @@
                     "default": 600,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2765,6 +3364,7 @@
                     "default": 600,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2792,6 +3392,7 @@
                     "default": 600,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2819,6 +3420,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2846,6 +3448,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2873,6 +3476,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2900,6 +3504,7 @@
                     "default": 20,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2927,6 +3532,7 @@
                     "default": 20,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2954,6 +3560,7 @@
                     "default": 20,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -2994,6 +3601,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3034,6 +3642,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3061,6 +3670,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3088,6 +3698,7 @@
                     "default": 32,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3115,6 +3726,7 @@
                     "default": 17,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3142,6 +3754,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3169,6 +3782,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3196,6 +3810,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3223,6 +3838,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3250,6 +3866,7 @@
                     "default": 33,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3277,6 +3894,7 @@
                     "default": 16,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3304,6 +3922,7 @@
                     "default": 25,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3331,6 +3950,7 @@
                     "default": 4,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3358,6 +3978,7 @@
                     "default": -1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3385,6 +4006,7 @@
                     "default": -1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3412,6 +4034,7 @@
                     "default": -1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3439,6 +4062,7 @@
                     "default": -1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3466,6 +4090,7 @@
                     "default": -1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3493,6 +4118,7 @@
                     "default": -1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3520,6 +4146,7 @@
                     "default": 100,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3547,6 +4174,7 @@
                     "default": 100,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3574,6 +4202,7 @@
                     "default": 100,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3601,6 +4230,7 @@
                     "default": 100,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3628,6 +4258,7 @@
                     "default": 100,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3655,6 +4286,7 @@
                     "default": 100,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3682,6 +4314,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3709,6 +4342,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3736,6 +4370,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3763,6 +4398,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3790,6 +4426,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3817,6 +4454,7 @@
                     "default": 1,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": true
@@ -3855,7 +4493,8 @@
                     "write_cb": false,
                     "default": 0,
                     "type": "integer",
-                    "helper": "SHT21 temperature sensor on sensor port #0",
+                    "helper": "SHT21 temperature on port #1",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -3867,6 +4506,7 @@
                     "intlen": 8,
                     "suffix": "0_temp",
                     "caps_name": "SHT21_0_TEMP",
+                    "blower_ref": 1,
                     "temp_sensor": 1
                 },
                 "0_humi": {
@@ -3882,7 +4522,8 @@
                     "write_cb": false,
                     "default": 0,
                     "type": "integer",
-                    "helper": "SHT21 humidity sensor on sensor port #0",
+                    "helper": "SHT21 humidity on port #1",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -3895,6 +4536,34 @@
                     "suffix": "0_humi",
                     "caps_name": "SHT21_0_HUMI",
                     "humi_sensor": 1
+                },
+                "0_vpd": {
+                    "name": "sht21_0_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SHT21 humidity on port #1",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "0_vpd",
+                    "caps_name": "SHT21_0_VPD",
+                    "vpd_sensor": 1
                 },
                 "0_present": {
                     "name": "sht21_0_present",
@@ -3910,6 +4579,7 @@
                     "default": 0,
                     "type": "integer",
                     "helper": "",
+                    "dump_freq": 60,
                     "http": {
                         "enable": true,
                         "write": false
@@ -3921,6 +4591,90 @@
                     "intlen": 8,
                     "suffix": "0_present",
                     "caps_name": "SHT21_0_PRESENT"
+                },
+                "0_vpd_leaf_offset": {
+                    "name": "sht21_0_vpd_leaf_offset",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_VPD_LO",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": -20,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_vpd_leaf_offset",
+                    "caps_name": "SHT21_0_VPD_LEAF_OFFSET"
+                },
+                "1_vpd_leaf_offset": {
+                    "name": "sht21_1_vpd_leaf_offset",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_VPD_LO",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": -20,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_vpd_leaf_offset",
+                    "caps_name": "SHT21_1_VPD_LEAF_OFFSET"
+                },
+                "2_vpd_leaf_offset": {
+                    "name": "sht21_2_vpd_leaf_offset",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_VPD_LO",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": -20,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_vpd_leaf_offset",
+                    "caps_name": "SHT21_2_VPD_LEAF_OFFSET"
                 }
             },
             "field_prefix": "sht21",

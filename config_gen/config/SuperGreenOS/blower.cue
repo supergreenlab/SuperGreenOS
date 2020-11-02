@@ -15,13 +15,13 @@ modules blower fields "\(k)_blower_duty": _INT8 & _NVS & _HTTP & _HTTP_RW & {
 
 modules blower fields "\(k)_blower_min": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "B_\(k)_BLWR_MI"
-  default: 5
+  default: 8
   write_cb: true
 } for k, v in _box_conf
 
 modules blower fields "\(k)_blower_max": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "B_\(k)_BLWR_MA"
-  default: 60
+  default: 30
   write_cb: true
 } for k, v in _box_conf
 

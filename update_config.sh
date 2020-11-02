@@ -28,3 +28,5 @@ CONFIG_DIR="$(pwd)"
 pushd $CONFIG_PATH
 cue export ./... > "$CONFIG_DIR/$CONFIG_FILE"
 popd
+
+sed -i '/^CONFIG_VERSION/d' sdkconfig

@@ -1090,7 +1090,7 @@
                         "manual": false
                     },
                     "write_cb": true,
-                    "default": 5,
+                    "default": 8,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1118,7 +1118,7 @@
                         "manual": false
                     },
                     "write_cb": true,
-                    "default": 5,
+                    "default": 8,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1146,7 +1146,7 @@
                         "manual": false
                     },
                     "write_cb": true,
-                    "default": 5,
+                    "default": 8,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1174,7 +1174,7 @@
                         "manual": false
                     },
                     "write_cb": true,
-                    "default": 60,
+                    "default": 30,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1202,7 +1202,7 @@
                         "manual": false
                     },
                     "write_cb": true,
-                    "default": 60,
+                    "default": 30,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1230,7 +1230,7 @@
                         "manual": false
                     },
                     "write_cb": true,
-                    "default": 60,
+                    "default": 30,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
