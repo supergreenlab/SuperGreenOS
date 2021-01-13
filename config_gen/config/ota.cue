@@ -17,7 +17,7 @@ modules ota fields server_hostname: _STRING & _NVS & _HTTP_RW & {
   default: "update2.supergreenlab.com"
 }
 
-modules ota fields server_port: _INT16 & _NVS & _HTTP_RW & {
+modules ota fields server_port: _UINT16 & _NVS & _HTTP_RW & {
   nvs key: "OTA_SRV_PRT"
   default: 80
 }
