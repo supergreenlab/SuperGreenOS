@@ -14,6 +14,7 @@ modules motors fields "curve": _INT8 & _NVS & _HTTP_RW & {
 
 modules motor: _MODULE & {
   array_len: len(_motor_conf)
+  init_priority: 90
 }
 
 modules motor fields "\(k)_duty": _INT8 & _HTTP & _INDIR & {

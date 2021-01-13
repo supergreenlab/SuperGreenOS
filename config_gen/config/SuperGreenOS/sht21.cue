@@ -30,5 +30,5 @@ modules sht21 fields "\(k)_vpd": _UINT8 & _HTTP & {
 modules sht21 fields "\(k)_vpd_leaf_offset": _INT8 & _NVS & _HTTP_RW & {
   default: -20
   nvs key: "B_\(k)_VPD_LO"
-} for k, v in _box_conf
+} for k, v in _i2c_conf
 
