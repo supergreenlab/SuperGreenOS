@@ -219,7 +219,7 @@ esp_err_t upload_post_handler(httpd_req_t *req)
 
 	/* Filename cannot be empty or have a trailing '/' */
 	if (strlen(filename) == 0 || filename[strlen(filename) - 1] == '/') {
-		ESP_LOGE(SGO_LOG_EVENT, "Invalid file name : %s", filename);
+		ESP_LOGE(SGO_LOG_EVENT, "@FS Invalid file name : %s", filename);
 		/* Respond with 400 Bad Request */
 		httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Invalid file name");
 		return ESP_FAIL;
@@ -238,7 +238,7 @@ esp_err_t upload_post_handler(httpd_req_t *req)
 
 	/* File cannot be larger than a limit */
 	if (req->content_len > MAX_FILE_SIZE) {
-		ESP_LOGE(SGO_LOG_EVENT, "File too large : %d bytes", req->content_len);
+		ESP_LOGE(SGO_LOG_EVENT, "@FS File too large : %d bytes", req->content_len);
 		/* Respond with 400 Bad Request */
 		httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST,
 				"File size must be less than " MAX_FILE_SIZE_STR " !");
@@ -249,14 +249,14 @@ esp_err_t upload_post_handler(httpd_req_t *req)
 
 	fd = fopen(filepath, "w");
 	if (!fd) {
-		ESP_LOGE(SGO_LOG_EVENT, "Failed to create file : %s", filepath);
+		ESP_LOGE(SGO_LOG_EVENT, "@FS Failed to create file : %s", filepath);
 		/* Respond with 500 Internal Server Error */
 		httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to create file");
 		return ESP_FAIL;
 	}
 
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
-	ESP_LOGI(SGO_LOG_EVENT, "Receiving file : %s...", filename);
+	ESP_LOGI(SGO_LOG_EVENT, "@FS Receiving file : %s...", filename);
 
 	/* Retrieve the pointer to scratch buffer for temporary storage */
 	char *buf = file_buffer;
@@ -268,7 +268,7 @@ esp_err_t upload_post_handler(httpd_req_t *req)
 
 	while (remaining > 0) {
 
-		ESP_LOGI(SGO_LOG_EVENT, "Remaining size : %d", remaining);
+		ESP_LOGI(SGO_LOG_EVENT, "@FS Remaining size : %d", remaining);
 		/* Receive the file part by part into a buffer */
 		if ((received = httpd_req_recv(req, buf, MIN(remaining, FILE_BUFSIZE))) <= 0) {
 			if (received == HTTPD_SOCK_ERR_TIMEOUT) {
@@ -281,7 +281,7 @@ esp_err_t upload_post_handler(httpd_req_t *req)
 			fclose(fd);
 			unlink(filepath);
 
-			ESP_LOGE(SGO_LOG_EVENT, "File reception failed!");
+			ESP_LOGE(SGO_LOG_EVENT, "@FS File reception failed!");
 			/* Respond with 500 Internal Server Error */
 			httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to receive file");
 			return ESP_FAIL;
@@ -294,7 +294,7 @@ esp_err_t upload_post_handler(httpd_req_t *req)
 			fclose(fd);
 			unlink(filepath);
 
-			ESP_LOGE(SGO_LOG_EVENT, "File write failed!");
+			ESP_LOGE(SGO_LOG_EVENT, "@FS File write failed!");
 			/* Respond with 500 Internal Server Error */
 			httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to write file to storage");
 			return ESP_FAIL;
@@ -307,9 +307,9 @@ esp_err_t upload_post_handler(httpd_req_t *req)
 
 	/* Close file upon upload completion */
 	fclose(fd);
-	ESP_LOGI(SGO_LOG_EVENT, "File reception complete");
+	ESP_LOGI(SGO_LOG_EVENT, "@FS File reception complete");
 
-	httpd_resp_sendstr(req, "File uploaded successfully");
+	httpd_resp_sendstr(req, "@FS File uploaded successfully");
 	return ESP_OK;
 }
 
@@ -326,11 +326,11 @@ esp_err_t init_spiffs(void) {
   esp_err_t ret = esp_vfs_spiffs_register(&conf);
   if (ret != ESP_OK) {
     if (ret == ESP_FAIL) {
-      ESP_LOGE(SGO_LOG_EVENT, "Failed to mount or format filesystem");
+      ESP_LOGE(SGO_LOG_EVENT, "@FS Failed to mount or format filesystem");
     } else if (ret == ESP_ERR_NOT_FOUND) {
-      ESP_LOGE(SGO_LOG_EVENT, "Failed to find SPIFFS partition");
+      ESP_LOGE(SGO_LOG_EVENT, "@FS Failed to find SPIFFS partition");
     } else {
-      ESP_LOGE(SGO_LOG_EVENT, "Failed to initialize SPIFFS (%s)", esp_err_to_name(ret));
+      ESP_LOGE(SGO_LOG_EVENT, "@FS Failed to initialize SPIFFS (%s)", esp_err_to_name(ret));
     }
     return ESP_FAIL;
   }
@@ -338,7 +338,7 @@ esp_err_t init_spiffs(void) {
   size_t total = 0, used = 0;
   ret = esp_spiffs_info(NULL, &total, &used);
   if (ret != ESP_OK) {
-    ESP_LOGE(SGO_LOG_EVENT, "Failed to get SPIFFS partition information (%s)", esp_err_to_name(ret));
+    ESP_LOGE(SGO_LOG_EVENT, "@FS Failed to get SPIFFS partition information (%s)", esp_err_to_name(ret));
     return ESP_FAIL;
   }
 

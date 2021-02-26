@@ -64,13 +64,13 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
       ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
       break;
     case MQTT_EVENT_DATA:
-      ESP_LOGI(SGO_LOG_EVENT, "MQTT_EVENT_DATA");
+      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_DATA");
       break;
     case MQTT_EVENT_ERROR:
-      ESP_LOGI(SGO_LOG_EVENT, "MQTT_EVENT_ERROR");
+      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_ERROR");
       break;
     case MQTT_EVENT_ANY:
-      ESP_LOGI(SGO_LOG_EVENT, "MQTT_EVENT_ANY");
+      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_ANY");
       break;
   }
   return ESP_OK;
