@@ -26,6 +26,7 @@
 #include "../log/log.h"
 #include "../kv/kv.h"
 #include "../wifi/wifi.h"
+#include "../cmd/cmd.h"
 
 static esp_mqtt_client_handle_t client;
 
@@ -39,6 +40,15 @@ static uint8_t buf_out[MAX_LOG_QUEUE_ITEM_SIZE] = {0};
 static int CMD_MQTT_DISCONNECTED = 0;
 static int CMD_MQTT_CONNECTED = 1;
 static int CMD_MQTT_FORCE_FLUSH = 2;
+
+static void subscribe_cmd() {
+  char cmd_channel[MAX_KVALUE_SIZE] = {0};
+  char client_id[MAX_KVALUE_SIZE] = {0};
+  get_broker_clientid(client_id, sizeof(client_id) - 1);
+  sprintf(cmd_channel, "%s.cmd", client_id);
+  ESP_LOGI(SGO_LOG_NOSEND, "@MQTT subscribe_cmd %s", cmd_channel);
+  esp_mqtt_client_subscribe(client, cmd_channel, 0);
+}
 
 static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
 {
@@ -65,6 +75,7 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
       break;
     case MQTT_EVENT_DATA:
       ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_DATA");
+      execute_cmd(event->data_len, event->data);
       break;
     case MQTT_EVENT_ERROR:
       ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_ERROR");
@@ -117,6 +128,7 @@ static void mqtt_task(void *param) {
   while(true) {
     if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS)) {
       if (c == CMD_MQTT_CONNECTED) {
+        subscribe_cmd();
         connected = true;
         if (first_connect) {
           first_connect = false;

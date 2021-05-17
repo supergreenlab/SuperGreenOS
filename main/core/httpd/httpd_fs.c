@@ -313,8 +313,8 @@ esp_err_t upload_post_handler(httpd_req_t *req)
 	return ESP_OK;
 }
 
-void init_spiffs(void) {
-  ESP_LOGI(SGO_LOG_EVENT, "Initializing SPIFFS");
+esp_err_t init_spiffs(void) {
+  ESP_LOGI(SGO_LOG_EVENT, "@FS Initializing SPIFFS");
 
   esp_vfs_spiffs_conf_t conf = {
     .base_path = "/spiffs",
