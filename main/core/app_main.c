@@ -25,6 +25,7 @@
 #include "kv/kv.h"
 #include "tester/tester.h"
 #include "cmd/cmd.h"
+#include "term/term.h"
 #include "reboot/reboot.h"
 #include "mqtt/mqtt.h"
 #include "wifi/wifi.h"
@@ -47,6 +48,7 @@ void app_main() {
   init_kv();
   set_n_restarts(get_n_restarts()+1);
   init_cmd();
+  init_term();
 
   init_spiffs();
 

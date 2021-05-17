@@ -21,6 +21,8 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
+#include "esp_console.h"
+#include "argtable3/argtable3.h"
 
 #include "../log/log.h"
 #include "../kv/kv.h"
@@ -40,12 +42,56 @@ void execute_cmd(int length, const char *cmdData) {
   }
 }
 
+static struct {
+  struct arg_int *value;
+  struct arg_end *end;
+} test_args;
+
+static int test(int argc, char **argv) {
+  int nerrors = arg_parse(argc, argv, (void **) &test_args);
+  if (nerrors != 0) {
+    arg_print_errors(stderr, test_args.end, argv[0]);
+    return 1;
+  }
+  ESP_LOGI(SGO_LOG_NOSEND, "@CMD test %d", test_args.value->ival[0]);
+  return 0;
+}
+
 static void cmd_task(void *param) {
+  test_args.value = arg_int0("v", "value", "<n>", "Value");
+  test_args.end = arg_end(2);
+
+  const esp_console_cmd_t test_cmd = {
+    .command = "test",
+    .help = "Test stuff",
+    .hint = NULL,
+    .func = &test,
+    .argtable = &test_args,
+  };
+  ESP_ERROR_CHECK( esp_console_cmd_register(&test_cmd) );
+
+  esp_console_config_t console_config = {
+    .max_cmdline_args = 8,
+    .max_cmdline_length = CMD_LENGTH,
+  };
+  ESP_ERROR_CHECK( esp_console_init(&console_config) );
+
   while (true) {
     if (xQueueReceive(cmd, buf_cmd, portMAX_DELAY) != pdTRUE) {
       continue;
     }
-    ESP_LOGI(SGO_LOG_NOSEND, "@CMD received cmdStr: %s", buf_cmd);
+    int ret;
+    esp_err_t err = esp_console_run(buf_cmd, &ret);
+    if (err == ESP_ERR_NOT_FOUND) {
+      printf("Unrecognized command\n");
+    } else if (err == ESP_ERR_INVALID_ARG) {
+      // command was empty
+    } else if (err == ESP_OK && ret != ESP_OK) {
+      printf("Command returned non-zero error code: 0x%x (%s)\n", ret, esp_err_to_name(ret));
+    } else if (err != ESP_OK) {
+      printf("Internal error: %s\n", esp_err_to_name(err));
+    }
+
     memset(buf_cmd, 0, CMD_LENGTH);
   }
 }
