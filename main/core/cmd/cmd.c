@@ -26,6 +26,7 @@
 
 #include "../log/log.h"
 #include "../kv/kv.h"
+#include "../kv/kv_mapping.h"
 
 #define CMD_LENGTH 256
 
@@ -43,32 +44,119 @@ void execute_cmd(int length, const char *cmdData) {
 }
 
 static struct {
+  struct arg_str *id;
+  struct arg_str *key;
   struct arg_int *value;
   struct arg_end *end;
-} test_args;
+} seti_args;
 
-static int test(int argc, char **argv) {
-  int nerrors = arg_parse(argc, argv, (void **) &test_args);
+static int seti(int argc, char **argv) {
+  int nerrors = arg_parse(argc, argv, (void **) &seti_args);
   if (nerrors != 0) {
-    arg_print_errors(stderr, test_args.end, argv[0]);
+    arg_print_errors(stderr, seti_args.end, argv[0]);
     return 1;
   }
-  ESP_LOGI(SGO_LOG_NOSEND, "@CMD test %d", test_args.value->ival[0]);
+
+  const char *name = seti_args.key->sval[0];
+  const kvi8_mapping *hi8 = get_kvi8_mapping(name);
+  bool is_i8 = hi8 && hi8->setter;
+  const kvui8_mapping *hui8 = get_kvui8_mapping(name);
+  bool is_ui8 = hui8 && hui8->setter;
+  const kvi16_mapping *hi16 = get_kvi16_mapping(name);
+  bool is_i16 = hi16 && hi16->setter;
+  const kvui16_mapping *hui16 = get_kvui16_mapping(name);
+  bool is_ui16 = hui16 && hui16->setter;
+  const kvi32_mapping *hi32 = get_kvi32_mapping(name);
+  bool is_i32 = hi32 && hi32->setter;
+  const kvui32_mapping *hui32 = get_kvui32_mapping(name);
+  bool is_ui32 = hui32 && hui32->setter;
+
+  if (!is_i8 && !is_ui8 && !is_i16 && !is_ui16 && !is_i32 && !is_ui32) {
+    ESP_LOGE(SGO_LOG_EVENT, "@CMD (%s) %s: Key not found", seti_args.id->sval[0], name);
+    return 1;
+  }
+
+  const int value = seti_args.value->ival[0];
+
+  if (is_i8) {
+    hi8->setter((int8_t)value);
+  } else if (is_ui8) {
+    hui8->setter((uint8_t)value);
+  } else if (is_i16) {
+    hi16->setter((int16_t)value);
+  } else if (is_ui16) {
+    hui16->setter((uint16_t)value);
+  } else if (is_i32) {
+    hi32->setter((int32_t)value);
+  } else if (is_ui32) {
+    hui32->setter((uint32_t)value);
+  }
+
+  ESP_LOGI(SGO_LOG_EVENT, "@CMD (%s) done", seti_args.id->sval[0]);
+  return 0;
+}
+
+static struct {
+  struct arg_str *id;
+  struct arg_str *key;
+  struct arg_str *value;
+  struct arg_end *end;
+} sets_args;
+
+static int sets(int argc, char **argv) {
+  int nerrors = arg_parse(argc, argv, (void **) &sets_args);
+  if (nerrors != 0) {
+    arg_print_errors(stderr, sets_args.end, argv[0]);
+    return 1;
+  }
+
+  const char *name = sets_args.key->sval[0];
+
+  const kvs_mapping *h = get_kvs_mapping(name);
+  if (!h || !h->setter) {
+    ESP_LOGE(SGO_LOG_EVENT, "@CMD (%s) %s: Key not found", sets_args.id->sval[0], name);
+    return 1;
+  }
+
+  const char *value = sets_args.value->sval[0];
+  h->setter(value);
+
+  ESP_LOGI(SGO_LOG_EVENT, "@CMD (%s) done", sets_args.id->sval[0]);
   return 0;
 }
 
 static void cmd_task(void *param) {
-  test_args.value = arg_int0("v", "value", "<n>", "Value");
-  test_args.end = arg_end(2);
+  {
+    seti_args.id = arg_str0("i", "id", "<s>", "Id");
+    seti_args.key = arg_str0("k", "key", "<s>", "Key");
+    seti_args.value = arg_int0("v", "value", "<n>", "Value");
+    seti_args.end = arg_end(2);
 
-  const esp_console_cmd_t test_cmd = {
-    .command = "test",
-    .help = "Test stuff",
-    .hint = NULL,
-    .func = &test,
-    .argtable = &test_args,
-  };
-  ESP_ERROR_CHECK( esp_console_cmd_register(&test_cmd) );
+    const esp_console_cmd_t seti_cmd = {
+      .command = "seti",
+      .help = "Sets a kv store key/value as int",
+      .hint = NULL,
+      .func = &seti,
+      .argtable = &seti_args,
+    };
+    ESP_ERROR_CHECK( esp_console_cmd_register(&seti_cmd) );
+  }
+
+  {
+    sets_args.id = arg_str0("i", "id", "<s>", "Id");
+    sets_args.key = arg_str0("k", "key", "<s>", "Key");
+    sets_args.value = arg_str0("v", "value", "<n>", "Value");
+    sets_args.end = arg_end(2);
+
+    const esp_console_cmd_t sets_cmd = {
+      .command = "sets",
+      .help = "Sets a kv store key/value as string",
+      .hint = NULL,
+      .func = &sets,
+      .argtable = &sets_args,
+    };
+    ESP_ERROR_CHECK( esp_console_cmd_register(&sets_cmd) );
+  }
 
   esp_console_config_t console_config = {
     .max_cmdline_args = 8,

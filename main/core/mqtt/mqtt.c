@@ -46,6 +46,7 @@ static void subscribe_cmd() {
   char client_id[MAX_KVALUE_SIZE] = {0};
   get_broker_clientid(client_id, sizeof(client_id) - 1);
   sprintf(cmd_channel, "%s.cmd", client_id);
+
   ESP_LOGI(SGO_LOG_NOSEND, "@MQTT subscribe_cmd %s", cmd_channel);
   esp_mqtt_client_subscribe(client, cmd_channel, 0);
 }

@@ -17,7 +17,7 @@
  */
 
 #include "httpd.h"
-#include "httpd_kv_handlers.h"
+#include "../kv/kv_mapping.h"
 
 #include <stdlib.h>
 
@@ -108,12 +108,12 @@ static esp_err_t geti_handler(httpd_req_t *req) {
   size_t len = 50;
   char name[50] = {0};
   find_str_param(req->uri, "k", name, &len);
-  const kvi8_handler *hi8 = get_kvi8_handler(name);
-  const kvui8_handler *hui8 = get_kvui8_handler(name);
-  const kvi16_handler *hi16 = get_kvi16_handler(name);
-  const kvui16_handler *hui16 = get_kvui16_handler(name);
-  const kvi32_handler *hi32 = get_kvi32_handler(name);
-  const kvui32_handler *hui32 = get_kvui32_handler(name);
+  const kvi8_mapping *hi8 = get_kvi8_mapping(name);
+  const kvui8_mapping *hui8 = get_kvui8_mapping(name);
+  const kvi16_mapping *hi16 = get_kvi16_mapping(name);
+  const kvui16_mapping *hui16 = get_kvui16_mapping(name);
+  const kvi32_mapping *hi32 = get_kvi32_mapping(name);
+  const kvui32_mapping *hui32 = get_kvui32_mapping(name);
 
   if (!hi8 && !hui8 && !hi16 && !hui16 && !hi32 && !hui32) {
     return httpd_resp_send_404(req);
@@ -145,18 +145,18 @@ static esp_err_t seti_handler(httpd_req_t *req) {
   size_t len = 50;
   char name[50] = {0};
   find_str_param(req->uri, "k", name, &len);
-  const kvi8_handler *hi8 = get_kvi8_handler(name);
-  bool is_i8 = hi8 && hi8->handler;
-  const kvui8_handler *hui8 = get_kvui8_handler(name);
-  bool is_ui8 = hui8 && hui8->handler;
-  const kvi16_handler *hi16 = get_kvi16_handler(name);
-  bool is_i16 = hi16 && hi16->handler;
-  const kvui16_handler *hui16 = get_kvui16_handler(name);
-  bool is_ui16 = hui16 && hui16->handler;
-  const kvi32_handler *hi32 = get_kvi32_handler(name);
-  bool is_i32 = hi32 && hi32->handler;
-  const kvui32_handler *hui32 = get_kvui32_handler(name);
-  bool is_ui32 = hui32 && hui32->handler;
+  const kvi8_mapping *hi8 = get_kvi8_mapping(name);
+  bool is_i8 = hi8 && hi8->setter;
+  const kvui8_mapping *hui8 = get_kvui8_mapping(name);
+  bool is_ui8 = hui8 && hui8->setter;
+  const kvi16_mapping *hi16 = get_kvi16_mapping(name);
+  bool is_i16 = hi16 && hi16->setter;
+  const kvui16_mapping *hui16 = get_kvui16_mapping(name);
+  bool is_ui16 = hui16 && hui16->setter;
+  const kvi32_mapping *hi32 = get_kvi32_mapping(name);
+  bool is_i32 = hi32 && hi32->setter;
+  const kvui32_mapping *hui32 = get_kvui32_mapping(name);
+  bool is_ui32 = hui32 && hui32->setter;
 
   if (!is_i8 && !is_ui8 && !is_i16 && !is_ui16 && !is_i32 && !is_ui32) {
     return httpd_resp_send_404(req);
@@ -168,17 +168,17 @@ static esp_err_t seti_handler(httpd_req_t *req) {
   int res = atoi(value);
 
   if (is_i8) {
-    hi8->handler((int8_t)res);
+    hi8->setter((int8_t)res);
   } else if (is_ui8) {
-    hui8->handler((uint8_t)res);
+    hui8->setter((uint8_t)res);
   } else if (is_i16) {
-    hi16->handler((int16_t)res);
+    hi16->setter((int16_t)res);
   } else if (is_ui16) {
-    hui16->handler((uint16_t)res);
+    hui16->setter((uint16_t)res);
   } else if (is_i32) {
-    hi32->handler((int32_t)res);
+    hi32->setter((int32_t)res);
   } else if (is_ui32) {
-    hui32->handler((uint32_t)res);
+    hui32->setter((uint32_t)res);
   }
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_send(req, "OK", 2);
@@ -190,7 +190,7 @@ static esp_err_t getstr_handler(httpd_req_t *req) {
   size_t len = 50;
   find_str_param(req->uri, "k", name, &len);
 
-  const kvs_handler *h = get_kvs_handler(name);
+  const kvs_mapping *h = get_kvs_mapping(name);
   if (!h) {
     return httpd_resp_send_404(req);
   }
@@ -208,8 +208,8 @@ static esp_err_t setstr_handler(httpd_req_t *req) {
   size_t len = 50;
   find_str_param(req->uri, "k", name, &len);
 
-  const kvs_handler *h = get_kvs_handler(name);
-  if (!h || !h->handler) {
+  const kvs_mapping *h = get_kvs_mapping(name);
+  if (!h || !h->setter) {
     return httpd_resp_send_404(req);
   }
 
@@ -219,7 +219,7 @@ static esp_err_t setstr_handler(httpd_req_t *req) {
   find_str_param(req->uri, "v", raw, &len);
   url_decode(raw, value);
 
-  h->handler(value);
+  h->setter(value);
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_send(req, "OK", 2);
   return ESP_OK;

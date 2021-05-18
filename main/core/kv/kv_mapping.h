@@ -16,73 +16,73 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef HTTPD_KV_HANDLERS_H_
-#define HTTPD_KV_HANDLERS_H_
+#ifndef KV_MAPPING_H_
+#define KV_MAPPING_H_
 
 #include <string.h>
 #include <stdint.h>
 
 typedef struct {
   const char *name;
-  void (*handler)(int8_t);
+  void (*setter)(int8_t);
   int8_t (*getter)();
-} kvi8_handler;
+} kvi8_mapping;
 
-extern const kvi8_handler kvi8_handlers[];
-const kvi8_handler *get_kvi8_handler(const char *name);
+extern const kvi8_mapping kvi8_mappings[];
+const kvi8_mapping *get_kvi8_mapping(const char *name);
 
 typedef struct {
   const char *name;
-  void (*handler)(uint8_t);
+  void (*setter)(uint8_t);
   uint8_t (*getter)();
-} kvui8_handler;
+} kvui8_mapping;
 
-extern const kvui8_handler kvui8_handlers[];
-const kvui8_handler *get_kvui8_handler(const char *name);
+extern const kvui8_mapping kvui8_mappings[];
+const kvui8_mapping *get_kvui8_mapping(const char *name);
 
 typedef struct {
   const char *name;
-  void (*handler)(int16_t);
+  void (*setter)(int16_t);
   int16_t (*getter)();
-} kvi16_handler;
+} kvi16_mapping;
 
-extern const kvi16_handler kvi16_handlers[];
-const kvi16_handler *get_kvi16_handler(const char *name);
+extern const kvi16_mapping kvi16_mappings[];
+const kvi16_mapping *get_kvi16_mapping(const char *name);
 
 typedef struct {
   const char *name;
-  void (*handler)(uint16_t);
+  void (*setter)(uint16_t);
   uint16_t (*getter)();
-} kvui16_handler;
+} kvui16_mapping;
 
-extern const kvui16_handler kvui16_handlers[];
-const kvui16_handler *get_kvui16_handler(const char *name);
+extern const kvui16_mapping kvui16_mappings[];
+const kvui16_mapping *get_kvui16_mapping(const char *name);
 
 typedef struct {
   const char *name;
-  void (*handler)(int32_t);
+  void (*setter)(int32_t);
   int32_t (*getter)();
-} kvi32_handler;
+} kvi32_mapping;
 
-extern const kvi32_handler kvi32_handlers[];
-const kvi32_handler *get_kvi32_handler(const char *name);
+extern const kvi32_mapping kvi32_mappings[];
+const kvi32_mapping *get_kvi32_mapping(const char *name);
 
 typedef struct {
   const char *name;
-  void (*handler)(uint32_t);
+  void (*setter)(uint32_t);
   uint32_t (*getter)();
-} kvui32_handler;
+} kvui32_mapping;
 
-extern const kvui32_handler kviui32_handlers[];
-const kvui32_handler *get_kvui32_handler(const char *name);
+extern const kvui32_mapping kviui32_mappings[];
+const kvui32_mapping *get_kvui32_mapping(const char *name);
 
 typedef struct {
   const char *name;
-  void (*handler)(const char *);
+  void (*setter)(const char *);
   void (*getter)(char *, size_t);
-} kvs_handler;
+} kvs_mapping;
 
-extern const kvs_handler kvs_handlers[];
-const kvs_handler *get_kvs_handler(const char *name);
+extern const kvs_mapping kvs_mappings[];
+const kvs_mapping *get_kvs_mapping(const char *name);
 
 #endif
