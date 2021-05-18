@@ -54,6 +54,7 @@ static int seti(int argc, char **argv) {
   int nerrors = arg_parse(argc, argv, (void **) &seti_args);
   if (nerrors != 0) {
     arg_print_errors(stderr, seti_args.end, argv[0]);
+    ESP_LOGE(SGO_LOG_EVENT, "@CMD (%s) parameter error", seti_args.id->sval[0]);
     return 1;
   }
 
@@ -107,6 +108,7 @@ static int sets(int argc, char **argv) {
   int nerrors = arg_parse(argc, argv, (void **) &sets_args);
   if (nerrors != 0) {
     arg_print_errors(stderr, sets_args.end, argv[0]);
+    ESP_LOGE(SGO_LOG_EVENT, "@CMD (%s) parameter error", seti_args.id->sval[0]);
     return 1;
   }
 
@@ -127,9 +129,9 @@ static int sets(int argc, char **argv) {
 
 static void cmd_task(void *param) {
   {
-    seti_args.id = arg_str0("i", "id", "<s>", "Id");
-    seti_args.key = arg_str0("k", "key", "<s>", "Key");
-    seti_args.value = arg_int0("v", "value", "<n>", "Value");
+    seti_args.id = arg_str1("i", "id", "<s>", "Id");
+    seti_args.key = arg_str1("k", "key", "<s>", "Key");
+    seti_args.value = arg_int1("v", "value", "<n>", "Value");
     seti_args.end = arg_end(2);
 
     const esp_console_cmd_t seti_cmd = {
@@ -143,9 +145,9 @@ static void cmd_task(void *param) {
   }
 
   {
-    sets_args.id = arg_str0("i", "id", "<s>", "Id");
-    sets_args.key = arg_str0("k", "key", "<s>", "Key");
-    sets_args.value = arg_str0("v", "value", "<n>", "Value");
+    sets_args.id = arg_str1("i", "id", "<s>", "Id");
+    sets_args.key = arg_str1("k", "key", "<s>", "Key");
+    sets_args.value = arg_str1("v", "value", "<n>", "Value");
     sets_args.end = arg_end(2);
 
     const esp_console_cmd_t sets_cmd = {
