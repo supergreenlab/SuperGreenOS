@@ -72,7 +72,7 @@ static int seti(int argc, char **argv) {
   bool is_ui32 = hui32 && hui32->setter;
 
   if (!is_i8 && !is_ui8 && !is_i16 && !is_ui16 && !is_i32 && !is_ui32) {
-    ESP_LOGE(SGO_LOG_EVENT, "@CMD (%s) %s: Key not found", seti_args.id->sval[0], name);
+    ESP_LOGE(SGO_LOG_EVENT, "@CMD (%s) %s: Key not found or readonly", seti_args.id->sval[0], name);
     return 1;
   }
 
@@ -114,7 +114,7 @@ static int sets(int argc, char **argv) {
 
   const kvs_mapping *h = get_kvs_mapping(name);
   if (!h || !h->setter) {
-    ESP_LOGE(SGO_LOG_EVENT, "@CMD (%s) %s: Key not found", sets_args.id->sval[0], name);
+    ESP_LOGE(SGO_LOG_EVENT, "@CMD (%s) %s: Key not found or readonly", sets_args.id->sval[0], name);
     return 1;
   }
 
