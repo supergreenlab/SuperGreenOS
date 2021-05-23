@@ -21,6 +21,13 @@
 #include "../kv/kv.h"
 #include "../log/log.h"
 
+static bool auth_failed(httpd_req_t *req) {
+  httpd_resp_set_hdr(req, "WWW-Authenticate", "Basic realm=\"Please login\"");
+  httpd_resp_set_status(req, "401");
+  httpd_resp_send(req, "NOK", 3);
+  return false;
+}
+
 bool auth_request(httpd_req_t *req) {
   if (!hasstr(HTTPD_AUTH)) {
     return true;
@@ -34,15 +41,10 @@ bool auth_request(httpd_req_t *req) {
 
   char reqAuth[MAX_KVALUE_SIZE] = {0};
   if(httpd_req_get_hdr_value_str(req, "Authorization", reqAuth, MAX_KVALUE_SIZE) != ESP_OK) {
-    httpd_resp_set_hdr(req, "WWW-Authenticate", "Basic realm=\"Please login\"");
-    httpd_resp_set_status(req, "401");
-    httpd_resp_send(req, "NOK", 3);
-    return false;
+    return auth_failed(req);
   }
   if (strlen(reqAuth) != 6 + strlen(auth) || strncmp(auth, &(reqAuth[6]), MAX_KVALUE_SIZE-6) != 0) {
-    httpd_resp_set_status(req, "403");
-    httpd_resp_send(req, "NOK", 3);
-    return false;
+    return auth_failed(req);
   }
   return true;
 }
