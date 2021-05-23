@@ -98,7 +98,7 @@ static void find_str_param(const char *uri, const char *name, char *out, size_t 
     return;
   }
   int i = 0;
-  for (i = 0; uri[i] && i < *len && !IS_URI_SEP(uri[i]); ++i) {
+  for (i = 0; uri[i] && i < (*len-1) && !IS_URI_SEP(uri[i]); ++i) {
     out[i] = uri[i];
   }
   *len = i;
@@ -225,6 +225,19 @@ static esp_err_t setstr_handler(httpd_req_t *req) {
   return ESP_OK;
 }
 
+static esp_err_t setsigningkey_handler(httpd_req_t *req) {
+  size_t len = 33;
+  char key[33] = {0};
+  find_str_param(req->uri, "key", key, &len);
+
+  setstr(SIGNING_KEY, key);
+
+  httpd_resp_send(req, "OK", 2);
+
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+  return ESP_OK;
+}
+
 static esp_err_t option_handler(httpd_req_t *req) {
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_set_hdr(req, "Access-Control-Allow-Methods", "GET,POST,OPTIONS");
@@ -277,6 +290,13 @@ httpd_uri_t uri_setstr = {
   .user_ctx = NULL
 };
 
+httpd_uri_t uri_setsigningkey = {
+  .uri      = "/signing",
+  .method   = HTTP_POST,
+  .handler  = setsigningkey_handler,
+  .user_ctx = NULL
+};
+
 httpd_uri_t uri_get_ip = {
   .uri      = "/myip",
   .method   = HTTP_GET,
@@ -312,12 +332,14 @@ static httpd_handle_t start_webserver(void) {
   httpd_config_t config = HTTPD_DEFAULT_CONFIG();
   config.lru_purge_enable = true;
   config.uri_match_fn = httpd_uri_match_wildcard;
+  config.max_uri_handlers = 9;
 
   if (httpd_start(&server, &config) == ESP_OK) {
     httpd_register_uri_handler(server, &uri_geti);
     httpd_register_uri_handler(server, &uri_seti);
     httpd_register_uri_handler(server, &uri_getstr);
     httpd_register_uri_handler(server, &uri_setstr);
+    httpd_register_uri_handler(server, &uri_setsigningkey);
     httpd_register_uri_handler(server, &uri_get_ip);
     httpd_register_uri_handler(server, &file_download);
 		httpd_register_uri_handler(server, &file_upload);

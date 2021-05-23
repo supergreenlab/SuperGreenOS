@@ -22,6 +22,8 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include "esp_log.h"
+#include "sodium/utils.h"
+#include "mbedtls/sha256.h"
 
 #include "../log/log.h"
 #include "../kv/kv.h"
@@ -76,7 +78,44 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
       break;
     case MQTT_EVENT_DATA:
       ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_DATA");
-      execute_cmd(event->data_len, event->data);
+      if (event->data_len > MAX_CMD_LENGTH + 65) {
+        ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command string can't be larger that %d with signature", MAX_CMD_LENGTH + 65);
+        break;
+      }
+      if (event->data_len < 66) {
+        ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command disabled: missing signign key");
+        break;
+      }
+      if (hasstr(SIGNING_KEY)) {
+        char signingKey[33] = {0};
+        getstr(SIGNING_KEY, signingKey, 33);
+        char hash[65] = {0};
+        strncpy(hash, event->data, 64);
+        char cmd[MAX_CMD_LENGTH + 1] = {0};
+        strncpy(cmd, &(event->data[65]), event->data_len - 65);
+
+        char cmdSeeded[MAX_CMD_LENGTH + 33 + 1] = {0};
+        uint8_t localHashBin[32] = {0};
+        sprintf(cmdSeeded, "%s:%s", signingKey, cmd);
+
+        ESP_LOGI(SGO_LOG_EVENT, "@MQTT Hash: %s - Cmd: %s", hash, cmd);
+        mbedtls_sha256_context sha256_ctx;
+        mbedtls_sha256_init(&sha256_ctx);
+        mbedtls_sha256_starts_ret(&sha256_ctx, false);
+        mbedtls_sha256_update_ret(&sha256_ctx, (uint8_t *)cmdSeeded, strlen(cmdSeeded));
+        mbedtls_sha256_finish_ret(&sha256_ctx, localHashBin);
+
+        char localHash[65] = {0};
+        sodium_bin2hex(localHash, sizeof(localHash), localHashBin, sizeof(localHashBin));
+        if (strncmp(localHash, hash, 64) != 0) {
+          ESP_LOGI(SGO_LOG_EVENT, "@MQTT Command signing check failed.");
+          break;
+        }
+
+        execute_cmd(event->data_len - 65, cmd);
+      } else {
+        ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command disabled: missing signign key");
+      }
       break;
     case MQTT_EVENT_ERROR:
       ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_ERROR");

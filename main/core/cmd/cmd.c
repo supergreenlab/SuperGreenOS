@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "cmd.h"
+
 #include <string.h>
 
 #include "freertos/FreeRTOS.h"
@@ -28,16 +30,14 @@
 #include "../kv/kv.h"
 #include "../kv/kv_mapping.h"
 
-#define CMD_LENGTH 256
-
 static QueueHandle_t cmd;
-static char buf_cmd[CMD_LENGTH] = {0};
+static char buf_cmd[MAX_CMD_LENGTH] = {0};
 
 void execute_cmd(int length, const char *cmdData) {
-  if (length > CMD_LENGTH-1) {
+  if (length > MAX_CMD_LENGTH-1) {
     ESP_LOGE(SGO_LOG_EVENT, "@CMD Sending command failed, too long.");
   } else {
-    char cmdStr[CMD_LENGTH] = {0};
+    char cmdStr[MAX_CMD_LENGTH] = {0};
     memcpy(cmdStr, cmdData, length);
     xQueueSend(cmd, cmdStr, 0);
   }
@@ -162,7 +162,7 @@ static void cmd_task(void *param) {
 
   esp_console_config_t console_config = {
     .max_cmdline_args = 8,
-    .max_cmdline_length = CMD_LENGTH,
+    .max_cmdline_length = MAX_CMD_LENGTH,
   };
   ESP_ERROR_CHECK( esp_console_init(&console_config) );
 
@@ -182,14 +182,14 @@ static void cmd_task(void *param) {
       printf("Internal error: %s\n", esp_err_to_name(err));
     }
 
-    memset(buf_cmd, 0, CMD_LENGTH);
+    memset(buf_cmd, 0, MAX_CMD_LENGTH);
   }
 }
 
 void init_cmd() {
   ESP_LOGI(SGO_LOG_EVENT, "@CMD Intializing CMD task");
 
-  cmd = xQueueCreate(1, CMD_LENGTH);
+  cmd = xQueueCreate(1, MAX_CMD_LENGTH);
   if (cmd == NULL) {
     ESP_LOGE(SGO_LOG_EVENT, "@CMD Unable to create cmd queue");
   }

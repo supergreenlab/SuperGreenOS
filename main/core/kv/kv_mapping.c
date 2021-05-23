@@ -1536,6 +1536,14 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .name = "HTTPD_AUTH",
+    
+    .setter = internal_set_httpd_auth,
+    
+    .getter = get_httpd_auth,
+  },
+
+  {
     .name = "WIFI_SSID",
     
     .setter = internal_set_wifi_ssid,

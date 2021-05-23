@@ -14,6 +14,7 @@
                     },
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -274,6 +275,7 @@
                     },
                     "default": "mqtt://sink2.supergreenlab.com:1883",
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "nosend": false,
                     "helper": "",
@@ -300,6 +302,7 @@
                     },
                     "default": "",
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "nosend": false,
                     "helper": "",
@@ -326,6 +329,7 @@
                     },
                     "default": "",
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "nosend": false,
                     "helper": "",
@@ -444,6 +448,7 @@
                     },
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -472,6 +477,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -517,6 +523,7 @@
                         "manual": false
                     },
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -545,6 +552,7 @@
                         "manual": false
                     },
                     "write_cb": false,
+                    "remote": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -573,7 +581,11 @@
                         "manual": false
                     },
                     "write_cb": false,
+<<<<<<< HEAD
                     "default": "198.211.123.192",
+=======
+                    "remote": false,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -599,7 +611,11 @@
                         "manual": false
                     },
                     "write_cb": false,
+<<<<<<< HEAD
                     "default": "update2.supergreenlab.com",
+=======
+                    "remote": false,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -625,7 +641,11 @@
                         "manual": false
                     },
                     "write_cb": false,
+<<<<<<< HEAD
                     "default": 80,
+=======
+                    "remote": false,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -653,7 +673,11 @@
                         "manual": false
                     },
                     "write_cb": false,
+<<<<<<< HEAD
                     "default": "/ControllerV3",
+=======
+                    "remote": false,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -869,6 +893,7 @@
                     },
                     "default": 18,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -897,6 +922,7 @@
                     },
                     "default": 21,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -925,6 +951,7 @@
                     },
                     "default": 21,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -953,6 +980,7 @@
                     },
                     "default": 5,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -981,6 +1009,7 @@
                     },
                     "default": 19,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -1009,6 +1038,7 @@
                     },
                     "default": 19,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -1037,6 +1067,7 @@
                     },
                     "default": 1,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -1065,6 +1096,7 @@
                     },
                     "default": 1,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -1093,6 +1125,7 @@
                     },
                     "default": 1,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -1121,6 +1154,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -1149,6 +1183,7 @@
                     },
                     "default": 1,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -1177,6 +1212,7 @@
                     },
                     "default": 1,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -1262,7 +1298,35 @@
             "required": false,
 =======
             "field_prefix": "httpd",
-            "fields": {},
+            "fields": {
+                "auth": {
+                    "name": "httpd_auth",
+                    "nvs": {
+                        "key": "AUTH_HDR",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": "",
+                    "write_cb": false,
+                    "remote": false,
+                    "type": "string",
+                    "nosend": true,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "suffix": "auth",
+                    "caps_name": "HTTPD_AUTH"
+                }
+            },
             "enabled": true,
             "init": true,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
@@ -2001,7 +2065,11 @@
                         "manual": false
                     },
                     "write_cb": false,
+<<<<<<< HEAD
                     "default": 0,
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -2035,6 +2103,7 @@
                     "type": "integer",
 =======
                     "write_cb": true,
+                    "remote": true,
                     "type": "string",
                     "nosend": true,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
@@ -2073,11 +2142,16 @@
                         "enable": true,
                         "manual": false
                     },
+<<<<<<< HEAD
                     "write_cb": false,
 <<<<<<< HEAD
                     "default": 2,
                     "type": "integer",
 =======
+=======
+                    "write_cb": true,
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "string",
                     "nosend": true,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
@@ -2119,9 +2193,13 @@
                     },
                     "write_cb": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "default": 0,
                     "type": "integer",
 =======
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "string",
                     "nosend": true,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
@@ -2194,9 +2272,16 @@
                         "enable": true,
                         "manual": false
                     },
+<<<<<<< HEAD
                     "write_cb": true,
                     "default": 0,
                     "type": "integer",
+=======
+                    "write_cb": false,
+                    "remote": true,
+                    "type": "string",
+                    "nosend": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
@@ -2229,9 +2314,13 @@
                     "default": "supergreencontroller",
                     "write_cb": true,
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "default": 0,
                     "type": "integer",
 =======
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "string",
                     "nosend": false,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
@@ -2275,6 +2364,7 @@
                         "manual": false
                     },
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "nosend": false,
                     "helper": "",
@@ -2315,6 +2405,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2362,6 +2453,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2391,6 +2483,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2420,6 +2513,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2450,6 +2544,7 @@
                     },
                     "default": 1,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2478,6 +2573,7 @@
                     },
                     "default": 2,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2506,6 +2602,7 @@
                     },
                     "default": 3,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2534,6 +2631,7 @@
                     },
                     "default": 4,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2562,6 +2660,7 @@
                     },
                     "default": 16,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2590,6 +2689,7 @@
                     },
                     "default": 17,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2618,6 +2718,7 @@
                     },
                     "default": 40000,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2646,6 +2747,7 @@
                     },
                     "default": 40000,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2674,6 +2776,7 @@
                     },
                     "default": 40000,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2722,6 +2825,7 @@
                     },
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2750,6 +2854,7 @@
                     },
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2778,6 +2883,7 @@
                     },
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2819,6 +2925,7 @@
                     },
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "Blower control for box#1",
@@ -2848,6 +2955,7 @@
                     },
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "Blower control for box#2",
@@ -2877,6 +2985,7 @@
                     },
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "Blower control for box#3",
@@ -2906,6 +3015,7 @@
                     },
                     "default": 8,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2934,6 +3044,7 @@
                     },
                     "default": 8,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2962,6 +3073,7 @@
                     },
                     "default": 8,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -2990,6 +3102,7 @@
                     },
                     "default": 30,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3018,6 +3131,7 @@
                     },
                     "default": 30,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3061,6 +3175,7 @@
                     },
                     "default": 30,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3089,6 +3204,7 @@
                     },
                     "default": 21,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3117,6 +3233,7 @@
                     },
                     "default": 21,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3145,6 +3262,7 @@
                     },
                     "default": 21,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3173,7 +3291,11 @@
                     },
                     "default": 30,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3217,7 +3339,11 @@
                     },
                     "default": 30,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3261,7 +3387,11 @@
                     },
                     "default": 30,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3304,6 +3434,7 @@
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3343,6 +3474,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3428,6 +3560,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3471,6 +3604,7 @@
                     },
                     "default": 1,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3511,9 +3645,13 @@
                     "default": 2,
                     "write_cb": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "default": 0,
 =======
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3549,6 +3687,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
                     "nosend": false,
@@ -3596,10 +3735,14 @@
                     "default": 3,
                     "write_cb": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "default": 0,
                     "type": "integer",
                     "helper": "SCD30 temperature on port #1",
 =======
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3644,6 +3787,7 @@
                     },
                     "default": 3,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
 <<<<<<< HEAD
                     "helper": "SCD30 temperature on port #2",
@@ -3689,6 +3833,7 @@
                     },
                     "default": 3,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
 <<<<<<< HEAD
                     "helper": "SCD30 temperature on port #3",
@@ -3734,6 +3879,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
 <<<<<<< HEAD
                     "helper": "SCD30 temperature on port #1",
@@ -3777,6 +3923,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
 <<<<<<< HEAD
                     "helper": "SCD30 temperature on port #2",
@@ -3823,10 +3970,14 @@
                     "default": 0,
                     "write_cb": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "default": 0,
                     "type": "integer",
                     "helper": "SCD30 temperature on port #3",
 =======
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3870,10 +4021,14 @@
                     "default": 21,
                     "write_cb": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "default": 0,
                     "type": "integer",
                     "helper": "SCD30 humidity on port #1",
 =======
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -3915,6 +4070,7 @@
                     },
                     "default": 21,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
 <<<<<<< HEAD
                     "helper": "SCD30 humidity on port #2",
@@ -3957,6 +4113,7 @@
                     },
                     "default": 21,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
 <<<<<<< HEAD
                     "helper": "SCD30 humidity on port #3",
@@ -3999,6 +4156,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
 <<<<<<< HEAD
                     "helper": "SCD30 humidity on port #1",
@@ -4041,6 +4199,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
 <<<<<<< HEAD
                     "helper": "SCD30 humidity on port #2",
@@ -4086,10 +4245,14 @@
                     "default": 0,
                     "write_cb": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "default": 0,
                     "type": "integer",
                     "helper": "SCD30 humidity on port #3",
 =======
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4148,7 +4311,11 @@
                     },
                     "default": 0,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4192,7 +4359,11 @@
                     },
                     "default": 0,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4236,7 +4407,11 @@
                     },
                     "default": 0,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4293,7 +4468,11 @@
                     },
                     "default": 0,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4340,6 +4519,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
@@ -4394,6 +4574,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4424,6 +4605,7 @@
                     },
                     "default": 1,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4452,6 +4634,7 @@
                     },
                     "default": 2,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4512,6 +4695,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4559,6 +4743,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4608,6 +4793,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4657,6 +4843,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4706,6 +4893,7 @@
                     },
                     "default": 1,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
@@ -4753,6 +4941,7 @@
                     },
                     "default": 2,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
@@ -4800,6 +4989,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
@@ -4848,6 +5038,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4897,6 +5088,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4943,7 +5135,11 @@
                     },
                     "default": 0,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -4991,7 +5187,11 @@
                     },
                     "default": 1,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5036,7 +5236,11 @@
                     },
                     "default": 2,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5081,7 +5285,11 @@
                     },
                     "default": 0,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5125,7 +5333,11 @@
                     },
                     "default": 0,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5170,7 +5382,11 @@
                     },
                     "default": 0,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5230,7 +5446,11 @@
                     },
                     "default": 0,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5303,7 +5523,11 @@
                     },
                     "default": 23,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5347,7 +5571,11 @@
                     },
                     "default": 22,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5391,7 +5619,11 @@
                     },
                     "default": 10,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5447,7 +5679,11 @@
                     "default": 33,
 =======
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5491,7 +5727,11 @@
                     "default": 25,
 =======
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5535,7 +5775,11 @@
                         "manual": true
                     },
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5580,6 +5824,7 @@
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "Box #1 timer output",
@@ -5624,6 +5869,7 @@
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "Box #2 timer output",
@@ -5668,7 +5914,11 @@
                     },
                     "default": 0,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "Box #3 timer output",
@@ -5722,9 +5972,13 @@
                     },
                     "write_cb": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "default": 27,
 =======
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5766,9 +6020,13 @@
                     "default": "SuperGreenController",
                     "write_cb": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "default": 14,
                     "type": "integer",
 =======
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "string",
                     "nosend": false,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
@@ -5826,6 +6084,7 @@
 =======
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "Watering control for box#1",
@@ -5867,6 +6126,7 @@
 =======
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "Watering control for box#2",
@@ -5908,6 +6168,7 @@
 =======
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "Watering control for box#3",
@@ -5947,7 +6208,11 @@
 =======
                     "default": 2880,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -5986,7 +6251,11 @@
 =======
                     "default": 2880,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6025,7 +6294,11 @@
 =======
                     "default": 2880,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6064,7 +6337,11 @@
 =======
                     "default": 600,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6103,7 +6380,11 @@
 =======
                     "default": 600,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6142,7 +6423,11 @@
 =======
                     "default": 600,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6181,7 +6466,11 @@
 =======
                     "default": 0,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6220,7 +6509,11 @@
 =======
                     "default": 0,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6259,7 +6552,11 @@
 =======
                     "default": 0,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6298,7 +6595,11 @@
 =======
                     "default": 20,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6337,7 +6638,11 @@
 =======
                     "default": 20,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6376,7 +6681,11 @@
 =======
                     "default": 20,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6427,6 +6736,7 @@
                     },
                     "default": 1,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6481,7 +6791,11 @@
 =======
                     "default": 0,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6520,7 +6834,11 @@
 =======
                     "default": 0,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6559,7 +6877,11 @@
 =======
                     "default": 0,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6616,7 +6938,11 @@
 =======
                     "default": 33,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6655,7 +6981,11 @@
 =======
                     "default": 25,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6694,7 +7024,11 @@
 =======
                     "default": 26,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6732,6 +7066,7 @@
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6771,6 +7106,7 @@
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6810,6 +7146,7 @@
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
                     "default": 0,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6849,7 +7186,11 @@
 =======
                     "default": 27,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6889,7 +7230,11 @@
 =======
                     "default": 14,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6929,7 +7274,11 @@
 =======
                     "default": 12,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -6969,7 +7318,11 @@
 =======
                     "default": -1,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7009,7 +7362,11 @@
 =======
                     "default": -1,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7049,7 +7406,11 @@
 =======
                     "default": -1,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7090,7 +7451,11 @@
 =======
                     "default": -1,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7129,7 +7494,11 @@
 =======
                     "default": -1,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7168,7 +7537,11 @@
 =======
                     "default": -1,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7207,7 +7580,11 @@
 =======
                     "default": 100,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7246,7 +7623,11 @@
 =======
                     "default": 100,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7285,7 +7666,11 @@
 =======
                     "default": 100,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7324,7 +7709,11 @@
 =======
                     "default": 100,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7363,7 +7752,11 @@
 =======
                     "default": 100,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7402,7 +7795,11 @@
 =======
                     "default": 100,
                     "write_cb": true,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7441,7 +7838,11 @@
 =======
                     "default": 1,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7480,7 +7881,11 @@
 =======
                     "default": 1,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7519,7 +7924,11 @@
 =======
                     "default": 1,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7576,7 +7985,11 @@
 =======
                     "default": 1,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7614,7 +8027,11 @@
 =======
                     "default": 1,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7652,7 +8069,11 @@
 =======
                     "default": 1,
                     "write_cb": false,
+<<<<<<< HEAD
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
+=======
+                    "remote": true,
+>>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7699,6 +8120,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "SHT21 temperature on port #1",
@@ -7728,6 +8150,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "SHT21 temperature on port #2",
@@ -7757,6 +8180,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "SHT21 temperature on port #3",
@@ -7786,6 +8210,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "SHT21 humidity on port #1",
@@ -7815,6 +8240,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "SHT21 humidity on port #2",
@@ -7844,6 +8270,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "SHT21 humidity on port #3",
@@ -7873,6 +8300,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "SHT21 humidity on port #1",
@@ -7901,6 +8329,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "SHT21 humidity on port #2",
@@ -7929,6 +8358,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "SHT21 humidity on port #3",
@@ -7959,6 +8389,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -7986,6 +8417,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -8013,6 +8445,7 @@
                     },
                     "default": 0,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -8042,6 +8475,7 @@
                     },
                     "default": -20,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -8070,6 +8504,7 @@
                     },
                     "default": -20,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",
@@ -8098,6 +8533,7 @@
                     },
                     "default": -20,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "nosend": false,
                     "helper": "",

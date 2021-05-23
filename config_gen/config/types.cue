@@ -29,6 +29,7 @@ _I2C_MODULE: _MODULE & {
 
 _FIELD: {
   type: "string" | "integer"
+  remote: bool | *true
   nosend: bool | *false
   helper: string | *""
   dump_freq: int | *60

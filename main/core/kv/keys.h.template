@@ -19,6 +19,8 @@
 #ifndef KEYS_H_
 #define KEYS_H_
 
+#define SIGNING_KEY "SIGN_KEY"
+
 /*
  * [GENERATED]
  */

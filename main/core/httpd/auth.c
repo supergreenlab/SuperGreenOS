@@ -16,12 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CMD_H_
-#define CMD_H_
+#include <esp_http_server.h>
 
-#define MAX_CMD_LENGTH 256
-
-void init_cmd();
-void execute_cmd(int length, const char *cmd);
-
-#endif
+bool auth_request(httpd_req_t *req) {
+  return true;
+}
