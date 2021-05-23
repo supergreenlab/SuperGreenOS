@@ -19,7 +19,10 @@
 #ifndef HTTPD_H_
 #define HTTPD_H_
 
+#include <esp_http_server.h>
+
 void init_httpd();
 void init_spiffs(void);
+bool auth_request(httpd_req_t *req);
 
 #endif

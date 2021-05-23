@@ -18,6 +18,31 @@
 
 #include <esp_http_server.h>
 
+#include "../kv/kv.h"
+#include "../log/log.h"
+
 bool auth_request(httpd_req_t *req) {
+  if (!hasstr(HTTPD_AUTH)) {
+    return true;
+  }
+  char auth[MAX_KVALUE_SIZE] = {0};
+  getstr(HTTPD_AUTH, auth, MAX_KVALUE_SIZE);
+
+  if (strlen(auth) == 0) {
+    return true;
+  }
+
+  char reqAuth[MAX_KVALUE_SIZE] = {0};
+  if(httpd_req_get_hdr_value_str(req, "Authorization", reqAuth, MAX_KVALUE_SIZE) != ESP_OK) {
+    httpd_resp_set_hdr(req, "WWW-Authenticate", "Basic realm=\"Please login\"");
+    httpd_resp_set_status(req, "401");
+    httpd_resp_send(req, "NOK", 3);
+    return false;
+  }
+  if (strlen(reqAuth) != 6 + strlen(auth) || strncmp(auth, &(reqAuth[6]), MAX_KVALUE_SIZE-6) != 0) {
+    httpd_resp_set_status(req, "403");
+    httpd_resp_send(req, "NOK", 3);
+    return false;
+  }
   return true;
 }

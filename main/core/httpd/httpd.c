@@ -30,6 +30,7 @@
 
 #define IS_URI_SEP(c) (c == '?' || c == '&' || c == '=')
 
+
 esp_err_t download_get_handler(httpd_req_t *req);
 esp_err_t upload_post_handler(httpd_req_t *req);
 
@@ -105,6 +106,9 @@ static void find_str_param(const char *uri, const char *name, char *out, size_t 
 }
 
 static esp_err_t geti_handler(httpd_req_t *req) {
+  if (auth_request(req) == false) {
+    return 0;
+  }
   size_t len = 50;
   char name[50] = {0};
   find_str_param(req->uri, "k", name, &len);
@@ -142,6 +146,9 @@ static esp_err_t geti_handler(httpd_req_t *req) {
 }
 
 static esp_err_t seti_handler(httpd_req_t *req) {
+  if (auth_request(req) == false) {
+    return 0;
+  }
   size_t len = 50;
   char name[50] = {0};
   find_str_param(req->uri, "k", name, &len);
@@ -186,6 +193,9 @@ static esp_err_t seti_handler(httpd_req_t *req) {
 }
 
 static esp_err_t getstr_handler(httpd_req_t *req) {
+  if (auth_request(req) == false) {
+    return 0;
+  }
   char name[50] = {0};
   size_t len = 50;
   find_str_param(req->uri, "k", name, &len);
@@ -204,6 +214,9 @@ static esp_err_t getstr_handler(httpd_req_t *req) {
 }
 
 static esp_err_t setstr_handler(httpd_req_t *req) {
+  if (auth_request(req) == false) {
+    return 0;
+  }
   char name[50] = {0};
   size_t len = 50;
   find_str_param(req->uri, "k", name, &len);
@@ -226,6 +239,9 @@ static esp_err_t setstr_handler(httpd_req_t *req) {
 }
 
 static esp_err_t setsigningkey_handler(httpd_req_t *req) {
+  if (auth_request(req) == false) {
+    return 0;
+  }
   size_t len = 33;
   char key[33] = {0};
   find_str_param(req->uri, "key", key, &len);
@@ -239,6 +255,9 @@ static esp_err_t setsigningkey_handler(httpd_req_t *req) {
 }
 
 static esp_err_t option_handler(httpd_req_t *req) {
+  if (auth_request(req) == false) {
+    return 0;
+  }
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
   httpd_resp_set_hdr(req, "Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   httpd_resp_set_hdr(req, "Access-Control-Allow-Headers", "Content-Type,Access-Control-Allow-Origin");
@@ -247,6 +266,9 @@ static esp_err_t option_handler(httpd_req_t *req) {
 }
 
 static esp_err_t get_ip_handler(httpd_req_t *req) {
+  if (auth_request(req) == false) {
+    return 0;
+  }
   int socket = httpd_req_to_sockfd(req);
 
   struct sockaddr_in6 destAddr;

@@ -83,7 +83,7 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
         break;
       }
       if (event->data_len < 66) {
-        ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command disabled: missing signign key");
+        ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command disabled: missing signing key");
         break;
       }
       if (hasstr(SIGNING_KEY)) {

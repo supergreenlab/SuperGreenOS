@@ -19,111 +19,6 @@
           
             {
               "core": true,
-              "name": "wifi_status",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "WIFI_STATUS",
-              "module": "wifi",
-              
-              
-              "write": false,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ssid",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_SSID",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_password",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_PASSWORD",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ap_ssid",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_AP_SSID",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ap_password",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_AP_PASSWORD",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "mdns_domain",
-              "type": "string",
-              "integer": false,
-              "caps_name": "MDNS_DOMAIN",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": "supergreencontroller"
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ip",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_IP",
-              "module": "wifi",
-              
-              
-              "write": false,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
               "name": "broker_url",
               "type": "string",
               "integer": false,
@@ -169,21 +64,6 @@
           
             {
               "core": true,
-              "name": "tester_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "TESTER_ENABLED",
-              "module": "tester",
-              
-              
-              "write": true,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": true,
               "name": "reboot",
               "type": "integer",
               "integer": true,
@@ -210,6 +90,115 @@
               
               
               "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "ota_status",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "OTA_STATUS",
+              "module": "ota",
+              
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "ota_timestamp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "OTA_TIMESTAMP",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "ota_server_ip",
+              "type": "string",
+              "integer": false,
+              "caps_name": "OTA_SERVER_IP",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": "198.211.123.192"
+            },
+          
+            {
+              "core": true,
+              "name": "ota_server_hostname",
+              "type": "string",
+              "integer": false,
+              "caps_name": "OTA_SERVER_HOSTNAME",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": "update2.supergreenlab.com"
+            },
+          
+            {
+              "core": true,
+<<<<<<< HEAD
+              "name": "tester_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "TESTER_ENABLED",
+              "module": "tester",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "reboot",
+=======
+              "name": "ota_server_port",
+>>>>>>> 7ce57fd (added basic http auth)
+              "type": "integer",
+              "integer": true,
+              "caps_name": "OTA_SERVER_PORT",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": 80
+            },
+          
+            {
+              "core": true,
+              "name": "ota_basedir",
+              "type": "string",
+              "integer": false,
+              "caps_name": "OTA_BASEDIR",
+              "module": "ota",
+              
+              
+              "write": true,
+              
+              
+              "default": "/ControllerV3"
             },
           
             {
@@ -615,12 +604,36 @@
             },
           
             {
+<<<<<<< HEAD
               "core": false,
               "name": "box_0_timer_type",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_TIMER_TYPE",
               "module": "timer",
+=======
+              "core": true,
+              "name": "httpd_auth",
+              "type": "string",
+              "integer": false,
+              "caps_name": "HTTPD_AUTH",
+              "module": "httpd",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_status",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "WIFI_STATUS",
+              "module": "wifi",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -641,16 +654,41 @@
             },
           
             {
+<<<<<<< HEAD
               "core": false,
               "name": "box_1_timer_type",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_TIMER_TYPE",
               "module": "timer",
+=======
+              "core": true,
+              "name": "wifi_ssid",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_SSID",
+              "module": "wifi",
               
               
               "write": true,
               
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_password",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_PASSWORD",
+              "module": "wifi",
+>>>>>>> 7ce57fd (added basic http auth)
+              
+              
+              "write": true,
+              
+<<<<<<< HEAD
                 "array": {
                   "name": "box",
                   "len": 3,
@@ -673,10 +711,39 @@
               "integer": true,
               "caps_name": "BOX_2_TIMER_TYPE",
               "module": "timer",
+=======
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ap_ssid",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_AP_SSID",
+              "module": "wifi",
               
               
               "write": true,
               
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ap_password",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_AP_PASSWORD",
+              "module": "wifi",
+>>>>>>> 7ce57fd (added basic http auth)
+              
+              
+              "write": true,
+              
+<<<<<<< HEAD
                 "array": {
                   "name": "box",
                   "len": 3,
@@ -690,28 +757,94 @@
               
               
               "default": 0
+=======
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "mdns_domain",
+              "type": "string",
+              "integer": false,
+              "caps_name": "MDNS_DOMAIN",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": "supergreencontroller"
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ip",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_IP",
+              "module": "wifi",
+              
+              
+              "write": false,
+              
+              
+              "default": ""
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_0_timer_output",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_TIMER_OUTPUT",
               "module": "timer",
               "helper": "Box #1 timer output",
+=======
+              "name": "motors_curve",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTORS_CURVE",
+              "module": "motors",
+              
+>>>>>>> 7ce57fd (added basic http auth)
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_0_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_0_DUTY",
+              "module": "motor",
+              
               
               "write": false,
               
                 "array": {
-                  "name": "box",
+                  "name": "motor",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "timer_output"
+=======
+                  "param": "duty"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
-                "box": {
+                "motor": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "timer_output"
+=======
+                  "param": "duty"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
@@ -720,24 +853,41 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_1_timer_output",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_TIMER_OUTPUT",
               "module": "timer",
               "helper": "Box #2 timer output",
+=======
+              "name": "motor_1_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_1_DUTY",
+              "module": "motor",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
                 "array": {
-                  "name": "box",
+                  "name": "motor",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "timer_output"
+=======
+                  "param": "duty"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
-                "box": {
+                "motor": {
                   "index": 1,
+<<<<<<< HEAD
                   "param": "timer_output"
+=======
+                  "param": "duty"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
@@ -746,6 +896,7 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_2_timer_output",
               "type": "integer",
               "integer": true,
@@ -830,6 +981,14 @@
               "caps_name": "BOX_2_BLOWER_DUTY",
               "module": "blower",
               "helper": "Blower control for box#3",
+=======
+              "name": "motor_2_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_2_DUTY",
+              "module": "motor",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": true,
               
@@ -1084,11 +1243,19 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_0_blower_ref_max",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_BLOWER_REF_MAX",
               "module": "blower",
+=======
+              "name": "box_0_led_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_LED_DIM",
+              "module": "mixer",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1097,6 +1264,7 @@
                   "name": "box",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "blower_ref_max"
                 },
                 "box": {
@@ -1106,15 +1274,34 @@
               
               
               "default": 30
+=======
+                  "param": "led_dim"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "led_dim"
+                },
+              
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_1_blower_ref_max",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_BLOWER_REF_MAX",
               "module": "blower",
+=======
+              "name": "box_1_led_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_LED_DIM",
+              "module": "mixer",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1123,6 +1310,7 @@
                   "name": "box",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "blower_ref_max"
                 },
                 "box": {
@@ -1132,15 +1320,34 @@
               
               
               "default": 30
+=======
+                  "param": "led_dim"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "led_dim"
+                },
+              
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_2_blower_ref_max",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_2_BLOWER_REF_MAX",
               "module": "blower",
+=======
+              "name": "box_2_led_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_LED_DIM",
+              "module": "mixer",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1149,6 +1356,7 @@
                   "name": "box",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "blower_ref_max"
                 },
                 "box": {
@@ -1158,16 +1366,36 @@
               
               
               "default": 30
+=======
+                  "param": "led_dim"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "led_dim"
+                },
+              
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_0_blower_ref",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_BLOWER_REF",
               "module": "blower",
               
+=======
+              "name": "box_0_blower_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_DUTY",
+              "module": "blower",
+              "helper": "Blower control for box#1",
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -1175,11 +1403,19 @@
                   "name": "box",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "blower_ref"
                 },
                 "box": {
                   "index": 0,
                   "param": "blower_ref"
+=======
+                  "param": "blower_duty"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_duty"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
@@ -1188,12 +1424,21 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_1_blower_ref",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_BLOWER_REF",
               "module": "blower",
               
+=======
+              "name": "box_1_blower_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_DUTY",
+              "module": "blower",
+              "helper": "Blower control for box#2",
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -1201,11 +1446,19 @@
                   "name": "box",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "blower_ref"
                 },
                 "box": {
                   "index": 1,
                   "param": "blower_ref"
+=======
+                  "param": "blower_duty"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_duty"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
@@ -1214,12 +1467,21 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_2_blower_ref",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_2_BLOWER_REF",
               "module": "blower",
               
+=======
+              "name": "box_2_blower_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_DUTY",
+              "module": "blower",
+              "helper": "Blower control for box#3",
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -1227,11 +1489,19 @@
                   "name": "box",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "blower_ref"
                 },
                 "box": {
                   "index": 2,
                   "param": "blower_ref"
+=======
+                  "param": "blower_duty"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_duty"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
@@ -1240,10 +1510,17 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_0_blower_ref_source",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_BLOWER_REF_SOURCE",
+=======
+              "name": "box_0_blower_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_MIN",
+>>>>>>> 7ce57fd (added basic http auth)
               "module": "blower",
               
               
@@ -1253,6 +1530,7 @@
                   "name": "box",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "blower_ref_source"
                 },
                 "box": {
@@ -1267,14 +1545,32 @@
                 },
               
               "default": 1
+=======
+                  "param": "blower_min"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_min"
+                },
+              
+              
+              "default": 8
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_1_blower_ref_source",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_BLOWER_REF_SOURCE",
+=======
+              "name": "box_1_blower_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_MIN",
+>>>>>>> 7ce57fd (added basic http auth)
               "module": "blower",
               
               
@@ -1284,6 +1580,7 @@
                   "name": "box",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "blower_ref_source"
                 },
                 "box": {
@@ -1298,14 +1595,32 @@
                 },
               
               "default": 2
+=======
+                  "param": "blower_min"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_min"
+                },
+              
+              
+              "default": 8
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_2_blower_ref_source",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_2_BLOWER_REF_SOURCE",
+=======
+              "name": "box_2_blower_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_MIN",
+>>>>>>> 7ce57fd (added basic http auth)
               "module": "blower",
               
               
@@ -1315,6 +1630,7 @@
                   "name": "box",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "blower_ref_source"
                 },
                 "box": {
@@ -1329,15 +1645,34 @@
                 },
               
               "default": 0
+=======
+                  "param": "blower_min"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_min"
+                },
+              
+              
+              "default": 8
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_0_led_dim",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_LED_DIM",
               "module": "mixer",
+=======
+              "name": "box_0_blower_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_MAX",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1346,24 +1681,40 @@
                   "name": "box",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "led_dim"
                 },
                 "box": {
                   "index": 0,
                   "param": "led_dim"
+=======
+                  "param": "blower_max"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_max"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
-              "default": 0
+              "default": 30
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_1_led_dim",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_LED_DIM",
               "module": "mixer",
+=======
+              "name": "box_1_blower_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_MAX",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1372,24 +1723,40 @@
                   "name": "box",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "led_dim"
                 },
                 "box": {
                   "index": 1,
                   "param": "led_dim"
+=======
+                  "param": "blower_max"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_max"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
-              "default": 0
+              "default": 30
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_2_led_dim",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_2_LED_DIM",
               "module": "mixer",
+=======
+              "name": "box_2_blower_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_MAX",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1398,24 +1765,40 @@
                   "name": "box",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "led_dim"
                 },
                 "box": {
                   "index": 2,
                   "param": "led_dim"
+=======
+                  "param": "blower_max"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_max"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
-              "default": 0
+              "default": 30
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "motors_curve",
               "type": "integer",
               "integer": true,
               "caps_name": "MOTORS_CURVE",
               "module": "motors",
+=======
+              "name": "box_0_blower_ref_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF_MIN",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1439,24 +1822,40 @@
                   "name": "motor",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "duty"
+=======
+                  "param": "blower_ref_min"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "motor": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "duty"
+=======
+                  "param": "blower_ref_min"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
-              "default": 0
+              "default": 21
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "motor_1_duty",
               "type": "integer",
               "integer": true,
               "caps_name": "MOTOR_1_DUTY",
               "module": "motor",
+=======
+              "name": "box_1_blower_ref_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_REF_MIN",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": false,
@@ -1465,24 +1864,40 @@
                   "name": "motor",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "duty"
+=======
+                  "param": "blower_ref_min"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "motor": {
                   "index": 1,
+<<<<<<< HEAD
                   "param": "duty"
+=======
+                  "param": "blower_ref_min"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
-              "default": 0
+              "default": 21
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "motor_2_duty",
               "type": "integer",
               "integer": true,
               "caps_name": "MOTOR_2_DUTY",
               "module": "motor",
+=======
+              "name": "box_2_blower_ref_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_REF_MIN",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": false,
@@ -1491,24 +1906,40 @@
                   "name": "motor",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "duty"
+=======
+                  "param": "blower_ref_min"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "motor": {
                   "index": 2,
+<<<<<<< HEAD
                   "param": "duty"
+=======
+                  "param": "blower_ref_min"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
-              "default": 0
+              "default": 21
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "motor_0_source",
               "type": "integer",
               "integer": true,
               "caps_name": "MOTOR_0_SOURCE",
               "module": "motor",
+=======
+              "name": "box_0_blower_ref_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF_MAX",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1517,10 +1948,15 @@
                   "name": "motor",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "source"
+=======
+                  "param": "blower_ref_max"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "motor": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "source"
                 },
               
@@ -1531,15 +1967,30 @@
                 },
               
               "default": 1
+=======
+                  "param": "blower_ref_max"
+                },
+              
+              
+              "default": 30
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "motor_1_source",
               "type": "integer",
               "integer": true,
               "caps_name": "MOTOR_1_SOURCE",
               "module": "motor",
+=======
+              "name": "box_1_blower_ref_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_REF_MAX",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1548,10 +1999,15 @@
                   "name": "motor",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "source"
+=======
+                  "param": "blower_ref_max"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "motor": {
                   "index": 1,
+<<<<<<< HEAD
                   "param": "source"
                 },
               
@@ -1562,15 +2018,30 @@
                 },
               
               "default": 2
+=======
+                  "param": "blower_ref_max"
+                },
+              
+              
+              "default": 30
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "motor_2_source",
               "type": "integer",
               "integer": true,
               "caps_name": "MOTOR_2_SOURCE",
               "module": "motor",
+=======
+              "name": "box_2_blower_ref_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_REF_MAX",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1579,10 +2050,15 @@
                   "name": "motor",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "source"
+=======
+                  "param": "blower_ref_max"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "motor": {
                   "index": 2,
+<<<<<<< HEAD
                   "param": "source"
                 },
               
@@ -1593,93 +2069,168 @@
                 },
               
               "default": 3
+=======
+                  "param": "blower_ref_max"
+                },
+              
+              
+              "default": 30
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "motor_0_gpio",
               "type": "integer",
               "integer": true,
               "caps_name": "MOTOR_0_GPIO",
               "module": "motor",
+=======
+              "name": "box_0_blower_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "motor",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "gpio"
+=======
+                  "param": "blower_ref"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "motor": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "gpio"
                 },
               
               
               "default": 4
+=======
+                  "param": "blower_ref"
+                },
+              
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "motor_1_gpio",
               "type": "integer",
               "integer": true,
               "caps_name": "MOTOR_1_GPIO",
               "module": "motor",
+=======
+              "name": "box_1_blower_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_REF",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "motor",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "gpio"
+=======
+                  "param": "blower_ref"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "motor": {
                   "index": 1,
+<<<<<<< HEAD
                   "param": "gpio"
                 },
               
               
               "default": 16
+=======
+                  "param": "blower_ref"
+                },
+              
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "motor_2_gpio",
               "type": "integer",
               "integer": true,
               "caps_name": "MOTOR_2_GPIO",
               "module": "motor",
+=======
+              "name": "box_2_blower_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_REF",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "motor",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "gpio"
+=======
+                  "param": "blower_ref"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "motor": {
                   "index": 2,
+<<<<<<< HEAD
                   "param": "gpio"
                 },
               
               
               "default": 17
+=======
+                  "param": "blower_ref"
+                },
+              
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "motor_0_frequency",
               "type": "integer",
               "integer": true,
               "caps_name": "MOTOR_0_FREQUENCY",
               "module": "motor",
+=======
+              "name": "box_0_blower_ref_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF_SOURCE",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1688,24 +2239,49 @@
                   "name": "motor",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "frequency"
+=======
+                  "param": "blower_ref_source"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "motor": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "frequency"
                 },
               
               
               "default": 40000
+=======
+                  "param": "blower_ref_source"
+                },
+              
+              
+                "indir": {
+                  "values": [8,9,10,1,2,3],
+                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 1
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "motor_1_frequency",
               "type": "integer",
               "integer": true,
               "caps_name": "MOTOR_1_FREQUENCY",
               "module": "motor",
+=======
+              "name": "box_1_blower_ref_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_REF_SOURCE",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1714,24 +2290,49 @@
                   "name": "motor",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "frequency"
+=======
+                  "param": "blower_ref_source"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "motor": {
                   "index": 1,
+<<<<<<< HEAD
                   "param": "frequency"
                 },
               
               
               "default": 40000
+=======
+                  "param": "blower_ref_source"
+                },
+              
+              
+                "indir": {
+                  "values": [8,9,10,1,2,3],
+                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 2
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "motor_2_frequency",
               "type": "integer",
               "integer": true,
               "caps_name": "MOTOR_2_FREQUENCY",
               "module": "motor",
+=======
+              "name": "box_2_blower_ref_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_REF_SOURCE",
+              "module": "blower",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -1740,15 +2341,32 @@
                   "name": "motor",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "frequency"
+=======
+                  "param": "blower_ref_source"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "motor": {
                   "index": 2,
+<<<<<<< HEAD
                   "param": "frequency"
                 },
               
               
               "default": 40000
+=======
+                  "param": "blower_ref_source"
+                },
+              
+              
+                "indir": {
+                  "values": [8,9,10,1,2,3],
+                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
@@ -2065,6 +2683,7 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_0_present",
               "type": "integer",
               "integer": true,
@@ -2149,6 +2768,14 @@
               "caps_name": "SCD30_0_CO2",
               "module": "scd30",
               "helper": "SCD30 temperature on port #1",
+=======
+              "name": "box_0_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_ENABLED",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -2156,11 +2783,19 @@
                   "name": "scd30",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "co2"
+=======
+                  "param": "enabled"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "scd30": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "co2"
+=======
+                  "param": "enabled"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
@@ -2169,12 +2804,21 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_1_co2",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_1_CO2",
               "module": "scd30",
               "helper": "SCD30 temperature on port #2",
+=======
+              "name": "box_1_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_ENABLED",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -2182,11 +2826,19 @@
                   "name": "scd30",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "co2"
+=======
+                  "param": "enabled"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "scd30": {
                   "index": 1,
+<<<<<<< HEAD
                   "param": "co2"
+=======
+                  "param": "enabled"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
@@ -2195,12 +2847,21 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_2_co2",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_2_CO2",
               "module": "scd30",
               "helper": "SCD30 temperature on port #3",
+=======
+              "name": "box_2_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_ENABLED",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -2208,11 +2869,19 @@
                   "name": "scd30",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "co2"
+=======
+                  "param": "enabled"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "scd30": {
                   "index": 2,
+<<<<<<< HEAD
                   "param": "co2"
+=======
+                  "param": "enabled"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
@@ -2221,12 +2890,21 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_0_temp",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_0_TEMP",
               "module": "scd30",
               "helper": "SCD30 temperature on port #1",
+=======
+              "name": "box_0_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -2247,12 +2925,21 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_1_temp",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_1_TEMP",
               "module": "scd30",
               "helper": "SCD30 temperature on port #2",
+=======
+              "name": "box_1_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TEMP",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -2273,12 +2960,21 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_2_temp",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_2_TEMP",
               "module": "scd30",
               "helper": "SCD30 temperature on port #3",
+=======
+              "name": "box_2_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TEMP",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -2299,12 +2995,21 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_0_humi",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_0_HUMI",
               "module": "scd30",
               "helper": "SCD30 humidity on port #1",
+=======
+              "name": "box_0_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP_SOURCE",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -2312,25 +3017,47 @@
                   "name": "scd30",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "humi"
+=======
+                  "param": "temp_source"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "scd30": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "humi"
+=======
+                  "param": "temp_source"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
-              "default": 0
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 1
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_1_humi",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_1_HUMI",
               "module": "scd30",
               "helper": "SCD30 humidity on port #2",
+=======
+              "name": "box_1_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TEMP_SOURCE",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -2338,25 +3065,47 @@
                   "name": "scd30",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "humi"
+=======
+                  "param": "temp_source"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "scd30": {
                   "index": 1,
+<<<<<<< HEAD
                   "param": "humi"
+=======
+                  "param": "temp_source"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
-              "default": 0
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 2
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_2_humi",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_2_HUMI",
               "module": "scd30",
               "helper": "SCD30 humidity on port #3",
+=======
+              "name": "box_2_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TEMP_SOURCE",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -2364,25 +3113,47 @@
                   "name": "scd30",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "humi"
+=======
+                  "param": "temp_source"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "scd30": {
                   "index": 2,
+<<<<<<< HEAD
                   "param": "humi"
+=======
+                  "param": "temp_source"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
               
               "default": 0
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_0_vpd",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_0_VPD",
               "module": "scd30",
               "helper": "SCD30 humidity on port #1",
+=======
+              "name": "box_0_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -2390,11 +3161,19 @@
                   "name": "scd30",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "vpd"
+=======
+                  "param": "humi"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "scd30": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "vpd"
+=======
+                  "param": "humi"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
@@ -2403,12 +3182,21 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_1_vpd",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_1_VPD",
               "module": "scd30",
               "helper": "SCD30 humidity on port #2",
+=======
+              "name": "box_1_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_HUMI",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -2416,11 +3204,19 @@
                   "name": "scd30",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "vpd"
+=======
+                  "param": "humi"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "scd30": {
                   "index": 1,
+<<<<<<< HEAD
                   "param": "vpd"
+=======
+                  "param": "humi"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
@@ -2429,12 +3225,21 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_2_vpd",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_2_VPD",
               "module": "scd30",
               "helper": "SCD30 humidity on port #3",
+=======
+              "name": "box_2_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_HUMI",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
@@ -2442,11 +3247,19 @@
                   "name": "scd30",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "vpd"
+=======
+                  "param": "humi"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "scd30": {
                   "index": 2,
+<<<<<<< HEAD
                   "param": "vpd"
+=======
+                  "param": "humi"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
               
               
@@ -2455,11 +3268,19 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_0_vpd_leaf_offset",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_0_VPD_LEAF_OFFSET",
               "module": "scd30",
+=======
+              "name": "box_0_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI_SOURCE",
+              "module": "box",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -2468,24 +3289,49 @@
                   "name": "scd30",
                   "len": 3,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "vpd_leaf_offset"
+=======
+                  "param": "humi_source"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "scd30": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "vpd_leaf_offset"
                 },
               
               
               "default": -20
+=======
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 1
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_1_vpd_leaf_offset",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_1_VPD_LEAF_OFFSET",
               "module": "scd30",
+=======
+              "name": "box_1_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_HUMI_SOURCE",
+              "module": "box",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -2494,24 +3340,49 @@
                   "name": "scd30",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "vpd_leaf_offset"
+=======
+                  "param": "humi_source"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "scd30": {
                   "index": 1,
+<<<<<<< HEAD
                   "param": "vpd_leaf_offset"
                 },
               
               
               "default": -20
+=======
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 2
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "scd30_2_vpd_leaf_offset",
               "type": "integer",
               "integer": true,
               "caps_name": "SCD30_2_VPD_LEAF_OFFSET",
               "module": "scd30",
+=======
+              "name": "box_2_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_HUMI_SOURCE",
+              "module": "box",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -2520,28 +3391,54 @@
                   "name": "scd30",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "vpd_leaf_offset"
+=======
+                  "param": "humi_source"
+>>>>>>> 7ce57fd (added basic http auth)
                 },
                 "scd30": {
                   "index": 2,
+<<<<<<< HEAD
                   "param": "vpd_leaf_offset"
                 },
               
               
               "default": -20
+=======
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "state",
               "type": "integer",
               "integer": true,
               "caps_name": "STATE",
               "module": "state",
+=======
+              "name": "box_0_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD",
+              "module": "box",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
-              "write": true,
+              "write": false,
               
+<<<<<<< HEAD
               
               "default": 0
             },
@@ -2559,10 +3456,405 @@
               
               
               "default": "SuperGreenController"
+=======
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
+              "name": "status_led_red_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "STATUS_LED_RED_GPIO",
+              "module": "status_led",
+=======
+              "name": "box_1_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_VPD",
+              "module": "box",
+>>>>>>> 7ce57fd (added basic http auth)
+              
+              
+              "write": false,
+              
+<<<<<<< HEAD
+              
+              "default": 23
+=======
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "status_led_green_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "STATUS_LED_GREEN_GPIO",
+              "module": "status_led",
+=======
+              "name": "box_2_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_VPD",
+              "module": "box",
+>>>>>>> 7ce57fd (added basic http auth)
+              
+              
+              "write": false,
+              
+<<<<<<< HEAD
+              
+              "default": 22
+=======
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "status_led_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "STATUS_LED_DIM",
+              "module": "status_led",
+              
+=======
+              "name": "box_0_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD_SOURCE",
+              "module": "box",
+>>>>>>> 7ce57fd (added basic http auth)
+              
+              "write": true,
+              
+              
+              "default": 10
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_DUTY",
+              "module": "watering",
+              "helper": "Watering control for box#1",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+<<<<<<< HEAD
+                  "param": "watering_duty"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_duty"
+                },
+              
+              
+              "default": 0
+=======
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 1
+>>>>>>> 7ce57fd (added basic http auth)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_1_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_DUTY",
+              "module": "watering",
+              "helper": "Watering control for box#2",
+=======
+              "name": "box_1_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_VPD_SOURCE",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+<<<<<<< HEAD
+                  "param": "watering_duty"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_duty"
+                },
+              
+              
+              "default": 0
+=======
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 2
+>>>>>>> 7ce57fd (added basic http auth)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_2_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_DUTY",
+              "module": "watering",
+              "helper": "Watering control for box#3",
+=======
+              "name": "box_2_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_VPD_SOURCE",
+              "module": "box",
+              
+>>>>>>> 7ce57fd (added basic http auth)
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+<<<<<<< HEAD
+                  "param": "watering_duty"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_duty"
+                },
+              
+              
+=======
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+>>>>>>> 7ce57fd (added basic http auth)
+              "default": 0
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_0_watering_period",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_PERIOD",
+              "module": "watering",
+=======
+              "name": "box_0_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_STARTED_AT",
+              "module": "box",
+>>>>>>> 7ce57fd (added basic http auth)
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+<<<<<<< HEAD
+                  "param": "watering_period"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_period"
+=======
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "started_at"
+>>>>>>> 7ce57fd (added basic http auth)
+                },
+              
+              
+              "default": 2880
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_1_watering_period",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_PERIOD",
+              "module": "watering",
+=======
+              "name": "box_1_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_STARTED_AT",
+              "module": "box",
+>>>>>>> 7ce57fd (added basic http auth)
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+<<<<<<< HEAD
+                  "param": "watering_period"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_period"
+=======
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "started_at"
+>>>>>>> 7ce57fd (added basic http auth)
+                },
+              
+              
+              "default": 2880
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_2_watering_period",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_PERIOD",
+              "module": "watering",
+=======
+              "name": "box_2_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_STARTED_AT",
+              "module": "box",
+>>>>>>> 7ce57fd (added basic http auth)
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+<<<<<<< HEAD
+                  "param": "watering_period"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_period"
+=======
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "started_at"
+>>>>>>> 7ce57fd (added basic http auth)
+                },
+              
+              
+              "default": 2880
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_0_watering_duration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_DURATION",
+              "module": "watering",
+=======
               "name": "status_led_red_gpio",
               "type": "integer",
               "integer": true,
@@ -2608,89 +3900,12 @@
           
             {
               "core": false,
-              "name": "box_0_watering_duty",
+              "name": "box_0_timer_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_WATERING_DUTY",
-              "module": "watering",
-              "helper": "Watering control for box#1",
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "watering_duty"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "watering_duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_watering_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_WATERING_DUTY",
-              "module": "watering",
-              "helper": "Watering control for box#2",
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "watering_duty"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "watering_duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_watering_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_WATERING_DUTY",
-              "module": "watering",
-              "helper": "Watering control for box#3",
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "watering_duty"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "watering_duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_watering_period",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_WATERING_PERIOD",
-              "module": "watering",
+              "caps_name": "BOX_0_TIMER_TYPE",
+              "module": "timer",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -2699,84 +3914,7 @@
                   "name": "box",
                   "len": 3,
                   "index": 0,
-                  "param": "watering_period"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "watering_period"
-                },
-              
-              
-              "default": 2880
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_watering_period",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_WATERING_PERIOD",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "watering_period"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "watering_period"
-                },
-              
-              
-              "default": 2880
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_watering_period",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_WATERING_PERIOD",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "watering_period"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "watering_period"
-                },
-              
-              
-              "default": 2880
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_watering_duration",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_WATERING_DURATION",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
+<<<<<<< HEAD
                   "param": "watering_duration"
                 },
                 "box": {
@@ -2786,15 +3924,34 @@
               
               
               "default": 600
+=======
+                  "param": "timer_type"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "timer_type"
+                },
+              
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_1_watering_duration",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_WATERING_DURATION",
               "module": "watering",
+=======
+              "name": "box_1_timer_type",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TIMER_TYPE",
+              "module": "timer",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -2803,6 +3960,7 @@
                   "name": "box",
                   "len": 3,
                   "index": 1,
+<<<<<<< HEAD
                   "param": "watering_duration"
                 },
                 "box": {
@@ -2812,15 +3970,34 @@
               
               
               "default": 600
+=======
+                  "param": "timer_type"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "timer_type"
+                },
+              
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_2_watering_duration",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_2_WATERING_DURATION",
               "module": "watering",
+=======
+              "name": "box_2_timer_type",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TIMER_TYPE",
+              "module": "timer",
+>>>>>>> 7ce57fd (added basic http auth)
               
               
               "write": true,
@@ -2829,6 +4006,7 @@
                   "name": "box",
                   "len": 3,
                   "index": 2,
+<<<<<<< HEAD
                   "param": "watering_duration"
                 },
                 "box": {
@@ -2838,11 +4016,134 @@
               
               
               "default": 600
+=======
+                  "param": "timer_type"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "timer_type"
+                },
+              
+              
+              "default": 0
             },
           
             {
               "core": false,
+              "name": "box_0_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #1 timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "timer_output"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #2 timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "timer_output"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "timer_output"
+                },
+              
+              
+              "default": 0
+>>>>>>> 7ce57fd (added basic http auth)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
               "name": "box_0_watering_last",
+=======
+              "name": "box_2_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #3 timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "timer_output"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "state",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "STATE",
+              "module": "state",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "device_name",
+              "type": "string",
+              "integer": false,
+              "caps_name": "DEVICE_NAME",
+              "module": "state",
+              
+              
+              "write": true,
+              
+              
+              "default": "SuperGreenController"
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_duty",
+>>>>>>> 7ce57fd (added basic http auth)
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_WATERING_LAST",
