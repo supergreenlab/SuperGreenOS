@@ -41,6 +41,10 @@ static void reset_nvs() {
   esp_restart();
 }
 
+void reset_on_next_reboot() {
+  seti8(N_SHORT_REBOOTS, MAX_SHORT_REBOOTS);
+}
+
 void init_reboot() {
   if (hasi32(N_SHORT_REBOOTS)) { // detect old version
     reset_nvs();

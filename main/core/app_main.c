@@ -52,8 +52,11 @@ void app_main() {
   init_time();
   init_i2c();
 
-  init_app(get_tester_enabled() == 1);
-  set_tester_enabled(0);
+  bool tester_enabled = get_tester_enabled() == 1;
+  init_app(tester_enabled);
+  if (tester_enabled) {
+    reset_on_next_reboot();
+  }
 
   init_stat_dump();
 

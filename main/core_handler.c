@@ -23,23 +23,24 @@
 #include "./status_led/status_led.h"
 
 status_led_timeline connecting_timeline = {
-  .fade = true,
-  .step = 0.1,
-  .red = {LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2},
-  .green = {LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2},
+  .loop = true,
+  .fade = false,
+  .step = 0.4,
+  .red = {LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10},
+  .green = {LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10},
 };
 
 status_led_timeline connected_timeline = {
-  .fade = true,
-  .step = 0.1,
+  .fade = false,
+  .step = 1,
   .red = {LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY},
-  .green = {LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2},
+  .green = {LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10},
 };
 
 status_led_timeline connection_failed_timeline = {
-  .fade = true,
-  .step = 0.1,
-  .red = {LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2},
+  .fade = false,
+  .step = 1,
+  .red = {LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10},
   .green = {LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY},
 };
 

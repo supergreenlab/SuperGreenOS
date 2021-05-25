@@ -22,6 +22,7 @@
 void init_reboot();
 
 void reboot_esp();
+void reset_on_next_reboot();
 
 int on_set_reboot(int value);
 
