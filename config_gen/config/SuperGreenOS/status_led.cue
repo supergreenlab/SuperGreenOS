@@ -1,7 +1,7 @@
 package config
 
 modules status_led: _MODULE & {
-  init_priority: 80
+  init_priority: 110
   required: true
 }
 

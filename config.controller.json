@@ -1145,7 +1145,7 @@
             "required": true,
             "field_prefix": "status_led",
             "code": true,
-            "init_priority": 80,
+            "init_priority": 110,
             "core": false,
             "i2c": false,
             "array_len": 0
@@ -4260,7 +4260,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,

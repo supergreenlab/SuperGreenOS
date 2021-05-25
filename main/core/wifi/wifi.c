@@ -283,6 +283,8 @@ static void wifi_task(void *param) {
         } else if (!is_valid() || (n_connection_failed >= 5 && is_valid())) {
           ESP_LOGI(SGO_LOG_EVENT, "@WIFI Too many retries, start AP mode");
           n_connection_failed = 0;
+          set_wifi_status(FAILED);
+          on_wifi_status_changed();
           start_ap();
         }
       } else if (c == CMD_MDNS_CHANGED) {

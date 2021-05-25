@@ -23,6 +23,7 @@
 #include "./status_led/status_led.h"
 
 status_led_timeline connecting_timeline = {
+  .reset = true,
   .loop = true,
   .fade = false,
   .step = 0.4,
@@ -31,6 +32,7 @@ status_led_timeline connecting_timeline = {
 };
 
 status_led_timeline connected_timeline = {
+  .reset = true,
   .fade = false,
   .step = 1,
   .red = {LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY},
@@ -38,6 +40,7 @@ status_led_timeline connected_timeline = {
 };
 
 status_led_timeline connection_failed_timeline = {
+  .reset = true,
   .fade = false,
   .step = 1,
   .red = {LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY/10},

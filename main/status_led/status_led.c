@@ -54,8 +54,12 @@ static void status_led_task(void *param) {
   double i = 0;
   while (1) {
     if (xQueueReceive(cmd, &current_timeline, 100 / portTICK_PERIOD_MS) == pdTRUE) {
-      ESP_LOGI(SGO_LOG_NOSEND, "NEW STATUS TIMELINE");
-      i = 0;
+      if (current_timeline.reset == true) {
+        i = 0;
+      }
+      if (current_timeline.new_default) {
+        DEFAULT_TIMELINE = current_timeline;
+      }
     }
     if (is_status_led_dim_changed()) {
       led_dim = (double)get_status_led_dim() / 100.0f;
@@ -74,7 +78,6 @@ static void status_led_task(void *param) {
     if (i2 == 0) {
       if (current_timeline.loop == false) {
         current_timeline = DEFAULT_TIMELINE;
-        i = 0;
       }
     }
   }

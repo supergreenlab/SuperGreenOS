@@ -28,8 +28,10 @@
 #define LED_MAX_DUTY           (511.0f)
 
 typedef struct {
+  bool reset;
   bool loop;
   bool fade;
+  bool new_default;
   double step;
   double red[STATUS_LED_TIMELINE_LENGTH];
   double green[STATUS_LED_TIMELINE_LENGTH];
