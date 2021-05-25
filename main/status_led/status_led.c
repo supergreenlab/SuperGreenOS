@@ -28,34 +28,69 @@
 #include "../core/log/log.h"
 #include "../core/kv/kv.h"
 
-#define LED_MIN_DUTY           (0.0f)
-#define LED_MAX_DUTY           (511.0f)
+static QueueHandle_t cmd;
+
+status_led_timeline DEFAULT_TIMELINE = {
+  .loop = true,
+  .fade = true,
+  .step = 0.07,
+  .red = {LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY},
+  .green = {LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY/5, LED_MAX_DUTY/5, LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY/5, LED_MAX_DUTY/5},
+};
 
 ledc_channel_config_t red;
 ledc_channel_config_t green;
 
-static void set_duty(ledc_channel_config_t ledc_channel, int duty) {
-  ledc_set_duty_and_update(ledc_channel.speed_mode, ledc_channel.channel, LED_MAX_DUTY - duty, 0);
+static double set_duty(ledc_channel_config_t ledc_channel, double led_dim, double duty1, double duty2, double adv) {
+  double duty = duty1 + (duty2 - duty1) * adv;
+  duty = LED_MAX_DUTY - (duty * led_dim);
+  ledc_set_duty_and_update(ledc_channel.speed_mode, ledc_channel.channel, duty, 0);
+  return duty;
 }
 
 static void status_led_task(void *param) {
+  status_led_timeline current_timeline = DEFAULT_TIMELINE;
   double led_dim = (double)get_status_led_dim() / 100.0f;
   double i = 0;
   while (1) {
+    if (xQueueReceive(cmd, &current_timeline, 100 / portTICK_PERIOD_MS) == pdTRUE) {
+      ESP_LOGI(SGO_LOG_NOSEND, "NEW STATUS TIMELINE");
+      i = 0;
+    }
     if (is_status_led_dim_changed()) {
       led_dim = (double)get_status_led_dim() / 100.0f;
       reset_status_led_dim_changed();
     }
-    set_duty(red, (int)((cosf(i) + 1) / 2 * LED_MAX_DUTY * led_dim));
-    set_duty(green, (int)((-cosf(i / 2) + 1) / 2 * LED_MAX_DUTY * led_dim));
+    double adv = i - (int)i;
+    if (current_timeline.fade == false) {
+      adv = roundf(adv);
+    }
+    int i1 = (int)i % STATUS_LED_TIMELINE_LENGTH;
+    int i2 = ((int)i+1) % STATUS_LED_TIMELINE_LENGTH;
+    set_duty(red, led_dim, current_timeline.red[i1], current_timeline.red[i2], adv);
+    set_duty(green, led_dim, current_timeline.green[i1], current_timeline.green[i2], adv);
 
-    i += M_PI / 10;
-    vTaskDelay(100 / portTICK_PERIOD_MS);
+    i += current_timeline.step;
+    if (i2 == 0) {
+      if (current_timeline.loop == false) {
+        current_timeline = DEFAULT_TIMELINE;
+        i = 0;
+      }
+    }
   }
+}
+
+void set_status_led_timeline(status_led_timeline timeline) {
+  xQueueSend(cmd, &timeline, 0);
 }
 
 void init_status_led() {
   ESP_LOGI(SGO_LOG_EVENT, "@STATUS_LED Initializing status_led module");
+
+  cmd = xQueueCreate(10, sizeof(status_led_timeline));
+  if (cmd == NULL) {
+    ESP_LOGE(SGO_LOG_EVENT, "@MOTOR Unable to create motor queue");
+  }
 
   ledc_timer_config_t ledc_timer = {
     speed_mode:       LEDC_LOW_SPEED_MODE,

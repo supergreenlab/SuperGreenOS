@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018  SuperGreenLab <towelie@supergreenlab.com>
+ * Copyright (C) 2019  SuperGreenLab <towelie@supergreenlab.com>
  * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,28 +16,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WIFI_H_
-#define WIFI_H_
+#include "tester.h"
 
-#define DEFAULT_AP_SSID "🤖🍁"
-#define DEFAULT_AP_PASSWORD "multipass"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "nvs_flash.h"
+#include "esp_system.h"
 
-typedef enum {
-  DISCONNECTED = 1,
-  CONNECTING,
-  CONNECTED,
-  FAILED,
-  AP,
-} wifi_status;
+#include "../reboot/reboot.h"
+#include "../log/log.h"
+#include "../kv/kv.h"
 
-void init_wifi();
+void init_tester() {
+  ESP_LOGI(SGO_LOG_EVENT, "@TESTER Initializing tester module");
+}
 
-void wait_connected();
+/*
+ * http callback
+ */
 
-const char *on_set_wifi_ssid(const char *ssid);
-const char *on_set_wifi_password(const char *pass);
-const char *on_set_mdns_domain(const char *mdns);
-
-void on_wifi_status_changed();
-
-#endif
+int on_set_tester_enabled(int value) {
+  reboot_esp();
+  return value;
+}

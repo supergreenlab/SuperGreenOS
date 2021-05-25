@@ -21,6 +21,8 @@
 
 void init_reboot();
 
+void reboot_esp();
+
 int on_set_reboot(int value);
 
 #endif

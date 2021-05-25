@@ -20,6 +20,7 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/queue.h"
 #include "nvs_flash.h"
 #include "esp_system.h"
 
@@ -30,6 +31,9 @@
 #define MAX_SHORT_REBOOTS 5
 #define N_SHORT_REBOOTS "NSHRBTS"
 
+static QueueHandle_t cmd;
+
+static void autoreboot_task();
 static void reboot_task();
 
 static void reset_nvs() {
@@ -49,13 +53,23 @@ void init_reboot() {
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=%d", n);
   seti8(N_SHORT_REBOOTS, ++n);
 
-  BaseType_t ret = xTaskCreatePinnedToCore(reboot_task, "REBOOT", 2048, NULL, 10, NULL, 1);
+  cmd = xQueueCreate(10, sizeof(unsigned char));
+  if (cmd == NULL) {
+    ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt queue");
+  }
+
+  BaseType_t ret = xTaskCreatePinnedToCore(autoreboot_task, "AUTOREBOOT", 2048, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
+    ESP_LOGE(SGO_LOG_EVENT, "@REBOOT Failed to create task");
+  }
+
+  BaseType_t ret2 = xTaskCreatePinnedToCore(reboot_task, "REBOOT", 2048, NULL, 10, NULL, 1);
+  if (ret2 != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@REBOOT Failed to create task");
   }
 }
 
-static void reboot_task() {
+static void autoreboot_task() {
   // reset n_short_reboots to zero
   vTaskDelay(60 * 1000 / portTICK_PERIOD_MS);
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=0");
@@ -64,10 +78,27 @@ static void reboot_task() {
   vTaskDelete(NULL);
 }
 
+static void reboot_task() {
+  unsigned char c;
+  while (true) {
+    if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS)) {
+      // little wait to allow http response to go through
+      vTaskDelay(500 / portTICK_PERIOD_MS);
+      esp_restart();
+    }
+  }
+}
+
+void reboot_esp() {
+  unsigned char c = 1;
+  xQueueSend(cmd, &c, 0);
+}
+
 /*
  * http callback
  */
 
 int on_set_reboot(int value) {
-  esp_restart();
+  reboot_esp();
+  return value;
 }

@@ -2,6 +2,7 @@ package config
 
 modules status_led: _MODULE & {
   init_priority: 80
+  required: true
 }
 
 modules status_led fields red_gpio: _INT8 & _NVS & _HTTP_RW & {

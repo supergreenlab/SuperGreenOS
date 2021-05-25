@@ -19,6 +19,26 @@
 #ifndef STATUS_LED_H
 #define STATUS_LED_H
 
+#include <stdint.h>
+#include <stdbool.h>
+
+#define STATUS_LED_TIMELINE_LENGTH 8
+
+#define LED_MIN_DUTY           (0.0f)
+#define LED_MAX_DUTY           (511.0f)
+
+typedef struct {
+  bool loop;
+  bool fade;
+  double step;
+  double red[STATUS_LED_TIMELINE_LENGTH];
+  double green[STATUS_LED_TIMELINE_LENGTH];
+} status_led_timeline;
+
+status_led_timeline DEFAULT_TIMELINE;
+
+void set_status_led_timeline(status_led_timeline timeline);
+
 void init_status_led();
 
 #endif

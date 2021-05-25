@@ -6,6 +6,8 @@ import (
 
 _MODULE: {
   enabled: bool | *true
+  tester: bool | *false
+  required: bool | *false
   field_prefix: string
   init: bool | *true
   code: bool | *true
