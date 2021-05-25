@@ -25,11 +25,11 @@
 
 status_led_timeline new_timeline = {
   .loop = true,
-  .fade = false,
-  .step = 0.3,
+  .fade = true,
+  .step = 0.4,
   .new_default = true,
-  .red = {LED_MAX_DUTY/2, LED_MAX_DUTY/2, LED_MIN_DUTY, LED_MIN_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY/2, LED_MIN_DUTY, LED_MIN_DUTY},
-  .green = {LED_MAX_DUTY/2, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY/2, LED_MIN_DUTY, LED_MIN_DUTY},
+  .red = {LED_MIN_DUTY, LED_MIN_DUTY, LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY, LED_MIN_DUTY, LED_MIN_DUTY},
+  .green = {LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY},
 };
 
 status_led_timeline running_timeline = {
