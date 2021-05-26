@@ -125,6 +125,8 @@ void init_status_led() {
   };
   ledc_channel_config(&green);
 
+  ledc_fade_func_install(0);
+
   BaseType_t ret = xTaskCreatePinnedToCore(status_led_task, "STATUS_LED", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@STATUS_LED Failed to create task");
