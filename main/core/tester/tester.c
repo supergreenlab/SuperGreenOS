@@ -18,10 +18,17 @@
 
 #include "tester.h"
 
+#include <sys/param.h>
+#include <sys/unistd.h>
+#include <sys/stat.h>
+#include <dirent.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "nvs_flash.h"
 #include "esp_system.h"
+#include "esp_vfs.h"
+#include "esp_spiffs.h"
 
 #include "../reboot/reboot.h"
 #include "../log/log.h"
@@ -29,6 +36,14 @@
 
 void init_tester() {
   ESP_LOGI(SGO_LOG_EVENT, "@TESTER Initializing tester module");
+
+  const char path[] = "/spiffs/tester.html";
+  struct stat file_stat;
+  if (stat(path, &file_stat) != -1) {
+    ESP_LOGI(SGO_LOG_EVENT, "@TESTER /spiffs/tester.html file found. --- STARTING TEST MODE ---");
+    set_tester_enabled(1);
+    unlink(path);
+  }
 }
 
 /*

@@ -23,6 +23,7 @@
 
 #include "log/log.h"
 #include "kv/kv.h"
+#include "tester/tester.h"
 #include "reboot/reboot.h"
 #include "mqtt/mqtt.h"
 #include "wifi/wifi.h"
@@ -45,6 +46,10 @@ void app_main() {
   init_kv();
   set_n_restarts(get_n_restarts()+1);
 
+  init_spiffs();
+
+  init_tester();
+
   init_wifi();
 
   init_mqtt();
@@ -52,7 +57,7 @@ void app_main() {
   init_time();
   init_i2c();
 
-  bool tester_enabled = get_tester_enabled() == 1;
+  bool tester_enabled = get_tester_enabled() != 0;
   init_app(tester_enabled);
   if (tester_enabled) {
     reset_on_next_reboot();

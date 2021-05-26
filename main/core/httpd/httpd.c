@@ -32,7 +32,6 @@
 
 esp_err_t download_get_handler(httpd_req_t *req);
 esp_err_t upload_post_handler(httpd_req_t *req);
-esp_err_t init_spiffs(void);
 
 /* static size_t get_char_count(const char *uri) {
   size_t i = 0;
@@ -330,6 +329,5 @@ static httpd_handle_t start_webserver(void) {
 void init_httpd() {
   ESP_LOGI(SGO_LOG_EVENT, "@HTTPS Intializing HTTPD task");
 
-  init_spiffs();
   start_webserver();
 }
