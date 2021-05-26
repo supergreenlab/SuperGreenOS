@@ -7,22 +7,20 @@ sdkconfig
 sdkconfig.old
 
 main/component.mk
-main/Kconfig.projbuild
 main/init.c
-main/core/kv/kv.c
-main/core/kv/kv_helpers_internal.h
+main/core/include_modules.h
+main/core/i2c/i2c.c
+main/core/modules.h
 main/core/kv/kv_helpers_internal.c
-main/core/kv/kv_helpers.c
-main/core/kv/keys.h
+main/core/kv/kv.c
 main/core/kv/kv.h
 main/core/kv/kv_arrays.h
+main/core/kv/keys.h
+main/core/kv/kv_helpers_internal.h
+main/core/kv/kv_helpers.c
 main/core/kv/kv_arrays.c
-main/core/i2c/i2c.c
-main/core/httpd/httpd_kv_handlers.c
-main/core/ble/ble_db.h
-main/core/ble/ble_db.c
-main/core/include_modules.h
+main/core/kv/kv_mapping.c
 main/core/stat_dump/stat_dump.c
-main/core/modules.h
+main/Kconfig.projbuild
 
 build.env
