@@ -2543,6 +2543,180 @@
                     "suffix": "2_duty",
                     "caps_name": "MOTOR_2_DUTY"
                 },
+                "0_min": {
+                    "name": "motor_0_min",
+                    "nvs": {
+                        "key": "M_0_MIN",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 8,
+                    "write_cb": true,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_min",
+                    "caps_name": "MOTOR_0_MIN"
+                },
+                "1_min": {
+                    "name": "motor_1_min",
+                    "nvs": {
+                        "key": "M_1_MIN",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 8,
+                    "write_cb": true,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_min",
+                    "caps_name": "MOTOR_1_MIN"
+                },
+                "2_min": {
+                    "name": "motor_2_min",
+                    "nvs": {
+                        "key": "M_2_MIN",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 8,
+                    "write_cb": true,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_min",
+                    "caps_name": "MOTOR_2_MIN"
+                },
+                "0_max": {
+                    "name": "motor_0_max",
+                    "nvs": {
+                        "key": "M_0_MAX",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 100,
+                    "write_cb": true,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_max",
+                    "caps_name": "MOTOR_0_MAX"
+                },
+                "1_max": {
+                    "name": "motor_1_max",
+                    "nvs": {
+                        "key": "M_1_MAX",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 100,
+                    "write_cb": true,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_max",
+                    "caps_name": "MOTOR_1_MAX"
+                },
+                "2_max": {
+                    "name": "motor_2_max",
+                    "nvs": {
+                        "key": "M_2_MAX",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 100,
+                    "write_cb": true,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_max",
+                    "caps_name": "MOTOR_2_MAX"
+                },
                 "0_source": {
                     "name": "motor_0_source",
                     "nvs": {
@@ -2633,8 +2807,7 @@
                 "0_gpio": {
                     "name": "motor_0_gpio",
                     "nvs": {
-                        "key": "M_0_IO",
-                        "enable": true,
+                        "enable": false,
                         "manual": false
                     },
                     "default": 4,
@@ -2648,8 +2821,7 @@
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -2662,8 +2834,7 @@
                 "1_gpio": {
                     "name": "motor_1_gpio",
                     "nvs": {
-                        "key": "M_1_IO",
-                        "enable": true,
+                        "enable": false,
                         "manual": false
                     },
                     "default": 16,
@@ -2677,8 +2848,7 @@
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -2691,8 +2861,7 @@
                 "2_gpio": {
                     "name": "motor_2_gpio",
                     "nvs": {
-                        "key": "M_2_IO",
-                        "enable": true,
+                        "enable": false,
                         "manual": false
                     },
                     "default": 17,
@@ -2706,8 +2875,7 @@
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -2720,12 +2888,11 @@
                 "0_frequency": {
                     "name": "motor_0_frequency",
                     "nvs": {
-                        "key": "M_0_HZ",
-                        "enable": true,
+                        "enable": false,
                         "manual": false
                     },
                     "default": 40000,
-                    "write_cb": true,
+                    "write_cb": false,
                     "remote": true,
                     "type": "integer",
                     "nosend": false,
@@ -2735,8 +2902,7 @@
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -2749,12 +2915,11 @@
                 "1_frequency": {
                     "name": "motor_1_frequency",
                     "nvs": {
-                        "key": "M_1_HZ",
-                        "enable": true,
+                        "enable": false,
                         "manual": false
                     },
                     "default": 40000,
-                    "write_cb": true,
+                    "write_cb": false,
                     "remote": true,
                     "type": "integer",
                     "nosend": false,
@@ -2764,8 +2929,7 @@
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -2778,12 +2942,11 @@
                 "2_frequency": {
                     "name": "motor_2_frequency",
                     "nvs": {
-                        "key": "M_2_HZ",
-                        "enable": true,
+                        "enable": false,
                         "manual": false
                     },
                     "default": 40000,
-                    "write_cb": true,
+                    "write_cb": false,
                     "remote": true,
                     "type": "integer",
                     "nosend": false,
@@ -2793,8 +2956,7 @@
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false

@@ -19,8 +19,6 @@
 #ifndef MOTOR_H_
 #define MOTOR_H_
 
-#define DEFAULT_MOTOR_FREQUENCY 150
-
 void init_motor();
 void refresh_motors();
 
@@ -28,5 +26,7 @@ void refresh_motors();
 
 int on_set_motor_frequency(int motorId, int value);
 int on_set_motor_source(int motorId, int value);
+int on_set_motor_min(int motorId, int value);
+int on_set_motor_max(int motorId, int value);
 
 #endif

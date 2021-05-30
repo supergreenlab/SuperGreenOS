@@ -1,5 +1,5 @@
 {
-  "name": "SuperGreenController",
+  "name": "Solo",
   "keys": [
     
             {
@@ -288,7 +288,7 @@
               "write": true,
               
               
-              "default": "/ControllerV3"
+              "default": "/SoloV2.1"
             },
           
             {
@@ -304,7 +304,7 @@
               
                 "array": {
                   "name": "i2c",
-                  "len": 3,
+                  "len": 1,
                   "index": 0,
                   "param": "sda"
                 },
@@ -314,59 +314,7 @@
                 },
               
               
-              "default": 18
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_1_sda",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_1_SDA",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3,
-                  "index": 1,
-                  "param": "sda"
-                },
-                "i2c": {
-                  "index": 1,
-                  "param": "sda"
-                },
-              
-              
-              "default": 21
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_2_sda",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_2_SDA",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3,
-                  "index": 2,
-                  "param": "sda"
-                },
-                "i2c": {
-                  "index": 2,
-                  "param": "sda"
-                },
-              
-              
-              "default": 21
+              "default": 25
             },
           
             {
@@ -382,7 +330,7 @@
               
                 "array": {
                   "name": "i2c",
-                  "len": 3,
+                  "len": 1,
                   "index": 0,
                   "param": "scl"
                 },
@@ -392,59 +340,7 @@
                 },
               
               
-              "default": 5
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_1_scl",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_1_SCL",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3,
-                  "index": 1,
-                  "param": "scl"
-                },
-                "i2c": {
-                  "index": 1,
-                  "param": "scl"
-                },
-              
-              
-              "default": 19
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_2_scl",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_2_SCL",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3,
-                  "index": 2,
-                  "param": "scl"
-                },
-                "i2c": {
-                  "index": 2,
-                  "param": "scl"
-                },
-              
-              
-              "default": 19
+              "default": 26
             },
           
             {
@@ -460,64 +356,12 @@
               
                 "array": {
                   "name": "i2c",
-                  "len": 3,
+                  "len": 1,
                   "index": 0,
                   "param": "enabled"
                 },
                 "i2c": {
                   "index": 0,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_1_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_1_ENABLED",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3,
-                  "index": 1,
-                  "param": "enabled"
-                },
-                "i2c": {
-                  "index": 1,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": true,
-              "name": "i2c_2_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "I2C_2_ENABLED",
-              "module": "i2c",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "i2c",
-                  "len": 3,
-                  "index": 2,
-                  "param": "enabled"
-                },
-                "i2c": {
-                  "index": 2,
                   "param": "enabled"
                 },
               
@@ -538,7 +382,7 @@
               
                 "array": {
                   "name": "i2c",
-                  "len": 3,
+                  "len": 1,
                   "index": 0,
                   "param": "port"
                 },
@@ -553,6 +397,7 @@
           
             {
               "core": true,
+<<<<<<< HEAD
               "name": "i2c_1_port",
               "type": "integer",
               "integer": true,
@@ -613,6 +458,8 @@
               "module": "timer",
 =======
               "core": true,
+=======
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               "name": "httpd_auth",
               "type": "string",
               "integer": false,
@@ -774,7 +621,7 @@
               "write": true,
               
               
-              "default": "supergreencontroller"
+              "default": "solo"
             },
           
             {
@@ -796,6 +643,7 @@
             {
               "core": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
               "name": "box_0_timer_output",
               "type": "integer",
               "integer": true,
@@ -804,14 +652,28 @@
               "helper": "Box #1 timer output",
 =======
               "name": "motors_curve",
+=======
+              "name": "box_0_enabled",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               "type": "integer",
               "integer": true,
-              "caps_name": "MOTORS_CURVE",
-              "module": "motors",
+              "caps_name": "BOX_0_ENABLED",
+              "module": "box",
               
 >>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "enabled"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "enabled"
+                },
               
               
               "default": 0
@@ -819,32 +681,40 @@
           
             {
               "core": false,
-              "name": "motor_0_duty",
+              "name": "box_0_temp",
               "type": "integer",
               "integer": true,
-              "caps_name": "MOTOR_0_DUTY",
-              "module": "motor",
+              "caps_name": "BOX_0_TEMP",
+              "module": "box",
               
               
               "write": false,
               
                 "array": {
-                  "name": "motor",
-                  "len": 3,
+                  "name": "box",
+                  "len": 1,
                   "index": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
                   "param": "timer_output"
 =======
                   "param": "duty"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "param": "temp"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
-                "motor": {
+                "box": {
                   "index": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
                   "param": "timer_output"
 =======
                   "param": "duty"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "param": "temp"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
@@ -853,6 +723,7 @@
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_1_timer_output",
               "type": "integer",
@@ -862,16 +733,20 @@
               "helper": "Box #2 timer output",
 =======
               "name": "motor_1_duty",
+=======
+              "name": "box_0_temp_source",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               "type": "integer",
               "integer": true,
-              "caps_name": "MOTOR_1_DUTY",
-              "module": "motor",
+              "caps_name": "BOX_0_TEMP_SOURCE",
+              "module": "box",
               
 >>>>>>> 7ce57fd (added basic http auth)
               
-              "write": false,
+              "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "motor",
                   "len": 3,
                   "index": 1,
@@ -888,6 +763,67 @@
 =======
                   "param": "duty"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "temp_source"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
+                },
+              
+              
+                "indir": {
+                  "values": [1],
+                  "helpers": ["SHT21 temperature on port #1"]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+<<<<<<< HEAD
+              "name": "box_2_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #3 timer output",
+=======
+              "name": "box_0_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI",
+              "module": "box",
+              
+>>>>>>> 9cb9c90 (added motor min/max for next release)
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+<<<<<<< HEAD
+                  "len": 3,
+                  "index": 2,
+                  "param": "timer_output"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "timer_output"
+=======
+                  "len": 1,
+                  "index": 0,
+                  "param": "humi"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
@@ -897,43 +833,26 @@
             {
               "core": false,
 <<<<<<< HEAD
-              "name": "box_2_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #3 timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "timer_output"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
               "name": "box_0_blower_duty",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_BLOWER_DUTY",
               "module": "blower",
               "helper": "Blower control for box#1",
+=======
+              "name": "box_0_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI_SOURCE",
+              "module": "box",
+              
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               "write": true,
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
                   "len": 3,
                   "index": 0,
                   "param": "blower_duty"
@@ -945,21 +864,49 @@
               
               
               "default": 0
+=======
+                  "len": 1,
+                  "index": 0,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1],
+                  "helpers": ["SHT21 humidity on port #1"]
+                },
+              
+              "default": 1
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_1_blower_duty",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_BLOWER_DUTY",
               "module": "blower",
               "helper": "Blower control for box#2",
+=======
+              "name": "box_0_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD",
+              "module": "box",
               
-              "write": true,
+>>>>>>> 9cb9c90 (added motor min/max for next release)
+              
+              "write": false,
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
                   "len": 3,
                   "index": 1,
                   "param": "blower_duty"
@@ -968,6 +915,16 @@
                   "index": 1,
                   "param": "blower_duty"
                 },
+=======
+                  "len": 1,
+                  "index": 0,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd"
+                },
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "default": 0
@@ -975,6 +932,7 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_2_blower_duty",
               "type": "integer",
               "integer": true,
@@ -987,6 +945,13 @@
               "integer": true,
               "caps_name": "MOTOR_2_DUTY",
               "module": "motor",
+=======
+              "name": "box_0_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD_SOURCE",
+              "module": "box",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
 >>>>>>> 7ce57fd (added basic http auth)
               
@@ -994,6 +959,7 @@
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
                   "len": 3,
                   "index": 2,
                   "param": "blower_duty"
@@ -1005,21 +971,48 @@
               
               
               "default": 0
+=======
+                  "len": 1,
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1],
+                  "helpers": ["SHT21 humidity on port #1"]
+                },
+              
+              "default": 1
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_0_blower_min",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_BLOWER_MIN",
               "module": "blower",
+=======
+              "name": "box_0_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_STARTED_AT",
+              "module": "box",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
                   "len": 3,
                   "index": 0,
                   "param": "blower_min"
@@ -1031,19 +1024,41 @@
               
               
               "default": 8
+=======
+                  "len": 1,
+                  "index": 0,
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "started_at"
+                },
+              
+              
+              "default": 0
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_1_blower_min",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_BLOWER_MIN",
               "module": "blower",
+=======
+              "name": "motors_curve",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTORS_CURVE",
+              "module": "motors",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
+<<<<<<< HEAD
                 "array": {
                   "name": "box",
                   "len": 3,
@@ -1057,20 +1072,33 @@
               
               
               "default": 8
+=======
+              
+              "default": 1
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_2_blower_min",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_2_BLOWER_MIN",
               "module": "blower",
+=======
+              "name": "motor_0_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_0_DUTY",
+              "module": "motor",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "box",
                   "len": 3,
                   "index": 2,
@@ -1083,46 +1111,92 @@
               
               
               "default": 8
+=======
+                  "name": "motor",
+                  "len": 1,
+                  "index": 0,
+                  "param": "duty"
+                },
+                "motor": {
+                  "index": 0,
+                  "param": "duty"
+                },
+              
+              
+              "default": 0
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_0_blower_max",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_BLOWER_MAX",
               "module": "blower",
+=======
+              "name": "motor_0_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_0_MIN",
+              "module": "motor",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "box",
                   "len": 3,
                   "index": 0,
                   "param": "blower_max"
+=======
+                  "name": "motor",
+                  "len": 1,
+                  "index": 0,
+                  "param": "min"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
                 "box": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "blower_max"
                 },
               
               
               "default": 30
+=======
+                  "param": "min"
+                },
+              
+              
+              "default": 8
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_1_blower_max",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_BLOWER_MAX",
               "module": "blower",
+=======
+              "name": "motor_0_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_0_MAX",
+              "module": "motor",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "box",
                   "len": 3,
                   "index": 1,
@@ -1135,20 +1209,43 @@
               
               
               "default": 30
+=======
+                  "name": "motor",
+                  "len": 1,
+                  "index": 0,
+                  "param": "max"
+                },
+                "motor": {
+                  "index": 0,
+                  "param": "max"
+                },
+              
+              
+              "default": 100
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_2_blower_max",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_2_BLOWER_MAX",
               "module": "blower",
+=======
+              "name": "motor_0_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_0_SOURCE",
+              "module": "motor",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "box",
                   "len": 3,
                   "index": 2,
@@ -1161,47 +1258,96 @@
               
               
               "default": 30
+=======
+                  "name": "motor",
+                  "len": 1,
+                  "index": 0,
+                  "param": "source"
+                },
+                "motor": {
+                  "index": 0,
+                  "param": "source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,8],
+                  "helpers": ["Blower control for box#1","Watering control for box#1"]
+                },
+              
+              "default": 1
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_0_blower_ref_min",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_0_BLOWER_REF_MIN",
               "module": "blower",
+=======
+              "name": "motor_0_frequency",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_0_FREQUENCY",
+              "module": "motor",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
                 "array": {
-                  "name": "box",
-                  "len": 3,
+                  "name": "motor",
+                  "len": 1,
                   "index": 0,
+<<<<<<< HEAD
                   "param": "blower_ref_min"
+=======
+                  "param": "frequency"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
-                "box": {
+                "motor": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "blower_ref_min"
                 },
               
               
               "default": 21
+=======
+                  "param": "frequency"
+                },
+              
+              
+              "default": 40000
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_1_blower_ref_min",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_BLOWER_REF_MIN",
               "module": "blower",
               
+=======
+              "name": "box_0_blower_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_DUTY",
+              "module": "blower",
+              "helper": "Blower control for box#1",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               "write": true,
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
                   "len": 3,
                   "index": 1,
                   "param": "blower_ref_min"
@@ -1209,6 +1355,15 @@
                 "box": {
                   "index": 1,
                   "param": "blower_ref_min"
+=======
+                  "len": 1,
+                  "index": 0,
+                  "param": "blower_duty"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_duty"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
@@ -1217,10 +1372,17 @@
           
             {
               "core": false,
+<<<<<<< HEAD
               "name": "box_2_blower_ref_min",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_2_BLOWER_REF_MIN",
+=======
+              "name": "box_0_blower_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_MIN",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               "module": "blower",
               
               
@@ -1228,6 +1390,7 @@
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
                   "len": 3,
                   "index": 2,
                   "param": "blower_ref_min"
@@ -1239,10 +1402,24 @@
               
               
               "default": 21
+=======
+                  "len": 1,
+                  "index": 0,
+                  "param": "blower_min"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_min"
+                },
+              
+              
+              "default": 8
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_0_blower_ref_max",
               "type": "integer",
@@ -1256,14 +1433,22 @@
               "caps_name": "BOX_0_LED_DIM",
               "module": "mixer",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "box_0_blower_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_MAX",
+              "module": "blower",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
                 "array": {
                   "name": "box",
-                  "len": 3,
+                  "len": 1,
                   "index": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
                   "param": "blower_ref_max"
                 },
@@ -1285,10 +1470,22 @@
               
               "default": 0
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "param": "blower_max"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_max"
+                },
+              
+              
+              "default": 30
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_1_blower_ref_max",
               "type": "integer",
@@ -1302,12 +1499,20 @@
               "caps_name": "BOX_1_LED_DIM",
               "module": "mixer",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "box_0_blower_ref_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF_MIN",
+              "module": "blower",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
                   "len": 3,
                   "index": 1,
 <<<<<<< HEAD
@@ -1331,10 +1536,24 @@
               
               "default": 0
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "len": 1,
+                  "index": 0,
+                  "param": "blower_ref_min"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_ref_min"
+                },
+              
+              
+              "default": 21
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_2_blower_ref_max",
               "type": "integer",
@@ -1348,12 +1567,20 @@
               "caps_name": "BOX_2_LED_DIM",
               "module": "mixer",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "box_0_blower_ref_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF_MAX",
+              "module": "blower",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
                   "len": 3,
                   "index": 2,
 <<<<<<< HEAD
@@ -1377,11 +1604,27 @@
               
               "default": 0
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "len": 1,
+                  "index": 0,
+                  "param": "blower_ref_max"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_ref_max"
+                },
+              
+              
+              "default": 30
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               "name": "box_0_blower_ref",
               "type": "integer",
               "integer": true,
@@ -1401,14 +1644,18 @@
               
                 "array": {
                   "name": "box",
-                  "len": 3,
+                  "len": 1,
                   "index": 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                   "param": "blower_ref"
                 },
                 "box": {
                   "index": 0,
                   "param": "blower_ref"
+<<<<<<< HEAD
 =======
                   "param": "blower_duty"
                 },
@@ -1416,6 +1663,8 @@
                   "index": 0,
                   "param": "blower_duty"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
@@ -1425,10 +1674,17 @@
             {
               "core": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
               "name": "box_1_blower_ref",
               "type": "integer",
               "integer": true,
               "caps_name": "BOX_1_BLOWER_REF",
+=======
+              "name": "box_0_blower_ref_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF_SOURCE",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               "module": "blower",
               
 =======
@@ -1444,6 +1700,7 @@
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
                   "len": 3,
                   "index": 1,
 <<<<<<< HEAD
@@ -1606,10 +1863,29 @@
               
               "default": 8
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "len": 1,
+                  "index": 0,
+                  "param": "blower_ref_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_ref_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,8],
+                  "helpers": ["SHT21 temperature on port #1","Box #1 timer output"]
+                },
+              
+              "default": 1
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_2_blower_ref_source",
               "type": "integer",
@@ -1623,10 +1899,19 @@
 >>>>>>> 7ce57fd (added basic http auth)
               "module": "blower",
               
+=======
+              "name": "sht21_0_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature on port #1",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
-              "write": true,
+              "write": false,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "box",
                   "len": 3,
                   "index": 2,
@@ -1647,19 +1932,30 @@
               "default": 0
 =======
                   "param": "blower_min"
+=======
+                  "name": "sht21",
+                  "len": 1,
+                  "index": 0,
+                  "param": "temp"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
-                "box": {
-                  "index": 2,
-                  "param": "blower_min"
+                "sht21": {
+                  "index": 0,
+                  "param": "temp"
                 },
               
               
+<<<<<<< HEAD
               "default": 8
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "default": 0
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_0_led_dim",
               "type": "integer",
@@ -1674,13 +1970,22 @@
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
               
+=======
+              "name": "sht21_0_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #1",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
-              "write": true,
+              "write": false,
               
                 "array": {
-                  "name": "box",
-                  "len": 3,
+                  "name": "sht21",
+                  "len": 1,
                   "index": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
                   "param": "led_dim"
                 },
@@ -1689,19 +1994,27 @@
                   "param": "led_dim"
 =======
                   "param": "blower_max"
+=======
+                  "param": "humi"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
-                "box": {
+                "sht21": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "blower_max"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "param": "humi"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_1_led_dim",
               "type": "integer",
@@ -1716,10 +2029,19 @@
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
               
+=======
+              "name": "sht21_0_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_VPD",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #1",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
-              "write": true,
+              "write": false,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "box",
                   "len": 3,
                   "index": 1,
@@ -1736,14 +2058,25 @@
                   "index": 1,
                   "param": "blower_max"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "name": "sht21",
+                  "len": 1,
+                  "index": 0,
+                  "param": "vpd"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "vpd"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_2_led_dim",
               "type": "integer",
@@ -1757,11 +2090,19 @@
               "caps_name": "BOX_2_BLOWER_MAX",
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "sht21_0_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_PRESENT",
+              "module": "sht21",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "box",
                   "len": 3,
                   "index": 2,
@@ -1778,14 +2119,25 @@
                   "index": 2,
                   "param": "blower_max"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "name": "sht21",
+                  "len": 1,
+                  "index": 0,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "present"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "motors_curve",
               "type": "integer",
@@ -1799,6 +2151,13 @@
               "caps_name": "BOX_0_BLOWER_REF_MIN",
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "sht21_0_vpd_leaf_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_VPD_LEAF_OFFSET",
+              "module": "sht21",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
@@ -1819,6 +2178,7 @@
               "write": false,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "motor",
                   "len": 3,
                   "index": 0,
@@ -1835,14 +2195,25 @@
 =======
                   "param": "blower_ref_min"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "name": "sht21",
+                  "len": 1,
+                  "index": 0,
+                  "param": "vpd_leaf_offset"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "vpd_leaf_offset"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
-              "default": 21
+              "default": -20
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "motor_1_duty",
               "type": "integer",
@@ -1856,11 +2227,19 @@
               "caps_name": "BOX_1_BLOWER_REF_MIN",
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "box_0_timer_type",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TIMER_TYPE",
+              "module": "timer",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": false,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "motor",
                   "len": 3,
                   "index": 1,
@@ -1877,14 +2256,25 @@
 =======
                   "param": "blower_ref_min"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "timer_type"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "timer_type"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
-              "default": 21
+              "default": 0
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "motor_2_duty",
               "type": "integer",
@@ -1899,10 +2289,19 @@
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
               
+=======
+              "name": "box_0_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #1 timer output",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               "write": false,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "motor",
                   "len": 3,
                   "index": 2,
@@ -1919,14 +2318,25 @@
 =======
                   "param": "blower_ref_min"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "timer_output"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "timer_output"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
-              "default": 21
+              "default": 0
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "motor_0_source",
               "type": "integer",
@@ -1940,10 +2350,18 @@
               "caps_name": "BOX_0_BLOWER_REF_MAX",
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "status_led_red_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "STATUS_LED_RED_GPIO",
+              "module": "status_led",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
+<<<<<<< HEAD
                 "array": {
                   "name": "motor",
                   "len": 3,
@@ -1974,10 +2392,15 @@
               
               "default": 30
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              
+              "default": 12
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "motor_1_source",
               "type": "integer",
@@ -1991,10 +2414,18 @@
               "caps_name": "BOX_1_BLOWER_REF_MAX",
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "status_led_green_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "STATUS_LED_GREEN_GPIO",
+              "module": "status_led",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
+<<<<<<< HEAD
                 "array": {
                   "name": "motor",
                   "len": 3,
@@ -2025,10 +2456,15 @@
               
               "default": 30
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              
+              "default": 14
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "motor_2_source",
               "type": "integer",
@@ -2042,10 +2478,18 @@
               "caps_name": "BOX_2_BLOWER_REF_MAX",
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "status_led_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "STATUS_LED_DIM",
+              "module": "status_led",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
+<<<<<<< HEAD
                 "array": {
                   "name": "motor",
                   "len": 3,
@@ -2076,10 +2520,15 @@
               
               "default": 30
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              
+              "default": 10
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "motor_0_gpio",
               "type": "integer",
@@ -2094,9 +2543,16 @@
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
               
+=======
+              "name": "state",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "STATE",
+              "module": "state",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
-              "write": false,
               
+<<<<<<< HEAD
                 "array": {
                   "name": "motor",
                   "len": 3,
@@ -2118,6 +2574,9 @@
 =======
                   "param": "blower_ref"
                 },
+=======
+              "write": true,
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "default": 0
@@ -2126,6 +2585,7 @@
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "motor_1_gpio",
               "type": "integer",
@@ -2140,9 +2600,16 @@
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
               
+=======
+              "name": "device_name",
+              "type": "string",
+              "integer": false,
+              "caps_name": "DEVICE_NAME",
+              "module": "state",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
-              "write": false,
               
+<<<<<<< HEAD
                 "array": {
                   "name": "motor",
                   "len": 3,
@@ -2168,10 +2635,17 @@
               
               "default": 0
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "write": true,
+              
+              
+              "default": "Solo"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "motor_2_gpio",
               "type": "integer",
@@ -2185,11 +2659,19 @@
               "caps_name": "BOX_2_BLOWER_REF",
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "box_0_on_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_ON_HOUR",
+              "module": "onoff",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
-              "write": false,
+              "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "motor",
                   "len": 3,
                   "index": 2,
@@ -2214,10 +2696,25 @@
               
               "default": 0
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "on_hour"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "on_hour"
+                },
+              
+              
+              "default": 3
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "motor_0_frequency",
               "type": "integer",
@@ -2231,11 +2728,19 @@
               "caps_name": "BOX_0_BLOWER_REF_SOURCE",
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "box_0_on_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_ON_MIN",
+              "module": "onoff",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "motor",
                   "len": 3,
                   "index": 0,
@@ -2244,9 +2749,16 @@
 =======
                   "param": "blower_ref_source"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "on_min"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
                 "motor": {
                   "index": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
                   "param": "frequency"
                 },
@@ -2265,10 +2777,18 @@
               
               "default": 1
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "param": "on_min"
+                },
+              
+              
+              "default": 0
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "motor_1_frequency",
               "type": "integer",
@@ -2282,11 +2802,19 @@
               "caps_name": "BOX_1_BLOWER_REF_SOURCE",
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "box_0_off_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_OFF_HOUR",
+              "module": "onoff",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "motor",
                   "len": 3,
                   "index": 1,
@@ -2316,10 +2844,25 @@
               
               "default": 2
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "off_hour"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "off_hour"
+                },
+              
+              
+              "default": 21
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "motor_2_frequency",
               "type": "integer",
@@ -2333,11 +2876,19 @@
               "caps_name": "BOX_2_BLOWER_REF_SOURCE",
               "module": "blower",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "box_0_off_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_OFF_MIN",
+              "module": "onoff",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
               "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "motor",
                   "len": 3,
                   "index": 2,
@@ -2357,13 +2908,18 @@
               "default": 40000
 =======
                   "param": "blower_ref_source"
+=======
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "off_min"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "off_min"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
-              
-                "indir": {
-                  "values": [8,9,10,1,2,3],
-                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
-                },
               
               "default": 0
 >>>>>>> 7ce57fd (added basic http auth)
@@ -2371,102 +2927,24 @@
           
             {
               "core": false,
-              "name": "box_0_on_hour",
+              "name": "box_0_led_dim",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_ON_HOUR",
-              "module": "onoff",
+              "caps_name": "BOX_0_LED_DIM",
+              "module": "mixer",
               
               
               "write": true,
               
                 "array": {
                   "name": "box",
-                  "len": 3,
+                  "len": 1,
                   "index": 0,
-                  "param": "on_hour"
+                  "param": "led_dim"
                 },
                 "box": {
                   "index": 0,
-                  "param": "on_hour"
-                },
-              
-              
-              "default": 3
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_on_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_ON_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "on_hour"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "on_hour"
-                },
-              
-              
-              "default": 3
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_on_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_ON_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "on_hour"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "on_hour"
-                },
-              
-              
-              "default": 3
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_on_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_ON_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "on_min"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "on_min"
+                  "param": "led_dim"
                 },
               
               
@@ -2475,154 +2953,39 @@
           
             {
               "core": false,
-              "name": "box_1_on_min",
+              "name": "leds_fastmode",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_1_ON_MIN",
-              "module": "onoff",
+              "caps_name": "LEDS_FASTMODE",
+              "module": "leds",
               
               
               "write": true,
               
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "on_min"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "on_min"
-                },
               
-              
-              "default": 0
+              "default": 1
             },
           
             {
               "core": false,
-              "name": "box_2_on_min",
+              "name": "led_0_duty",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_2_ON_MIN",
-              "module": "onoff",
+              "caps_name": "LED_0_DUTY",
+              "module": "led",
               
               
               "write": true,
               
                 "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "on_min"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "on_min"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_off_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_OFF_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
+                  "name": "led",
+                  "len": 1,
                   "index": 0,
-                  "param": "off_hour"
+                  "param": "duty"
                 },
-                "box": {
+                "led": {
                   "index": 0,
-                  "param": "off_hour"
-                },
-              
-              
-              "default": 21
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_off_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_OFF_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "off_hour"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "off_hour"
-                },
-              
-              
-              "default": 21
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_off_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_OFF_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "off_hour"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "off_hour"
-                },
-              
-              
-              "default": 21
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_off_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_OFF_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "off_min"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "off_min"
+                  "param": "duty"
                 },
               
               
@@ -2631,24 +2994,128 @@
           
             {
               "core": false,
-              "name": "box_1_off_min",
+              "name": "led_0_gpio",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_1_OFF_MIN",
-              "module": "onoff",
+              "caps_name": "LED_0_GPIO",
+              "module": "led",
               
               
               "write": true,
               
                 "array": {
+                  "name": "led",
+                  "len": 1,
+                  "index": 0,
+                  "param": "gpio"
+                },
+                "led": {
+                  "index": 0,
+                  "param": "gpio"
+                },
+              
+              
+              "default": 23
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_box",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_0_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 1,
+                  "index": 0,
+                  "param": "box"
+                },
+                "led": {
+                  "index": 0,
+                  "param": "box"
+                },
+              
+              
+              "default": -1
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_0_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 1,
+                  "index": 0,
+                  "param": "dim"
+                },
+                "led": {
+                  "index": 0,
+                  "param": "dim"
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_fade",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_0_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 1,
+                  "index": 0,
+                  "param": "fade"
+                },
+                "led": {
+                  "index": 0,
+                  "param": "fade"
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_DUTY",
+              "module": "watering",
+              "helper": "Watering control for box#1",
+              
+              "write": true,
+              
+                "array": {
                   "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "off_min"
+                  "len": 1,
+                  "index": 0,
+                  "param": "watering_duty"
                 },
                 "box": {
-                  "index": 1,
-                  "param": "off_min"
+                  "index": 0,
+                  "param": "watering_duty"
                 },
               
               
@@ -2657,32 +3124,7 @@
           
             {
               "core": false,
-              "name": "box_2_off_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_OFF_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "off_min"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "off_min"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "scd30_0_present",
               "type": "integer",
@@ -2770,16 +3212,20 @@
               "helper": "SCD30 temperature on port #1",
 =======
               "name": "box_0_enabled",
+=======
+              "name": "box_0_watering_period",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_ENABLED",
-              "module": "box",
+              "caps_name": "BOX_0_WATERING_PERIOD",
+              "module": "watering",
               
 >>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "scd30",
                   "len": 3,
                   "index": 0,
@@ -2788,22 +3234,33 @@
 =======
                   "param": "enabled"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "watering_period"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
                 "scd30": {
                   "index": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
                   "param": "co2"
 =======
                   "param": "enabled"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "param": "watering_period"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
-              "default": 0
+              "default": 2880
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "scd30_1_co2",
               "type": "integer",
@@ -2813,16 +3270,20 @@
               "helper": "SCD30 temperature on port #2",
 =======
               "name": "box_1_enabled",
+=======
+              "name": "box_0_watering_duration",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_1_ENABLED",
-              "module": "box",
+              "caps_name": "BOX_0_WATERING_DURATION",
+              "module": "watering",
               
 >>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "scd30",
                   "len": 3,
                   "index": 1,
@@ -2839,14 +3300,25 @@
 =======
                   "param": "enabled"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "watering_duration"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_duration"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
-              "default": 0
+              "default": 600
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "scd30_2_co2",
               "type": "integer",
@@ -2856,16 +3328,20 @@
               "helper": "SCD30 temperature on port #3",
 =======
               "name": "box_2_enabled",
+=======
+              "name": "box_0_watering_last",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_2_ENABLED",
-              "module": "box",
+              "caps_name": "BOX_0_WATERING_LAST",
+              "module": "watering",
               
 >>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "scd30",
                   "len": 3,
                   "index": 2,
@@ -2911,11 +3387,16 @@
                 "array": {
                   "name": "scd30",
                   "len": 3,
+=======
+                  "name": "box",
+                  "len": 1,
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                   "index": 0,
-                  "param": "temp"
+                  "param": "watering_last"
                 },
                 "scd30": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "temp"
                 },
               
@@ -2987,6 +3468,9 @@
                 "scd30": {
                   "index": 2,
                   "param": "temp"
+=======
+                  "param": "watering_last"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
               
               
@@ -2996,6 +3480,7 @@
             {
               "core": false,
 <<<<<<< HEAD
+<<<<<<< HEAD
               "name": "scd30_0_humi",
               "type": "integer",
               "integer": true,
@@ -3004,16 +3489,20 @@
               "helper": "SCD30 humidity on port #1",
 =======
               "name": "box_0_temp_source",
+=======
+              "name": "box_0_watering_power",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_TEMP_SOURCE",
-              "module": "box",
+              "caps_name": "BOX_0_WATERING_POWER",
+              "module": "watering",
               
 >>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "scd30",
                   "len": 3,
                   "index": 0,
@@ -3022,9 +3511,16 @@
 =======
                   "param": "temp_source"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "watering_power"
+>>>>>>> 9cb9c90 (added motor min/max for next release)
                 },
                 "scd30": {
                   "index": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
                   "param": "humi"
 =======
@@ -6149,6 +6645,13 @@
               
               
               "default": -20
+=======
+                  "param": "watering_power"
+                },
+              
+              
+              "default": 20
+>>>>>>> 9cb9c90 (added motor min/max for next release)
             }
           
   ]

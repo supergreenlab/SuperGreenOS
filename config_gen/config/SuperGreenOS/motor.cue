@@ -24,19 +24,24 @@ modules motor fields "\(k)_duty": _INT8 & _HTTP & _INDIR & {
   default: 0
 } for k, v in _motor_conf
 
+modules motor fields "\(k)_min": _INT8 & _NVS & _HTTP_RW & {
+  nvs key: "M_\(k)_MIN"
+  write_cb: true
+  default: 8
+} for k, v in _motor_conf
+
+modules motor fields "\(k)_max": _INT8 & _NVS & _HTTP_RW & {
+  nvs key: "M_\(k)_MAX"
+  write_cb: true
+  default: 100
+} for k, v in _motor_conf
+
 modules motor fields "\(k)_source": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "M_\(k)_D_SRC"
   write_cb: true
   default: v.source
 } for k, v in _motor_conf
 
-modules motor fields "\(k)_gpio": _INT8 & _NVS & _HTTP_RW & {
-  nvs key: "M_\(k)_IO"
+modules motor fields "\(k)_gpio": _INT8 & {
   default: v.gpio
-} for k, v in _motor_conf
-
-modules motor fields "\(k)_frequency": _UINT16 & _NVS & _HTTP_RW & {
-  nvs key: "M_\(k)_HZ"
-  default: 40000
-  write_cb: true
 } for k, v in _motor_conf

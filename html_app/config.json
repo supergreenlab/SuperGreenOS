@@ -33,7 +33,7 @@
       ms.forEach((m, i) => {
         m = modules[m]
         const fields = Object.keys(m.fields)
-        fields.forEach((f, j) => {
+        fields.filter(f => m.fields[f].http.enable).forEach((f, j) => {
           const indir = indirs[f]
           f = m.fields[f]
           %>

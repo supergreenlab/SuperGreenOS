@@ -68,47 +68,11 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "I2C_1_SDA",
-    
-      .setter = internal_set_i2c_1_sda,
-    
-    .getter = get_i2c_1_sda,
-  },
-
-  {
-    .remote = true,
-    .name = "I2C_2_SDA",
-    
-      .setter = internal_set_i2c_2_sda,
-    
-    .getter = get_i2c_2_sda,
-  },
-
-  {
-    .remote = true,
     .name = "I2C_0_SCL",
     
       .setter = internal_set_i2c_0_scl,
     
     .getter = get_i2c_0_scl,
-  },
-
-  {
-    .remote = true,
-    .name = "I2C_1_SCL",
-    
-      .setter = internal_set_i2c_1_scl,
-    
-    .getter = get_i2c_1_scl,
-  },
-
-  {
-    .remote = true,
-    .name = "I2C_2_SCL",
-    
-      .setter = internal_set_i2c_2_scl,
-    
-    .getter = get_i2c_2_scl,
   },
 
   {
@@ -122,24 +86,6 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "I2C_1_ENABLED",
-    
-      .setter = internal_set_i2c_1_enabled,
-    
-    .getter = get_i2c_1_enabled,
-  },
-
-  {
-    .remote = true,
-    .name = "I2C_2_ENABLED",
-    
-      .setter = internal_set_i2c_2_enabled,
-    
-    .getter = get_i2c_2_enabled,
-  },
-
-  {
-    .remote = true,
     .name = "I2C_0_PORT",
     
       .setter = internal_set_i2c_0_port,
@@ -149,29 +95,65 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "I2C_1_PORT",
-    
-      .setter = internal_set_i2c_1_port,
-    
-    .getter = get_i2c_1_port,
-  },
-
-  {
-    .remote = true,
-    .name = "I2C_2_PORT",
-    
-      .setter = internal_set_i2c_2_port,
-    
-    .getter = get_i2c_2_port,
-  },
-
-  {
-    .remote = true,
     .name = "WIFI_STATUS",
     
       .setter = NULL,
     
     .getter = get_wifi_status,
+  },
+
+  {
+    .remote = true,
+    .name = "BOX_0_ENABLED",
+    
+      .setter = internal_set_box_0_enabled,
+    
+    .getter = get_box_0_enabled,
+  },
+
+  {
+    .remote = true,
+    .name = "BOX_0_TEMP",
+    
+      .setter = NULL,
+    
+    .getter = get_box_0_temp,
+  },
+
+  {
+    .remote = true,
+    .name = "BOX_0_TEMP_SOURCE",
+    
+      .setter = internal_set_box_0_temp_source,
+    
+    .getter = get_box_0_temp_source,
+  },
+
+  {
+    .remote = true,
+    .name = "BOX_0_HUMI",
+    
+      .setter = NULL,
+    
+    .getter = get_box_0_humi,
+  },
+
+  {
+    .remote = true,
+    .name = "BOX_0_HUMI_SOURCE",
+    
+      .setter = internal_set_box_0_humi_source,
+    
+    .getter = get_box_0_humi_source,
+  },
+
+  {
+    .remote = true,
+    .name = "BOX_0_VPD_SOURCE",
+    
+      .setter = internal_set_box_0_vpd_source,
+    
+    .getter = get_box_0_vpd_source,
   },
 
   {
@@ -194,20 +176,20 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "MOTOR_1_DUTY",
+    .name = "MOTOR_0_MIN",
     
-      .setter = NULL,
+      .setter = internal_set_motor_0_min,
     
-    .getter = get_motor_1_duty,
+    .getter = get_motor_0_min,
   },
 
   {
     .remote = true,
-    .name = "MOTOR_2_DUTY",
+    .name = "MOTOR_0_MAX",
     
-      .setter = NULL,
+      .setter = internal_set_motor_0_max,
     
-    .getter = get_motor_2_duty,
+    .getter = get_motor_0_max,
   },
 
   {
@@ -221,47 +203,11 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "MOTOR_1_SOURCE",
-    
-      .setter = internal_set_motor_1_source,
-    
-    .getter = get_motor_1_source,
-  },
-
-  {
-    .remote = true,
-    .name = "MOTOR_2_SOURCE",
-    
-      .setter = internal_set_motor_2_source,
-    
-    .getter = get_motor_2_source,
-  },
-
-  {
-    .remote = true,
     .name = "MOTOR_0_GPIO",
     
-      .setter = internal_set_motor_0_gpio,
+      .setter = NULL,
     
     .getter = get_motor_0_gpio,
-  },
-
-  {
-    .remote = true,
-    .name = "MOTOR_1_GPIO",
-    
-      .setter = internal_set_motor_1_gpio,
-    
-    .getter = get_motor_1_gpio,
-  },
-
-  {
-    .remote = true,
-    .name = "MOTOR_2_GPIO",
-    
-      .setter = internal_set_motor_2_gpio,
-    
-    .getter = get_motor_2_gpio,
   },
 
   {
@@ -275,47 +221,11 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "BOX_1_BLOWER_DUTY",
-    
-      .setter = internal_set_box_1_blower_duty,
-    
-    .getter = get_box_1_blower_duty,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_BLOWER_DUTY",
-    
-      .setter = internal_set_box_2_blower_duty,
-    
-    .getter = get_box_2_blower_duty,
-  },
-
-  {
-    .remote = true,
     .name = "BOX_0_BLOWER_MIN",
     
       .setter = internal_set_box_0_blower_min,
     
     .getter = get_box_0_blower_min,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_BLOWER_MIN",
-    
-      .setter = internal_set_box_1_blower_min,
-    
-    .getter = get_box_1_blower_min,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_BLOWER_MIN",
-    
-      .setter = internal_set_box_2_blower_min,
-    
-    .getter = get_box_2_blower_min,
   },
 
   {
@@ -329,47 +239,11 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "BOX_1_BLOWER_MAX",
-    
-      .setter = internal_set_box_1_blower_max,
-    
-    .getter = get_box_1_blower_max,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_BLOWER_MAX",
-    
-      .setter = internal_set_box_2_blower_max,
-    
-    .getter = get_box_2_blower_max,
-  },
-
-  {
-    .remote = true,
     .name = "BOX_0_BLOWER_REF_MIN",
     
       .setter = internal_set_box_0_blower_ref_min,
     
     .getter = get_box_0_blower_ref_min,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_BLOWER_REF_MIN",
-    
-      .setter = internal_set_box_1_blower_ref_min,
-    
-    .getter = get_box_1_blower_ref_min,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_BLOWER_REF_MIN",
-    
-      .setter = internal_set_box_2_blower_ref_min,
-    
-    .getter = get_box_2_blower_ref_min,
   },
 
   {
@@ -383,47 +257,11 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "BOX_1_BLOWER_REF_MAX",
-    
-      .setter = internal_set_box_1_blower_ref_max,
-    
-    .getter = get_box_1_blower_ref_max,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_BLOWER_REF_MAX",
-    
-      .setter = internal_set_box_2_blower_ref_max,
-    
-    .getter = get_box_2_blower_ref_max,
-  },
-
-  {
-    .remote = true,
     .name = "BOX_0_BLOWER_REF",
     
       .setter = NULL,
     
     .getter = get_box_0_blower_ref,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_BLOWER_REF",
-    
-      .setter = NULL,
-    
-    .getter = get_box_1_blower_ref,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_BLOWER_REF",
-    
-      .setter = NULL,
-    
-    .getter = get_box_2_blower_ref,
   },
 
   {
@@ -437,290 +275,56 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "BOX_1_BLOWER_REF_SOURCE",
-    
-      .setter = internal_set_box_1_blower_ref_source,
-    
-    .getter = get_box_1_blower_ref_source,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_BLOWER_REF_SOURCE",
-    
-      .setter = internal_set_box_2_blower_ref_source,
-    
-    .getter = get_box_2_blower_ref_source,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_0_ON_HOUR",
-    
-      .setter = internal_set_box_0_on_hour,
-    
-    .getter = get_box_0_on_hour,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_ON_HOUR",
-    
-      .setter = internal_set_box_1_on_hour,
-    
-    .getter = get_box_1_on_hour,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_ON_HOUR",
-    
-      .setter = internal_set_box_2_on_hour,
-    
-    .getter = get_box_2_on_hour,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_0_ON_MIN",
-    
-      .setter = internal_set_box_0_on_min,
-    
-    .getter = get_box_0_on_min,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_ON_MIN",
-    
-      .setter = internal_set_box_1_on_min,
-    
-    .getter = get_box_1_on_min,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_ON_MIN",
-    
-      .setter = internal_set_box_2_on_min,
-    
-    .getter = get_box_2_on_min,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_0_OFF_HOUR",
-    
-      .setter = internal_set_box_0_off_hour,
-    
-    .getter = get_box_0_off_hour,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_OFF_HOUR",
-    
-      .setter = internal_set_box_1_off_hour,
-    
-    .getter = get_box_1_off_hour,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_OFF_HOUR",
-    
-      .setter = internal_set_box_2_off_hour,
-    
-    .getter = get_box_2_off_hour,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_0_OFF_MIN",
-    
-      .setter = internal_set_box_0_off_min,
-    
-    .getter = get_box_0_off_min,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_OFF_MIN",
-    
-      .setter = internal_set_box_1_off_min,
-    
-    .getter = get_box_1_off_min,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_OFF_MIN",
-    
-      .setter = internal_set_box_2_off_min,
-    
-    .getter = get_box_2_off_min,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_0_ENABLED",
-    
-      .setter = internal_set_box_0_enabled,
-    
-    .getter = get_box_0_enabled,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_ENABLED",
-    
-      .setter = internal_set_box_1_enabled,
-    
-    .getter = get_box_1_enabled,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_ENABLED",
-    
-      .setter = internal_set_box_2_enabled,
-    
-    .getter = get_box_2_enabled,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_0_TEMP",
+    .name = "SHT21_0_TEMP",
     
       .setter = NULL,
     
-    .getter = get_box_0_temp,
+    .getter = get_sht21_0_temp,
   },
 
   {
     .remote = true,
-    .name = "BOX_1_TEMP",
+    .name = "SHT21_0_HUMI",
     
       .setter = NULL,
     
-    .getter = get_box_1_temp,
+    .getter = get_sht21_0_humi,
   },
 
   {
     .remote = true,
-    .name = "BOX_2_TEMP",
+    .name = "SHT21_0_PRESENT",
     
       .setter = NULL,
     
-    .getter = get_box_2_temp,
+    .getter = get_sht21_0_present,
   },
 
   {
     .remote = true,
-    .name = "BOX_0_TEMP_SOURCE",
+    .name = "SHT21_0_VPD_LEAF_OFFSET",
     
-      .setter = internal_set_box_0_temp_source,
+      .setter = internal_set_sht21_0_vpd_leaf_offset,
     
-    .getter = get_box_0_temp_source,
+    .getter = get_sht21_0_vpd_leaf_offset,
   },
 
   {
     .remote = true,
-    .name = "BOX_1_TEMP_SOURCE",
+    .name = "BOX_0_TIMER_TYPE",
     
-      .setter = internal_set_box_1_temp_source,
+      .setter = internal_set_box_0_timer_type,
     
-    .getter = get_box_1_temp_source,
+    .getter = get_box_0_timer_type,
   },
 
   {
     .remote = true,
-    .name = "BOX_2_TEMP_SOURCE",
-    
-      .setter = internal_set_box_2_temp_source,
-    
-    .getter = get_box_2_temp_source,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_0_HUMI",
+    .name = "BOX_0_TIMER_OUTPUT",
     
       .setter = NULL,
     
-    .getter = get_box_0_humi,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_HUMI",
-    
-      .setter = NULL,
-    
-    .getter = get_box_1_humi,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_HUMI",
-    
-      .setter = NULL,
-    
-    .getter = get_box_2_humi,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_0_HUMI_SOURCE",
-    
-      .setter = internal_set_box_0_humi_source,
-    
-    .getter = get_box_0_humi_source,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_HUMI_SOURCE",
-    
-      .setter = internal_set_box_1_humi_source,
-    
-    .getter = get_box_1_humi_source,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_HUMI_SOURCE",
-    
-      .setter = internal_set_box_2_humi_source,
-    
-    .getter = get_box_2_humi_source,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_0_VPD_SOURCE",
-    
-      .setter = internal_set_box_0_vpd_source,
-    
-    .getter = get_box_0_vpd_source,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_VPD_SOURCE",
-    
-      .setter = internal_set_box_1_vpd_source,
-    
-    .getter = get_box_1_vpd_source,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_VPD_SOURCE",
-    
-      .setter = internal_set_box_2_vpd_source,
-    
-    .getter = get_box_2_vpd_source,
+    .getter = get_box_0_timer_output,
   },
 
   {
@@ -752,60 +356,6 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "BOX_0_TIMER_TYPE",
-    
-      .setter = internal_set_box_0_timer_type,
-    
-    .getter = get_box_0_timer_type,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_TIMER_TYPE",
-    
-      .setter = internal_set_box_1_timer_type,
-    
-    .getter = get_box_1_timer_type,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_TIMER_TYPE",
-    
-      .setter = internal_set_box_2_timer_type,
-    
-    .getter = get_box_2_timer_type,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_0_TIMER_OUTPUT",
-    
-      .setter = NULL,
-    
-    .getter = get_box_0_timer_output,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_TIMER_OUTPUT",
-    
-      .setter = NULL,
-    
-    .getter = get_box_1_timer_output,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_TIMER_OUTPUT",
-    
-      .setter = NULL,
-    
-    .getter = get_box_2_timer_output,
-  },
-
-  {
-    .remote = true,
     .name = "STATE",
     
       .setter = internal_set_state,
@@ -815,56 +365,38 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "BOX_0_WATERING_DUTY",
+    .name = "BOX_0_ON_HOUR",
     
-      .setter = internal_set_box_0_watering_duty,
+      .setter = internal_set_box_0_on_hour,
     
-    .getter = get_box_0_watering_duty,
+    .getter = get_box_0_on_hour,
   },
 
   {
     .remote = true,
-    .name = "BOX_1_WATERING_DUTY",
+    .name = "BOX_0_ON_MIN",
     
-      .setter = internal_set_box_1_watering_duty,
+      .setter = internal_set_box_0_on_min,
     
-    .getter = get_box_1_watering_duty,
+    .getter = get_box_0_on_min,
   },
 
   {
     .remote = true,
-    .name = "BOX_2_WATERING_DUTY",
+    .name = "BOX_0_OFF_HOUR",
     
-      .setter = internal_set_box_2_watering_duty,
+      .setter = internal_set_box_0_off_hour,
     
-    .getter = get_box_2_watering_duty,
+    .getter = get_box_0_off_hour,
   },
 
   {
     .remote = true,
-    .name = "BOX_0_WATERING_POWER",
+    .name = "BOX_0_OFF_MIN",
     
-      .setter = internal_set_box_0_watering_power,
+      .setter = internal_set_box_0_off_min,
     
-    .getter = get_box_0_watering_power,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_WATERING_POWER",
-    
-      .setter = internal_set_box_1_watering_power,
-    
-    .getter = get_box_1_watering_power,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_WATERING_POWER",
-    
-      .setter = internal_set_box_2_watering_power,
-    
-    .getter = get_box_2_watering_power,
+    .getter = get_box_0_off_min,
   },
 
   {
@@ -887,101 +419,11 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "LED_1_DUTY",
-    
-      .setter = internal_set_led_1_duty,
-    
-    .getter = get_led_1_duty,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_2_DUTY",
-    
-      .setter = internal_set_led_2_duty,
-    
-    .getter = get_led_2_duty,
-  },
-
-  {
-    .remote = true,
     .name = "LED_0_GPIO",
     
       .setter = internal_set_led_0_gpio,
     
     .getter = get_led_0_gpio,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_1_GPIO",
-    
-      .setter = internal_set_led_1_gpio,
-    
-    .getter = get_led_1_gpio,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_2_GPIO",
-    
-      .setter = internal_set_led_2_gpio,
-    
-    .getter = get_led_2_gpio,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_3_DUTY",
-    
-      .setter = internal_set_led_3_duty,
-    
-    .getter = get_led_3_duty,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_4_DUTY",
-    
-      .setter = internal_set_led_4_duty,
-    
-    .getter = get_led_4_duty,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_5_DUTY",
-    
-      .setter = internal_set_led_5_duty,
-    
-    .getter = get_led_5_duty,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_3_GPIO",
-    
-      .setter = internal_set_led_3_gpio,
-    
-    .getter = get_led_3_gpio,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_4_GPIO",
-    
-      .setter = internal_set_led_4_gpio,
-    
-    .getter = get_led_4_gpio,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_5_GPIO",
-    
-      .setter = internal_set_led_5_gpio,
-    
-    .getter = get_led_5_gpio,
   },
 
   {
@@ -995,101 +437,11 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "LED_1_BOX",
-    
-      .setter = internal_set_led_1_box,
-    
-    .getter = get_led_1_box,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_2_BOX",
-    
-      .setter = internal_set_led_2_box,
-    
-    .getter = get_led_2_box,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_3_BOX",
-    
-      .setter = internal_set_led_3_box,
-    
-    .getter = get_led_3_box,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_4_BOX",
-    
-      .setter = internal_set_led_4_box,
-    
-    .getter = get_led_4_box,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_5_BOX",
-    
-      .setter = internal_set_led_5_box,
-    
-    .getter = get_led_5_box,
-  },
-
-  {
-    .remote = true,
     .name = "LED_0_DIM",
     
       .setter = internal_set_led_0_dim,
     
     .getter = get_led_0_dim,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_1_DIM",
-    
-      .setter = internal_set_led_1_dim,
-    
-    .getter = get_led_1_dim,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_2_DIM",
-    
-      .setter = internal_set_led_2_dim,
-    
-    .getter = get_led_2_dim,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_3_DIM",
-    
-      .setter = internal_set_led_3_dim,
-    
-    .getter = get_led_3_dim,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_4_DIM",
-    
-      .setter = internal_set_led_4_dim,
-    
-    .getter = get_led_4_dim,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_5_DIM",
-    
-      .setter = internal_set_led_5_dim,
-    
-    .getter = get_led_5_dim,
   },
 
   {
@@ -1103,155 +455,20 @@ const kvi8_mapping kvi8_mappings[] = {
 
   {
     .remote = true,
-    .name = "LED_1_FADE",
+    .name = "BOX_0_WATERING_DUTY",
     
-      .setter = internal_set_led_1_fade,
+      .setter = internal_set_box_0_watering_duty,
     
-    .getter = get_led_1_fade,
+    .getter = get_box_0_watering_duty,
   },
 
   {
     .remote = true,
-    .name = "LED_2_FADE",
+    .name = "BOX_0_WATERING_POWER",
     
-      .setter = internal_set_led_2_fade,
+      .setter = internal_set_box_0_watering_power,
     
-    .getter = get_led_2_fade,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_3_FADE",
-    
-      .setter = internal_set_led_3_fade,
-    
-    .getter = get_led_3_fade,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_4_FADE",
-    
-      .setter = internal_set_led_4_fade,
-    
-    .getter = get_led_4_fade,
-  },
-
-  {
-    .remote = true,
-    .name = "LED_5_FADE",
-    
-      .setter = internal_set_led_5_fade,
-    
-    .getter = get_led_5_fade,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_0_TEMP",
-    
-      .setter = NULL,
-    
-    .getter = get_sht21_0_temp,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_1_TEMP",
-    
-      .setter = NULL,
-    
-    .getter = get_sht21_1_temp,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_2_TEMP",
-    
-      .setter = NULL,
-    
-    .getter = get_sht21_2_temp,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_0_HUMI",
-    
-      .setter = NULL,
-    
-    .getter = get_sht21_0_humi,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_1_HUMI",
-    
-      .setter = NULL,
-    
-    .getter = get_sht21_1_humi,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_2_HUMI",
-    
-      .setter = NULL,
-    
-    .getter = get_sht21_2_humi,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_0_PRESENT",
-    
-      .setter = NULL,
-    
-    .getter = get_sht21_0_present,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_1_PRESENT",
-    
-      .setter = NULL,
-    
-    .getter = get_sht21_1_present,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_2_PRESENT",
-    
-      .setter = NULL,
-    
-    .getter = get_sht21_2_present,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_0_VPD_LEAF_OFFSET",
-    
-      .setter = internal_set_sht21_0_vpd_leaf_offset,
-    
-    .getter = get_sht21_0_vpd_leaf_offset,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_1_VPD_LEAF_OFFSET",
-    
-      .setter = internal_set_sht21_1_vpd_leaf_offset,
-    
-    .getter = get_sht21_1_vpd_leaf_offset,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_2_VPD_LEAF_OFFSET",
-    
-      .setter = internal_set_sht21_2_vpd_leaf_offset,
-    
-    .getter = get_sht21_2_vpd_leaf_offset,
+    .getter = get_box_0_watering_power,
   },
 
 
@@ -1293,47 +510,11 @@ const kvui8_mapping kvui8_mappings[] = {
 
   {
     .remote = true,
-    .name = "BOX_1_VPD",
-    
-      .setter = NULL,
-    
-    .getter = get_box_1_vpd,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_VPD",
-    
-      .setter = NULL,
-    
-    .getter = get_box_2_vpd,
-  },
-
-  {
-    .remote = true,
     .name = "SHT21_0_VPD",
     
       .setter = NULL,
     
     .getter = get_sht21_0_vpd,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_1_VPD",
-    
-      .setter = NULL,
-    
-    .getter = get_sht21_1_vpd,
-  },
-
-  {
-    .remote = true,
-    .name = "SHT21_2_VPD",
-    
-      .setter = NULL,
-    
-    .getter = get_sht21_2_vpd,
   },
 
 
@@ -1415,24 +596,6 @@ const kvui16_mapping kvui16_mappings[] = {
 
   {
     .remote = true,
-    .name = "MOTOR_1_FREQUENCY",
-    
-      .setter = internal_set_motor_1_frequency,
-    
-    .getter = get_motor_1_frequency,
-  },
-
-  {
-    .remote = true,
-    .name = "MOTOR_2_FREQUENCY",
-    
-      .setter = internal_set_motor_2_frequency,
-    
-    .getter = get_motor_2_frequency,
-  },
-
-  {
-    .remote = true,
     .name = "BOX_0_WATERING_PERIOD",
     
       .setter = internal_set_box_0_watering_period,
@@ -1442,47 +605,11 @@ const kvui16_mapping kvui16_mappings[] = {
 
   {
     .remote = true,
-    .name = "BOX_1_WATERING_PERIOD",
-    
-      .setter = internal_set_box_1_watering_period,
-    
-    .getter = get_box_1_watering_period,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_WATERING_PERIOD",
-    
-      .setter = internal_set_box_2_watering_period,
-    
-    .getter = get_box_2_watering_period,
-  },
-
-  {
-    .remote = true,
     .name = "BOX_0_WATERING_DURATION",
     
       .setter = internal_set_box_0_watering_duration,
     
     .getter = get_box_0_watering_duration,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_WATERING_DURATION",
-    
-      .setter = internal_set_box_1_watering_duration,
-    
-    .getter = get_box_1_watering_duration,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_WATERING_DURATION",
-    
-      .setter = internal_set_box_2_watering_duration,
-    
-    .getter = get_box_2_watering_duration,
   },
 
 
@@ -1534,33 +661,6 @@ const kvi32_mapping kvi32_mappings[] = {
 
   {
     .remote = true,
-    .name = "BOX_0_LED_DIM",
-    
-      .setter = internal_set_box_0_led_dim,
-    
-    .getter = get_box_0_led_dim,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_LED_DIM",
-    
-      .setter = internal_set_box_1_led_dim,
-    
-    .getter = get_box_1_led_dim,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_LED_DIM",
-    
-      .setter = internal_set_box_2_led_dim,
-    
-    .getter = get_box_2_led_dim,
-  },
-
-  {
-    .remote = true,
     .name = "BOX_0_STARTED_AT",
     
       .setter = internal_set_box_0_started_at,
@@ -1570,20 +670,11 @@ const kvi32_mapping kvi32_mappings[] = {
 
   {
     .remote = true,
-    .name = "BOX_1_STARTED_AT",
+    .name = "BOX_0_LED_DIM",
     
-      .setter = internal_set_box_1_started_at,
+      .setter = internal_set_box_0_led_dim,
     
-    .getter = get_box_1_started_at,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_STARTED_AT",
-    
-      .setter = internal_set_box_2_started_at,
-    
-    .getter = get_box_2_started_at,
+    .getter = get_box_0_led_dim,
   },
 
   {
@@ -1593,24 +684,6 @@ const kvi32_mapping kvi32_mappings[] = {
       .setter = internal_set_box_0_watering_last,
     
     .getter = get_box_0_watering_last,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_1_WATERING_LAST",
-    
-      .setter = internal_set_box_1_watering_last,
-    
-    .getter = get_box_1_watering_last,
-  },
-
-  {
-    .remote = true,
-    .name = "BOX_2_WATERING_LAST",
-    
-      .setter = internal_set_box_2_watering_last,
-    
-    .getter = get_box_2_watering_last,
   },
 
 

@@ -49,6 +49,7 @@ typedef struct {
 
 static void set_duty(int i, float duty_cycle)
 {
+  printf("set_duty %f\n", duty_cycle);
   mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0 + i, MCPWM_OPR_A, duty_cycle);
 }
 
@@ -67,7 +68,13 @@ static void motor_task(void *param) {
         duty = 8*pow(1.025, duty)+5;
         duty = max(0, min(100, duty));
       }
-      set_duty(i, duty);
+      double min = get_motor_min(i);
+      double max = get_motor_max(i);
+      if (duty == 0) {
+        set_duty(i, 0);
+      } else {
+        set_duty(i, min + (max - min) * duty / 100.0f);
+      }
     }
     if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS) == pdTRUE) {
       if (c.cmd == CMD_CHANGED_FREQUENCY) {
@@ -123,6 +130,20 @@ int on_set_motor_frequency(int motorId, int value) {
 
 int on_set_motor_source(int motorId, int value) {
   set_motor_source(motorId, value);
+  refresh_motors();
+  return value;
+}
+
+int on_set_motor_min(int motorId, int value) {
+  value = min(100, max(value, 0));
+  set_motor_min(motorId, value);
+  refresh_motors();
+  return value;
+}
+
+int on_set_motor_max(int motorId, int value) {
+  value = min(100, max(value, 0));
+  set_motor_max(motorId, value);
   refresh_motors();
   return value;
 }
