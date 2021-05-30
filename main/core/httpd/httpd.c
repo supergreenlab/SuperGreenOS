@@ -112,12 +112,12 @@ static esp_err_t geti_handler(httpd_req_t *req) {
   size_t len = 50;
   char name[50] = {0};
   find_str_param(req->uri, "k", name, &len);
-  const kvi8_mapping *hi8 = get_kvi8_mapping(name);
-  const kvui8_mapping *hui8 = get_kvui8_mapping(name);
-  const kvi16_mapping *hi16 = get_kvi16_mapping(name);
-  const kvui16_mapping *hui16 = get_kvui16_mapping(name);
-  const kvi32_mapping *hi32 = get_kvi32_mapping(name);
-  const kvui32_mapping *hui32 = get_kvui32_mapping(name);
+  const kvi8_mapping *hi8 = get_kvi8_mapping(name, false);
+  const kvui8_mapping *hui8 = get_kvui8_mapping(name, false);
+  const kvi16_mapping *hi16 = get_kvi16_mapping(name, false);
+  const kvui16_mapping *hui16 = get_kvui16_mapping(name, false);
+  const kvi32_mapping *hi32 = get_kvi32_mapping(name, false);
+  const kvui32_mapping *hui32 = get_kvui32_mapping(name, false);
 
   if (!hi8 && !hui8 && !hi16 && !hui16 && !hi32 && !hui32) {
     return httpd_resp_send_404(req);
@@ -152,17 +152,17 @@ static esp_err_t seti_handler(httpd_req_t *req) {
   size_t len = 50;
   char name[50] = {0};
   find_str_param(req->uri, "k", name, &len);
-  const kvi8_mapping *hi8 = get_kvi8_mapping(name);
+  const kvi8_mapping *hi8 = get_kvi8_mapping(name, false);
   bool is_i8 = hi8 && hi8->setter;
-  const kvui8_mapping *hui8 = get_kvui8_mapping(name);
+  const kvui8_mapping *hui8 = get_kvui8_mapping(name, false);
   bool is_ui8 = hui8 && hui8->setter;
-  const kvi16_mapping *hi16 = get_kvi16_mapping(name);
+  const kvi16_mapping *hi16 = get_kvi16_mapping(name, false);
   bool is_i16 = hi16 && hi16->setter;
-  const kvui16_mapping *hui16 = get_kvui16_mapping(name);
+  const kvui16_mapping *hui16 = get_kvui16_mapping(name, false);
   bool is_ui16 = hui16 && hui16->setter;
-  const kvi32_mapping *hi32 = get_kvi32_mapping(name);
+  const kvi32_mapping *hi32 = get_kvi32_mapping(name, false);
   bool is_i32 = hi32 && hi32->setter;
-  const kvui32_mapping *hui32 = get_kvui32_mapping(name);
+  const kvui32_mapping *hui32 = get_kvui32_mapping(name, false);
   bool is_ui32 = hui32 && hui32->setter;
 
   if (!is_i8 && !is_ui8 && !is_i16 && !is_ui16 && !is_i32 && !is_ui32) {
@@ -200,7 +200,7 @@ static esp_err_t getstr_handler(httpd_req_t *req) {
   size_t len = 50;
   find_str_param(req->uri, "k", name, &len);
 
-  const kvs_mapping *h = get_kvs_mapping(name);
+  const kvs_mapping *h = get_kvs_mapping(name, false);
   if (!h) {
     return httpd_resp_send_404(req);
   }
@@ -221,7 +221,7 @@ static esp_err_t setstr_handler(httpd_req_t *req) {
   size_t len = 50;
   find_str_param(req->uri, "k", name, &len);
 
-  const kvs_mapping *h = get_kvs_mapping(name);
+  const kvs_mapping *h = get_kvs_mapping(name, false);
   if (!h || !h->setter) {
     return httpd_resp_send_404(req);
   }

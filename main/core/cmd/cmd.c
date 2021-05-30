@@ -33,12 +33,31 @@
 static QueueHandle_t cmd;
 static char buf_cmd[MAX_CMD_LENGTH] = {0};
 
-void execute_cmd(int length, const char *cmdData) {
+void execute_cmd(int length, const char *cmdData, bool remote) {
   if (length > MAX_CMD_LENGTH-1) {
     ESP_LOGE(SGO_LOG_EVENT, "@CMD Sending command failed, too long.");
   } else {
     char cmdStr[MAX_CMD_LENGTH] = {0};
     memcpy(cmdStr, cmdData, length);
+    for (int i = 0; i < length; ++i) {
+      if (cmdStr[i] == ';') {
+        cmdStr[i] = ' ';
+      }
+      if (remote == true && i > 0 && cmdStr[i] == 'r' && cmdStr[i-1] == '-') {
+        cmdStr[i-1] = ' ';
+        cmdStr[i] = ' ';
+        int ifrom = i;
+        for (++i; i < length; ++i) {
+          if (cmdStr[i] == ' ' && cmdStr[i-1] != ' ') {
+            break;
+          }
+        }
+        memset(&(cmdStr[ifrom]), ' ', i - ifrom);
+      }
+    }
+    if (remote == true) {
+      strcpy(&(cmdStr[length]), " -r 1");
+    }
     xQueueSend(cmd, cmdStr, 0);
   }
 }
@@ -47,6 +66,7 @@ static struct {
   struct arg_str *id;
   struct arg_str *key;
   struct arg_int *value;
+  struct arg_int *remote;
   struct arg_end *end;
 } seti_args;
 
@@ -58,18 +78,20 @@ static int seti(int argc, char **argv) {
     return 1;
   }
 
+  bool remote = seti_args.remote->ival[0] == 1;
+  
   const char *name = seti_args.key->sval[0];
-  const kvi8_mapping *hi8 = get_kvi8_mapping(name);
+  const kvi8_mapping *hi8 = get_kvi8_mapping(name, remote);
   bool is_i8 = hi8 && hi8->setter;
-  const kvui8_mapping *hui8 = get_kvui8_mapping(name);
+  const kvui8_mapping *hui8 = get_kvui8_mapping(name, remote);
   bool is_ui8 = hui8 && hui8->setter;
-  const kvi16_mapping *hi16 = get_kvi16_mapping(name);
+  const kvi16_mapping *hi16 = get_kvi16_mapping(name, remote);
   bool is_i16 = hi16 && hi16->setter;
-  const kvui16_mapping *hui16 = get_kvui16_mapping(name);
+  const kvui16_mapping *hui16 = get_kvui16_mapping(name, remote);
   bool is_ui16 = hui16 && hui16->setter;
-  const kvi32_mapping *hi32 = get_kvi32_mapping(name);
+  const kvi32_mapping *hi32 = get_kvi32_mapping(name, remote);
   bool is_i32 = hi32 && hi32->setter;
-  const kvui32_mapping *hui32 = get_kvui32_mapping(name);
+  const kvui32_mapping *hui32 = get_kvui32_mapping(name, remote);
   bool is_ui32 = hui32 && hui32->setter;
 
   if (!is_i8 && !is_ui8 && !is_i16 && !is_ui16 && !is_i32 && !is_ui32) {
@@ -101,6 +123,7 @@ static struct {
   struct arg_str *id;
   struct arg_str *key;
   struct arg_str *value;
+  struct arg_int *remote;
   struct arg_end *end;
 } sets_args;
 
@@ -112,9 +135,10 @@ static int sets(int argc, char **argv) {
     return 1;
   }
 
-  const char *name = sets_args.key->sval[0];
+  bool remote = sets_args.remote->ival[0] == 1;
 
-  const kvs_mapping *h = get_kvs_mapping(name);
+  const char *name = sets_args.key->sval[0];
+  const kvs_mapping *h = get_kvs_mapping(name, remote);
   if (!h || !h->setter) {
     ESP_LOGE(SGO_LOG_EVENT, "@CMD (%s) %s: Key not found or readonly", sets_args.id->sval[0], name);
     return 1;
@@ -132,6 +156,7 @@ static void cmd_task(void *param) {
     seti_args.id = arg_str1("i", "id", "<s>", "Id");
     seti_args.key = arg_str1("k", "key", "<s>", "Key");
     seti_args.value = arg_int1("v", "value", "<n>", "Value");
+    seti_args.remote = arg_int1("r", "remote", "<r>", "Remote");
     seti_args.end = arg_end(2);
 
     const esp_console_cmd_t seti_cmd = {
@@ -148,6 +173,7 @@ static void cmd_task(void *param) {
     sets_args.id = arg_str1("i", "id", "<s>", "Id");
     sets_args.key = arg_str1("k", "key", "<s>", "Key");
     sets_args.value = arg_str1("v", "value", "<n>", "Value");
+    sets_args.remote = arg_int1("r", "remote", "<n>", "Remote");
     sets_args.end = arg_end(2);
 
     const esp_console_cmd_t sets_cmd = {
@@ -161,7 +187,7 @@ static void cmd_task(void *param) {
   }
 
   esp_console_config_t console_config = {
-    .max_cmdline_args = 8,
+    .max_cmdline_args = 10,
     .max_cmdline_length = MAX_CMD_LENGTH,
   };
   ESP_ERROR_CHECK( esp_console_init(&console_config) );
@@ -171,15 +197,16 @@ static void cmd_task(void *param) {
       continue;
     }
     int ret;
+    printf("%s\n", buf_cmd);
     esp_err_t err = esp_console_run(buf_cmd, &ret);
     if (err == ESP_ERR_NOT_FOUND) {
-      printf("Unrecognized command\n");
+      ESP_LOGE(SGO_LOG_EVENT, "@CMD Unrecognized command\n");
     } else if (err == ESP_ERR_INVALID_ARG) {
       // command was empty
     } else if (err == ESP_OK && ret != ESP_OK) {
-      printf("Command returned non-zero error code: 0x%x (%s)\n", ret, esp_err_to_name(ret));
+      ESP_LOGE(SGO_LOG_EVENT, "@CMD Command returned non-zero error code: 0x%x (%s)\n", ret, esp_err_to_name(ret));
     } else if (err != ESP_OK) {
-      printf("Internal error: %s\n", esp_err_to_name(err));
+      ESP_LOGE(SGO_LOG_EVENT, "@CMD Internal error: %s\n", esp_err_to_name(err));
     }
 
     memset(buf_cmd, 0, MAX_CMD_LENGTH);

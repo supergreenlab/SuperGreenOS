@@ -30,6 +30,8 @@
 #include "../wifi/wifi.h"
 #include "../cmd/cmd.h"
 
+#define MAX_REMOTE_CMD_LENGTH MAX_CMD_LENGTH-10 // keeps some space for the -r true parameter
+
 static esp_mqtt_client_handle_t client;
 
 static QueueHandle_t cmd;
@@ -53,8 +55,7 @@ static void subscribe_cmd() {
   esp_mqtt_client_subscribe(client, cmd_channel, 0);
 }
 
-static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
-{
+static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event) {
   switch (event->event_id) {
     case MQTT_EVENT_BEFORE_CONNECT:
       ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_BEFORE_CONNECT");
@@ -78,8 +79,8 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
       break;
     case MQTT_EVENT_DATA:
       ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_DATA");
-      if (event->data_len > MAX_CMD_LENGTH + 65) {
-        ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command string can't be larger that %d with signature", MAX_CMD_LENGTH + 65);
+      if (event->data_len > MAX_REMOTE_CMD_LENGTH + 65) {
+        ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command string can't be larger that %d with signature", MAX_REMOTE_CMD_LENGTH + 65);
         break;
       }
       if (event->data_len < 66) {
@@ -91,14 +92,14 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
         getstr(SIGNING_KEY, signingKey, 33);
         char hash[65] = {0};
         strncpy(hash, event->data, 64);
-        char cmd[MAX_CMD_LENGTH + 1] = {0};
+        char cmd[MAX_REMOTE_CMD_LENGTH + 1] = {0};
         strncpy(cmd, &(event->data[65]), event->data_len - 65);
 
-        char cmdSeeded[MAX_CMD_LENGTH + 33 + 1] = {0};
+        char cmdSeeded[MAX_REMOTE_CMD_LENGTH + 33 + 1] = {0};
         uint8_t localHashBin[32] = {0};
         sprintf(cmdSeeded, "%s:%s", signingKey, cmd);
 
-        ESP_LOGI(SGO_LOG_EVENT, "@MQTT Hash: %s - Cmd: %s", hash, cmd);
+        //ESP_LOGI(SGO_LOG_EVENT, "@MQTT Hash: %s - Cmd: %s", hash, cmd);
         mbedtls_sha256_context sha256_ctx;
         mbedtls_sha256_init(&sha256_ctx);
         mbedtls_sha256_starts_ret(&sha256_ctx, false);
@@ -112,7 +113,7 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
           break;
         }
 
-        execute_cmd(event->data_len - 65, cmd);
+        execute_cmd(event->data_len - 65, cmd, true);
       } else {
         ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command disabled: missing signign key");
       }

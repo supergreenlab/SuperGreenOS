@@ -49,7 +49,7 @@ static void term_task(void *param) {
     }
 
     if (c == 0x0A) {
-      execute_cmd(i, buf_term);
+      execute_cmd(i, buf_term, false);
       memset(buf_term, 0, TERM_LENGTH);
       i = 0;
     } else {

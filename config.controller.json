@@ -2103,7 +2103,7 @@
                     "type": "integer",
 =======
                     "write_cb": true,
-                    "remote": true,
+                    "remote": false,
                     "type": "string",
                     "nosend": true,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
@@ -2150,8 +2150,12 @@
 =======
 =======
                     "write_cb": true,
+<<<<<<< HEAD
                     "remote": true,
 >>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
+=======
+                    "remote": false,
+>>>>>>> d8060ca (added key not remotely changeable)
                     "type": "string",
                     "nosend": true,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)
@@ -2315,12 +2319,16 @@
                     "write_cb": true,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     "default": 0,
                     "type": "integer",
 =======
 =======
                     "remote": true,
 >>>>>>> 6041852 (wip - adding http auth headers - added basic mqtt request parsing)
+=======
+                    "remote": false,
+>>>>>>> d8060ca (added key not remotely changeable)
                     "type": "string",
                     "nosend": false,
 >>>>>>> 7c9e073 (added shitty serial input. added esp_console first test, next step is generating the commands)

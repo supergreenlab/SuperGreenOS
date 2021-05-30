@@ -19,9 +19,11 @@
 #ifndef CMD_H_
 #define CMD_H_
 
-#define MAX_CMD_LENGTH 256
+#include <stdbool.h>
+
+#define MAX_CMD_LENGTH 512
 
 void init_cmd();
-void execute_cmd(int length, const char *cmd);
+void execute_cmd(int length, const char *cmd, bool remote);
 
 #endif

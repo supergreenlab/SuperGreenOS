@@ -32,6 +32,7 @@ const kvi8_mapping kvi8_mappings[] = {
 <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 8 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
   {
+    .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
     <% if (f.http.write) { %>
       .setter = internal_set_<%= f.name %>,
@@ -51,9 +52,12 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 };
 
-const kvi8_mapping *get_kvi8_mapping(const char *name) {
+const kvi8_mapping *get_kvi8_mapping(const char *name, bool remote) {
   for (int i = 0; kvi8_mappings[i].name != NULL; ++i) {
     if (strcmp(kvi8_mappings[i].name, name) == 0) {
+      if (remote && kvi8_mappings[i].remote == false) {
+        return NULL;
+      }
       return &kvi8_mappings[i];
     }
   }
@@ -68,6 +72,7 @@ const kvui8_mapping kvui8_mappings[] = {
 <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 8 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
   {
+    .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
     <% if (f.http.write) { %>
       .setter = internal_set_<%= f.name %>,
@@ -87,9 +92,12 @@ const kvui8_mapping kvui8_mappings[] = {
   },
 };
 
-const kvui8_mapping *get_kvui8_mapping(const char *name) {
+const kvui8_mapping *get_kvui8_mapping(const char *name, bool remote) {
   for (int i = 0; kvui8_mappings[i].name != NULL; ++i) {
     if (strcmp(kvui8_mappings[i].name, name) == 0) {
+      if (remote && kvui8_mappings[i].remote == false) {
+        return NULL;
+      }
       return &kvui8_mappings[i];
     }
   }
@@ -106,6 +114,7 @@ const kvi16_mapping kvi16_mappings[] = {
  <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
   {
+    .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
     <% if (f.http.write) { %>
       .setter = internal_set_<%= f.name %>,
@@ -125,9 +134,13 @@ const kvi16_mapping kvi16_mappings[] = {
   },
 };
 
-const kvi16_mapping *get_kvi16_mapping(const char *name) {
+const kvi16_mapping *get_kvi16_mapping(const char *name, bool remote) {
   for (int i = 0; kvi16_mappings[i].name != NULL; ++i) {
     if (strcmp(kvi16_mappings[i].name, name) == 0) {
+      if (remote && kvi16_mappings[i].remote == false) {
+        return NULL;
+      }
+
       return &kvi16_mappings[i];
     }
   }
@@ -142,6 +155,7 @@ const kvui16_mapping kvui16_mappings[] = {
  <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
   {
+    .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
     <% if (f.http.write) { %>
       .setter = internal_set_<%= f.name %>,
@@ -161,9 +175,12 @@ const kvui16_mapping kvui16_mappings[] = {
   },
 };
 
-const kvui16_mapping *get_kvui16_mapping(const char *name) {
+const kvui16_mapping *get_kvui16_mapping(const char *name, bool remote) {
   for (int i = 0; kvui16_mappings[i].name != NULL; ++i) {
     if (strcmp(kvui16_mappings[i].name, name) == 0) {
+      if (remote && kvui16_mappings[i].remote == false) {
+        return NULL;
+      }
       return &kvui16_mappings[i];
     }
   }
@@ -179,6 +196,7 @@ const kvi32_mapping kvi32_mappings[] = {
  <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
   {
+    .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
     <% if (f.http.write) { %>
       .setter = internal_set_<%= f.name %>,
@@ -193,14 +211,18 @@ const kvi32_mapping kvi32_mappings[] = {
 * [/GENERATED]
 */
   {
+    .remote = false,
     .name = NULL,
     .setter = NULL,
   },
 };
 
-const kvi32_mapping *get_kvi32_mapping(const char *name) {
+const kvi32_mapping *get_kvi32_mapping(const char *name, bool remote) {
   for (int i = 0; kvi32_mappings[i].name != NULL; ++i) {
     if (strcmp(kvi32_mappings[i].name, name) == 0) {
+      if (remote && kvi32_mappings[i].remote == false) {
+        return NULL;
+      }
       return &kvi32_mappings[i];
     }
   }
@@ -215,6 +237,7 @@ const kvui32_mapping kvui32_mappings[] = {
  <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
   {
+    .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
     <% if (f.http.write) { %>
       .setter = internal_set_<%= f.name %>,
@@ -229,14 +252,18 @@ const kvui32_mapping kvui32_mappings[] = {
 * [/GENERATED]
 */
   {
+    .remote = true,
     .name = NULL,
     .setter = NULL,
   },
 };
 
-const kvui32_mapping *get_kvui32_mapping(const char *name) {
+const kvui32_mapping *get_kvui32_mapping(const char *name, bool remote) {
   for (int i = 0; kvui32_mappings[i].name != NULL; ++i) {
     if (strcmp(kvui32_mappings[i].name, name) == 0) {
+      if (remote && kvui32_mappings[i].remote == false) {
+        return NULL;
+      }
       return &kvui32_mappings[i];
     }
   }
@@ -251,6 +278,7 @@ const kvs_mapping kvs_mappings[] = {
 <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
   Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'string').forEach(f => { f = modules[m].fields[f]%>
   {
+    .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
     <% if (f.http.write) { %>
     .setter = internal_set_<%= f.name %>,
@@ -265,14 +293,18 @@ const kvs_mapping kvs_mappings[] = {
 * [/GENERATED]
 */
   {
+    .remote = true,
     .name = NULL,
     .setter = NULL,
   }
 };
 
-const kvs_mapping *get_kvs_mapping(const char *name) {
+const kvs_mapping *get_kvs_mapping(const char *name, bool remote) {
   for (int i = 0; kvs_mappings[i].name != NULL; ++i) {
     if (strcmp(kvs_mappings[i].name, name) == 0) {
+      if (remote && kvs_mappings[i].remote == false) {
+        return NULL;
+      }
       return &kvs_mappings[i];
     }
   }

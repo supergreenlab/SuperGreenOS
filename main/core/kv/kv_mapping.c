@@ -31,6 +31,7 @@ const kvi8_mapping kvi8_mappings[] = {
   
 
   {
+    .remote = true,
     .name = "REBOOT",
     
       .setter = internal_set_reboot,
@@ -39,6 +40,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "N_RESTARTS",
     
       .setter = NULL,
@@ -47,6 +49,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "OTA_STATUS",
     
       .setter = NULL,
@@ -55,6 +58,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "I2C_0_SDA",
     
       .setter = internal_set_i2c_0_sda,
@@ -63,6 +67,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "I2C_1_SDA",
     
       .setter = internal_set_i2c_1_sda,
@@ -71,6 +76,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "I2C_2_SDA",
     
       .setter = internal_set_i2c_2_sda,
@@ -79,6 +85,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "I2C_0_SCL",
     
       .setter = internal_set_i2c_0_scl,
@@ -87,6 +94,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "I2C_1_SCL",
     
       .setter = internal_set_i2c_1_scl,
@@ -95,6 +103,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "I2C_2_SCL",
     
       .setter = internal_set_i2c_2_scl,
@@ -103,6 +112,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "I2C_0_ENABLED",
     
       .setter = internal_set_i2c_0_enabled,
@@ -111,6 +121,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "I2C_1_ENABLED",
     
       .setter = internal_set_i2c_1_enabled,
@@ -119,6 +130,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "I2C_2_ENABLED",
     
       .setter = internal_set_i2c_2_enabled,
@@ -127,6 +139,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "I2C_0_PORT",
     
       .setter = internal_set_i2c_0_port,
@@ -135,6 +148,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "I2C_1_PORT",
     
       .setter = internal_set_i2c_1_port,
@@ -143,6 +157,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "I2C_2_PORT",
     
       .setter = internal_set_i2c_2_port,
@@ -151,6 +166,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "WIFI_STATUS",
     
       .setter = NULL,
@@ -159,6 +175,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTORS_CURVE",
     
       .setter = internal_set_motors_curve,
@@ -167,6 +184,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTOR_0_DUTY",
     
       .setter = NULL,
@@ -175,6 +193,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTOR_1_DUTY",
     
       .setter = NULL,
@@ -183,6 +202,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTOR_2_DUTY",
     
       .setter = NULL,
@@ -191,6 +211,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTOR_0_SOURCE",
     
       .setter = internal_set_motor_0_source,
@@ -199,6 +220,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTOR_1_SOURCE",
     
       .setter = internal_set_motor_1_source,
@@ -207,6 +229,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTOR_2_SOURCE",
     
       .setter = internal_set_motor_2_source,
@@ -215,6 +238,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTOR_0_GPIO",
     
       .setter = internal_set_motor_0_gpio,
@@ -223,6 +247,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTOR_1_GPIO",
     
       .setter = internal_set_motor_1_gpio,
@@ -231,6 +256,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTOR_2_GPIO",
     
       .setter = internal_set_motor_2_gpio,
@@ -239,6 +265,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_BLOWER_DUTY",
     
       .setter = internal_set_box_0_blower_duty,
@@ -247,6 +274,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_BLOWER_DUTY",
     
       .setter = internal_set_box_1_blower_duty,
@@ -255,6 +283,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_BLOWER_DUTY",
     
       .setter = internal_set_box_2_blower_duty,
@@ -263,6 +292,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_BLOWER_MIN",
     
       .setter = internal_set_box_0_blower_min,
@@ -271,6 +301,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_BLOWER_MIN",
     
       .setter = internal_set_box_1_blower_min,
@@ -279,6 +310,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_BLOWER_MIN",
     
       .setter = internal_set_box_2_blower_min,
@@ -287,6 +319,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_BLOWER_MAX",
     
       .setter = internal_set_box_0_blower_max,
@@ -295,6 +328,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_BLOWER_MAX",
     
       .setter = internal_set_box_1_blower_max,
@@ -303,6 +337,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_BLOWER_MAX",
     
       .setter = internal_set_box_2_blower_max,
@@ -311,6 +346,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_BLOWER_REF_MIN",
     
       .setter = internal_set_box_0_blower_ref_min,
@@ -319,6 +355,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_BLOWER_REF_MIN",
     
       .setter = internal_set_box_1_blower_ref_min,
@@ -327,6 +364,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_BLOWER_REF_MIN",
     
       .setter = internal_set_box_2_blower_ref_min,
@@ -335,6 +373,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_BLOWER_REF_MAX",
     
       .setter = internal_set_box_0_blower_ref_max,
@@ -343,6 +382,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_BLOWER_REF_MAX",
     
       .setter = internal_set_box_1_blower_ref_max,
@@ -351,6 +391,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_BLOWER_REF_MAX",
     
       .setter = internal_set_box_2_blower_ref_max,
@@ -359,6 +400,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_BLOWER_REF",
     
       .setter = NULL,
@@ -367,6 +409,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_BLOWER_REF",
     
       .setter = NULL,
@@ -375,6 +418,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_BLOWER_REF",
     
       .setter = NULL,
@@ -383,6 +427,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_BLOWER_REF_SOURCE",
     
       .setter = internal_set_box_0_blower_ref_source,
@@ -391,6 +436,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_BLOWER_REF_SOURCE",
     
       .setter = internal_set_box_1_blower_ref_source,
@@ -399,6 +445,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_BLOWER_REF_SOURCE",
     
       .setter = internal_set_box_2_blower_ref_source,
@@ -407,6 +454,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_ON_HOUR",
     
       .setter = internal_set_box_0_on_hour,
@@ -415,6 +463,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_ON_HOUR",
     
       .setter = internal_set_box_1_on_hour,
@@ -423,6 +472,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_ON_HOUR",
     
       .setter = internal_set_box_2_on_hour,
@@ -431,6 +481,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_ON_MIN",
     
       .setter = internal_set_box_0_on_min,
@@ -439,6 +490,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_ON_MIN",
     
       .setter = internal_set_box_1_on_min,
@@ -447,6 +499,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_ON_MIN",
     
       .setter = internal_set_box_2_on_min,
@@ -455,6 +508,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_OFF_HOUR",
     
       .setter = internal_set_box_0_off_hour,
@@ -463,6 +517,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_OFF_HOUR",
     
       .setter = internal_set_box_1_off_hour,
@@ -471,6 +526,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_OFF_HOUR",
     
       .setter = internal_set_box_2_off_hour,
@@ -479,6 +535,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_OFF_MIN",
     
       .setter = internal_set_box_0_off_min,
@@ -487,6 +544,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_OFF_MIN",
     
       .setter = internal_set_box_1_off_min,
@@ -495,6 +553,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_OFF_MIN",
     
       .setter = internal_set_box_2_off_min,
@@ -503,6 +562,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_ENABLED",
     
       .setter = internal_set_box_0_enabled,
@@ -511,6 +571,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_ENABLED",
     
       .setter = internal_set_box_1_enabled,
@@ -519,6 +580,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_ENABLED",
     
       .setter = internal_set_box_2_enabled,
@@ -527,6 +589,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_TEMP",
     
       .setter = NULL,
@@ -535,6 +598,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_TEMP",
     
       .setter = NULL,
@@ -543,6 +607,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_TEMP",
     
       .setter = NULL,
@@ -551,6 +616,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_TEMP_SOURCE",
     
       .setter = internal_set_box_0_temp_source,
@@ -559,6 +625,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_TEMP_SOURCE",
     
       .setter = internal_set_box_1_temp_source,
@@ -567,6 +634,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_TEMP_SOURCE",
     
       .setter = internal_set_box_2_temp_source,
@@ -575,6 +643,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_HUMI",
     
       .setter = NULL,
@@ -583,6 +652,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_HUMI",
     
       .setter = NULL,
@@ -591,6 +661,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_HUMI",
     
       .setter = NULL,
@@ -599,6 +670,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_HUMI_SOURCE",
     
       .setter = internal_set_box_0_humi_source,
@@ -607,6 +679,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_HUMI_SOURCE",
     
       .setter = internal_set_box_1_humi_source,
@@ -615,6 +688,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_HUMI_SOURCE",
     
       .setter = internal_set_box_2_humi_source,
@@ -623,6 +697,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_VPD_SOURCE",
     
       .setter = internal_set_box_0_vpd_source,
@@ -631,6 +706,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_VPD_SOURCE",
     
       .setter = internal_set_box_1_vpd_source,
@@ -639,6 +715,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_VPD_SOURCE",
     
       .setter = internal_set_box_2_vpd_source,
@@ -647,6 +724,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "STATUS_LED_RED_GPIO",
     
       .setter = internal_set_status_led_red_gpio,
@@ -655,6 +733,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "STATUS_LED_GREEN_GPIO",
     
       .setter = internal_set_status_led_green_gpio,
@@ -663,6 +742,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "STATUS_LED_DIM",
     
       .setter = internal_set_status_led_dim,
@@ -671,6 +751,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_TIMER_TYPE",
     
       .setter = internal_set_box_0_timer_type,
@@ -679,6 +760,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_TIMER_TYPE",
     
       .setter = internal_set_box_1_timer_type,
@@ -687,6 +769,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_TIMER_TYPE",
     
       .setter = internal_set_box_2_timer_type,
@@ -695,6 +778,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_TIMER_OUTPUT",
     
       .setter = NULL,
@@ -703,6 +787,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_TIMER_OUTPUT",
     
       .setter = NULL,
@@ -711,6 +796,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_TIMER_OUTPUT",
     
       .setter = NULL,
@@ -719,6 +805,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "STATE",
     
       .setter = internal_set_state,
@@ -727,6 +814,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_WATERING_DUTY",
     
       .setter = internal_set_box_0_watering_duty,
@@ -735,6 +823,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_WATERING_DUTY",
     
       .setter = internal_set_box_1_watering_duty,
@@ -743,6 +832,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_WATERING_DUTY",
     
       .setter = internal_set_box_2_watering_duty,
@@ -751,6 +841,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_WATERING_POWER",
     
       .setter = internal_set_box_0_watering_power,
@@ -759,6 +850,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_WATERING_POWER",
     
       .setter = internal_set_box_1_watering_power,
@@ -767,6 +859,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_WATERING_POWER",
     
       .setter = internal_set_box_2_watering_power,
@@ -775,6 +868,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LEDS_FASTMODE",
     
       .setter = internal_set_leds_fastmode,
@@ -783,6 +877,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_0_DUTY",
     
       .setter = internal_set_led_0_duty,
@@ -791,6 +886,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_1_DUTY",
     
       .setter = internal_set_led_1_duty,
@@ -799,6 +895,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_2_DUTY",
     
       .setter = internal_set_led_2_duty,
@@ -807,6 +904,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_0_GPIO",
     
       .setter = internal_set_led_0_gpio,
@@ -815,6 +913,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_1_GPIO",
     
       .setter = internal_set_led_1_gpio,
@@ -823,6 +922,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_2_GPIO",
     
       .setter = internal_set_led_2_gpio,
@@ -831,6 +931,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_3_DUTY",
     
       .setter = internal_set_led_3_duty,
@@ -839,6 +940,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_4_DUTY",
     
       .setter = internal_set_led_4_duty,
@@ -847,6 +949,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_5_DUTY",
     
       .setter = internal_set_led_5_duty,
@@ -855,6 +958,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_3_GPIO",
     
       .setter = internal_set_led_3_gpio,
@@ -863,6 +967,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_4_GPIO",
     
       .setter = internal_set_led_4_gpio,
@@ -871,6 +976,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_5_GPIO",
     
       .setter = internal_set_led_5_gpio,
@@ -879,6 +985,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_0_BOX",
     
       .setter = internal_set_led_0_box,
@@ -887,6 +994,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_1_BOX",
     
       .setter = internal_set_led_1_box,
@@ -895,6 +1003,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_2_BOX",
     
       .setter = internal_set_led_2_box,
@@ -903,6 +1012,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_3_BOX",
     
       .setter = internal_set_led_3_box,
@@ -911,6 +1021,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_4_BOX",
     
       .setter = internal_set_led_4_box,
@@ -919,6 +1030,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_5_BOX",
     
       .setter = internal_set_led_5_box,
@@ -927,6 +1039,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_0_DIM",
     
       .setter = internal_set_led_0_dim,
@@ -935,6 +1048,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_1_DIM",
     
       .setter = internal_set_led_1_dim,
@@ -943,6 +1057,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_2_DIM",
     
       .setter = internal_set_led_2_dim,
@@ -951,6 +1066,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_3_DIM",
     
       .setter = internal_set_led_3_dim,
@@ -959,6 +1075,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_4_DIM",
     
       .setter = internal_set_led_4_dim,
@@ -967,6 +1084,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_5_DIM",
     
       .setter = internal_set_led_5_dim,
@@ -975,6 +1093,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_0_FADE",
     
       .setter = internal_set_led_0_fade,
@@ -983,6 +1102,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_1_FADE",
     
       .setter = internal_set_led_1_fade,
@@ -991,6 +1111,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_2_FADE",
     
       .setter = internal_set_led_2_fade,
@@ -999,6 +1120,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_3_FADE",
     
       .setter = internal_set_led_3_fade,
@@ -1007,6 +1129,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_4_FADE",
     
       .setter = internal_set_led_4_fade,
@@ -1015,6 +1138,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "LED_5_FADE",
     
       .setter = internal_set_led_5_fade,
@@ -1023,6 +1147,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_0_TEMP",
     
       .setter = NULL,
@@ -1031,6 +1156,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_1_TEMP",
     
       .setter = NULL,
@@ -1039,6 +1165,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_2_TEMP",
     
       .setter = NULL,
@@ -1047,6 +1174,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_0_HUMI",
     
       .setter = NULL,
@@ -1055,6 +1183,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_1_HUMI",
     
       .setter = NULL,
@@ -1063,6 +1192,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_2_HUMI",
     
       .setter = NULL,
@@ -1071,6 +1201,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_0_PRESENT",
     
       .setter = NULL,
@@ -1079,6 +1210,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_1_PRESENT",
     
       .setter = NULL,
@@ -1087,6 +1219,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_2_PRESENT",
     
       .setter = NULL,
@@ -1095,6 +1228,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_0_VPD_LEAF_OFFSET",
     
       .setter = internal_set_sht21_0_vpd_leaf_offset,
@@ -1103,6 +1237,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_1_VPD_LEAF_OFFSET",
     
       .setter = internal_set_sht21_1_vpd_leaf_offset,
@@ -1111,6 +1246,7 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_2_VPD_LEAF_OFFSET",
     
       .setter = internal_set_sht21_2_vpd_leaf_offset,
@@ -1128,9 +1264,12 @@ const kvi8_mapping kvi8_mappings[] = {
   },
 };
 
-const kvi8_mapping *get_kvi8_mapping(const char *name) {
+const kvi8_mapping *get_kvi8_mapping(const char *name, bool remote) {
   for (int i = 0; kvi8_mappings[i].name != NULL; ++i) {
     if (strcmp(kvi8_mappings[i].name, name) == 0) {
+      if (remote && kvi8_mappings[i].remote == false) {
+        return NULL;
+      }
       return &kvi8_mappings[i];
     }
   }
@@ -1144,6 +1283,7 @@ const kvui8_mapping kvui8_mappings[] = {
   
 
   {
+    .remote = true,
     .name = "BOX_0_VPD",
     
       .setter = NULL,
@@ -1152,6 +1292,7 @@ const kvui8_mapping kvui8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_VPD",
     
       .setter = NULL,
@@ -1160,6 +1301,7 @@ const kvui8_mapping kvui8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_VPD",
     
       .setter = NULL,
@@ -1168,6 +1310,7 @@ const kvui8_mapping kvui8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_0_VPD",
     
       .setter = NULL,
@@ -1176,6 +1319,7 @@ const kvui8_mapping kvui8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_1_VPD",
     
       .setter = NULL,
@@ -1184,6 +1328,7 @@ const kvui8_mapping kvui8_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "SHT21_2_VPD",
     
       .setter = NULL,
@@ -1201,9 +1346,12 @@ const kvui8_mapping kvui8_mappings[] = {
   },
 };
 
-const kvui8_mapping *get_kvui8_mapping(const char *name) {
+const kvui8_mapping *get_kvui8_mapping(const char *name, bool remote) {
   for (int i = 0; kvui8_mappings[i].name != NULL; ++i) {
     if (strcmp(kvui8_mappings[i].name, name) == 0) {
+      if (remote && kvui8_mappings[i].remote == false) {
+        return NULL;
+      }
       return &kvui8_mappings[i];
     }
   }
@@ -1228,9 +1376,13 @@ const kvi16_mapping kvi16_mappings[] = {
   },
 };
 
-const kvi16_mapping *get_kvi16_mapping(const char *name) {
+const kvi16_mapping *get_kvi16_mapping(const char *name, bool remote) {
   for (int i = 0; kvi16_mappings[i].name != NULL; ++i) {
     if (strcmp(kvi16_mappings[i].name, name) == 0) {
+      if (remote && kvi16_mappings[i].remote == false) {
+        return NULL;
+      }
+
       return &kvi16_mappings[i];
     }
   }
@@ -1244,6 +1396,7 @@ const kvui16_mapping kvui16_mappings[] = {
 
  
   {
+    .remote = false,
     .name = "OTA_SERVER_PORT",
     
       .setter = internal_set_ota_server_port,
@@ -1252,6 +1405,7 @@ const kvui16_mapping kvui16_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTOR_0_FREQUENCY",
     
       .setter = internal_set_motor_0_frequency,
@@ -1260,6 +1414,7 @@ const kvui16_mapping kvui16_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTOR_1_FREQUENCY",
     
       .setter = internal_set_motor_1_frequency,
@@ -1268,6 +1423,7 @@ const kvui16_mapping kvui16_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "MOTOR_2_FREQUENCY",
     
       .setter = internal_set_motor_2_frequency,
@@ -1276,6 +1432,7 @@ const kvui16_mapping kvui16_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_WATERING_PERIOD",
     
       .setter = internal_set_box_0_watering_period,
@@ -1284,6 +1441,7 @@ const kvui16_mapping kvui16_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_WATERING_PERIOD",
     
       .setter = internal_set_box_1_watering_period,
@@ -1292,6 +1450,7 @@ const kvui16_mapping kvui16_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_WATERING_PERIOD",
     
       .setter = internal_set_box_2_watering_period,
@@ -1300,6 +1459,7 @@ const kvui16_mapping kvui16_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_WATERING_DURATION",
     
       .setter = internal_set_box_0_watering_duration,
@@ -1308,6 +1468,7 @@ const kvui16_mapping kvui16_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_WATERING_DURATION",
     
       .setter = internal_set_box_1_watering_duration,
@@ -1316,6 +1477,7 @@ const kvui16_mapping kvui16_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_WATERING_DURATION",
     
       .setter = internal_set_box_2_watering_duration,
@@ -1333,9 +1495,12 @@ const kvui16_mapping kvui16_mappings[] = {
   },
 };
 
-const kvui16_mapping *get_kvui16_mapping(const char *name) {
+const kvui16_mapping *get_kvui16_mapping(const char *name, bool remote) {
   for (int i = 0; kvui16_mappings[i].name != NULL; ++i) {
     if (strcmp(kvui16_mappings[i].name, name) == 0) {
+      if (remote && kvui16_mappings[i].remote == false) {
+        return NULL;
+      }
       return &kvui16_mappings[i];
     }
   }
@@ -1350,6 +1515,7 @@ const kvi32_mapping kvi32_mappings[] = {
 
  
   {
+    .remote = true,
     .name = "TIME",
     
       .setter = internal_set_time,
@@ -1358,6 +1524,7 @@ const kvi32_mapping kvi32_mappings[] = {
   },
 
   {
+    .remote = false,
     .name = "OTA_TIMESTAMP",
     
       .setter = internal_set_ota_timestamp,
@@ -1366,6 +1533,7 @@ const kvi32_mapping kvi32_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_LED_DIM",
     
       .setter = internal_set_box_0_led_dim,
@@ -1374,6 +1542,7 @@ const kvi32_mapping kvi32_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_LED_DIM",
     
       .setter = internal_set_box_1_led_dim,
@@ -1382,6 +1551,7 @@ const kvi32_mapping kvi32_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_LED_DIM",
     
       .setter = internal_set_box_2_led_dim,
@@ -1390,6 +1560,7 @@ const kvi32_mapping kvi32_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_STARTED_AT",
     
       .setter = internal_set_box_0_started_at,
@@ -1398,6 +1569,7 @@ const kvi32_mapping kvi32_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_STARTED_AT",
     
       .setter = internal_set_box_1_started_at,
@@ -1406,6 +1578,7 @@ const kvi32_mapping kvi32_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_STARTED_AT",
     
       .setter = internal_set_box_2_started_at,
@@ -1414,6 +1587,7 @@ const kvi32_mapping kvi32_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_0_WATERING_LAST",
     
       .setter = internal_set_box_0_watering_last,
@@ -1422,6 +1596,7 @@ const kvi32_mapping kvi32_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_1_WATERING_LAST",
     
       .setter = internal_set_box_1_watering_last,
@@ -1430,6 +1605,7 @@ const kvi32_mapping kvi32_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BOX_2_WATERING_LAST",
     
       .setter = internal_set_box_2_watering_last,
@@ -1442,14 +1618,18 @@ const kvi32_mapping kvi32_mappings[] = {
 * [/GENERATED]
 */
   {
+    .remote = false,
     .name = NULL,
     .setter = NULL,
   },
 };
 
-const kvi32_mapping *get_kvi32_mapping(const char *name) {
+const kvi32_mapping *get_kvi32_mapping(const char *name, bool remote) {
   for (int i = 0; kvi32_mappings[i].name != NULL; ++i) {
     if (strcmp(kvi32_mappings[i].name, name) == 0) {
+      if (remote && kvi32_mappings[i].remote == false) {
+        return NULL;
+      }
       return &kvi32_mappings[i];
     }
   }
@@ -1467,14 +1647,18 @@ const kvui32_mapping kvui32_mappings[] = {
 * [/GENERATED]
 */
   {
+    .remote = true,
     .name = NULL,
     .setter = NULL,
   },
 };
 
-const kvui32_mapping *get_kvui32_mapping(const char *name) {
+const kvui32_mapping *get_kvui32_mapping(const char *name, bool remote) {
   for (int i = 0; kvui32_mappings[i].name != NULL; ++i) {
     if (strcmp(kvui32_mappings[i].name, name) == 0) {
+      if (remote && kvui32_mappings[i].remote == false) {
+        return NULL;
+      }
       return &kvui32_mappings[i];
     }
   }
@@ -1488,6 +1672,7 @@ const kvs_mapping kvs_mappings[] = {
 
 
   {
+    .remote = true,
     .name = "BROKER_URL",
     
     .setter = internal_set_broker_url,
@@ -1496,6 +1681,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BROKER_CHANNEL",
     
     .setter = internal_set_broker_channel,
@@ -1504,6 +1690,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "BROKER_CLIENTID",
     
     .setter = internal_set_broker_clientid,
@@ -1512,6 +1699,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = false,
     .name = "OTA_SERVER_IP",
     
     .setter = internal_set_ota_server_ip,
@@ -1520,6 +1708,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = false,
     .name = "OTA_SERVER_HOSTNAME",
     
     .setter = internal_set_ota_server_hostname,
@@ -1528,6 +1717,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = false,
     .name = "OTA_BASEDIR",
     
     .setter = internal_set_ota_basedir,
@@ -1536,6 +1726,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = false,
     .name = "HTTPD_AUTH",
     
     .setter = internal_set_httpd_auth,
@@ -1544,6 +1735,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = false,
     .name = "WIFI_SSID",
     
     .setter = internal_set_wifi_ssid,
@@ -1552,6 +1744,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = false,
     .name = "WIFI_PASSWORD",
     
     .setter = internal_set_wifi_password,
@@ -1560,6 +1753,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "WIFI_AP_SSID",
     
     .setter = internal_set_wifi_ap_ssid,
@@ -1568,6 +1762,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "WIFI_AP_PASSWORD",
     
     .setter = internal_set_wifi_ap_password,
@@ -1576,6 +1771,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = false,
     .name = "MDNS_DOMAIN",
     
     .setter = internal_set_mdns_domain,
@@ -1584,6 +1780,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "WIFI_IP",
     
     .setter = NULL,
@@ -1592,6 +1789,7 @@ const kvs_mapping kvs_mappings[] = {
   },
 
   {
+    .remote = true,
     .name = "DEVICE_NAME",
     
     .setter = internal_set_device_name,
@@ -1604,14 +1802,18 @@ const kvs_mapping kvs_mappings[] = {
 * [/GENERATED]
 */
   {
+    .remote = true,
     .name = NULL,
     .setter = NULL,
   }
 };
 
-const kvs_mapping *get_kvs_mapping(const char *name) {
+const kvs_mapping *get_kvs_mapping(const char *name, bool remote) {
   for (int i = 0; kvs_mappings[i].name != NULL; ++i) {
     if (strcmp(kvs_mappings[i].name, name) == 0) {
+      if (remote && kvs_mappings[i].remote == false) {
+        return NULL;
+      }
       return &kvs_mappings[i];
     }
   }
