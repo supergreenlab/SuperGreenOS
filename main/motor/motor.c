@@ -49,7 +49,6 @@ typedef struct {
 
 static void set_duty(int i, float duty_cycle)
 {
-  printf("set_duty %f\n", duty_cycle);
   mcpwm_set_duty(MCPWM_UNIT_0, MCPWM_TIMER_0 + i, MCPWM_OPR_A, duty_cycle);
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "Solo",
+  "name": "SuperGreenController",
   "keys": [
     
             {
@@ -288,7 +288,7 @@
               "write": true,
               
               
-              "default": "/SoloV2.1"
+              "default": "/ControllerV3"
             },
           
             {
@@ -304,7 +304,7 @@
               
                 "array": {
                   "name": "i2c",
-                  "len": 1,
+                  "len": 3,
                   "index": 0,
                   "param": "sda"
                 },
@@ -314,7 +314,59 @@
                 },
               
               
-              "default": 25
+              "default": 18
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_1_sda",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "I2C_1_SDA",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3,
+                  "index": 1,
+                  "param": "sda"
+                },
+                "i2c": {
+                  "index": 1,
+                  "param": "sda"
+                },
+              
+              
+              "default": 21
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_2_sda",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "I2C_2_SDA",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3,
+                  "index": 2,
+                  "param": "sda"
+                },
+                "i2c": {
+                  "index": 2,
+                  "param": "sda"
+                },
+              
+              
+              "default": 21
             },
           
             {
@@ -330,7 +382,7 @@
               
                 "array": {
                   "name": "i2c",
-                  "len": 1,
+                  "len": 3,
                   "index": 0,
                   "param": "scl"
                 },
@@ -340,7 +392,59 @@
                 },
               
               
-              "default": 26
+              "default": 5
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_1_scl",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "I2C_1_SCL",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3,
+                  "index": 1,
+                  "param": "scl"
+                },
+                "i2c": {
+                  "index": 1,
+                  "param": "scl"
+                },
+              
+              
+              "default": 19
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_2_scl",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "I2C_2_SCL",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3,
+                  "index": 2,
+                  "param": "scl"
+                },
+                "i2c": {
+                  "index": 2,
+                  "param": "scl"
+                },
+              
+              
+              "default": 19
             },
           
             {
@@ -356,12 +460,64 @@
               
                 "array": {
                   "name": "i2c",
-                  "len": 1,
+                  "len": 3,
                   "index": 0,
                   "param": "enabled"
                 },
                 "i2c": {
                   "index": 0,
+                  "param": "enabled"
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_1_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "I2C_1_ENABLED",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3,
+                  "index": 1,
+                  "param": "enabled"
+                },
+                "i2c": {
+                  "index": 1,
+                  "param": "enabled"
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": true,
+              "name": "i2c_2_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "I2C_2_ENABLED",
+              "module": "i2c",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "i2c",
+                  "len": 3,
+                  "index": 2,
+                  "param": "enabled"
+                },
+                "i2c": {
+                  "index": 2,
                   "param": "enabled"
                 },
               
@@ -382,7 +538,7 @@
               
                 "array": {
                   "name": "i2c",
-                  "len": 1,
+                  "len": 3,
                   "index": 0,
                   "param": "port"
                 },
@@ -398,6 +554,9 @@
             {
               "core": true,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f2e83de (removed useless print)
               "name": "i2c_1_port",
               "type": "integer",
               "integer": true,
@@ -450,6 +609,7 @@
           
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
               "core": false,
               "name": "box_0_timer_type",
               "type": "integer",
@@ -460,6 +620,9 @@
               "core": true,
 =======
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "core": true,
+>>>>>>> f2e83de (removed useless print)
               "name": "httpd_auth",
               "type": "string",
               "integer": false,
@@ -621,7 +784,7 @@
               "write": true,
               
               
-              "default": "solo"
+              "default": "supergreencontroller"
             },
           
             {
@@ -644,6 +807,7 @@
               "core": false,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               "name": "box_0_timer_output",
               "type": "integer",
               "integer": true,
@@ -655,25 +819,17 @@
 =======
               "name": "box_0_enabled",
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "name": "motors_curve",
+>>>>>>> f2e83de (removed useless print)
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_ENABLED",
-              "module": "box",
+              "caps_name": "MOTORS_CURVE",
+              "module": "motors",
               
 >>>>>>> 7ce57fd (added basic http auth)
               
               "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "enabled"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "enabled"
-                },
               
               
               "default": 0
@@ -681,19 +837,20 @@
           
             {
               "core": false,
-              "name": "box_0_temp",
+              "name": "motor_0_duty",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_TEMP",
-              "module": "box",
+              "caps_name": "MOTOR_0_DUTY",
+              "module": "motor",
               
               
               "write": false,
               
                 "array": {
-                  "name": "box",
-                  "len": 1,
+                  "name": "motor",
+                  "len": 3,
                   "index": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                   "param": "timer_output"
@@ -703,9 +860,13 @@
 =======
                   "param": "temp"
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+                  "param": "duty"
+>>>>>>> f2e83de (removed useless print)
                 },
-                "box": {
+                "motor": {
                   "index": 0,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                   "param": "timer_output"
@@ -715,6 +876,9 @@
 =======
                   "param": "temp"
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+                  "param": "duty"
+>>>>>>> f2e83de (removed useless print)
                 },
               
               
@@ -723,6 +887,7 @@
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_1_timer_output",
@@ -736,16 +901,20 @@
 =======
               "name": "box_0_temp_source",
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "name": "motor_1_duty",
+>>>>>>> f2e83de (removed useless print)
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_TEMP_SOURCE",
-              "module": "box",
+              "caps_name": "MOTOR_1_DUTY",
+              "module": "motor",
               
 >>>>>>> 7ce57fd (added basic http auth)
               
-              "write": true,
+              "write": false,
               
                 "array": {
+<<<<<<< HEAD
 <<<<<<< HEAD
                   "name": "motor",
                   "len": 3,
@@ -773,19 +942,25 @@
                   "index": 0,
                   "param": "temp_source"
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+                  "name": "motor",
+                  "len": 3,
+                  "index": 1,
+                  "param": "duty"
+                },
+                "motor": {
+                  "index": 1,
+                  "param": "duty"
+>>>>>>> f2e83de (removed useless print)
                 },
               
               
-                "indir": {
-                  "values": [1],
-                  "helpers": ["SHT21 temperature on port #1"]
-                },
-              
-              "default": 1
+              "default": 0
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_2_timer_output",
@@ -796,16 +971,20 @@
               "helper": "Box #3 timer output",
 =======
               "name": "box_0_humi",
+=======
+              "name": "motor_2_duty",
+>>>>>>> f2e83de (removed useless print)
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_HUMI",
-              "module": "box",
+              "caps_name": "MOTOR_2_DUTY",
+              "module": "motor",
               
 >>>>>>> 9cb9c90 (added motor min/max for next release)
               
               "write": false,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "box",
 <<<<<<< HEAD
                   "len": 3,
@@ -824,6 +1003,16 @@
                   "index": 0,
                   "param": "humi"
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+                  "name": "motor",
+                  "len": 3,
+                  "index": 2,
+                  "param": "duty"
+                },
+                "motor": {
+                  "index": 2,
+                  "param": "duty"
+>>>>>>> f2e83de (removed useless print)
                 },
               
               
@@ -832,6 +1021,7 @@
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_0_blower_duty",
               "type": "integer",
@@ -841,16 +1031,20 @@
               "helper": "Blower control for box#1",
 =======
               "name": "box_0_humi_source",
+=======
+              "name": "motor_0_min",
+>>>>>>> f2e83de (removed useless print)
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_HUMI_SOURCE",
-              "module": "box",
+              "caps_name": "MOTOR_0_MIN",
+              "module": "motor",
               
 >>>>>>> 9cb9c90 (added motor min/max for next release)
               
               "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "box",
 <<<<<<< HEAD
                   "len": 3,
@@ -866,15 +1060,20 @@
               "default": 0
 =======
                   "len": 1,
+=======
+                  "name": "motor",
+                  "len": 3,
+>>>>>>> f2e83de (removed useless print)
                   "index": 0,
-                  "param": "humi_source"
+                  "param": "min"
                 },
-                "box": {
+                "motor": {
                   "index": 0,
-                  "param": "humi_source"
+                  "param": "min"
                 },
               
               
+<<<<<<< HEAD
                 "indir": {
                   "values": [1],
                   "helpers": ["SHT21 humidity on port #1"]
@@ -882,10 +1081,14 @@
               
               "default": 1
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "default": 8
+>>>>>>> f2e83de (removed useless print)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_1_blower_duty",
               "type": "integer",
@@ -895,16 +1098,20 @@
               "helper": "Blower control for box#2",
 =======
               "name": "box_0_vpd",
+=======
+              "name": "motor_1_min",
+>>>>>>> f2e83de (removed useless print)
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_VPD",
-              "module": "box",
+              "caps_name": "MOTOR_1_MIN",
+              "module": "motor",
               
 >>>>>>> 9cb9c90 (added motor min/max for next release)
               
-              "write": false,
+              "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "box",
 <<<<<<< HEAD
                   "len": 3,
@@ -919,19 +1126,26 @@
                   "len": 1,
                   "index": 0,
                   "param": "vpd"
+=======
+                  "name": "motor",
+                  "len": 3,
+                  "index": 1,
+                  "param": "min"
+>>>>>>> f2e83de (removed useless print)
                 },
-                "box": {
-                  "index": 0,
-                  "param": "vpd"
+                "motor": {
+                  "index": 1,
+                  "param": "min"
                 },
 >>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
-              "default": 0
+              "default": 8
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_2_blower_duty",
               "type": "integer",
@@ -952,12 +1166,20 @@
               "caps_name": "BOX_0_VPD_SOURCE",
               "module": "box",
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "name": "motor_2_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_2_MIN",
+              "module": "motor",
+>>>>>>> f2e83de (removed useless print)
               
 >>>>>>> 7ce57fd (added basic http auth)
               
               "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "box",
 <<<<<<< HEAD
                   "len": 3,
@@ -975,13 +1197,20 @@
                   "len": 1,
                   "index": 0,
                   "param": "vpd_source"
+=======
+                  "name": "motor",
+                  "len": 3,
+                  "index": 2,
+                  "param": "min"
+>>>>>>> f2e83de (removed useless print)
                 },
-                "box": {
-                  "index": 0,
-                  "param": "vpd_source"
+                "motor": {
+                  "index": 2,
+                  "param": "min"
                 },
               
               
+<<<<<<< HEAD
                 "indir": {
                   "values": [1],
                   "helpers": ["SHT21 humidity on port #1"]
@@ -989,10 +1218,14 @@
               
               "default": 1
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "default": 8
+>>>>>>> f2e83de (removed useless print)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_0_blower_min",
               "type": "integer",
@@ -1006,11 +1239,19 @@
               "caps_name": "BOX_0_STARTED_AT",
               "module": "box",
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "name": "motor_0_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_0_MAX",
+              "module": "motor",
+>>>>>>> f2e83de (removed useless print)
               
               
               "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "box",
 <<<<<<< HEAD
                   "len": 3,
@@ -1026,15 +1267,20 @@
               "default": 8
 =======
                   "len": 1,
+=======
+                  "name": "motor",
+                  "len": 3,
+>>>>>>> f2e83de (removed useless print)
                   "index": 0,
-                  "param": "started_at"
+                  "param": "max"
                 },
-                "box": {
+                "motor": {
                   "index": 0,
-                  "param": "started_at"
+                  "param": "max"
                 },
               
               
+<<<<<<< HEAD
               "default": 0
 >>>>>>> 9cb9c90 (added motor min/max for next release)
             },
@@ -1076,10 +1322,14 @@
               
               "default": 1
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "default": 100
+>>>>>>> f2e83de (removed useless print)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_2_blower_min",
               "type": "integer",
@@ -1088,14 +1338,17 @@
               "module": "blower",
 =======
               "name": "motor_0_duty",
+=======
+              "name": "motor_1_max",
+>>>>>>> f2e83de (removed useless print)
               "type": "integer",
               "integer": true,
-              "caps_name": "MOTOR_0_DUTY",
+              "caps_name": "MOTOR_1_MAX",
               "module": "motor",
 >>>>>>> 9cb9c90 (added motor min/max for next release)
               
               
-              "write": false,
+              "write": true,
               
                 "array": {
 <<<<<<< HEAD
@@ -1113,22 +1366,27 @@
               "default": 8
 =======
                   "name": "motor",
-                  "len": 1,
-                  "index": 0,
-                  "param": "duty"
+                  "len": 3,
+                  "index": 1,
+                  "param": "max"
                 },
                 "motor": {
-                  "index": 0,
-                  "param": "duty"
+                  "index": 1,
+                  "param": "max"
                 },
               
               
+<<<<<<< HEAD
               "default": 0
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "default": 100
+>>>>>>> f2e83de (removed useless print)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_0_blower_max",
               "type": "integer",
@@ -1137,9 +1395,12 @@
               "module": "blower",
 =======
               "name": "motor_0_min",
+=======
+              "name": "motor_2_max",
+>>>>>>> f2e83de (removed useless print)
               "type": "integer",
               "integer": true,
-              "caps_name": "MOTOR_0_MIN",
+              "caps_name": "MOTOR_2_MAX",
               "module": "motor",
 >>>>>>> 9cb9c90 (added motor min/max for next release)
               
@@ -1154,6 +1415,7 @@
                   "param": "blower_max"
 =======
                   "name": "motor",
+<<<<<<< HEAD
                   "len": 1,
                   "index": 0,
                   "param": "min"
@@ -1174,10 +1436,24 @@
               
               "default": 8
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+                  "len": 3,
+                  "index": 2,
+                  "param": "max"
+                },
+                "motor": {
+                  "index": 2,
+                  "param": "max"
+                },
+              
+              
+              "default": 100
+>>>>>>> f2e83de (removed useless print)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_1_blower_max",
               "type": "integer",
@@ -1186,55 +1462,9 @@
               "module": "blower",
 =======
               "name": "motor_0_max",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_0_MAX",
-              "module": "motor",
->>>>>>> 9cb9c90 (added motor min/max for next release)
-              
-              
-              "write": true,
-              
-                "array": {
-<<<<<<< HEAD
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "blower_max"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "blower_max"
-                },
-              
-              
-              "default": 30
-=======
-                  "name": "motor",
-                  "len": 1,
-                  "index": 0,
-                  "param": "max"
-                },
-                "motor": {
-                  "index": 0,
-                  "param": "max"
-                },
-              
-              
-              "default": 100
->>>>>>> 9cb9c90 (added motor min/max for next release)
-            },
-          
-            {
-              "core": false,
-<<<<<<< HEAD
-              "name": "box_2_blower_max",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_BLOWER_MAX",
-              "module": "blower",
 =======
               "name": "motor_0_source",
+>>>>>>> f2e83de (removed useless print)
               "type": "integer",
               "integer": true,
               "caps_name": "MOTOR_0_SOURCE",
@@ -1248,6 +1478,68 @@
 <<<<<<< HEAD
                   "name": "box",
                   "len": 3,
+                  "index": 1,
+                  "param": "blower_max"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_max"
+                },
+              
+              
+              "default": 30
+=======
+                  "name": "motor",
+                  "len": 3,
+                  "index": 0,
+                  "param": "source"
+                },
+                "motor": {
+                  "index": 0,
+                  "param": "source"
+                },
+              
+              
+<<<<<<< HEAD
+              "default": 100
+>>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+                "indir": {
+                  "values": [1,2,3,8,9,10],
+                  "helpers": ["Blower control for box#1","Blower control for box#2","Blower control for box#3","Watering control for box#1","Watering control for box#2","Watering control for box#3"]
+                },
+              
+              "default": 1
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+<<<<<<< HEAD
+              "name": "box_2_blower_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_MAX",
+              "module": "blower",
+=======
+              "name": "motor_0_source",
+=======
+              "name": "motor_1_source",
+>>>>>>> f2e83de (removed useless print)
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_1_SOURCE",
+              "module": "motor",
+>>>>>>> 9cb9c90 (added motor min/max for next release)
+              
+              
+              "write": true,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "box",
+                  "len": 3,
                   "index": 2,
                   "param": "blower_max"
                 },
@@ -1260,27 +1552,32 @@
               "default": 30
 =======
                   "name": "motor",
-                  "len": 1,
-                  "index": 0,
+                  "len": 3,
+                  "index": 1,
                   "param": "source"
                 },
                 "motor": {
-                  "index": 0,
+                  "index": 1,
                   "param": "source"
                 },
               
               
                 "indir": {
-                  "values": [1,8],
-                  "helpers": ["Blower control for box#1","Watering control for box#1"]
+                  "values": [1,2,3,8,9,10],
+                  "helpers": ["Blower control for box#1","Blower control for box#2","Blower control for box#3","Watering control for box#1","Watering control for box#2","Watering control for box#3"]
                 },
               
+<<<<<<< HEAD
               "default": 1
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "default": 2
+>>>>>>> f2e83de (removed useless print)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_0_blower_ref_min",
               "type": "integer",
@@ -1289,9 +1586,12 @@
               "module": "blower",
 =======
               "name": "motor_0_frequency",
+=======
+              "name": "motor_2_source",
+>>>>>>> f2e83de (removed useless print)
               "type": "integer",
               "integer": true,
-              "caps_name": "MOTOR_0_FREQUENCY",
+              "caps_name": "MOTOR_2_SOURCE",
               "module": "motor",
 >>>>>>> 9cb9c90 (added motor min/max for next release)
               
@@ -1300,6 +1600,7 @@
               
                 "array": {
                   "name": "motor",
+<<<<<<< HEAD
                   "len": 1,
                   "index": 0,
 <<<<<<< HEAD
@@ -1323,10 +1624,29 @@
               
               "default": 40000
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+                  "len": 3,
+                  "index": 2,
+                  "param": "source"
+                },
+                "motor": {
+                  "index": 2,
+                  "param": "source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3,8,9,10],
+                  "helpers": ["Blower control for box#1","Blower control for box#2","Blower control for box#3","Watering control for box#1","Watering control for box#2","Watering control for box#3"]
+                },
+              
+              "default": 3
+>>>>>>> f2e83de (removed useless print)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_1_blower_ref_min",
               "type": "integer",
@@ -1342,11 +1662,20 @@
               "module": "blower",
               "helper": "Blower control for box#1",
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "name": "box_0_led_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_LED_DIM",
+              "module": "mixer",
+              
+>>>>>>> f2e83de (removed useless print)
               
               "write": true,
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
 <<<<<<< HEAD
                   "len": 3,
                   "index": 1,
@@ -1357,13 +1686,20 @@
                   "param": "blower_ref_min"
 =======
                   "len": 1,
+=======
+                  "len": 3,
+>>>>>>> f2e83de (removed useless print)
                   "index": 0,
-                  "param": "blower_duty"
+                  "param": "led_dim"
                 },
                 "box": {
                   "index": 0,
+<<<<<<< HEAD
                   "param": "blower_duty"
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+                  "param": "led_dim"
+>>>>>>> f2e83de (removed useless print)
                 },
               
               
@@ -1372,6 +1708,7 @@
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_2_blower_ref_min",
               "type": "integer",
@@ -1384,12 +1721,20 @@
               "caps_name": "BOX_0_BLOWER_MIN",
 >>>>>>> 9cb9c90 (added motor min/max for next release)
               "module": "blower",
+=======
+              "name": "box_1_led_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_LED_DIM",
+              "module": "mixer",
+>>>>>>> f2e83de (removed useless print)
               
               
               "write": true,
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
 <<<<<<< HEAD
                   "len": 3,
                   "index": 2,
@@ -1406,19 +1751,29 @@
                   "len": 1,
                   "index": 0,
                   "param": "blower_min"
+=======
+                  "len": 3,
+                  "index": 1,
+                  "param": "led_dim"
+>>>>>>> f2e83de (removed useless print)
                 },
                 "box": {
-                  "index": 0,
-                  "param": "blower_min"
+                  "index": 1,
+                  "param": "led_dim"
                 },
               
               
+<<<<<<< HEAD
               "default": 8
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "default": 0
+>>>>>>> f2e83de (removed useless print)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_0_blower_ref_max",
@@ -1440,12 +1795,20 @@
               "caps_name": "BOX_0_BLOWER_MAX",
               "module": "blower",
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "name": "box_2_led_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_LED_DIM",
+              "module": "mixer",
+>>>>>>> f2e83de (removed useless print)
               
               
               "write": true,
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
                   "len": 1,
                   "index": 0,
 <<<<<<< HEAD
@@ -1472,19 +1835,29 @@
 >>>>>>> 7ce57fd (added basic http auth)
 =======
                   "param": "blower_max"
+=======
+                  "len": 3,
+                  "index": 2,
+                  "param": "led_dim"
+>>>>>>> f2e83de (removed useless print)
                 },
                 "box": {
-                  "index": 0,
-                  "param": "blower_max"
+                  "index": 2,
+                  "param": "led_dim"
                 },
               
               
+<<<<<<< HEAD
               "default": 30
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "default": 0
+>>>>>>> f2e83de (removed useless print)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_1_blower_ref_max",
@@ -1501,17 +1874,25 @@
 >>>>>>> 7ce57fd (added basic http auth)
 =======
               "name": "box_0_blower_ref_min",
+=======
+              "name": "box_0_blower_duty",
+>>>>>>> f2e83de (removed useless print)
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_BLOWER_REF_MIN",
+              "caps_name": "BOX_0_BLOWER_DUTY",
               "module": "blower",
+<<<<<<< HEAD
 >>>>>>> 9cb9c90 (added motor min/max for next release)
               
+=======
+              "helper": "Blower control for box#1",
+>>>>>>> f2e83de (removed useless print)
               
               "write": true,
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
 <<<<<<< HEAD
                   "len": 3,
                   "index": 1,
@@ -1538,21 +1919,29 @@
 >>>>>>> 7ce57fd (added basic http auth)
 =======
                   "len": 1,
+=======
+                  "len": 3,
+>>>>>>> f2e83de (removed useless print)
                   "index": 0,
-                  "param": "blower_ref_min"
+                  "param": "blower_duty"
                 },
                 "box": {
                   "index": 0,
-                  "param": "blower_ref_min"
+                  "param": "blower_duty"
                 },
               
               
+<<<<<<< HEAD
               "default": 21
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "default": 0
+>>>>>>> f2e83de (removed useless print)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_2_blower_ref_max",
@@ -1569,17 +1958,25 @@
 >>>>>>> 7ce57fd (added basic http auth)
 =======
               "name": "box_0_blower_ref_max",
+=======
+              "name": "box_1_blower_duty",
+>>>>>>> f2e83de (removed useless print)
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_BLOWER_REF_MAX",
+              "caps_name": "BOX_1_BLOWER_DUTY",
               "module": "blower",
+<<<<<<< HEAD
 >>>>>>> 9cb9c90 (added motor min/max for next release)
               
+=======
+              "helper": "Blower control for box#2",
+>>>>>>> f2e83de (removed useless print)
               
               "write": true,
               
                 "array": {
                   "name": "box",
+<<<<<<< HEAD
 <<<<<<< HEAD
                   "len": 3,
                   "index": 2,
@@ -1608,29 +2005,44 @@
                   "len": 1,
                   "index": 0,
                   "param": "blower_ref_max"
+=======
+                  "len": 3,
+                  "index": 1,
+                  "param": "blower_duty"
+>>>>>>> f2e83de (removed useless print)
                 },
                 "box": {
-                  "index": 0,
-                  "param": "blower_ref_max"
+                  "index": 1,
+                  "param": "blower_duty"
                 },
               
               
+<<<<<<< HEAD
               "default": 30
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "default": 0
+>>>>>>> f2e83de (removed useless print)
             },
           
             {
               "core": false,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 9cb9c90 (added motor min/max for next release)
               "name": "box_0_blower_ref",
+=======
+              "name": "box_2_blower_duty",
+>>>>>>> f2e83de (removed useless print)
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_BLOWER_REF",
+              "caps_name": "BOX_2_BLOWER_DUTY",
               "module": "blower",
+              "helper": "Blower control for box#3",
               
+<<<<<<< HEAD
 =======
               "name": "box_0_blower_duty",
               "type": "integer",
@@ -1665,6 +2077,19 @@
 >>>>>>> 7ce57fd (added basic http auth)
 =======
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "blower_duty"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_duty"
+>>>>>>> f2e83de (removed useless print)
                 },
               
               
@@ -1673,6 +2098,7 @@
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_1_blower_ref",
@@ -1685,6 +2111,12 @@
               "integer": true,
               "caps_name": "BOX_0_BLOWER_REF_SOURCE",
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "name": "box_0_blower_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_MIN",
+>>>>>>> f2e83de (removed useless print)
               "module": "blower",
               
 =======
@@ -1701,6 +2133,7 @@
                 "array": {
                   "name": "box",
 <<<<<<< HEAD
+<<<<<<< HEAD
                   "len": 3,
                   "index": 1,
 <<<<<<< HEAD
@@ -1720,10 +2153,24 @@
               
               
               "default": 0
+=======
+                  "len": 3,
+                  "index": 0,
+                  "param": "blower_min"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_min"
+                },
+              
+              
+              "default": 8
+>>>>>>> f2e83de (removed useless print)
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_2_blower_ref",
               "type": "integer",
@@ -1739,12 +2186,21 @@
               "module": "blower",
               "helper": "Blower control for box#3",
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+              "name": "box_1_blower_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_MIN",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
               
-              "write": false,
+              
+              "write": true,
               
                 "array": {
                   "name": "box",
                   "len": 3,
+<<<<<<< HEAD
                   "index": 2,
 <<<<<<< HEAD
                   "param": "blower_ref"
@@ -1759,14 +2215,23 @@
                   "index": 2,
                   "param": "blower_duty"
 >>>>>>> 7ce57fd (added basic http auth)
+=======
+                  "index": 1,
+                  "param": "blower_min"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_min"
+>>>>>>> f2e83de (removed useless print)
                 },
               
               
-              "default": 0
+              "default": 8
             },
           
             {
               "core": false,
+<<<<<<< HEAD
 <<<<<<< HEAD
               "name": "box_0_blower_ref_source",
               "type": "integer",
@@ -1978,10 +2443,19 @@
               "module": "sht21",
               "helper": "SHT21 humidity on port #1",
 >>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+              "name": "box_2_blower_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_MIN",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
               
-              "write": false,
+              
+              "write": true,
               
                 "array": {
+<<<<<<< HEAD
                   "name": "sht21",
                   "len": 1,
                   "index": 0,
@@ -5868,6 +6342,1850 @@
                 "box": {
                   "index": 1,
                   "param": "vpd"
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "blower_min"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_min"
+>>>>>>> f2e83de (removed useless print)
+                },
+              
+              
+              "default": 8
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_2_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_VPD",
+              "module": "box",
+              
+=======
+              "name": "box_0_blower_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_MAX",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+<<<<<<< HEAD
+                  "index": 2,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "vpd"
+=======
+                  "index": 0,
+                  "param": "blower_max"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_max"
+>>>>>>> f2e83de (removed useless print)
+                },
+              
+              
+              "default": 30
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_0_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP_SOURCE",
+              "module": "box",
+=======
+              "name": "box_1_blower_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_MAX",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+<<<<<<< HEAD
+                  "index": 0,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16,17,18,1,2,3],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 1
+=======
+                  "index": 1,
+                  "param": "blower_max"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_max"
+                },
+              
+              
+              "default": 30
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_1_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TEMP_SOURCE",
+              "module": "box",
+=======
+              "name": "box_2_blower_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_MAX",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+<<<<<<< HEAD
+                  "index": 1,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16,17,18,1,2,3],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 2
+=======
+                  "index": 2,
+                  "param": "blower_max"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_max"
+                },
+              
+              
+              "default": 30
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_2_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TEMP_SOURCE",
+              "module": "box",
+=======
+              "name": "box_0_blower_ref_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF_MIN",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+<<<<<<< HEAD
+                  "index": 2,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16,17,18,1,2,3],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 0
+=======
+                  "index": 0,
+                  "param": "blower_ref_min"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_ref_min"
+                },
+              
+              
+              "default": 21
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_0_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI_SOURCE",
+              "module": "box",
+=======
+              "name": "box_1_blower_ref_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_REF_MIN",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+<<<<<<< HEAD
+                  "index": 0,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16,17,18,4,5,6],
+                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 1
+=======
+                  "index": 1,
+                  "param": "blower_ref_min"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_ref_min"
+                },
+              
+              
+              "default": 21
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_1_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_HUMI_SOURCE",
+              "module": "box",
+=======
+              "name": "box_2_blower_ref_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_REF_MIN",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+<<<<<<< HEAD
+                  "index": 1,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16,17,18,4,5,6],
+                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 2
+=======
+                  "index": 2,
+                  "param": "blower_ref_min"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_ref_min"
+                },
+              
+              
+              "default": 21
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_2_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_HUMI_SOURCE",
+              "module": "box",
+=======
+              "name": "box_0_blower_ref_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF_MAX",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+<<<<<<< HEAD
+                  "index": 2,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16,17,18,4,5,6],
+                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 0
+=======
+                  "index": 0,
+                  "param": "blower_ref_max"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_ref_max"
+                },
+              
+              
+              "default": 30
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_0_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD_SOURCE",
+              "module": "box",
+=======
+              "name": "box_1_blower_ref_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_REF_MAX",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+<<<<<<< HEAD
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16,17,18,1,2,3],
+                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 1
+=======
+                  "index": 1,
+                  "param": "blower_ref_max"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_ref_max"
+                },
+              
+              
+              "default": 30
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_1_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_VPD_SOURCE",
+              "module": "box",
+=======
+              "name": "box_2_blower_ref_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_REF_MAX",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+<<<<<<< HEAD
+                  "index": 1,
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16,17,18,1,2,3],
+                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_VPD_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+=======
+                  "index": 2,
+                  "param": "blower_ref_max"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_ref_max"
+                },
+>>>>>>> f2e83de (removed useless print)
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "vpd_source"
+                },
+              
+              
+<<<<<<< HEAD
+                "indir": {
+                  "values": [16,17,18,1,2,3],
+                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 0
+=======
+              "default": 30
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_0_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_STARTED_AT",
+              "module": "box",
+=======
+              "name": "box_0_blower_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+<<<<<<< HEAD
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "started_at"
+=======
+                  "param": "blower_ref"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_ref"
+>>>>>>> f2e83de (removed useless print)
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "box_1_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_STARTED_AT",
+              "module": "box",
+=======
+              "name": "box_1_blower_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_REF",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+<<<<<<< HEAD
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "started_at"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_STARTED_AT",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "started_at"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_0_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "present"
+=======
+                  "param": "blower_ref"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_ref"
+>>>>>>> f2e83de (removed useless print)
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_1_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_PRESENT",
+              "module": "sht21",
+=======
+              "name": "box_2_blower_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_REF",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": false,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "present"
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "blower_ref"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_ref"
+>>>>>>> f2e83de (removed useless print)
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_2_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_PRESENT",
+              "module": "sht21",
+=======
+              "name": "box_0_blower_ref_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_REF_SOURCE",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": false,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "present"
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "blower_ref_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_ref_source"
+>>>>>>> f2e83de (removed useless print)
+                },
+              
+              
+                "indir": {
+                  "values": [8,9,10,1,2,3],
+                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_0_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature on port #1",
+=======
+              "name": "box_1_blower_ref_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_REF_SOURCE",
+              "module": "blower",
+              
+>>>>>>> f2e83de (removed useless print)
+              
+              "write": false,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "temp"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "temp"
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "blower_ref_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_ref_source"
+>>>>>>> f2e83de (removed useless print)
+                },
+              
+              
+                "indir": {
+                  "values": [8,9,10,1,2,3],
+                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_1_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature on port #2",
+=======
+              "name": "box_2_blower_ref_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_REF_SOURCE",
+              "module": "blower",
+>>>>>>> f2e83de (removed useless print)
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "temp"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "temp"
+                },
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "blower_ref_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_ref_source"
+                },
+              
+              
+<<<<<<< HEAD
+=======
+                "indir": {
+                  "values": [8,9,10,1,2,3],
+                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+>>>>>>> f2e83de (removed useless print)
+              "default": 0
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_2_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_TEMP",
+              "module": "sht21",
+              "helper": "SHT21 temperature on port #3",
+=======
+              "name": "box_0_on_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_ON_HOUR",
+              "module": "onoff",
+              
+>>>>>>> f2e83de (removed useless print)
+              
+              "write": false,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "temp"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "temp"
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "on_hour"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "on_hour"
+>>>>>>> f2e83de (removed useless print)
+                },
+              
+              
+              "default": 3
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_0_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #1",
+=======
+              "name": "box_1_on_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_ON_HOUR",
+              "module": "onoff",
+              
+>>>>>>> f2e83de (removed useless print)
+              
+              "write": false,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "humi"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "on_hour"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "on_hour"
+                },
+              
+              
+              "default": 3
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_1_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #2",
+=======
+              "name": "box_2_on_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_ON_HOUR",
+              "module": "onoff",
+              
+>>>>>>> f2e83de (removed useless print)
+              
+              "write": false,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "humi"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "on_hour"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "on_hour"
+                },
+              
+              
+              "default": 3
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_2_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_HUMI",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #3",
+=======
+              "name": "box_0_on_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_ON_MIN",
+              "module": "onoff",
+              
+>>>>>>> f2e83de (removed useless print)
+              
+              "write": false,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "humi"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "humi"
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "on_min"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "on_min"
+>>>>>>> f2e83de (removed useless print)
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_0_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_VPD",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #1",
+=======
+              "name": "box_1_on_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_ON_MIN",
+              "module": "onoff",
+              
+>>>>>>> f2e83de (removed useless print)
+              
+              "write": false,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "vpd"
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "on_min"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "on_min"
+>>>>>>> f2e83de (removed useless print)
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_1_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_VPD",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #2",
+=======
+              "name": "box_2_on_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_ON_MIN",
+              "module": "onoff",
+              
+>>>>>>> f2e83de (removed useless print)
+              
+              "write": false,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "vpd"
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "on_min"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "on_min"
+>>>>>>> f2e83de (removed useless print)
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_2_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_VPD",
+              "module": "sht21",
+              "helper": "SHT21 humidity on port #3",
+=======
+              "name": "box_0_off_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_OFF_HOUR",
+              "module": "onoff",
+              
+>>>>>>> f2e83de (removed useless print)
+              
+              "write": false,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "off_hour"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "off_hour"
+                },
+              
+              
+              "default": 21
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_0_vpd_leaf_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_VPD_LEAF_OFFSET",
+              "module": "sht21",
+=======
+              "name": "box_1_off_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_OFF_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "off_hour"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "off_hour"
+                },
+              
+              
+              "default": 21
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_off_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_OFF_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "off_hour"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "off_hour"
+                },
+              
+              
+              "default": 21
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_off_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_OFF_MIN",
+              "module": "onoff",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": true,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd_leaf_offset"
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "off_min"
+>>>>>>> f2e83de (removed useless print)
+                },
+                "sht21": {
+                  "index": 0,
+<<<<<<< HEAD
+                  "param": "vpd_leaf_offset"
+                },
+              
+              
+              "default": -20
+=======
+                  "param": "off_min"
+                },
+              
+              
+              "default": 0
+>>>>>>> f2e83de (removed useless print)
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_1_vpd_leaf_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_VPD_LEAF_OFFSET",
+              "module": "sht21",
+=======
+              "name": "box_1_off_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_OFF_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "off_min"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "off_min"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_off_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_OFF_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "off_min"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "off_min"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_ENABLED",
+              "module": "box",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": true,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd_leaf_offset"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "vpd_leaf_offset"
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "enabled"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "enabled"
+>>>>>>> f2e83de (removed useless print)
+                },
+              
+              
+              "default": -20
+            },
+          
+            {
+              "core": false,
+<<<<<<< HEAD
+              "name": "sht21_2_vpd_leaf_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_VPD_LEAF_OFFSET",
+              "module": "sht21",
+=======
+              "name": "box_1_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "enabled"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "enabled"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_ENABLED",
+              "module": "box",
+>>>>>>> f2e83de (removed useless print)
+              
+              
+              "write": true,
+              
+                "array": {
+<<<<<<< HEAD
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd_leaf_offset"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "vpd_leaf_offset"
+                },
+              
+              
+              "default": -20
+=======
+                  "param": "watering_power"
+                },
+              
+              
+              "default": 20
+>>>>>>> 9cb9c90 (added motor min/max for next release)
+=======
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "enabled"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "enabled"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "temp"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "temp"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "temp"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "humi"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "humi"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "humi"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_VPD",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "vpd"
                 },
               
               
@@ -5902,192 +8220,6 @@
           
             {
               "core": false,
-              "name": "box_0_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "temp_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16,17,18,1,2,3],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
-                },
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "temp_source"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16,17,18,1,2,3],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
-                },
-              
-              "default": 2
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "temp_source"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16,17,18,1,2,3],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
-                },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "humi_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16,17,18,4,5,6],
-                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
-                },
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "humi_source"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16,17,18,4,5,6],
-                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
-                },
-              
-              "default": 2
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "humi_source"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16,17,18,4,5,6],
-                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
-                },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
               "name": "box_0_vpd_source",
               "type": "integer",
               "integer": true,
@@ -6110,8 +8242,8 @@
               
               
                 "indir": {
-                  "values": [16,17,18,1,2,3],
-                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
               "default": 1
@@ -6141,8 +8273,8 @@
               
               
                 "indir": {
-                  "values": [16,17,18,1,2,3],
-                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
               "default": 2
@@ -6172,8 +8304,8 @@
               
               
                 "indir": {
-                  "values": [16,17,18,1,2,3],
-                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [1,2,3],
+                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
               "default": 0
@@ -6259,24 +8391,69 @@
           
             {
               "core": false,
-              "name": "sht21_0_present",
+              "name": "status_led_red_gpio",
               "type": "integer",
               "integer": true,
-              "caps_name": "SHT21_0_PRESENT",
-              "module": "sht21",
+              "caps_name": "STATUS_LED_RED_GPIO",
+              "module": "status_led",
               
               
-              "write": false,
+              "write": true,
+              
+              
+              "default": 23
+            },
+          
+            {
+              "core": false,
+              "name": "status_led_green_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "STATUS_LED_GREEN_GPIO",
+              "module": "status_led",
+              
+              
+              "write": true,
+              
+              
+              "default": 22
+            },
+          
+            {
+              "core": false,
+              "name": "status_led_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "STATUS_LED_DIM",
+              "module": "status_led",
+              
+              
+              "write": true,
+              
+              
+              "default": 10
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_timer_type",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TIMER_TYPE",
+              "module": "timer",
+              
+              
+              "write": true,
               
                 "array": {
-                  "name": "sht21",
+                  "name": "box",
                   "len": 3,
                   "index": 0,
-                  "param": "present"
+                  "param": "timer_type"
                 },
-                "sht21": {
+                "box": {
                   "index": 0,
-                  "param": "present"
+                  "param": "timer_type"
                 },
               
               
@@ -6285,24 +8462,24 @@
           
             {
               "core": false,
-              "name": "sht21_1_present",
+              "name": "box_1_timer_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "SHT21_1_PRESENT",
-              "module": "sht21",
+              "caps_name": "BOX_1_TIMER_TYPE",
+              "module": "timer",
               
               
-              "write": false,
+              "write": true,
               
                 "array": {
-                  "name": "sht21",
+                  "name": "box",
                   "len": 3,
                   "index": 1,
-                  "param": "present"
+                  "param": "timer_type"
                 },
-                "sht21": {
+                "box": {
                   "index": 1,
-                  "param": "present"
+                  "param": "timer_type"
                 },
               
               
@@ -6311,28 +8488,1321 @@
           
             {
               "core": false,
-              "name": "sht21_2_present",
+              "name": "box_2_timer_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "SHT21_2_PRESENT",
-              "module": "sht21",
+              "caps_name": "BOX_2_TIMER_TYPE",
+              "module": "timer",
               
               
-              "write": false,
+              "write": true,
               
                 "array": {
-                  "name": "sht21",
+                  "name": "box",
                   "len": 3,
                   "index": 2,
-                  "param": "present"
+                  "param": "timer_type"
                 },
-                "sht21": {
+                "box": {
                   "index": 2,
-                  "param": "present"
+                  "param": "timer_type"
                 },
               
               
               "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #1 timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "timer_output"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #2 timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "timer_output"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #3 timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "timer_output"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "state",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "STATE",
+              "module": "state",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "device_name",
+              "type": "string",
+              "integer": false,
+              "caps_name": "DEVICE_NAME",
+              "module": "state",
+              
+              
+              "write": true,
+              
+              
+              "default": "SuperGreenController"
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_DUTY",
+              "module": "watering",
+              "helper": "Watering control for box#1",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_duty"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_DUTY",
+              "module": "watering",
+              "helper": "Watering control for box#2",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_duty"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_DUTY",
+              "module": "watering",
+              "helper": "Watering control for box#3",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_duty"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_period",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_PERIOD",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_period"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_period"
+                },
+              
+              
+              "default": 2880
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_period",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_PERIOD",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_period"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_period"
+                },
+              
+              
+              "default": 2880
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_period",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_PERIOD",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_period"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_period"
+                },
+              
+              
+              "default": 2880
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_duration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_DURATION",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_duration"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_duration"
+                },
+              
+              
+              "default": 600
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_duration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_DURATION",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_duration"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_duration"
+                },
+              
+              
+              "default": 600
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_duration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_DURATION",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_duration"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_duration"
+                },
+              
+              
+              "default": 600
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_last",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_LAST",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_last"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_last"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_last",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_LAST",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_last"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_last"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_last",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_LAST",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_last"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_last"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_POWER",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_power"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_power"
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_POWER",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_power"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_power"
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_POWER",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_power"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_power"
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "leds_fastmode",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LEDS_FASTMODE",
+              "module": "leds",
+              
+              
+              "write": true,
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_0_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 0,
+                  "param": "duty"
+                },
+                "led": {
+                  "index": 0,
+                  "param": "duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_1_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 1,
+                  "param": "duty"
+                },
+                "led": {
+                  "index": 1,
+                  "param": "duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_2_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 2,
+                  "param": "duty"
+                },
+                "led": {
+                  "index": 2,
+                  "param": "duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_0_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 0,
+                  "param": "gpio"
+                },
+                "led": {
+                  "index": 0,
+                  "param": "gpio"
+                },
+              
+              
+              "default": 33
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_1_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 1,
+                  "param": "gpio"
+                },
+                "led": {
+                  "index": 1,
+                  "param": "gpio"
+                },
+              
+              
+              "default": 25
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_2_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 2,
+                  "param": "gpio"
+                },
+                "led": {
+                  "index": 2,
+                  "param": "gpio"
+                },
+              
+              
+              "default": 26
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_3_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 3,
+                  "param": "duty"
+                },
+                "led": {
+                  "index": 3,
+                  "param": "duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_4_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 4,
+                  "param": "duty"
+                },
+                "led": {
+                  "index": 4,
+                  "param": "duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_5_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 5,
+                  "param": "duty"
+                },
+                "led": {
+                  "index": 5,
+                  "param": "duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_3_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 3,
+                  "param": "gpio"
+                },
+                "led": {
+                  "index": 3,
+                  "param": "gpio"
+                },
+              
+              
+              "default": 27
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_4_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 4,
+                  "param": "gpio"
+                },
+                "led": {
+                  "index": 4,
+                  "param": "gpio"
+                },
+              
+              
+              "default": 14
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_5_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 5,
+                  "param": "gpio"
+                },
+                "led": {
+                  "index": 5,
+                  "param": "gpio"
+                },
+              
+              
+              "default": 12
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_box",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_0_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 0,
+                  "param": "box"
+                },
+                "led": {
+                  "index": 0,
+                  "param": "box"
+                },
+              
+              
+              "default": -1
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_box",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_1_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 1,
+                  "param": "box"
+                },
+                "led": {
+                  "index": 1,
+                  "param": "box"
+                },
+              
+              
+              "default": -1
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_box",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_2_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 2,
+                  "param": "box"
+                },
+                "led": {
+                  "index": 2,
+                  "param": "box"
+                },
+              
+              
+              "default": -1
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_box",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_3_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 3,
+                  "param": "box"
+                },
+                "led": {
+                  "index": 3,
+                  "param": "box"
+                },
+              
+              
+              "default": -1
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_box",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_4_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 4,
+                  "param": "box"
+                },
+                "led": {
+                  "index": 4,
+                  "param": "box"
+                },
+              
+              
+              "default": -1
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_box",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_5_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 5,
+                  "param": "box"
+                },
+                "led": {
+                  "index": 5,
+                  "param": "box"
+                },
+              
+              
+              "default": -1
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_0_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 0,
+                  "param": "dim"
+                },
+                "led": {
+                  "index": 0,
+                  "param": "dim"
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_1_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 1,
+                  "param": "dim"
+                },
+                "led": {
+                  "index": 1,
+                  "param": "dim"
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_2_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 2,
+                  "param": "dim"
+                },
+                "led": {
+                  "index": 2,
+                  "param": "dim"
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_3_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 3,
+                  "param": "dim"
+                },
+                "led": {
+                  "index": 3,
+                  "param": "dim"
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_4_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 4,
+                  "param": "dim"
+                },
+                "led": {
+                  "index": 4,
+                  "param": "dim"
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_5_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 5,
+                  "param": "dim"
+                },
+                "led": {
+                  "index": 5,
+                  "param": "dim"
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_fade",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_0_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 0,
+                  "param": "fade"
+                },
+                "led": {
+                  "index": 0,
+                  "param": "fade"
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_fade",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_1_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 1,
+                  "param": "fade"
+                },
+                "led": {
+                  "index": 1,
+                  "param": "fade"
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_fade",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_2_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 2,
+                  "param": "fade"
+                },
+                "led": {
+                  "index": 2,
+                  "param": "fade"
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_3_fade",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_3_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 3,
+                  "param": "fade"
+                },
+                "led": {
+                  "index": 3,
+                  "param": "fade"
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_4_fade",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_4_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 4,
+                  "param": "fade"
+                },
+                "led": {
+                  "index": 4,
+                  "param": "fade"
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_5_fade",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_5_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 5,
+                  "param": "fade"
+                },
+                "led": {
+                  "index": 5,
+                  "param": "fade"
+                },
+              
+              
+              "default": 1
             },
           
             {
@@ -6571,6 +10041,84 @@
           
             {
               "core": false,
+              "name": "sht21_0_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_0_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 0,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 0,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_1_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_1_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 1,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 1,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "sht21_2_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SHT21_2_PRESENT",
+              "module": "sht21",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "sht21",
+                  "len": 3,
+                  "index": 2,
+                  "param": "present"
+                },
+                "sht21": {
+                  "index": 2,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
               "name": "sht21_0_vpd_leaf_offset",
               "type": "integer",
               "integer": true,
@@ -6645,13 +10193,7 @@
               
               
               "default": -20
-=======
-                  "param": "watering_power"
-                },
-              
-              
-              "default": 20
->>>>>>> 9cb9c90 (added motor min/max for next release)
+>>>>>>> f2e83de (removed useless print)
             }
           
   ]
