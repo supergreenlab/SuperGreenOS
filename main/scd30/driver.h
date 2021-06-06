@@ -44,6 +44,8 @@ typedef union
 } ByteToFl;
 
 typedef struct {
+  int port;
+  bool init;
 
   bool co2HasBeenReported;
   bool humidityHasBeenReported;
@@ -52,22 +54,16 @@ typedef struct {
   float co2;
   float temperature;
   float humidity;
-
 } scd30_handle;
+
+bool begin(scd30_handle *s);
 
 uint16_t getCO2(scd30_handle *s);
 float getHumidity(scd30_handle *s);
 float getTemperature(scd30_handle *s);
-float getTemperatureOffset(scd30_handle *s);
-uint16_t getAltitudeCompensation(scd30_handle *s);
 
 bool getAutoSelfCalibration(scd30_handle *s);
 bool getSettingValue(scd30_handle *s, uint16_t registerAddress, uint16_t *val);
-inline bool getForcedRecalibration(scd30_handle *s, uint16_t *val) { return (getSettingValue(s, COMMAND_SET_FORCED_RECALIBRATION_FACTOR, val)); }
-inline bool getMeasurementInterval(scd30_handle *s, uint16_t *val) { return (getSettingValue(s, COMMAND_SET_MEASUREMENT_INTERVAL, val)); }
-inline bool getTemperatureOffset(scd30_handle *s, uint16_t *val) { return (getSettingValue(s, COMMAND_SET_TEMPERATURE_OFFSET, val)); }
-inline bool getAltitudeCompensation(scd30_handle *s, uint16_t *val) { return (getSettingValue(s, COMMAND_SET_ALTITUDE_COMPENSATION, val)); }
-inline bool getFirmwareVersion(scd30_handle *s, uint16_t *val) { return (getSettingValue(s, COMMAND_READ_FW_VER, val)); }
 
 bool setMeasurementInterval(scd30_handle *s, uint16_t interval);
 bool setAmbientPressure(scd30_handle *s, uint16_t pressure_mbar);
@@ -88,5 +84,7 @@ bool sendCommandArg(scd30_handle *s, uint16_t command, uint16_t arguments);
 bool sendCommand(scd30_handle *s, uint16_t command);
 uint16_t readRegister(scd30_handle *s, uint16_t registerAddress);
 uint8_t computeCRC8(scd30_handle *s, uint8_t data[], uint8_t len);
+
+inline bool getFirmwareVersion(scd30_handle *s, uint16_t *val) { return (getSettingValue(s, COMMAND_READ_FW_VER, val)); }
 
 #endif

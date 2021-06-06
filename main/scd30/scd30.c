@@ -17,17 +17,42 @@
 #include "scd30.h"
 #include "driver/i2c.h"
 
+#include "driver.h"
+#include "../core/i2c/i2c.h"
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
 #define SCD30_ADDR 0x42
 
+static scd30_handle scd30_handlers[N_SCD30] = {0};
+
 void init_scd30(int i2cId) {
-  ESP_LOGI(SGO_LOG_EVENT, "@SCD30 Initializing scd30 i2c device\n");
+  ESP_LOGI(SGO_LOG_EVENT, "@SCD30 Initializing scd30 i2c device");
+	for (int i = 0; i < N_SCD30; ++i) {
+		scd30_handlers[i].port = get_i2c_port(i);
+	}
 }
 
 void loop_scd30(int i2cId) {
-  start_i2c();
-  stop_i2c();
+	ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 %d", i2cId);
+  start_i2c(i2cId);
+
+	scd30_handle *s = &(scd30_handlers[i2cId]);
+	if (!s->init) {
+		if (begin(s)) {
+			s->init = true;
+		} else {
+			ESP_LOGI(SGO_LOG_EVENT, "@SCD30 begin failed");
+		}
+	}
+	if (s->init) {
+		if (!readMeasurement(s)) {
+			ESP_LOGI(SGO_LOG_EVENT, "@SCD30 readMeasurement failed");
+		} else {
+			ESP_LOGI(SGO_LOG_EVENT, "@SCD30 i2cId: %d - co2: %f - temp: %f - humi: %f", i2cId, s->co2, s->temperature, s->humidity);
+		}
+	}
+
+  stop_i2c(i2cId);
 }
 

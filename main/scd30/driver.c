@@ -17,6 +17,33 @@
  */
 
 #include "driver.h"
+#include "../core/i2c/i2c.h"
+#include "../core/log/log.h"
+
+bool begin(scd30_handle *s) {
+	uint16_t fwVer;
+  if (getFirmwareVersion(s, &fwVer) == false) {
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 getFirmwareVersion failed");
+    return false;
+	}
+	ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 firmware version %02x", fwVer);
+
+	if (beginMeasuring(s, 0) == true) {
+    if (setMeasurementInterval(s, 2) == false) {
+			ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 setMeasurementInterval failed");
+			return false;
+		}
+    if (setAutoSelfCalibration(s, false) == false) {
+			ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 setAutoSelfCalibration failed");
+			return false;
+		}
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 beginMeasuring success!");
+    return true;
+  }
+
+	ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 beginMeasuring failed");
+  return false;
+}
 
 //Returns the latest available CO2 level
 //If the current level has already been reported, trigger a new read
@@ -173,29 +200,35 @@ bool dataAvailable(scd30_handle *s)
 bool readMeasurement(scd30_handle *s)
 {
   //Verify we have data from the sensor
-  if (dataAvailable(s) == false)
+  if (dataAvailable(s) == false) {
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 dataAvailable == false");
     return (false);
+	}
 
   ByteToFl tempCO2; tempCO2.value = 0;
   ByteToFl tempHumidity; tempHumidity.value = 0;
   ByteToFl tempTemperature; tempTemperature.value = 0;
 
-  _i2cPort->beginTransmission(SCD30_ADDRESS);
-  _i2cPort->write(COMMAND_READ_MEASUREMENT >> 8);   //MSB
-  _i2cPort->write(COMMAND_READ_MEASUREMENT & 0xFF); //LSB
-  if (_i2cPort->endTransmission() != 0)
-    return (0); //Sensor did not ACK
+	uint8_t outBuff[2] = {COMMAND_READ_MEASUREMENT >> 8, COMMAND_READ_MEASUREMENT & 0xFF};
+	i2c_err_t err = i2cWrite(s->port, SCD30_ADDRESS, outBuff, sizeof(outBuff), true, 150);
+  if (!(err == I2C_ERROR_CONTINUE || err == I2C_ERROR_OK)) {
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cWrite failed %02x", err);
+    return (0);
+	}
 
-  delay(3);
-
-  const uint8_t receivedBytes = _i2cPort->requestFrom((uint8_t)SCD30_ADDRESS, (uint8_t)18);
+  vTaskDelay(3000 / portTICK_RATE_MS);
+	
+	uint32_t size;
+	uint8_t buff[18];
+	i2cRead(s->port, SCD30_ADDRESS, buff, 18, true, 150, &size);
+  uint8_t foundCrc;
   bool error = false;
-  if (_i2cPort->available())
+  if (size == 18)
   {
     uint8_t bytesToCrc[2];
     for (uint8_t x = 0; x < 18; x++)
     {
-      uint8_t incoming = _i2cPort->read();
+      uint8_t incoming = buff[x];
 
       switch (x)
       {
@@ -222,18 +255,10 @@ bool readMeasurement(scd30_handle *s)
         break;
       default:
         //Validate CRC
-        uint8_t foundCrc = computeCRC8(s, bytesToCrc, 2);
+        foundCrc = computeCRC8(s, bytesToCrc, 2);
         if (foundCrc != incoming)
         {
-          /*if (_printDebug == true)
-          {
-            _debugPort->print(F("readMeasurement: found CRC in byte "));
-            _debugPort->print(x);
-            _debugPort->print(F(", expected 0x"));
-            _debugPort->print(foundCrc, HEX);
-            _debugPort->print(F(", got 0x"));
-            _debugPort->println(incoming, HEX);
-          }*/
+					ESP_LOGW(SGO_LOG_NOSEND, "@SCD30 readMeasurement: found CRC in byte %d, expected %02x, got %02x", x, foundCrc, incoming);
           error = true;
         }
         break;
@@ -241,20 +266,14 @@ bool readMeasurement(scd30_handle *s)
     }
   }
   else
-  {
-    /*if (_printDebug == true)
-    {
-      _debugPort->print(F("readMeasurement: no SCD30 data found from I2C, i2c claims we should receive "));
-      _debugPort->print(receivedBytes);
-      _debugPort->println(F(" bytes"));
-    }*/
+  {	
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 readMeasurement: no SCD30 data found from I2C, i2c claims we should receive %d bytes", size);
     return false;
   }
 
   if (error)
   {
-    /*if (_printDebug == true)
-      _debugPort->println(F("readMeasurement: encountered error reading SCD30 data."));*/
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 readMeasurement: encountered error reading SCD30 data.");
     return false;
   }
   //Now copy the uint32s into their associated floats
@@ -274,54 +293,62 @@ bool readMeasurement(scd30_handle *s)
 //Returns true if the CRC is valid.
 bool getSettingValue(scd30_handle *s, uint16_t registerAddress, uint16_t *val)
 {
-  _i2cPort->beginTransmission(SCD30_ADDRESS);
-  _i2cPort->write(registerAddress >> 8);   //MSB
-  _i2cPort->write(registerAddress & 0xFF); //LSB
-  if (_i2cPort->endTransmission() != 0)
-    return (false); //Sensor did not ACK
+	uint8_t outBuff[2] = {registerAddress >> 8, registerAddress & 0xFF};
+	i2c_err_t err = i2cWrite(s->port, SCD30_ADDRESS, outBuff, sizeof(outBuff), true, 150);
+  if (!(err == I2C_ERROR_CONTINUE || err == I2C_ERROR_OK)) {
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cWrite failed %02x", err);
+    return (0);
+	}
 
-  delay(3);
+  vTaskDelay(3000 / portTICK_RATE_MS);
 
-  _i2cPort->requestFrom((uint8_t)SCD30_ADDRESS, (uint8_t)3); // Request data and CRC
-  if (_i2cPort->available())
+	uint32_t size;
+	uint8_t buff[3];
+	err = i2cRead(s->port, SCD30_ADDRESS, buff, sizeof(buff), true, 150, &size);
+	if (!(err == I2C_ERROR_CONTINUE || err == I2C_ERROR_OK)) {
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cRead failed %02x", err);
+    return (0);
+	}
+
+  if (size == 3)
   {
     uint8_t data[2];
-    data[0] = _i2cPort->read();
-    data[1] = _i2cPort->read();
-    uint8_t crc = _i2cPort->read();
+    data[0] = buff[0];
+    data[1] = buff[1];
+    uint8_t crc = buff[2];
     *val = (uint16_t)data[0] << 8 | data[1];
     uint8_t expectedCRC = computeCRC8(s, data, 2);
     if (crc == expectedCRC) // Return true if CRC check is OK
       return (true);
-    /*if (_printDebug == true)
-    {
-      _debugPort->print(F("getSettingValue: CRC fail: expected 0x"));
-      _debugPort->print(expectedCRC, HEX);
-      _debugPort->print(F(", got 0x"));
-      _debugPort->println(crc, HEX);
-    }*/
-  }
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 getSettingValue: CRC fail: expected %02x, got %02x", expectedCRC, crc);
+  } else {
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cRead failed %d", size);
+	}
   return (false);
 }
 
 //Gets two bytes from SCD30
 uint16_t readRegister(scd30_handle *s, uint16_t registerAddress)
 {
-  _i2cPort->beginTransmission(SCD30_ADDRESS);
-  _i2cPort->write(registerAddress >> 8);   //MSB
-  _i2cPort->write(registerAddress & 0xFF); //LSB
-  if (_i2cPort->endTransmission() != 0)
-    return (0); //Sensor did not ACK
+	uint8_t outBuff[2] = {registerAddress >> 8, registerAddress & 0xFF};
+	i2c_err_t err = i2cWrite(s->port, SCD30_ADDRESS, outBuff, sizeof(outBuff), true, 150);
+  if (!(err == I2C_ERROR_CONTINUE || err == I2C_ERROR_OK)) {
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cWrite in readRegister failed %02x", err);
+    return (0);
+	}
 
-  delay(3);
+  vTaskDelay(3000 / portTICK_RATE_MS);
 
-  _i2cPort->requestFrom((uint8_t)SCD30_ADDRESS, (uint8_t)2);
-  if (_i2cPort->available())
+ 	uint32_t size;
+	uint8_t buff[2];
+	err = i2cRead(s->port, SCD30_ADDRESS, buff, 2, true, 150, &size);
+  if (size == 2)
   {
-    uint8_t msb = _i2cPort->read();
-    uint8_t lsb = _i2cPort->read();
+    uint8_t msb = buff[0];
+    uint8_t lsb = buff[1];
     return ((uint16_t)msb << 8 | lsb);
   }
+	ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cRead in readRegister failed %02x", err);
   return (0); //Sensor did not respond
 }
 
@@ -333,28 +360,27 @@ bool sendCommandArg(scd30_handle *s, uint16_t command, uint16_t arguments)
   data[1] = arguments & 0xFF;
   uint8_t crc = computeCRC8(s, data, 2); //Calc CRC on the arguments only, not the command
 
-  _i2cPort->beginTransmission(SCD30_ADDRESS);
-  _i2cPort->write(command >> 8);     //MSB
-  _i2cPort->write(command & 0xFF);   //LSB
-  _i2cPort->write(arguments >> 8);   //MSB
-  _i2cPort->write(arguments & 0xFF); //LSB
-  _i2cPort->write(crc);
-  if (_i2cPort->endTransmission() != 0)
-    return (false); //Sensor did not ACK
+	uint8_t outBuff[5] = {command >> 8, command & 0xFF, arguments >> 8, arguments & 0xFF, crc};
+	i2c_err_t err = i2cWrite(s->port, SCD30_ADDRESS, outBuff, sizeof(outBuff), true, 150);
+  if (!(err == I2C_ERROR_CONTINUE || err == I2C_ERROR_OK)) {
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cWrite in sendCommandArg failed %02x", err);
+    return false;
+	}
 
-  return (true);
+  return true;
 }
 
 //Sends just a command, no arguments, no CRC
 bool sendCommand(scd30_handle *s, uint16_t command)
 {
-  _i2cPort->beginTransmission(SCD30_ADDRESS);
-  _i2cPort->write(command >> 8);   //MSB
-  _i2cPort->write(command & 0xFF); //LSB
-  if (_i2cPort->endTransmission() != 0)
-    return (false); //Sensor did not ACK
+	uint8_t outBuff[2] = {command >> 8, command & 0xFF};
+	i2c_err_t err = i2cWrite(s->port, SCD30_ADDRESS, outBuff, sizeof(outBuff), true, 150);
+  if (!(err == I2C_ERROR_CONTINUE || err == I2C_ERROR_OK)) {
+		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cWrite in sendCommand failed %02x", err);
+    return false;
+	}
 
-  return (true);
+  return true;
 }
 
 //Given an array and a number of bytes, this calculate CRC8 for those bytes
