@@ -59,6 +59,7 @@ static bool send_sht21_cmd(int i2cId, uint8_t cmd_b) {
 }
 
 static bool crc_checksum(uint8_t data[], uint8_t no_of_bytes, uint8_t checksum);
+
 static uint16_t read_sht21(int i2cId) {
   uint8_t v[3] = {0};
   int port = get_i2c_port(i2cId);

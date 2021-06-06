@@ -467,7 +467,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "signedness": "",
+                    "signedness": "u",
                     "intlen": 16,
                     "suffix": "server_port",
                     "caps_name": "OTA_SERVER_PORT"
@@ -2514,6 +2514,355 @@
             "array_len": 3,
             "enabled": true,
             "init": true,
+            "code": true,
+            "init_priority": 90,
+            "core": false
+        },
+        "onoff": {
+            "name": "onoff",
+            "fields": {
+                "0_on_hour": {
+                    "name": "box_0_on_hour",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_ON_H",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 3,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_on_hour",
+                    "caps_name": "BOX_0_ON_HOUR"
+                },
+                "1_on_hour": {
+                    "name": "box_1_on_hour",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_ON_H",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 3,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_on_hour",
+                    "caps_name": "BOX_1_ON_HOUR"
+                },
+                "2_on_hour": {
+                    "name": "box_2_on_hour",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_ON_H",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 3,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_on_hour",
+                    "caps_name": "BOX_2_ON_HOUR"
+                },
+                "0_on_min": {
+                    "name": "box_0_on_min",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_ON_M",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_on_min",
+                    "caps_name": "BOX_0_ON_MIN"
+                },
+                "1_on_min": {
+                    "name": "box_1_on_min",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_ON_M",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_on_min",
+                    "caps_name": "BOX_1_ON_MIN"
+                },
+                "2_on_min": {
+                    "name": "box_2_on_min",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_ON_M",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_on_min",
+                    "caps_name": "BOX_2_ON_MIN"
+                },
+                "0_off_hour": {
+                    "name": "box_0_off_hour",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_OFF_H",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 21,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_off_hour",
+                    "caps_name": "BOX_0_OFF_HOUR"
+                },
+                "1_off_hour": {
+                    "name": "box_1_off_hour",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_OFF_H",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 21,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_off_hour",
+                    "caps_name": "BOX_1_OFF_HOUR"
+                },
+                "2_off_hour": {
+                    "name": "box_2_off_hour",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_OFF_H",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 21,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_off_hour",
+                    "caps_name": "BOX_2_OFF_HOUR"
+                },
+                "0_off_min": {
+                    "name": "box_0_off_min",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_0_OFF_M",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_off_min",
+                    "caps_name": "BOX_0_OFF_MIN"
+                },
+                "1_off_min": {
+                    "name": "box_1_off_min",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_1_OFF_M",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_off_min",
+                    "caps_name": "BOX_1_OFF_MIN"
+                },
+                "2_off_min": {
+                    "name": "box_2_off_min",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "B_2_OFF_M",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_off_min",
+                    "caps_name": "BOX_2_OFF_MIN"
+                }
+            },
+            "field_prefix": "box",
+            "i2c": false,
+            "array_len": 3,
+            "enabled": true,
+            "init": false,
             "code": true,
             "init_priority": 0,
             "core": false
@@ -4898,102 +5247,17 @@
             "init_priority": 0,
             "core": false
         },
-        "onoff": {
-            "name": "onoff",
+        "scd30": {
+            "name": "scd30",
             "fields": {
-                "0_on_hour": {
-                    "name": "box_0_on_hour",
+                "0_present": {
+                    "name": "scd30_0_present",
                     "ble": {
                         "enable": false
                     },
                     "nosend": false,
                     "nvs": {
-                        "key": "B_0_ON_H",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 3,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_on_hour",
-                    "caps_name": "BOX_0_ON_HOUR"
-                },
-                "1_on_hour": {
-                    "name": "box_1_on_hour",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_1_ON_H",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 3,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_on_hour",
-                    "caps_name": "BOX_1_ON_HOUR"
-                },
-                "2_on_hour": {
-                    "name": "box_2_on_hour",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_2_ON_H",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 3,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_on_hour",
-                    "caps_name": "BOX_2_ON_HOUR"
-                },
-                "0_on_min": {
-                    "name": "box_0_on_min",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_0_ON_M",
-                        "enable": true,
+                        "enable": false,
                         "manual": false
                     },
                     "write_cb": false,
@@ -5003,25 +5267,24 @@
                     "dump_freq": 60,
                     "http": {
                         "enable": true,
-                        "write": true
+                        "write": false
                     },
                     "indir": {
                         "enable": false
                     },
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "0_on_min",
-                    "caps_name": "BOX_0_ON_MIN"
+                    "suffix": "0_present",
+                    "caps_name": "SCD30_0_PRESENT"
                 },
-                "1_on_min": {
-                    "name": "box_1_on_min",
+                "1_present": {
+                    "name": "scd30_1_present",
                     "ble": {
                         "enable": false
                     },
                     "nosend": false,
                     "nvs": {
-                        "key": "B_1_ON_M",
-                        "enable": true,
+                        "enable": false,
                         "manual": false
                     },
                     "write_cb": false,
@@ -5031,25 +5294,24 @@
                     "dump_freq": 60,
                     "http": {
                         "enable": true,
-                        "write": true
+                        "write": false
                     },
                     "indir": {
                         "enable": false
                     },
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "1_on_min",
-                    "caps_name": "BOX_1_ON_MIN"
+                    "suffix": "1_present",
+                    "caps_name": "SCD30_1_PRESENT"
                 },
-                "2_on_min": {
-                    "name": "box_2_on_min",
+                "2_present": {
+                    "name": "scd30_2_present",
                     "ble": {
                         "enable": false
                     },
                     "nosend": false,
                     "nvs": {
-                        "key": "B_2_ON_M",
-                        "enable": true,
+                        "enable": false,
                         "manual": false
                     },
                     "write_cb": false,
@@ -5059,187 +5321,19 @@
                     "dump_freq": 60,
                     "http": {
                         "enable": true,
-                        "write": true
+                        "write": false
                     },
                     "indir": {
                         "enable": false
                     },
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "2_on_min",
-                    "caps_name": "BOX_2_ON_MIN"
-                },
-                "0_off_hour": {
-                    "name": "box_0_off_hour",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_0_OFF_H",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 21,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_off_hour",
-                    "caps_name": "BOX_0_OFF_HOUR"
-                },
-                "1_off_hour": {
-                    "name": "box_1_off_hour",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_1_OFF_H",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 21,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_off_hour",
-                    "caps_name": "BOX_1_OFF_HOUR"
-                },
-                "2_off_hour": {
-                    "name": "box_2_off_hour",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_2_OFF_H",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 21,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_off_hour",
-                    "caps_name": "BOX_2_OFF_HOUR"
-                },
-                "0_off_min": {
-                    "name": "box_0_off_min",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_0_OFF_M",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_off_min",
-                    "caps_name": "BOX_0_OFF_MIN"
-                },
-                "1_off_min": {
-                    "name": "box_1_off_min",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_1_OFF_M",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_off_min",
-                    "caps_name": "BOX_1_OFF_MIN"
-                },
-                "2_off_min": {
-                    "name": "box_2_off_min",
-                    "ble": {
-                        "enable": false
-                    },
-                    "nosend": false,
-                    "nvs": {
-                        "key": "B_2_OFF_M",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "write_cb": false,
-                    "default": 0,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_off_min",
-                    "caps_name": "BOX_2_OFF_MIN"
+                    "suffix": "2_present",
+                    "caps_name": "SCD30_2_PRESENT"
                 }
             },
-            "field_prefix": "box",
-            "i2c": false,
+            "field_prefix": "scd30",
+            "i2c": true,
             "array_len": 3,
             "enabled": true,
             "init": false,
