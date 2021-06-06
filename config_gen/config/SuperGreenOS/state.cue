@@ -2,12 +2,14 @@ package config
 
 modules state: _MODULE & {
   init_priority: 100
+  required: true
 }
 
 modules state fields state: _INT8 & _NVS & _BLE_RW & _HTTP_RW & {
   name: "state"
   ble uuid: "{0x94,0x28,0x12,0x63,0x56,0xde,0xec,0x43,0xb4,0xfe,0xd6,0x3b,0xd2,0xdf,0xf6,0x8f}"
   _default_var: "FIRST_RUN"
+  write_cb: true
 }
 
 modules state fields device_name: _STRING & _NVS & _BLE_RW & _HTTP_RW & {

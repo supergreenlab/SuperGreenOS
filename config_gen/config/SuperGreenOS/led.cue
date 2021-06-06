@@ -14,6 +14,7 @@ modules leds fields "fastmode": _INT8 & _NVS & _HTTP_RW & {
 
 modules led: _MODULE & {
   array_len: len(_led_conf)
+  required: true
   init_priority: 90
 }
 

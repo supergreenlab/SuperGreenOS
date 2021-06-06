@@ -1,6 +1,7 @@
 package config
 
 modules blower: _MODULE & {
+  required: true
   field_prefix: "box"
   array_len: len(_box_conf)
 }

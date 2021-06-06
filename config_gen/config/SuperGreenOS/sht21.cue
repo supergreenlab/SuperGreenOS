@@ -2,6 +2,7 @@ package config
 
 modules sht21: _I2C_MODULE & {
   array_len: len(_i2c_conf)
+  required: true
 }
 
 modules sht21 fields "\(k)_present": _INT8 & _HTTP & {

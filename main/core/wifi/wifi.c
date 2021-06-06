@@ -21,6 +21,7 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/queue.h"
 #include "freertos/event_groups.h"
 #include "esp_system.h"
 #include "esp_wifi.h"
@@ -65,12 +66,6 @@ void init_wifi() {
   wifi_event_group = xEventGroupCreate();
   ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
 
-  tcpip_adapter_init();
-  wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
-  ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
-  ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
-  ESP_ERROR_CHECK( esp_wifi_set_ps(WIFI_PS_NONE) );
-
   cmd = xQueueCreate(5, sizeof(wifi_cmd));
   if (cmd == NULL) {
     ESP_LOGE(SGO_LOG_EVENT, "@WIFI Failed to create queue");
@@ -79,12 +74,6 @@ void init_wifi() {
   BaseType_t ret = xTaskCreatePinnedToCore(wifi_task, "WIFI", 4096, NULL, tskIDLE_PRIORITY, NULL, 0);
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@WIFI Failed to create task");
-  }
-
-  if (is_valid()) {
-    start_sta();
-  } else {
-    start_ap();
   }
 }
 
@@ -174,12 +163,14 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_START");
       esp_wifi_connect();
       set_wifi_status(CONNECTING);
+      on_wifi_status_changed();
       break;
     case SYSTEM_EVENT_STA_GOT_IP:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_GOT_IP");
       xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
       xQueueSend(cmd, &CMD_STA_CONNECTED, 0);
       set_wifi_status(CONNECTED);
+      on_wifi_status_changed();
       set_ip(TCPIP_ADAPTER_IF_STA);
       break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
@@ -188,15 +179,18 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
       if (failed) {
         xQueueSend(cmd, &CMD_STA_CONNECTION_FAILED, 0);
         set_wifi_status(FAILED);
+        on_wifi_status_changed();
       } else {
         xQueueSend(cmd, &CMD_STA_DISCONNECTED, 0);
         set_wifi_status(DISCONNECTED);
+        on_wifi_status_changed();
       }
       xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
       break;
     case SYSTEM_EVENT_AP_START:
       xQueueSend(cmd, &CMD_AP_START, 0);
       set_wifi_status(AP);
+      on_wifi_status_changed();
       set_ip(TCPIP_ADAPTER_IF_AP);
       break;
     case SYSTEM_EVENT_AP_STACONNECTED:
@@ -238,6 +232,19 @@ static void wifi_task(void *param) {
   unsigned int counter = 1;
   bool was_valid = is_valid();
 
+  tcpip_adapter_init();
+  wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+  ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
+  ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
+  ESP_ERROR_CHECK( esp_wifi_set_ps(WIFI_PS_NONE) );
+
+  if (is_valid()) {
+    start_sta();
+  } else {
+    start_ap();
+  }
+
+
   for (;;) {
     if (xQueueReceive(cmd, &c, 20000 / portTICK_PERIOD_MS)) {
 
@@ -249,7 +256,7 @@ static void wifi_task(void *param) {
           was_valid = _is_valid;
           if (_is_valid) {
             // little wait to allow http response to go through
-            vTaskDelay(300 / portTICK_PERIOD_MS);
+            vTaskDelay(500 / portTICK_PERIOD_MS);
             start_sta();
           }
         }
@@ -276,6 +283,8 @@ static void wifi_task(void *param) {
         } else if (!is_valid() || (n_connection_failed >= 5 && is_valid())) {
           ESP_LOGI(SGO_LOG_EVENT, "@WIFI Too many retries, start AP mode");
           n_connection_failed = 0;
+          set_wifi_status(FAILED);
+          on_wifi_status_changed();
           start_ap();
         }
       } else if (c == CMD_MDNS_CHANGED) {

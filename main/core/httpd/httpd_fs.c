@@ -313,7 +313,7 @@ esp_err_t upload_post_handler(httpd_req_t *req)
 	return ESP_OK;
 }
 
-esp_err_t init_spiffs(void) {
+void init_spiffs(void) {
   ESP_LOGI(SGO_LOG_EVENT, "Initializing SPIFFS");
 
   esp_vfs_spiffs_conf_t conf = {
@@ -332,16 +332,16 @@ esp_err_t init_spiffs(void) {
     } else {
       ESP_LOGE(SGO_LOG_EVENT, "@FS Failed to initialize SPIFFS (%s)", esp_err_to_name(ret));
     }
-    return ESP_FAIL;
+    return;
   }
 
   size_t total = 0, used = 0;
   ret = esp_spiffs_info(NULL, &total, &used);
   if (ret != ESP_OK) {
     ESP_LOGE(SGO_LOG_EVENT, "@FS Failed to get SPIFFS partition information (%s)", esp_err_to_name(ret));
-    return ESP_FAIL;
+    return;
   }
 
   ESP_LOGI(SGO_LOG_METRIC, "@FS total=%d, used=%d", total, used);
-  return ESP_OK;
+  return;
 }

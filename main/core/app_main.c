@@ -23,6 +23,7 @@
 
 #include "log/log.h"
 #include "kv/kv.h"
+#include "tester/tester.h"
 #include "reboot/reboot.h"
 #include "mqtt/mqtt.h"
 #include "wifi/wifi.h"
@@ -32,7 +33,7 @@
 #include "stat_dump/stat_dump.h"
 #include "httpd/httpd.h"
 
-void init_app();
+void init_app(bool tester);
 
 void app_main() {
   ESP_LOGI(SGO_LOG_EVENT, "@MAIN Welcome to SuperGreenOS version=%s\n", CONFIG_VERSION);
@@ -45,6 +46,10 @@ void app_main() {
   init_kv();
   set_n_restarts(get_n_restarts()+1);
 
+  init_spiffs();
+
+  init_tester();
+
   init_wifi();
 
   init_mqtt();
@@ -52,7 +57,11 @@ void app_main() {
   init_time();
   init_i2c();
 
-  init_app();
+  bool tester_enabled = get_tester_enabled() != 0;
+  init_app(tester_enabled);
+  if (tester_enabled) {
+    reset_on_next_reboot();
+  }
 
   init_stat_dump();
 

@@ -16,10 +16,43 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdlib.h>
-#include <stdint.h>
-
 #include "state.h"
 
+#include "../core/kv/kv.h"
+#include "../core/log/log.h"
+
+#include "../status_led/status_led.h"
+
+status_led_timeline new_timeline = {
+  .loop = true,
+  .fade = true,
+  .step = 0.4,
+  .new_default = true,
+  .red = {LED_MIN_DUTY, LED_MIN_DUTY, LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY, LED_MIN_DUTY, LED_MIN_DUTY},
+  .green = {LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY},
+};
+
+status_led_timeline running_timeline = {
+  .loop = true,
+  .fade = true,
+  .step = 0.07,
+  .new_default = true,
+  .red = {LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY},
+  .green = {LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY/10},
+};
+
 void init_state() {
+  int state = get_state();
+  if (state == FIRST_RUN) {
+    set_status_led_timeline(new_timeline);
+  }
+}
+
+int on_set_state(int state) {
+  if (state == FIRST_RUN) {
+    set_status_led_timeline(new_timeline);
+  } else {
+    set_status_led_timeline(running_timeline);
+  }
+  return state;
 }

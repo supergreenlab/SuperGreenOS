@@ -26,5 +26,6 @@ enum state {
 };
 
 void init_state();
+int on_set_state(int state);
 
 #endif

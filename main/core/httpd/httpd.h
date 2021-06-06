@@ -20,5 +20,6 @@
 #define HTTPD_H_
 
 void init_httpd();
+void init_spiffs(void);
 
 #endif

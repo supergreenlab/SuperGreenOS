@@ -16,14 +16,41 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef REBOOT_H_
-#define REBOOT_H_
+#include "tester.h"
 
-void init_reboot();
+#include <sys/param.h>
+#include <sys/unistd.h>
+#include <sys/stat.h>
+#include <dirent.h>
 
-void reboot_esp();
-void reset_on_next_reboot();
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "nvs_flash.h"
+#include "esp_system.h"
+#include "esp_vfs.h"
+#include "esp_spiffs.h"
 
-int on_set_reboot(int value);
+#include "../reboot/reboot.h"
+#include "../log/log.h"
+#include "../kv/kv.h"
 
-#endif
+void init_tester() {
+  ESP_LOGI(SGO_LOG_EVENT, "@TESTER Initializing tester module");
+
+  const char path[] = "/spiffs/tester.html";
+  struct stat file_stat;
+  if (stat(path, &file_stat) != -1) {
+    ESP_LOGI(SGO_LOG_EVENT, "@TESTER /spiffs/tester.html file found. --- STARTING TEST MODE ---");
+    set_tester_enabled(1);
+    unlink(path);
+  }
+}
+
+/*
+ * http callback
+ */
+
+int on_set_tester_enabled(int value) {
+  reboot_esp();
+  return value;
+}

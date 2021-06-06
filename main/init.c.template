@@ -15,16 +15,46 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#include <stdbool.h>
+
+#include "./core/log/log.h"
+
 <%
-  const init = Object.keys(modules).filter(m => modules[m].init && modules[m].enabled && !modules[m].core).map(m => modules[m]).sort((m1, m2) => m2.init_priority - m1.init_priority)
+  const initRequired = Object.keys(modules).filter(m => modules[m].init && modules[m].enabled && !modules[m].core && modules[m].required == true).map(m => modules[m]).sort((m1, m2) => m2.init_priority - m1.init_priority)
+  const initTester = Object.keys(modules).filter(m => modules[m].init && modules[m].enabled && !modules[m].core && modules[m].tester == true).map(m => modules[m]).sort((m1, m2) => m2.init_priority - m1.init_priority)
+  const init = Object.keys(modules).filter(m => modules[m].init && modules[m].enabled && !modules[m].core && modules[m].tester == false && modules[m].required == false).map(m => modules[m]).sort((m1, m2) => m2.init_priority - m1.init_priority)
 %>
 
+// Required modules
+<% initRequired.forEach(m => { %>
+#include "<%= `${m.name}/${m.name}.h` %>"
+<% }) %>
+
+// Tester modules
+<% initTester.forEach(m => { %>
+#include "<%= `${m.name}/${m.name}.h` %>"
+<% }) %>
+
+// Non testing modules
 <% init.forEach(m => { %>
 #include "<%= `${m.name}/${m.name}.h` %>"
 <% }) %>
 
-void init_app() {
-<% init.forEach(m => { %>
-  init_<%= m.name %>();
-<% }) %>
+void init_app(bool tester) {
+  <% initRequired.forEach(m => { %>
+    init_<%= m.name %>();
+  <% }) %>
+
+  if (tester) {
+    ESP_LOGI(SGO_LOG_EVENT, "@MAIN Starting tester modules");
+  <% initTester.forEach(m => { %>
+    init_<%= m.name %>();
+  <% }) %>
+  } else {
+    ESP_LOGI(SGO_LOG_EVENT, "@MAIN Starting normal modules");
+  <% init.forEach(m => { %>
+    init_<%= m.name %>();
+  <% }) %>
+  }
 }
