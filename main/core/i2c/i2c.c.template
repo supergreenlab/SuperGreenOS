@@ -87,6 +87,7 @@ static void initialize_i2c_port(int i2cId) {
   i2c_driver_install(port, conf.mode,
       MASTER_RX_BUF_DISABLE,
       MASTER_TX_BUF_DISABLE, 0);
+	i2c_set_timeout(port, 104000);
 }
 
 void start_i2c(int i2cId) {

@@ -1792,7 +1792,8 @@
                     "intlen": 8,
                     "suffix": "0_humi",
                     "caps_name": "SHT21_0_HUMI",
-                    "humi_sensor": 1
+                    "blower_ref": 15,
+                    "humi_sensor": 4
                 },
                 "1_humi": {
                     "name": "sht21_1_humi",
@@ -1820,7 +1821,8 @@
                     "intlen": 8,
                     "suffix": "1_humi",
                     "caps_name": "SHT21_1_HUMI",
-                    "humi_sensor": 2
+                    "blower_ref": 16,
+                    "humi_sensor": 5
                 },
                 "2_humi": {
                     "name": "sht21_2_humi",
@@ -1848,7 +1850,8 @@
                     "intlen": 8,
                     "suffix": "2_humi",
                     "caps_name": "SHT21_2_HUMI",
-                    "humi_sensor": 3
+                    "blower_ref": 17,
+                    "humi_sensor": 6
                 },
                 "0_vpd": {
                     "name": "sht21_0_vpd",
@@ -5330,6 +5333,432 @@
                     "intlen": 8,
                     "suffix": "2_present",
                     "caps_name": "SCD30_2_PRESENT"
+                },
+                "0_temp": {
+                    "name": "scd30_0_temp",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SCD30 temperature on port #1",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_temp",
+                    "caps_name": "SCD30_0_TEMP",
+                    "temp_sensor": 16,
+                    "blower_ref": 30
+                },
+                "1_temp": {
+                    "name": "scd30_1_temp",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SCD30 temperature on port #2",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_temp",
+                    "caps_name": "SCD30_1_TEMP",
+                    "temp_sensor": 17,
+                    "blower_ref": 31
+                },
+                "2_temp": {
+                    "name": "scd30_2_temp",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SCD30 temperature on port #3",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_temp",
+                    "caps_name": "SCD30_2_TEMP",
+                    "temp_sensor": 18,
+                    "blower_ref": 32
+                },
+                "0_humi": {
+                    "name": "scd30_0_humi",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SCD30 humidity on port #1",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_humi",
+                    "caps_name": "SCD30_0_HUMI",
+                    "humi_sensor": 16
+                },
+                "1_humi": {
+                    "name": "scd30_1_humi",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SCD30 humidity on port #2",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_humi",
+                    "caps_name": "SCD30_1_HUMI",
+                    "humi_sensor": 17
+                },
+                "2_humi": {
+                    "name": "scd30_2_humi",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SCD30 humidity on port #3",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_humi",
+                    "caps_name": "SCD30_2_HUMI",
+                    "humi_sensor": 18
+                },
+                "0_vpd": {
+                    "name": "scd30_0_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SCD30 humidity on port #1",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "0_vpd",
+                    "caps_name": "SCD30_0_VPD",
+                    "vpd_sensor": 16
+                },
+                "1_vpd": {
+                    "name": "scd30_1_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SCD30 humidity on port #2",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "1_vpd",
+                    "caps_name": "SCD30_1_VPD",
+                    "vpd_sensor": 17
+                },
+                "2_vpd": {
+                    "name": "scd30_2_vpd",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SCD30 humidity on port #3",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "2_vpd",
+                    "caps_name": "SCD30_2_VPD",
+                    "vpd_sensor": 18
+                },
+                "0_vpd_leaf_offset": {
+                    "name": "scd30_0_vpd_leaf_offset",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "S_0_VPD_LO",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": -20,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_vpd_leaf_offset",
+                    "caps_name": "SCD30_0_VPD_LEAF_OFFSET"
+                },
+                "1_vpd_leaf_offset": {
+                    "name": "scd30_1_vpd_leaf_offset",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "S_1_VPD_LO",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": -20,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_vpd_leaf_offset",
+                    "caps_name": "SCD30_1_VPD_LEAF_OFFSET"
+                },
+                "2_vpd_leaf_offset": {
+                    "name": "scd30_2_vpd_leaf_offset",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "key": "S_2_VPD_LO",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": -20,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_vpd_leaf_offset",
+                    "caps_name": "SCD30_2_VPD_LEAF_OFFSET"
+                },
+                "0_co2": {
+                    "name": "scd30_0_co2",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SCD30 temperature on port #1",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 16,
+                    "suffix": "0_co2",
+                    "caps_name": "SCD30_0_CO2",
+                    "blower_ref": 23,
+                    "co2_sensor": 16
+                },
+                "1_co2": {
+                    "name": "scd30_1_co2",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SCD30 temperature on port #2",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 16,
+                    "suffix": "1_co2",
+                    "caps_name": "SCD30_1_CO2",
+                    "blower_ref": 24,
+                    "co2_sensor": 17
+                },
+                "2_co2": {
+                    "name": "scd30_2_co2",
+                    "ble": {
+                        "enable": false
+                    },
+                    "nosend": false,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "write_cb": false,
+                    "default": 0,
+                    "type": "integer",
+                    "helper": "SCD30 temperature on port #3",
+                    "dump_freq": 60,
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "signedness": "u",
+                    "intlen": 16,
+                    "suffix": "2_co2",
+                    "caps_name": "SCD30_2_CO2",
+                    "blower_ref": 25,
+                    "co2_sensor": 18
                 }
             },
             "field_prefix": "scd30",

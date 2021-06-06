@@ -23,6 +23,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+// NOTE: this is taken from the arduino sparkfun library that was in cpp with the arduino framework.
+// https://github.com/sparkfun/SparkFun_SCD30_Arduino_Library/
+
 #define SCD30_ADDRESS 0x61
 
 #define COMMAND_CONTINUOUS_MEASUREMENT 0x0010

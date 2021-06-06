@@ -20,6 +20,9 @@
 #include "../core/i2c/i2c.h"
 #include "../core/log/log.h"
 
+// NOTE: this is taken from the arduino sparkfun library that was in cpp with the arduino framework.
+// https://github.com/sparkfun/SparkFun_SCD30_Arduino_Library/
+
 bool begin(scd30_handle *s) {
 	uint16_t fwVer;
   if (getFirmwareVersion(s, &fwVer) == false) {

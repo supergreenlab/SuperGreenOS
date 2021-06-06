@@ -14,6 +14,7 @@
  */
 
 #include <stdlib.h>
+#include <math.h>
 #include "scd30.h"
 #include "driver/i2c.h"
 
@@ -41,15 +42,33 @@ void loop_scd30(int i2cId) {
 	if (!s->init) {
 		if (begin(s)) {
 			s->init = true;
+			set_scd30_present(i2cId, 1);
 		} else {
 			ESP_LOGI(SGO_LOG_EVENT, "@SCD30 begin failed");
+			set_scd30_present(i2cId, 0);
 		}
 	}
 	if (s->init) {
 		if (!readMeasurement(s)) {
 			ESP_LOGI(SGO_LOG_EVENT, "@SCD30 readMeasurement failed");
+			set_scd30_present(i2cId, 0);
 		} else {
 			ESP_LOGI(SGO_LOG_EVENT, "@SCD30 i2cId: %d - co2: %f - temp: %f - humi: %f", i2cId, s->co2, s->temperature, s->humidity);
+			set_scd30_present(i2cId, 1);
+
+			// TODO DRY this with scd30 code
+			float asvp = 610.78 * powf(2.71828, (float)s->temperature / (float)(s->temperature + 238.3) * 17.2694);
+
+			float leaf_temp_offset = (float)get_scd30_vpd_leaf_offset(i2cId) / 10.0f;
+			float ltemp = (float)s->temperature + leaf_temp_offset;
+			float lsvp = 610.78 * powf(2.71828, ltemp / (ltemp + 238.3) * 17.2694);
+
+			float vpd = lsvp - (asvp * (float)s->humidity / 100.0);
+			set_scd30_temp(i2cId, s->temperature);
+			set_scd30_humi(i2cId, s->humidity);
+			set_scd30_vpd(i2cId, vpd / 100);
+
+			set_scd30_co2(i2cId, s->co2);
 		}
 	}
 
