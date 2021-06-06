@@ -56,7 +56,7 @@ void loop_scd30(int i2cId) {
 			ESP_LOGI(SGO_LOG_EVENT, "@SCD30 i2cId: %d - co2: %f - temp: %f - humi: %f", i2cId, s->co2, s->temperature, s->humidity);
 			set_scd30_present(i2cId, 1);
 
-			// TODO DRY this with scd30 code
+			// TODO DRY this with sht21 code
 			float asvp = 610.78 * powf(2.71828, (float)s->temperature / (float)(s->temperature + 238.3) * 17.2694);
 
 			float leaf_temp_offset = (float)get_scd30_vpd_leaf_offset(i2cId) / 10.0f;
