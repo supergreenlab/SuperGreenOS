@@ -24,131 +24,6 @@
           
             {
               "core": true,
-              "name": "wifi_status",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "WIFI_STATUS",
-              "module": "wifi",
-              
-              
-                "ble": {
-                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x5c}",
-                  "write": false
-                },
-              
-              "write": false,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ssid",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_SSID",
-              "module": "wifi",
-              
-              
-                "ble": {
-                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x6c}",
-                  "write": true
-                },
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_password",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_PASSWORD",
-              "module": "wifi",
-              
-              
-                "ble": {
-                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x7c}",
-                  "write": true
-                },
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ap_ssid",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_AP_SSID",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ap_password",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_AP_PASSWORD",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "mdns_domain",
-              "type": "string",
-              "integer": false,
-              "caps_name": "MDNS_DOMAIN",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": "supergreencontroller"
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ip",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_IP",
-              "module": "wifi",
-              
-              
-                "ble": {
-                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x8c}",
-                  "write": false
-                },
-              
-              "write": false,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
               "name": "ota_status",
               "type": "integer",
               "integer": true,
@@ -639,6 +514,131 @@
                 },
               
               "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_status",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "WIFI_STATUS",
+              "module": "wifi",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x5c}",
+                  "write": false
+                },
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ssid",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_SSID",
+              "module": "wifi",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x6c}",
+                  "write": true
+                },
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_password",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_PASSWORD",
+              "module": "wifi",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x7c}",
+                  "write": true
+                },
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ap_ssid",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_AP_SSID",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ap_password",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_AP_PASSWORD",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "mdns_domain",
+              "type": "string",
+              "integer": false,
+              "caps_name": "MDNS_DOMAIN",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": "supergreencontroller"
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ip",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_IP",
+              "module": "wifi",
+              
+              
+                "ble": {
+                  "uuid": "{0x17,0xfe,0xc3,0xc1,0x6b,0xe1,0x15,0x54,0xa5,0x74,0x55,0x9c,0x81,0x69,0xa3,0x8c}",
+                  "write": false
+                },
+              
+              "write": false,
               
               
               "default": ""
@@ -1664,8 +1664,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3],
-                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                  "values": [16,17,18,1,2,3],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
                 },
               
               "default": 1
@@ -1695,8 +1695,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3],
-                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                  "values": [16,17,18,1,2,3],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
                 },
               
               "default": 2
@@ -1726,8 +1726,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3],
-                  "helpers": ["SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                  "values": [16,17,18,1,2,3],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
                 },
               
               "default": 0
@@ -1835,8 +1835,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3],
-                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [16,17,18,4,5,6],
+                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
               "default": 1
@@ -1866,8 +1866,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3],
-                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [16,17,18,4,5,6],
+                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
               "default": 2
@@ -1897,8 +1897,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3],
-                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [16,17,18,4,5,6],
+                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
               "default": 0
@@ -2006,8 +2006,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3],
-                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [16,17,18,1,2,3],
+                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
               "default": 1
@@ -2037,8 +2037,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3],
-                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [16,17,18,1,2,3],
+                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
               "default": 2
@@ -2068,8 +2068,8 @@
               
               
                 "indir": {
-                  "values": [1,2,3],
-                  "helpers": ["SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [16,17,18,1,2,3],
+                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
               "default": 0
@@ -2887,6 +2887,474 @@
           
             {
               "core": false,
+              "name": "scd30_0_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_0_TEMP",
+              "module": "scd30",
+              "helper": "SCD30 temperature on port #1",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 0,
+                  "param": "temp"
+                },
+                "scd30": {
+                  "index": 0,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_1_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_1_TEMP",
+              "module": "scd30",
+              "helper": "SCD30 temperature on port #2",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 1,
+                  "param": "temp"
+                },
+                "scd30": {
+                  "index": 1,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_2_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_2_TEMP",
+              "module": "scd30",
+              "helper": "SCD30 temperature on port #3",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 2,
+                  "param": "temp"
+                },
+                "scd30": {
+                  "index": 2,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_0_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_0_HUMI",
+              "module": "scd30",
+              "helper": "SCD30 humidity on port #1",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 0,
+                  "param": "humi"
+                },
+                "scd30": {
+                  "index": 0,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_1_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_1_HUMI",
+              "module": "scd30",
+              "helper": "SCD30 humidity on port #2",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 1,
+                  "param": "humi"
+                },
+                "scd30": {
+                  "index": 1,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_2_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_2_HUMI",
+              "module": "scd30",
+              "helper": "SCD30 humidity on port #3",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 2,
+                  "param": "humi"
+                },
+                "scd30": {
+                  "index": 2,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_0_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_0_VPD",
+              "module": "scd30",
+              "helper": "SCD30 humidity on port #1",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd"
+                },
+                "scd30": {
+                  "index": 0,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_1_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_1_VPD",
+              "module": "scd30",
+              "helper": "SCD30 humidity on port #2",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd"
+                },
+                "scd30": {
+                  "index": 1,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_2_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_2_VPD",
+              "module": "scd30",
+              "helper": "SCD30 humidity on port #3",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd"
+                },
+                "scd30": {
+                  "index": 2,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_0_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_0_PRESENT",
+              "module": "scd30",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 0,
+                  "param": "present"
+                },
+                "scd30": {
+                  "index": 0,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_1_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_1_PRESENT",
+              "module": "scd30",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 1,
+                  "param": "present"
+                },
+                "scd30": {
+                  "index": 1,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_2_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_2_PRESENT",
+              "module": "scd30",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 2,
+                  "param": "present"
+                },
+                "scd30": {
+                  "index": 2,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_0_co2",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_0_CO2",
+              "module": "scd30",
+              "helper": "SCD30 temperature on port #1",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 0,
+                  "param": "co2"
+                },
+                "scd30": {
+                  "index": 0,
+                  "param": "co2"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_1_co2",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_1_CO2",
+              "module": "scd30",
+              "helper": "SCD30 temperature on port #2",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 1,
+                  "param": "co2"
+                },
+                "scd30": {
+                  "index": 1,
+                  "param": "co2"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_2_co2",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_2_CO2",
+              "module": "scd30",
+              "helper": "SCD30 temperature on port #3",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 2,
+                  "param": "co2"
+                },
+                "scd30": {
+                  "index": 2,
+                  "param": "co2"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_0_vpd_leaf_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_0_VPD_LEAF_OFFSET",
+              "module": "scd30",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 0,
+                  "param": "vpd_leaf_offset"
+                },
+                "scd30": {
+                  "index": 0,
+                  "param": "vpd_leaf_offset"
+                },
+              
+              
+              "default": -20
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_1_vpd_leaf_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_1_VPD_LEAF_OFFSET",
+              "module": "scd30",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 1,
+                  "param": "vpd_leaf_offset"
+                },
+                "scd30": {
+                  "index": 1,
+                  "param": "vpd_leaf_offset"
+                },
+              
+              
+              "default": -20
+            },
+          
+            {
+              "core": false,
+              "name": "scd30_2_vpd_leaf_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "SCD30_2_VPD_LEAF_OFFSET",
+              "module": "scd30",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "scd30",
+                  "len": 3,
+                  "index": 2,
+                  "param": "vpd_leaf_offset"
+                },
+                "scd30": {
+                  "index": 2,
+                  "param": "vpd_leaf_offset"
+                },
+              
+              
+              "default": -20
+            },
+          
+            {
+              "core": false,
               "name": "box_0_blower_duty",
               "type": "integer",
               "integer": true,
@@ -3377,8 +3845,8 @@
               
               
                 "indir": {
-                  "values": [8,9,10,1,2,3],
-                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                  "values": [30,31,32,23,24,25,8,9,10,1,2,3,15,16,17],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
               "default": 1
@@ -3408,8 +3876,8 @@
               
               
                 "indir": {
-                  "values": [8,9,10,1,2,3],
-                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                  "values": [30,31,32,23,24,25,8,9,10,1,2,3,15,16,17],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
               "default": 2
@@ -3439,8 +3907,8 @@
               
               
                 "indir": {
-                  "values": [8,9,10,1,2,3],
-                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3"]
+                  "values": [30,31,32,23,24,25,8,9,10,1,2,3,15,16,17],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
               "default": 0

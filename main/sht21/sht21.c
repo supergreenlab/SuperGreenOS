@@ -33,7 +33,7 @@
 static uint16_t read_sht21(int i2cId);
 
 void init_sht21(int i2cId) {
-  ESP_LOGI(SGO_LOG_EVENT, "@SHT21 Initializing sht21 i2c device\n");
+  ESP_LOGI(SGO_LOG_EVENT, "@SHT21 Initializing sht21 i2c device");
   // TODO: write you setup code here
 }
 
@@ -59,6 +59,7 @@ static bool send_sht21_cmd(int i2cId, uint8_t cmd_b) {
 }
 
 static bool crc_checksum(uint8_t data[], uint8_t no_of_bytes, uint8_t checksum);
+
 static uint16_t read_sht21(int i2cId) {
   uint8_t v[3] = {0};
   int port = get_i2c_port(i2cId);
@@ -91,6 +92,7 @@ static uint16_t read_sht21(int i2cId) {
 }
 
 void loop_sht21(int i2cId) {
+	ESP_LOGI(SGO_LOG_NOSEND, "@SHT21 loop_sht21 %d", i2cId);
   int temp = 0;
   int humi = 0;
   start_i2c(i2cId);

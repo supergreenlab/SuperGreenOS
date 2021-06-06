@@ -13,30 +13,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdlib.h>
-#include "<%= name %>.h"
+#ifndef SCD30_H_
+#define SCD30_H_
 
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+void init_scd30(int i2cId);
+void loop_scd30(int i2cId);
 
-#include "../core/kv/kv.h"
-#include "../core/log/log.h"
+#endif
 
-static void <%= name %>_task(void *param);
-
-void init_<%= name %>() {
-  ESP_LOGI(SGO_LOG_EVENT, "@<%= name.toUpperCase() %> Initializing <%= name %> module");
-
-  // TODO: write you setup code here
-
-  xTaskCreatePinnedToCore(<%= name %>_task, "<%= name.toUpperCase() %>", 4096, NULL, 10, NULL, 1);
-}
-
-static void <%= name %>_task(void *param) {
-  while (true) {
-
-    // TODO: write your loop code here
-
-    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
-  }
-}
