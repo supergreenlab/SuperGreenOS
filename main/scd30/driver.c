@@ -26,25 +26,20 @@
 bool begin(scd30_handle *s) {
 	uint16_t fwVer;
   if (getFirmwareVersion(s, &fwVer) == false) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 getFirmwareVersion failed");
     return false;
 	}
 	ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 firmware version %02x", fwVer);
 
 	if (beginMeasuring(s, 0) == true) {
     if (setMeasurementInterval(s, 2) == false) {
-			ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 setMeasurementInterval failed");
 			return false;
 		}
     if (setAutoSelfCalibration(s, false) == false) {
-			ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 setAutoSelfCalibration failed");
 			return false;
 		}
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 beginMeasuring success!");
     return true;
   }
 
-	ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 beginMeasuring failed");
   return false;
 }
 
@@ -204,7 +199,6 @@ bool readMeasurement(scd30_handle *s)
 {
   //Verify we have data from the sensor
   if (dataAvailable(s) == false) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 dataAvailable == false");
     return (false);
 	}
 
@@ -215,7 +209,7 @@ bool readMeasurement(scd30_handle *s)
 	uint8_t outBuff[2] = {COMMAND_READ_MEASUREMENT >> 8, COMMAND_READ_MEASUREMENT & 0xFF};
 	i2c_err_t err = i2cWrite(s->port, SCD30_ADDRESS, outBuff, sizeof(outBuff), true, 150);
   if (!(err == I2C_ERROR_CONTINUE || err == I2C_ERROR_OK)) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cWrite failed %02x", err);
+		ESP_LOGW(SGO_LOG_NOSEND, "@SCD30 i2cWrite failed %02x", err);
     return (0);
 	}
 
@@ -270,13 +264,13 @@ bool readMeasurement(scd30_handle *s)
   }
   else
   {	
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 readMeasurement: no SCD30 data found from I2C, i2c claims we should receive %d bytes", size);
+		ESP_LOGW(SGO_LOG_NOSEND, "@SCD30 readMeasurement: no SCD30 data found from I2C, i2c claims we should receive %d bytes", size);
     return false;
   }
 
   if (error)
   {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 readMeasurement: encountered error reading SCD30 data.");
+		ESP_LOGW(SGO_LOG_NOSEND, "@SCD30 readMeasurement: encountered error reading SCD30 data.");
     return false;
   }
   //Now copy the uint32s into their associated floats
@@ -299,7 +293,7 @@ bool getSettingValue(scd30_handle *s, uint16_t registerAddress, uint16_t *val)
 	uint8_t outBuff[2] = {registerAddress >> 8, registerAddress & 0xFF};
 	i2c_err_t err = i2cWrite(s->port, SCD30_ADDRESS, outBuff, sizeof(outBuff), true, 150);
   if (!(err == I2C_ERROR_CONTINUE || err == I2C_ERROR_OK)) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cWrite failed %02x", err);
+		ESP_LOGW(SGO_LOG_NOSEND, "@SCD30 i2cWrite failed %02x", err);
     return (0);
 	}
 
@@ -309,7 +303,7 @@ bool getSettingValue(scd30_handle *s, uint16_t registerAddress, uint16_t *val)
 	uint8_t buff[3];
 	err = i2cRead(s->port, SCD30_ADDRESS, buff, sizeof(buff), true, 150, &size);
 	if (!(err == I2C_ERROR_CONTINUE || err == I2C_ERROR_OK)) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cRead failed %02x", err);
+		ESP_LOGW(SGO_LOG_NOSEND, "@SCD30 i2cRead failed %02x", err);
     return (0);
 	}
 
@@ -323,9 +317,9 @@ bool getSettingValue(scd30_handle *s, uint16_t registerAddress, uint16_t *val)
     uint8_t expectedCRC = computeCRC8(s, data, 2);
     if (crc == expectedCRC) // Return true if CRC check is OK
       return (true);
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 getSettingValue: CRC fail: expected %02x, got %02x", expectedCRC, crc);
+		ESP_LOGW(SGO_LOG_NOSEND, "@SCD30 getSettingValue: CRC fail: expected %02x, got %02x", expectedCRC, crc);
   } else {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cRead failed %d", size);
+		ESP_LOGW(SGO_LOG_NOSEND, "@SCD30 i2cRead failed %d", size);
 	}
   return (false);
 }
@@ -336,7 +330,7 @@ uint16_t readRegister(scd30_handle *s, uint16_t registerAddress)
 	uint8_t outBuff[2] = {registerAddress >> 8, registerAddress & 0xFF};
 	i2c_err_t err = i2cWrite(s->port, SCD30_ADDRESS, outBuff, sizeof(outBuff), true, 150);
   if (!(err == I2C_ERROR_CONTINUE || err == I2C_ERROR_OK)) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cWrite in readRegister failed %02x", err);
+		ESP_LOGW(SGO_LOG_NOSEND, "@SCD30 i2cWrite in readRegister failed %02x", err);
     return (0);
 	}
 
@@ -351,7 +345,7 @@ uint16_t readRegister(scd30_handle *s, uint16_t registerAddress)
     uint8_t lsb = buff[1];
     return ((uint16_t)msb << 8 | lsb);
   }
-	ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cRead in readRegister failed %02x", err);
+	ESP_LOGW(SGO_LOG_NOSEND, "@SCD30 i2cRead in readRegister failed %02x", err);
   return (0); //Sensor did not respond
 }
 
@@ -366,7 +360,7 @@ bool sendCommandArg(scd30_handle *s, uint16_t command, uint16_t arguments)
 	uint8_t outBuff[5] = {command >> 8, command & 0xFF, arguments >> 8, arguments & 0xFF, crc};
 	i2c_err_t err = i2cWrite(s->port, SCD30_ADDRESS, outBuff, sizeof(outBuff), true, 150);
   if (!(err == I2C_ERROR_CONTINUE || err == I2C_ERROR_OK)) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cWrite in sendCommandArg failed %02x", err);
+		ESP_LOGW(SGO_LOG_NOSEND, "@SCD30 i2cWrite in sendCommandArg failed %02x", err);
     return false;
 	}
 
@@ -379,7 +373,7 @@ bool sendCommand(scd30_handle *s, uint16_t command)
 	uint8_t outBuff[2] = {command >> 8, command & 0xFF};
 	i2c_err_t err = i2cWrite(s->port, SCD30_ADDRESS, outBuff, sizeof(outBuff), true, 150);
   if (!(err == I2C_ERROR_CONTINUE || err == I2C_ERROR_OK)) {
-		ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 i2cWrite in sendCommand failed %02x", err);
+		ESP_LOGW(SGO_LOG_NOSEND, "@SCD30 i2cWrite in sendCommand failed %02x", err);
     return false;
 	}
 

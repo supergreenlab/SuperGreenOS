@@ -9,6 +9,7 @@ _MODULE: {
   tester: bool | *false
   required: bool | *false
   field_prefix: string
+  preinit: bool | *false
   init: bool | *true
   code: bool | *true
   init_priority: int | *0

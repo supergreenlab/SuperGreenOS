@@ -163,14 +163,18 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_START");
       esp_wifi_connect();
       set_wifi_status(CONNECTING);
+#ifdef on_wifi_status_changed
       on_wifi_status_changed();
+#endif
       break;
     case SYSTEM_EVENT_STA_GOT_IP:
       ESP_LOGI(SGO_LOG_EVENT, "@WIFI SYSTEM_EVENT_STA_GOT_IP");
       xEventGroupSetBits(wifi_event_group, CONNECTED_BIT);
       xQueueSend(cmd, &CMD_STA_CONNECTED, 0);
       set_wifi_status(CONNECTED);
+#ifdef on_wifi_status_changed
       on_wifi_status_changed();
+#endif
       set_ip(TCPIP_ADAPTER_IF_STA);
       break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
@@ -179,18 +183,24 @@ static esp_err_t event_handler(void *ctx, system_event_t *event) {
       if (failed) {
         xQueueSend(cmd, &CMD_STA_CONNECTION_FAILED, 0);
         set_wifi_status(FAILED);
+#ifdef on_wifi_status_changed
         on_wifi_status_changed();
+#endif
       } else {
         xQueueSend(cmd, &CMD_STA_DISCONNECTED, 0);
         set_wifi_status(DISCONNECTED);
+#ifdef on_wifi_status_changed
         on_wifi_status_changed();
+#endif
       }
       xEventGroupClearBits(wifi_event_group, CONNECTED_BIT);
       break;
     case SYSTEM_EVENT_AP_START:
       xQueueSend(cmd, &CMD_AP_START, 0);
       set_wifi_status(AP);
+#ifdef on_wifi_status_changed
       on_wifi_status_changed();
+#endif
       set_ip(TCPIP_ADAPTER_IF_AP);
       break;
     case SYSTEM_EVENT_AP_STACONNECTED:
@@ -244,7 +254,6 @@ static void wifi_task(void *param) {
     start_ap();
   }
 
-
   for (;;) {
     if (xQueueReceive(cmd, &c, 20000 / portTICK_PERIOD_MS)) {
 
@@ -284,7 +293,9 @@ static void wifi_task(void *param) {
           ESP_LOGI(SGO_LOG_EVENT, "@WIFI Too many retries, start AP mode");
           n_connection_failed = 0;
           set_wifi_status(FAILED);
+#ifdef on_wifi_status_changed
           on_wifi_status_changed();
+#endif
           start_ap();
         }
       } else if (c == CMD_MDNS_CHANGED) {
