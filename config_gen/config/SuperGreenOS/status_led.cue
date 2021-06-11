@@ -1,6 +1,7 @@
 package config
 
 modules status_led: _MODULE & {
+  preinit: true
   init_priority: 110
   required: true
 }

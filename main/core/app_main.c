@@ -33,6 +33,7 @@
 #include "stat_dump/stat_dump.h"
 #include "httpd/httpd.h"
 
+void preinit_app();
 void init_app(bool tester);
 
 void app_main() {
@@ -45,6 +46,8 @@ void app_main() {
 
   init_kv();
   set_n_restarts(get_n_restarts()+1);
+
+  preinit_app();
 
   init_spiffs();
 

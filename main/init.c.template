@@ -41,8 +41,14 @@
 #include "<%= `${m.name}/${m.name}.h` %>"
 <% }) %>
 
+void preinit_app() {
+  <% initRequired.filter(m => m.preinit).forEach(m => { %>
+    init_<%= m.name %>();
+  <% }) %>
+}
+
 void init_app(bool tester) {
-  <% initRequired.forEach(m => { %>
+  <% initRequired.filter(m => !m.preinit).forEach(m => { %>
     init_<%= m.name %>();
   <% }) %>
 
