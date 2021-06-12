@@ -73,7 +73,7 @@ void init_reboot() {
   }
 }
 
-static void autoreboot_task() {
+static void autoreboot_task(void *args) {
   // reset n_short_reboots to zero
   vTaskDelay(60 * 1000 / portTICK_PERIOD_MS);
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=0");
@@ -82,7 +82,7 @@ static void autoreboot_task() {
   vTaskDelete(NULL);
 }
 
-static void reboot_task() {
+static void reboot_task(void *args) {
   unsigned char c;
   while (true) {
     if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS)) {
