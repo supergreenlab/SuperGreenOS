@@ -163,6 +163,8 @@ static void mqtt_task(void *param) {
     // .user_context = (void *)your_context
   };
 
+  vTaskDelay(1000 / portTICK_PERIOD_MS); // Looks like we have a race confition with wifi
+
   client = esp_mqtt_client_init(&mqtt_cfg);
   esp_mqtt_client_start(client);
 

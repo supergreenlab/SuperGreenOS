@@ -349,7 +349,8 @@ httpd_uri_t uri_option = {
 
 static httpd_handle_t server = NULL;
 
-static httpd_handle_t start_webserver(void) {
+static void start_webserver_task(void *args) {
+  vTaskDelay(1000 / portTICK_PERIOD_MS); // Looks like we have a race confition with wifi
 
   httpd_config_t config = HTTPD_DEFAULT_CONFIG();
   config.lru_purge_enable = true;
@@ -367,11 +368,15 @@ static httpd_handle_t start_webserver(void) {
 		httpd_register_uri_handler(server, &file_upload);
     httpd_register_uri_handler(server, &uri_option);
   }
-  return server;
+
+  vTaskDelete(NULL);
 }
 
 void init_httpd() {
   ESP_LOGI(SGO_LOG_EVENT, "@HTTPS Intializing HTTPD task");
 
-  start_webserver();
+  BaseType_t ret = xTaskCreatePinnedToCore(start_webserver_task, "START_WEBSERVER", 2048, NULL, 10, NULL, 1);
+  if (ret != pdPASS) {
+    ESP_LOGE(SGO_LOG_EVENT, "@HTTPS Failed to create task");
+  }
 }
