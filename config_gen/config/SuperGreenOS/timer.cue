@@ -15,6 +15,7 @@ modules timer fields "\(k)_timer_type": _INT8 & _NVS & _HTTP_RW & {
 modules timer fields "\(k)_timer_output": _INT8 & _NVS & _HTTP & {
   nvs key: "B_\(k)_TO"
   blower_ref: 0x8+k
+  fan_ref: 0x8+k
   helper: "Box #\(k+1) timer output"
   default: 0
 } for k, v in _box_conf

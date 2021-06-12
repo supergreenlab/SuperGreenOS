@@ -16,18 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef BLOWER_H_
-#define BLOWER_H_
+#ifndef FAN_H_
+#define FAN_H_
 
-void init_blower();
-void refresh_blower();
+void init_fan();
+void refresh_fan();
 
 /* KV Callbacks */
 
-int on_set_box_blower_duty(int boxId, int value);
-int on_set_box_blower_min(int boxId, int value);
-int on_set_box_blower_max(int boxId, int value);
-int on_set_box_blower_ref_min(int boxId, int value);
-int on_set_box_blower_ref_max(int boxId, int value);
+int on_set_box_fan_duty(int boxId, int value);
+int on_set_box_fan_min(int boxId, int value);
+int on_set_box_fan_max(int boxId, int value);
+int on_set_box_fan_ref_min(int boxId, int value);
+int on_set_box_fan_ref_max(int boxId, int value);
 
 #endif
