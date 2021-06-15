@@ -16,8 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-if [ "$#" -ne 3 ]; then
-  echo "[Usage] $0 template_name module_name config_file"
+if [ "$#" -ne 2 ]; then
+  echo "[Usage] $0 template_name module_name"
   exit
 fi
 
@@ -27,7 +27,6 @@ NC="\033[0m"
 
 TEMPLATE_NAME="$1"
 MODULE_NAME="$2"
-CONFIG="$3"
 PROJECT_NAME=`basename $(pwd)` # TODO fix this
 
 mkdir -p main/$MODULE_NAME
@@ -46,9 +45,3 @@ do
   ejs-cli -O "{\"name\": \"$MODULE_NAME\"}" $i > "$FILE_PATH"
   echo -e "Call ejs-cli for $i to $FILE_PATH: ${GREEN}Done${NC}"
 done
-
-./update_config.sh config_gen/config/$PROJECT_NAME/ $CONFIG
-
-echo "==="
-echo "Running ./update_templates.sh...."
-./update_templates.sh $CONFIG

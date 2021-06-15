@@ -43,6 +43,19 @@ modules box fields "\(k)_vpd_source": _INT8 & _NVS & _HTTP_RW & {
   default: v.vpd_source
 } for k, v in _box_conf
 
+modules box fields "\(k)_weight": _INT8 & _HTTP & _INDIR & {
+  dump_freq: 1
+  indir key: "weight_sensor"
+  indir source: "\(k)_weight_source"
+  default: 0
+} for k, v in _box_conf
+
+modules box fields "\(k)_weight_source": _INT8 & _NVS & _HTTP_RW & {
+  nvs key: "B_\(k)_W_SRC"
+  default: v.weight_source
+} for k, v in _box_conf
+
+
 modules box fields "\(k)_enabled": _INT8 & _NVS & _HTTP_RW & {
   default: v.enabled
   nvs key: "B_\(k)_E"

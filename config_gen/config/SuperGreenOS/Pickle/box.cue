@@ -6,6 +6,7 @@ _box_conf: [
     temp_source: 1
     humi_source: 1
     vpd_source: 1
+    weight_source: 1
     blower_ref_source: 0
     fan_ref_source: 0
   },
@@ -14,6 +15,7 @@ _box_conf: [
     temp_source: 2
     humi_source: 2
     vpd_source: 2
+    weight_source: 2
     blower_ref_source: 0
     fan_ref_source: 0
   },

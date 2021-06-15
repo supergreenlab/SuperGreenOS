@@ -19,6 +19,51 @@
           
             {
               "core": true,
+              "name": "broker_url",
+              "type": "string",
+              "integer": false,
+              "caps_name": "BROKER_URL",
+              "module": "mqtt",
+              
+              
+              "write": true,
+              
+              
+              "default": "mqtt://sink2.supergreenlab.com:1883"
+            },
+          
+            {
+              "core": true,
+              "name": "broker_channel",
+              "type": "string",
+              "integer": false,
+              "caps_name": "BROKER_CHANNEL",
+              "module": "mqtt",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "broker_clientid",
+              "type": "string",
+              "integer": false,
+              "caps_name": "BROKER_CLIENTID",
+              "module": "mqtt",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
               "name": "tester_enabled",
               "type": "integer",
               "integer": true,
@@ -585,51 +630,6 @@
             },
           
             {
-              "core": true,
-              "name": "broker_url",
-              "type": "string",
-              "integer": false,
-              "caps_name": "BROKER_URL",
-              "module": "mqtt",
-              
-              
-              "write": true,
-              
-              
-              "default": "mqtt://sink2.supergreenlab.com:1883"
-            },
-          
-            {
-              "core": true,
-              "name": "broker_channel",
-              "type": "string",
-              "integer": false,
-              "caps_name": "BROKER_CHANNEL",
-              "module": "mqtt",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "broker_clientid",
-              "type": "string",
-              "integer": false,
-              "caps_name": "BROKER_CLIENTID",
-              "module": "mqtt",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
               "core": false,
               "name": "scd30_0_present",
               "type": "integer",
@@ -1099,1128 +1099,6 @@
           
             {
               "core": false,
-              "name": "box_0_led_dim",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_LED_DIM",
-              "module": "mixer",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "led_dim"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "led_dim"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_led_dim",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_LED_DIM",
-              "module": "mixer",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "led_dim"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "led_dim"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_led_dim",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_LED_DIM",
-              "module": "mixer",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "led_dim"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "led_dim"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "motors_curve",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTORS_CURVE",
-              "module": "motors",
-              
-              
-              "write": true,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "motor_0_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_0_DUTY",
-              "module": "motor",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3,
-                  "index": 0,
-                  "param": "duty"
-                },
-                "motor": {
-                  "index": 0,
-                  "param": "duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "motor_1_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_1_DUTY",
-              "module": "motor",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3,
-                  "index": 1,
-                  "param": "duty"
-                },
-                "motor": {
-                  "index": 1,
-                  "param": "duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "motor_2_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_2_DUTY",
-              "module": "motor",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3,
-                  "index": 2,
-                  "param": "duty"
-                },
-                "motor": {
-                  "index": 2,
-                  "param": "duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "motor_0_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_0_MIN",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3,
-                  "index": 0,
-                  "param": "min"
-                },
-                "motor": {
-                  "index": 0,
-                  "param": "min"
-                },
-              
-              
-              "default": 8
-            },
-          
-            {
-              "core": false,
-              "name": "motor_1_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_1_MIN",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3,
-                  "index": 1,
-                  "param": "min"
-                },
-                "motor": {
-                  "index": 1,
-                  "param": "min"
-                },
-              
-              
-              "default": 8
-            },
-          
-            {
-              "core": false,
-              "name": "motor_2_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_2_MIN",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3,
-                  "index": 2,
-                  "param": "min"
-                },
-                "motor": {
-                  "index": 2,
-                  "param": "min"
-                },
-              
-              
-              "default": 8
-            },
-          
-            {
-              "core": false,
-              "name": "motor_0_max",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_0_MAX",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3,
-                  "index": 0,
-                  "param": "max"
-                },
-                "motor": {
-                  "index": 0,
-                  "param": "max"
-                },
-              
-              
-              "default": 100
-            },
-          
-            {
-              "core": false,
-              "name": "motor_1_max",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_1_MAX",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3,
-                  "index": 1,
-                  "param": "max"
-                },
-                "motor": {
-                  "index": 1,
-                  "param": "max"
-                },
-              
-              
-              "default": 100
-            },
-          
-            {
-              "core": false,
-              "name": "motor_2_max",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_2_MAX",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3,
-                  "index": 2,
-                  "param": "max"
-                },
-                "motor": {
-                  "index": 2,
-                  "param": "max"
-                },
-              
-              
-              "default": 100
-            },
-          
-            {
-              "core": false,
-              "name": "motor_0_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_0_SOURCE",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3,
-                  "index": 0,
-                  "param": "source"
-                },
-                "motor": {
-                  "index": 0,
-                  "param": "source"
-                },
-              
-              
-                "indir": {
-                  "values": [8,9,10,15,16,17,1,2,3],
-                  "helpers": ["Watering control for box#1","Watering control for box#2","Watering control for box#3","Fan control for box#1","Fan control for box#2","Fan control for box#3","Blower control for box#1","Blower control for box#2","Blower control for box#3"]
-                },
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "motor_1_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_1_SOURCE",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3,
-                  "index": 1,
-                  "param": "source"
-                },
-                "motor": {
-                  "index": 1,
-                  "param": "source"
-                },
-              
-              
-                "indir": {
-                  "values": [8,9,10,15,16,17,1,2,3],
-                  "helpers": ["Watering control for box#1","Watering control for box#2","Watering control for box#3","Fan control for box#1","Fan control for box#2","Fan control for box#3","Blower control for box#1","Blower control for box#2","Blower control for box#3"]
-                },
-              
-              "default": 2
-            },
-          
-            {
-              "core": false,
-              "name": "motor_2_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "MOTOR_2_SOURCE",
-              "module": "motor",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "motor",
-                  "len": 3,
-                  "index": 2,
-                  "param": "source"
-                },
-                "motor": {
-                  "index": 2,
-                  "param": "source"
-                },
-              
-              
-                "indir": {
-                  "values": [8,9,10,15,16,17,1,2,3],
-                  "helpers": ["Watering control for box#1","Watering control for box#2","Watering control for box#3","Fan control for box#1","Fan control for box#2","Fan control for box#3","Blower control for box#1","Blower control for box#2","Blower control for box#3"]
-                },
-              
-              "default": 3
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_on_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_ON_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "on_hour"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "on_hour"
-                },
-              
-              
-              "default": 3
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_on_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_ON_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "on_hour"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "on_hour"
-                },
-              
-              
-              "default": 3
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_on_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_ON_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "on_hour"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "on_hour"
-                },
-              
-              
-              "default": 3
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_on_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_ON_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "on_min"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "on_min"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_on_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_ON_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "on_min"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "on_min"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_on_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_ON_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "on_min"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "on_min"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_off_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_OFF_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "off_hour"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "off_hour"
-                },
-              
-              
-              "default": 21
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_off_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_OFF_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "off_hour"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "off_hour"
-                },
-              
-              
-              "default": 21
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_off_hour",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_OFF_HOUR",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "off_hour"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "off_hour"
-                },
-              
-              
-              "default": 21
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_off_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_OFF_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "off_min"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "off_min"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_off_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_OFF_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "off_min"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "off_min"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_off_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_OFF_MIN",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "off_min"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "off_min"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_watering_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_WATERING_DUTY",
-              "module": "watering",
-              "helper": "Watering control for box#1",
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "watering_duty"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "watering_duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_watering_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_WATERING_DUTY",
-              "module": "watering",
-              "helper": "Watering control for box#2",
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "watering_duty"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "watering_duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_watering_duty",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_WATERING_DUTY",
-              "module": "watering",
-              "helper": "Watering control for box#3",
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "watering_duty"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "watering_duty"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_watering_period",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_WATERING_PERIOD",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "watering_period"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "watering_period"
-                },
-              
-              
-              "default": 2880
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_watering_period",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_WATERING_PERIOD",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "watering_period"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "watering_period"
-                },
-              
-              
-              "default": 2880
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_watering_period",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_WATERING_PERIOD",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "watering_period"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "watering_period"
-                },
-              
-              
-              "default": 2880
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_watering_duration",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_WATERING_DURATION",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "watering_duration"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "watering_duration"
-                },
-              
-              
-              "default": 600
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_watering_duration",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_WATERING_DURATION",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "watering_duration"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "watering_duration"
-                },
-              
-              
-              "default": 600
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_watering_duration",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_WATERING_DURATION",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "watering_duration"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "watering_duration"
-                },
-              
-              
-              "default": 600
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_watering_last",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_WATERING_LAST",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "watering_last"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "watering_last"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_watering_last",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_WATERING_LAST",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "watering_last"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "watering_last"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_watering_last",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_WATERING_LAST",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "watering_last"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "watering_last"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_watering_power",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_WATERING_POWER",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "watering_power"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "watering_power"
-                },
-              
-              
-              "default": 20
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_watering_power",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_WATERING_POWER",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "watering_power"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "watering_power"
-                },
-              
-              
-              "default": 20
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_watering_power",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_WATERING_POWER",
-              "module": "watering",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "watering_power"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "watering_power"
-                },
-              
-              
-              "default": 20
-            },
-          
-            {
-              "core": false,
               "name": "leds_fastmode",
               "type": "integer",
               "integer": true,
@@ -2314,84 +1192,6 @@
           
             {
               "core": false,
-              "name": "led_0_gpio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_0_GPIO",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6,
-                  "index": 0,
-                  "param": "gpio"
-                },
-                "led": {
-                  "index": 0,
-                  "param": "gpio"
-                },
-              
-              
-              "default": 33
-            },
-          
-            {
-              "core": false,
-              "name": "led_1_gpio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_1_GPIO",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6,
-                  "index": 1,
-                  "param": "gpio"
-                },
-                "led": {
-                  "index": 1,
-                  "param": "gpio"
-                },
-              
-              
-              "default": 25
-            },
-          
-            {
-              "core": false,
-              "name": "led_2_gpio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "LED_2_GPIO",
-              "module": "led",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "led",
-                  "len": 6,
-                  "index": 2,
-                  "param": "gpio"
-                },
-                "led": {
-                  "index": 2,
-                  "param": "gpio"
-                },
-              
-              
-              "default": 26
-            },
-          
-            {
-              "core": false,
               "name": "led_3_duty",
               "type": "integer",
               "integer": true,
@@ -2466,6 +1266,84 @@
               
               
               "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_0_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_0_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 0,
+                  "param": "gpio"
+                },
+                "led": {
+                  "index": 0,
+                  "param": "gpio"
+                },
+              
+              
+              "default": 33
+            },
+          
+            {
+              "core": false,
+              "name": "led_1_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_1_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 1,
+                  "param": "gpio"
+                },
+                "led": {
+                  "index": 1,
+                  "param": "gpio"
+                },
+              
+              
+              "default": 25
+            },
+          
+            {
+              "core": false,
+              "name": "led_2_gpio",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_2_GPIO",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 6,
+                  "index": 2,
+                  "param": "gpio"
+                },
+                "led": {
+                  "index": 2,
+                  "param": "gpio"
+                },
+              
+              
+              "default": 26
             },
           
             {
@@ -3607,6 +2485,177 @@
           
             {
               "core": false,
+              "name": "box_0_weight",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WEIGHT",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "weight"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "weight"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_weight",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WEIGHT",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "weight"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "weight"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_weight",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WEIGHT",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "weight"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "weight"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_weight_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WEIGHT_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "weight_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "weight_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["HX711 weight on port #1","HX711 weight on port #2","HX711 weight on port #3"]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_weight_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WEIGHT_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "weight_source"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "weight_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["HX711 weight on port #1","HX711 weight on port #2","HX711 weight on port #3"]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_weight_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WEIGHT_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "weight_source"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "weight_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1,2,3],
+                  "helpers": ["HX711 weight on port #1","HX711 weight on port #2","HX711 weight on port #3"]
+                },
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
               "name": "box_0_started_at",
               "type": "integer",
               "integer": true,
@@ -3677,6 +2726,1440 @@
                 "box": {
                   "index": 2,
                   "param": "started_at"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_led_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_LED_DIM",
+              "module": "mixer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "led_dim"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "led_dim"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_led_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_LED_DIM",
+              "module": "mixer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "led_dim"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "led_dim"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_led_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_LED_DIM",
+              "module": "mixer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "led_dim"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "led_dim"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motors_curve",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTORS_CURVE",
+              "module": "motors",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_0_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_0_DUTY",
+              "module": "motor",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 0,
+                  "param": "duty"
+                },
+                "motor": {
+                  "index": 0,
+                  "param": "duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_1_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_1_DUTY",
+              "module": "motor",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 1,
+                  "param": "duty"
+                },
+                "motor": {
+                  "index": 1,
+                  "param": "duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_2_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_2_DUTY",
+              "module": "motor",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 2,
+                  "param": "duty"
+                },
+                "motor": {
+                  "index": 2,
+                  "param": "duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_0_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_0_MIN",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 0,
+                  "param": "min"
+                },
+                "motor": {
+                  "index": 0,
+                  "param": "min"
+                },
+              
+              
+              "default": 8
+            },
+          
+            {
+              "core": false,
+              "name": "motor_1_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_1_MIN",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 1,
+                  "param": "min"
+                },
+                "motor": {
+                  "index": 1,
+                  "param": "min"
+                },
+              
+              
+              "default": 8
+            },
+          
+            {
+              "core": false,
+              "name": "motor_2_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_2_MIN",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 2,
+                  "param": "min"
+                },
+                "motor": {
+                  "index": 2,
+                  "param": "min"
+                },
+              
+              
+              "default": 8
+            },
+          
+            {
+              "core": false,
+              "name": "motor_0_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_0_MAX",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 0,
+                  "param": "max"
+                },
+                "motor": {
+                  "index": 0,
+                  "param": "max"
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "motor_1_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_1_MAX",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 1,
+                  "param": "max"
+                },
+                "motor": {
+                  "index": 1,
+                  "param": "max"
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "motor_2_max",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_2_MAX",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 2,
+                  "param": "max"
+                },
+                "motor": {
+                  "index": 2,
+                  "param": "max"
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "motor_0_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_0_SOURCE",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 0,
+                  "param": "source"
+                },
+                "motor": {
+                  "index": 0,
+                  "param": "source"
+                },
+              
+              
+                "indir": {
+                  "values": [8,9,10,15,16,17,1,2,3],
+                  "helpers": ["Watering control for box#1","Watering control for box#2","Watering control for box#3","Fan control for box#1","Fan control for box#2","Fan control for box#3","Blower control for box#1","Blower control for box#2","Blower control for box#3"]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "motor_1_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_1_SOURCE",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 1,
+                  "param": "source"
+                },
+                "motor": {
+                  "index": 1,
+                  "param": "source"
+                },
+              
+              
+                "indir": {
+                  "values": [8,9,10,15,16,17,1,2,3],
+                  "helpers": ["Watering control for box#1","Watering control for box#2","Watering control for box#3","Fan control for box#1","Fan control for box#2","Fan control for box#3","Blower control for box#1","Blower control for box#2","Blower control for box#3"]
+                },
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "motor_2_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_2_SOURCE",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 2,
+                  "param": "source"
+                },
+                "motor": {
+                  "index": 2,
+                  "param": "source"
+                },
+              
+              
+                "indir": {
+                  "values": [8,9,10,15,16,17,1,2,3],
+                  "helpers": ["Watering control for box#1","Watering control for box#2","Watering control for box#3","Fan control for box#1","Fan control for box#2","Fan control for box#3","Blower control for box#1","Blower control for box#2","Blower control for box#3"]
+                },
+              
+              "default": 3
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_on_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_ON_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "on_hour"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "on_hour"
+                },
+              
+              
+              "default": 3
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_on_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_ON_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "on_hour"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "on_hour"
+                },
+              
+              
+              "default": 3
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_on_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_ON_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "on_hour"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "on_hour"
+                },
+              
+              
+              "default": 3
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_on_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_ON_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "on_min"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "on_min"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_on_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_ON_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "on_min"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "on_min"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_on_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_ON_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "on_min"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "on_min"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_off_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_OFF_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "off_hour"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "off_hour"
+                },
+              
+              
+              "default": 21
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_off_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_OFF_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "off_hour"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "off_hour"
+                },
+              
+              
+              "default": 21
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_off_hour",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_OFF_HOUR",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "off_hour"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "off_hour"
+                },
+              
+              
+              "default": 21
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_off_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_OFF_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "off_min"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "off_min"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_off_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_OFF_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "off_min"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "off_min"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_off_min",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_OFF_MIN",
+              "module": "onoff",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "off_min"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "off_min"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_DUTY",
+              "module": "watering",
+              "helper": "Watering control for box#1",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_duty"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_DUTY",
+              "module": "watering",
+              "helper": "Watering control for box#2",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_duty"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_DUTY",
+              "module": "watering",
+              "helper": "Watering control for box#3",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_duty"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_period",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_PERIOD",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_period"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_period"
+                },
+              
+              
+              "default": 2880
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_period",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_PERIOD",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_period"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_period"
+                },
+              
+              
+              "default": 2880
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_period",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_PERIOD",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_period"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_period"
+                },
+              
+              
+              "default": 2880
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_duration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_DURATION",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_duration"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_duration"
+                },
+              
+              
+              "default": 600
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_duration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_DURATION",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_duration"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_duration"
+                },
+              
+              
+              "default": 600
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_duration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_DURATION",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_duration"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_duration"
+                },
+              
+              
+              "default": 600
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_last",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_LAST",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_last"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_last"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_last",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_LAST",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_last"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_last"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_last",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_LAST",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_last"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_last"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_watering_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_POWER",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_power"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_power"
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_POWER",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_power"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_power"
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_POWER",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_power"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_power"
+                },
+              
+              
+              "default": 20
+            },
+          
+            {
+              "core": false,
+              "name": "hx711_0_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "HX711_0_PRESENT",
+              "module": "hx711",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "hx711",
+                  "len": 3,
+                  "index": 0,
+                  "param": "present"
+                },
+                "hx711": {
+                  "index": 0,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "hx711_1_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "HX711_1_PRESENT",
+              "module": "hx711",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "hx711",
+                  "len": 3,
+                  "index": 1,
+                  "param": "present"
+                },
+                "hx711": {
+                  "index": 1,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "hx711_2_present",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "HX711_2_PRESENT",
+              "module": "hx711",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "hx711",
+                  "len": 3,
+                  "index": 2,
+                  "param": "present"
+                },
+                "hx711": {
+                  "index": 2,
+                  "param": "present"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "hx711_0_weight",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "HX711_0_WEIGHT",
+              "module": "hx711",
+              "helper": "HX711 weight on port #1",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "hx711",
+                  "len": 3,
+                  "index": 0,
+                  "param": "weight"
+                },
+                "hx711": {
+                  "index": 0,
+                  "param": "weight"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "hx711_1_weight",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "HX711_1_WEIGHT",
+              "module": "hx711",
+              "helper": "HX711 weight on port #2",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "hx711",
+                  "len": 3,
+                  "index": 1,
+                  "param": "weight"
+                },
+                "hx711": {
+                  "index": 1,
+                  "param": "weight"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "hx711_2_weight",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "HX711_2_WEIGHT",
+              "module": "hx711",
+              "helper": "HX711 weight on port #3",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "hx711",
+                  "len": 3,
+                  "index": 2,
+                  "param": "weight"
+                },
+                "hx711": {
+                  "index": 2,
+                  "param": "weight"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "hx711_0_weight_calibration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "HX711_0_WEIGHT_CALIBRATION",
+              "module": "hx711",
+              "helper": "HX711 weight divider calibration on port #1",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "hx711",
+                  "len": 3,
+                  "index": 0,
+                  "param": "weight_calibration"
+                },
+                "hx711": {
+                  "index": 0,
+                  "param": "weight_calibration"
+                },
+              
+              
+              "default": 83
+            },
+          
+            {
+              "core": false,
+              "name": "hx711_1_weight_calibration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "HX711_1_WEIGHT_CALIBRATION",
+              "module": "hx711",
+              "helper": "HX711 weight divider calibration on port #2",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "hx711",
+                  "len": 3,
+                  "index": 1,
+                  "param": "weight_calibration"
+                },
+                "hx711": {
+                  "index": 1,
+                  "param": "weight_calibration"
+                },
+              
+              
+              "default": 83
+            },
+          
+            {
+              "core": false,
+              "name": "hx711_2_weight_calibration",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "HX711_2_WEIGHT_CALIBRATION",
+              "module": "hx711",
+              "helper": "HX711 weight divider calibration on port #3",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "hx711",
+                  "len": 3,
+                  "index": 2,
+                  "param": "weight_calibration"
+                },
+                "hx711": {
+                  "index": 2,
+                  "param": "weight_calibration"
+                },
+              
+              
+              "default": 83
+            },
+          
+            {
+              "core": false,
+              "name": "hx711_0_weight_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "HX711_0_WEIGHT_OFFSET",
+              "module": "hx711",
+              "helper": "HX711 weight weight offset on port #1",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "hx711",
+                  "len": 3,
+                  "index": 0,
+                  "param": "weight_offset"
+                },
+                "hx711": {
+                  "index": 0,
+                  "param": "weight_offset"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "hx711_1_weight_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "HX711_1_WEIGHT_OFFSET",
+              "module": "hx711",
+              "helper": "HX711 weight weight offset on port #2",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "hx711",
+                  "len": 3,
+                  "index": 1,
+                  "param": "weight_offset"
+                },
+                "hx711": {
+                  "index": 1,
+                  "param": "weight_offset"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "hx711_2_weight_offset",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "HX711_2_WEIGHT_OFFSET",
+              "module": "hx711",
+              "helper": "HX711 weight weight offset on port #3",
+              
+              "write": true,
+              
+                "array": {
+                  "name": "hx711",
+                  "len": 3,
+                  "index": 2,
+                  "param": "weight_offset"
+                },
+                "hx711": {
+                  "index": 2,
+                  "param": "weight_offset"
                 },
               
               
