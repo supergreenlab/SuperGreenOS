@@ -167,6 +167,7 @@ static int geti_cmd_fn(int argc, char **argv) {
   }
 
   ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", name, v);
+  ESP_LOGI(SGO_LOG_EVENT, "@CMD (%s) done", geti_args.id->sval[0]);
   return ESP_OK;
 }
 
@@ -231,6 +232,7 @@ static int gets_cmd_fn(int argc, char **argv) {
   h->getter(v, MAX_KVALUE_SIZE - 1);
 
   ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", name, v);
+  ESP_LOGI(SGO_LOG_EVENT, "@CMD (%s) done", gets_args.id->sval[0]);
   return ESP_OK;
 }
 
