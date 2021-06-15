@@ -1244,8 +1244,8 @@
                     "suffix": "0_co2",
                     "caps_name": "SCD30_0_CO2",
                     "co2_sensor": 16,
-                    "blower_ref": 23,
-                    "fan_ref": 23
+                    "blower_ref": 30,
+                    "fan_ref": 30
                 },
                 "1_co2": {
                     "name": "scd30_1_co2",
@@ -1275,8 +1275,8 @@
                     "suffix": "1_co2",
                     "caps_name": "SCD30_1_CO2",
                     "co2_sensor": 17,
-                    "blower_ref": 24,
-                    "fan_ref": 24
+                    "blower_ref": 31,
+                    "fan_ref": 31
                 },
                 "2_co2": {
                     "name": "scd30_2_co2",
@@ -1306,8 +1306,8 @@
                     "suffix": "2_co2",
                     "caps_name": "SCD30_2_CO2",
                     "co2_sensor": 18,
-                    "blower_ref": 25,
-                    "fan_ref": 25
+                    "blower_ref": 32,
+                    "fan_ref": 32
                 },
                 "0_temp": {
                     "name": "scd30_0_temp",
@@ -1336,8 +1336,8 @@
                     "intlen": 8,
                     "suffix": "0_temp",
                     "caps_name": "SCD30_0_TEMP",
-                    "blower_ref": 30,
-                    "fan_ref": 30,
+                    "blower_ref": 37,
+                    "fan_ref": 37,
                     "temp_sensor": 16
                 },
                 "1_temp": {
@@ -1367,8 +1367,8 @@
                     "intlen": 8,
                     "suffix": "1_temp",
                     "caps_name": "SCD30_1_TEMP",
-                    "blower_ref": 31,
-                    "fan_ref": 31,
+                    "blower_ref": 38,
+                    "fan_ref": 38,
                     "temp_sensor": 17
                 },
                 "2_temp": {
@@ -1398,8 +1398,8 @@
                     "intlen": 8,
                     "suffix": "2_temp",
                     "caps_name": "SCD30_2_TEMP",
-                    "blower_ref": 32,
-                    "fan_ref": 32,
+                    "blower_ref": 39,
+                    "fan_ref": 39,
                     "temp_sensor": 18
                 },
                 "0_humi": {
@@ -1429,6 +1429,8 @@
                     "intlen": 8,
                     "suffix": "0_humi",
                     "caps_name": "SCD30_0_HUMI",
+                    "blower_ref": 44,
+                    "fan_ref": 44,
                     "humi_sensor": 16
                 },
                 "1_humi": {
@@ -1458,6 +1460,8 @@
                     "intlen": 8,
                     "suffix": "1_humi",
                     "caps_name": "SCD30_1_HUMI",
+                    "blower_ref": 45,
+                    "fan_ref": 45,
                     "humi_sensor": 17
                 },
                 "2_humi": {
@@ -1487,6 +1491,8 @@
                     "intlen": 8,
                     "suffix": "2_humi",
                     "caps_name": "SCD30_2_HUMI",
+                    "blower_ref": 46,
+                    "fan_ref": 46,
                     "humi_sensor": 18
                 },
                 "0_vpd": {
@@ -1499,7 +1505,7 @@
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
-                    "helper": "SCD30 humidity on port #1",
+                    "helper": "SCD30 vpd on port #1",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
@@ -1528,7 +1534,7 @@
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
-                    "helper": "SCD30 humidity on port #2",
+                    "helper": "SCD30 vpd on port #2",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
@@ -1557,7 +1563,7 @@
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
-                    "helper": "SCD30 humidity on port #3",
+                    "helper": "SCD30 vpd on port #3",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
@@ -3284,7 +3290,7 @@
                     },
                     "write_cb": false,
                     "signedness": "",
-                    "intlen": 8,
+                    "intlen": 32,
                     "suffix": "0_weight",
                     "caps_name": "BOX_0_WEIGHT"
                 },
@@ -3314,7 +3320,7 @@
                     },
                     "write_cb": false,
                     "signedness": "",
-                    "intlen": 8,
+                    "intlen": 32,
                     "suffix": "1_weight",
                     "caps_name": "BOX_1_WEIGHT"
                 },
@@ -3344,7 +3350,7 @@
                     },
                     "write_cb": false,
                     "signedness": "",
-                    "intlen": 8,
+                    "intlen": 32,
                     "suffix": "2_weight",
                     "caps_name": "BOX_2_WEIGHT"
                 },
@@ -5226,7 +5232,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 83,
+                    "default": 48,
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
@@ -5255,7 +5261,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 83,
+                    "default": 48,
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
@@ -5284,7 +5290,7 @@
                         "enable": true,
                         "manual": false
                     },
-                    "default": 83,
+                    "default": 48,
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
@@ -7248,7 +7254,7 @@
                     "caps_name": "SHT21_0_HUMI",
                     "blower_ref": 15,
                     "fan_ref": 15,
-                    "humi_sensor": 4
+                    "humi_sensor": 1
                 },
                 "1_humi": {
                     "name": "sht21_1_humi",
@@ -7279,7 +7285,7 @@
                     "caps_name": "SHT21_1_HUMI",
                     "blower_ref": 16,
                     "fan_ref": 16,
-                    "humi_sensor": 5
+                    "humi_sensor": 2
                 },
                 "2_humi": {
                     "name": "sht21_2_humi",
@@ -7310,7 +7316,7 @@
                     "caps_name": "SHT21_2_HUMI",
                     "blower_ref": 17,
                     "fan_ref": 17,
-                    "humi_sensor": 6
+                    "humi_sensor": 3
                 },
                 "0_vpd": {
                     "name": "sht21_0_vpd",
@@ -7322,7 +7328,7 @@
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
-                    "helper": "SHT21 humidity on port #1",
+                    "helper": "SHT21 vpd on port #1",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
@@ -7339,6 +7345,8 @@
                     "intlen": 8,
                     "suffix": "0_vpd",
                     "caps_name": "SHT21_0_VPD",
+                    "blower_ref": 23,
+                    "fan_ref": 23,
                     "vpd_sensor": 1
                 },
                 "1_vpd": {
@@ -7351,7 +7359,7 @@
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
-                    "helper": "SHT21 humidity on port #2",
+                    "helper": "SHT21 vpd on port #2",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
@@ -7368,6 +7376,8 @@
                     "intlen": 8,
                     "suffix": "1_vpd",
                     "caps_name": "SHT21_1_VPD",
+                    "blower_ref": 24,
+                    "fan_ref": 24,
                     "vpd_sensor": 2
                 },
                 "2_vpd": {
@@ -7380,7 +7390,7 @@
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
-                    "helper": "SHT21 humidity on port #3",
+                    "helper": "SHT21 vpd on port #3",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
@@ -7397,6 +7407,8 @@
                     "intlen": 8,
                     "suffix": "2_vpd",
                     "caps_name": "SHT21_2_VPD",
+                    "blower_ref": 25,
+                    "fan_ref": 25,
                     "vpd_sensor": 3
                 },
                 "0_vpd_leaf_offset": {

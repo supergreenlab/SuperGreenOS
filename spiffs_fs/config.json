@@ -948,7 +948,7 @@
               "integer": true,
               "caps_name": "SCD30_0_VPD",
               "module": "scd30",
-              "helper": "SCD30 humidity on port #1",
+              "helper": "SCD30 vpd on port #1",
               
               "write": false,
               
@@ -974,7 +974,7 @@
               "integer": true,
               "caps_name": "SCD30_1_VPD",
               "module": "scd30",
-              "helper": "SCD30 humidity on port #2",
+              "helper": "SCD30 vpd on port #2",
               
               "write": false,
               
@@ -1000,7 +1000,7 @@
               "integer": true,
               "caps_name": "SCD30_2_VPD",
               "module": "scd30",
-              "helper": "SCD30 humidity on port #3",
+              "helper": "SCD30 vpd on port #3",
               
               "write": false,
               
@@ -2321,7 +2321,7 @@
               
               
                 "indir": {
-                  "values": [16,17,18,4,5,6],
+                  "values": [16,17,18,1,2,3],
                   "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
@@ -2352,7 +2352,7 @@
               
               
                 "indir": {
-                  "values": [16,17,18,4,5,6],
+                  "values": [16,17,18,1,2,3],
                   "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
@@ -2383,7 +2383,7 @@
               
               
                 "indir": {
-                  "values": [16,17,18,4,5,6],
+                  "values": [16,17,18,1,2,3],
                   "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
                 },
               
@@ -2415,7 +2415,7 @@
               
                 "indir": {
                   "values": [16,17,18,1,2,3],
-                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "helpers": ["SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
                 },
               
               "default": 1
@@ -2446,7 +2446,7 @@
               
                 "indir": {
                   "values": [16,17,18,1,2,3],
-                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "helpers": ["SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
                 },
               
               "default": 2
@@ -2477,7 +2477,7 @@
               
                 "indir": {
                   "values": [16,17,18,1,2,3],
-                  "helpers": ["SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "helpers": ["SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
                 },
               
               "default": 0
@@ -4033,7 +4033,7 @@
                 },
               
               
-              "default": 83
+              "default": 48
             },
           
             {
@@ -4059,7 +4059,7 @@
                 },
               
               
-              "default": 83
+              "default": 48
             },
           
             {
@@ -4085,7 +4085,7 @@
                 },
               
               
-              "default": 83
+              "default": 48
             },
           
             {
@@ -4889,8 +4889,8 @@
               
               
                 "indir": {
-                  "values": [23,24,25,30,31,32,8,9,10,1,2,3,15,16,17],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [30,31,32,37,38,39,44,45,46,8,9,10,1,2,3,15,16,17,23,24,25],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
                 },
               
               "default": 1
@@ -4920,8 +4920,8 @@
               
               
                 "indir": {
-                  "values": [23,24,25,30,31,32,8,9,10,1,2,3,15,16,17],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [30,31,32,37,38,39,44,45,46,8,9,10,1,2,3,15,16,17,23,24,25],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
                 },
               
               "default": 2
@@ -4951,8 +4951,8 @@
               
               
                 "indir": {
-                  "values": [23,24,25,30,31,32,8,9,10,1,2,3,15,16,17],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [30,31,32,37,38,39,44,45,46,8,9,10,1,2,3,15,16,17,23,24,25],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
                 },
               
               "default": 0
@@ -5450,8 +5450,8 @@
               
               
                 "indir": {
-                  "values": [23,24,25,30,31,32,8,9,10,1,2,3,15,16,17],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [30,31,32,37,38,39,44,45,46,8,9,10,1,2,3,15,16,17,23,24,25],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
                 },
               
               "default": 1
@@ -5481,8 +5481,8 @@
               
               
                 "indir": {
-                  "values": [23,24,25,30,31,32,8,9,10,1,2,3,15,16,17],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [30,31,32,37,38,39,44,45,46,8,9,10,1,2,3,15,16,17,23,24,25],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
                 },
               
               "default": 2
@@ -5512,8 +5512,8 @@
               
               
                 "indir": {
-                  "values": [23,24,25,30,31,32,8,9,10,1,2,3,15,16,17],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3"]
+                  "values": [30,31,32,37,38,39,44,45,46,8,9,10,1,2,3,15,16,17,23,24,25],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
                 },
               
               "default": 0
@@ -5760,7 +5760,7 @@
               "integer": true,
               "caps_name": "SHT21_0_VPD",
               "module": "sht21",
-              "helper": "SHT21 humidity on port #1",
+              "helper": "SHT21 vpd on port #1",
               
               "write": false,
               
@@ -5786,7 +5786,7 @@
               "integer": true,
               "caps_name": "SHT21_1_VPD",
               "module": "sht21",
-              "helper": "SHT21 humidity on port #2",
+              "helper": "SHT21 vpd on port #2",
               
               "write": false,
               
@@ -5812,7 +5812,7 @@
               "integer": true,
               "caps_name": "SHT21_2_VPD",
               "module": "sht21",
-              "helper": "SHT21 humidity on port #3",
+              "helper": "SHT21 vpd on port #3",
               
               "write": false,
               

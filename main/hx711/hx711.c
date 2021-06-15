@@ -33,26 +33,20 @@ void loop_hx711(int i2cId) {
   hx711_t dev = {
     .dout = sda,
     .pd_sck = scl,
-    .gain = HX711_GAIN_A_64
-  };
-	int tries = 0;
-  while (tries < 2) {
-    esp_err_t r = hx711_init(&dev);
-    if (r == ESP_OK)
-      break;
-    ESP_LOGW(SGO_LOG_NOSEND, "Could not initialize HX711: %d (%s)\n", r, esp_err_to_name(r));
-    vTaskDelay(500 / portTICK_PERIOD_MS);
-		++tries;
-  }
-	if (tries == 2) {
-    ESP_LOGW(SGO_LOG_NOSEND, "Could not initialize HX711... skipping");
+		.gain = HX711_GAIN_A_64
+	};
+
+	esp_err_t r = hx711_init(&dev);
+	if (r == ESP_OK) {
+		ESP_LOGW(SGO_LOG_NOSEND, "Could not initialize HX711: %d (%s)", r, esp_err_to_name(r));
 		set_hx711_present(i2cId, 0);
 		return;
 	}
+	vTaskDelay(500 / portTICK_PERIOD_MS);
 
-	esp_err_t r = hx711_wait(&dev, 500);
+	r = hx711_wait(&dev, 500);
 	if (r != ESP_OK) {
-		ESP_LOGW(SGO_LOG_NOSEND, "Device not found: %d (%s)\n", r, esp_err_to_name(r));
+		ESP_LOGW(SGO_LOG_NOSEND, "Device not found: %d (%s)", r, esp_err_to_name(r));
 		set_hx711_present(i2cId, 0);
 		return;
 	}
@@ -60,17 +54,17 @@ void loop_hx711(int i2cId) {
 	int32_t weight;
 	r = hx711_read_data(&dev, &weight);
 	if (r != ESP_OK) {
-		ESP_LOGW(SGO_LOG_NOSEND, "Could not read data: %d (%s)\n", r, esp_err_to_name(r));
+		ESP_LOGW(SGO_LOG_NOSEND, "Could not read data: %d (%s)", r, esp_err_to_name(r));
 		set_hx711_present(i2cId, 0);
 		return;
 	}
 
-	ESP_LOGI(SGO_LOG_NOSEND, "Raw data: %d\n", weight);
-	set_hx711_present(i2cId, 1);
 	float divider = get_hx711_weight_calibration(i2cId);
 	int offset = get_hx711_weight_offset(i2cId);
 	weight += offset;
 	weight /= divider;
+
 	set_hx711_weight(i2cId, weight);
-	ESP_LOGI(SGO_LOG_NOSEND, "Weight recorded: %d\n", weight);
+	set_hx711_present(i2cId, 1);
+	ESP_LOGI(SGO_LOG_NOSEND, "Weight recorded: %d", weight);
 }

@@ -43,7 +43,7 @@ modules box fields "\(k)_vpd_source": _INT8 & _NVS & _HTTP_RW & {
   default: v.vpd_source
 } for k, v in _box_conf
 
-modules box fields "\(k)_weight": _INT8 & _HTTP & _INDIR & {
+modules box fields "\(k)_weight": _INT32 & _HTTP & _INDIR & {
   dump_freq: 1
   indir key: "weight_sensor"
   indir source: "\(k)_weight_source"
