@@ -55,6 +55,17 @@ modules box fields "\(k)_weight_source": _INT8 & _NVS & _HTTP_RW & {
   default: v.weight_source
 } for k, v in _box_conf
 
+modules box fields "\(k)_co2": _INT32 & _HTTP & _INDIR & {
+  dump_freq: 1
+  indir key: "co2_sensor"
+  indir source: "\(k)_co2_source"
+  default: 0
+} for k, v in _box_conf
+
+modules box fields "\(k)_co2_source": _INT8 & _NVS & _HTTP_RW & {
+  nvs key: "B_\(k)_CO_SRC"
+  default: v.co2_source
+} for k, v in _box_conf
 
 modules box fields "\(k)_enabled": _INT8 & _NVS & _HTTP_RW & {
   default: v.enabled

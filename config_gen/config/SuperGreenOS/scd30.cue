@@ -11,7 +11,7 @@ modules scd30 fields "\(k)_present": _INT8 & _HTTP & {
 
 modules scd30 fields "\(k)_co2": _UINT16 & _HTTP & {
   default: 0
-  co2_sensor: 0x10+k
+  co2_sensor: 0x1+k
   blower_ref: 0x1e+k
   fan_ref: 0x1e+k
   helper: "SCD30 temperature on port #\(k+1)"

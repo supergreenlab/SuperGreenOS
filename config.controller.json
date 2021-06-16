@@ -1243,7 +1243,7 @@
                     "intlen": 16,
                     "suffix": "0_co2",
                     "caps_name": "SCD30_0_CO2",
-                    "co2_sensor": 16,
+                    "co2_sensor": 1,
                     "blower_ref": 30,
                     "fan_ref": 30
                 },
@@ -1274,7 +1274,7 @@
                     "intlen": 16,
                     "suffix": "1_co2",
                     "caps_name": "SCD30_1_CO2",
-                    "co2_sensor": 17,
+                    "co2_sensor": 2,
                     "blower_ref": 31,
                     "fan_ref": 31
                 },
@@ -1305,7 +1305,7 @@
                     "intlen": 16,
                     "suffix": "2_co2",
                     "caps_name": "SCD30_2_CO2",
-                    "co2_sensor": 18,
+                    "co2_sensor": 3,
                     "blower_ref": 32,
                     "fan_ref": 32
                 },
@@ -2733,6 +2733,96 @@
                     "suffix": "2_enabled",
                     "caps_name": "BOX_2_ENABLED"
                 },
+                "0_co2": {
+                    "name": "box_0_co2",
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 1,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "co2_sensor",
+                        "enable": true,
+                        "source": "0_co2_source"
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 32,
+                    "suffix": "0_co2",
+                    "caps_name": "BOX_0_CO2"
+                },
+                "1_co2": {
+                    "name": "box_1_co2",
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 1,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "co2_sensor",
+                        "enable": true,
+                        "source": "1_co2_source"
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 32,
+                    "suffix": "1_co2",
+                    "caps_name": "BOX_1_CO2"
+                },
+                "2_co2": {
+                    "name": "box_2_co2",
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 1,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "key": "co2_sensor",
+                        "enable": true,
+                        "source": "2_co2_source"
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 32,
+                    "suffix": "2_co2",
+                    "caps_name": "BOX_2_CO2"
+                },
                 "0_temp": {
                     "name": "box_0_temp",
                     "nvs": {
@@ -3440,6 +3530,93 @@
                     "intlen": 8,
                     "suffix": "2_weight_source",
                     "caps_name": "BOX_2_WEIGHT_SOURCE"
+                },
+                "0_co2_source": {
+                    "name": "box_0_co2_source",
+                    "nvs": {
+                        "key": "B_0_CO_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 1,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_co2_source",
+                    "caps_name": "BOX_0_CO2_SOURCE"
+                },
+                "1_co2_source": {
+                    "name": "box_1_co2_source",
+                    "nvs": {
+                        "key": "B_1_CO_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 2,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_co2_source",
+                    "caps_name": "BOX_1_CO2_SOURCE"
+                },
+                "2_co2_source": {
+                    "name": "box_2_co2_source",
+                    "nvs": {
+                        "key": "B_2_CO_SRC",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_co2_source",
+                    "caps_name": "BOX_2_CO2_SOURCE"
                 },
                 "0_started_at": {
                     "name": "box_0_started_at",
