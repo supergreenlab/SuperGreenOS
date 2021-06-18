@@ -14,7 +14,7 @@ modules scd30 fields "\(k)_co2": _UINT16 & _HTTP & {
   co2_sensor: 0x1+k
   blower_ref: 0x1e+k
   fan_ref: 0x1e+k
-  helper: "SCD30 temperature on port #\(k+1)"
+  helper: "SCD30 co2 on port #\(k+1)"
 } for k, v in _i2c_conf
 
 modules scd30 fields "\(k)_temp": _INT8 & _HTTP & {
