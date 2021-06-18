@@ -31,6 +31,7 @@
 
 #include "../manual/manual.h"
 #include "../onoff/onoff.h"
+#include "../season/season.h"
 #include "../state/state.h"
 
 typedef enum {
@@ -69,6 +70,9 @@ static void stop(int boxId, enum timer t) {
     case TIMER_ONOFF:
       stop_onoff(boxId);
       break;
+    case TIMER_SEASON:
+      stop_season(boxId);
+      break;
   }
 }
 
@@ -79,6 +83,9 @@ static void start(int boxId, enum timer t) {
       break;
     case TIMER_ONOFF:
       start_onoff(boxId);
+      break;
+    case TIMER_SEASON:
+      start_season(boxId);
       break;
   }
 }
@@ -97,6 +104,9 @@ static void timer_task(void *param) {
           break;
         case TIMER_ONOFF:
           onoff_task(i);
+          break;
+        case TIMER_SEASON:
+          season_task(i);
           break;
       }
     }

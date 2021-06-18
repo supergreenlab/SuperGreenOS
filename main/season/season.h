@@ -16,20 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TIMER_H_
-#define TIMER_H_
+#ifndef SEASON_SIMULATOR_H_
+#define SEASON_SIMULATOR_H_
 
-enum timer {
-  TIMER_MANUAL,
-  TIMER_ONOFF,
-  TIMER_SEASON,
-};
-
-void init_timer();
-void refresh_timer();
-
-/* BLE callbacks */
-
-int on_set_box_timer_type(int boxId, int value);
+void start_season();
+void stop_season();
+void season_task();
 
 #endif

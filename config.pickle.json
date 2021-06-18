@@ -3717,7 +3717,7 @@
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
-                    "helper": "SCD30 temperature on port #1",
+                    "helper": "SCD30 co2 on port #1",
                     "dump_freq": 60,
                     "nvs": {
                         "enable": false,
@@ -3748,7 +3748,7 @@
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
-                    "helper": "SCD30 temperature on port #2",
+                    "helper": "SCD30 co2 on port #2",
                     "dump_freq": 60,
                     "nvs": {
                         "enable": false,
