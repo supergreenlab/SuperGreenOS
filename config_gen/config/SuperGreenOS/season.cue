@@ -29,3 +29,8 @@ modules season fields "\(k)_sim_duration_days": _UINT16 & _NVS & _HTTP_RW & {
 modules season fields "\(k)_simulated_time": _UINT32 & _HTTP & {
   default: 0
 } for k, v in _box_conf
+
+modules season fields "\(k)_started_at": _UINT32 & _NVS & _HTTP_RW & {
+  nvs key: "B_\(k)_ST_AT"
+  default: 0
+} for k, v in _box_conf

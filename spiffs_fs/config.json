@@ -1411,6 +1411,84 @@
           
             {
               "core": false,
+              "name": "box_0_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_STARTED_AT",
+              "module": "season",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "started_at"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_STARTED_AT",
+              "module": "season",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "started_at"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_started_at",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_STARTED_AT",
+              "module": "season",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "started_at"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "started_at"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
               "name": "leds_fastmode",
               "type": "integer",
               "integer": true,
@@ -3133,84 +3211,6 @@
                   "values": [1,2,3],
                   "helpers": ["SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3"]
                 },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_started_at",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_STARTED_AT",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "started_at"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "started_at"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_started_at",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_STARTED_AT",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "started_at"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "started_at"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_started_at",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_STARTED_AT",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "started_at"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "started_at"
-                },
-              
               
               "default": 0
             },

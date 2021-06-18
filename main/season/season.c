@@ -31,11 +31,6 @@
 #include "../core/time/utils.h"
 #include "../core/kv/kv.h"
 
-#define START_DATE_MONTH "SIM_S_M"
-#define START_DATE_DAY "SIM_S_D"
-#define DURATION_DAYS "DUR_D"
-#define SIMULATION_DURATION_DAYS "SIM_DUR_D"
-
 #define min(a, b) (((a) < (b)) ? (a) : (b)) 
 #define max(a, b) (((a) > (b)) ? (a) : (b)) 
 
@@ -63,7 +58,7 @@ time_t get_box_time(int boxId) {
   struct tm tm_simulated;
   memset(&tm_simulated, 0, sizeof(tm_simulated));
   tm_simulated.tm_year = tm_started_at.tm_year;
-  tm_simulated.tm_mon = start_date_month;
+  tm_simulated.tm_mon = start_date_month - 1;
   tm_simulated.tm_mday = start_date_day;
   tm_simulated.tm_hour = tm_now.tm_hour;
   tm_simulated.tm_min = tm_now.tm_min;

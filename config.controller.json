@@ -2032,6 +2032,93 @@
                     "intlen": 32,
                     "suffix": "2_simulated_time",
                     "caps_name": "BOX_2_SIMULATED_TIME"
+                },
+                "0_started_at": {
+                    "name": "box_0_started_at",
+                    "nvs": {
+                        "key": "B_0_ST_AT",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "u",
+                    "intlen": 32,
+                    "suffix": "0_started_at",
+                    "caps_name": "BOX_0_STARTED_AT"
+                },
+                "1_started_at": {
+                    "name": "box_1_started_at",
+                    "nvs": {
+                        "key": "B_1_ST_AT",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "u",
+                    "intlen": 32,
+                    "suffix": "1_started_at",
+                    "caps_name": "BOX_1_STARTED_AT"
+                },
+                "2_started_at": {
+                    "name": "box_2_started_at",
+                    "nvs": {
+                        "key": "B_2_ST_AT",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "u",
+                    "intlen": 32,
+                    "suffix": "2_started_at",
+                    "caps_name": "BOX_2_STARTED_AT"
                 }
             },
             "enabled": true,
@@ -3951,93 +4038,6 @@
                     "intlen": 8,
                     "suffix": "2_co2_source",
                     "caps_name": "BOX_2_CO2_SOURCE"
-                },
-                "0_started_at": {
-                    "name": "box_0_started_at",
-                    "nvs": {
-                        "key": "B_0_ST_AT",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 32,
-                    "suffix": "0_started_at",
-                    "caps_name": "BOX_0_STARTED_AT"
-                },
-                "1_started_at": {
-                    "name": "box_1_started_at",
-                    "nvs": {
-                        "key": "B_1_ST_AT",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 32,
-                    "suffix": "1_started_at",
-                    "caps_name": "BOX_1_STARTED_AT"
-                },
-                "2_started_at": {
-                    "name": "box_2_started_at",
-                    "nvs": {
-                        "key": "B_2_ST_AT",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 32,
-                    "suffix": "2_started_at",
-                    "caps_name": "BOX_2_STARTED_AT"
                 }
             },
             "enabled": true,
