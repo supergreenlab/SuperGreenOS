@@ -81,7 +81,7 @@ int get_output_for_time(int boxId) {
   double day_adv = (double)(timeinfo.tm_hour*60*60 + timeinfo.tm_min*60 + timeinfo.tm_sec) / (double)(24*60*60);
   double year_adv = (double)(timeinfo.tm_yday) / (double) 365;
 
-  double output = cos(year_adv * M_PI * 2) * 0.25 - cos(day_adv * M_PI * 2) * ((-cos(year_adv * M_PI * 2) + 1) / 2 * 1 + 1) + 0.25;
+  double output = -(cos(year_adv * M_PI * 2) * 0.25 - cos((day_adv-0.5) * M_PI * 2) * ((-cos(year_adv * M_PI * 2) + 1) / 2 * 1 + 1) + 0.25);
   ESP_LOGI(SGO_LOG_METRIC, "@SEASON year_adv = %f, day_adv = %f, output = %f", year_adv, day_adv, output);
   return min(100, max(0, output * 100));
 }
