@@ -1,3 +1,3 @@
 package config
 
-modules valve fields enabled: false
+modules valve enabled: false
