@@ -79,5 +79,6 @@ static void valve_task(void *param) {
     }
     gpio_set_level(get_valve_gpio(), get_valve_open() && !(i % get_valve_cycle_div()));
     vTaskDelay(1.0f * (double)get_valve_cycle_div_duration() / portTICK_PERIOD_MS);
+    ++i;
   }
 }
