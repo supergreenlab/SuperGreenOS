@@ -13,10 +13,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DUST_GP2Y10_H_
-#define DUST_GP2Y10_H_
+#ifndef VALVE_H_
+#define VALVE_H_
 
-void init_dust_gpy2y10(int portId, int sda, int sck);
-void loop_dust_gpy2y10(int portId, int sda, int sck);
+void init_valve();
+int on_set_valve_gpio(int gpio);
 
 #endif
+
