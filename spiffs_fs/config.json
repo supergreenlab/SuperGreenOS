@@ -6472,21 +6472,6 @@
           
             {
               "core": false,
-              "name": "valve_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_ENABLED",
-              "module": "valve",
-              
-              
-              "write": true,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
               "name": "valve_gpio",
               "type": "integer",
               "integer": true,
@@ -6517,6 +6502,21 @@
           
             {
               "core": false,
+              "name": "valve_mode",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "VALVE_MODE",
+              "module": "valve",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
               "name": "valve_cycle_div",
               "type": "integer",
               "integer": true,
@@ -6532,10 +6532,10 @@
           
             {
               "core": false,
-              "name": "valve_cycle_duration",
+              "name": "valve_cycle_div_duration",
               "type": "integer",
               "integer": true,
-              "caps_name": "VALVE_CYCLE_DURATION",
+              "caps_name": "VALVE_CYCLE_DIV_DURATION",
               "module": "valve",
               
               
@@ -6603,8 +6603,8 @@
               
               
                 "indir": {
-                  "values": [28,29,30,34,35,36,40,41,42,22,23,24,1,2,3,7,8,9,15,16,17],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
+                  "values": [28,29,30,34,35,36,40,41,42,22,23,24,1,2,3,7,8,9,15,16,17,46,47,48],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
                 },
               
               "default": 0

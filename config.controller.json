@@ -7619,6 +7619,7 @@
                     "caps_name": "BOX_0_TIMER_OUTPUT",
                     "blower_ref": 8,
                     "fan_ref": 8,
+                    "valve_ref": 46,
                     "valve_ref_on": 46
                 },
                 "1_timer_output": {
@@ -7651,6 +7652,7 @@
                     "caps_name": "BOX_1_TIMER_OUTPUT",
                     "blower_ref": 9,
                     "fan_ref": 9,
+                    "valve_ref": 47,
                     "valve_ref_on": 47
                 },
                 "2_timer_output": {
@@ -7683,6 +7685,7 @@
                     "caps_name": "BOX_2_TIMER_OUTPUT",
                     "blower_ref": 10,
                     "fan_ref": 10,
+                    "valve_ref": 48,
                     "valve_ref_on": 48
                 }
             },
@@ -8170,35 +8173,6 @@
             "i2c": false,
             "array_len": 0,
             "fields": {
-                "enabled": {
-                    "name": "valve_enabled",
-                    "default": false,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "VA_E"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "u",
-                    "intlen": 8,
-                    "suffix": "enabled",
-                    "caps_name": "VALVE_ENABLED"
-                },
                 "gpio": {
                     "name": "valve_gpio",
                     "default": 32,
@@ -8255,6 +8229,35 @@
                     "suffix": "open",
                     "caps_name": "VALVE_OPEN"
                 },
+                "mode": {
+                    "name": "valve_mode",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "VA_M"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "mode",
+                    "caps_name": "VALVE_MODE",
+                    "default_var": "VALVE_DISABLED"
+                },
                 "cycle_div": {
                     "name": "valve_cycle_div",
                     "default": 6,
@@ -8284,8 +8287,8 @@
                     "suffix": "cycle_div",
                     "caps_name": "VALVE_CYCLE_DIV"
                 },
-                "cycle_duration": {
-                    "name": "valve_cycle_duration",
+                "cycle_div_duration": {
+                    "name": "valve_cycle_div_duration",
                     "default": 1000,
                     "type": "integer",
                     "remote": true,
@@ -8310,8 +8313,8 @@
                     "write_cb": false,
                     "signedness": "u",
                     "intlen": 16,
-                    "suffix": "cycle_duration",
-                    "caps_name": "VALVE_CYCLE_DURATION"
+                    "suffix": "cycle_div_duration",
+                    "caps_name": "VALVE_CYCLE_DIV_DURATION"
                 },
                 "ref_min": {
                     "name": "valve_ref_min",

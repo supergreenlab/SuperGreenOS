@@ -16,6 +16,12 @@
 #ifndef VALVE_H_
 #define VALVE_H_
 
+enum valve_mode {
+  VALVE_DISABLED,
+  VALVE_KEEP_BETWEEN,
+  VALVE_KEEP_OUT,
+};
+
 void init_valve();
 int on_set_valve_gpio(int gpio);
 

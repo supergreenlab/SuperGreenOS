@@ -10,9 +10,9 @@ modules valve fields "gpio": _UINT8 & _HTTP & {
   default: int | *0
 }
 
-modules valve fields "enabled": _UINT8 & _NVS & _HTTP_RW & {
-  default: false
-  nvs key: "VA_E"
+modules valve fields "mode": _UINT8 & _NVS & _HTTP_RW & {
+  nvs key: "VA_M"
+  _default_var: "VALVE_DISABLED"
 }
 
 modules valve fields "cycle_div": _UINT8 & _NVS & _HTTP_RW & {
@@ -20,7 +20,7 @@ modules valve fields "cycle_div": _UINT8 & _NVS & _HTTP_RW & {
   nvs key: "CYC_D"
 }
 
-modules valve fields "cycle_duration": _UINT16 & _NVS & _HTTP_RW & {
+modules valve fields "cycle_div_duration": _UINT16 & _NVS & _HTTP_RW & {
   nvs key: "CYC_D_D"
   default: 1000
 }
