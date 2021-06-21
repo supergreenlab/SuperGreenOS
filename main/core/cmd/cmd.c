@@ -103,6 +103,7 @@ static int seti_cmd_fn(int argc, char **argv) {
 
   const int value = seti_args.value->ival[0];
 
+  // TODO use return value
   if (is_i8) {
     hi8->setter((int8_t)value);
   } else if (is_ui8) {
@@ -117,6 +118,7 @@ static int seti_cmd_fn(int argc, char **argv) {
     hui32->setter((uint32_t)value);
   }
 
+  ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", name, value);
   ESP_LOGI(SGO_LOG_EVENT, "@CMD (%s) done", seti_args.id->sval[0]);
   return 0;
 }
@@ -184,7 +186,7 @@ static int sets_cmd_fn(int argc, char **argv) {
   int nerrors = arg_parse(argc, argv, (void **) &sets_args);
   if (nerrors != 0) {
     arg_print_errors(stderr, sets_args.end, argv[0]);
-    ESP_LOGE(SGO_LOG_EVENT, "@CMD (%s) parameter error", seti_args.id->sval[0]);
+    ESP_LOGE(SGO_LOG_EVENT, "@CMD (%s) parameter error", sets_args.id->sval[0]);
     return 1;
   }
 
@@ -198,8 +200,10 @@ static int sets_cmd_fn(int argc, char **argv) {
   }
 
   const char *value = sets_args.value->sval[0];
+  // TODO use return value
   h->setter(value);
 
+  ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", name, value);
   ESP_LOGI(SGO_LOG_EVENT, "@CMD (%s) done", sets_args.id->sval[0]);
   return 0;
 }
