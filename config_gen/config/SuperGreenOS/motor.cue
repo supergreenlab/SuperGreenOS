@@ -45,3 +45,7 @@ modules motor fields "\(k)_source": _INT8 & _NVS & _HTTP_RW & {
 modules motor fields "\(k)_gpio": _INT8 & {
   default: v.gpio
 } for k, v in _motor_conf
+
+modules motor fields "\(k)_frequency": _UINT16 & {
+  default: int | *40000
+} for k, v in _motor_conf
