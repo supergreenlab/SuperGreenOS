@@ -2220,10 +2220,10 @@
                     },
                     "write_cb": false,
                     "signedness": "u",
-                    "intlen": 8,
+                    "intlen": 16,
                     "suffix": "ref_min",
                     "caps_name": "VALVE_REF_MIN",
-                    "default": 21
+                    "default": 1000
                 },
                 "ref_max": {
                     "name": "valve_ref_max",
@@ -2249,10 +2249,10 @@
                     },
                     "write_cb": false,
                     "signedness": "u",
-                    "intlen": 8,
+                    "intlen": 16,
                     "suffix": "ref_max",
                     "caps_name": "VALVE_REF_MAX",
-                    "default": 30
+                    "default": 1500
                 },
                 "ref": {
                     "name": "valve_ref",
@@ -2279,7 +2279,7 @@
                     },
                     "write_cb": false,
                     "signedness": "u",
-                    "intlen": 8,
+                    "intlen": 32,
                     "suffix": "ref",
                     "caps_name": "VALVE_REF",
                     "default": 0
@@ -2337,7 +2337,7 @@
                     },
                     "write_cb": false,
                     "signedness": "u",
-                    "intlen": 8,
+                    "intlen": 16,
                     "suffix": "ref_on_min",
                     "caps_name": "VALVE_REF_ON_MIN",
                     "default": 1
@@ -2366,7 +2366,7 @@
                     },
                     "write_cb": false,
                     "signedness": "u",
-                    "intlen": 8,
+                    "intlen": 16,
                     "suffix": "ref_on_max",
                     "caps_name": "VALVE_REF_ON_MAX",
                     "default": 100
@@ -2396,7 +2396,7 @@
                     },
                     "write_cb": false,
                     "signedness": "u",
-                    "intlen": 8,
+                    "intlen": 16,
                     "suffix": "ref_on",
                     "caps_name": "VALVE_REF_ON",
                     "default": 0

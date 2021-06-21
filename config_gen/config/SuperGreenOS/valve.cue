@@ -25,17 +25,17 @@ modules valve fields "cycle_div_duration": _UINT16 & _NVS & _HTTP_RW & {
   default: 1000
 }
 
-modules valve fields "ref_min": _UINT8 & _NVS & _HTTP_RW & {
+modules valve fields "ref_min": _UINT16 & _NVS & _HTTP_RW & {
   nvs key: "VA_RMI"
-  default: 21
+  default: 1000
 }
 
-modules valve fields "ref_max": _UINT8 & _NVS & _HTTP_RW & {
+modules valve fields "ref_max": _UINT16 & _NVS & _HTTP_RW & {
   nvs key: "VA_RMA"
-  default: 30
+  default: 1500
 }
 
-modules valve fields "ref": _UINT8 & _HTTP & _INDIR & {
+modules valve fields "ref": _UINT32 & _HTTP & _INDIR & {
   indir key: "valve_ref"
   indir source: "ref_source"
   default: 0
@@ -46,17 +46,17 @@ modules valve fields "ref_source": _UINT8 & _NVS & _HTTP_RW & {
   default: 0
 }
 
-modules valve fields "ref_on_min": _UINT8 & _NVS & _HTTP_RW & {
+modules valve fields "ref_on_min": _UINT16 & _NVS & _HTTP_RW & {
   nvs key: "VA_O_MI"
   default: 1
 }
 
-modules valve fields "ref_on_max": _UINT8 & _NVS & _HTTP_RW & {
+modules valve fields "ref_on_max": _UINT16 & _NVS & _HTTP_RW & {
   nvs key: "VA_O_MA"
   default: 100
 }
 
-modules valve fields "ref_on": _UINT8 & _HTTP & _INDIR & {
+modules valve fields "ref_on": _UINT16 & _HTTP & _INDIR & {
   indir key: "valve_ref_on"
   indir source: "ref_on_source"
   default: 0

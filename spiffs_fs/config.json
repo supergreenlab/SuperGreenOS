@@ -6557,7 +6557,7 @@
               "write": true,
               
               
-              "default": 21
+              "default": 1000
             },
           
             {
@@ -6572,7 +6572,7 @@
               "write": true,
               
               
-              "default": 30
+              "default": 1500
             },
           
             {
