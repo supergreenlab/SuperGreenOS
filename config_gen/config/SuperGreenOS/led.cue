@@ -24,8 +24,13 @@ modules led fields "\(k)_duty": _INT8 & _NVS & _HTTP_RW & {
   write_cb: true
 } for k, v in _led_conf
 
-modules led fields "\(k)_gpio": _INT8 & _NVS & _HTTP_RW & {
-  nvs key: "L_\(k)_IO"
+modules led fields "\(k)_type": _INT8 & _NVS & _HTTP_RW & {
+  nvs key: "L_\(k)_T"
+  _default_var: "LED_FULLSPECTRUM"
+  write_cb: true
+} for k, v in _led_conf
+
+modules led fields "\(k)_gpio": _INT8 & {
   default: v.gpio
 } for k, v in _led_conf
 

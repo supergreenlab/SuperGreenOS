@@ -19,6 +19,13 @@
 #ifndef LED_H_
 #define LED_H_
 
+typedef enum {
+  LED_FULLSPECTRUM,
+  LED_EMERSON,
+  LED_STRETCH,
+  LED_UVA,
+} led_type;
+
 void init_led();
 void refresh_led(int boxId, int ledId);
 
@@ -26,6 +33,7 @@ void refresh_led(int boxId, int ledId);
 
 int on_set_led_duty(int ledId, int value);
 int on_set_led_dim(int ledId, int value);
+int on_set_led_type(int led_id, int value);
 int on_set_led_box(int ledId, int boxId);
 
 #endif
