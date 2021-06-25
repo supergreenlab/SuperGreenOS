@@ -95,7 +95,13 @@ static void timer_task(void *param) {
 
   while (1) {
     for (int i = 0; i < N_BOX; ++i) {
-      if (get_box_enabled(i) != 1) continue;
+      if (get_box_enabled(i) != 1) {
+        set_box_timer_output(i, 0);
+        set_box_emerson_timer_output(i, 0);
+        set_box_stretch_timer_output(i, 0);
+        set_box_uva_timer_output(i, 0);
+        continue;
+      }
       enum timer t = get_box_timer_type(i);
 
       switch(t) {
@@ -135,7 +141,7 @@ int on_set_box_timer_type(int boxId, int value) {
   start(boxId, value);
 
   if (value == 0) {
-    set_all_duty(boxId, 0);
+    set_all_duty(boxId, 0, -1);
   }
   refresh_led(boxId, -1);
   return value;

@@ -42,7 +42,7 @@ int on_set_box_enabled(int boxId, int value) {
   }
   set_box_enabled(boxId, value);
   if (value == 0) {
-    set_all_duty(boxId, 0);
+    set_all_duty(boxId, 0, -1);
 #ifdef MODULE_BLOWER
     set_box_blower_duty(boxId, 0);
 #endif

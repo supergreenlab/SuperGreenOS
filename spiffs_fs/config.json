@@ -802,10 +802,10 @@
           
             {
               "core": false,
-              "name": "led_0_gpio",
+              "name": "led_0_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "LED_0_GPIO",
+              "caps_name": "LED_0_TYPE",
               "module": "led",
               
               
@@ -815,23 +815,23 @@
                   "name": "led",
                   "len": 6,
                   "index": 0,
-                  "param": "gpio"
+                  "param": "type"
                 },
                 "led": {
                   "index": 0,
-                  "param": "gpio"
+                  "param": "type"
                 },
               
               
-              "default": 33
+              "default": 0
             },
           
             {
               "core": false,
-              "name": "led_1_gpio",
+              "name": "led_1_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "LED_1_GPIO",
+              "caps_name": "LED_1_TYPE",
               "module": "led",
               
               
@@ -841,23 +841,23 @@
                   "name": "led",
                   "len": 6,
                   "index": 1,
-                  "param": "gpio"
+                  "param": "type"
                 },
                 "led": {
                   "index": 1,
-                  "param": "gpio"
+                  "param": "type"
                 },
               
               
-              "default": 25
+              "default": 0
             },
           
             {
               "core": false,
-              "name": "led_2_gpio",
+              "name": "led_2_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "LED_2_GPIO",
+              "caps_name": "LED_2_TYPE",
               "module": "led",
               
               
@@ -867,23 +867,23 @@
                   "name": "led",
                   "len": 6,
                   "index": 2,
-                  "param": "gpio"
+                  "param": "type"
                 },
                 "led": {
                   "index": 2,
-                  "param": "gpio"
+                  "param": "type"
                 },
               
               
-              "default": 26
+              "default": 0
             },
           
             {
               "core": false,
-              "name": "led_3_gpio",
+              "name": "led_3_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "LED_3_GPIO",
+              "caps_name": "LED_3_TYPE",
               "module": "led",
               
               
@@ -893,23 +893,23 @@
                   "name": "led",
                   "len": 6,
                   "index": 3,
-                  "param": "gpio"
+                  "param": "type"
                 },
                 "led": {
                   "index": 3,
-                  "param": "gpio"
+                  "param": "type"
                 },
               
               
-              "default": 27
+              "default": 0
             },
           
             {
               "core": false,
-              "name": "led_4_gpio",
+              "name": "led_4_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "LED_4_GPIO",
+              "caps_name": "LED_4_TYPE",
               "module": "led",
               
               
@@ -919,23 +919,23 @@
                   "name": "led",
                   "len": 6,
                   "index": 4,
-                  "param": "gpio"
+                  "param": "type"
                 },
                 "led": {
                   "index": 4,
-                  "param": "gpio"
+                  "param": "type"
                 },
               
               
-              "default": 14
+              "default": 0
             },
           
             {
               "core": false,
-              "name": "led_5_gpio",
+              "name": "led_5_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "LED_5_GPIO",
+              "caps_name": "LED_5_TYPE",
               "module": "led",
               
               
@@ -945,15 +945,15 @@
                   "name": "led",
                   "len": 6,
                   "index": 5,
-                  "param": "gpio"
+                  "param": "type"
                 },
                 "led": {
                   "index": 5,
-                  "param": "gpio"
+                  "param": "type"
                 },
               
               
-              "default": 12
+              "default": 0
             },
           
             {
@@ -6074,6 +6074,240 @@
                 "box": {
                   "index": 2,
                   "param": "timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_emerson_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_EMERSON_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #1 emerson timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "emerson_timer_output"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "emerson_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_emerson_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_EMERSON_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #2 emerson timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "emerson_timer_output"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "emerson_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_emerson_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_EMERSON_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #3 emerson timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "emerson_timer_output"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "emerson_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_stretch_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_STRETCH_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #1 stretch timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "stretch_timer_output"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "stretch_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_stretch_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_STRETCH_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #2 stretch timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "stretch_timer_output"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "stretch_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_stretch_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_STRETCH_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #3 stretch timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "stretch_timer_output"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "stretch_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_uva_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_UVA_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #1 UVA timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "uva_timer_output"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "uva_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_uva_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_UVA_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #2 UVA timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "uva_timer_output"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "uva_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_uva_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_UVA_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #3 UVA timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "uva_timer_output"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "uva_timer_output"
                 },
               
               

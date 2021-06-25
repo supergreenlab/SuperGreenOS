@@ -48,8 +48,11 @@ void init_mixer() {
   }
 }
 
-void set_all_duty(int boxId, int value) {
+void set_all_duty(int boxId, int value, led_type type) {
   for (int i = 0; i < N_LED; ++i) {
+    if (type != -1 && get_led_type(i) != type) {
+      continue;
+    }
     if (boxId != -1 && get_led_box(i) != boxId) {
       continue;
     }
@@ -66,10 +69,30 @@ static void set_duty(int i, int duty) {
 }
 
 static void mixer_duty(int boxId) {
-  double timer_output = get_box_timer_output(boxId);
-  double duty = max(0, min(100, timer_output));
+  {
+    double timer_output = get_box_timer_output(boxId);
+    double duty = max(0, min(100, timer_output));
+    set_all_duty(boxId, duty, LED_FULLSPECTRUM);
+  }
 
-  set_all_duty(boxId, duty);
+  {
+    double timer_output = get_box_emerson_timer_output(boxId);
+    double duty = max(0, min(100, timer_output));
+    set_all_duty(boxId, duty, LED_EMERSON);
+  }
+
+  {
+    double timer_output = get_box_stretch_timer_output(boxId);
+    double duty = max(0, min(100, timer_output));
+    set_all_duty(boxId, duty, LED_STRETCH);
+  }
+
+  {
+    double timer_output = get_box_uva_timer_output(boxId);
+    double duty = max(0, min(100, timer_output));
+    set_all_duty(boxId, duty, LED_UVA);
+  }
+
   refresh_led(boxId, -1);
 }
 

@@ -19,7 +19,9 @@
 #ifndef MIXER_H_
 #define MIXER_H_
 
+#include "../led/led.h"
+
 void init_mixer();
-void set_all_duty(int boxId, int value);
+void set_all_duty(int boxId, int value, led_type type);
 
 #endif

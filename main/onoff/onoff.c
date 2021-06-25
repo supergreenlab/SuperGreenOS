@@ -30,9 +30,25 @@
 #include "../core/kv/kv.h"
 #include "../box/box.h"
 
-#define SUN_MOVING_MULTI 800
+#define SUN_MOVING_MULTI 800.0f
 #define min(x, y) (((x) < (y)) ? (x) : (y))
 #define max(x, y) (((x) > (y)) ? (x) : (y))
+
+static double range_progress(double on_sec, double off_sec, double cur_sec, double cos_multi) {
+  if (on_sec < 0) {
+    on_sec += 24*3600;
+  }
+  if (off_sec >= 24*3600) {
+    off_sec -= 24*3600;
+  }
+  if (on_sec < off_sec && on_sec < cur_sec && off_sec > cur_sec) {
+    return max(0, min(100, sin((cur_sec - on_sec) / (off_sec - on_sec) * M_PI) * cos_multi));
+  } else if (on_sec > off_sec && (on_sec < cur_sec || cur_sec < off_sec)) {
+    float on_since = (cur_sec > on_sec ? cur_sec - on_sec : (24*60*60 - on_sec) + cur_sec);
+    return max(0, min(100, sin(on_since / (24*60*60-(on_sec - off_sec)) * M_PI) * cos_multi));
+  }
+  return 0; 
+}
 
 static int get_output_for_hour_min(int boxId) {
   int on_hour = get_box_on_hour(boxId);
@@ -51,14 +67,37 @@ static int get_output_for_hour_min(int boxId) {
 
   if (on_sec == off_sec) return 100;
 
-  if (on_sec < off_sec && on_sec < cur_sec && off_sec > cur_sec) {
-    return max(0, min(100, sin((cur_sec - on_sec) / (off_sec - on_sec) * M_PI) * SUN_MOVING_MULTI));
-  } else if (on_sec > off_sec && (on_sec < cur_sec || cur_sec < off_sec)) {
-    float on_since = (cur_sec > on_sec ? cur_sec - on_sec : (24*60*60 - on_sec) + cur_sec);
-    return max(0, min(100, sin(on_since / (24*60*60-(on_sec - off_sec)) * M_PI) * SUN_MOVING_MULTI));
-  }
+  return range_progress(on_sec, off_sec, cur_sec, SUN_MOVING_MULTI);
+}
 
-  return 0; 
+#define EMERSON_OFFSET 16*60 // Add 1 min to the usual 15minx2 emerson effect to arrange with progressive on/off
+
+static int get_emerson_output_for_hour_min(int boxId) {
+  int on_hour = get_box_on_hour(boxId);
+  int on_min = get_box_on_min(boxId);
+  int off_hour = get_box_off_hour(boxId);
+  int off_min = get_box_off_min(boxId);
+
+  time_t now;
+  struct tm tm_now;
+  time(&now);
+  localtime_r(&now, &tm_now); 
+
+  double on_sec = on_hour * 3600 + on_min * 60;
+  double off_sec = off_hour * 3600 + off_min * 60;
+  double cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
+
+  if (on_sec == off_sec) return 10;
+
+  double e_range1_on = on_sec - EMERSON_OFFSET;
+  double e_range1_off = on_sec + EMERSON_OFFSET;
+  double progress1 = range_progress(e_range1_on, e_range1_off, cur_sec, 800);
+
+  double e_range2_on = off_sec - EMERSON_OFFSET;
+  double e_range2_off = off_sec + EMERSON_OFFSET;
+  double progress2 = range_progress(e_range2_on, e_range2_off, cur_sec, 800);
+
+  return max(progress1, progress2); 
 }
 
 void start_onoff(int boxId) {
@@ -73,4 +112,5 @@ void stop_onoff(int boxId) {
 
 void onoff_task(int boxId) {
   set_box_timer_output(boxId, get_output_for_hour_min(boxId));
+  set_box_emerson_timer_output(boxId, get_emerson_output_for_hour_min(boxId));
 }
