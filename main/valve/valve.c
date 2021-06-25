@@ -36,7 +36,7 @@ static bool is_on() {
 }
 
 void init_valve() {
-  ESP_LOGI(SGO_LOG_EVENT, "@CO2_VALVE Initializing valve module");
+  ESP_LOGI(SGO_LOG_EVENT, "@VALVE Initializing valve module");
 
   gpio_config_t io_conf;
   io_conf.intr_type = GPIO_PIN_INTR_DISABLE;
