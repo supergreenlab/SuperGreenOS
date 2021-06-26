@@ -1129,8 +1129,8 @@
                     "caps_name": "LED_1_DUTY",
                     "default": 0
                 },
-                "0_gpio": {
-                    "name": "led_0_gpio",
+                "0_type": {
+                    "name": "led_0_type",
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
@@ -1139,7 +1139,7 @@
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "L_0_IO"
+                        "key": "L_0_T"
                     },
                     "ble": {
                         "enable": false
@@ -1147,6 +1147,62 @@
                     "http": {
                         "enable": true,
                         "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_type",
+                    "caps_name": "LED_0_TYPE",
+                    "default_var": "LED_FULLSPECTRUM"
+                },
+                "1_type": {
+                    "name": "led_1_type",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "L_1_T"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_type",
+                    "caps_name": "LED_1_TYPE",
+                    "default_var": "LED_FULLSPECTRUM"
+                },
+                "0_gpio": {
+                    "name": "led_0_gpio",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -1166,16 +1222,14 @@
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "L_1_IO"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -4629,9 +4683,8 @@
                     "helper": "Box #1 timer output",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_0_TO"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
@@ -4662,9 +4715,8 @@
                     "helper": "Box #2 timer output",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_1_TO"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
@@ -4686,6 +4738,174 @@
                     "fan_ref": 9,
                     "valve_ref": 47,
                     "valve_ref_on": 47
+                },
+                "0_emerson_timer_output": {
+                    "name": "box_0_emerson_timer_output",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 emerson timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_emerson_timer_output",
+                    "caps_name": "BOX_0_EMERSON_TIMER_OUTPUT",
+                    "default": 0
+                },
+                "1_emerson_timer_output": {
+                    "name": "box_1_emerson_timer_output",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #2 emerson timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_emerson_timer_output",
+                    "caps_name": "BOX_1_EMERSON_TIMER_OUTPUT",
+                    "default": 0
+                },
+                "0_stretch_timer_output": {
+                    "name": "box_0_stretch_timer_output",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 stretch timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_stretch_timer_output",
+                    "caps_name": "BOX_0_STRETCH_TIMER_OUTPUT",
+                    "default": 0
+                },
+                "1_stretch_timer_output": {
+                    "name": "box_1_stretch_timer_output",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #2 stretch timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_stretch_timer_output",
+                    "caps_name": "BOX_1_STRETCH_TIMER_OUTPUT",
+                    "default": 0
+                },
+                "0_uva_timer_output": {
+                    "name": "box_0_uva_timer_output",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 UVA timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_uva_timer_output",
+                    "caps_name": "BOX_0_UVA_TIMER_OUTPUT",
+                    "default": 0
+                },
+                "1_uva_timer_output": {
+                    "name": "box_1_uva_timer_output",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #2 UVA timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_uva_timer_output",
+                    "caps_name": "BOX_1_UVA_TIMER_OUTPUT",
+                    "default": 0
                 }
             }
         },
