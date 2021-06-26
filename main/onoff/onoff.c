@@ -91,11 +91,11 @@ static int get_emerson_output_for_hour_min(int boxId) {
 
   double e_range1_on = on_sec - EMERSON_OFFSET;
   double e_range1_off = on_sec + EMERSON_OFFSET;
-  double progress1 = range_progress(e_range1_on, e_range1_off, cur_sec, 800);
+  double progress1 = range_progress(e_range1_on, e_range1_off, cur_sec, 600);
 
   double e_range2_on = off_sec - EMERSON_OFFSET;
   double e_range2_off = off_sec + EMERSON_OFFSET;
-  double progress2 = range_progress(e_range2_on, e_range2_off, cur_sec, 800);
+  double progress2 = range_progress(e_range2_on, e_range2_off, cur_sec, 600);
 
   return max(progress1, progress2); 
 }
@@ -133,7 +133,7 @@ static int get_uva_output_for_hour_min(int boxId) {
 
   range_off = (int)range_off % (24*60*60);
 
-  return range_progress(range_on, range_off, cur_sec, 800);
+  return range_progress(range_on, range_off, cur_sec, 400);
 }
 
 void start_onoff(int boxId) {
