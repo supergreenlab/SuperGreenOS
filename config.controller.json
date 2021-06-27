@@ -5176,6 +5176,709 @@
             "init_priority": 0,
             "core": false
         },
+        "timer": {
+            "name": "timer",
+            "i2c": false,
+            "array_len": 3,
+            "fields": {
+                "0_emerson_ratio": {
+                    "name": "box_0_emerson_ratio",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 emerson effect dr/fr ratio",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_emerson_ratio",
+                    "caps_name": "BOX_0_EMERSON_RATIO"
+                },
+                "1_emerson_ratio": {
+                    "name": "box_1_emerson_ratio",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #2 emerson effect dr/fr ratio",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_emerson_ratio",
+                    "caps_name": "BOX_1_EMERSON_RATIO"
+                },
+                "2_emerson_ratio": {
+                    "name": "box_2_emerson_ratio",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #3 emerson effect dr/fr ratio",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_emerson_ratio",
+                    "caps_name": "BOX_2_EMERSON_RATIO"
+                },
+                "0_timer_type": {
+                    "name": "box_0_timer_type",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": true,
+                        "key": "B_0_TT"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_timer_type",
+                    "caps_name": "BOX_0_TIMER_TYPE",
+                    "default_var": "TIMER_MANUAL"
+                },
+                "1_timer_type": {
+                    "name": "box_1_timer_type",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": true,
+                        "key": "B_1_TT"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_timer_type",
+                    "caps_name": "BOX_1_TIMER_TYPE",
+                    "default_var": "TIMER_MANUAL"
+                },
+                "2_timer_type": {
+                    "name": "box_2_timer_type",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": true,
+                        "key": "B_2_TT"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_timer_type",
+                    "caps_name": "BOX_2_TIMER_TYPE",
+                    "default_var": "TIMER_MANUAL"
+                },
+                "0_timer_output": {
+                    "name": "box_0_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_timer_output",
+                    "caps_name": "BOX_0_TIMER_OUTPUT",
+                    "blower_ref": 8,
+                    "fan_ref": 8,
+                    "valve_ref": 46,
+                    "valve_ref_on": 46
+                },
+                "1_timer_output": {
+                    "name": "box_1_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #2 timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_timer_output",
+                    "caps_name": "BOX_1_TIMER_OUTPUT",
+                    "blower_ref": 9,
+                    "fan_ref": 9,
+                    "valve_ref": 47,
+                    "valve_ref_on": 47
+                },
+                "2_timer_output": {
+                    "name": "box_2_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #3 timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_timer_output",
+                    "caps_name": "BOX_2_TIMER_OUTPUT",
+                    "blower_ref": 10,
+                    "fan_ref": 10,
+                    "valve_ref": 48,
+                    "valve_ref_on": 48
+                },
+                "0_uva_timer_output": {
+                    "name": "box_0_uva_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 UVa timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_uva_timer_output",
+                    "caps_name": "BOX_0_UVA_TIMER_OUTPUT"
+                },
+                "1_uva_timer_output": {
+                    "name": "box_1_uva_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #2 UVa timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_uva_timer_output",
+                    "caps_name": "BOX_1_UVA_TIMER_OUTPUT"
+                },
+                "2_uva_timer_output": {
+                    "name": "box_2_uva_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #3 UVa timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_uva_timer_output",
+                    "caps_name": "BOX_2_UVA_TIMER_OUTPUT"
+                },
+                "0_db_timer_output": {
+                    "name": "box_0_db_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 deep blue timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_db_timer_output",
+                    "caps_name": "BOX_0_DB_TIMER_OUTPUT"
+                },
+                "1_db_timer_output": {
+                    "name": "box_1_db_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #2 deep blue timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_db_timer_output",
+                    "caps_name": "BOX_1_DB_TIMER_OUTPUT"
+                },
+                "2_db_timer_output": {
+                    "name": "box_2_db_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #3 deep blue timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_db_timer_output",
+                    "caps_name": "BOX_2_DB_TIMER_OUTPUT"
+                },
+                "0_dr_timer_output": {
+                    "name": "box_0_dr_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 deep red timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_dr_timer_output",
+                    "caps_name": "BOX_0_DR_TIMER_OUTPUT"
+                },
+                "1_dr_timer_output": {
+                    "name": "box_1_dr_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #2 deep red timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_dr_timer_output",
+                    "caps_name": "BOX_1_DR_TIMER_OUTPUT"
+                },
+                "2_dr_timer_output": {
+                    "name": "box_2_dr_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #3 deep red timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_dr_timer_output",
+                    "caps_name": "BOX_2_DR_TIMER_OUTPUT"
+                },
+                "0_fr_timer_output": {
+                    "name": "box_0_fr_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 far red timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_fr_timer_output",
+                    "caps_name": "BOX_0_FR_TIMER_OUTPUT"
+                },
+                "1_fr_timer_output": {
+                    "name": "box_1_fr_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #2 far red timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_fr_timer_output",
+                    "caps_name": "BOX_1_FR_TIMER_OUTPUT"
+                },
+                "2_fr_timer_output": {
+                    "name": "box_2_fr_timer_output",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #3 far red timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_fr_timer_output",
+                    "caps_name": "BOX_2_FR_TIMER_OUTPUT"
+                },
+                "0_timer_perks": {
+                    "name": "box_0_timer_perks",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 perks timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_timer_perks",
+                    "caps_name": "BOX_0_TIMER_PERKS"
+                },
+                "1_timer_perks": {
+                    "name": "box_1_timer_perks",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #2 perks timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_timer_perks",
+                    "caps_name": "BOX_1_TIMER_PERKS"
+                },
+                "2_timer_perks": {
+                    "name": "box_2_timer_perks",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #3 perks timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_timer_perks",
+                    "caps_name": "BOX_2_TIMER_PERKS"
+                }
+            },
+            "enabled": true,
+            "tester": false,
+            "required": false,
+            "field_prefix": "box",
+            "preinit": false,
+            "init": true,
+            "code": true,
+            "init_priority": 0,
+            "core": false
+        },
         "blower": {
             "name": "blower",
             "i2c": false,
@@ -7657,457 +8360,6 @@
             "init": true,
             "code": true,
             "init_priority": 110,
-            "core": false
-        },
-        "timer": {
-            "name": "timer",
-            "i2c": false,
-            "array_len": 3,
-            "fields": {
-                "0_timer_type": {
-                    "name": "box_0_timer_type",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": true,
-                        "key": "B_0_TT"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": true,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_timer_type",
-                    "caps_name": "BOX_0_TIMER_TYPE",
-                    "default_var": "TIMER_MANUAL"
-                },
-                "1_timer_type": {
-                    "name": "box_1_timer_type",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": true,
-                        "key": "B_1_TT"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": true,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_timer_type",
-                    "caps_name": "BOX_1_TIMER_TYPE",
-                    "default_var": "TIMER_MANUAL"
-                },
-                "2_timer_type": {
-                    "name": "box_2_timer_type",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": true,
-                        "key": "B_2_TT"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": true,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_timer_type",
-                    "caps_name": "BOX_2_TIMER_TYPE",
-                    "default_var": "TIMER_MANUAL"
-                },
-                "0_timer_output": {
-                    "name": "box_0_timer_output",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #1 timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_timer_output",
-                    "caps_name": "BOX_0_TIMER_OUTPUT",
-                    "blower_ref": 8,
-                    "fan_ref": 8,
-                    "valve_ref": 46,
-                    "valve_ref_on": 46
-                },
-                "1_timer_output": {
-                    "name": "box_1_timer_output",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #2 timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_timer_output",
-                    "caps_name": "BOX_1_TIMER_OUTPUT",
-                    "blower_ref": 9,
-                    "fan_ref": 9,
-                    "valve_ref": 47,
-                    "valve_ref_on": 47
-                },
-                "2_timer_output": {
-                    "name": "box_2_timer_output",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #3 timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_timer_output",
-                    "caps_name": "BOX_2_TIMER_OUTPUT",
-                    "blower_ref": 10,
-                    "fan_ref": 10,
-                    "valve_ref": 48,
-                    "valve_ref_on": 48
-                },
-                "0_emerson_timer_output": {
-                    "name": "box_0_emerson_timer_output",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #1 emerson timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_emerson_timer_output",
-                    "caps_name": "BOX_0_EMERSON_TIMER_OUTPUT"
-                },
-                "1_emerson_timer_output": {
-                    "name": "box_1_emerson_timer_output",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #2 emerson timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_emerson_timer_output",
-                    "caps_name": "BOX_1_EMERSON_TIMER_OUTPUT"
-                },
-                "2_emerson_timer_output": {
-                    "name": "box_2_emerson_timer_output",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #3 emerson timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_emerson_timer_output",
-                    "caps_name": "BOX_2_EMERSON_TIMER_OUTPUT"
-                },
-                "0_stretch_timer_output": {
-                    "name": "box_0_stretch_timer_output",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #1 stretch timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_stretch_timer_output",
-                    "caps_name": "BOX_0_STRETCH_TIMER_OUTPUT"
-                },
-                "1_stretch_timer_output": {
-                    "name": "box_1_stretch_timer_output",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #2 stretch timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_stretch_timer_output",
-                    "caps_name": "BOX_1_STRETCH_TIMER_OUTPUT"
-                },
-                "2_stretch_timer_output": {
-                    "name": "box_2_stretch_timer_output",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #3 stretch timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_stretch_timer_output",
-                    "caps_name": "BOX_2_STRETCH_TIMER_OUTPUT"
-                },
-                "0_uva_timer_output": {
-                    "name": "box_0_uva_timer_output",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #1 UVA timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_uva_timer_output",
-                    "caps_name": "BOX_0_UVA_TIMER_OUTPUT"
-                },
-                "1_uva_timer_output": {
-                    "name": "box_1_uva_timer_output",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #2 UVA timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_uva_timer_output",
-                    "caps_name": "BOX_1_UVA_TIMER_OUTPUT"
-                },
-                "2_uva_timer_output": {
-                    "name": "box_2_uva_timer_output",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #3 UVA timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_uva_timer_output",
-                    "caps_name": "BOX_2_UVA_TIMER_OUTPUT"
-                }
-            },
-            "enabled": true,
-            "tester": false,
-            "required": false,
-            "field_prefix": "box",
-            "preinit": false,
-            "init": true,
-            "code": true,
-            "init_priority": 0,
             "core": false
         },
         "watering": {

@@ -19,11 +19,14 @@
 #ifndef LED_H_
 #define LED_H_
 
+// see https://docs.google.com/document/d/1z05o7xFu0v3u1SpW2AymakgdP0owED07dASqW3xkCCo/edit?usp=sharing
+
 typedef enum {
   LED_FULLSPECTRUM,
-  LED_EMERSON,
-  LED_STRETCH,
   LED_UVA,
+  LED_DB,
+  LED_DR,
+  LED_FR,
 } led_type;
 
 void init_led();

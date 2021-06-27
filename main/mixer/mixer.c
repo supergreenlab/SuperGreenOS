@@ -76,21 +76,27 @@ static void mixer_duty(int boxId) {
   }
 
   {
-    double timer_output = get_box_emerson_timer_output(boxId);
-    double duty = max(0, min(100, timer_output));
-    set_all_duty(boxId, duty, LED_EMERSON);
-  }
-
-  {
-    double timer_output = get_box_stretch_timer_output(boxId);
-    double duty = max(0, min(100, timer_output));
-    set_all_duty(boxId, duty, LED_STRETCH);
-  }
-
-  {
     double timer_output = get_box_uva_timer_output(boxId);
     double duty = max(0, min(100, timer_output));
     set_all_duty(boxId, duty, LED_UVA);
+  }
+
+  {
+    double timer_output = get_box_db_timer_output(boxId);
+    double duty = max(0, min(100, timer_output));
+    set_all_duty(boxId, duty, LED_DB);
+  }
+
+  {
+    double timer_output = get_box_dr_timer_output(boxId);
+    double duty = max(0, min(100, timer_output));
+    set_all_duty(boxId, duty, LED_DR);
+  }
+
+  {
+    double timer_output = get_box_fr_timer_output(boxId);
+    double duty = max(0, min(100, timer_output));
+    set_all_duty(boxId, duty, LED_FR);
   }
 
   refresh_led(boxId, -1);

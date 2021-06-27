@@ -50,54 +50,33 @@ static double range_progress(double on_sec, double off_sec, double cur_sec, doub
   return 0; 
 }
 
-static int get_output_for_hour_min(int boxId) {
-  int on_hour = get_box_on_hour(boxId);
-  int on_min = get_box_on_min(boxId);
-  int off_hour = get_box_off_hour(boxId);
-  int off_min = get_box_off_min(boxId);
+static void timer_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
+  double value;
+  if (on_sec == off_sec) {
+    value = 100;
+  } else {
+    value = range_progress(on_sec, off_sec, cur_sec, SUN_MOVING_MULTI);
+  }
+  set_box_timer_output(boxId, value);
 
-  time_t now;
-  struct tm tm_now;
-  time(&now);
-  localtime_r(&now, &tm_now); 
+  double e_range1_on = on_sec - EMERSON_OFFSET;
+  double e_range1_off = on_sec;
+  double progress1 = range_progress(e_range1_on, e_range1_off, cur_sec, 600);
+  set_box_dr_timer_output(boxId, progress1);
 
-  double on_sec = on_hour * 3600 + on_min * 60;
-  double off_sec = off_hour * 3600 + off_min * 60;
-  double cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
-
-  if (on_sec == off_sec) return 100;
-
-  return range_progress(on_sec, off_sec, cur_sec, SUN_MOVING_MULTI);
+  double e_range2_on = off_sec;
+  double e_range2_off = off_sec + EMERSON_OFFSET;
+  double progress2 = range_progress(e_range2_on, e_range2_off, cur_sec, 600);
+  set_box_fr_timer_output(boxId, progress2);
 }
 
 #define EMERSON_OFFSET 16*60 // Add 1 min to the usual 15minx2 emerson effect to arrange with progressive on/off
 
-static int get_emerson_output_for_hour_min(int boxId) {
-  int on_hour = get_box_on_hour(boxId);
-  int on_min = get_box_on_min(boxId);
-  int off_hour = get_box_off_hour(boxId);
-  int off_min = get_box_off_min(boxId);
-
-  time_t now;
-  struct tm tm_now;
-  time(&now);
-  localtime_r(&now, &tm_now); 
-
-  double on_sec = on_hour * 3600 + on_min * 60;
-  double off_sec = off_hour * 3600 + off_min * 60;
-  double cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
-
-  if (on_sec == off_sec) return 0;
-
-  double e_range1_on = on_sec - EMERSON_OFFSET;
-  double e_range1_off = on_sec + EMERSON_OFFSET;
-  double progress1 = range_progress(e_range1_on, e_range1_off, cur_sec, 600);
-
-  double e_range2_on = off_sec - EMERSON_OFFSET;
-  double e_range2_off = off_sec + EMERSON_OFFSET;
-  double progress2 = range_progress(e_range2_on, e_range2_off, cur_sec, 600);
-
-  return max(progress1, progress2); 
+static void emerson_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
+  double timer_outuput = get_box_timer_output(boxId);
+  double emerson_ratio = get_box_emerson_ratio(boxId);
+  set_box_dr_timer_output(boxId, timer_output * emerson_ratio/10);
+  set_box_fr_timer_output(boxId, timer_outuput);
 }
 
 #define UVA_DURATION 2*60*60 // Add 1 min to the usual 15minx2 emerson effect to arrange with progressive on/off
@@ -147,7 +126,22 @@ void stop_onoff(int boxId) {
 }
 
 void onoff_task(int boxId) {
-  set_box_timer_output(boxId, get_output_for_hour_min(boxId));
+  int on_hour = get_box_on_hour(boxId);
+  int on_min = get_box_on_min(boxId);
+  int off_hour = get_box_off_hour(boxId);
+  int off_min = get_box_off_min(boxId);
+
+  time_t now;
+  struct tm tm_now;
+  time(&now);
+  localtime_r(&now, &tm_now); 
+
+  double on_sec = on_hour * 3600 + on_min * 60;
+  double off_sec = off_hour * 3600 + off_min * 60;
+  double cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
+
+  timer_output_task(boxId, on_sec, off_sec, cur_sec);
+
   set_box_emerson_timer_output(boxId, get_emerson_output_for_hour_min(boxId));
   set_box_uva_timer_output(boxId, get_uva_output_for_hour_min(boxId));
 }
