@@ -75,7 +75,7 @@ static void timer_output_task(int boxId, double on_sec, double off_sec, double c
 
 #define UVA_DURATION (2*60*60)
 
-static int uva_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
+static void uva_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
   if (on_sec == off_sec) {
     set_box_uva_timer_output(boxId, 0);
     return;
@@ -101,11 +101,13 @@ static void perks_stretch_output_task(int boxId, double on_sec, double off_sec, 
   double current = get_box_fr_timer_output(boxId);
   double timer_output = get_box_timer_output(boxId);
   set_box_fr_timer_output(boxId, max(current, timer_output));
+  set_box_dr_timer_output(boxId, 0);
 }
 
 static void perks_thicken_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
   double current = get_box_dr_timer_output(boxId);
   double timer_output = get_box_timer_output(boxId);
+  set_box_fr_timer_output(boxId, 0);
   set_box_dr_timer_output(boxId, max(current, timer_output));
 }
 
@@ -126,16 +128,23 @@ static void perks_trichomes_output_task(int boxId, double on_sec, double off_sec
 
 static void perks_emerson_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
   double timer_output = get_box_timer_output(boxId);
-  double emerson_ratio = get_box_emerson_ratio(boxId);
+  double emerson_ratio = get_box_onoff_emerson_ratio(boxId) / 10;
+  double dr_ratio = 1;
+  double fr_ratio = 1/emerson_ratio;
+
+  if (emerson_ratio < 1) {
+    dr_ratio = emerson_ratio;
+    fr_ratio = 1;
+  }
 
   {
     double current = get_box_dr_timer_output(boxId);
-    set_box_dr_timer_output(boxId, max(current, timer_output * emerson_ratio/10));
+    set_box_dr_timer_output(boxId, max(current, min(100, timer_output * dr_ratio)));
   }
 
   {
     double current = get_box_fr_timer_output(boxId);
-    set_box_fr_timer_output(boxId, max(current, timer_output));
+    set_box_fr_timer_output(boxId, max(current, min(100, timer_output * fr_ratio)));
   }
 }
 
@@ -167,7 +176,7 @@ void onoff_task(int boxId) {
   timer_output_task(boxId, on_sec, off_sec, cur_sec);
   uva_output_task(boxId, on_sec, off_sec, cur_sec);
 
-  int perks = get_box_timer_perks(boxId);
+  int perks = get_box_onoff_perks(boxId);
 
   if (perks & PERKS_STRETCH) {
     perks_stretch_output_task(boxId, on_sec, off_sec, cur_sec);

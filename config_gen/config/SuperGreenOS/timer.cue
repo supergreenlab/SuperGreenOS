@@ -40,8 +40,3 @@ modules timer fields "\(k)_fr_timer_output": _INT8 & _HTTP & {
   helper: "Box #\(k+1) far red timer output"
   default: 0
 } for k, v in _box_conf
-
-modules timer fields "\(k)_timer_perks": _INT8 & _HTTP & {
-  helper: "Box #\(k+1) perks timer output"
-  default: 0
-} for k, v in _box_conf

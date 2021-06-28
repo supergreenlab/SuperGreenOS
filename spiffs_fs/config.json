@@ -3871,89 +3871,11 @@
           
             {
               "core": false,
-              "name": "box_0_emerson_ratio",
+              "name": "box_0_onoff_emerson_ratio",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_EMERSON_RATIO",
-              "module": "timer",
-              "helper": "Box #1 emerson effect dr/fr ratio",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "emerson_ratio"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "emerson_ratio"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_emerson_ratio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_EMERSON_RATIO",
-              "module": "timer",
-              "helper": "Box #2 emerson effect dr/fr ratio",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "emerson_ratio"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "emerson_ratio"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_emerson_ratio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_EMERSON_RATIO",
-              "module": "timer",
-              "helper": "Box #3 emerson effect dr/fr ratio",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "emerson_ratio"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "emerson_ratio"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_timer_type",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TIMER_TYPE",
-              "module": "timer",
+              "caps_name": "BOX_0_ONOFF_EMERSON_RATIO",
+              "module": "onoff",
               
               
               "write": true,
@@ -3962,11 +3884,11 @@
                   "name": "box",
                   "len": 3,
                   "index": 0,
-                  "param": "timer_type"
+                  "param": "onoff_emerson_ratio"
                 },
                 "box": {
                   "index": 0,
-                  "param": "timer_type"
+                  "param": "onoff_emerson_ratio"
                 },
               
               
@@ -3975,11 +3897,11 @@
           
             {
               "core": false,
-              "name": "box_1_timer_type",
+              "name": "box_1_onoff_emerson_ratio",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_1_TIMER_TYPE",
-              "module": "timer",
+              "caps_name": "BOX_1_ONOFF_EMERSON_RATIO",
+              "module": "onoff",
               
               
               "write": true,
@@ -3988,11 +3910,11 @@
                   "name": "box",
                   "len": 3,
                   "index": 1,
-                  "param": "timer_type"
+                  "param": "onoff_emerson_ratio"
                 },
                 "box": {
                   "index": 1,
-                  "param": "timer_type"
+                  "param": "onoff_emerson_ratio"
                 },
               
               
@@ -4001,11 +3923,11 @@
           
             {
               "core": false,
-              "name": "box_2_timer_type",
+              "name": "box_2_onoff_emerson_ratio",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_2_TIMER_TYPE",
-              "module": "timer",
+              "caps_name": "BOX_2_ONOFF_EMERSON_RATIO",
+              "module": "onoff",
               
               
               "write": true,
@@ -4014,11 +3936,11 @@
                   "name": "box",
                   "len": 3,
                   "index": 2,
-                  "param": "timer_type"
+                  "param": "onoff_emerson_ratio"
                 },
                 "box": {
                   "index": 2,
-                  "param": "timer_type"
+                  "param": "onoff_emerson_ratio"
                 },
               
               
@@ -4027,24 +3949,24 @@
           
             {
               "core": false,
-              "name": "box_0_timer_output",
+              "name": "box_0_onoff_perks",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #1 timer output",
+              "caps_name": "BOX_0_ONOFF_PERKS",
+              "module": "onoff",
               
-              "write": false,
+              
+              "write": true,
               
                 "array": {
                   "name": "box",
                   "len": 3,
                   "index": 0,
-                  "param": "timer_output"
+                  "param": "onoff_perks"
                 },
                 "box": {
                   "index": 0,
-                  "param": "timer_output"
+                  "param": "onoff_perks"
                 },
               
               
@@ -4053,24 +3975,24 @@
           
             {
               "core": false,
-              "name": "box_1_timer_output",
+              "name": "box_1_onoff_perks",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_1_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #2 timer output",
+              "caps_name": "BOX_1_ONOFF_PERKS",
+              "module": "onoff",
               
-              "write": false,
+              
+              "write": true,
               
                 "array": {
                   "name": "box",
                   "len": 3,
                   "index": 1,
-                  "param": "timer_output"
+                  "param": "onoff_perks"
                 },
                 "box": {
                   "index": 1,
-                  "param": "timer_output"
+                  "param": "onoff_perks"
                 },
               
               
@@ -4079,414 +4001,24 @@
           
             {
               "core": false,
-              "name": "box_2_timer_output",
+              "name": "box_2_onoff_perks",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_2_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #3 timer output",
+              "caps_name": "BOX_2_ONOFF_PERKS",
+              "module": "onoff",
               
-              "write": false,
+              
+              "write": true,
               
                 "array": {
                   "name": "box",
                   "len": 3,
                   "index": 2,
-                  "param": "timer_output"
+                  "param": "onoff_perks"
                 },
                 "box": {
                   "index": 2,
-                  "param": "timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_uva_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_UVA_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #1 UVa timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "uva_timer_output"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "uva_timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_uva_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_UVA_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #2 UVa timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "uva_timer_output"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "uva_timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_uva_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_UVA_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #3 UVa timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "uva_timer_output"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "uva_timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_db_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_DB_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #1 deep blue timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "db_timer_output"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "db_timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_db_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_DB_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #2 deep blue timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "db_timer_output"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "db_timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_db_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_DB_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #3 deep blue timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "db_timer_output"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "db_timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_dr_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_DR_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #1 deep red timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "dr_timer_output"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "dr_timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_dr_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_DR_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #2 deep red timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "dr_timer_output"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "dr_timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_dr_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_DR_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #3 deep red timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "dr_timer_output"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "dr_timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_fr_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_FR_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #1 far red timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "fr_timer_output"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "fr_timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_fr_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_FR_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #2 far red timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "fr_timer_output"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "fr_timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_fr_timer_output",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_FR_TIMER_OUTPUT",
-              "module": "timer",
-              "helper": "Box #3 far red timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "fr_timer_output"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "fr_timer_output"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_timer_perks",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TIMER_PERKS",
-              "module": "timer",
-              "helper": "Box #1 perks timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "timer_perks"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "timer_perks"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_timer_perks",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_TIMER_PERKS",
-              "module": "timer",
-              "helper": "Box #2 perks timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "timer_perks"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "timer_perks"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_timer_perks",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_TIMER_PERKS",
-              "module": "timer",
-              "helper": "Box #3 perks timer output",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "timer_perks"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "timer_perks"
+                  "param": "onoff_perks"
                 },
               
               
@@ -4985,8 +4517,8 @@
               
               
                 "indir": {
-                  "values": [8,9,10,37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25],
-                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
+                  "values": [37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25,8,9,10],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
                 },
               
               "default": 1
@@ -5016,8 +4548,8 @@
               
               
                 "indir": {
-                  "values": [8,9,10,37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25],
-                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
+                  "values": [37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25,8,9,10],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
                 },
               
               "default": 2
@@ -5047,8 +4579,8 @@
               
               
                 "indir": {
-                  "values": [8,9,10,37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25],
-                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
+                  "values": [37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25,8,9,10],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
                 },
               
               "default": 0
@@ -6014,8 +5546,8 @@
               
               
                 "indir": {
-                  "values": [8,9,10,37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25],
-                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
+                  "values": [37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25,8,9,10],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
                 },
               
               "default": 1
@@ -6045,8 +5577,8 @@
               
               
                 "indir": {
-                  "values": [8,9,10,37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25],
-                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
+                  "values": [37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25,8,9,10],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
                 },
               
               "default": 2
@@ -6076,8 +5608,8 @@
               
               
                 "indir": {
-                  "values": [8,9,10,37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25],
-                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
+                  "values": [37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25,8,9,10],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
                 },
               
               "default": 0
@@ -6546,6 +6078,474 @@
               
               
               "default": 10
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_timer_type",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TIMER_TYPE",
+              "module": "timer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "timer_type"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "timer_type"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_timer_type",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TIMER_TYPE",
+              "module": "timer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "timer_type"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "timer_type"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_timer_type",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TIMER_TYPE",
+              "module": "timer",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "timer_type"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "timer_type"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #1 timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "timer_output"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #2 timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "timer_output"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #3 timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "timer_output"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_uva_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_UVA_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #1 UVa timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "uva_timer_output"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "uva_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_uva_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_UVA_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #2 UVa timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "uva_timer_output"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "uva_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_uva_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_UVA_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #3 UVa timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "uva_timer_output"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "uva_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_db_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_DB_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #1 deep blue timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "db_timer_output"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "db_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_db_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_DB_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #2 deep blue timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "db_timer_output"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "db_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_db_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_DB_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #3 deep blue timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "db_timer_output"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "db_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_dr_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_DR_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #1 deep red timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "dr_timer_output"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "dr_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_dr_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_DR_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #2 deep red timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "dr_timer_output"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "dr_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_dr_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_DR_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #3 deep red timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "dr_timer_output"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "dr_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_fr_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_FR_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #1 far red timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "fr_timer_output"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "fr_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_fr_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_FR_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #2 far red timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "fr_timer_output"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "fr_timer_output"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_fr_timer_output",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_FR_TIMER_OUTPUT",
+              "module": "timer",
+              "helper": "Box #3 far red timer output",
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "fr_timer_output"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "fr_timer_output"
+                },
+              
+              
+              "default": 0
             },
           
             {
@@ -7071,8 +7071,8 @@
               
               
                 "indir": {
-                  "values": [46,47,48,28,29,30,34,35,36,40,41,42,22,23,24,1,2,3,7,8,9,15,16,17],
-                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output","SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3"]
+                  "values": [28,29,30,34,35,36,40,41,42,22,23,24,1,2,3,7,8,9,15,16,17,46,47,48],
+                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
                 },
               
               "default": 0

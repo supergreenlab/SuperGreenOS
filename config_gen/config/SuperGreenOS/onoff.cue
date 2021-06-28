@@ -26,7 +26,12 @@ modules onoff fields "\(k)_off_min": _INT8 & _NVS & _HTTP_RW & {
   default: 0
 } for k, v in _box_conf
 
-modules timer fields "\(k)_emerson_ratio": _INT8 & _HTTP & {
-  helper: "Box #\(k+1) emerson effect dr/fr ratio"
+modules onoff fields "\(k)_onoff_emerson_ratio": _INT8 & _NVS & _HTTP_RW & {
+  nvs key: "B_\(k)_EM_R"
+  default: 0
+} for k, v in _box_conf
+
+modules onoff fields "\(k)_onoff_perks": _INT8 & _NVS & _HTTP_RW & {
+  nvs key: "B_\(k)_T_P"
   default: 0
 } for k, v in _box_conf

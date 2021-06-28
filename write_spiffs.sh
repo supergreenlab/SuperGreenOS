@@ -2,6 +2,12 @@
 
 set -e
 
+SKIP_TESTER="0"
+
+if [ $# -eq "1" ]; then
+  SKIP_TESTER="$1"
+fi
+
 . ${0%/*}/build.env
 
 GREEN="\033[0;32m"
@@ -16,7 +22,9 @@ for i in $(ls ./spiffs_fs); do
   echo -e "Created spiffs_fs_gz/$i: ${GREEN}Done${NC}"
 done
 
-echo tester >> spiffs_fs_gz/tester.html
+if [ $SKIP_TESTER -eq "0" ]; then
+  echo tester >> spiffs_fs_gz/tester.html
+fi
 
 mkspiffs -c spiffs_fs_gz/ -b 4096 -p 256 -s 0x8000 spiffs.bin
 echo -e "Created spiffs.bin: ${GREEN}Done${NC}"
