@@ -50,6 +50,8 @@ static double range_progress(double on_sec, double off_sec, double cur_sec, doub
   return 0; 
 }
 
+#define RED_TIMER_OFFSET (16*60)
+
 static void timer_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
   double value;
   if (on_sec == off_sec) {
@@ -57,46 +59,27 @@ static void timer_output_task(int boxId, double on_sec, double off_sec, double c
   } else {
     value = range_progress(on_sec, off_sec, cur_sec, SUN_MOVING_MULTI);
   }
+
   set_box_timer_output(boxId, value);
 
-  double e_range1_on = on_sec - EMERSON_OFFSET;
+  double e_range1_on = on_sec - RED_TIMER_OFFSET;
   double e_range1_off = on_sec;
   double progress1 = range_progress(e_range1_on, e_range1_off, cur_sec, 600);
   set_box_dr_timer_output(boxId, progress1);
 
   double e_range2_on = off_sec;
-  double e_range2_off = off_sec + EMERSON_OFFSET;
+  double e_range2_off = off_sec + RED_TIMER_OFFSET;
   double progress2 = range_progress(e_range2_on, e_range2_off, cur_sec, 600);
   set_box_fr_timer_output(boxId, progress2);
 }
 
-#define EMERSON_OFFSET 16*60 // Add 1 min to the usual 15minx2 emerson effect to arrange with progressive on/off
+#define UVA_DURATION (2*60*60)
 
-static void emerson_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
-  double timer_outuput = get_box_timer_output(boxId);
-  double emerson_ratio = get_box_emerson_ratio(boxId);
-  set_box_dr_timer_output(boxId, timer_output * emerson_ratio/10);
-  set_box_fr_timer_output(boxId, timer_outuput);
-}
-
-#define UVA_DURATION 2*60*60 // Add 1 min to the usual 15minx2 emerson effect to arrange with progressive on/off
-
-static int get_uva_output_for_hour_min(int boxId) {
-  int on_hour = get_box_on_hour(boxId);
-  int on_min = get_box_on_min(boxId);
-  int off_hour = get_box_off_hour(boxId);
-  int off_min = get_box_off_min(boxId);
-
-  time_t now;
-  struct tm tm_now;
-  time(&now);
-  localtime_r(&now, &tm_now); 
-
-  double on_sec = on_hour * 3600 + on_min * 60;
-  double off_sec = off_hour * 3600 + off_min * 60;
-  double cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
-
-  if (on_sec == off_sec) return 0;
+static int uva_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
+  if (on_sec == off_sec) {
+    set_box_uva_timer_output(boxId, 0);
+    return;
+  }
 
   if (off_sec < on_sec) {
     off_sec += 24*60*60;
@@ -111,8 +94,49 @@ static int get_uva_output_for_hour_min(int boxId) {
   }
 
   range_off = (int)range_off % (24*60*60);
+  set_box_uva_timer_output(boxId, range_progress(range_on, range_off, cur_sec, 400));
+}
 
-  return range_progress(range_on, range_off, cur_sec, 400);
+static void perks_stretch_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
+  double current = get_box_fr_timer_output(boxId);
+  double timer_output = get_box_timer_output(boxId);
+  set_box_fr_timer_output(boxId, max(current, timer_output));
+}
+
+static void perks_thicken_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
+  double current = get_box_dr_timer_output(boxId);
+  double timer_output = get_box_timer_output(boxId);
+  set_box_dr_timer_output(boxId, max(current, timer_output));
+}
+
+#define TRICHOMES_UVA_DURATION (15*60)
+#define TRICHOMES_UVA_PERIOD (2*60*60)
+
+static void perks_trichomes_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
+  double timer_output = get_box_timer_output(boxId);
+  if (timer_output == 100) {
+    double progress = (((int)cur_sec % TRICHOMES_UVA_PERIOD) / TRICHOMES_UVA_DURATION);
+    if (progress < 1) {
+      double current = get_box_uva_timer_output(boxId);
+      double value = max(0, min(100, sin(progress * M_PI) * 1000));
+      set_box_uva_timer_output(boxId, max(current, value));
+    }
+  }
+}
+
+static void perks_emerson_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
+  double timer_output = get_box_timer_output(boxId);
+  double emerson_ratio = get_box_emerson_ratio(boxId);
+
+  {
+    double current = get_box_dr_timer_output(boxId);
+    set_box_dr_timer_output(boxId, max(current, timer_output * emerson_ratio/10));
+  }
+
+  {
+    double current = get_box_fr_timer_output(boxId);
+    set_box_fr_timer_output(boxId, max(current, timer_output));
+  }
 }
 
 void start_onoff(int boxId) {
@@ -141,7 +165,21 @@ void onoff_task(int boxId) {
   double cur_sec = tm_now.tm_hour * 3600 + tm_now.tm_min * 60;
 
   timer_output_task(boxId, on_sec, off_sec, cur_sec);
+  uva_output_task(boxId, on_sec, off_sec, cur_sec);
 
-  set_box_emerson_timer_output(boxId, get_emerson_output_for_hour_min(boxId));
-  set_box_uva_timer_output(boxId, get_uva_output_for_hour_min(boxId));
+  int perks = get_box_timer_perks(boxId);
+
+  if (perks & PERKS_STRETCH) {
+    perks_stretch_output_task(boxId, on_sec, off_sec, cur_sec);
+  } else if (perks & PERKS_THICKEN) {
+    perks_thicken_output_task(boxId, on_sec, off_sec, cur_sec);
+  }
+
+  if (perks & PERKS_TRICHOMES) {
+    perks_trichomes_output_task(boxId, on_sec, off_sec, cur_sec);
+  }
+
+  if (perks & PERKS_EMERSON) {
+    perks_emerson_output_task(boxId, on_sec, off_sec, cur_sec);
+  }
 }

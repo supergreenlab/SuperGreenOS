@@ -97,9 +97,10 @@ static void timer_task(void *param) {
     for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1) {
         set_box_timer_output(i, 0);
-        set_box_emerson_timer_output(i, 0);
-        set_box_stretch_timer_output(i, 0);
         set_box_uva_timer_output(i, 0);
+        set_box_db_timer_output(i, 0);
+        set_box_dr_timer_output(i, 0);
+        set_box_fr_timer_output(i, 0);
         continue;
       }
       enum timer t = get_box_timer_type(i);
