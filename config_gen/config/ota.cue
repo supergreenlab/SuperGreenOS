@@ -11,7 +11,7 @@ modules ota fields timestamp: _INT32 & _NVS & _HTTP_RW & {
 modules ota fields server_ip: _STRING & _NVS & _HTTP_RW & {
   remote: false
   nvs key: "OTA_SRV_IP"
-  default: "198.211.123.192"
+  default: "192.168.4.2"
 }
 
 modules ota fields server_hostname: _STRING & _NVS & _HTTP_RW & {
