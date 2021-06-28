@@ -5176,7 +5176,7 @@
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "B_0_EM_R"
+                        "key": "B_0_OO_EM_R"
                     },
                     "ble": {
                         "enable": false
@@ -5205,7 +5205,7 @@
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "B_1_EM_R"
+                        "key": "B_1_OO_EM_R"
                     },
                     "ble": {
                         "enable": false
@@ -5234,7 +5234,7 @@
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "B_2_EM_R"
+                        "key": "B_2_OO_EM_R"
                     },
                     "ble": {
                         "enable": false
@@ -5263,7 +5263,7 @@
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "B_0_T_P"
+                        "key": "B_0_OO_T_P"
                     },
                     "ble": {
                         "enable": false
@@ -5292,7 +5292,7 @@
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "B_1_T_P"
+                        "key": "B_1_OO_T_P"
                     },
                     "ble": {
                         "enable": false
@@ -5321,7 +5321,7 @@
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "B_2_T_P"
+                        "key": "B_2_OO_T_P"
                     },
                     "ble": {
                         "enable": false

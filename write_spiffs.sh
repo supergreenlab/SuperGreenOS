@@ -24,6 +24,8 @@ done
 
 if [ $SKIP_TESTER -eq "0" ]; then
   echo tester >> spiffs_fs_gz/tester.html
+else
+  rm spiffs_fs_gz/tester.html
 fi
 
 mkspiffs -c spiffs_fs_gz/ -b 4096 -p 256 -s 0x8000 spiffs.bin

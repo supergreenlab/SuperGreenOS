@@ -27,11 +27,11 @@ modules onoff fields "\(k)_off_min": _INT8 & _NVS & _HTTP_RW & {
 } for k, v in _box_conf
 
 modules onoff fields "\(k)_onoff_emerson_ratio": _INT8 & _NVS & _HTTP_RW & {
-  nvs key: "B_\(k)_EM_R"
+  nvs key: "B_\(k)_OO_EM_R"
   default: 0
 } for k, v in _box_conf
 
 modules onoff fields "\(k)_onoff_perks": _INT8 & _NVS & _HTTP_RW & {
-  nvs key: "B_\(k)_T_P"
+  nvs key: "B_\(k)_OO_T_P"
   default: 0
 } for k, v in _box_conf
