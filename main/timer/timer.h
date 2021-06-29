@@ -25,13 +25,6 @@ enum timer {
   TIMER_SEASON,
 };
 
-enum perks {
-  PERKS_STRETCH = 1,
-  PERKS_THICKEN = 2,
-  PERKS_TRICHOMES = 4,
-  PERKS_EMERSON = 8,
-};
-
 void init_timer();
 void refresh_timer();
 

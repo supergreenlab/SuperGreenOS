@@ -53,24 +53,24 @@ static double range_progress(double on_sec, double off_sec, double cur_sec, doub
 #define RED_TIMER_OFFSET (16*60)
 
 static void timer_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
-  double value;
+  double timer_output;
   if (on_sec == off_sec) {
-    value = 100;
+    timer_output = 100;
   } else {
-    value = range_progress(on_sec, off_sec, cur_sec, SUN_MOVING_MULTI);
+    timer_output = range_progress(on_sec, off_sec, cur_sec, SUN_MOVING_MULTI);
   }
 
-  set_box_timer_output(boxId, value);
+  set_box_timer_output(boxId, timer_output);
 
   double e_range1_on = on_sec - RED_TIMER_OFFSET;
-  double e_range1_off = on_sec;
+  double e_range1_off = on_sec + RED_TIMER_OFFSET;
   double progress1 = range_progress(e_range1_on, e_range1_off, cur_sec, 600);
-  set_box_dr_timer_output(boxId, progress1);
+  set_box_dr_timer_output(boxId, max(0, progress1 - timer_output));
 
-  double e_range2_on = off_sec;
+  double e_range2_on = off_sec - RED_TIMER_OFFSET;
   double e_range2_off = off_sec + RED_TIMER_OFFSET;
   double progress2 = range_progress(e_range2_on, e_range2_off, cur_sec, 600);
-  set_box_fr_timer_output(boxId, progress2);
+  set_box_fr_timer_output(boxId, max(0, progress2 - timer_output));
 }
 
 #define UVA_DURATION (2*60*60)
@@ -97,24 +97,10 @@ static void uva_output_task(int boxId, double on_sec, double off_sec, double cur
   set_box_uva_timer_output(boxId, range_progress(range_on, range_off, cur_sec, 400));
 }
 
-static void perks_stretch_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
-  double current = get_box_fr_timer_output(boxId);
-  double timer_output = get_box_timer_output(boxId);
-  set_box_fr_timer_output(boxId, max(current, timer_output));
-  set_box_dr_timer_output(boxId, 0);
-}
-
-static void perks_thicken_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
-  double current = get_box_dr_timer_output(boxId);
-  double timer_output = get_box_timer_output(boxId);
-  set_box_fr_timer_output(boxId, 0);
-  set_box_dr_timer_output(boxId, max(current, timer_output));
-}
-
 #define TRICHOMES_UVA_DURATION (15*60)
 #define TRICHOMES_UVA_PERIOD (2*60*60)
 
-static void perks_trichomes_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
+static void trichomes_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
   double timer_output = get_box_timer_output(boxId);
   if (timer_output == 100) {
     double progress = ((double)((int)cur_sec % TRICHOMES_UVA_PERIOD) / TRICHOMES_UVA_DURATION);
@@ -126,25 +112,30 @@ static void perks_trichomes_output_task(int boxId, double on_sec, double off_sec
   }
 }
 
-static void perks_emerson_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
+static void emerson_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
   double timer_output = get_box_timer_output(boxId);
-  double emerson_ratio = (double)get_box_onoff_emerson_ratio(boxId) / 10.0f;
-  double dr_ratio = 1.0f;
-  double fr_ratio = 1.0f/emerson_ratio;
+  double emerson_ratio = (double)get_box_timer_emerson_ratio(boxId) / 10.0f;
+  double emerson_percent = (double)get_box_timer_emerson_power(boxId);
+  double emerson_stretch = (double)get_box_timer_emerson_stretch(boxId);
+  double dr_value = 1.0f;
+  double fr_value = 1.0f;
 
   if (emerson_ratio < 1) {
-    dr_ratio = emerson_ratio;
-    fr_ratio = 1.0f;
+    dr_value = (100-((emerson_stretch+100)/2))*(emerson_percent*emerson_ratio)/100 * timer_output / 100;
+    fr_value = ((emerson_stretch+100)/2)*(emerson_percent-emerson_percent*(emerson_ratio/2))/50 * timer_output / 100;
+  } else {
+    dr_value = (100-((emerson_stretch+100)/2))*(emerson_percent-emerson_percent/(emerson_ratio*2))/50 * timer_output / 100;
+    fr_value = ((emerson_stretch+100)/2)*(emerson_percent/(emerson_ratio*2)/50) * timer_output / 100;
   }
 
   {
     double current = get_box_dr_timer_output(boxId);
-    set_box_dr_timer_output(boxId, max(current, min(100, timer_output * dr_ratio)));
+    set_box_dr_timer_output(boxId, max(current, min(100, dr_value)));
   }
 
   {
     double current = get_box_fr_timer_output(boxId);
-    set_box_fr_timer_output(boxId, max(current, min(100, timer_output * fr_ratio)));
+    set_box_fr_timer_output(boxId, max(current, min(100, fr_value));
   }
 }
 
@@ -156,6 +147,10 @@ void start_onoff(int boxId) {
 void stop_onoff(int boxId) {
   ESP_LOGI(SGO_LOG_NOSEND, "@ONOFF_%d stop_onoff", boxId);
   set_box_timer_output(boxId, 0);
+  set_box_uva_timer_output(boxId, 0);
+  set_box_db_timer_output(boxId, 0);
+  set_box_dr_timer_output(boxId, 0);
+  set_box_fr_timer_output(boxId, 0);
 }
 
 void onoff_task(int boxId) {
@@ -175,20 +170,6 @@ void onoff_task(int boxId) {
 
   timer_output_task(boxId, on_sec, off_sec, cur_sec);
   uva_output_task(boxId, on_sec, off_sec, cur_sec);
-
-  int perks = get_box_onoff_perks(boxId);
-
-  if (perks & PERKS_STRETCH) {
-    perks_stretch_output_task(boxId, on_sec, off_sec, cur_sec);
-  } else if (perks & PERKS_THICKEN) {
-    perks_thicken_output_task(boxId, on_sec, off_sec, cur_sec);
-  }
-
-  if (perks & PERKS_TRICHOMES) {
-    perks_trichomes_output_task(boxId, on_sec, off_sec, cur_sec);
-  }
-
-  if (perks & PERKS_EMERSON) {
-    perks_emerson_output_task(boxId, on_sec, off_sec, cur_sec);
-  }
+  trichomes_output_task(boxId, on_sec, off_sec, cur_sec);
+  emerson_output_task(boxId, on_sec, off_sec, cur_sec);
 }
