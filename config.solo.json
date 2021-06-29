@@ -467,7 +467,7 @@
                     "write_cb": false,
                     "suffix": "server_ip",
                     "caps_name": "OTA_SERVER_IP",
-                    "default": "198.211.123.192"
+                    "default": "192.168.4.2"
                 },
                 "server_hostname": {
                     "name": "ota_server_hostname",
@@ -1862,6 +1862,64 @@
                     "suffix": "0_off_min",
                     "caps_name": "BOX_0_OFF_MIN",
                     "default": 0
+                },
+                "0_onoff_emerson_ratio": {
+                    "name": "box_0_onoff_emerson_ratio",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_OO_EM_R"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_onoff_emerson_ratio",
+                    "caps_name": "BOX_0_ONOFF_EMERSON_RATIO",
+                    "default": 0
+                },
+                "0_onoff_perks": {
+                    "name": "box_0_onoff_perks",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_OO_T_P"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_onoff_perks",
+                    "caps_name": "BOX_0_ONOFF_PERKS",
+                    "default": 0
                 }
             }
         },
@@ -3089,68 +3147,12 @@
                     "valve_ref": 46,
                     "valve_ref_on": 46
                 },
-                "0_emerson_timer_output": {
-                    "name": "box_0_emerson_timer_output",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #1 emerson timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_emerson_timer_output",
-                    "caps_name": "BOX_0_EMERSON_TIMER_OUTPUT",
-                    "default": 0
-                },
-                "0_stretch_timer_output": {
-                    "name": "box_0_stretch_timer_output",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "Box #1 stretch timer output",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_stretch_timer_output",
-                    "caps_name": "BOX_0_STRETCH_TIMER_OUTPUT",
-                    "default": 0
-                },
                 "0_uva_timer_output": {
                     "name": "box_0_uva_timer_output",
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
-                    "helper": "Box #1 UVA timer output",
+                    "helper": "Box #1 UVa timer output",
                     "dump_freq": 60,
                     "nvs": {
                         "enable": false,
@@ -3171,6 +3173,90 @@
                     "intlen": 8,
                     "suffix": "0_uva_timer_output",
                     "caps_name": "BOX_0_UVA_TIMER_OUTPUT",
+                    "default": 0
+                },
+                "0_db_timer_output": {
+                    "name": "box_0_db_timer_output",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 deep blue timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_db_timer_output",
+                    "caps_name": "BOX_0_DB_TIMER_OUTPUT",
+                    "default": 0
+                },
+                "0_dr_timer_output": {
+                    "name": "box_0_dr_timer_output",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 deep red timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_dr_timer_output",
+                    "caps_name": "BOX_0_DR_TIMER_OUTPUT",
+                    "default": 0
+                },
+                "0_fr_timer_output": {
+                    "name": "box_0_fr_timer_output",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Box #1 far red timer output",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_fr_timer_output",
+                    "caps_name": "BOX_0_FR_TIMER_OUTPUT",
                     "default": 0
                 }
             }
