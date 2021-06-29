@@ -128,13 +128,13 @@ static void perks_trichomes_output_task(int boxId, double on_sec, double off_sec
 
 static void perks_emerson_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
   double timer_output = get_box_timer_output(boxId);
-  double emerson_ratio = get_box_onoff_emerson_ratio(boxId) / 10;
-  double dr_ratio = 1;
-  double fr_ratio = 1/emerson_ratio;
+  double emerson_ratio = (double)get_box_onoff_emerson_ratio(boxId) / 10.0f;
+  double dr_ratio = 1.0f;
+  double fr_ratio = 1.0f/emerson_ratio;
 
   if (emerson_ratio < 1) {
     dr_ratio = emerson_ratio;
-    fr_ratio = 1;
+    fr_ratio = 1.0f;
   }
 
   {
