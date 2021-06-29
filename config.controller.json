@@ -652,7 +652,7 @@
                 },
                 "server_ip": {
                     "name": "ota_server_ip",
-                    "default": "198.211.123.192",
+                    "default": "192.168.4.2",
                     "type": "string",
                     "remote": false,
                     "nosend": false,
