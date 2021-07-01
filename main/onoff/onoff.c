@@ -114,18 +114,15 @@ static void trichomes_output_task(int boxId, double on_sec, double off_sec, doub
 
 static void emerson_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
   double timer_output = get_box_timer_output(boxId);
-  double emerson_ratio = (double)get_box_timer_emerson_ratio(boxId) / 10.0f;
+  double emerson_ratio = (double)get_box_timer_emerson_ratio(boxId) / 100.0f;
   double emerson_percent = (double)get_box_timer_emerson_power(boxId);
-  double emerson_stretch = (double)get_box_timer_emerson_stretch(boxId);
-  double dr_value = 1.0f;
-  double fr_value = 1.0f;
+  double dr_value = emerson_percent * timer_output / 100;
+  double fr_value = emerson_percent * timer_output / 100;
 
   if (emerson_ratio < 1) {
-    dr_value = (100-((emerson_stretch+100)/2))*(emerson_percent*emerson_ratio)/100 * timer_output / 100;
-    fr_value = ((emerson_stretch+100)/2)*(emerson_percent-emerson_percent*(emerson_ratio/2))/50 * timer_output / 100;
+    dr_value = fr_value * emerson_ratio;
   } else {
-    dr_value = (100-((emerson_stretch+100)/2))*(emerson_percent-emerson_percent/(emerson_ratio*2))/50 * timer_output / 100;
-    fr_value = ((emerson_stretch+100)/2)*(emerson_percent/(emerson_ratio*2)/50) * timer_output / 100;
+    fr_value = dr_value / emerson_ratio;
   }
 
   {
@@ -135,7 +132,7 @@ static void emerson_output_task(int boxId, double on_sec, double off_sec, double
 
   {
     double current = get_box_fr_timer_output(boxId);
-    set_box_fr_timer_output(boxId, max(current, min(100, fr_value));
+    set_box_fr_timer_output(boxId, max(current, min(100, fr_value)));
   }
 }
 

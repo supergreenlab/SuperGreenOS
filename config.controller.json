@@ -8446,7 +8446,7 @@
                 },
                 "0_timer_emerson_ratio": {
                     "name": "box_0_timer_emerson_ratio",
-                    "default": 10,
+                    "default": 130,
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
@@ -8469,13 +8469,13 @@
                     },
                     "write_cb": false,
                     "signedness": "",
-                    "intlen": 8,
+                    "intlen": 16,
                     "suffix": "0_timer_emerson_ratio",
                     "caps_name": "BOX_0_TIMER_EMERSON_RATIO"
                 },
                 "1_timer_emerson_ratio": {
                     "name": "box_1_timer_emerson_ratio",
-                    "default": 10,
+                    "default": 130,
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
@@ -8498,13 +8498,13 @@
                     },
                     "write_cb": false,
                     "signedness": "",
-                    "intlen": 8,
+                    "intlen": 16,
                     "suffix": "1_timer_emerson_ratio",
                     "caps_name": "BOX_1_TIMER_EMERSON_RATIO"
                 },
                 "2_timer_emerson_ratio": {
                     "name": "box_2_timer_emerson_ratio",
-                    "default": 10,
+                    "default": 130,
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
@@ -8527,7 +8527,7 @@
                     },
                     "write_cb": false,
                     "signedness": "",
-                    "intlen": 8,
+                    "intlen": 16,
                     "suffix": "2_timer_emerson_ratio",
                     "caps_name": "BOX_2_TIMER_EMERSON_RATIO"
                 },
@@ -8617,93 +8617,6 @@
                     "intlen": 8,
                     "suffix": "2_timer_emerson_power",
                     "caps_name": "BOX_2_TIMER_EMERSON_POWER"
-                },
-                "0_timer_emerson_stretch": {
-                    "name": "box_0_timer_emerson_stretch",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_0_OO_EM_S"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_timer_emerson_stretch",
-                    "caps_name": "BOX_0_TIMER_EMERSON_STRETCH"
-                },
-                "1_timer_emerson_stretch": {
-                    "name": "box_1_timer_emerson_stretch",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_1_OO_EM_S"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_timer_emerson_stretch",
-                    "caps_name": "BOX_1_TIMER_EMERSON_STRETCH"
-                },
-                "2_timer_emerson_stretch": {
-                    "name": "box_2_timer_emerson_stretch",
-                    "default": 0,
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_2_OO_EM_S"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_timer_emerson_stretch",
-                    "caps_name": "BOX_2_TIMER_EMERSON_STRETCH"
                 }
             },
             "enabled": true,

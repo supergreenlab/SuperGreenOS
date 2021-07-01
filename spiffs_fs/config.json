@@ -6649,7 +6649,7 @@
                 },
               
               
-              "default": 10
+              "default": 130
             },
           
             {
@@ -6675,7 +6675,7 @@
                 },
               
               
-              "default": 10
+              "default": 130
             },
           
             {
@@ -6701,7 +6701,7 @@
                 },
               
               
-              "default": 10
+              "default": 130
             },
           
             {
@@ -6776,84 +6776,6 @@
                 "box": {
                   "index": 2,
                   "param": "timer_emerson_power"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_timer_emerson_stretch",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TIMER_EMERSON_STRETCH",
-              "module": "timer",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "timer_emerson_stretch"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "timer_emerson_stretch"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_timer_emerson_stretch",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_TIMER_EMERSON_STRETCH",
-              "module": "timer",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "timer_emerson_stretch"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "timer_emerson_stretch"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_timer_emerson_stretch",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_TIMER_EMERSON_STRETCH",
-              "module": "timer",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "timer_emerson_stretch"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "timer_emerson_stretch"
                 },
               
               
