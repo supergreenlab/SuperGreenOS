@@ -4962,6 +4962,122 @@
                     "suffix": "1_fr_timer_output",
                     "caps_name": "BOX_1_FR_TIMER_OUTPUT",
                     "default": 0
+                },
+                "0_timer_emerson_ratio": {
+                    "name": "box_0_timer_emerson_ratio",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_OO_EM_R"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 16,
+                    "suffix": "0_timer_emerson_ratio",
+                    "caps_name": "BOX_0_TIMER_EMERSON_RATIO",
+                    "default": 130
+                },
+                "1_timer_emerson_ratio": {
+                    "name": "box_1_timer_emerson_ratio",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_1_OO_EM_R"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 16,
+                    "suffix": "1_timer_emerson_ratio",
+                    "caps_name": "BOX_1_TIMER_EMERSON_RATIO",
+                    "default": 130
+                },
+                "0_timer_emerson_power": {
+                    "name": "box_0_timer_emerson_power",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_OO_EM_P"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_timer_emerson_power",
+                    "caps_name": "BOX_0_TIMER_EMERSON_POWER",
+                    "default": 0
+                },
+                "1_timer_emerson_power": {
+                    "name": "box_1_timer_emerson_power",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_1_OO_EM_P"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_timer_emerson_power",
+                    "caps_name": "BOX_1_TIMER_EMERSON_POWER",
+                    "default": 0
                 }
             }
         },
@@ -5970,8 +6086,8 @@
                     "caps_name": "BOX_1_ONOFF_EMERSON_RATIO",
                     "default": 0
                 },
-                "0_onoff_perks": {
-                    "name": "box_0_onoff_perks",
+                "0_onoff_emerson_power": {
+                    "name": "box_0_onoff_emerson_power",
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
@@ -5980,7 +6096,7 @@
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "B_0_OO_T_P"
+                        "key": "B_0_OO_EM_P"
                     },
                     "ble": {
                         "enable": false
@@ -5995,12 +6111,12 @@
                     "write_cb": false,
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "0_onoff_perks",
-                    "caps_name": "BOX_0_ONOFF_PERKS",
+                    "suffix": "0_onoff_emerson_power",
+                    "caps_name": "BOX_0_ONOFF_EMERSON_POWER",
                     "default": 0
                 },
-                "1_onoff_perks": {
-                    "name": "box_1_onoff_perks",
+                "1_onoff_emerson_power": {
+                    "name": "box_1_onoff_emerson_power",
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
@@ -6009,7 +6125,7 @@
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "B_1_OO_T_P"
+                        "key": "B_1_OO_EM_P"
                     },
                     "ble": {
                         "enable": false
@@ -6024,8 +6140,66 @@
                     "write_cb": false,
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "1_onoff_perks",
-                    "caps_name": "BOX_1_ONOFF_PERKS",
+                    "suffix": "1_onoff_emerson_power",
+                    "caps_name": "BOX_1_ONOFF_EMERSON_POWER",
+                    "default": 0
+                },
+                "0_onoff_emerson_stretch": {
+                    "name": "box_0_onoff_emerson_stretch",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_OO_EM_S"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_onoff_emerson_stretch",
+                    "caps_name": "BOX_0_ONOFF_EMERSON_STRETCH",
+                    "default": 0
+                },
+                "1_onoff_emerson_stretch": {
+                    "name": "box_1_onoff_emerson_stretch",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_1_OO_EM_S"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_onoff_emerson_stretch",
+                    "caps_name": "BOX_1_ONOFF_EMERSON_STRETCH",
                     "default": 0
                 }
             }

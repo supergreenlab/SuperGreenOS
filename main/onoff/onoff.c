@@ -102,13 +102,11 @@ static void uva_output_task(int boxId, double on_sec, double off_sec, double cur
 
 static void trichomes_output_task(int boxId, double on_sec, double off_sec, double cur_sec) {
   double timer_output = get_box_timer_output(boxId);
-  if (timer_output == 100) {
-    double progress = ((double)((int)cur_sec % TRICHOMES_UVA_PERIOD) / TRICHOMES_UVA_DURATION);
-    if (progress < 1) {
-      double current = get_box_uva_timer_output(boxId);
-      double value = max(0, min(100, sin(progress * M_PI) * 1000));
-      set_box_uva_timer_output(boxId, max(current, value));
-    }
+  double progress = ((double)((int)cur_sec % TRICHOMES_UVA_PERIOD) / TRICHOMES_UVA_DURATION);
+  if (progress < 1) {
+    double current = get_box_uva_timer_output(boxId);
+    double value = max(0, min(100, sin(progress * M_PI) * 1000 * timer_output/100));
+    set_box_uva_timer_output(boxId, max(current, value));
   }
 }
 
