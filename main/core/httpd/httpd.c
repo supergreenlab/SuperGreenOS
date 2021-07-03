@@ -94,7 +94,6 @@ int url_decode(const char *s, char *dec)
 
 static void find_str_param(const char *uri, const char *name, char *out, size_t *len) {
   uri = move_to_key_value(uri, name);
-  ESP_LOGI(SGO_LOG_NOSEND, "found: %s", uri);
   if (!*uri) {
     return;
   }
