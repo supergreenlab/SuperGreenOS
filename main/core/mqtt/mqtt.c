@@ -221,7 +221,7 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
   int len = vsnprintf((char*)buf_in, MAX_LOG_QUEUE_ITEM_SIZE-1, str, l);
   buf_in[len] = 0;
   xQueueSend(log_queue, buf_in, 0);
-  if (cmd && uxQueueMessagesWaiting(log_queue) > 5) {
+  if (cmd/* && uxQueueMessagesWaiting(log_queue) > 5*/) {
     xQueueSend(cmd, &CMD_MQTT_FORCE_FLUSH, 0);
   }
   return vprintf(str, l);
