@@ -5,6 +5,11 @@ modules watering: _MODULE & {
   array_len: len(_box_conf)
 }
 
+modules watering fields "\(k)_watering_left": _INT8 & _NVS & _HTTP & _HTTP_RW & {
+  nvs key: "B_\(k)_WAT_LE"
+  default: -1
+} for k, v in _box_conf
+
 modules watering fields "\(k)_watering_duty": _INT8 & _NVS & _HTTP & _HTTP_RW & {
   nvs key: "B_\(k)_WAT_DD"
   motor_input: 0x8 + k 

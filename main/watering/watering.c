@@ -55,6 +55,7 @@ static void watering_task(void *param) {
     time(&now);
     for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1) continue;
+      if (get_box_watering_left(i) == 0) continue;
 
       const int last = get_box_watering_last(i);
       const int period = get_box_watering_period(i);
@@ -64,6 +65,9 @@ static void watering_task(void *param) {
       if (now - last < duration) {
         set_box_watering_duty(i, power);
       } else if (now - last > duration) {
+        if (get_box_watering_duty(i) != 0) {
+          set_box_watering_left(i, get_box_watering_left(i)-1);
+        }
         set_box_watering_duty(i, 0);
         if (now - last > period * 60) {
           set_box_watering_last(i, now);
@@ -77,7 +81,7 @@ static void watering_task(void *param) {
 #endif
       c = CMD_NO_ACTION;
     }
-    if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS) == pdTRUE) {
+    if (xQueueReceive(cmd, &c, 1000 / portTICK_PERIOD_MS) == pdTRUE) {
     }
   }
 }
