@@ -58,7 +58,7 @@ static void motor_task(void *param) {
   while (1) {
     for (int i = 0; i < N_MOTOR; ++i) {
       if (get_motor_source(i) == 0) {
-        set_duty(i, 0);
+        set_duty(i, get_motor_duty_testing(i));
         continue;
       }
       //ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR Motor: %d, duty: %d", c.motorId, get_motor_duty(i));

@@ -25,18 +25,3 @@ modules onoff fields "\(k)_off_min": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "B_\(k)_OFF_M"
   default: 0
 } for k, v in _box_conf
-
-modules onoff fields "\(k)_onoff_emerson_ratio": _INT8 & _NVS & _HTTP_RW & {
-  nvs key: "B_\(k)_OO_EM_R"
-  default: 0
-} for k, v in _box_conf
-
-modules onoff fields "\(k)_onoff_emerson_power": _INT8 & _NVS & _HTTP_RW & {
-  nvs key: "B_\(k)_OO_EM_P"
-  default: 0
-} for k, v in _box_conf
-
-modules onoff fields "\(k)_onoff_emerson_stretch": _INT8 & _NVS & _HTTP_RW & {
-  nvs key: "B_\(k)_OO_EM_S"
-  default: 0
-} for k, v in _box_conf
