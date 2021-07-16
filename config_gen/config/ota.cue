@@ -22,7 +22,7 @@ modules ota fields server_hostname: _STRING & _NVS & _HTTP_RW & {
 
 modules ota fields server_port: _UINT16 & _NVS & _HTTP_RW & {
   remote: false
-  nvs key: "OTA_SRV_PRT"
+  nvs key: "OTA_SRV_UPRT"
   default: 80
 }
 
