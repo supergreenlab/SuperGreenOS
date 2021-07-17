@@ -1,5 +1,6 @@
 package config
 
+_motor_min: int | *0
 _motor_conf: [...]
 
 modules motors: _MODULE & {
@@ -31,7 +32,7 @@ modules motor fields "\(k)_duty": _INT8 & _HTTP & _INDIR & {
 modules motor fields "\(k)_min": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "M_\(k)_MIN"
   write_cb: true
-  default: 8
+  default: _motor_min
 } for k, v in _motor_conf
 
 modules motor fields "\(k)_max": _INT8 & _NVS & _HTTP_RW & {
