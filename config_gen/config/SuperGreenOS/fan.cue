@@ -6,8 +6,7 @@ modules fan: _MODULE & {
   array_len: len(_box_conf)
 }
 
-modules fan fields "\(k)_fan_duty": _INT8 & _NVS & _HTTP & _HTTP_RW & {
-  nvs key: "B_\(k)_FAN_DD"
+modules fan fields "\(k)_fan_duty": _INT8 & _HTTP & {
   motor_input: 0xf + k 
   helper: "Fan control for box#\(k+1)"
   default: 0

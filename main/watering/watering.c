@@ -93,13 +93,6 @@ void refresh_watering() {
 
 // KV callbacks
 
-int on_set_box_watering_duty(int boxId, int value) {
-  value = min(100, max(value, 0));
-  set_box_watering_duty(boxId, value);
-  refresh_watering();
-  return value;
-}
-
 int on_set_box_watering_period(int boxId, int value) {
   set_box_watering_period(boxId, value);
   refresh_watering();

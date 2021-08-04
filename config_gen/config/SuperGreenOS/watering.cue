@@ -10,12 +10,10 @@ modules watering fields "\(k)_watering_left": _INT8 & _NVS & _HTTP & _HTTP_RW & 
   default: -1
 } for k, v in _box_conf
 
-modules watering fields "\(k)_watering_duty": _INT8 & _NVS & _HTTP & _HTTP_RW & {
-  nvs key: "B_\(k)_WAT_DD"
+modules watering fields "\(k)_watering_duty": _INT8 & _HTTP & {
   motor_input: 0x8 + k 
   helper: "Watering control for box#\(k+1)"
   default: 0
-  write_cb: true
 } for k, v in _box_conf
 
 modules watering fields "\(k)_watering_period": _UINT16 & _NVS & _HTTP & _HTTP_RW & {
