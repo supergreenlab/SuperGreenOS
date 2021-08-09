@@ -506,7 +506,7 @@
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "OTA_SRV_PRT"
+                        "key": "OTA_SRV_UPRT"
                     },
                     "ble": {
                         "enable": false
@@ -3180,6 +3180,62 @@
                     "caps_name": "MOTOR_1_GPIO",
                     "default": 21
                 },
+                "0_duty_testing": {
+                    "name": "motor_0_duty_testing",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_duty_testing",
+                    "caps_name": "MOTOR_0_DUTY_TESTING",
+                    "default": 0
+                },
+                "1_duty_testing": {
+                    "name": "motor_1_duty_testing",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_duty_testing",
+                    "caps_name": "MOTOR_1_DUTY_TESTING",
+                    "default": 0
+                },
                 "0_min": {
                     "name": "motor_0_min",
                     "type": "integer",
@@ -3207,7 +3263,7 @@
                     "intlen": 8,
                     "suffix": "0_min",
                     "caps_name": "MOTOR_0_MIN",
-                    "default": 8
+                    "default": 0
                 },
                 "1_min": {
                     "name": "motor_1_min",
@@ -3236,7 +3292,7 @@
                     "intlen": 8,
                     "suffix": "1_min",
                     "caps_name": "MOTOR_1_MIN",
-                    "default": 8
+                    "default": 0
                 },
                 "0_max": {
                     "name": "motor_0_max",
@@ -3774,267 +3830,6 @@
                     "intlen": 8,
                     "suffix": "2_off_min",
                     "caps_name": "BOX_2_OFF_MIN",
-                    "default": 0
-                },
-                "0_onoff_emerson_ratio": {
-                    "name": "box_0_onoff_emerson_ratio",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_0_OO_EM_R"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_onoff_emerson_ratio",
-                    "caps_name": "BOX_0_ONOFF_EMERSON_RATIO",
-                    "default": 0
-                },
-                "1_onoff_emerson_ratio": {
-                    "name": "box_1_onoff_emerson_ratio",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_1_OO_EM_R"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_onoff_emerson_ratio",
-                    "caps_name": "BOX_1_ONOFF_EMERSON_RATIO",
-                    "default": 0
-                },
-                "2_onoff_emerson_ratio": {
-                    "name": "box_2_onoff_emerson_ratio",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_2_OO_EM_R"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_onoff_emerson_ratio",
-                    "caps_name": "BOX_2_ONOFF_EMERSON_RATIO",
-                    "default": 0
-                },
-                "0_onoff_emerson_power": {
-                    "name": "box_0_onoff_emerson_power",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_0_OO_EM_P"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_onoff_emerson_power",
-                    "caps_name": "BOX_0_ONOFF_EMERSON_POWER",
-                    "default": 0
-                },
-                "1_onoff_emerson_power": {
-                    "name": "box_1_onoff_emerson_power",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_1_OO_EM_P"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_onoff_emerson_power",
-                    "caps_name": "BOX_1_ONOFF_EMERSON_POWER",
-                    "default": 0
-                },
-                "2_onoff_emerson_power": {
-                    "name": "box_2_onoff_emerson_power",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_2_OO_EM_P"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_onoff_emerson_power",
-                    "caps_name": "BOX_2_ONOFF_EMERSON_POWER",
-                    "default": 0
-                },
-                "0_onoff_emerson_stretch": {
-                    "name": "box_0_onoff_emerson_stretch",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_0_OO_EM_S"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_onoff_emerson_stretch",
-                    "caps_name": "BOX_0_ONOFF_EMERSON_STRETCH",
-                    "default": 0
-                },
-                "1_onoff_emerson_stretch": {
-                    "name": "box_1_onoff_emerson_stretch",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_1_OO_EM_S"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "1_onoff_emerson_stretch",
-                    "caps_name": "BOX_1_ONOFF_EMERSON_STRETCH",
-                    "default": 0
-                },
-                "2_onoff_emerson_stretch": {
-                    "name": "box_2_onoff_emerson_stretch",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_2_OO_EM_S"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "2_onoff_emerson_stretch",
-                    "caps_name": "BOX_2_ONOFF_EMERSON_STRETCH",
                     "default": 0
                 }
             }
@@ -6323,16 +6118,15 @@
                     "helper": "Fan control for box#1",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_0_FAN_DD"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": true
+                        "write": false
                     },
                     "indir": {
                         "enable": false
@@ -6353,16 +6147,15 @@
                     "helper": "Fan control for box#2",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_1_FAN_DD"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": true
+                        "write": false
                     },
                     "indir": {
                         "enable": false
@@ -6383,16 +6176,15 @@
                     "helper": "Fan control for box#3",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_2_FAN_DD"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": true
+                        "write": false
                     },
                     "indir": {
                         "enable": false
@@ -6954,16 +6746,15 @@
                     "helper": "Blower control for box#1",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_0_BLWR_DD"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": true
+                        "write": false
                     },
                     "indir": {
                         "enable": false
@@ -6984,16 +6775,15 @@
                     "helper": "Blower control for box#2",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_1_BLWR_DD"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": true
+                        "write": false
                     },
                     "indir": {
                         "enable": false
@@ -7014,16 +6804,15 @@
                     "helper": "Blower control for box#3",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_2_BLWR_DD"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": true
+                        "write": false
                     },
                     "indir": {
                         "enable": false
@@ -7577,17 +7366,17 @@
             "i2c": false,
             "array_len": 3,
             "fields": {
-                "0_watering_duty": {
-                    "name": "box_0_watering_duty",
+                "0_watering_left": {
+                    "name": "box_0_watering_left",
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
-                    "helper": "Watering control for box#1",
+                    "helper": "",
                     "dump_freq": 60,
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "B_0_WAT_DD"
+                        "key": "B_0_WAT_LE"
                     },
                     "ble": {
                         "enable": false
@@ -7599,7 +7388,93 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": true,
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_watering_left",
+                    "caps_name": "BOX_0_WATERING_LEFT",
+                    "default": -1
+                },
+                "1_watering_left": {
+                    "name": "box_1_watering_left",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_1_WAT_LE"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "1_watering_left",
+                    "caps_name": "BOX_1_WATERING_LEFT",
+                    "default": -1
+                },
+                "2_watering_left": {
+                    "name": "box_2_watering_left",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_2_WAT_LE"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "2_watering_left",
+                    "caps_name": "BOX_2_WATERING_LEFT",
+                    "default": -1
+                },
+                "0_watering_duty": {
+                    "name": "box_0_watering_duty",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "Watering control for box#1",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_watering_duty",
@@ -7615,21 +7490,20 @@
                     "helper": "Watering control for box#2",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_1_WAT_DD"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": true
+                        "write": false
                     },
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": true,
+                    "write_cb": false,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "1_watering_duty",
@@ -7645,21 +7519,20 @@
                     "helper": "Watering control for box#3",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "B_2_WAT_DD"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
                         "enable": true,
-                        "write": true
+                        "write": false
                     },
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": true,
+                    "write_cb": false,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "2_watering_duty",

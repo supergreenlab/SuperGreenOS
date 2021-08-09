@@ -24,3 +24,4 @@ main/core/stat_dump/stat_dump.c
 main/Kconfig.projbuild
 
 build.env
+postman

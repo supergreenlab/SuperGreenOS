@@ -3310,6 +3310,84 @@
           
             {
               "core": false,
+              "name": "motor_0_duty_testing",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_0_DUTY_TESTING",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 0,
+                  "param": "duty_testing"
+                },
+                "motor": {
+                  "index": 0,
+                  "param": "duty_testing"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_1_duty_testing",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_1_DUTY_TESTING",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 1,
+                  "param": "duty_testing"
+                },
+                "motor": {
+                  "index": 1,
+                  "param": "duty_testing"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "motor_2_duty_testing",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "MOTOR_2_DUTY_TESTING",
+              "module": "motor",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "motor",
+                  "len": 3,
+                  "index": 2,
+                  "param": "duty_testing"
+                },
+                "motor": {
+                  "index": 2,
+                  "param": "duty_testing"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
               "name": "motor_0_min",
               "type": "integer",
               "integer": true,
@@ -3871,240 +3949,6 @@
           
             {
               "core": false,
-              "name": "box_0_onoff_emerson_ratio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_ONOFF_EMERSON_RATIO",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "onoff_emerson_ratio"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "onoff_emerson_ratio"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_onoff_emerson_ratio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_ONOFF_EMERSON_RATIO",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "onoff_emerson_ratio"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "onoff_emerson_ratio"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_onoff_emerson_ratio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_ONOFF_EMERSON_RATIO",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "onoff_emerson_ratio"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "onoff_emerson_ratio"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_onoff_emerson_power",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_ONOFF_EMERSON_POWER",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "onoff_emerson_power"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "onoff_emerson_power"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_onoff_emerson_power",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_ONOFF_EMERSON_POWER",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "onoff_emerson_power"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "onoff_emerson_power"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_onoff_emerson_power",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_ONOFF_EMERSON_POWER",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "onoff_emerson_power"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "onoff_emerson_power"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_onoff_emerson_stretch",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_ONOFF_EMERSON_STRETCH",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 0,
-                  "param": "onoff_emerson_stretch"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "onoff_emerson_stretch"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_onoff_emerson_stretch",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_ONOFF_EMERSON_STRETCH",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "onoff_emerson_stretch"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "onoff_emerson_stretch"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_2_onoff_emerson_stretch",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_2_ONOFF_EMERSON_STRETCH",
-              "module": "onoff",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 2,
-                  "param": "onoff_emerson_stretch"
-                },
-                "box": {
-                  "index": 2,
-                  "param": "onoff_emerson_stretch"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
               "name": "box_0_blower_duty",
               "type": "integer",
               "integer": true,
@@ -4112,7 +3956,7 @@
               "module": "blower",
               "helper": "Blower control for box#1",
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4138,7 +3982,7 @@
               "module": "blower",
               "helper": "Blower control for box#2",
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4164,7 +4008,7 @@
               "module": "blower",
               "helper": "Blower control for box#3",
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -5141,7 +4985,7 @@
               "module": "fan",
               "helper": "Fan control for box#1",
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -5167,7 +5011,7 @@
               "module": "fan",
               "helper": "Fan control for box#2",
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -5193,7 +5037,7 @@
               "module": "fan",
               "helper": "Fan control for box#3",
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -6784,6 +6628,84 @@
           
             {
               "core": false,
+              "name": "box_0_watering_left",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WATERING_LEFT",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "watering_left"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "watering_left"
+                },
+              
+              
+              "default": -1
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_watering_left",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_WATERING_LEFT",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "watering_left"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "watering_left"
+                },
+              
+              
+              "default": -1
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_watering_left",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_WATERING_LEFT",
+              "module": "watering",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "watering_left"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "watering_left"
+                },
+              
+              
+              "default": -1
+            },
+          
+            {
+              "core": false,
               "name": "box_0_watering_duty",
               "type": "integer",
               "integer": true,
@@ -6791,7 +6713,7 @@
               "module": "watering",
               "helper": "Watering control for box#1",
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -6817,7 +6739,7 @@
               "module": "watering",
               "helper": "Watering control for box#2",
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -6843,7 +6765,7 @@
               "module": "watering",
               "helper": "Watering control for box#3",
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
