@@ -92,12 +92,9 @@ void init_blower() {
 
 /* KV Callbacks */
 
-int on_set_box_blower_duty(int boxId, int value) {
-  value = min(100, max(value, 0));
-  set_box_blower_duty(boxId, value);
-#if defined(MODULE_MOTOR)
-  refresh_motors();
-#endif
+int on_set_box_blower_source(int motorId, int value) {
+  set_box_blower_source(motorId, value);
+  refresh_blower();
   return value;
 }
 

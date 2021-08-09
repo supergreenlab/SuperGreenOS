@@ -46,4 +46,5 @@ modules fan fields "\(k)_fan_ref": _INT8 & _HTTP & _INDIR & {
 modules fan fields "\(k)_fan_ref_source": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "B_\(k)_FAN_RSRC"
   default: v.fan_ref_source
+  write_cb: true
 } for k, v in _box_conf

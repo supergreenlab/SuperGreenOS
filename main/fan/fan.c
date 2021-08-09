@@ -92,12 +92,9 @@ void init_fan() {
 
 /* KV Callbacks */
 
-int on_set_box_fan_duty(int boxId, int value) {
-  value = min(100, max(value, 0));
-  set_box_fan_duty(boxId, value);
-#if defined(MODULE_MOTOR)
-  refresh_motors();
-#endif
+int on_set_box_fan_source(int motorId, int value) {
+  set_box_fan_source(motorId, value);
+  refresh_fan();
   return value;
 }
 

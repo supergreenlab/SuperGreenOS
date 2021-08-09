@@ -21,6 +21,7 @@ modules motor: _MODULE & {
 
 modules motor fields "\(k)_duty_testing": _INT8 & _HTTP_RW & {
   default: 0
+  write_cb: true
 } for k, v in _motor_conf
 
 modules motor fields "\(k)_duty": _INT8 & _HTTP & _INDIR & {
