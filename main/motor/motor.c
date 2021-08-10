@@ -120,9 +120,16 @@ void refresh_motors() {
 
 /* BLE Callbacks */
 
+int on_set_motor_frequency(int motorId, int value) {
+  value = min(40000, max(value, 2));
+  motor_cmd c = {.cmd = CMD_CHANGED_FREQUENCY, .motorId = motorId, .value = value};
+  xQueueSend(cmd, &c, 0);
+  return value;
+}
+
 int on_set_motor_duty_testing(int motorId, int value) {
   value = min(100, max(value, 0));
-  set_motor_duty_testing(motorId, value)
+  set_motor_duty_testing(motorId, value);
   refresh_motors();
   return value;
 }

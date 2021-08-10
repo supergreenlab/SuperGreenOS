@@ -10,7 +10,6 @@ modules blower fields "\(k)_blower_duty": _INT8 & _HTTP & {
   motor_input: 0x1 + k 
   helper: "Blower control for box#\(k+1)"
   default: 0
-  write_cb: true
 } for k, v in _box_conf
 
 modules blower fields "\(k)_blower_min": _INT8 & _NVS & _HTTP_RW & {

@@ -92,8 +92,8 @@ void init_fan() {
 
 /* KV Callbacks */
 
-int on_set_box_fan_source(int motorId, int value) {
-  set_box_fan_source(motorId, value);
+int on_set_box_fan_ref_source(int motorId, int value) {
+  set_box_fan_ref_source(motorId, value);
   refresh_fan();
   return value;
 }
@@ -125,5 +125,3 @@ int on_set_box_fan_ref_max(int boxId, int value) {
   refresh_fan();
   return value;
 }
-
-

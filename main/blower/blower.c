@@ -92,8 +92,8 @@ void init_blower() {
 
 /* KV Callbacks */
 
-int on_set_box_blower_source(int motorId, int value) {
-  set_box_blower_source(motorId, value);
+int on_set_box_blower_ref_source(int motorId, int value) {
+  set_box_blower_ref_source(motorId, value);
   refresh_blower();
   return value;
 }

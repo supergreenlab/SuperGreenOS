@@ -10,7 +10,6 @@ modules fan fields "\(k)_fan_duty": _INT8 & _HTTP & {
   motor_input: 0xf + k 
   helper: "Fan control for box#\(k+1)"
   default: 0
-  write_cb: true
 } for k, v in _box_conf
 
 modules fan fields "\(k)_fan_min": _INT8 & _NVS & _HTTP_RW & {

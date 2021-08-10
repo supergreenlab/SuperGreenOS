@@ -1993,7 +1993,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_duty_testing",
@@ -2285,7 +2285,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": true,
+                    "write_cb": false,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_blower_duty",
@@ -2461,7 +2461,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_blower_ref_source",
@@ -2706,7 +2706,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": true,
+                    "write_cb": false,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_fan_duty",
@@ -2882,7 +2882,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_fan_ref_source",

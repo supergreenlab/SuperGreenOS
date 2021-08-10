@@ -24,7 +24,7 @@ void refresh_fan();
 
 /* KV Callbacks */
 
-int on_set_box_fan_duty(int boxId, int value);
+int on_set_box_fan_ref_source(int motorId, int value);
 int on_set_box_fan_min(int boxId, int value);
 int on_set_box_fan_max(int boxId, int value);
 int on_set_box_fan_ref_min(int boxId, int value);
