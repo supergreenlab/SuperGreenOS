@@ -1191,7 +1191,7 @@
         "led": {
             "name": "led",
             "i2c": false,
-            "array_len": 6,
+            "array_len": 7,
             "fields": {
                 "0_duty": {
                     "name": "led_0_duty",
@@ -1367,6 +1367,35 @@
                     "suffix": "5_duty",
                     "caps_name": "LED_5_DUTY"
                 },
+                "6_duty": {
+                    "name": "led_6_duty",
+                    "default": 0,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "L_6_D"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "6_duty",
+                    "caps_name": "LED_6_DUTY"
+                },
                 "0_type": {
                     "name": "led_0_type",
                     "type": "integer",
@@ -1541,6 +1570,35 @@
                     "caps_name": "LED_5_TYPE",
                     "default_var": "LED_FULLSPECTRUM"
                 },
+                "6_type": {
+                    "name": "led_6_type",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "L_6_T"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "6_type",
+                    "caps_name": "LED_6_TYPE",
+                    "default_var": "LED_FULLSPECTRUM"
+                },
                 "0_gpio": {
                     "name": "led_0_gpio",
                     "default": 33,
@@ -1702,6 +1760,33 @@
                     "intlen": 8,
                     "suffix": "5_gpio",
                     "caps_name": "LED_5_GPIO"
+                },
+                "6_gpio": {
+                    "name": "led_6_gpio",
+                    "default": 32,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "6_gpio",
+                    "caps_name": "LED_6_GPIO"
                 },
                 "0_box": {
                     "name": "led_0_box",
@@ -1877,6 +1962,35 @@
                     "suffix": "5_box",
                     "caps_name": "LED_5_BOX"
                 },
+                "6_box": {
+                    "name": "led_6_box",
+                    "default": -1,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "L_6_BOX"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "6_box",
+                    "caps_name": "LED_6_BOX"
+                },
                 "0_dim": {
                     "name": "led_0_dim",
                     "default": 100,
@@ -2051,6 +2165,35 @@
                     "suffix": "5_dim",
                     "caps_name": "LED_5_DIM"
                 },
+                "6_dim": {
+                    "name": "led_6_dim",
+                    "default": 100,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "L_6_DI"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "6_dim",
+                    "caps_name": "LED_6_DIM"
+                },
                 "0_fade": {
                     "name": "led_0_fade",
                     "default": 1,
@@ -2224,6 +2367,35 @@
                     "intlen": 8,
                     "suffix": "5_fade",
                     "caps_name": "LED_5_FADE"
+                },
+                "6_fade": {
+                    "name": "led_6_fade",
+                    "default": 1,
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "L_6_FADE"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "6_fade",
+                    "caps_name": "LED_6_FADE"
                 }
             },
             "enabled": true,
@@ -9006,7 +9178,7 @@
             "fields": {
                 "gpio": {
                     "name": "valve_gpio",
-                    "default": 32,
+                    "default": 0,
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
@@ -9382,7 +9554,7 @@
                     "caps_name": "VALVE_REF_ON_SOURCE"
                 }
             },
-            "enabled": true,
+            "enabled": false,
             "tester": false,
             "required": false,
             "field_prefix": "valve",

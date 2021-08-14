@@ -657,7 +657,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 0,
                   "param": "duty"
                 },
@@ -683,7 +683,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 1,
                   "param": "duty"
                 },
@@ -709,7 +709,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 2,
                   "param": "duty"
                 },
@@ -735,7 +735,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 3,
                   "param": "duty"
                 },
@@ -761,7 +761,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 4,
                   "param": "duty"
                 },
@@ -787,12 +787,38 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 5,
                   "param": "duty"
                 },
                 "led": {
                   "index": 5,
+                  "param": "duty"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_6_duty",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_6_DUTY",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 7,
+                  "index": 6,
+                  "param": "duty"
+                },
+                "led": {
+                  "index": 6,
                   "param": "duty"
                 },
               
@@ -813,7 +839,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 0,
                   "param": "type"
                 },
@@ -839,7 +865,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 1,
                   "param": "type"
                 },
@@ -865,7 +891,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 2,
                   "param": "type"
                 },
@@ -891,7 +917,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 3,
                   "param": "type"
                 },
@@ -917,7 +943,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 4,
                   "param": "type"
                 },
@@ -943,12 +969,38 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 5,
                   "param": "type"
                 },
                 "led": {
                   "index": 5,
+                  "param": "type"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "led_6_type",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_6_TYPE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 7,
+                  "index": 6,
+                  "param": "type"
+                },
+                "led": {
+                  "index": 6,
                   "param": "type"
                 },
               
@@ -969,7 +1021,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 0,
                   "param": "box"
                 },
@@ -995,7 +1047,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 1,
                   "param": "box"
                 },
@@ -1021,7 +1073,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 2,
                   "param": "box"
                 },
@@ -1047,7 +1099,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 3,
                   "param": "box"
                 },
@@ -1073,7 +1125,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 4,
                   "param": "box"
                 },
@@ -1099,12 +1151,38 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 5,
                   "param": "box"
                 },
                 "led": {
                   "index": 5,
+                  "param": "box"
+                },
+              
+              
+              "default": -1
+            },
+          
+            {
+              "core": false,
+              "name": "led_6_box",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_6_BOX",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 7,
+                  "index": 6,
+                  "param": "box"
+                },
+                "led": {
+                  "index": 6,
                   "param": "box"
                 },
               
@@ -1125,7 +1203,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 0,
                   "param": "dim"
                 },
@@ -1151,7 +1229,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 1,
                   "param": "dim"
                 },
@@ -1177,7 +1255,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 2,
                   "param": "dim"
                 },
@@ -1203,7 +1281,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 3,
                   "param": "dim"
                 },
@@ -1229,7 +1307,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 4,
                   "param": "dim"
                 },
@@ -1255,12 +1333,38 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 5,
                   "param": "dim"
                 },
                 "led": {
                   "index": 5,
+                  "param": "dim"
+                },
+              
+              
+              "default": 100
+            },
+          
+            {
+              "core": false,
+              "name": "led_6_dim",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_6_DIM",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 7,
+                  "index": 6,
+                  "param": "dim"
+                },
+                "led": {
+                  "index": 6,
                   "param": "dim"
                 },
               
@@ -1281,7 +1385,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 0,
                   "param": "fade"
                 },
@@ -1307,7 +1411,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 1,
                   "param": "fade"
                 },
@@ -1333,7 +1437,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 2,
                   "param": "fade"
                 },
@@ -1359,7 +1463,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 3,
                   "param": "fade"
                 },
@@ -1385,7 +1489,7 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 4,
                   "param": "fade"
                 },
@@ -1411,12 +1515,38 @@
               
                 "array": {
                   "name": "led",
-                  "len": 6,
+                  "len": 7,
                   "index": 5,
                   "param": "fade"
                 },
                 "led": {
                   "index": 5,
+                  "param": "fade"
+                },
+              
+              
+              "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "led_6_fade",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "LED_6_FADE",
+              "module": "led",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "led",
+                  "len": 7,
+                  "index": 6,
+                  "param": "fade"
+                },
+                "led": {
+                  "index": 6,
                   "param": "fade"
                 },
               
@@ -7092,211 +7222,6 @@
               
               
               "default": 20
-            },
-          
-            {
-              "core": false,
-              "name": "valve_gpio",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_GPIO",
-              "module": "valve",
-              
-              
-              "write": false,
-              
-              
-              "default": 32
-            },
-          
-            {
-              "core": false,
-              "name": "valve_open",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_OPEN",
-              "module": "valve",
-              
-              
-              "write": false,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "valve_mode",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_MODE",
-              "module": "valve",
-              
-              
-              "write": true,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "valve_cycle_div",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_CYCLE_DIV",
-              "module": "valve",
-              
-              
-              "write": true,
-              
-              
-              "default": 6
-            },
-          
-            {
-              "core": false,
-              "name": "valve_cycle_div_duration",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_CYCLE_DIV_DURATION",
-              "module": "valve",
-              
-              
-              "write": true,
-              
-              
-              "default": 1000
-            },
-          
-            {
-              "core": false,
-              "name": "valve_ref_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_REF_MIN",
-              "module": "valve",
-              
-              
-              "write": true,
-              
-              
-              "default": 1000
-            },
-          
-            {
-              "core": false,
-              "name": "valve_ref_max",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_REF_MAX",
-              "module": "valve",
-              
-              
-              "write": true,
-              
-              
-              "default": 1500
-            },
-          
-            {
-              "core": false,
-              "name": "valve_ref",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_REF",
-              "module": "valve",
-              
-              
-              "write": false,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "valve_ref_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_REF_SOURCE",
-              "module": "valve",
-              
-              
-              "write": true,
-              
-              
-                "indir": {
-                  "values": [28,29,30,34,35,36,40,41,42,22,23,24,1,2,3,7,8,9,15,16,17,46,47,48],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
-                },
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "valve_ref_on_min",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_REF_ON_MIN",
-              "module": "valve",
-              
-              
-              "write": true,
-              
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "valve_ref_on_max",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_REF_ON_MAX",
-              "module": "valve",
-              
-              
-              "write": true,
-              
-              
-              "default": 100
-            },
-          
-            {
-              "core": false,
-              "name": "valve_ref_on",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_REF_ON",
-              "module": "valve",
-              
-              
-              "write": false,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "valve_ref_on_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "VALVE_REF_ON_SOURCE",
-              "module": "valve",
-              
-              
-              "write": true,
-              
-              
-                "indir": {
-                  "values": [46,47,48],
-                  "helpers": ["Box #1 timer output","Box #2 timer output","Box #3 timer output"]
-                },
-              
-              "default": 0
             }
           
   ]

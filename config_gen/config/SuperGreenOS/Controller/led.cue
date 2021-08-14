@@ -24,5 +24,9 @@ _led_conf: [
   {
     gpio: 12
     box: -1
+  },
+  {
+    gpio: 32
+    box: -1
   }
 ]
