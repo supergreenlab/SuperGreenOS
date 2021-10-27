@@ -34,3 +34,9 @@ modules ota fields basedir: _STRING & _NVS & _HTTP_RW & {
 modules ota fields status: _INT8 & _HTTP & {
   _default_var: "OTA_STATUS_IDLE"
 }
+
+modules ota fields ota_start: _INT8 & _HTTP_RW & {
+  name: "ota_start"
+  write_cb: true
+  default: 0
+}

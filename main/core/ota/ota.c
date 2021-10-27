@@ -54,6 +54,8 @@ static int binary_file_length = 0;
 /*socket id*/
 static int socket_id = -1;
 
+static QueueHandle_t cmd;
+
 /*read buffer by byte still delim ,return read bytes counts*/
 static int read_until(char *buffer, char delim, int len)
 {
@@ -321,10 +323,10 @@ static void try_ota(const char *new_timestamp)
 }
 
 static void ota_task(void *pvParameter) {
-  vTaskDelay((20 * 1000) / portTICK_PERIOD_MS);
+  uint8_t c;
+
   while (true) {
-    //ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA waiting for wifi");
-    //wait_connected();
+    while(!xQueueReceive(cmd, &c, portMAX_DELAY));
 
     int ota_build_timestamp = get_ota_timestamp();
     if (ota_build_timestamp == 0) {
@@ -343,7 +345,6 @@ static void ota_task(void *pvParameter) {
         set_ota_status(OTA_STATUS_IDLE);
       }
     }
-    vTaskDelay((20 * 60 * 1000) / portTICK_PERIOD_MS);
   }
 }
 
@@ -358,6 +359,11 @@ void init_ota() {
   }
   seti32(OTA_BUILD_TIMESTAMP_BCK, OTA_BUILD_TIMESTAMP);
 
+  cmd = xQueueCreate(10, sizeof(uint8_t));
+  if (cmd == NULL) {
+    ESP_LOGE(SGO_LOG_EVENT, "@OTA Unable to create cmd queue");
+  }
+
   int ota_build_timestamp = get_ota_timestamp();
   ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA initialization timestamp=%d", ota_build_timestamp);
 
@@ -365,4 +371,12 @@ void init_ota() {
   if (ret != pdPASS) {
     ESP_LOGE(SGO_LOG_EVENT, "@OTA Failed to create task");
   }
+}
+
+/* KV Callbacks */
+
+int on_set_ota_start(int value) {
+  uint8_t cmd_data = 1;
+  xQueueSend(cmd, &cmd_data, 0);
+  return value;
 }

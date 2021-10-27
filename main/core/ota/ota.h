@@ -28,5 +28,6 @@ typedef enum {
 } ota_status;
 
 void init_ota();
+int on_set_ota_start(int value);
 
 #endif
