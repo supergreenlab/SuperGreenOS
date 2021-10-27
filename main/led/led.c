@@ -80,7 +80,7 @@ static void update_led(int i) {
     //ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
 
     if (is_sunglasses_mode) {
-      real_duty = min(10, real_duty);
+      real_duty = min(15, real_duty);
     }
 
     fade_no_wait_led(i, real_duty);
