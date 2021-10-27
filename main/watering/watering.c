@@ -65,7 +65,7 @@ static void watering_task(void *param) {
       if (now - last < duration) {
         set_box_watering_duty(i, power);
       } else if (now - last > duration) {
-        if (get_box_watering_duty(i) != 0) {
+        if (get_box_watering_duty(i) > 0) {
           set_box_watering_left(i, get_box_watering_left(i)-1);
         }
         set_box_watering_duty(i, 0);
