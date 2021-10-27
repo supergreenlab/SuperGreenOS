@@ -52,7 +52,7 @@ static void subscribe_cmd() {
   sprintf(cmd_channel, "%s.cmd", client_id);
 
   ESP_LOGI(SGO_LOG_NOSEND, "@MQTT subscribe_cmd %s", cmd_channel);
-  esp_mqtt_client_subscribe(client, cmd_channel, 0);
+  esp_mqtt_client_subscribe(client, cmd_channel, 2);
 }
 
 static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event) {
