@@ -8,9 +8,12 @@ modules box: _MODULE & {
 }
 
 modules box fields "\(k)_temp": _INT8 & _HTTP & _INDIR & {
+  blower_ref: 0x1+k
+  fan_ref: 0x1+k
   dump_freq: 1
   indir key: "temp_sensor"
   indir source: "\(k)_temp_source"
+  helper: "Box #\(k+1) temperature"
   default: 0
 } for k, v in _box_conf
 
@@ -20,9 +23,12 @@ modules box fields "\(k)_temp_source": _INT8 & _NVS & _HTTP_RW & {
 } for k, v in _box_conf
 
 modules box fields "\(k)_humi": _INT8 & _HTTP & _INDIR & {
+  blower_ref: 0x8+k
+  fan_ref: 0x8+k
   dump_freq: 1
   indir key: "humi_sensor"
   indir source: "\(k)_humi_source"
+  helper: "Box #\(k+1) humidity"
   default: 0
 } for k, v in _box_conf
 

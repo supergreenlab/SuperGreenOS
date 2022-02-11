@@ -39,7 +39,7 @@ modules motor fields "\(k)_min": _INT8 & _NVS & _HTTP_RW & {
 modules motor fields "\(k)_max": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "M_\(k)_MAX"
   write_cb: true
-  default: 100
+  default: 70
 } for k, v in _motor_conf
 
 modules motor fields "\(k)_source": _INT8 & _NVS & _HTTP_RW & {

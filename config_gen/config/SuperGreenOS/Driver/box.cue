@@ -18,8 +18,8 @@ _box_conf: [
     vpd_source: 0
     weight_source: 0
     co2_source: 0
-    blower_ref_source: 0
-    fan_ref_source: 0
+    blower_ref_source: 1
+    fan_ref_source: 1
   },
   {
     enabled: 0
@@ -28,7 +28,7 @@ _box_conf: [
     vpd_source: 0
     weight_source: 0
     co2_source: 0
-    blower_ref_source: 0
-    fan_ref_source: 0
+    blower_ref_source: 1
+    fan_ref_source: 1
   }
 ]

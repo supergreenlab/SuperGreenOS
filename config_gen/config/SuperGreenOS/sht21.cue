@@ -12,8 +12,6 @@ modules sht21 fields "\(k)_present": _INT8 & _HTTP & {
 modules sht21 fields "\(k)_temp": _INT8 & _HTTP & {
   default: 0
   temp_sensor: 0x1+k
-  blower_ref: 0x1+k
-  fan_ref: 0x1+k
   valve_ref: 0x1+k
   helper: "SHT21 temperature on port #\(k+1)"
 } for k, v in _i2c_conf
@@ -21,8 +19,6 @@ modules sht21 fields "\(k)_temp": _INT8 & _HTTP & {
 modules sht21 fields "\(k)_humi": _INT8 & _HTTP & {
   default: 0
   humi_sensor: 0x1+k
-  blower_ref: 0xf+k
-  fan_ref: 0xf+k
   valve_ref: 0x7+k
   helper: "SHT21 humidity on port #\(k+1)"
 } for k, v in _i2c_conf
@@ -30,8 +26,6 @@ modules sht21 fields "\(k)_humi": _INT8 & _HTTP & {
 modules sht21 fields "\(k)_vpd": _UINT8 & _HTTP & {
   default: 0
   vpd_sensor: 0x1+k
-  blower_ref: 0x17+k
-  fan_ref: 0x17+k
   valve_ref: 0xf+k
   helper: "SHT21 vpd on port #\(k+1)"
 } for k, v in _i2c_conf

@@ -90,40 +90,37 @@ void init_blower() {
   }
 }
 
+int blower_min(int boxId) {
+  return 100;
+}
+
+int blower_max(int boxId) {
+  return 0;
+}
+
+int blower_ref_min(int boxId) {
+  return 21;
+}
+
+int blower_ref_max(int boxId) {
+  return 30;
+}
+
+int blower_ref(int boxId) {
+  return 25;
+}
+
 /* KV Callbacks */
 
-int on_set_box_blower_ref_source(int motorId, int value) {
-  set_box_blower_ref_source(motorId, value);
+int on_set_box_blower_type(int motorId, int value) {
+  set_box_blower_type(motorId, value);
   refresh_blower();
   return value;
 }
 
-int on_set_box_blower_min(int boxId, int value) {
+int on_set_box_blower_power(int boxId, int value) {
   value = min(100, max(value, 0));
-  set_box_blower_min(boxId, value);
+  set_box_blower_power(boxId, value);
   refresh_blower();
   return value;
 }
-
-int on_set_box_blower_max(int boxId, int value) {
-  value = min(100, max(value, 0));
-  set_box_blower_max(boxId, value);
-  refresh_blower();
-  return value;
-}
-
-int on_set_box_blower_ref_min(int boxId, int value) {
-  value = min(100, max(value, 0));
-  set_box_blower_ref_min(boxId, value);
-  refresh_blower();
-  return value;
-}
-
-int on_set_box_blower_ref_max(int boxId, int value) {
-  value = min(100, max(value, 0));
-  set_box_blower_ref_max(boxId, value);
-  refresh_blower();
-  return value;
-}
-
-

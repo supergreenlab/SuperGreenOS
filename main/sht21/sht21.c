@@ -139,7 +139,10 @@ void loop_sht21(int i2cId) {
   float lsvp = 610.78 * powf(2.71828, ltemp / (ltemp + 238.3) * 17.2694);
 
   float vpd = lsvp - (asvp * (float)humi / 100.0);
-  set_sht21_vpd(i2cId, vpd / 100);
+
+  if (vpd/100 < 40) {
+    set_sht21_vpd(i2cId, vpd / 100);
+  }
 }
 
 const uint16_t POLYNOMIAL = 0x131;

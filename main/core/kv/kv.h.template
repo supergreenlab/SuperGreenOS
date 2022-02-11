@@ -70,7 +70,7 @@ void defaultstr(const char * key, const char * value);
  */
 
 <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].indir.enable && !modules[m].fields[f].func).forEach(f => { f = modules[m].fields[f] %>
   void reset_<%= f.name %>_changed();
   bool is_<%= f.name %>_changed();
   bool is_<%= f.name %>_undefined();
@@ -81,6 +81,22 @@ void defaultstr(const char * key, const char * value);
     void get_<%= f.name %>(char *dest, size_t len);
     void set_<%= f.name %>(const char *value);
   <% } %>
+<% })}) %>
+
+<% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
+  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].func).forEach(f => { f = modules[m].fields[f] %>
+
+  <% if (f.type == 'integer') { %>
+
+    <% if (modules[m].array_len) { %>
+      int <%= f.func.split('(')[0] %>(int);
+    <% } else { %>
+      int <%= f.func %>();
+    <% } %>
+    <%= f.signedness %>int<%= f.intlen %>_t get_<%= f.name %>();
+
+  <% } %>
+  // TODO implement char* funcs if needed
 <% })}) %>
 
 <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {

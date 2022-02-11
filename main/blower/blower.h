@@ -24,10 +24,7 @@ void refresh_blower();
 
 /* KV Callbacks */
 
-int on_set_box_blower_ref_source(int motorId, int value);
-int on_set_box_blower_min(int boxId, int value);
-int on_set_box_blower_max(int boxId, int value);
-int on_set_box_blower_ref_min(int boxId, int value);
-int on_set_box_blower_ref_max(int boxId, int value);
+int on_set_box_blower_type(int boxId, int value);
+int on_set_box_blower_power(int boxId, int value);
 
 #endif

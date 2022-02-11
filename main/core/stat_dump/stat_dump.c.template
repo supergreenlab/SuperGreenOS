@@ -42,7 +42,7 @@ static void stat_dump_task(void *param) {
     int value;
     char str[MAX_KVALUE_SIZE] = {0};
     <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-      Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].nosend).forEach(f => { f = modules[m].fields[f] %>
+      Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].nosend && !modules[m].fields[f].func).forEach(f => { f = modules[m].fields[f] %>
     if ((counter % <%= f.dump_freq %>) == 0<% if (!f.indir.enable) { %> || is_<%= f.name %>_changed()<% } %>) {
       <% if (f.type == 'integer') { %>
         value = get_<%= f.name %>();
@@ -52,6 +52,18 @@ static void stat_dump_task(void *param) {
         ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "<%= f.caps_name %>", str);
       <% } %>
       vTaskDelay(200 / portTICK_PERIOD_MS);
+      <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
+        Object.keys(modules[m].fields).filter(f => modules[m].fields[f].dump_with == f.name).forEach(f2 => { f2 = modules[m].fields[f2] %>
+        <% if (f2.type == 'integer') { %>
+          value = get_<%= f2.name %>();
+          ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%d", "<%= f2.caps_name %>", value);
+        <% } else { %>
+          get_<%= f2.name %>(str, MAX_KVALUE_SIZE-1);
+          ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", "<%= f2.caps_name %>", str);
+        <% } %>
+        vTaskDelay(200 / portTICK_PERIOD_MS);
+      <% })}) %>
+
       <% if (!f.indir.enable) { %>
       reset_<%= f.name %>_changed();
       <% } %>

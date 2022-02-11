@@ -13,8 +13,8 @@ modules timer fields "\(k)_timer_type": _INT8 & _NVS & _HTTP_RW & {
 } for k, v in _box_conf
 
 modules timer fields "\(k)_timer_output": _INT8 & _HTTP & {
-  blower_ref: 0x8+k
-  fan_ref: 0x8+k
+  blower_ref: 0xf+k
+  fan_ref: 0xf+k
   valve_ref_on: 0x2e+k
   valve_ref: 0x2e+k
   helper: "Box #\(k+1) timer output"

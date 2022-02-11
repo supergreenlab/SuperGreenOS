@@ -30,10 +30,12 @@ _I2C_MODULE: _MODULE & {
 
 _FIELD: {
   type: "string" | "integer"
+  func: string | *""
   remote: bool | *true
   nosend: bool | *false
   helper: string | *""
   dump_freq: int | *60
+  dump_with: string | *""
   nvs: {
     enable: bool | *false
     key: string if enable == true
