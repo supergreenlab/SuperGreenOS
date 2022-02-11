@@ -29,6 +29,7 @@
 #include "reboot/reboot.h"
 #include "mqtt/mqtt.h"
 #include "wifi/wifi.h"
+#include "vpn/vpn.h"
 #include "time/time.h"
 #include "i2c/i2c.h"
 #include "ota/ota.h"
@@ -59,6 +60,7 @@ void app_main() {
   init_tester();
 
   init_wifi();
+  init_vpn();
 
   init_mqtt();
   init_ota();
