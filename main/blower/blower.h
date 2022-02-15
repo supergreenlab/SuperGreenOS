@@ -19,6 +19,13 @@
 #ifndef BLOWER_H_
 #define BLOWER_H_
 
+typedef enum {
+  MANUAL,
+  AUTO,
+  TIMER,
+  DRYING,
+} blower_type;
+
 void init_blower();
 void refresh_blower();
 

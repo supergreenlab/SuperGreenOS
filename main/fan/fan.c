@@ -45,6 +45,12 @@ static void fan_task(void *param) {
   while (1) {
     for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1) continue;
+      int type = get_box_fan_type(i);
+      if (type == MANUAL) {
+        int power = get_box_fan_power(i);
+        set_box_fan_duty(i, power);
+        continue;
+      }
       int vmin = get_box_fan_min(i);
       int vmax = get_box_fan_max(i);
       int rmin = get_box_fan_ref_min(i);
@@ -77,51 +83,54 @@ void refresh_fan() {
 }
 
 void init_fan() {
-  ESP_LOGI(SGO_LOG_EVENT, "@FAN Initializing fan task");
+  ESP_LOGI(SGO_LOG_EVENT, "@BLOWER Initializing fan task");
 
   cmd = xQueueCreate(10, sizeof(fan_cmd));
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@FAN Unable to create fan queue");
+    ESP_LOGE(SGO_LOG_EVENT, "@BLOWER Unable to create fan queue");
   }
 
-  BaseType_t ret = xTaskCreatePinnedToCore(fan_task, "FAN", 4096, NULL, 10, NULL, 1);
+  BaseType_t ret = xTaskCreatePinnedToCore(fan_task, "BLOWER", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@FAN Failed to create task");
+    ESP_LOGE(SGO_LOG_EVENT, "@BLOWER Failed to create task");
   }
+}
+
+int fan_min(int boxId) {
+  int power = get_box_fan_power(boxId);
+  int min = power - power * 0.2;
+  return min < 0 ? 0 : min;
+}
+
+int fan_max(int boxId) {
+  int power = get_box_fan_power(boxId);
+  int max = power + power * 0.2;
+  return max > 100 ? 100 : max;
+}
+
+int fan_ref_min(int boxId) {
+  return 0;
+}
+
+int fan_ref_max(int boxId) {
+  return 100;
+}
+
+int fan_ref(int boxId) {
+  return get_box_timer_output(boxId);
 }
 
 /* KV Callbacks */
 
-int on_set_box_fan_ref_source(int motorId, int value) {
-  set_box_fan_ref_source(motorId, value);
+int on_set_box_fan_type(int motorId, int value) {
+  set_box_fan_type(motorId, value);
   refresh_fan();
   return value;
 }
 
-int on_set_box_fan_min(int boxId, int value) {
+int on_set_box_fan_power(int boxId, int value) {
   value = min(100, max(value, 0));
-  set_box_fan_min(boxId, value);
-  refresh_fan();
-  return value;
-}
-
-int on_set_box_fan_max(int boxId, int value) {
-  value = min(100, max(value, 0));
-  set_box_fan_max(boxId, value);
-  refresh_fan();
-  return value;
-}
-
-int on_set_box_fan_ref_min(int boxId, int value) {
-  value = min(100, max(value, 0));
-  set_box_fan_ref_min(boxId, value);
-  refresh_fan();
-  return value;
-}
-
-int on_set_box_fan_ref_max(int boxId, int value) {
-  value = min(100, max(value, 0));
-  set_box_fan_ref_max(boxId, value);
+  set_box_fan_power(boxId, value);
   refresh_fan();
   return value;
 }

@@ -17,6 +17,11 @@ modules blower fields "\(k)_blower_power": _INT8 & _NVS & _HTTP_RW & {
   default: 15
 } for k, v in _box_conf
 
+modules blower fields "\(k)_blower_vpd_ref": _INT8 & _NVS & _HTTP_RW & {
+  nvs key: "B_\(k)_BLWR_VPD"
+  default: 10
+} for k, v in _box_conf
+
 modules blower fields "\(k)_blower_min": _INT8 & _HTTP & {
   func: "blower_min(\(k))"
   dump_with: "\(k)_blower_duty"
@@ -44,6 +49,6 @@ modules blower fields "\(k)_blower_ref": _INT8 & _HTTP & {
 
 modules blower fields "\(k)_blower_type": _INT8 & _NVS & _HTTP_RW & {
   nvs key: "B_\(k)_BLWR_TYP"
-  default: v.blower_ref_source
+  default: 2
   write_cb: true
 } for k, v in _box_conf

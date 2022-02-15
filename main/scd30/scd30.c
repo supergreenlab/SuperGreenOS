@@ -58,7 +58,9 @@ void loop_scd30(int i2cId) {
 			float vpd = lsvp - (asvp * (float)s->humidity / 100.0);
 			set_scd30_temp(i2cId, roundf(s->temperature));
 			set_scd30_humi(i2cId, roundf(s->humidity));
-			set_scd30_vpd(i2cId, vpd / 100);
+      if (vpd/100 < 40) {
+        set_scd30_vpd(i2cId, vpd / 100);
+      }
 
 			set_scd30_co2(i2cId, s->co2);
 

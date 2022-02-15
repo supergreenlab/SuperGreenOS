@@ -19,15 +19,17 @@
 #ifndef FAN_H_
 #define FAN_H_
 
+typedef enum {
+  MANUAL,
+  TIMER,
+} fan_type;
+
 void init_fan();
 void refresh_fan();
 
 /* KV Callbacks */
 
-int on_set_box_fan_ref_source(int motorId, int value);
-int on_set_box_fan_min(int boxId, int value);
-int on_set_box_fan_max(int boxId, int value);
-int on_set_box_fan_ref_min(int boxId, int value);
-int on_set_box_fan_ref_max(int boxId, int value);
+int on_set_box_fan_type(int boxId, int value);
+int on_set_box_fan_power(int boxId, int value);
 
 #endif

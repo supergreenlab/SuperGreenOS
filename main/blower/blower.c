@@ -45,6 +45,12 @@ static void blower_task(void *param) {
   while (1) {
     for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1) continue;
+      int type = get_box_blower_type(i);
+      if (type == MANUAL) {
+        int power = get_box_blower_power(i);
+        set_box_blower_duty(i, power);
+        continue;
+      }
       int vmin = get_box_blower_min(i);
       int vmax = get_box_blower_max(i);
       int rmin = get_box_blower_ref_min(i);
@@ -90,24 +96,62 @@ void init_blower() {
   }
 }
 
+bool use_temp_ref(int boxId) {
+  int type = get_box_blower_type(boxId);
+  if (type == DRYING) {
+    return false;
+  }
+  int vpd = get_box_vpd(boxId);
+  int vpd_ref = get_box_blower_vpd_ref(boxId);
+  return vpd > vpd_ref;
+}
+
 int blower_min(int boxId) {
-  return 100;
+  int power = get_box_blower_power(boxId);
+  int min = power - power * 0.2;
+  return min < 0 ? 0 : min;
 }
 
 int blower_max(int boxId) {
-  return 0;
+  int power = get_box_blower_power(boxId);
+  int max = power + power * 0.2;
+  return max > 100 ? 100 : max;
 }
 
 int blower_ref_min(int boxId) {
-  return 21;
+  int type = get_box_blower_type(boxId);
+  if (type == TIMER) {
+    return 0;
+  }
+
+  if (use_temp_ref(boxId)) {
+    return 19;
+  }
+
+  return 40;
 }
 
 int blower_ref_max(int boxId) {
-  return 30;
+  int type = get_box_blower_type(boxId);
+  if (type == TIMER) {
+    return 100;
+  }
+  if (use_temp_ref(boxId)) {
+    return 34;
+  }
+
+  return 85;
 }
 
 int blower_ref(int boxId) {
-  return 25;
+  int type = get_box_blower_type(boxId);
+  if (type == TIMER) {
+    return get_box_timer_output(boxId);
+  }
+  if (use_temp_ref(boxId)) {
+    return get_box_temp(boxId);
+  }
+  return get_box_humi(boxId);
 }
 
 /* KV Callbacks */
