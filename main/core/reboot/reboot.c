@@ -28,7 +28,7 @@
 #include "../kv/kv.h"
 #include "../ota/ota.h"
 
-#define MAX_SHORT_REBOOTS 5
+#define MAX_SHORT_REBOOTS 12
 #define N_SHORT_REBOOTS "NSHRBTS"
 
 static QueueHandle_t cmd;
