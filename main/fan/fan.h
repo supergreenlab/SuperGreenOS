@@ -20,8 +20,8 @@
 #define FAN_H_
 
 typedef enum {
-  MANUAL,
-  TIMER,
+  FAN_MANUAL,
+  FAN_TIMER,
 } fan_type;
 
 void init_fan();

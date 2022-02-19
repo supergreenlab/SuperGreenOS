@@ -7,7 +7,7 @@ modules fan: _MODULE & {
 }
 
 modules fan fields "\(k)_fan_duty": _INT8 & _HTTP & {
-  motor_input: 0x1 + k 
+  motor_input: 0xf + k 
   helper: "fan control for box#\(k+1)"
   default: 0
 } for k, v in _box_conf

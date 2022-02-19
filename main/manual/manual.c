@@ -18,10 +18,12 @@
 
 #include "manual.h"
 
+#include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
 void start_manual(int boxId) {
   ESP_LOGI(SGO_LOG_NOSEND, "@MANUAL_%d start_manual", boxId);
+  set_box_timer_output(boxId, 100);
 }
 
 void stop_manual(int boxId) {

@@ -46,7 +46,7 @@ static void blower_task(void *param) {
     for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1) continue;
       int type = get_box_blower_type(i);
-      if (type == MANUAL) {
+      if (type == BLOWER_MANUAL) {
         int power = get_box_blower_power(i);
         set_box_blower_duty(i, power);
         continue;
@@ -98,7 +98,7 @@ void init_blower() {
 
 bool use_temp_ref(int boxId) {
   int type = get_box_blower_type(boxId);
-  if (type == DRYING) {
+  if (type == BLOWER_DRYING) {
     return false;
   }
   int vpd = get_box_vpd(boxId);
@@ -120,7 +120,7 @@ int blower_max(int boxId) {
 
 int blower_ref_min(int boxId) {
   int type = get_box_blower_type(boxId);
-  if (type == TIMER) {
+  if (type == BLOWER_TIMER) {
     return 0;
   }
 
@@ -133,7 +133,7 @@ int blower_ref_min(int boxId) {
 
 int blower_ref_max(int boxId) {
   int type = get_box_blower_type(boxId);
-  if (type == TIMER) {
+  if (type == BLOWER_TIMER) {
     return 100;
   }
   if (use_temp_ref(boxId)) {
@@ -145,7 +145,7 @@ int blower_ref_max(int boxId) {
 
 int blower_ref(int boxId) {
   int type = get_box_blower_type(boxId);
-  if (type == TIMER) {
+  if (type == BLOWER_TIMER) {
     return get_box_timer_output(boxId);
   }
   if (use_temp_ref(boxId)) {

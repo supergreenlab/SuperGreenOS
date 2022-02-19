@@ -1212,7 +1212,7 @@
               "integer": true,
               "caps_name": "BOX_0_TEMP",
               "module": "box",
-              
+              "helper": "Box #1 temperature",
               
               "write": false,
               
@@ -1238,7 +1238,7 @@
               "integer": true,
               "caps_name": "BOX_1_TEMP",
               "module": "box",
-              
+              "helper": "Box #2 temperature",
               
               "write": false,
               
@@ -1264,7 +1264,7 @@
               "integer": true,
               "caps_name": "BOX_2_TEMP",
               "module": "box",
-              
+              "helper": "Box #3 temperature",
               
               "write": false,
               
@@ -1383,7 +1383,7 @@
               "integer": true,
               "caps_name": "BOX_0_HUMI",
               "module": "box",
-              
+              "helper": "Box #1 humidity",
               
               "write": false,
               
@@ -1409,7 +1409,7 @@
               "integer": true,
               "caps_name": "BOX_1_HUMI",
               "module": "box",
-              
+              "helper": "Box #2 humidity",
               
               "write": false,
               
@@ -1435,7 +1435,7 @@
               "integer": true,
               "caps_name": "BOX_2_HUMI",
               "module": "box",
-              
+              "helper": "Box #3 humidity",
               
               "write": false,
               
@@ -3190,7 +3190,7 @@
                 },
               
               
-              "default": 100
+              "default": 70
             },
           
             {
@@ -3216,7 +3216,7 @@
                 },
               
               
-              "default": 100
+              "default": 70
             },
           
             {
@@ -3242,7 +3242,7 @@
                 },
               
               
-              "default": 100
+              "default": 70
             },
           
             {
@@ -3270,7 +3270,7 @@
               
                 "indir": {
                   "values": [1,2,3,15,16,17,8,9,10],
-                  "helpers": ["Blower control for box#1","Blower control for box#2","Blower control for box#3","Fan control for box#1","Fan control for box#2","Fan control for box#3","Watering control for box#1","Watering control for box#2","Watering control for box#3"]
+                  "helpers": ["Blower control for box#1","Blower control for box#2","Blower control for box#3","fan control for box#1","fan control for box#2","fan control for box#3","Watering control for box#1","Watering control for box#2","Watering control for box#3"]
                 },
               
               "default": 1
@@ -3301,7 +3301,7 @@
               
                 "indir": {
                   "values": [1,2,3,15,16,17,8,9,10],
-                  "helpers": ["Blower control for box#1","Blower control for box#2","Blower control for box#3","Fan control for box#1","Fan control for box#2","Fan control for box#3","Watering control for box#1","Watering control for box#2","Watering control for box#3"]
+                  "helpers": ["Blower control for box#1","Blower control for box#2","Blower control for box#3","fan control for box#1","fan control for box#2","fan control for box#3","Watering control for box#1","Watering control for box#2","Watering control for box#3"]
                 },
               
               "default": 2
@@ -3332,7 +3332,7 @@
               
                 "indir": {
                   "values": [1,2,3,15,16,17,8,9,10],
-                  "helpers": ["Blower control for box#1","Blower control for box#2","Blower control for box#3","Fan control for box#1","Fan control for box#2","Fan control for box#3","Watering control for box#1","Watering control for box#2","Watering control for box#3"]
+                  "helpers": ["Blower control for box#1","Blower control for box#2","Blower control for box#3","fan control for box#1","fan control for box#2","fan control for box#3","Watering control for box#1","Watering control for box#2","Watering control for box#3"]
                 },
               
               "default": 3
@@ -3730,6 +3730,162 @@
           
             {
               "core": false,
+              "name": "box_0_blower_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_POWER",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "blower_power"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_power"
+                },
+              
+              
+              "default": 15
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_blower_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_POWER",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "blower_power"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_power"
+                },
+              
+              
+              "default": 15
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_blower_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_POWER",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "blower_power"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_power"
+                },
+              
+              
+              "default": 15
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_blower_vpd_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_BLOWER_VPD_REF",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "blower_vpd_ref"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "blower_vpd_ref"
+                },
+              
+              
+              "default": 10
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_blower_vpd_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_BLOWER_VPD_REF",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "blower_vpd_ref"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_vpd_ref"
+                },
+              
+              
+              "default": 10
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_blower_vpd_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_VPD_REF",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "blower_vpd_ref"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "blower_vpd_ref"
+                },
+              
+              
+              "default": 10
+            },
+          
+            {
+              "core": false,
               "name": "box_0_blower_min",
               "type": "integer",
               "integer": true,
@@ -3737,7 +3893,7 @@
               "module": "blower",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -3751,7 +3907,7 @@
                 },
               
               
-              "default": 8
+              "default": 0
             },
           
             {
@@ -3763,7 +3919,7 @@
               "module": "blower",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -3777,7 +3933,7 @@
                 },
               
               
-              "default": 8
+              "default": 0
             },
           
             {
@@ -3789,7 +3945,7 @@
               "module": "blower",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -3803,7 +3959,7 @@
                 },
               
               
-              "default": 8
+              "default": 0
             },
           
             {
@@ -3815,7 +3971,7 @@
               "module": "blower",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -3829,7 +3985,7 @@
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
@@ -3841,7 +3997,7 @@
               "module": "blower",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -3855,7 +4011,7 @@
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
@@ -3867,7 +4023,7 @@
               "module": "blower",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -3881,7 +4037,7 @@
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
@@ -3893,7 +4049,7 @@
               "module": "blower",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -3907,7 +4063,7 @@
                 },
               
               
-              "default": 21
+              "default": 0
             },
           
             {
@@ -3919,7 +4075,7 @@
               "module": "blower",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -3933,7 +4089,7 @@
                 },
               
               
-              "default": 21
+              "default": 0
             },
           
             {
@@ -3945,7 +4101,7 @@
               "module": "blower",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -3959,7 +4115,7 @@
                 },
               
               
-              "default": 21
+              "default": 0
             },
           
             {
@@ -3971,7 +4127,7 @@
               "module": "blower",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -3985,7 +4141,7 @@
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
@@ -3997,7 +4153,7 @@
               "module": "blower",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4011,7 +4167,7 @@
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
@@ -4023,7 +4179,7 @@
               "module": "blower",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4037,7 +4193,7 @@
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
@@ -4120,10 +4276,10 @@
           
             {
               "core": false,
-              "name": "box_0_blower_ref_source",
+              "name": "box_0_blower_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_BLOWER_REF_SOURCE",
+              "caps_name": "BOX_0_BLOWER_TYPE",
               "module": "blower",
               
               
@@ -4133,59 +4289,49 @@
                   "name": "box",
                   "len": 3,
                   "index": 0,
-                  "param": "blower_ref_source"
+                  "param": "blower_type"
                 },
                 "box": {
                   "index": 0,
-                  "param": "blower_ref_source"
+                  "param": "blower_type"
                 },
               
-              
-                "indir": {
-                  "values": [37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25,8,9,10],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
-                },
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
-              "name": "box_1_blower_ref_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_1_BLOWER_REF_SOURCE",
-              "module": "blower",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 3,
-                  "index": 1,
-                  "param": "blower_ref_source"
-                },
-                "box": {
-                  "index": 1,
-                  "param": "blower_ref_source"
-                },
-              
-              
-                "indir": {
-                  "values": [37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25,8,9,10],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
-                },
               
               "default": 2
             },
           
             {
               "core": false,
-              "name": "box_2_blower_ref_source",
+              "name": "box_1_blower_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_2_BLOWER_REF_SOURCE",
+              "caps_name": "BOX_1_BLOWER_TYPE",
+              "module": "blower",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "blower_type"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "blower_type"
+                },
+              
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_blower_type",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_BLOWER_TYPE",
               "module": "blower",
               
               
@@ -4195,20 +4341,15 @@
                   "name": "box",
                   "len": 3,
                   "index": 2,
-                  "param": "blower_ref_source"
+                  "param": "blower_type"
                 },
                 "box": {
                   "index": 2,
-                  "param": "blower_ref_source"
+                  "param": "blower_type"
                 },
               
               
-                "indir": {
-                  "values": [37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25,8,9,10],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
-                },
-              
-              "default": 0
+              "default": 2
             },
           
             {
@@ -4686,7 +4827,7 @@
               "integer": true,
               "caps_name": "BOX_0_FAN_DUTY",
               "module": "fan",
-              "helper": "Fan control for box#1",
+              "helper": "fan control for box#1",
               
               "write": false,
               
@@ -4712,7 +4853,7 @@
               "integer": true,
               "caps_name": "BOX_1_FAN_DUTY",
               "module": "fan",
-              "helper": "Fan control for box#2",
+              "helper": "fan control for box#2",
               
               "write": false,
               
@@ -4738,7 +4879,7 @@
               "integer": true,
               "caps_name": "BOX_2_FAN_DUTY",
               "module": "fan",
-              "helper": "Fan control for box#3",
+              "helper": "fan control for box#3",
               
               "write": false,
               
@@ -4759,6 +4900,162 @@
           
             {
               "core": false,
+              "name": "box_0_fan_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_FAN_POWER",
+              "module": "fan",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "fan_power"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "fan_power"
+                },
+              
+              
+              "default": 15
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_fan_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_FAN_POWER",
+              "module": "fan",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "fan_power"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "fan_power"
+                },
+              
+              
+              "default": 15
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_fan_power",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_FAN_POWER",
+              "module": "fan",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "fan_power"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "fan_power"
+                },
+              
+              
+              "default": 15
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_fan_vpd_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_FAN_VPD_REF",
+              "module": "fan",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 0,
+                  "param": "fan_vpd_ref"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "fan_vpd_ref"
+                },
+              
+              
+              "default": 10
+            },
+          
+            {
+              "core": false,
+              "name": "box_1_fan_vpd_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_1_FAN_VPD_REF",
+              "module": "fan",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 1,
+                  "param": "fan_vpd_ref"
+                },
+                "box": {
+                  "index": 1,
+                  "param": "fan_vpd_ref"
+                },
+              
+              
+              "default": 10
+            },
+          
+            {
+              "core": false,
+              "name": "box_2_fan_vpd_ref",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_2_FAN_VPD_REF",
+              "module": "fan",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 3,
+                  "index": 2,
+                  "param": "fan_vpd_ref"
+                },
+                "box": {
+                  "index": 2,
+                  "param": "fan_vpd_ref"
+                },
+              
+              
+              "default": 10
+            },
+          
+            {
+              "core": false,
               "name": "box_0_fan_min",
               "type": "integer",
               "integer": true,
@@ -4766,7 +5063,7 @@
               "module": "fan",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4780,7 +5077,7 @@
                 },
               
               
-              "default": 8
+              "default": 0
             },
           
             {
@@ -4792,7 +5089,7 @@
               "module": "fan",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4806,7 +5103,7 @@
                 },
               
               
-              "default": 8
+              "default": 0
             },
           
             {
@@ -4818,7 +5115,7 @@
               "module": "fan",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4832,7 +5129,7 @@
                 },
               
               
-              "default": 8
+              "default": 0
             },
           
             {
@@ -4844,7 +5141,7 @@
               "module": "fan",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4858,7 +5155,7 @@
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
@@ -4870,7 +5167,7 @@
               "module": "fan",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4884,7 +5181,7 @@
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
@@ -4896,7 +5193,7 @@
               "module": "fan",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4910,7 +5207,7 @@
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
@@ -4922,7 +5219,7 @@
               "module": "fan",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4936,7 +5233,7 @@
                 },
               
               
-              "default": 21
+              "default": 0
             },
           
             {
@@ -4948,7 +5245,7 @@
               "module": "fan",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4962,7 +5259,7 @@
                 },
               
               
-              "default": 21
+              "default": 0
             },
           
             {
@@ -4974,7 +5271,7 @@
               "module": "fan",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -4988,7 +5285,7 @@
                 },
               
               
-              "default": 21
+              "default": 0
             },
           
             {
@@ -5000,7 +5297,7 @@
               "module": "fan",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -5014,7 +5311,7 @@
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
@@ -5026,7 +5323,7 @@
               "module": "fan",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -5040,7 +5337,7 @@
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
@@ -5052,7 +5349,7 @@
               "module": "fan",
               
               
-              "write": true,
+              "write": false,
               
                 "array": {
                   "name": "box",
@@ -5066,7 +5363,7 @@
                 },
               
               
-              "default": 30
+              "default": 0
             },
           
             {
@@ -5149,10 +5446,10 @@
           
             {
               "core": false,
-              "name": "box_0_fan_ref_source",
+              "name": "box_0_fan_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_FAN_REF_SOURCE",
+              "caps_name": "BOX_0_FAN_TYPE",
               "module": "fan",
               
               
@@ -5162,28 +5459,23 @@
                   "name": "box",
                   "len": 3,
                   "index": 0,
-                  "param": "fan_ref_source"
+                  "param": "fan_type"
                 },
                 "box": {
                   "index": 0,
-                  "param": "fan_ref_source"
+                  "param": "fan_type"
                 },
               
-              
-                "indir": {
-                  "values": [37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25,8,9,10],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
-                },
               
               "default": 1
             },
           
             {
               "core": false,
-              "name": "box_1_fan_ref_source",
+              "name": "box_1_fan_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_1_FAN_REF_SOURCE",
+              "caps_name": "BOX_1_FAN_TYPE",
               "module": "fan",
               
               
@@ -5193,28 +5485,23 @@
                   "name": "box",
                   "len": 3,
                   "index": 1,
-                  "param": "fan_ref_source"
+                  "param": "fan_type"
                 },
                 "box": {
                   "index": 1,
-                  "param": "fan_ref_source"
+                  "param": "fan_type"
                 },
               
               
-                "indir": {
-                  "values": [37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25,8,9,10],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
-                },
-              
-              "default": 2
+              "default": 1
             },
           
             {
               "core": false,
-              "name": "box_2_fan_ref_source",
+              "name": "box_2_fan_type",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_2_FAN_REF_SOURCE",
+              "caps_name": "BOX_2_FAN_TYPE",
               "module": "fan",
               
               
@@ -5224,20 +5511,15 @@
                   "name": "box",
                   "len": 3,
                   "index": 2,
-                  "param": "fan_ref_source"
+                  "param": "fan_type"
                 },
                 "box": {
                   "index": 2,
-                  "param": "fan_ref_source"
+                  "param": "fan_type"
                 },
               
               
-                "indir": {
-                  "values": [37,38,39,44,45,46,50,51,52,30,31,32,1,2,3,15,16,17,23,24,25,8,9,10],
-                  "helpers": ["SCD30 temperature on port #1","SCD30 temperature on port #2","SCD30 temperature on port #3","SCD30 humidity on port #1","SCD30 humidity on port #2","SCD30 humidity on port #3","SCD30 vpd on port #1","SCD30 vpd on port #2","SCD30 vpd on port #3","SCD30 co2 on port #1","SCD30 co2 on port #2","SCD30 co2 on port #3","SHT21 temperature on port #1","SHT21 temperature on port #2","SHT21 temperature on port #3","SHT21 humidity on port #1","SHT21 humidity on port #2","SHT21 humidity on port #3","SHT21 vpd on port #1","SHT21 vpd on port #2","SHT21 vpd on port #3","Box #1 timer output","Box #2 timer output","Box #3 timer output"]
-                },
-              
-              "default": 0
+              "default": 1
             },
           
             {

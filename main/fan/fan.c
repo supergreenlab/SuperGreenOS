@@ -46,7 +46,7 @@ static void fan_task(void *param) {
     for (int i = 0; i < N_BOX; ++i) {
       if (get_box_enabled(i) != 1) continue;
       int type = get_box_fan_type(i);
-      if (type == MANUAL) {
+      if (type == FAN_MANUAL) {
         int power = get_box_fan_power(i);
         set_box_fan_duty(i, power);
         continue;

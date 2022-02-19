@@ -128,16 +128,14 @@
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "I2C_0_SDA"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -157,16 +155,14 @@
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "I2C_1_SDA"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -186,16 +182,14 @@
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "I2C_0_SCL"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -215,16 +209,14 @@
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "I2C_1_SCL"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -244,16 +236,14 @@
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "I2C_0_ENABLED"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -273,16 +263,14 @@
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "I2C_1_ENABLED"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -302,16 +290,14 @@
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "I2C_0_PORT"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -331,16 +317,14 @@
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "I2C_1_PORT"
+                        "enable": false,
+                        "manual": false
                     },
                     "ble": {
                         "enable": false
                     },
                     "http": {
-                        "enable": true,
-                        "write": true
+                        "enable": false
                     },
                     "indir": {
                         "enable": false
@@ -695,6 +679,34 @@
                     "suffix": "basedir",
                     "caps_name": "OTA_BASEDIR",
                     "default": "/PickleV2.1"
+                },
+                "ota_start": {
+                    "name": "ota_start",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "ota_start",
+                    "caps_name": "OTA_START",
+                    "default": 0
                 }
             }
         },

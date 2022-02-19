@@ -20,10 +20,10 @@
 #define BLOWER_H_
 
 typedef enum {
-  MANUAL,
-  AUTO,
-  TIMER,
-  DRYING,
+  BLOWER_MANUAL,
+  BLOWER_AUTO,
+  BLOWER_TIMER,
+  BLOWER_DRYING,
 } blower_type;
 
 void init_blower();
