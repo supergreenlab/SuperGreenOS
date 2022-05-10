@@ -1,3 +1,3 @@
 package config
 
-modules valve fields gpio default: 32
+modules valve fields gpio default: 17

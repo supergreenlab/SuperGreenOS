@@ -4438,7 +4438,7 @@
                 },
                 "2_gpio": {
                     "name": "motor_2_gpio",
-                    "default": 17,
+                    "default": 32,
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
@@ -9010,7 +9010,7 @@
             "fields": {
                 "gpio": {
                     "name": "valve_gpio",
-                    "default": 32,
+                    "default": 17,
                     "type": "integer",
                     "remote": true,
                     "nosend": false,

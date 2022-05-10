@@ -10,7 +10,7 @@ _motor_conf: [
     source: 2
   },
   {
-    gpio: 17
+    gpio: 32
     source: 3
   },
 ]
