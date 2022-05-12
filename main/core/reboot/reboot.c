@@ -28,7 +28,7 @@
 #include "../kv/kv.h"
 #include "../ota/ota.h"
 
-#define MAX_SHORT_REBOOTS 12
+#define MAX_SHORT_REBOOTS 5
 #define N_SHORT_REBOOTS "NSHRBTS"
 
 static QueueHandle_t cmd;
@@ -75,7 +75,7 @@ void init_reboot() {
 
 static void autoreboot_task(void *args) {
   // reset n_short_reboots to zero
-  vTaskDelay(60 * 1000 / portTICK_PERIOD_MS);
+  vTaskDelay(10 * 1000 / portTICK_PERIOD_MS);
   ESP_LOGI(SGO_LOG_EVENT, "@REBOOT N_SHORT_REBOOTS=0");
   seti8(N_SHORT_REBOOTS, 0);
 
