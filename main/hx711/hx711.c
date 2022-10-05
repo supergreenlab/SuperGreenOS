@@ -60,6 +60,9 @@ void loop_hx711(int i2cId) {
 	}
 
 	float divider = get_hx711_weight_calibration(i2cId);
+  if (divider <= 0) {
+    divider = 1;
+  }
 	int offset = get_hx711_weight_offset(i2cId);
 	weight += offset;
 	weight /= divider;

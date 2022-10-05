@@ -2,7 +2,7 @@ package config
 
 modules reboot: _CORE_MODULE
 
-modules reboot fields n_restarts: _INT8 & _HTTP & _NVS & {
+modules reboot fields n_restarts: _UINT8 & _HTTP & _NVS & {
   name: "n_restarts"
   nvs key: "N_RESTARTS"
   default: 0

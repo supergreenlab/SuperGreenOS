@@ -59,7 +59,7 @@ void init_reboot() {
 
   cmd = xQueueCreate(10, sizeof(unsigned char));
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt queue");
+    ESP_LOGE(SGO_LOG_EVENT, "@REBOOT Unable to create reboot queue");
   }
 
   BaseType_t ret = xTaskCreatePinnedToCore(autoreboot_task, "AUTOREBOOT", 2048, NULL, 10, NULL, 1);

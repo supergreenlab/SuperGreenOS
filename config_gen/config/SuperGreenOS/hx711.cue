@@ -21,7 +21,7 @@ modules hx711 fields "\(k)_weight_calibration": _UINT8 & _NVS & _HTTP_RW & {
   helper: "HX711 weight divider calibration on port #\(k+1)"
 } for k, v in _i2c_conf
 
-modules hx711 fields "\(k)_weight_offset": _INT16 & _NVS & _HTTP_RW & {
+modules hx711 fields "\(k)_weight_offset": _INT32 & _NVS & _HTTP_RW & {
   default: 0
   nvs key: "HX_\(k)_W_OFF"
   helper: "HX711 weight weight offset on port #\(k+1)"
