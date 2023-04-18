@@ -39,11 +39,11 @@ Here's what it can (or will) do:
 - Up to 6 separate led channels (you can put multiple leds behind one channel)
 - Up to 3 separate timers, for full-cycle setups (veg + flo)
 - Monitoring a wide range of sensors
-- Data sent to a **private** [cloud](https://github.com/supergreenlab/SuperGreenCloud)
+- Data sent to a MQTT server
 - Produce alerts based on sensor values
-- Allows remote control (TODO)
+- Allows remote control
 - Manual ventilation control
-- Automatic ventilation control based on temperature and humidity (TODO)
+- Automatic ventilation control based on temperature and humidity
 - `Stretch` mode, allows to choose how much you want your plant to stretch or thicken
 - `Sunglass` mode, so you don't burn your eyes when you work on your plants
 - More to come..
