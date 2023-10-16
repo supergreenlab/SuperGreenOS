@@ -16,12 +16,8 @@
 #include <stdlib.h>
 #include "m5tft.h"
 
-#define M5DISPLAY_TYPE DISP_TYPE_ST7735S  /* !< Display type for display driver */
-#define M5DISPLAY_WIDTH 160               /* !< Display width in pixels after rotation */
-#define M5DISPLAY_HEIGHT 80               /* !< Display height in pixels after rotation */
-
+#include "spi_master_lobo.h"
 #include "tftspi.h"
-
 #include "tft.h"
 
 #include "freertos/FreeRTOS.h"
@@ -29,6 +25,10 @@
 
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
+
+#define M5DISPLAY_TYPE DISP_TYPE_ST7735S  /* !< Display type for display driver */
+#define M5DISPLAY_WIDTH 160               /* !< Display width in pixels after rotation */
+#define M5DISPLAY_HEIGHT 80               /* !< Display height in pixels after rotation */
 
 spi_lobo_device_handle_t m5_display_spi;
 
@@ -112,24 +112,25 @@ void init_m5tft() {
 	TFT_setRotation(LANDSCAPE);
 	TFT_setFont(DEFAULT_FONT, NULL);
 	TFT_resetclipwin();
+  TFT_fillScreen(TFT_BLACK);
 
   xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 4096, NULL, 10, NULL, 1);
 }
 
 static void m5tft_task(void *param) {
-  int i = 0;
   while (true) {
     char strbuff[50];
 
-    TFT_fillScreen(TFT_WHITE);
-    TFT_print("Hello world", 5, 10);
-    sprintf((char *)strbuff, "%d\n", i);
-    TFT_print((char *)strbuff, CENTER, 10);
+    int temp = get_box_temp(0);
+    int humi = get_box_humi(0);
+    int co2 = get_box_co2(0);
 
-    ESP_LOGI(SGO_LOG_EVENT, "%i", i);
+    TFT_fillScreen(TFT_BLACK);
+    TFT_print("SuperGreenTips", 5, 10);
+    sprintf((char *)strbuff, "Temp: %d\nHumi: %d\nco2: %d", temp, humi, co2);
+    TFT_print((char *)strbuff, CENTER, 30);
 
     vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
-    ++i;
   }
 }
 

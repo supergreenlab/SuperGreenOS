@@ -141,7 +141,7 @@ extern "C" {
 #define DEFAULT_TFT_DISPLAY_HEIGHT  160
 #define DISP_COLOR_BITS_24          0x66
 #define DEFAULT_GAMMA_CURVE         0
-#define DEFAULT_SPI_CLOCK           26666666
+#define DEFAULT_SPI_CLOCK           26000000
 #define TFT_INVERT_ROTATION         0
 #define TFT_INVERT_ROTATION1        1
 #define TFT_INVERT_ROTATION2        1
