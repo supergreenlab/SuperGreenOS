@@ -81,7 +81,10 @@ StaticSemaphore_t mutex_buffer;
       <% } %>
       xSemaphoreTake(_mutex_<%= f.name %>, 0);
       <% if (!f.nvs.enable) { %>
-        if (_<%= f.name %> == value) return;
+        if (_<%= f.name %> == value) {
+          xSemaphoreGive(_mutex_<%= f.name %>);
+          return;
+        }
         _<%= f.name %> = value;
       <% } %>
       _<%= f.name %>_changed = true;
@@ -116,7 +119,10 @@ StaticSemaphore_t mutex_buffer;
       <% } %>
       xSemaphoreTake(_mutex_<%= f.name %>, 0);
       <% if (!f.nvs.enable) { %>
-      if (!strcmp(_<%= f.name %>, value)) return;
+      if (!strcmp(_<%= f.name %>, value)) {
+        xSemaphoreGive(_mutex_<%= f.name %>);
+        return;
+      }
       strncpy(_<%= f.name %>, value, strlen(value));
       _<%= f.name %>[strlen(value)] = 0;
       <% } %>

@@ -24,6 +24,8 @@
 
 #include "../status_led/status_led.h"
 
+#ifdef MODULE_STATUS_LED
+
 status_led_timeline ok_timeline = {
   .loop = true,
   .fade = true,
@@ -31,6 +33,8 @@ status_led_timeline ok_timeline = {
   .red = {LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY},
   .green = {LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2, LED_MAX_DUTY, LED_MAX_DUTY/2},
 };
+
+#endif
 
 static void sensor_tester_task(void *param);
 
@@ -42,6 +46,9 @@ void init_sensor_tester() {
 
 static void sensor_tester_task(void *param) {
   while (true) {
+
+#ifdef MODULE_STATUS_LED
+
     status_led_timeline timeline = {
       .loop = true,
       .fade = false,
@@ -50,18 +57,32 @@ static void sensor_tester_task(void *param) {
       .green = {LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY},
     };
 
+#endif
+
     bool ok = true;
     for (int i = 0; i < N_SHT21; ++i) {
       bool is_ok = get_sht21_present(i) == 1;
       ok &= is_ok;
+
+#ifdef MODULE_STATUS_LED
+
       timeline.green[i*2] = is_ok ? LED_MAX_DUTY : LED_MIN_DUTY;
       timeline.red[i*2] = is_ok ? LED_MIN_DUTY : LED_MAX_DUTY;
+
+#endif
+
     }
+
+#ifdef MODULE_STATUS_LED
+
     if (ok) {
       set_status_led_timeline(ok_timeline);
     } else {
       set_status_led_timeline(timeline);
     }
+
+#endif
+
     vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 }

@@ -32,7 +32,13 @@
 //  KV Callbacks
 
 int on_set_box_led_dim(int boxId, int value) {
+
+#ifdef MODULE_LED
+
   refresh_led(boxId, -1);
+
+#endif
+
   return value;
 }
 
@@ -42,14 +48,24 @@ int on_set_box_enabled(int boxId, int value) {
   }
   set_box_enabled(boxId, value);
   if (value == 0) {
+
+#ifdef MODULE_LED
     set_all_duty(boxId, 0, -1);
+#endif
+
 #ifdef MODULE_BLOWER
     set_box_blower_duty(boxId, 0);
 #endif
+
   }
+
+#ifdef MODULE_TIMER
   refresh_timer();
+#endif
+
 #ifdef MODULE_BLOWER
   refresh_blower();
 #endif
+
   return value;
 }

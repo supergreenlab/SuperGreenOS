@@ -22,6 +22,8 @@
 
 #include "./status_led/status_led.h"
 
+#ifdef MODULE_STATUS_LED
+
 status_led_timeline connecting_timeline = {
   .reset = true,
   .loop = true,
@@ -49,9 +51,12 @@ status_led_timeline connection_failed_timeline = {
   .green = {LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY, LED_MIN_DUTY},
 };
 
+#endif
+
 void on_wifi_status_changed() {
   wifi_status status = get_wifi_status();
 
+#ifdef MODULE_STATUS_LED
   if (status == CONNECTING) {
     set_status_led_timeline(connecting_timeline);
   } else if (status == CONNECTED) {
@@ -59,4 +64,5 @@ void on_wifi_status_changed() {
   } else if (status == FAILED) {
     set_status_led_timeline(connection_failed_timeline);
   }
+#endif
 }

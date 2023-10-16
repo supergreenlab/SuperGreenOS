@@ -23,6 +23,8 @@
 
 #include "../status_led/status_led.h"
 
+#ifdef MODULE_STATUS_LED
+
 status_led_timeline new_timeline = {
   .loop = true,
   .fade = true,
@@ -41,18 +43,24 @@ status_led_timeline running_timeline = {
   .green = {LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY/10, LED_MAX_DUTY, LED_MAX_DUTY, LED_MAX_DUTY/10, LED_MAX_DUTY/10},
 };
 
+#endif
+
 void init_state() {
   int state = get_state();
+#ifdef MODULE_STATUS_LED
   if (state == FIRST_RUN) {
     set_status_led_timeline(new_timeline);
   }
+#endif
 }
 
 int on_set_state(int state) {
+#ifdef MODULE_STATUS_LED
   if (state == FIRST_RUN) {
     set_status_led_timeline(new_timeline);
   } else {
     set_status_led_timeline(running_timeline);
   }
+#endif
   return state;
 }

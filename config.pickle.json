@@ -491,7 +491,7 @@
                         "enable": false
                     },
                     "write_cb": false,
-                    "signedness": "",
+                    "signedness": "u",
                     "intlen": 8,
                     "suffix": "n_restarts",
                     "caps_name": "N_RESTARTS",
@@ -3525,7 +3525,7 @@
                     },
                     "write_cb": false,
                     "signedness": "",
-                    "intlen": 16,
+                    "intlen": 32,
                     "suffix": "0_weight_offset",
                     "caps_name": "HX711_0_WEIGHT_OFFSET",
                     "default": 0
@@ -3554,7 +3554,7 @@
                     },
                     "write_cb": false,
                     "signedness": "",
-                    "intlen": 16,
+                    "intlen": 32,
                     "suffix": "1_weight_offset",
                     "caps_name": "HX711_1_WEIGHT_OFFSET",
                     "default": 0
