@@ -28,9 +28,8 @@ uint32_t max_rdclock = 8000000;
 int _width = DEFAULT_TFT_DISPLAY_WIDTH;
 int _height = DEFAULT_TFT_DISPLAY_HEIGHT;
 
-// Spi device handles for display and touch screen
+// Spi device handles for display
 spi_lobo_device_handle_t disp_spi = NULL;
-spi_lobo_device_handle_t ts_spi = NULL;
 
 // ====================================================
 
@@ -516,38 +515,6 @@ color_t IRAM_ATTR readPixel(int16_t x, int16_t y)
   return color;
 }
 
-// get 16-bit data from touch controller for specified type
-// ** Touch device must already be selected **
-//----------------------------------------
-int IRAM_ATTR touch_get_data(uint8_t type)
-{
-  /*
-     esp_err_t ret;
-     spi_lobo_transaction_t t;
-     memset(&t, 0, sizeof(t));            //Zero out the transaction
-     uint8_t rxdata[2] = {0};
-
-  // send command byte & receive 2 byte response
-  t.rxlength=8*2;
-  t.rx_buffer=&rxdata;
-  t.command = type;
-
-  ret = spi_lobo_transfer_data(ts_spi, &t);    // Transmit using direct mode
-
-  if (ret != ESP_OK) return -1;
-  return (((int)(rxdata[0] << 8) | (int)(rxdata[1])) >> 4);
-  */
-  spi_lobo_device_select(ts_spi, 0);
-
-  ts_spi->host->hw->data_buf[0] = type;
-  _spi_transfer_start(ts_spi, 24, 24);
-  uint16_t res = (uint16_t)(ts_spi->host->hw->data_buf[0] >> 8);
-
-  spi_lobo_device_deselect(ts_spi);
-
-  return res;
-}
-
 // Find maximum spi clock for successful read from display RAM
 // ** Must be used AFTER the display is initialized **
 //======================
@@ -768,9 +735,6 @@ void TFT_display_init()
 {
   esp_err_t ret;
 
-  ret = disp_select();
-  assert(ret==ESP_OK);
-
   //Reset the display
   gpio_set_level(PIN_NUM_RST, 1);
   vTaskDelay(5 / portTICK_RATE_MS);
@@ -778,18 +742,15 @@ void TFT_display_init()
   vTaskDelay(20 / portTICK_RATE_MS);
   gpio_set_level(PIN_NUM_RST, 1);
 
-  ret = disp_deselect();
-  assert(ret==ESP_OK);
-
   vTaskDelay(150 / portTICK_RATE_MS);
 
   ret = disp_select();
   assert(ret==ESP_OK);
-  //Send all the initialization commands
 
-  commandList(disp_spi, STP7735R_init);
+  commandList(disp_spi, Rcmd1);
   commandList(disp_spi, Rcmd2red); //commandList(disp_spi, Rcmd2green);
   commandList(disp_spi, Rcmd3);
+
   ret = disp_deselect();
   assert(ret==ESP_OK);
 

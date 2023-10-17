@@ -56,11 +56,6 @@ extern "C" {
   extern int	TFT_X;					// X position of the next character after TFT_print() function
   extern int	TFT_Y;					// Y position of the next character after TFT_print() function
 
-  extern uint32_t tp_calx;			// touch screen X calibration constant
-  extern uint32_t tp_caly;			// touch screen Y calibration constant
-                                // =========================================================================================
-
-
                                 // Buffer is created during jpeg decode for sending data
                                 // Total size of the buffer is  2 * (JPG_IMAGE_LINE_BUF_SIZE * 3)
                                 // The size must be multiple of 256 bytes !!
@@ -643,23 +638,6 @@ extern "C" {
    */
   //-------------------------------------------------------------------------------------
   int TFT_bmp_image(int x, int y, uint8_t scale, char *fname, uint8_t *imgbuf, int size);
-
-  /*
-   * Get the touch panel coordinates.
-   * The coordinates are adjusted to screen orientation if raw=0
-   *
-   * Params:
-   * 		x: pointer to X coordinate
-   * 		y: pointer to Y coordinate
-   * 	  raw: if 0 returns calibrated screen coordinates; if 1 returns raw touch controller coordinates
-   *
-   * Returns:
-   * 		0 if touch panel is not touched; x=y=0
-   * 		1 if touch panel is touched; x&y are the valid coordinates
-   */
-  //----------------------------------------------
-  int TFT_read_touch(int *x, int* y, uint8_t raw);
-
 
   /*
    * Compile font c source file to .fnt file

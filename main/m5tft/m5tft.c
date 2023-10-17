@@ -25,9 +25,6 @@
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
-#define M5DISPLAY_WIDTH 160               /* !< Display width in pixels after rotation */
-#define M5DISPLAY_HEIGHT 80               /* !< Display height in pixels after rotation */
-
 spi_lobo_device_handle_t m5_display_spi;
 
 static void m5tft_task(void *param);
@@ -37,8 +34,6 @@ void init_m5tft() {
 
   esp_err_t e;
 
-  _width = 80;   // smaller dimension
-  _height = 160; // larger dimension
   max_rdclock = DEFAULT_SPI_CLOCK;
 
   TFT_PinsInit();
@@ -67,36 +62,7 @@ void init_m5tft() {
 
   disp_spi = m5_display_spi;
 
-  // ==== Test select/deselect ====
-  e = spi_lobo_device_select(m5_display_spi, 1);
-  if (e != ESP_OK)
-  {
-    ESP_LOGE(SGO_LOG_NOSEND, "Error selecting display to SPI bus: %s", esp_err_to_name(e));
-    return;
-  }
-
-  e = spi_lobo_device_deselect(m5_display_spi);
-  if (e != ESP_OK)
-  {
-    ESP_LOGE(SGO_LOG_NOSEND, "Error deselecting display to SPI bus: %s", esp_err_to_name(e));
-    return;
-  }
-
-  /*gpio_set_level((gpio_num_t)PIN_NUM_RST, 1);
-    vTaskDelay(5 / portTICK_PERIOD_MS);
-    gpio_set_level((gpio_num_t)PIN_NUM_RST, 0);
-    vTaskDelay(20 / portTICK_PERIOD_MS);
-    gpio_set_level((gpio_num_t)PIN_NUM_RST, 1);*/
-
   TFT_display_init();
-
-  // ==== Set SPI clock used for display operations ====
-  e = spi_lobo_set_speed(m5_display_spi, DEFAULT_SPI_CLOCK);
-  if (e == 0)
-  {
-    ESP_LOGE(SGO_LOG_NOSEND, "Error setting speed display to SPI bus: %s", esp_err_to_name(e));
-    return;
-  }
 
   font_rotate = 0;
   text_wrap = 0;
@@ -113,6 +79,7 @@ void init_m5tft() {
 }
 
 static void m5tft_task(void *param) {
+  vTaskDelay(500 / portTICK_PERIOD_MS);
   while (true) {
     char strbuff[50];
 
