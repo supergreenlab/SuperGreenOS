@@ -33,7 +33,6 @@ extern "C" {
 #define TFT_INVERT_ROTATION2        1
 #define TFT_RGB_BGR                 0x08
 
-#define PIN_NUM_MISO -1   // SPI MISO
 #define PIN_NUM_MOSI 15   // SPI MOSI
 #define PIN_NUM_CLK  13   // SPI CLOCK pin
 #define PIN_NUM_CS   5    // Display CS pin

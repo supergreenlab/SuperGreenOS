@@ -713,6 +713,7 @@ void TFT_PinsInit()
 {
   gpio_pad_select_gpio(PIN_NUM_CS); // Route all used pins to GPIO control
   gpio_set_direction(PIN_NUM_CS, GPIO_MODE_OUTPUT);
+  gpio_set_level(PIN_NUM_CS, 0);
 
   gpio_pad_select_gpio(PIN_NUM_MOSI); // Route all used pins to GPIO control
   gpio_set_direction(PIN_NUM_MOSI, GPIO_MODE_OUTPUT);
@@ -726,7 +727,7 @@ void TFT_PinsInit()
 
   gpio_pad_select_gpio(PIN_NUM_RST);
   gpio_set_direction(PIN_NUM_RST, GPIO_MODE_OUTPUT);
-  gpio_set_level(PIN_NUM_RST, 1);
+  gpio_set_level(PIN_NUM_RST, 0);
 }
 
 // Initialize the display
@@ -736,10 +737,8 @@ void TFT_display_init()
   esp_err_t ret;
 
   //Reset the display
-  gpio_set_level(PIN_NUM_RST, 1);
-  vTaskDelay(5 / portTICK_RATE_MS);
   gpio_set_level(PIN_NUM_RST, 0);
-  vTaskDelay(20 / portTICK_RATE_MS);
+  vTaskDelay(100 / portTICK_RATE_MS);
   gpio_set_level(PIN_NUM_RST, 1);
 
   vTaskDelay(150 / portTICK_RATE_MS);
@@ -748,13 +747,9 @@ void TFT_display_init()
   assert(ret==ESP_OK);
 
   commandList(disp_spi, Rcmd1);
-  commandList(disp_spi, Rcmd2red); //commandList(disp_spi, Rcmd2green);
+  commandList(disp_spi, Rcmd2green);
   commandList(disp_spi, Rcmd3);
 
   ret = disp_deselect();
   assert(ret==ESP_OK);
-
-  // Clear screen
-  _tft_setRotation(PORTRAIT);
-  TFT_pushColorRep(0, 0, _width-1, _height-1, (color_t){0,0,0}, (uint32_t)(_height*_width));
 }

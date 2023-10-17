@@ -25,8 +25,6 @@
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
-spi_lobo_device_handle_t m5_display_spi;
-
 static void m5tft_task(void *param);
 
 void init_m5tft() {
@@ -39,28 +37,23 @@ void init_m5tft() {
   TFT_PinsInit();
 
   spi_lobo_bus_config_t buscfg = {};
-  buscfg.miso_io_num = PIN_NUM_MISO; // set SPI MISO pin
   buscfg.mosi_io_num = PIN_NUM_MOSI; // set SPI MOSI pin
   buscfg.sclk_io_num = PIN_NUM_CLK;  // set SPI CLK pin
   buscfg.quadwp_io_num = -1;
   buscfg.quadhd_io_num = -1;
-  buscfg.max_transfer_sz = 6 * 1024;
 
   spi_lobo_device_interface_config_t devcfg = {};
   devcfg.clock_speed_hz = DEFAULT_SPI_CLOCK;		 // Initial clock out at 8 MHz
   devcfg.mode = 0;						 // SPI mode 0
-  devcfg.spics_io_num = -1;				 // we will use external CS pin
-  devcfg.spics_ext_io_num = PIN_NUM_CS;	// external CS pin
+  devcfg.spics_io_num = PIN_NUM_CS;	// external CS pin
   devcfg.flags = LB_SPI_DEVICE_HALFDUPLEX; // ALWAYS SET  to HALF DUPLEX MODE!! for display spi
 
-  e = spi_lobo_bus_add_device(TFT_HSPI_HOST, &buscfg, &devcfg, &m5_display_spi);
+  e = spi_lobo_bus_add_device(TFT_HSPI_HOST, &buscfg, &devcfg, &disp_spi);
   if (e != ESP_OK)
   {
     ESP_LOGE(SGO_LOG_NOSEND, "Error adding display to SPI bus: %s", esp_err_to_name(e));
     return;
   }
-
-  disp_spi = m5_display_spi;
 
   TFT_display_init();
 
@@ -69,11 +62,11 @@ void init_m5tft() {
   font_transparent = 0;
   font_forceFixed = 0;
   gray_scale = 0;
-  TFT_setGammaCurve(DEFAULT_GAMMA_CURVE);
+
+  //TFT_setGammaCurve(DEFAULT_GAMMA_CURVE);
   TFT_setRotation(LANDSCAPE);
   TFT_setFont(DEFAULT_FONT, NULL);
-  TFT_resetclipwin();
-  TFT_fillScreen(TFT_BLACK);
+  //TFT_resetclipwin();
 
   xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 4096, NULL, 10, NULL, 1);
 }
@@ -81,7 +74,7 @@ void init_m5tft() {
 static void m5tft_task(void *param) {
   vTaskDelay(500 / portTICK_PERIOD_MS);
   while (true) {
-    char strbuff[50];
+    char strbuff[100];
 
     int temp = get_box_temp(0);
     int humi = get_box_humi(0);
