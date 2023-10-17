@@ -18,6 +18,8 @@
 #include "spi_master_lobo.h"
 #include "tftspi.h"
 #include "tft.h"
+#include "wire.h"
+#include "AXP192.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -25,12 +27,38 @@
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
+uint8_t axp192_init_list[28] = {
+	'A', 'X', 'P',
+	0x06, 0, 11,
+	0x10, 0xff, //1
+	0x28, 0xCC, //2
+	0x82, 0xff, //3
+	0x33, 0xC1, //4
+	0xB8, 0x80, //5
+	0x12, 0x4D, //6
+	0x36, 0x0C, //7
+	0x90, 0x02, //8
+	0x30, 0xec, //9
+	0x39, 0xFC, //10
+	0x35, 0xA2, //11
+};
+
 static void m5tft_task(void *param);
 
 void init_m5tft() {
   ESP_LOGI(SGO_LOG_EVENT, "@M5TFT Initializing m5tft module");
 
   esp_err_t e;
+
+    ESP_LOGI(SGO_LOG_NOSEND, "Setting up I2C");
+    e = InitI2CWire(&wire0);
+    if (e == ESP_OK) {
+        AxpInitFromList(&wire0, axp192_init_list);
+    }
+    else {
+        ESP_LOGE(SGO_LOG_NOSEND, "Error setting up I2C: %s", esp_err_to_name(e));
+				return;
+    }
 
   max_rdclock = DEFAULT_SPI_CLOCK;
 

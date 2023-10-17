@@ -255,18 +255,6 @@ extern "C" {
     0x00, 0x9F+0x01     //     XEND = 160
   };
 
-  // Init for 7735R, part 2 (red tab only)
-  // -------------------------------------
-  static const uint8_t Rcmd2red[] = {
-    2,            //  2 commands in list:
-    TFT_CASET  , 4      ,     //  1: Column addr set, 4 args, no delay:
-    0x00, 0x00,       //     XSTART = 0
-    0x00, 0x7F,       //     XEND = 127
-    TFT_PASET  , 4      ,     //  2: Row addr set, 4 args, no delay:
-    0x00, 0x00,       //     XSTART = 0
-    0x00, 0x9F        //     XEND = 159
-  };
-
   // Init for 7735R, part 3 (red or green tab)
   // -----------------------------------------
   static const uint8_t Rcmd3[] = {
