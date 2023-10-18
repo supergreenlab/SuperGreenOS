@@ -29,6 +29,7 @@ typedef struct {
     uint8_t bitmap[];
 } bitmap_data;     
 
+void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale);
 void draw_bitmap(const bitmap_data *img, int x, int y);
 
 #endif

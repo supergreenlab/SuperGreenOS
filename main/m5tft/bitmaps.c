@@ -21,6 +21,41 @@
 #include "m5tft.h"
 #include "tftspi.h"
 #include "bitmaps_definitions.h"
+#include "math.h"
+
+void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale) {
+  // Calculate the new scaled dimensions
+  int scaled_width = ceilf(img->width * scale);
+  int scaled_height = ceilf(img->height * scale);
+
+  // Calculate the starting draw positions to ensure the image is anchored at its center
+  int draw_start_x = x + ((img->width - scaled_width) / 2);
+  int draw_start_y = y + ((img->height - scaled_height) / 2);
+
+  for (int i = 0; i < scaled_width; i++) {
+    for (int j = 0; j < scaled_height; j++) {
+
+      // Calculate the corresponding source pixel based on scaling
+      int src_x = (int)(i / scale);
+      int src_y = (int)(j / scale);
+
+      // Fetch the palette color from the original bitmap, not the scaled one
+      color_t color = img->palette[img->bitmap[src_x + src_y * img->width]];
+
+      // Calculate the positions on the frame where the pixel should be drawn
+      int frame_x = draw_start_x + i;
+      int frame_y = draw_start_y + j;
+
+      // Check boundaries to avoid overwriting the frame and ignore transparent pixels
+      if (frame_x < DEFAULT_TFT_DISPLAY_HEIGHT && frame_y < DEFAULT_TFT_DISPLAY_WIDTH 
+          && frame_x >= 0 && frame_y >= 0 
+          && !(color.r == 0xff && color.g == 0x00 && color.b == 0xff)) {
+
+        frame[frame_x + frame_y * DEFAULT_TFT_DISPLAY_HEIGHT] = color;
+      }
+    }
+  }
+}
 
 void draw_bitmap(const bitmap_data *img, int x, int y) {
 	// Iterate through the image's pixels

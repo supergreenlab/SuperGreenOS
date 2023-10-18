@@ -139,7 +139,7 @@ static void m5tft_task(void *param) {
 
     int x = 0;
 		int y = 5 + (int)(sinf(sinA) * 40);
-    draw_bitmap(&bmp_db_0, 5, y);
+    draw_bitmap(&bmp_db_0, x, y);
     x += bmp_db_0.width;
     draw_bitmap(&bmp_db_1, x, y);
     x += bmp_db_1.width;
