@@ -30,8 +30,8 @@ void draw_bitmap(const bitmap_data *img, int x, int y) {
 			color_t color = img->palette[img->bitmap[i + j * img->width]];
 
 			// Check boundaries to avoid overwriting the frame
-			if (x + i < 160 && y + j < 80 && x + i >= 0 && y + j >= 0 && !(*(int*)&color == 0xff00ff)) {
-				frame[(x + i) + (y + j) * 160] = color;
+			if (x + i < DEFAULT_TFT_DISPLAY_HEIGHT && y + j < DEFAULT_TFT_DISPLAY_WIDTH && x + i >= 0 && y + j >= 0 && !(*(int*)&color == 0xff00ff)) {
+				frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT] = color;
 			}
 		}
 	}

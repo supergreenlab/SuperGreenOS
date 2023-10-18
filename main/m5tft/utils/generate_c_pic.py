@@ -43,7 +43,7 @@ def scale_image_to_max_size(image, max_width, max_height):
 def svg_to_raster(input_svg):
     # Convert SVG to raster in memory (using BytesIO)
     output_buffer = BytesIO()
-    cairosvg.svg2png(url=input_svg, write_to=output_buffer)
+    cairosvg.svg2png(url=input_svg, write_to=output_buffer, output_width=None, output_height=None, dpi=300, parent_width=None, parent_height=None, scale=1)
     output_buffer.seek(0)
 
     # Use PIL to open the raster image
@@ -71,6 +71,8 @@ def handle_transparency(img):
 
 def generate_palette_and_bitmap(image):
     image = handle_transparency(image)
+    image = image.quantize(colors=10)
+    image = image.convert("RGB")
     
     # Getting all colors
     colors = list(image.getdata())
@@ -78,7 +80,7 @@ def generate_palette_and_bitmap(image):
     
     # Create a palette
     palette = {color: idx for idx, color in enumerate(unique_colors)}
-    if len(palette) >= 71:
+    if len(palette) >= 11:
         print(f"TOO MANY COLORS {len(palette)}")
         sys.exit()
     
@@ -135,7 +137,9 @@ def main():
     variablesDeclaration = "bitmap_data *bitmap_db[] = { "
     for svg_file in svg_files:
         image = svg_to_raster(svg_file)
+        image.save(f"{svg_file}.png")
         image = scale_image_to_max_size(image, args.max_width, args.max_height)
+        image.save(f"{svg_file}_resized.png")
         palette, bitmap = generate_palette_and_bitmap(image)
         filename_no_ext = get_filename_without_extension(svg_file)
         pointHContent += f"extern bitmap_data bmp_db_{i};\n";

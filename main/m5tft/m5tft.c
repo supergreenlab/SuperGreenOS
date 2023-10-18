@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include "m5tft.h"
 
+#include "math.h"
 #include "spi_master_lobo.h"
 #include "button.h"
 #include "tftspi.h"
@@ -132,9 +133,9 @@ void flush_frame() {
 }
 
 static void m5tft_task(void *param) {
-
   int inc = 5;
   int height = 40;
+	float sinA = 0;
   while(true) {
     for (int x = 0; x < DEFAULT_TFT_DISPLAY_HEIGHT; ++x) {
       for (int y = 0; y < DEFAULT_TFT_DISPLAY_WIDTH; ++y) {
@@ -146,13 +147,34 @@ static void m5tft_task(void *param) {
       }
     }
 
-    draw_bitmap(&bmp_db_0, 5, 5);
+    int x = 0;
+		int y = 5 + (int)(sinf(sinA) * 40);
+    draw_bitmap(&bmp_db_0, 5, y);
+    x += bmp_db_0.width;
+    draw_bitmap(&bmp_db_1, x, y);
+    x += bmp_db_1.width;
+    draw_bitmap(&bmp_db_2, x, y);
+    x += bmp_db_2.width;
+    draw_bitmap(&bmp_db_3, x, y);
+    x += bmp_db_3.width;
+    draw_bitmap(&bmp_db_4, x, y);
+
+    x = 0;
+    draw_bitmap(&bmp_db_5, x, y + 45);
+    x += bmp_db_5.width;
+    draw_bitmap(&bmp_db_6, x, y + 45);
+    x += bmp_db_5.width;
+    draw_bitmap(&bmp_db_6, x, y + 45);
+    x += bmp_db_5.width;
+    draw_bitmap(&bmp_db_6, x, y + 45);
+    x += bmp_db_6.width;
 
     height += inc;
     if (height <= 1 || height >= 80) {
       height = height <= 1 ? 1 : 79;
       inc = -inc;
     }
+		sinA += 0.1;
     flush_frame();
     vTaskDelay(10 / portTICK_PERIOD_MS);
   }
