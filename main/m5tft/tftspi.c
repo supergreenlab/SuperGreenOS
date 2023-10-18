@@ -20,9 +20,6 @@
 // ====================================================
 // ==== Global variables, default values ==============
 
-// Converts colors to grayscale if set to 1
-uint8_t gray_scale = 0;
-// Spi clock for reading data from display memory in Hz
 uint32_t max_rdclock = 8000000;
 
 // Default display dimensions
@@ -217,63 +214,6 @@ static void IRAM_ATTR disp_spi_transfer_addrwin(uint16_t x1, uint16_t x2, uint16
   taskENABLE_INTERRUPTS();
 }
 
-// Convert color to gray scale
-//----------------------------------------------
-static color_t IRAM_ATTR color2gs(color_t color)
-{
-  color_t _color;
-  float gs_clr = GS_FACT_R * color.r + GS_FACT_G * color.g + GS_FACT_B * color.b;
-  if (gs_clr > 255) gs_clr = 255;
-
-  _color.r = (uint8_t)gs_clr;
-  _color.g = (uint8_t)gs_clr;
-  _color.b = (uint8_t)gs_clr;
-
-  return _color;
-}
-
-// Set display pixel at given coordinates to given color
-//------------------------------------------------------------------------
-void IRAM_ATTR drawPixel(int16_t x, int16_t y, color_t color, uint8_t sel)
-{
-  if (!(disp_spi->cfg.flags & LB_SPI_DEVICE_HALFDUPLEX)) return;
-
-  if (sel) {
-    if (disp_select()) return;
-  }
-  else wait_trans_finish(1);
-
-  uint32_t wd = 0;
-  color_t _color = color;
-  if (gray_scale) _color = color2gs(color);
-
-  x+=1; y+=26;
-  taskDISABLE_INTERRUPTS();
-  disp_spi_transfer_addrwin(x, x+1, y, y+1);
-
-  // Send RAM WRITE command
-  gpio_set_level(PIN_NUM_DC, 0);
-  disp_spi->host->hw->data_buf[0] = (uint32_t)TFT_RAMWR;
-  disp_spi->host->hw->mosi_dlen.usr_mosi_dbitlen = 7;
-  disp_spi->host->hw->cmd.usr = 1;		// Start transfer
-  while (disp_spi->host->hw->cmd.usr);	// Wait for SPI bus ready
-
-  wd = (uint32_t)_color.r;
-  wd |= (uint32_t)_color.g << 8;
-  wd |= (uint32_t)_color.b << 16;
-
-  // Set DC to 1 (data mode);
-  gpio_set_level(PIN_NUM_DC, 1);
-
-  disp_spi->host->hw->data_buf[0] = wd;
-  disp_spi->host->hw->mosi_dlen.usr_mosi_dbitlen = 23;
-  disp_spi->host->hw->cmd.usr = 1;		// Start transfer
-  while (disp_spi->host->hw->cmd.usr);	// Wait for SPI bus ready
-
-  taskENABLE_INTERRUPTS();
-  if (sel) disp_deselect();
-}
-
 //-----------------------------------------------------------
 static void IRAM_ATTR _dma_send(uint8_t *data, uint32_t size)
 {
@@ -303,13 +243,11 @@ static void IRAM_ATTR _direct_send(color_t *color, uint32_t len, uint8_t rep)
 
   taskDISABLE_INTERRUPTS();
   color_t _color = color[0];
-  if ((rep) && (gray_scale)) _color = color2gs(color[0]);
 
   while (len) {
     // ** Get color data from color buffer **
     if (rep == 0) {
-      if (gray_scale) _color = color2gs(color[cidx]);
-      else _color = color[cidx];
+      _color = color[cidx];
     }
 
     wd |= (uint32_t)_color.r << wbits;
@@ -376,12 +314,6 @@ static void IRAM_ATTR _TFT_pushColorRep(color_t *color, uint32_t len, uint8_t re
   else if (rep == 0)  {
     // ==== use DMA transfer ====
     // ** Prepare data
-    if (gray_scale) {
-      for (int n=0; n<len; n++) {
-        color[n] = color2gs(color[n]);
-      }
-    }
-
     _dma_send((uint8_t *)color, len*3);
   }
   else {
@@ -408,8 +340,7 @@ static void IRAM_ATTR _TFT_pushColorRep(color_t *color, uint32_t len, uint8_t re
     if (trans_cline == NULL) return;
 
     // Prepare fill color
-    if (gray_scale) _color = color2gs(color[0]);
-    else _color = color[0];
+    _color = color[0];
 
     // Fill color buffer with fill color
     for (uint32_t i=0; i<buf_colors; i++) {
@@ -428,21 +359,6 @@ static void IRAM_ATTR _TFT_pushColorRep(color_t *color, uint32_t len, uint8_t re
   if (wait) wait_trans_finish(1);
 }
 
-// Write 'len' color data to TFT 'window' (x1,y2),(x2,y2)
-//-------------------------------------------------------------------------------------------
-void IRAM_ATTR TFT_pushColorRep(int x1, int y1, int x2, int y2, color_t color, uint32_t len)
-{
-  if (disp_select() != ESP_OK) return;
-
-  x1+=1; y1+=26; x2+=1; y2+=26; // FIXME This hack fixes positioning issue on M5StickC display
-                                // ** Send address window **
-  disp_spi_transfer_addrwin(x1, x2, y1, y2);
-
-  _TFT_pushColorRep(&color, len, 1, 1);
-
-  disp_deselect();
-}
-
 // Write 'len' color data to TFT 'window' (x1,y2),(x2,y2) from given buffer
 // ** Device must already be selected **
 //-----------------------------------------------------------------------------------
@@ -454,139 +370,6 @@ void IRAM_ATTR send_data(int x1, int y1, int x2, int y2, uint32_t len, color_t *
   disp_spi_transfer_addrwin(x1, x2, y1, y2);
   _TFT_pushColorRep(buf, len, 0, 0);
   disp_deselect();
-}
-
-// Reads 'len' pixels/colors from the TFT's GRAM 'window'
-// 'buf' is an array of bytes with 1st byte reserved for reading 1 dummy byte
-// and the rest is actually an array of color_t values
-//--------------------------------------------------------------------------------------------
-int IRAM_ATTR read_data(int x1, int y1, int x2, int y2, int len, uint8_t *buf, uint8_t set_sp)
-{
-  spi_lobo_transaction_t t;
-  uint32_t current_clock = 0;
-
-  memset(&t, 0, sizeof(t));  //Zero out the transaction
-  memset(buf, 0, len*sizeof(color_t));
-
-  if (set_sp) {
-    if (disp_deselect() != ESP_OK) return -1;
-    // Change spi clock if needed
-    current_clock = spi_lobo_get_speed(disp_spi);
-    if (max_rdclock < current_clock) spi_lobo_set_speed(disp_spi, max_rdclock);
-  }
-
-  if (disp_select() != ESP_OK) return -2;
-
-  // ** Send address window **
-  disp_spi_transfer_addrwin(x1, x2, y1, y2);
-
-  // ** GET pixels/colors **
-  disp_spi_transfer_cmd(TFT_RAMRD);
-
-  t.length=0;                //Send nothing
-  t.tx_buffer=NULL;
-  t.rxlength=8*((len*3)+1);  //Receive size in bits
-  t.rx_buffer=buf;
-  //t.user = (void*)1;
-
-  esp_err_t res = spi_lobo_transfer_data(disp_spi, &t); // Receive using direct mode
-
-  disp_deselect();
-
-  if (set_sp) {
-    // Restore spi clock if needed
-    if (max_rdclock < current_clock) spi_lobo_set_speed(disp_spi, current_clock);
-  }
-
-  return res;
-}
-
-// Reads one pixel/color from the TFT's GRAM at position (x,y)
-//-----------------------------------------------
-color_t IRAM_ATTR readPixel(int16_t x, int16_t y)
-{
-  uint8_t color_buf[sizeof(color_t)+1] = {0};
-
-  read_data(x, y, x+1, y+1, 1, color_buf, 1);
-
-  color_t color;
-  color.r = color_buf[1];
-  color.g = color_buf[2];
-  color.b = color_buf[3];
-  return color;
-}
-
-// Find maximum spi clock for successful read from display RAM
-// ** Must be used AFTER the display is initialized **
-//======================
-uint32_t find_rd_speed()
-{
-  esp_err_t ret;
-  color_t color;
-  uint32_t max_speed = 1000000;
-  uint32_t change_speed, cur_speed;
-  int line_check;
-  color_t *color_line = NULL;
-  uint8_t *line_rdbuf = NULL;
-  uint8_t gs = gray_scale;
-
-  gray_scale = 0;
-  cur_speed = spi_lobo_get_speed(disp_spi);
-
-  color_line = malloc(_width*3);
-  if (color_line == NULL) goto exit;
-
-  line_rdbuf = malloc((_width*3)+1);
-  if (line_rdbuf == NULL) goto exit;
-
-  color_t *rdline = (color_t *)(line_rdbuf+1);
-
-  // Fill test line with colors
-  color = (color_t){0xEC,0xA8,0x74};
-  for (int x=0; x<_width; x++) {
-    color_line[x] = color;
-  }
-
-  // Find maximum read spi clock
-  for (uint32_t speed=2000000; speed<=cur_speed; speed += 1000000) {
-    change_speed = spi_lobo_set_speed(disp_spi, speed);
-    if (change_speed == 0) goto exit;
-
-    memset(line_rdbuf, 0, _width*sizeof(color_t)+1);
-
-    if (disp_select()) goto exit;
-    // Write color line
-    send_data(0, _height/2, _width-1, _height/2, _width, color_line);
-    if (disp_deselect()) goto exit;
-
-    // Read color line
-    ret = read_data(0, _height/2, _width-1, _height/2, _width, line_rdbuf, 0);
-
-    // Compare
-    line_check = 0;
-    if (ret == ESP_OK) {
-      for (int y=0; y<_width; y++) {
-        if ((color_line[y].r & 0xFC) != (rdline[y].r & 0xFC)) line_check = 1;
-        else if ((color_line[y].g & 0xFC) != (rdline[y].g & 0xFC)) line_check = 1;
-        else if ((color_line[y].b & 0xFC) != (rdline[y].b & 0xFC)) line_check =  1;
-        if (line_check) break;
-      }
-    }
-    else line_check = ret;
-
-    if (line_check) break;
-    max_speed = speed;
-  }
-
-exit:
-  gray_scale = gs;
-  if (line_rdbuf) free(line_rdbuf);
-  if (color_line) free(color_line);
-
-  // restore spi clk
-  change_speed = spi_lobo_set_speed(disp_spi, cur_speed);
-
-  return max_speed;
 }
 
 //---------------------------------------------------------------------------
@@ -707,6 +490,19 @@ void _tft_setRotation(uint8_t rot) {
     }
   }
 
+}
+
+void TFT_setRotation(uint8_t rot) {
+	if (rot > 3) {
+		uint8_t madctl = (rot & 0xF8); // for testing, manually set MADCTL register
+		if (disp_select() == ESP_OK) {
+			disp_spi_transfer_cmd_data(TFT_MADCTL, &madctl, 1);
+			disp_deselect();
+		}
+	}
+	else {
+		_tft_setRotation(rot);
+	}
 }
 
 //=================

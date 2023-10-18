@@ -19,7 +19,6 @@
 #include "spi_master_lobo.h"
 #include "button.h"
 #include "tftspi.h"
-#include "tft.h"
 #include "wire.h"
 #include "AXP192.h"
 #include "bitmaps.h"
@@ -108,16 +107,7 @@ void init_m5tft() {
 
   TFT_display_init();
 
-  font_rotate = 0;
-  text_wrap = 0;
-  font_transparent = 1;
-  font_forceFixed = 0;
-  gray_scale = 0;
-
-  TFT_setGammaCurve(DEFAULT_GAMMA_CURVE);
   TFT_setRotation(LANDSCAPE);
-  TFT_setFont(DEFAULT_FONT, NULL);
-  TFT_resetclipwin();
 
   xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 4096, NULL, 10, NULL, 1);
 }
