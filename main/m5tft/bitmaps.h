@@ -1,4 +1,7 @@
 /*
+ * Copyright (C) 2023  SuperGreenLab <towelie@supergreenlab.com>
+ * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -13,14 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef M5TFT_H_
-#define M5TFT_H_
-
-#include "tftspi.h"
-
-extern color_t frame[];
-
-void init_m5tft();
+#ifndef BITMAPS
+#define BITMAPS
 
 #endif
-

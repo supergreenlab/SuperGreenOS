@@ -77,25 +77,26 @@ def generate_palette_and_bitmap(image):
     
     # Create a palette
     palette = {color: idx for idx, color in enumerate(unique_colors)}
+    if len(palette) >= 30:
+        print(f"TOO MANY COLORS {len(palette)}")
+        sys.exit()
     
     # Create a bitmap
     bitmap = [palette[color] for color in colors]
     
     return unique_colors, bitmap
 
-def generate_c_code(palette, bitmap, width, height, filename):
+def generate_c_code(palette, bitmap, width, height, filename, var_index):
     palette_str = ",\n".join([f"{{ {color[0]}, {color[1]}, {color[2]} }}" for color in palette])
     bitmap_str = ", ".join(map(str, bitmap))
-    bitmap_rows = [bitmap_str[i:i+width] for i in range(0, len(bitmap_str), width)]
-    bitmap_final = ",\n".join(bitmap_rows)
     
     return f"""
-bitmap_data bmp_{filename} = {{
+bitmap_data bmp_db_{var_index} = {{
     .palette = {{
         {palette_str}
     }},
     .bitmap = {{
-        {bitmap_final}
+        {bitmap_str}
     }},
     .width = {width},
     .height = {height},
@@ -114,32 +115,31 @@ def main():
 
     svg_files = list_svg_files(args.directory)
     
-    print("""
-#ifndef BITMAP_DATA
-#define BITMAP_DATA
+    print(f"""
+#ifndef BITMAPS_DEFINITIONS
+#define BITMAPS_DEFINITIONS
 
 typedef struct {{
-    color_t palette[{len(palette)}];
-    uint8_t bitmap[{width}][{height}];
+    color_t palette[30];
     int width;
     int height;
-    const char* name;
+    const char name[10];
+    uint8_t bitmap[];
 }} bitmap_data;     
 
 """)
-    variables = []
+    i = 0
+    variablesDeclaration = "bitmap_data *bitmap_db[] = { "
     for svg_file in svg_files:
         image = svg_to_raster(svg_file)
         image = scale_image_to_max_size(image, args.max_width, args.max_height)
         palette, bitmap = generate_palette_and_bitmap(image)
         filename_no_ext = get_filename_without_extension(svg_file)
-        c_code = generate_c_code(palette, bitmap, image.width, image.height, filename_no_ext)
-        variables.append(filename_no_ext)
+        c_code = generate_c_code(palette, bitmap, image.width, image.height, filename_no_ext, i)
+        variablesDeclaration += f"&bmp_db_{i}, "
         print(c_code)
+        i += 1
 
-    variablesDeclaration = "bitmap_data bmp_db[] = { "
-    for v in variables:
-        variablesDeclaration += f"bmp_{v}, "
     variablesDeclaration += "};"
     print(variablesDeclaration)
     print("""
