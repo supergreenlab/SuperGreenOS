@@ -19,4 +19,16 @@
 #ifndef BITMAPS
 #define BITMAPS
 
+#include "tftspi.h"
+
+typedef struct {
+    color_t palette[71];
+    int width;
+    int height;
+    const char name[10];
+    uint8_t bitmap[];
+} bitmap_data;     
+
+void draw_bitmap(const bitmap_data *img, int x, int y);
+
 #endif

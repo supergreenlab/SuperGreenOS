@@ -21,6 +21,8 @@
 #include "tft.h"
 #include "wire.h"
 #include "AXP192.h"
+#include "bitmaps.h"
+#include "bitmaps_definitions.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -143,6 +145,9 @@ static void m5tft_task(void *param) {
         }
       }
     }
+
+    draw_bitmap(&bmp_db_0, 5, 5);
+
     height += inc;
     if (height <= 1 || height >= 80) {
       height = height <= 1 ? 1 : 79;
