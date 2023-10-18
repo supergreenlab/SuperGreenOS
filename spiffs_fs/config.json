@@ -412,7 +412,7 @@
                   "helpers": ["SCD30 temperature on port #1","SHT21 temperature on port #1"]
                 },
               
-              "default": 1
+              "default": 16
             },
           
             {
@@ -469,7 +469,7 @@
                   "helpers": ["SCD30 humidity on port #1","SHT21 humidity on port #1"]
                 },
               
-              "default": 1
+              "default": 16
             },
           
             {
@@ -526,7 +526,7 @@
                   "helpers": ["SCD30 vpd on port #1","SHT21 vpd on port #1"]
                 },
               
-              "default": 1
+              "default": 16
             },
           
             {

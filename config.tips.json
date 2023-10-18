@@ -2197,7 +2197,7 @@
                     "intlen": 8,
                     "suffix": "0_temp_source",
                     "caps_name": "BOX_0_TEMP_SOURCE",
-                    "default": 1
+                    "default": 16
                 },
                 "0_humi": {
                     "name": "box_0_humi",
@@ -2256,7 +2256,7 @@
                     "intlen": 8,
                     "suffix": "0_humi_source",
                     "caps_name": "BOX_0_HUMI_SOURCE",
-                    "default": 1
+                    "default": 16
                 },
                 "0_vpd": {
                     "name": "box_0_vpd",
@@ -2315,7 +2315,7 @@
                     "intlen": 8,
                     "suffix": "0_vpd_source",
                     "caps_name": "BOX_0_VPD_SOURCE",
-                    "default": 1
+                    "default": 16
                 },
                 "0_weight": {
                     "name": "box_0_weight",

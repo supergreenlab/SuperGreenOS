@@ -16,6 +16,7 @@
 #include "m5tft.h"
 
 #include "spi_master_lobo.h"
+#include "button.h"
 #include "tftspi.h"
 #include "tft.h"
 #include "wire.h"
@@ -45,20 +46,39 @@ uint8_t axp192_init_list[28] = {
 
 static void m5tft_task(void *param);
 
+void buttonEvent(void *handler_arg, esp_event_base_t base, int32_t id, void *event_data) {
+	if ((base == button_a.esp_event_base) && (id == BUTTON_PRESSED_EVENT)) {
+		ESP_LOGI(SGO_LOG_NOSEND, "Button a");
+	}
+
+	if ((base == button_b.esp_event_base) && (id == BUTTON_PRESSED_EVENT)) {
+		ESP_LOGI(SGO_LOG_NOSEND, "Button b");
+	}
+}
+
 void init_m5tft() {
   ESP_LOGI(SGO_LOG_EVENT, "@M5TFT Initializing m5tft module");
 
   esp_err_t e;
 
-    ESP_LOGI(SGO_LOG_NOSEND, "Setting up I2C");
-    e = InitI2CWire(&wire0);
-    if (e == ESP_OK) {
-        AxpInitFromList(&wire0, axp192_init_list);
-    }
-    else {
-        ESP_LOGE(SGO_LOG_NOSEND, "Error setting up I2C: %s", esp_err_to_name(e));
-				return;
-    }
+  ESP_LOGI(SGO_LOG_NOSEND, "Setting up I2C");
+  e = InitI2CWire(&wire0);
+  if (e == ESP_OK) {
+    AxpInitFromList(&wire0, axp192_init_list);
+  }
+  else {
+    ESP_LOGE(SGO_LOG_NOSEND, "Error setting up I2C: %s", esp_err_to_name(e));
+    return;
+  }
+
+  e = ButtonInit();
+  if (e != ESP_OK) {
+    ESP_LOGE(SGO_LOG_NOSEND, "Error initializing button");
+    return;
+  }
+
+	esp_event_handler_register_with(event_loop, BUTTON_A_EVENT_BASE, BUTTON_PRESSED_EVENT, buttonEvent, NULL);
+	esp_event_handler_register_with(event_loop, BUTTON_B_EVENT_BASE, BUTTON_PRESSED_EVENT, buttonEvent, NULL);
 
   max_rdclock = DEFAULT_SPI_CLOCK;
 
@@ -87,33 +107,48 @@ void init_m5tft() {
 
   font_rotate = 0;
   text_wrap = 0;
-  font_transparent = 0;
+  font_transparent = 1;
   font_forceFixed = 0;
   gray_scale = 0;
 
-  //TFT_setGammaCurve(DEFAULT_GAMMA_CURVE);
+  TFT_setGammaCurve(DEFAULT_GAMMA_CURVE);
   TFT_setRotation(LANDSCAPE);
   TFT_setFont(DEFAULT_FONT, NULL);
-  //TFT_resetclipwin();
+  TFT_resetclipwin();
 
   xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 4096, NULL, 10, NULL, 1);
 }
 
-static void m5tft_task(void *param) {
-  vTaskDelay(500 / portTICK_PERIOD_MS);
-  while (true) {
-    char strbuff[100];
+color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
 
-    int temp = get_box_temp(0);
-    int humi = get_box_humi(0);
-    int co2 = get_box_co2(0);
-
-    TFT_fillScreen(TFT_BLACK);
-    TFT_print("SuperGreenTips", 5, 10);
-    sprintf((char *)strbuff, "Temp: %d\nHumi: %d\nco2: %d", temp, humi, co2);
-    TFT_print((char *)strbuff, CENTER, 30);
-
-    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
-  }
+void flush_frame() {
+  int buffer_size = DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH/4;
+  send_data(0, 0, DEFAULT_TFT_DISPLAY_HEIGHT-1, 19, buffer_size, frame);
+  send_data(0, 20, DEFAULT_TFT_DISPLAY_HEIGHT-1, 39, buffer_size, frame+buffer_size);
+  send_data(0, 40, DEFAULT_TFT_DISPLAY_HEIGHT-1, 59, buffer_size, frame+buffer_size*2);
+  send_data(0, 60, DEFAULT_TFT_DISPLAY_HEIGHT-1, 79, buffer_size, frame+buffer_size*3);
 }
 
+static void m5tft_task(void *param) {
+
+  int inc = 5;
+  int height = 40;
+  while(true) {
+    for (int x = 0; x < DEFAULT_TFT_DISPLAY_HEIGHT; ++x) {
+      for (int y = 0; y < DEFAULT_TFT_DISPLAY_WIDTH; ++y) {
+        if (y < height) {
+          frame[x + y*DEFAULT_TFT_DISPLAY_HEIGHT] = (color_t){x+30, 255-x, y*3};
+        } else {
+          frame[x + y*DEFAULT_TFT_DISPLAY_HEIGHT] = (color_t){y * 3, 255-y*3, 255-x};
+        }
+      }
+    }
+    height += inc;
+    if (height <= 1 || height >= 80) {
+      height = height <= 1 ? 1 : 79;
+      inc = -inc;
+    }
+    flush_frame();
+    vTaskDelay(10 / portTICK_PERIOD_MS);
+  }
+}
