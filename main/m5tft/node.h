@@ -35,17 +35,27 @@ struct Node {
 	int num_children; // count of child nodes
 };
 
-typedef struct {
-    float dest_x;
-    float dest_y;
-    float speed; // pixels per frame; how fast the node should move towards its destination
-} AnimationParams;
-
 Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *funcParams);
 void add_child(Node *parent, Node *child);
 void render_node(Node *node, int parent_x, int parent_y);
 
+typedef struct {
+    float dest_x;
+    float dest_y;
+    float speed; // pixels per frame; how fast the node should move towards its destination
+} SimpleAnimationParams;
+
 void simple_animation(Node *node);
+
+typedef struct {
+    float center_x;
+    float center_y;
+    float magnitude_x;
+    float magnitude_y;
+    float elapsedTime; // To keep track of time for sin oscillation
+} SineAnimationParams;
+
+void sine_animation(Node *node);
 
 void set_text_node(Node *textNode, const char *text);
 Node* create_text_node(int x, int y, int max_length, const char *text);

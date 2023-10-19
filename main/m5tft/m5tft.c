@@ -126,23 +126,30 @@ void flush_frame() {
 static void m5tft_task(void *param) {
   Node* root = create_node(0, 0, NULL, NULL, NULL);
 
-  AnimationParams *params = (AnimationParams*)malloc(sizeof(AnimationParams));
-  params->dest_x = 110;
-  params->dest_y = 40;
-  params->speed = 2;
+  SineAnimationParams *params = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
+  params->center_x = 20;
+  params->center_y = 25;
+  params->magnitude_x = 20;
+  params->magnitude_y = 20;
+  params->elapsedTime = 0;
 
-  Node* child1 = create_text_node(10, 10, 4, "1234");
+  char text[5] = "1234";
+  Node* child1 = create_text_node(10, 10, 4, text);
   child1->funcParams = params;
-  child1->func = simple_animation;
+  child1->func = sine_animation;
 
   add_child(root, child1);
 
-  render_node(root, 0, 0);
-
+  int n = 1234;
   while(true) {
     for (int i = 0; i < DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH; ++i) {
       frame[i] = (color_t){43, 63, 81};
     }
+
+    sprintf(text, "%d", ++n);
+    n = n % 10000;
+    set_text_node(child1, text);
+
     render_node(root, 0, 0);
     flush_frame();
     vTaskDelay(10 / portTICK_PERIOD_MS);

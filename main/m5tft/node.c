@@ -28,7 +28,7 @@
 void simple_animation(Node *node) {
 	if (!node->funcParams) return;
 
-	AnimationParams *params = (AnimationParams *)node->funcParams;
+	SimpleAnimationParams *params = (SimpleAnimationParams *)node->funcParams;
 
 	// Calculate the distance to the destination
 	float dx = params->dest_x - node->x;
@@ -51,6 +51,19 @@ void simple_animation(Node *node) {
 	// Update the node's position
 	node->x += step_x;
 	node->y += step_y;
+}
+
+void sine_animation(Node *node) {
+	SineAnimationParams *params = (SineAnimationParams *)node->funcParams;
+
+	// Use elapsedTime to determine the phase of the sine wave
+	float offset_x = params->magnitude_x * sinf(params->elapsedTime);
+	float offset_y = params->magnitude_y * cosf(params->elapsedTime);
+
+	node->x = params->center_x + offset_x;
+	node->y = params->center_y + offset_y;
+
+	params->elapsedTime += 0.1; // Adjust this value to change the speed of the oscillation
 }
 
 // Node management functions
