@@ -23,6 +23,7 @@
 #include "AXP192.h"
 #include "bitmaps.h"
 #include "bitmaps_definitions.h"
+#include "node.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -123,6 +124,31 @@ void flush_frame() {
 }
 
 static void m5tft_task(void *param) {
+  Node* root = create_node(0, 0, NULL, NULL, NULL);
+
+  AnimationParams *params = (AnimationParams*)malloc(sizeof(AnimationParams));
+  params->dest_x = 110;
+  params->dest_y = 40;
+  params->speed = 2;
+
+  Node* child1 = create_node(10, 10, &bmp_db_0, simple_animation, params);
+
+  add_child(root, child1);
+
+  render_node(root, 0, 0);
+
+  while(true) {
+    for (int i = 0; i < DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH; ++i) {
+      frame[i] = (color_t){43, 63, 81};
+    }
+    render_node(root, 0, 0);
+    flush_frame();
+    vTaskDelay(10 / portTICK_PERIOD_MS);
+  }
+}
+
+
+/*static void m5tft_task(void *param) {
   int inc = 5;
   int height = 40;
 	float sinA = 0;
@@ -168,4 +194,4 @@ static void m5tft_task(void *param) {
     flush_frame();
     vTaskDelay(10 / portTICK_PERIOD_MS);
   }
-}
+}*/

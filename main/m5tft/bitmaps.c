@@ -23,6 +23,8 @@
 #include "bitmaps_definitions.h"
 #include "math.h"
 
+#include "../core/log/log.h"
+
 void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale) {
   // Calculate the new scaled dimensions
   int scaled_width = ceilf(img->width * scale);
@@ -61,11 +63,13 @@ void draw_bitmap(const bitmap_data *img, int x, int y) {
 	// Iterate through the image's pixels
 	for (int i = 0; i < img->width; i++) {
 		for (int j = 0; j < img->height; j++) {
-			// Fetch the palette color
 			color_t color = img->palette[img->bitmap[i + j * img->width]];
+      // ESP_LOGI(SGO_LOG_NOSEND, "%x %s", (*(int*)&color), (*(int*)&color) == 0xff00ff ? "match" : "not match");
+      if (*(int*)&color == 0xff00ff) {
+        continue;
+      }
 
-			// Check boundaries to avoid overwriting the frame
-			if (x + i < DEFAULT_TFT_DISPLAY_HEIGHT && y + j < DEFAULT_TFT_DISPLAY_WIDTH && x + i >= 0 && y + j >= 0 && !(*(int*)&color == 0xff00ff)) {
+			if (x + i < DEFAULT_TFT_DISPLAY_HEIGHT && y + j < DEFAULT_TFT_DISPLAY_WIDTH && x + i >= 0 && y + j >= 0) {
 				frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT] = color;
 			}
 		}
