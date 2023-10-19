@@ -63,8 +63,8 @@ Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *fu
 // Add a child node to a parent node
 void add_child(Node *parent, Node *child) {
 	parent->num_children++;
-	parent->children = (Node*)realloc(parent->children, parent->num_children * sizeof(Node));
-	parent->children[parent->num_children - 1] = *child;
+	parent->children = (Node**)realloc(parent->children, parent->num_children * sizeof(Node *));
+	parent->children[parent->num_children - 1] = child;
 }
 
 // Rendering function to draw the entire UI
@@ -83,6 +83,6 @@ void render_node(Node *node, int parent_x, int parent_y) {
 
 	// Render all child nodes
 	for (int i = 0; i < node->num_children; i++) {
-		render_node(&node->children[i], parent_x + node->x, parent_y + node->y);
+		render_node(node->children[i], parent_x + node->x, parent_y + node->y);
 	}
 }

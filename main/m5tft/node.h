@@ -31,7 +31,7 @@ struct Node {
 	bitmap_data *bitmap;
 	void *funcParams;
 	NodeFunction func; // optional animation or custom logic function
-	Node *children; // pointer to an array of child nodes
+	Node **children; // pointer to an array of child nodes
 	int num_children; // count of child nodes
 };
 
