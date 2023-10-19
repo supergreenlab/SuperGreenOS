@@ -217,7 +217,7 @@ static void m5tft_task(void *param) {
   SineAnimationParams *params4 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
   params4->center_x = 20;
   params4->center_y = 30;
-  params4->magnitude_x = -30;
+  params4->magnitude_x = -50;
   params4->magnitude_y = -40;
   params4->elapsedTime = 0;
   params4->speed=0.1;
@@ -262,7 +262,7 @@ static void m5tft_task(void *param) {
 
     n = (int)n % 10000;
 
-    root_render(root);
+    TickType_t tickTime = root_render(root);
     flush_frame();
 
     TickType_t xEndTime = xTaskGetTickCount();  // Capture the end time
@@ -271,6 +271,11 @@ static void m5tft_task(void *param) {
     float delayTime = TARGET_FRAME_TIME_MS - timeSpent;  // Calculate actual delay time
     if (delayTime < 10) delayTime = 10;  // Ensure delay time is never below 10ms
 
-    xQueueReceive(cmd, &c, delayTime / portTICK_PERIOD_MS);
+		if (delayTime / portTICK_PERIOD_MS < tickTime) {
+			xQueueReceive(cmd, &c, delayTime / portTICK_PERIOD_MS);
+		} else {
+			xQueueReceive(cmd, &c, tickTime);
+		}
+
   }
 }
