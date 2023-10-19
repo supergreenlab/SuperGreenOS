@@ -60,14 +60,20 @@ void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, Rende
 }
 
 void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
-  // Iterate through the image's pixels
-  for (int i = 0; i < img->width; i++) {
-    for (int j = 0; j < img->height; j++) {
+  // Check if the image is completely out of the frame
+  if (x + img->width < 0 || x > DEFAULT_TFT_DISPLAY_HEIGHT || y + img->height < 0 || y > DEFAULT_TFT_DISPLAY_WIDTH) {
+    return; // Image is out of frame, so return immediately
+  }
 
-      if (!(x + i < DEFAULT_TFT_DISPLAY_HEIGHT && y + j < DEFAULT_TFT_DISPLAY_WIDTH && x + i >= 0 && y + j >= 0)) {
-        continue;
-      }
+  // Calculate the start and end values for loops to avoid unnecessary iteration
+  int startX = (x < 0) ? -x : 0;
+  int startY = (y < 0) ? -y : 0;
+  int endX = (x + img->width > DEFAULT_TFT_DISPLAY_HEIGHT) ? DEFAULT_TFT_DISPLAY_HEIGHT - x : img->width;
+  int endY = (y + img->height > DEFAULT_TFT_DISPLAY_WIDTH) ? DEFAULT_TFT_DISPLAY_WIDTH - y : img->height;
 
+  // Iterate only within calculated bounds
+  for (int i = startX; i < endX; i++) {
+    for (int j = startY; j < endY; j++) {
       color_t color = img->palette[img->bitmap[i + j * img->width]];
 
       // Check for transparent color
@@ -85,7 +91,6 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
 
       if (opts != NULL && opts->transparency < 1) {
         color_t current_pixel = frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT];
-
         float alpha = opts->transparency;
         color.r = current_pixel.r * (1.0f - alpha) + color.r * alpha;
         color.g = current_pixel.g * (1.0f - alpha) + color.g * alpha;

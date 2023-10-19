@@ -157,19 +157,21 @@ static void m5tft_task(void *param) {
 
   add_child(root, textNode2);
 
-  int n = 1;
+  float n = 1;
   while(true) {
     for (int i = 0; i < DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH; ++i) {
       frame[i] = (color_t){43, 63, 81};
     }
 
-    sprintf(text1, "%04d", ++n);
+    sprintf(text1, "%04d", (int)++n);
     set_text_node(textNode1, text1);
+    textNode1->renderOpts.transparency = 0.5 + sin(n/10.0) * 0.3;
 
-    sprintf(text2, "%04d", 9999 - n);
+    sprintf(text2, "%04d", (int)(9999 - n));
     set_text_node(textNode2, text2);
+    textNode2->renderOpts.transparency = 0.5 + cos(n/10.0) * 0.3;
 
-    n = n % 10000;
+    n = (int)n % 10000;
 
     root_render(root);
     flush_frame();
