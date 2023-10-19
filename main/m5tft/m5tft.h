@@ -21,6 +21,7 @@
 extern color_t frame[];
 
 void init_m5tft();
+void force_frame();
 
 #endif
 

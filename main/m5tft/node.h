@@ -20,46 +20,58 @@
 #define NODE_H
 
 #include "bitmaps.h"
+#include "freertos/queue.h"
 
 typedef struct Node Node;
 
-typedef void (*NodeFunction)(Node *node);
+typedef TickType_t (*NodeFunction)(Node *node, void *p);
+
+#define N_NODE_FUNCTION 4
 
 struct Node {
-	float x; // position relative to its parent
-	float y;
-	bitmap_data *bitmap;
-	void *funcParams;
-	NodeFunction func; // optional animation or custom logic function
-	Node **children; // pointer to an array of child nodes
-	int num_children; // count of child nodes
-	RenderOpt renderOpts;
+  float x; // position relative to its parent
+  float y;
+  bitmap_data *bitmap;
+  void *funcParams[N_NODE_FUNCTION];
+  NodeFunction funcs[N_NODE_FUNCTION];
+  Node **children;
+  int num_children;
+  RenderOpt renderOpts;
 };
 
 Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *funcParams);
 void add_child(Node *parent, Node *child);
 
-void root_render(Node *node);
-void render_node(Node *node, int parent_x, int parent_y, float transparency);
+TickType_t root_render(Node *node);
+TickType_t render_node(Node *node, int parent_x, int parent_y, float transparency);
 
 typedef struct {
-    float dest_x;
-    float dest_y;
-    float speed; // pixels per frame; how fast the node should move towards its destination
+  float dest_x;
+  float dest_y;
+  float speed; // pixels per frame; how fast the node should move towards its destination
 } SimpleAnimationParams;
 
-void simple_animation(Node *node);
+TickType_t simple_animation(Node *node, void *p);
 
 typedef struct {
-    float center_x;
-    float center_y;
-    float magnitude_x;
-    float magnitude_y;
-    float elapsedTime; // To keep track of time for sin oscillation
-		float speed;
+  float center_x;
+  float center_y;
+  float magnitude_x;
+  float magnitude_y;
+  float elapsedTime; // To keep track of time for sin oscillation
+  float speed;
 } SineAnimationParams;
 
-void sine_animation(Node *node);
+TickType_t sine_animation(Node *node, void *p);
+
+typedef struct {
+  float min_transparency;
+  float max_transparency;
+  float elapsed_time;
+  float speed;
+} SineTransparencyAnimationParams;
+
+TickType_t sine_transparency_animation(Node *node, void *p);
 
 void set_text_node(Node *textNode, const char *text);
 Node* create_text_node(int x, int y, int max_length, const char *text, color_t color);

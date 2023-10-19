@@ -26,10 +26,8 @@
 
 // Animation function
 
-void simple_animation(Node *node) {
-	if (!node->funcParams) return;
-
-	SimpleAnimationParams *params = (SimpleAnimationParams *)node->funcParams;
+TickType_t  simple_animation(Node *node, void *p) {
+	SimpleAnimationParams *params = (SimpleAnimationParams *)p;
 
 	// Calculate the distance to the destination
 	float dx = params->dest_x - node->x;
@@ -42,7 +40,7 @@ void simple_animation(Node *node) {
 	if (distance <= params->speed) {
 		node->x = params->dest_x;
 		node->y = params->dest_y;
-		return;
+		return 1000 / portTICK_PERIOD_MS;
 	}
 
 	// Calculate the step size while keeping the direction
@@ -52,10 +50,11 @@ void simple_animation(Node *node) {
 	// Update the node's position
 	node->x += step_x;
 	node->y += step_y;
+  return 10 / portTICK_PERIOD_MS;
 }
 
-void sine_animation(Node *node) {
-	SineAnimationParams *params = (SineAnimationParams *)node->funcParams;
+TickType_t sine_animation(Node *node, void *p) {
+	SineAnimationParams *params = (SineAnimationParams *)p;
 
 	// Use elapsedTime to determine the phase of the sine wave
 	float offset_x = params->magnitude_x * sinf(params->elapsedTime);
@@ -65,6 +64,20 @@ void sine_animation(Node *node) {
 	node->y = params->center_y + offset_y;
 
 	params->elapsedTime += params->speed; // Adjust this value to change the speed of the oscillation
+                                        //
+  return 10 / portTICK_PERIOD_MS;
+}
+
+TickType_t sine_transparency_animation(Node *node, void *p) {
+	SineTransparencyAnimationParams *params = (SineTransparencyAnimationParams *)p;
+
+	float transparencyRange = params->max_transparency - params->min_transparency;
+	float transparency = params->min_transparency + transparencyRange * (sin(params->elapsed_time) + 1) / 2;
+
+	node->renderOpts.transparency = transparency;
+
+	params->elapsed_time += params->speed;
+  return 10 / portTICK_PERIOD_MS;
 }
 
 // Node management functions
@@ -72,11 +85,15 @@ void sine_animation(Node *node) {
 // Create a new node. For simplicity, memory allocation is straightforward and lacks error checking.
 Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *funcParams) {
 	Node *node = (Node*)malloc(sizeof(Node));
+
+	memset(node->funcParams, 0, sizeof(void *) * 4);
+	memset(node->funcs, 0, sizeof(NodeFunction) * 4);
+
 	node->x = x;
 	node->y = y;
 	node->bitmap = bitmap;
-	node->funcParams = funcParams;
-	node->func = func;
+	node->funcParams[0] = funcParams;
+	node->funcs[0] = func;
 	node->children = NULL;
 	node->num_children = 0;
 	node->renderOpts.transparency = 1;
@@ -94,17 +111,16 @@ void add_child(Node *parent, Node *child) {
 	parent->num_children++;
 }
 
-void root_render(Node *node) {
-	render_node(node, 0, 0, 1);
+TickType_t root_render(Node *node) {
+	return render_node(node, 0, 0, 1);
 }
 
-// Rendering function to draw the entire UI
-void render_node(Node *node, int parent_x, int parent_y, float transparency) {
-	if (!node) return;
-
+TickType_t render_node(Node *node, int parent_x, int parent_y, float transparency) {
 	// Call the node's custom function (if it exists)
-	if (node->func) {
-		node->func(node);
+	for (int i = 0; i < N_NODE_FUNCTION; ++i) {
+		if (node->funcs[i] != NULL) {
+			node->funcs[i](node, node->funcParams[i]);
+		}
 	}
 
 	// Draw the node's bitmap (if it exists)
@@ -114,10 +130,14 @@ void render_node(Node *node, int parent_x, int parent_y, float transparency) {
 		draw_bitmap(node->bitmap, parent_x + node->x, parent_y + node->y, &opts);
 	}
 
-	// Render all child nodes
+  TickType_t tickTime = 10000 / portTICK_PERIOD_MS;
 	for (int i = 0; i < node->num_children; i++) {
-		render_node(node->children[i], parent_x + node->x, parent_y + node->y, node->renderOpts.transparency * transparency);
+		TickType_t t = render_node(node->children[i], parent_x + node->x, parent_y + node->y, node->renderOpts.transparency * transparency);
+    if (t < tickTime) {
+      tickTime = t;
+    }
 	}
+  return tickTime;
 }
 
 // Text node

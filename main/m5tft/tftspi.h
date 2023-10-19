@@ -40,7 +40,6 @@ extern "C" {
 
 #define PIN_NUM_RST  18   // GPIO used for RESET control (#16)
 
-
   // ==== Spi clock for reading data from display memory in Hz ====
   extern uint32_t max_rdclock;
 
