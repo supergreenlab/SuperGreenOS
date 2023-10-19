@@ -234,5 +234,7 @@ bitmap_data bmp_db_10 = {
     .height = 40,
     .name = "2"
 };
+
+int n_bitmaps = 11;
 bitmap_data *bitmap_db[] = { &bmp_db_0, &bmp_db_1, &bmp_db_2, &bmp_db_3, &bmp_db_4, &bmp_db_5, &bmp_db_6, &bmp_db_7, &bmp_db_8, &bmp_db_9, &bmp_db_10, };
 

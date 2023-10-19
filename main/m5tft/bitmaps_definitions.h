@@ -20,6 +20,7 @@ extern bitmap_data bmp_db_9;
 extern bitmap_data bmp_db_10;
 
 
+extern int n_bitmaps;
 extern bitmap_data *bitmap_db[];
 
 #endif

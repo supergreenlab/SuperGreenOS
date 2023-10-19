@@ -47,4 +47,7 @@ void render_node(Node *node, int parent_x, int parent_y);
 
 void simple_animation(Node *node);
 
+void set_text_node(Node *textNode, const char *text);
+Node* create_text_node(int x, int y, int max_length, const char *text);
+
 #endif

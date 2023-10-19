@@ -25,7 +25,7 @@ typedef struct {
     color_t palette[11];
     int width;
     int height;
-    const uint8_t name[10];
+    const char name[10];
     uint8_t bitmap[];
 } bitmap_data;     
 

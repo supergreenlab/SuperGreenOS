@@ -131,7 +131,9 @@ static void m5tft_task(void *param) {
   params->dest_y = 40;
   params->speed = 2;
 
-  Node* child1 = create_node(10, 10, &bmp_db_0, simple_animation, params);
+  Node* child1 = create_text_node(10, 10, 4, "1234");
+  child1->funcParams = params;
+  child1->func = simple_animation;
 
   add_child(root, child1);
 
