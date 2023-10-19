@@ -20,6 +20,7 @@
 
 #include "node.h"
 #include "math.h"
+#include "bitmaps.h"
 #include "bitmaps_definitions.h"
 #include "../core/log/log.h"
 
@@ -93,8 +94,12 @@ void add_child(Node *parent, Node *child) {
 	parent->num_children++;
 }
 
+void root_render(Node *node) {
+	render_node(node, 0, 0, 1);
+}
+
 // Rendering function to draw the entire UI
-void render_node(Node *node, int parent_x, int parent_y) {
+void render_node(Node *node, int parent_x, int parent_y, float transparency) {
 	if (!node) return;
 
 	// Call the node's custom function (if it exists)
@@ -104,12 +109,14 @@ void render_node(Node *node, int parent_x, int parent_y) {
 
 	// Draw the node's bitmap (if it exists)
 	if (node->bitmap) {
-		draw_bitmap(node->bitmap, parent_x + node->x, parent_y + node->y, &node->renderOpts);
+		RenderOpt opts = node->renderOpts;
+		opts.transparency *= transparency;
+		draw_bitmap(node->bitmap, parent_x + node->x, parent_y + node->y, &opts);
 	}
 
 	// Render all child nodes
 	for (int i = 0; i < node->num_children; i++) {
-		render_node(node->children[i], parent_x + node->x, parent_y + node->y);
+		render_node(node->children[i], parent_x + node->x, parent_y + node->y, node->renderOpts.transparency * transparency);
 	}
 }
 
@@ -156,11 +163,12 @@ void set_text_node(Node *textNode, const char *text) {
 	}
 }
 
-Node* create_text_node(int x, int y, int max_length, const char *text) {
+Node* create_text_node(int x, int y, int max_length, const char *text, color_t color) {
 	Node *root = create_node(x, y, NULL, NULL, NULL);
 
 	for(int i = 0; i < max_length; i++) {
 		Node *letterNode = create_node(0, 0, NULL, NULL, NULL);
+		letterNode->renderOpts.targetColor = color;
 		add_child(root, letterNode);
 	}
 

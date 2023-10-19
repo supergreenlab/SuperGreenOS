@@ -134,13 +134,10 @@ static void m5tft_task(void *param) {
   params1->elapsedTime = 0;
 
   char text1[5] = "0001";
-  Node* textNode1 = create_text_node(10, 10, 4, text1);
+  Node* textNode1 = create_text_node(10, 10, 4, text1, (color_t){92, 206, 46});
   textNode1->funcParams = params1;
   textNode1->func = sine_animation;
-  for (int i = 0; i < textNode1->num_children; ++i) {
-    textNode1->children[i]->renderOpts.transparency = 0.5;
-  }
-  ESP_LOGI(SGO_LOG_NOSEND, "transparency %f", textNode1->renderOpts.transparency);
+	textNode1->renderOpts.transparency = 0.5;
 
   add_child(root, textNode1);
 
@@ -152,7 +149,7 @@ static void m5tft_task(void *param) {
   params2->elapsedTime = 0;
 
   char text2[5] = "9999";
-  Node* textNode2 = create_text_node(10, 10, 4, text2);
+  Node* textNode2 = create_text_node(10, 10, 4, text2, (color_t){51, 203, 212});
   textNode2->funcParams = params2;
   textNode2->func = sine_animation;
 
@@ -172,7 +169,7 @@ static void m5tft_task(void *param) {
 
     n = n % 10000;
 
-    render_node(root, 0, 0);
+    root_render(root);
     flush_frame();
 
     vTaskDelay(10 / portTICK_PERIOD_MS);

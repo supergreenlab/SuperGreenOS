@@ -39,7 +39,8 @@ struct Node {
 Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *funcParams);
 void add_child(Node *parent, Node *child);
 
-void render_node(Node *node, int parent_x, int parent_y);
+void root_render(Node *node);
+void render_node(Node *node, int parent_x, int parent_y, float transparency);
 
 typedef struct {
     float dest_x;
@@ -60,6 +61,6 @@ typedef struct {
 void sine_animation(Node *node);
 
 void set_text_node(Node *textNode, const char *text);
-Node* create_text_node(int x, int y, int max_length, const char *text);
+Node* create_text_node(int x, int y, int max_length, const char *text, color_t color);
 
 #endif

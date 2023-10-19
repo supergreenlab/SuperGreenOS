@@ -75,13 +75,12 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
         continue;
       }
 
-
       // If grayscale (but not white), interpolate with target color
       if (opts != NULL && color.r == color.g && color.g == color.b && color.b != 0xff) {
-        float grayValue = 1.0f - (color.r / 255.0f); // invert grayscale value
-        color.r = grayValue * opts->targetColor.r;
-        color.g = grayValue * opts->targetColor.g;
-        color.b = grayValue * opts->targetColor.b;
+        float grayValue = 1.0f - ((float)color.r / 255.0f); // invert grayscale value
+        color.r = (1 - grayValue) * 0xff + grayValue * (float)opts->targetColor.r;
+        color.g = (1 - grayValue) * 0xff + grayValue * (float)opts->targetColor.g;
+        color.b = (1 - grayValue) * 0xff + grayValue * (float)opts->targetColor.b;
       }
 
       if (opts != NULL && opts->transparency < 1) {

@@ -113,6 +113,7 @@ def main():
     parser.add_argument("directory", type=str, help="Path to the directory containing SVG files to convert.")
     parser.add_argument("--max-width", type=int, default=160, help="Maximum width of the output raster image.")
     parser.add_argument("--max-height", type=int, default=80, help="Maximum height of the output raster image.")
+    parser.add_argument("--grayscale", type=bool, default=False, help="Generate grayscale images")
 
     args = parser.parse_args()
 
@@ -137,6 +138,8 @@ def main():
     variablesDeclaration = "bitmap_data *bitmap_db[] = { "
     for svg_file in svg_files:
         image = svg_to_raster(svg_file)
+        if args.grayscale:
+            image = image.convert('L')
         image.save(f"{svg_file}.png")
         image = scale_image_to_max_size(image, args.max_width, args.max_height)
         image.save(f"{svg_file}_resized.png")
@@ -149,8 +152,11 @@ def main():
 
     variablesDeclaration += "};"
     pointCContent += variablesDeclaration
+    pointCContent += f"int n_bitmaps = {i};"
+
     pointHContent += """
 
+extern int n_bitmaps;
 extern bitmap_data *bitmap_db[];
 
 #endif
