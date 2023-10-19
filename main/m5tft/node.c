@@ -103,7 +103,6 @@ void render_node(Node *node, int parent_x, int parent_y) {
 
 bitmap_data* get_bitmap_for_name(char* name, int len) {
 	for (int i = 0; i < n_bitmaps; i++) {
-		ESP_LOGI(SGO_LOG_NOSEND, "%s", bitmap_db[i]->name);
 		if (strncmp(bitmap_db[i]->name, name, len) == 0) {
 			return bitmap_db[i];
 		}

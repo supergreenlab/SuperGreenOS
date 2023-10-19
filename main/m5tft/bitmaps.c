@@ -65,7 +65,9 @@ void draw_bitmap(const bitmap_data *img, int x, int y) {
 		for (int j = 0; j < img->height; j++) {
 			color_t color = img->palette[img->bitmap[i + j * img->width]];
       // ESP_LOGI(SGO_LOG_NOSEND, "%x %s", (*(int*)&color), (*(int*)&color) == 0xff00ff ? "match" : "not match");
-      if (*(int*)&color == 0xff00ff) {
+
+      //if (*(int*)&color == 0xff00ff) { // for some reason this test works randomly
+      if (color.r == 0xff && color.g == 0x00 && color.b == 0xff) {
         continue;
       }
 
