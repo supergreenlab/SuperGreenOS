@@ -6,17 +6,28 @@
 
 #include "bitmaps.h"
 
-extern bitmap_data bmp_db_0;
-extern bitmap_data bmp_db_1;
-extern bitmap_data bmp_db_2;
-extern bitmap_data bmp_db_3;
-extern bitmap_data bmp_db_4;
-extern bitmap_data bmp_db_5;
-extern bitmap_data bmp_db_6;
-extern bitmap_data bmp_db_7;
-extern bitmap_data bmp_db_8;
-extern bitmap_data bmp_db_9;
-extern bitmap_data bmp_db_10;
+extern bitmap_data bmp_db_0_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_1_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_2_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_3_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_4_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_5_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_6_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_7_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_8_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_9_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_10_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_0_SMALL_FONT_SIZE;
+extern bitmap_data bmp_db_1_SMALL_FONT_SIZE;
+extern bitmap_data bmp_db_2_SMALL_FONT_SIZE;
+extern bitmap_data bmp_db_3_SMALL_FONT_SIZE;
+extern bitmap_data bmp_db_4_SMALL_FONT_SIZE;
+extern bitmap_data bmp_db_5_SMALL_FONT_SIZE;
+extern bitmap_data bmp_db_6_SMALL_FONT_SIZE;
+extern bitmap_data bmp_db_7_SMALL_FONT_SIZE;
+extern bitmap_data bmp_db_8_SMALL_FONT_SIZE;
+extern bitmap_data bmp_db_9_SMALL_FONT_SIZE;
+extern bitmap_data bmp_db_10_SMALL_FONT_SIZE;
 
 
 extern int n_bitmaps;

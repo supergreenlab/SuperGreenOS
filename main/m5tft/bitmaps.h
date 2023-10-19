@@ -21,10 +21,15 @@
 
 #include "tftspi.h"
 
+#define NORMAL_FONT_SIZE 0x01 << 0
+#define SMALL_FONT_SIZE 0x01 << 1
+#define SPRITE 0xff
+
 typedef struct {
   color_t palette[11];
   int width;
   int height;
+  uint8_t mask;
   const char name[10];
   uint8_t bitmap[];
 } bitmap_data;     
@@ -36,5 +41,6 @@ typedef struct {
 
 void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, RenderOpt *opts);
 void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts);
+bitmap_data* get_bitmap_for_name(char* name, int len, uint8_t mask);
 
 #endif

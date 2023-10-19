@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <string.h>
+
 #include "bitmaps.h"
 
 #include "m5tft.h"
@@ -100,4 +102,16 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
       frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT] = color;
     }
   }
+}
+
+bitmap_data* get_bitmap_for_name(char* name, int len, uint8_t mask) {
+	for (int i = 0; i < n_bitmaps; i++) {
+    if (!(bitmap_db[i]->mask & mask)) {
+      continue;
+    }
+		if (strncmp(bitmap_db[i]->name, name, len) == 0) {
+			return bitmap_db[i];
+		}
+	}
+	return NULL;  // Return NULL if character bitmap not found
 }

@@ -151,10 +151,10 @@ static void m5tft_task(void *param) {
 	params1trans->min_transparency = 0.2;
 	params1trans->max_transparency = 0.8;
 	params1trans->elapsed_time = 0;
-	params1trans->speed = 0.05;
+	params1trans->speed = 0.0666666;
 
- char text1[5] = "0001";
-  Node* textNode1 = create_text_node(10, 10, 4, text1, (color_t){217, 69, 184});
+  char text1[5] = "0001";
+  Node* textNode1 = create_text_node(10, 10, 4, text1, (color_t){217, 69, 184}, NORMAL_FONT_SIZE);
   textNode1->funcParams[0] = params1;
   textNode1->funcs[0] = sine_animation;
 	textNode1->renderOpts.transparency = 0.5;
@@ -165,8 +165,8 @@ static void m5tft_task(void *param) {
   add_child(root, textNode1);
 
   SineAnimationParams *params2 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
-  params2->center_x = 15;
-  params2->center_y = 20;
+  params2->center_x = 40;
+  params2->center_y = 30;
   params2->magnitude_x = -20;
   params2->magnitude_y = -20;
   params2->elapsedTime = 0;
@@ -176,10 +176,10 @@ static void m5tft_task(void *param) {
 	params2trans->min_transparency = 0.2;
 	params2trans->max_transparency = 0.8;
 	params2trans->elapsed_time = 0;
-	params2trans->speed = -0.1;
+	params2trans->speed = -0.1333333;
 
   char text2[5] = "9999";
-  Node* textNode2 = create_text_node(10, 10, 4, text2, (color_t){51, 203, 212});
+  Node* textNode2 = create_text_node(10, 10, 4, text2, (color_t){51, 203, 212}, SMALL_FONT_SIZE);
   textNode2->funcParams[0] = params2;
   textNode2->funcs[0] = sine_animation;
 
@@ -196,10 +196,10 @@ static void m5tft_task(void *param) {
     }
 
     sprintf(text1, "%04d", (int)++n);
-    set_text_node(textNode1, text1);
+    set_text_node(textNode1, text1, NORMAL_FONT_SIZE);
 
     sprintf(text2, "%04d", (int)(9999 - n));
-    set_text_node(textNode2, text2);
+    set_text_node(textNode2, text2, SMALL_FONT_SIZE);
 
     n = (int)n % 10000;
 

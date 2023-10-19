@@ -142,16 +142,7 @@ TickType_t render_node(Node *node, int parent_x, int parent_y, float transparenc
 
 // Text node
 
-bitmap_data* get_bitmap_for_name(char* name, int len) {
-	for (int i = 0; i < n_bitmaps; i++) {
-		if (strncmp(bitmap_db[i]->name, name, len) == 0) {
-			return bitmap_db[i];
-		}
-	}
-	return NULL;  // Return NULL if character bitmap not found
-}
-
-void set_text_node(Node *textNode, const char *text) {
+void set_text_node(Node *textNode, const char *text, uint8_t mask) {
 	int len = strlen(text);
 	float currentX = 0;  // Starting x position
 
@@ -164,9 +155,8 @@ void set_text_node(Node *textNode, const char *text) {
 	for (; i < len; i++) {
 		char c = text[i];
 
-		bitmap_data *charBitmap = get_bitmap_for_name(&c, 1);
+		bitmap_data *charBitmap = get_bitmap_for_name(&c, 1, mask);
 		if (charBitmap == NULL) {
-			ESP_LOGI(SGO_LOG_NOSEND, "Skipping %c", c);
 			continue;  // Skip this character if we don't have a bitmap for it
 		}
 
@@ -183,7 +173,7 @@ void set_text_node(Node *textNode, const char *text) {
 	}
 }
 
-Node* create_text_node(int x, int y, int max_length, const char *text, color_t color) {
+Node* create_text_node(int x, int y, int max_length, const char *text, color_t color, uint8_t mask) {
 	Node *root = create_node(x, y, NULL, NULL, NULL);
 
 	for(int i = 0; i < max_length; i++) {
@@ -192,8 +182,7 @@ Node* create_text_node(int x, int y, int max_length, const char *text, color_t c
 		add_child(root, letterNode);
 	}
 
-	set_text_node(root, text);
+	set_text_node(root, text, mask);
 
 	return root;
 }
-

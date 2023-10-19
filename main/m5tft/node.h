@@ -73,7 +73,7 @@ typedef struct {
 
 TickType_t sine_transparency_animation(Node *node, void *p);
 
-void set_text_node(Node *textNode, const char *text);
-Node* create_text_node(int x, int y, int max_length, const char *text, color_t color);
+void set_text_node(Node *textNode, const char *text, uint8_t mask);
+Node* create_text_node(int x, int y, int max_length, const char *text, color_t color, uint8_t mask);
 
 #endif
