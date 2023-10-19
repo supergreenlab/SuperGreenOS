@@ -64,7 +64,7 @@ void sine_animation(Node *node) {
 	node->x = params->center_x + offset_x;
 	node->y = params->center_y + offset_y;
 
-	params->elapsedTime += 0.1; // Adjust this value to change the speed of the oscillation
+	params->elapsedTime += params->speed; // Adjust this value to change the speed of the oscillation
 }
 
 // Node management functions

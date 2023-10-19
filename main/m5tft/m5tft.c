@@ -132,9 +132,10 @@ static void m5tft_task(void *param) {
   params1->magnitude_x = 20;
   params1->magnitude_y = 10;
   params1->elapsedTime = 0;
+  params1->speed=0.1;
 
   char text1[5] = "0001";
-  Node* textNode1 = create_text_node(10, 10, 4, text1, (color_t){92, 206, 46});
+  Node* textNode1 = create_text_node(10, 10, 4, text1, (color_t){217, 69, 184});
   textNode1->funcParams = params1;
   textNode1->func = sine_animation;
 	textNode1->renderOpts.transparency = 0.5;
@@ -147,6 +148,7 @@ static void m5tft_task(void *param) {
   params2->magnitude_x = -20;
   params2->magnitude_y = -20;
   params2->elapsedTime = 0;
+  params2->speed=-0.05;
 
   char text2[5] = "9999";
   Node* textNode2 = create_text_node(10, 10, 4, text2, (color_t){51, 203, 212});

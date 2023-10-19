@@ -56,6 +56,7 @@ typedef struct {
     float magnitude_x;
     float magnitude_y;
     float elapsedTime; // To keep track of time for sin oscillation
+		float speed;
 } SineAnimationParams;
 
 void sine_animation(Node *node);
