@@ -78,6 +78,7 @@ Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *fu
 	node->func = func;
 	node->children = NULL;
 	node->num_children = 0;
+	node->renderOpts.transparency = 1;
 	return node;
 }
 
@@ -103,7 +104,7 @@ void render_node(Node *node, int parent_x, int parent_y) {
 
 	// Draw the node's bitmap (if it exists)
 	if (node->bitmap) {
-		draw_bitmap(node->bitmap, parent_x + node->x, parent_y + node->y);
+		draw_bitmap(node->bitmap, parent_x + node->x, parent_y + node->y, &node->renderOpts);
 	}
 
 	// Render all child nodes

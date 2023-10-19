@@ -25,7 +25,7 @@
 
 #include "../core/log/log.h"
 
-void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale) {
+void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, RenderOpt *opts) {
   // Calculate the new scaled dimensions
   int scaled_width = ceilf(img->width * scale);
   int scaled_height = ceilf(img->height * scale);
@@ -59,21 +59,41 @@ void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale) {
   }
 }
 
-void draw_bitmap(const bitmap_data *img, int x, int y) {
-	// Iterate through the image's pixels
-	for (int i = 0; i < img->width; i++) {
-		for (int j = 0; j < img->height; j++) {
-			color_t color = img->palette[img->bitmap[i + j * img->width]];
-      // ESP_LOGI(SGO_LOG_NOSEND, "%x %s", (*(int*)&color), (*(int*)&color) == 0xff00ff ? "match" : "not match");
+void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
+  // Iterate through the image's pixels
+  for (int i = 0; i < img->width; i++) {
+    for (int j = 0; j < img->height; j++) {
 
-      //if (*(int*)&color == 0xff00ff) { // for some reason this test works randomly
+      if (!(x + i < DEFAULT_TFT_DISPLAY_HEIGHT && y + j < DEFAULT_TFT_DISPLAY_WIDTH && x + i >= 0 && y + j >= 0)) {
+        continue;
+      }
+
+      color_t color = img->palette[img->bitmap[i + j * img->width]];
+
+      // Check for transparent color
       if (color.r == 0xff && color.g == 0x00 && color.b == 0xff) {
         continue;
       }
 
-			if (x + i < DEFAULT_TFT_DISPLAY_HEIGHT && y + j < DEFAULT_TFT_DISPLAY_WIDTH && x + i >= 0 && y + j >= 0) {
-				frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT] = color;
-			}
-		}
-	}
+
+      // If grayscale (but not white), interpolate with target color
+      if (opts != NULL && color.r == color.g && color.g == color.b && color.b != 0xff) {
+        float grayValue = 1.0f - (color.r / 255.0f); // invert grayscale value
+        color.r = grayValue * opts->targetColor.r;
+        color.g = grayValue * opts->targetColor.g;
+        color.b = grayValue * opts->targetColor.b;
+      }
+
+      if (opts != NULL && opts->transparency < 1) {
+        color_t current_pixel = frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT];
+
+        float alpha = opts->transparency;
+        color.r = current_pixel.r * (1.0f - alpha) + color.r * alpha;
+        color.g = current_pixel.g * (1.0f - alpha) + color.g * alpha;
+        color.b = current_pixel.b * (1.0f - alpha) + color.b * alpha;
+      }
+
+      frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT] = color;
+    }
+  }
 }

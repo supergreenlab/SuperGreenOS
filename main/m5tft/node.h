@@ -33,10 +33,12 @@ struct Node {
 	NodeFunction func; // optional animation or custom logic function
 	Node **children; // pointer to an array of child nodes
 	int num_children; // count of child nodes
+	RenderOpt renderOpts;
 };
 
 Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *funcParams);
 void add_child(Node *parent, Node *child);
+
 void render_node(Node *node, int parent_x, int parent_y);
 
 typedef struct {

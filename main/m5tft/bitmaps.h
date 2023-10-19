@@ -22,14 +22,19 @@
 #include "tftspi.h"
 
 typedef struct {
-    color_t palette[11];
-    int width;
-    int height;
-    const char name[10];
-    uint8_t bitmap[];
+  color_t palette[11];
+  int width;
+  int height;
+  const char name[10];
+  uint8_t bitmap[];
 } bitmap_data;     
 
-void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale);
-void draw_bitmap(const bitmap_data *img, int x, int y);
+typedef struct {
+  float transparency;   // Ranges from 0.0 (fully transparent) to 1.0 (fully opaque)
+  color_t targetColor;  // The color to be used as the new color for gray pixels
+} RenderOpt;
+
+void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, RenderOpt *opts);
+void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts);
 
 #endif

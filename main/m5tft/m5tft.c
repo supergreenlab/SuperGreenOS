@@ -126,81 +126,55 @@ void flush_frame() {
 static void m5tft_task(void *param) {
   Node* root = create_node(0, 0, NULL, NULL, NULL);
 
-  SineAnimationParams *params = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
-  params->center_x = 20;
-  params->center_y = 25;
-  params->magnitude_x = 20;
-  params->magnitude_y = 20;
-  params->elapsedTime = 0;
+  SineAnimationParams *params1 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
+  params1->center_x = 15;
+  params1->center_y = 20;
+  params1->magnitude_x = 20;
+  params1->magnitude_y = 10;
+  params1->elapsedTime = 0;
 
-  char text[5] = "1234";
-  Node* child1 = create_text_node(10, 10, 4, text);
-  child1->funcParams = params;
-  child1->func = sine_animation;
+  char text1[5] = "0001";
+  Node* textNode1 = create_text_node(10, 10, 4, text1);
+  textNode1->funcParams = params1;
+  textNode1->func = sine_animation;
+  for (int i = 0; i < textNode1->num_children; ++i) {
+    textNode1->children[i]->renderOpts.transparency = 0.5;
+  }
+  ESP_LOGI(SGO_LOG_NOSEND, "transparency %f", textNode1->renderOpts.transparency);
 
-  add_child(root, child1);
+  add_child(root, textNode1);
 
-  int n = 1234;
+  SineAnimationParams *params2 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
+  params2->center_x = 15;
+  params2->center_y = 20;
+  params2->magnitude_x = -20;
+  params2->magnitude_y = -20;
+  params2->elapsedTime = 0;
+
+  char text2[5] = "9999";
+  Node* textNode2 = create_text_node(10, 10, 4, text2);
+  textNode2->funcParams = params2;
+  textNode2->func = sine_animation;
+
+  add_child(root, textNode2);
+
+  int n = 1;
   while(true) {
     for (int i = 0; i < DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH; ++i) {
       frame[i] = (color_t){43, 63, 81};
     }
 
-    sprintf(text, "%d", ++n);
+    sprintf(text1, "%04d", ++n);
+    set_text_node(textNode1, text1);
+
+    sprintf(text2, "%04d", 9999 - n);
+    set_text_node(textNode2, text2);
+
     n = n % 10000;
-    set_text_node(child1, text);
 
     render_node(root, 0, 0);
     flush_frame();
+
     vTaskDelay(10 / portTICK_PERIOD_MS);
   }
 }
-
-
-/*static void m5tft_task(void *param) {
-  int inc = 5;
-  int height = 40;
-	float sinA = 0;
-  while(true) {
-    for (int x = 0; x < DEFAULT_TFT_DISPLAY_HEIGHT; ++x) {
-      for (int y = 0; y < DEFAULT_TFT_DISPLAY_WIDTH; ++y) {
-        if (y < height) {
-          frame[x + y*DEFAULT_TFT_DISPLAY_HEIGHT] = (color_t){x+30, 255-x, y*3};
-        } else {
-          frame[x + y*DEFAULT_TFT_DISPLAY_HEIGHT] = (color_t){y * 3, 255-y*3, 255-x};
-        }
-      }
-    }
-
-    int x = 0;
-		int y = 5 + (int)(sinf(sinA) * 40);
-    draw_bitmap(&bmp_db_0, x, y);
-    x += bmp_db_0.width;
-    draw_bitmap(&bmp_db_1, x, y);
-    x += bmp_db_1.width;
-    draw_bitmap(&bmp_db_2, x, y);
-    x += bmp_db_2.width;
-    draw_bitmap(&bmp_db_3, x, y);
-    x += bmp_db_3.width;
-    draw_bitmap(&bmp_db_4, x, y);
-
-    x = 0;
-    draw_bitmap(&bmp_db_5, x, y + 45);
-    x += bmp_db_5.width;
-    draw_bitmap(&bmp_db_6, x, y + 45);
-    x += bmp_db_5.width;
-    draw_bitmap(&bmp_db_6, x, y + 45);
-    x += bmp_db_5.width;
-    draw_bitmap(&bmp_db_6, x, y + 45);
-    x += bmp_db_6.width;
-
-    height += inc;
-    if (height <= 1 || height >= 80) {
-      height = height <= 1 ? 1 : 79;
-      inc = -inc;
-    }
-		sinA += 0.1;
-    flush_frame();
-    vTaskDelay(10 / portTICK_PERIOD_MS);
-  }
-}*/
