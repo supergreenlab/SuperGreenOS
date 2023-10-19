@@ -32,6 +32,8 @@
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
+const float TARGET_FRAME_TIME_MS = 1000.0f / 32.0f;
+
 uint8_t axp192_init_list[28] = {
 	'A', 'X', 'P',
 	0x06, 0, 11,
@@ -123,7 +125,7 @@ void init_m5tft() {
     ESP_LOGE(SGO_LOG_EVENT, "@LED Unable to create led queue");
   }
 
-  xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 4096, NULL, 10, NULL, 1);
+  xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 8192, NULL, 10, NULL, 1);
 }
 
 color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
@@ -165,8 +167,8 @@ static void m5tft_task(void *param) {
   add_child(root, textNode1);
 
   SineAnimationParams *params2 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
-  params2->center_x = 40;
-  params2->center_y = 30;
+  params2->center_x = 15;
+  params2->center_y = 15;
   params2->magnitude_x = -20;
   params2->magnitude_y = -20;
   params2->elapsedTime = 0;
@@ -188,9 +190,60 @@ static void m5tft_task(void *param) {
 
   add_child(root, textNode2);
 
+  SineAnimationParams *params3 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
+  params3->center_x = 55;
+  params3->center_y = 35;
+  params3->magnitude_x = -20;
+  params3->magnitude_y = -40;
+  params3->elapsedTime = 0;
+  params3->speed=0.075;
+
+	SineTransparencyAnimationParams *params3trans = (SineTransparencyAnimationParams*)malloc(sizeof(SineTransparencyAnimationParams));
+	params3trans->min_transparency = 0.2;
+	params3trans->max_transparency = 0.8;
+	params3trans->elapsed_time = M_PI/2;
+	params3trans->speed = -0.1333333;
+
+  char text3[5] = "9999";
+  Node* textNode3 = create_text_node(10, 10, 4, text3, (color_t){212, 203, 51}, SMALL_FONT_SIZE);
+  textNode3->funcParams[0] = params3;
+  textNode3->funcs[0] = sine_animation;
+
+	textNode3->funcParams[1] = params3trans;
+  textNode3->funcs[1] = sine_transparency_animation;
+
+  add_child(root, textNode3);
+
+  SineAnimationParams *params4 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
+  params4->center_x = 20;
+  params4->center_y = 30;
+  params4->magnitude_x = -30;
+  params4->magnitude_y = -40;
+  params4->elapsedTime = 0;
+  params4->speed=0.1;
+
+	SineTransparencyAnimationParams *params4trans = (SineTransparencyAnimationParams*)malloc(sizeof(SineTransparencyAnimationParams));
+	params4trans->min_transparency = 0.2;
+	params4trans->max_transparency = 0.8;
+	params4trans->elapsed_time = M_PI/2;
+	params4trans->speed = -0.2666666;
+
+  char text4[5] = "9999";
+  Node* textNode4 = create_text_node(10, 10, 4, text4, (color_t){0, 51, 203}, NORMAL_FONT_SIZE);
+  textNode4->funcParams[0] = params4;
+  textNode4->funcs[0] = sine_animation;
+
+	textNode4->funcParams[1] = params4trans;
+  textNode4->funcs[1] = sine_transparency_animation;
+
+  add_child(root, textNode4);
+
+
   float n = 1;
   bool c;
   while(true) {
+    TickType_t xLastWakeTime = xTaskGetTickCount();
+
     for (int i = 0; i < DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH; ++i) {
       frame[i] = (color_t){43, 63, 81};
     }
@@ -201,11 +254,23 @@ static void m5tft_task(void *param) {
     sprintf(text2, "%04d", (int)(9999 - n));
     set_text_node(textNode2, text2, SMALL_FONT_SIZE);
 
+    sprintf(text3, "%04d", (int)(9999 - n));
+    set_text_node(textNode3, text3, SMALL_FONT_SIZE);
+
+    sprintf(text4, "%04d", (int)(9999 - n));
+    set_text_node(textNode4, text4, NORMAL_FONT_SIZE);
+
     n = (int)n % 10000;
 
     root_render(root);
     flush_frame();
 
-    xQueueReceive(cmd, &c, 10 / portTICK_PERIOD_MS);
+    TickType_t xEndTime = xTaskGetTickCount();  // Capture the end time
+    float timeSpent = (xEndTime - xLastWakeTime) * portTICK_PERIOD_MS;  // Calculate time spent in ms
+
+    float delayTime = TARGET_FRAME_TIME_MS - timeSpent;  // Calculate actual delay time
+    if (delayTime < 10) delayTime = 10;  // Ensure delay time is never below 10ms
+
+    xQueueReceive(cmd, &c, delayTime / portTICK_PERIOD_MS);
   }
 }
