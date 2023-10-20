@@ -37,12 +37,15 @@ struct Node {
   NodeFunction funcs[N_NODE_FUNCTION];
   Node **children;
   int num_children;
+  Node *parent;
+
   RenderOpt renderOpts;
 };
 
 TickType_t root_render(Node *node);
-TickType_t render_node(Node *node, int parent_x, int parent_y, float transparency);
+TickType_t render_node(Node *node, int parent_x, int parent_y, float transparency, float scale);
 
+float get_effective_scale(const Node *node);
 Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *funcParams);
 void add_child(Node *parent, Node *child);
 void set_text_node(Node *textNode, const char *text, uint8_t mask);
@@ -103,6 +106,18 @@ typedef struct {
 } SineTransparencyAnimationParams;
 
 TickType_t sine_transparency_animation(Node *node, void *p);
+
+typedef struct {
+
+  float min_scale;
+  float max_scale;
+  float elapsed_time;
+  float speed;
+
+} SineScaleAnimationParams;
+
+TickType_t sine_scale_animation(Node *node, void *p);
+
 
 typedef struct {
 

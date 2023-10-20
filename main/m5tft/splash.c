@@ -35,9 +35,9 @@ TickType_t slash_loop(Node *node, void *p) {
 }
 
 Node *create_super() {
-  /*SimpleAnimationParams *translation = (SimpleAnimationParams *)malloc(sizeof(SimpleAnimationParams));
+  SimpleAnimationParams *translation = (SimpleAnimationParams *)malloc(sizeof(SimpleAnimationParams));
   memset(translation, 0, sizeof(SimpleAnimationParams));
-  translation->dest_x = 40;
+  translation->dest_x = 20;
   translation->dest_y = 5;
   translation->speed = 5;
 
@@ -46,23 +46,22 @@ Node *create_super() {
   wait->since = -1;
   wait->duration = 1000;
   translation->nextParams = wait;
-  translation->nextFunc = wait_action;*/
+  translation->nextFunc = wait_action;
 
-  /*SimpleTransparencyAnimationParams *fade = (SimpleTransparencyAnimationParams *)malloc(sizeof(SimpleTransparencyAnimationParams));
+  SimpleTransparencyAnimationParams *fade = (SimpleTransparencyAnimationParams *)malloc(sizeof(SimpleTransparencyAnimationParams));
   memset(fade, 0, sizeof(SimpleTransparencyAnimationParams));
   fade->dest_transparency = 0;
-  fade->speed = 1;
-
+  fade->speed = -0.05;
   wait->nextParams = fade;
-  wait->nextFunc = simple_transparency_animation;*/
+  wait->nextFunc = simple_transparency_animation;
 
-  Node *node = create_text_node(5, 5, 5, "super", (color_t){ 255, 255, 255 }, NORMAL_FONT_SIZE);
+  Node *node = create_text_node(-100, 5, 5, "SUPER", (color_t){ 255, 255, 255 }, NORMAL_FONT_SIZE);
   for (int i = 0; i < node->num_children; ++i) {
 		node->children[i]->renderOpts.invert = true;
 	}
 
-  //node->funcParams[0] = translation;
-  //node->funcs[0] = simple_animation;
+  node->funcParams[0] = translation;
+  node->funcs[0] = simple_animation;
   return node;
 }
 

@@ -132,8 +132,7 @@ void init_m5tft() {
 	}
 }
 
-/*static void m5tft_task(void *param) {
-	ESP_LOGI(SGO_LOG_NOSEND, "pouet dkddkdk");
+static void m5tft_task(void *param) {
   Node* root = create_node(0, 0, NULL, NULL, NULL);
 
 	init_splash(root);
@@ -158,9 +157,9 @@ void init_m5tft() {
 		}
 
   }
-}*/
+}
 
-static void m5tft_task(void *param) {
+/*static void m5tft_task(void *param) {
   Node* root = create_node(0, 0, NULL, NULL, NULL);
 
   SineAnimationParams *params1 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
@@ -177,19 +176,25 @@ static void m5tft_task(void *param) {
 	params1trans->elapsed_time = 0;
 	params1trans->speed = 0.0666666;
 
+	SineScaleAnimationParams *params1scale = (SineScaleAnimationParams*)malloc(sizeof(SineScaleAnimationParams));
+	params1scale->min_scale = 0.5;
+	params1scale->max_scale = 1.3;
+	params1scale->elapsed_time = 0;
+	params1scale->speed = 0.056;
+
   char text1[5] = "0001";
   Node* textNode1 = create_text_node(10, 10, 4, text1, (color_t){255, 255, 255}, NORMAL_FONT_SIZE);
   textNode1->funcParams[0] = params1;
   textNode1->funcs[0] = sine_animation;
+	textNode1->funcParams[1] = params1trans;
+  textNode1->funcs[1] = sine_transparency_animation;
+  textNode1->funcParams[2] = params1scale;
+  textNode1->funcs[2] = sine_scale_animation;
 	textNode1->renderOpts.transparency = 0.5;
 
 	for (int i = 0; i < textNode1->num_children; ++i) {
 		textNode1->children[i]->renderOpts.invert = true;
-		textNode1->children[i]->renderOpts.scale = 0.7;
 	}
-
-	textNode1->funcParams[1] = params1trans;
-  textNode1->funcs[1] = sine_transparency_animation;
 
   add_child(root, textNode1);
 
@@ -305,4 +310,4 @@ static void m5tft_task(void *param) {
 		}
 
   }
-}
+}*/
