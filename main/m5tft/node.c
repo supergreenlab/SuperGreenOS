@@ -38,7 +38,7 @@ TickType_t  simple_animation(Node *node, void *p) {
   float distance = sqrtf(dx*dx + dy*dy);
 
   // If we're close enough to the destination, snap to it
-  if (distance <= params->speed) {
+  if (distance <= abs(params->speed)) {
     node->x = params->dest_x;
     node->y = params->dest_y;
 
@@ -61,6 +61,7 @@ TickType_t  simple_animation(Node *node, void *p) {
   // Update the node's position
   node->x += step_x;
   node->y += step_y;
+  ESP_LOGI(SGO_LOG_NOSEND, "poeut %f %f", node->x, node->y);
   return SHORT_TICK;
 }
 
@@ -156,10 +157,7 @@ TickType_t wait_action(Node *node, void *p) {
 // Create a new node. For simplicity, memory allocation is straightforward and lacks error checking.
 Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *funcParams) {
   Node *node = (Node*)malloc(sizeof(Node));
-
-  memset(&node->renderOpts, 0, sizeof(RenderOpt));
-  memset(node->funcParams, 0, sizeof(void *) * 4);
-  memset(node->funcs, 0, sizeof(NodeFunction) * 4);
+  memset(node, 0, sizeof(Node));
 
   node->x = x;
   node->y = y;
@@ -169,6 +167,7 @@ Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *fu
   node->children = NULL;
   node->num_children = 0;
   node->renderOpts.transparency = 1;
+  node->renderOpts.antialias = true;
   return node;
 }
 
@@ -294,7 +293,11 @@ void set_text_node(Node *textNode, const char *text, uint8_t mask) {
     letterNode->y = 0;  // No change in y-axis for this use-case
     letterNode->bitmap = charBitmap;
 
-    currentX += charBitmap->width;  // Move the x position for the next character
+    if (textNode->children[i]->renderOpts.scale) {
+      currentX += charBitmap->width * textNode->children[i]->renderOpts.scale;  // Move the x position for the next character
+    } else {
+      currentX += charBitmap->width;
+    }
   }
   for (; i < textNode->num_children; i++) {
     textNode->children[i]->bitmap = NULL;

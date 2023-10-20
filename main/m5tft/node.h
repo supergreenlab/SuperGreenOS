@@ -40,11 +40,15 @@ struct Node {
   RenderOpt renderOpts;
 };
 
-Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *funcParams);
-void add_child(Node *parent, Node *child);
-
 TickType_t root_render(Node *node);
 TickType_t render_node(Node *node, int parent_x, int parent_y, float transparency);
+
+Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *funcParams);
+void add_child(Node *parent, Node *child);
+void set_text_node(Node *textNode, const char *text, uint8_t mask);
+Node* create_text_node(int x, int y, int max_length, const char *text, color_t color, uint8_t mask);
+void delete_node(Node *node);
+void remove_child(Node *parent, Node *child);
 
 #define SHORT_TICK 10 / portTICK_PERIOD_MS
 #define LONG_TICK 100000 / portTICK_PERIOD_MS
@@ -112,10 +116,5 @@ typedef struct {
 } WaitActionParams;
 
 TickType_t wait_action(Node *node, void *p);
-
-void set_text_node(Node *textNode, const char *text, uint8_t mask);
-Node* create_text_node(int x, int y, int max_length, const char *text, color_t color, uint8_t mask);
-void delete_node(Node *node);
-void remove_child(Node *parent, Node *child);
 
 #endif

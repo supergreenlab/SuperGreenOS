@@ -122,25 +122,18 @@ void init_m5tft() {
 
   TFT_setRotation(LANDSCAPE);
 
-  cmd = xQueueCreate(10, sizeof(bool));
+  cmd = xQueueCreate(1, sizeof(bool));
   if (cmd == NULL) {
     ESP_LOGE(SGO_LOG_EVENT, "@LED Unable to create led queue");
   }
 
-  xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 8192, NULL, 10, NULL, 1);
-}
-
-color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
-
-void flush_frame() {
-  int buffer_size = DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH/4;
-  send_data(0, 0, DEFAULT_TFT_DISPLAY_HEIGHT-1, 19, buffer_size, frame);
-  send_data(0, 20, DEFAULT_TFT_DISPLAY_HEIGHT-1, 39, buffer_size, frame+buffer_size);
-  send_data(0, 40, DEFAULT_TFT_DISPLAY_HEIGHT-1, 59, buffer_size, frame+buffer_size*2);
-  send_data(0, 60, DEFAULT_TFT_DISPLAY_HEIGHT-1, 79, buffer_size, frame+buffer_size*3);
+  if (xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 4096, NULL, 10, NULL, 1) != pdPASS) {
+		ESP_LOGE(SGO_LOG_NOSEND, "Could not create M5TFT task");
+	}
 }
 
 /*static void m5tft_task(void *param) {
+	ESP_LOGI(SGO_LOG_NOSEND, "pouet dkddkdk");
   Node* root = create_node(0, 0, NULL, NULL, NULL);
 
 	init_splash(root);
@@ -192,6 +185,7 @@ static void m5tft_task(void *param) {
 
 	for (int i = 0; i < textNode1->num_children; ++i) {
 		textNode1->children[i]->renderOpts.invert = true;
+		textNode1->children[i]->renderOpts.scale = 0.7;
 	}
 
 	textNode1->funcParams[1] = params1trans;
@@ -214,7 +208,7 @@ static void m5tft_task(void *param) {
 	params2trans->speed = -0.1333333;
 
   char text2[5] = "9999";
-  Node* textNode2 = create_text_node(10, 10, 4, text2, (color_t){51, 203, 212}, SMALL_FONT_SIZE);
+  Node* textNode2 = create_text_node(10, 10, 4, text2, (color_t){51, 203, 212}, NORMAL_FONT_SIZE);
   textNode2->funcParams[0] = params2;
   textNode2->funcs[0] = sine_animation;
 
@@ -238,7 +232,7 @@ static void m5tft_task(void *param) {
 	params3trans->speed = -0.1333333;
 
   char text3[5] = "9999";
-  Node* textNode3 = create_text_node(10, 10, 4, text3, (color_t){212, 203, 51}, SMALL_FONT_SIZE);
+  Node* textNode3 = create_text_node(10, 10, 4, text3, (color_t){212, 203, 51}, NORMAL_FONT_SIZE);
   textNode3->funcParams[0] = params3;
   textNode3->funcs[0] = sine_animation;
 
@@ -271,7 +265,6 @@ static void m5tft_task(void *param) {
 
   add_child(root, textNode4);
 
-
   float n = 1;
   bool c;
   while(true) {
@@ -285,10 +278,10 @@ static void m5tft_task(void *param) {
     set_text_node(textNode1, text1, NORMAL_FONT_SIZE);
 
     sprintf(text2, "%04d", (int)(9999 - n));
-    set_text_node(textNode2, text2, SMALL_FONT_SIZE);
+    set_text_node(textNode2, text2, NORMAL_FONT_SIZE);
 
     sprintf(text3, "%04d", (int)(9999 - n));
-    set_text_node(textNode3, text3, SMALL_FONT_SIZE);
+    set_text_node(textNode3, text3, NORMAL_FONT_SIZE);
 
     sprintf(text4, "%04d", (int)(9999 - n));
     set_text_node(textNode4, text4, NORMAL_FONT_SIZE);

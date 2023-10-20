@@ -17,6 +17,7 @@
  */
 
 #include "splash.h"
+#include "../core/log/log.h"
 
 typedef struct {
   
@@ -29,13 +30,14 @@ typedef struct {
 } splash_params;
 
 TickType_t slash_loop(Node *node, void *p) {
+  //fill_screen((color_t){255, 255, 255});
+  ESP_LOGI(SGO_LOG_NOSEND, "pouet");
   return SHORT_TICK;
 }
 
 Node *create_super() {
-  SimpleAnimationParams *translation = (SimpleAnimationParams *)malloc(sizeof(SimpleAnimationParams));
+  /*SimpleAnimationParams *translation = (SimpleAnimationParams *)malloc(sizeof(SimpleAnimationParams));
   memset(translation, 0, sizeof(SimpleAnimationParams));
-
   translation->dest_x = 40;
   translation->dest_y = 5;
   translation->speed = 5;
@@ -44,22 +46,24 @@ Node *create_super() {
   memset(wait, 0, sizeof(WaitActionParams));
   wait->since = -1;
   wait->duration = 1000;
-  translation->nextFuncIndex = 0;
   translation->nextParams = wait;
-  translation->nextFunc = wait_action;
+  translation->nextFunc = wait_action;*/
 
-  SimpleTransparencyAnimationParams *fade = (SimpleTransparencyAnimationParams *)malloc(sizeof(SimpleTransparencyAnimationParams));
+  /*SimpleTransparencyAnimationParams *fade = (SimpleTransparencyAnimationParams *)malloc(sizeof(SimpleTransparencyAnimationParams));
   memset(fade, 0, sizeof(SimpleTransparencyAnimationParams));
   fade->dest_transparency = 0;
   fade->speed = 1;
 
-  wait->nextFuncIndex = 0;
   wait->nextParams = fade;
-  wait->nextFunc = simple_transparency_animation;
+  wait->nextFunc = simple_transparency_animation;*/
 
-  Node *node = create_text_node(-100, 5, 5, "SUPER", (color_t){ 59, 179, 11 }, NORMAL_FONT_SIZE);
-  node->funcParams[0] = translation;
-  node->funcs[0] = simple_animation;
+  Node *node = create_text_node(5, 5, 5, "super", (color_t){ 255, 255, 255 }, NORMAL_FONT_SIZE);
+  for (int i = 0; i < node->num_children; ++i) {
+		node->children[i]->renderOpts.invert = true;
+	}
+
+  //node->funcParams[0] = translation;
+  //node->funcs[0] = simple_animation;
   return node;
 }
 
@@ -74,19 +78,19 @@ Node *create_lab() {
 }
 
 void init_splash(Node *root) {
-  /*splash_params *params = (splash_params *)malloc(sizeof(splash_params));
+  splash_params *params = (splash_params *)malloc(sizeof(splash_params));
   params->root = create_node(0, 0, NULL, slash_loop, params);
   add_child(root, params->root);
 
   params->super = create_super();
   add_child(params->root, params->super);
 
-  params->green = create_green();
+  /*params->green = create_green();
   add_child(params->root, params->green);
 
   params->lab = create_lab();
-  add_child(params->root, params->lab);*/
+  add_child(params->root, params->lab);
 
   Node *test = create_text_node(10, 10, 5, "super", (color_t){23, 150, 200}, NORMAL_FONT_SIZE);
-  add_child(root, test);
+  add_child(root, test);*/
 }

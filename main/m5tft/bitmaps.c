@@ -27,6 +27,8 @@
 
 #include "../core/log/log.h"
 
+color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
+
 void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, RenderOpt *opts) {
   // Calculate the new scaled dimensions
   int scaled_width = ceilf(img->width * scale);
@@ -62,21 +64,28 @@ void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, Rende
 }
 
 void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
+  float scale = (opts && opts->scale) ? opts->scale : 1.0f;
+
+  int scaledWidth = img->width * scale;
+  int scaledHeight = img->height * scale;
+
   // Check if the image is completely out of the frame
-  if (x + img->width < 0 || x > DEFAULT_TFT_DISPLAY_HEIGHT || y + img->height < 0 || y > DEFAULT_TFT_DISPLAY_WIDTH) {
+  if (x + scaledWidth < 0 || x > DEFAULT_TFT_DISPLAY_HEIGHT || y + scaledHeight < 0 || y > DEFAULT_TFT_DISPLAY_WIDTH) {
     return; // Image is out of frame, so return immediately
   }
 
   // Calculate the start and end values for loops to avoid unnecessary iteration
   int startX = (x < 0) ? -x : 0;
   int startY = (y < 0) ? -y : 0;
-  int endX = (x + img->width > DEFAULT_TFT_DISPLAY_HEIGHT) ? DEFAULT_TFT_DISPLAY_HEIGHT - x : img->width;
-  int endY = (y + img->height > DEFAULT_TFT_DISPLAY_WIDTH) ? DEFAULT_TFT_DISPLAY_WIDTH - y : img->height;
+  int endX = (x + scaledWidth > DEFAULT_TFT_DISPLAY_HEIGHT) ? DEFAULT_TFT_DISPLAY_HEIGHT - x : scaledWidth;
+  int endY = (y + scaledHeight > DEFAULT_TFT_DISPLAY_WIDTH) ? DEFAULT_TFT_DISPLAY_WIDTH - y : scaledHeight;
 
   // Iterate only within calculated bounds
   for (int i = startX; i < endX; i++) {
     for (int j = startY; j < endY; j++) {
-      color_t color = img->palette[img->bitmap[i + j * img->width]];
+      int srcX = i / scale;
+      int srcY = j / scale;
+      color_t color = img->palette[img->bitmap[srcX + srcY * img->width]];
 
       // Check for transparent color
       if (color.r == 0xff && color.g == 0x00 && color.b == 0xff) {
@@ -91,14 +100,20 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
 
         // Check only the top, right, bottom, and left pixels
         for (int k = 0; k < 4; k++) {
-          int nx = i + adjX[k];
-          int ny = j + adjY[k];
+          int nx = srcX + adjX[k];
+          int ny = srcY + adjY[k];
           if (nx >= 0 && nx < img->width && ny >= 0 && ny < img->height) {
             color_t adjacentColor = img->palette[img->bitmap[nx + ny * img->width]];
             if (adjacentColor.r != 0xff || adjacentColor.g != 0x00 || adjacentColor.b != 0xff) {
-              sumR += adjacentColor.r;
-              sumG += adjacentColor.g;
-              sumB += adjacentColor.b;
+              if (opts && opts->invert) {
+                sumR += 255 - adjacentColor.r;
+                sumG += 255 - adjacentColor.g;
+                sumB += 255 - adjacentColor.b;
+              } else {
+                sumR += adjacentColor.r;
+                sumG += adjacentColor.g;
+                sumB += adjacentColor.b;
+              }
               count++;
             }
           }
@@ -106,16 +121,11 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
 
         // If there are any non-transparent adjacent pixels, calculate the average
         if (count > 0) {
+
           color_t current_pixel = frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT];
           color.r = (sumR + current_pixel.r) / (count + 1);
           color.g = (sumG + current_pixel.g) / (count + 1);
           color.b = (sumB + current_pixel.b) / (count + 1);
-
-          if (opts && opts->invert) {
-            color.r = 255 - color.r;
-            color.g = 255 - color.g;
-            color.b = 255 - color.b;
-          }
         } else {
           continue; // Skip if the pixel is transparent and has no non-transparent neighbors
         }
@@ -164,4 +174,12 @@ void fill_screen(color_t color) {
   for (int i = 0; i < DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH; ++i) {
     frame[i] = color;
   }
+}
+
+void flush_frame() {
+  int buffer_size = DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH/4;
+  send_data(0, 0, DEFAULT_TFT_DISPLAY_HEIGHT-1, 19, buffer_size, frame);
+  send_data(0, 20, DEFAULT_TFT_DISPLAY_HEIGHT-1, 39, buffer_size, frame+buffer_size);
+  send_data(0, 40, DEFAULT_TFT_DISPLAY_HEIGHT-1, 59, buffer_size, frame+buffer_size*2);
+  send_data(0, 60, DEFAULT_TFT_DISPLAY_HEIGHT-1, 79, buffer_size, frame+buffer_size*3);
 }

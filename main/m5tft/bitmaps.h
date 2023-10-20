@@ -26,6 +26,8 @@
 #define CAPS_FONT 0x01 << 2
 #define SPRITE 0xff
 
+extern color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
+
 typedef struct {
   color_t palette[11];
   int width;
@@ -38,6 +40,7 @@ typedef struct {
 typedef struct {
   bool invert;
   bool antialias;
+  float scale;
   float transparency;   // Ranges from 0.0 (fully transparent) to 1.0 (fully opaque)
   color_t targetColor;  // The color to be used as the new color for gray pixels
 } RenderOpt;
@@ -46,5 +49,6 @@ void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, Rende
 void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts);
 bitmap_data* get_bitmap_for_name(char* name, int len, uint8_t mask);
 void fill_screen(color_t color);
+void flush_frame();
 
 #endif
