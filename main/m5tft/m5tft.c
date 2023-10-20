@@ -127,7 +127,7 @@ void init_m5tft() {
     ESP_LOGE(SGO_LOG_EVENT, "@LED Unable to create led queue");
   }
 
-  if (xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 4096, NULL, 10, NULL, 1) != pdPASS) {
+  if (xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 8192, NULL, 10, NULL, 1) != pdPASS) {
 		ESP_LOGE(SGO_LOG_NOSEND, "Could not create M5TFT task");
 	}
 }

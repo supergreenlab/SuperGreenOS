@@ -30,8 +30,7 @@ typedef struct {
 } splash_params;
 
 TickType_t slash_loop(Node *node, void *p) {
-  //fill_screen((color_t){255, 255, 255});
-  ESP_LOGI(SGO_LOG_NOSEND, "pouet");
+  fill_screen((color_t){255, 255, 255});
   return SHORT_TICK;
 }
 

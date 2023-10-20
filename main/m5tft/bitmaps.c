@@ -66,8 +66,8 @@ void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, Rende
 void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
   float scale = (opts && opts->scale) ? opts->scale : 1.0f;
 
-  int scaledWidth = img->width * scale;
-  int scaledHeight = img->height * scale;
+  int scaledWidth = (float)img->width * scale;
+  int scaledHeight = (float)img->height * scale;
 
   // Check if the image is completely out of the frame
   if (x + scaledWidth < 0 || x > DEFAULT_TFT_DISPLAY_HEIGHT || y + scaledHeight < 0 || y > DEFAULT_TFT_DISPLAY_WIDTH) {
@@ -80,16 +80,23 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
   int endX = (x + scaledWidth > DEFAULT_TFT_DISPLAY_HEIGHT) ? DEFAULT_TFT_DISPLAY_HEIGHT - x : scaledWidth;
   int endY = (y + scaledHeight > DEFAULT_TFT_DISPLAY_WIDTH) ? DEFAULT_TFT_DISPLAY_WIDTH - y : scaledHeight;
 
+  float srcIncrementX = (float)img->width / scaledWidth;
+  float srcIncrementY = (float)img->height / scaledHeight;
+
+  float srcXAccum = (float)startX * srcIncrementX;
+
   // Iterate only within calculated bounds
   for (int i = startX; i < endX; i++) {
+    float srcYAccum = (float)startY * srcIncrementY;
     for (int j = startY; j < endY; j++) {
-      int srcX = i / scale;
-      int srcY = j / scale;
+      int srcX = (int)srcXAccum;
+      int srcY = (int)srcYAccum;
       color_t color = img->palette[img->bitmap[srcX + srcY * img->width]];
 
       // Check for transparent color
       if (color.r == 0xff && color.g == 0x00 && color.b == 0xff) {
         if (opts && !opts->antialias) {
+          srcYAccum += srcIncrementY;
           continue;
         }
         int sumR = 0, sumG = 0, sumB = 0, count = 0;
@@ -121,12 +128,12 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
 
         // If there are any non-transparent adjacent pixels, calculate the average
         if (count > 0) {
-
           color_t current_pixel = frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT];
           color.r = (sumR + current_pixel.r) / (count + 1);
           color.g = (sumG + current_pixel.g) / (count + 1);
           color.b = (sumB + current_pixel.b) / (count + 1);
         } else {
+          srcYAccum += srcIncrementY;
           continue; // Skip if the pixel is transparent and has no non-transparent neighbors
         }
       } else if (opts != NULL && color.r == color.g && color.g == color.b && color.b != 0xff) {
@@ -153,7 +160,9 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
       }
 
       frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT] = color;
+      srcYAccum += srcIncrementY;
     }
+    srcXAccum += srcIncrementX;
   }
 }
 
