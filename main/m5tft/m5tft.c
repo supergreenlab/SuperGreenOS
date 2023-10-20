@@ -25,6 +25,8 @@
 #include "bitmaps_definitions.h"
 #include "node.h"
 
+#include "splash.h"
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
@@ -138,6 +140,33 @@ void flush_frame() {
   send_data(0, 60, DEFAULT_TFT_DISPLAY_HEIGHT-1, 79, buffer_size, frame+buffer_size*3);
 }
 
+/*static void m5tft_task(void *param) {
+  Node* root = create_node(0, 0, NULL, NULL, NULL);
+
+	init_splash(root);
+
+  bool c;
+  while(true) {
+    TickType_t xLastWakeTime = xTaskGetTickCount();
+
+    TickType_t tickTime = root_render(root);
+    flush_frame();
+
+    TickType_t xEndTime = xTaskGetTickCount();  // Capture the end time
+    float timeSpent = (xEndTime - xLastWakeTime) * portTICK_PERIOD_MS;  // Calculate time spent in ms
+
+    float delayTime = TARGET_FRAME_TIME_MS - timeSpent;  // Calculate actual delay time
+    if (delayTime < 10) delayTime = 10;  // Ensure delay time is never below 10ms
+
+		if (delayTime / portTICK_PERIOD_MS > tickTime) {
+			xQueueReceive(cmd, &c, delayTime / portTICK_PERIOD_MS);
+		} else {
+			xQueueReceive(cmd, &c, tickTime);
+		}
+
+  }
+}*/
+
 static void m5tft_task(void *param) {
   Node* root = create_node(0, 0, NULL, NULL, NULL);
 
@@ -156,10 +185,14 @@ static void m5tft_task(void *param) {
 	params1trans->speed = 0.0666666;
 
   char text1[5] = "0001";
-  Node* textNode1 = create_text_node(10, 10, 4, text1, (color_t){217, 69, 184}, NORMAL_FONT_SIZE);
+  Node* textNode1 = create_text_node(10, 10, 4, text1, (color_t){255, 255, 255}, NORMAL_FONT_SIZE);
   textNode1->funcParams[0] = params1;
   textNode1->funcs[0] = sine_animation;
 	textNode1->renderOpts.transparency = 0.5;
+
+	for (int i = 0; i < textNode1->num_children; ++i) {
+		textNode1->children[i]->renderOpts.invert = true;
+	}
 
 	textNode1->funcParams[1] = params1trans;
   textNode1->funcs[1] = sine_transparency_animation;
@@ -271,7 +304,8 @@ static void m5tft_task(void *param) {
     float delayTime = TARGET_FRAME_TIME_MS - timeSpent;  // Calculate actual delay time
     if (delayTime < 10) delayTime = 10;  // Ensure delay time is never below 10ms
 
-		if (delayTime / portTICK_PERIOD_MS < tickTime) {
+		if (delayTime / portTICK_PERIOD_MS > tickTime) {
+			//ESP_LOGI(SGO_LOG_EVEN, "delayTime");
 			xQueueReceive(cmd, &c, delayTime / portTICK_PERIOD_MS);
 		} else {
 			xQueueReceive(cmd, &c, tickTime);

@@ -80,15 +80,58 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
 
       // Check for transparent color
       if (color.r == 0xff && color.g == 0x00 && color.b == 0xff) {
-        continue;
-      }
+        if (opts && !opts->antialias) {
+          continue;
+        }
+        int sumR = 0, sumG = 0, sumB = 0, count = 0;
 
-      // If grayscale (but not white), interpolate with target color
-      if (opts != NULL && color.r == color.g && color.g == color.b && color.b != 0xff) {
+        // Define relative positions of adjacent pixels
+        int adjX[] = {-1, 1, 1, -1};
+        int adjY[] = {-1, 1, -1, 1};
+
+        // Check only the top, right, bottom, and left pixels
+        for (int k = 0; k < 4; k++) {
+          int nx = i + adjX[k];
+          int ny = j + adjY[k];
+          if (nx >= 0 && nx < img->width && ny >= 0 && ny < img->height) {
+            color_t adjacentColor = img->palette[img->bitmap[nx + ny * img->width]];
+            if (adjacentColor.r != 0xff || adjacentColor.g != 0x00 || adjacentColor.b != 0xff) {
+              sumR += adjacentColor.r;
+              sumG += adjacentColor.g;
+              sumB += adjacentColor.b;
+              count++;
+            }
+          }
+        }
+
+        // If there are any non-transparent adjacent pixels, calculate the average
+        if (count > 0) {
+          color_t current_pixel = frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT];
+          color.r = (sumR + current_pixel.r) / (count + 1);
+          color.g = (sumG + current_pixel.g) / (count + 1);
+          color.b = (sumB + current_pixel.b) / (count + 1);
+
+          if (opts && opts->invert) {
+            color.r = 255 - color.r;
+            color.g = 255 - color.g;
+            color.b = 255 - color.b;
+          }
+        } else {
+          continue; // Skip if the pixel is transparent and has no non-transparent neighbors
+        }
+      } else if (opts != NULL && color.r == color.g && color.g == color.b && color.b != 0xff) {
         float grayValue = 1.0f - ((float)color.r / 255.0f); // invert grayscale value
-        color.r = (1 - grayValue) * 0xff + grayValue * (float)opts->targetColor.r;
-        color.g = (1 - grayValue) * 0xff + grayValue * (float)opts->targetColor.g;
-        color.b = (1 - grayValue) * 0xff + grayValue * (float)opts->targetColor.b;
+        uint8_t color_to = 0xff;
+        if (opts->invert) {
+          color_to = 0x00;
+        }
+        color.r = (1 - grayValue) * color_to + grayValue * (float)opts->targetColor.r;
+        color.g = (1 - grayValue) * color_to + grayValue * (float)opts->targetColor.g;
+        color.b = (1 - grayValue) * color_to + grayValue * (float)opts->targetColor.b;
+      } else if (opts && opts->invert) {
+        color.r = 255 - color.r;
+        color.g = 255 - color.g;
+        color.b = 255 - color.b;
       }
 
       if (opts != NULL && opts->transparency < 1) {
@@ -113,5 +156,12 @@ bitmap_data* get_bitmap_for_name(char* name, int len, uint8_t mask) {
 			return bitmap_db[i];
 		}
 	}
+  ESP_LOGI(SGO_LOG_NOSEND, "Does not exist %c", name[0]);
 	return NULL;  // Return NULL if character bitmap not found
+}
+
+void fill_screen(color_t color) {
+  for (int i = 0; i < DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH; ++i) {
+    frame[i] = color;
+  }
 }

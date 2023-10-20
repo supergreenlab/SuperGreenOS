@@ -299,7 +299,6 @@ extern "C" {
 	esp_err_t disp_deselect();
 	esp_err_t disp_select();
 
-
 	void TFT_PinsInit();
 	void TFT_display_init();
 

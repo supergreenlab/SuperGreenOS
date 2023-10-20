@@ -88,12 +88,12 @@ def generate_palette_and_bitmap(image):
     
     return unique_colors, bitmap
 
-def generate_c_code(palette, mask, bitmap, width, height, filename, var_index):
+def generate_c_code(palette, mask, bitmap, width, height, filename, var_index, prefix):
     palette_str = ",\n".join([f"{{ {color[0]}, {color[1]}, {color[2]} }}" for color in palette])
     bitmap_str = ", ".join(map(str, bitmap))
     
     return f"""
-bitmap_data bmp_db_{var_index}_{mask} = {{
+bitmap_data {prefix}_{var_index}_{mask} = {{
     .mask = {mask},
     .palette = {{
         {palette_str}
@@ -115,6 +115,7 @@ def main():
     parser.add_argument("--max-height", type=int, default=80, help="Maximum height of the output raster image.")
     parser.add_argument("--grayscale", type=bool, default=False, help="Generate grayscale images")
     parser.add_argument("--mask", type=str, default="NORMAL_FONT_SIZE", help="Generate grayscale images")
+    parser.add_argument("--prefix", type=str, default="bmp_db", help="Generate grayscale images")
 
     args = parser.parse_args()
 
@@ -146,9 +147,9 @@ def main():
         image.save(f"{svg_file}_resized.png")
         palette, bitmap = generate_palette_and_bitmap(image)
         filename_no_ext = get_filename_without_extension(svg_file)
-        pointHContent += f"extern bitmap_data bmp_db_{i}_{args.mask};\n";
-        pointCContent += generate_c_code(palette, args.mask, bitmap, image.width, image.height, filename_no_ext, i)
-        variablesDeclaration += f"&bmp_db_{i}_{args.mask}, "
+        pointHContent += f"extern bitmap_data {args.prefix}_{i}_{args.mask};\n";
+        pointCContent += generate_c_code(palette, args.mask, bitmap, image.width, image.height, filename_no_ext, i, args.prefix)
+        variablesDeclaration += f"&{args.prefix}_{i}_{args.mask}, "
         i += 1
 
     variablesDeclaration += "};"

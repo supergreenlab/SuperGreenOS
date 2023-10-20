@@ -21,6 +21,7 @@
 
 #include "bitmaps.h"
 #include "freertos/queue.h"
+#include <string.h>
 
 typedef struct Node Node;
 
@@ -45,35 +46,76 @@ void add_child(Node *parent, Node *child);
 TickType_t root_render(Node *node);
 TickType_t render_node(Node *node, int parent_x, int parent_y, float transparency);
 
+#define SHORT_TICK 10 / portTICK_PERIOD_MS
+#define LONG_TICK 100000 / portTICK_PERIOD_MS
+
 typedef struct {
+
   float dest_x;
   float dest_y;
   float speed; // pixels per frame; how fast the node should move towards its destination
+
+  int nextFuncIndex;
+  void *nextParams;
+  NodeFunction nextFunc;
+
 } SimpleAnimationParams;
 
 TickType_t simple_animation(Node *node, void *p);
 
 typedef struct {
+
   float center_x;
   float center_y;
   float magnitude_x;
   float magnitude_y;
   float elapsedTime; // To keep track of time for sin oscillation
   float speed;
+
 } SineAnimationParams;
 
 TickType_t sine_animation(Node *node, void *p);
 
 typedef struct {
+
+  float dest_transparency;
+  float speed;
+
+  int nextFuncIndex;
+  void *nextParams;
+  NodeFunction nextFunc;
+
+} SimpleTransparencyAnimationParams;
+
+TickType_t simple_transparency_animation(Node *node, void *p);
+
+typedef struct {
+
   float min_transparency;
   float max_transparency;
   float elapsed_time;
   float speed;
+
 } SineTransparencyAnimationParams;
 
 TickType_t sine_transparency_animation(Node *node, void *p);
 
+typedef struct {
+
+  int since;
+  int duration;
+
+  int nextFuncIndex;
+  void *nextParams;
+  NodeFunction nextFunc;
+
+} WaitActionParams;
+
+TickType_t wait_action(Node *node, void *p);
+
 void set_text_node(Node *textNode, const char *text, uint8_t mask);
 Node* create_text_node(int x, int y, int max_length, const char *text, color_t color, uint8_t mask);
+void delete_node(Node *node);
+void remove_child(Node *parent, Node *child);
 
 #endif

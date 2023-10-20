@@ -23,6 +23,7 @@
 
 #define NORMAL_FONT_SIZE 0x01 << 0
 #define SMALL_FONT_SIZE 0x01 << 1
+#define CAPS_FONT 0x01 << 2
 #define SPRITE 0xff
 
 typedef struct {
@@ -35,6 +36,8 @@ typedef struct {
 } bitmap_data;     
 
 typedef struct {
+  bool invert;
+  bool antialias;
   float transparency;   // Ranges from 0.0 (fully transparent) to 1.0 (fully opaque)
   color_t targetColor;  // The color to be used as the new color for gray pixels
 } RenderOpt;
@@ -42,5 +45,6 @@ typedef struct {
 void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, RenderOpt *opts);
 void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts);
 bitmap_data* get_bitmap_for_name(char* name, int len, uint8_t mask);
+void fill_screen(color_t color);
 
 #endif
