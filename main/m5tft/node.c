@@ -227,6 +227,39 @@ void add_child(Node *parent, Node *child) {
   child->parent = parent;
 }
 
+BoundingBox node_bounding_box(const Node *node) {
+  BoundingBox bbox = { 
+    .x = node->x,
+    .y = node->y,
+    .width = node->bitmap ? node->bitmap->width : 0, 
+    .height = node->bitmap ? node->bitmap->height : 0
+  };
+
+  for (int i = 0; i < node->num_children; i++) {
+    BoundingBox childBbox = node_bounding_box(node->children[i]);
+
+    if (childBbox.x < bbox.x) {
+      bbox.width += bbox.x - childBbox.x;
+      bbox.x = childBbox.x;
+    }
+
+    if (childBbox.y < bbox.y) {
+      bbox.height += bbox.y - childBbox.y;
+      bbox.y = childBbox.y;
+    }
+
+    if (childBbox.x + childBbox.width > bbox.x + bbox.width) {
+      bbox.width = childBbox.x + childBbox.width - bbox.x;
+    }
+
+    if (childBbox.y + childBbox.height > bbox.y + bbox.height) {
+      bbox.height = childBbox.y + childBbox.height - bbox.y;
+    }
+  }
+
+  return bbox;
+}
+
 void remove_child(Node *parent, Node *child) {
   int foundIndex = -1;
 
@@ -263,6 +296,7 @@ TickType_t root_render(Node *node) {
 }
 
 TickType_t render_node(Node *node, int parent_x, int parent_y, float transparency, float scale) {
+
   // Call the node's custom function (if it exists)
   TickType_t tickTime = LONG_TICK;
   for (int i = 0; i < N_NODE_FUNCTION; ++i) {
@@ -282,12 +316,17 @@ TickType_t render_node(Node *node, int parent_x, int parent_y, float transparenc
     draw_bitmap(node->bitmap, parent_x + node->x, parent_y + node->y, &opts);
   }
 
+  BoundingBox bbox = node_bounding_box(node);
+  int offsetX = (bbox.width - bbox.width * node->renderOpts.scale * scale) / 2;
+  int offsetY = (bbox.height - bbox.height * node->renderOpts.scale * scale) / 2;
+
   for (int i = 0; i < node->num_children; i++) {
-    TickType_t t = render_node(node->children[i], parent_x + node->x, parent_y + node->y, node->renderOpts.transparency * transparency, node->renderOpts.scale * scale);
+    TickType_t t = render_node(node->children[i], parent_x + node->x + offsetX, parent_y + node->y + offsetY, node->renderOpts.transparency * transparency, node->renderOpts.scale * scale);
     if (t < tickTime) {
       tickTime = t;
     }
   }
+
   return tickTime;
 }
 

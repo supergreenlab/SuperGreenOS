@@ -132,7 +132,7 @@ void init_m5tft() {
 	}
 }
 
-static void m5tft_task(void *param) {
+/*static void m5tft_task(void *param) {
   Node* root = create_node(0, 0, NULL, NULL, NULL);
 
 	init_splash(root);
@@ -157,9 +157,9 @@ static void m5tft_task(void *param) {
 		}
 
   }
-}
+}*/
 
-/*static void m5tft_task(void *param) {
+static void m5tft_task(void *param) {
   Node* root = create_node(0, 0, NULL, NULL, NULL);
 
   SineAnimationParams *params1 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
@@ -178,9 +178,9 @@ static void m5tft_task(void *param) {
 
 	SineScaleAnimationParams *params1scale = (SineScaleAnimationParams*)malloc(sizeof(SineScaleAnimationParams));
 	params1scale->min_scale = 0.5;
-	params1scale->max_scale = 1.3;
+	params1scale->max_scale = 1.6;
 	params1scale->elapsed_time = 0;
-	params1scale->speed = 0.056;
+	params1scale->speed = 0.086;
 
   char text1[5] = "0001";
   Node* textNode1 = create_text_node(10, 10, 4, text1, (color_t){255, 255, 255}, NORMAL_FONT_SIZE);
@@ -260,8 +260,8 @@ static void m5tft_task(void *param) {
 	params4trans->elapsed_time = M_PI/2;
 	params4trans->speed = -0.2666666;
 
-  char text4[5] = "9999";
-  Node* textNode4 = create_text_node(10, 10, 4, text4, (color_t){0, 51, 203}, NORMAL_FONT_SIZE);
+  char text4[6] = "9999°";
+  Node* textNode4 = create_text_node(10, 10, 5, text4, (color_t){0, 51, 203}, NORMAL_FONT_SIZE);
   textNode4->funcParams[0] = params4;
   textNode4->funcs[0] = sine_animation;
 
@@ -288,7 +288,7 @@ static void m5tft_task(void *param) {
     sprintf(text3, "%04d", (int)(9999 - n));
     set_text_node(textNode3, text3, NORMAL_FONT_SIZE);
 
-    sprintf(text4, "%04d", (int)(9999 - n));
+    sprintf(text4, "%04d°", (int)(9999 - n));
     set_text_node(textNode4, text4, NORMAL_FONT_SIZE);
 
     n = (int)n % 10000;
@@ -310,4 +310,4 @@ static void m5tft_task(void *param) {
 		}
 
   }
-}*/
+}

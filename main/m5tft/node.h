@@ -42,6 +42,15 @@ struct Node {
   RenderOpt renderOpts;
 };
 
+typedef struct {
+    int x;
+    int y;
+    int width;
+    int height;
+} BoundingBox;
+
+BoundingBox node_bounding_box(const Node *node);
+
 TickType_t root_render(Node *node);
 TickType_t render_node(Node *node, int parent_x, int parent_y, float transparency, float scale);
 
