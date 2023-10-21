@@ -316,9 +316,13 @@ TickType_t render_node(Node *node, int parent_x, int parent_y, float transparenc
     draw_bitmap(node->bitmap, parent_x + node->x, parent_y + node->y, &opts);
   }
 
-  BoundingBox bbox = node_bounding_box(node);
-  int offsetX = (bbox.width - bbox.width * node->renderOpts.scale * scale) / 2;
-  int offsetY = (bbox.height - bbox.height * node->renderOpts.scale * scale) / 2;
+  int offsetX = 0, offsetY = 0;
+
+  if (node->renderOpts.scale != 1) {
+    BoundingBox bbox = node_bounding_box(node);
+    offsetX = (bbox.width - bbox.width * node->renderOpts.scale * scale) / 2;
+    offsetY = (bbox.height - bbox.height * node->renderOpts.scale * scale) / 2;
+  }
 
   for (int i = 0; i < node->num_children; i++) {
     TickType_t t = render_node(node->children[i], parent_x + node->x + offsetX, parent_y + node->y + offsetY, node->renderOpts.transparency * transparency, node->renderOpts.scale * scale);
