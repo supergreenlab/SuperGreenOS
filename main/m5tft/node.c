@@ -27,6 +27,21 @@
 
 // Animation function
 
+TickType_t sort_children_by_scale(Node *node, void *p) {
+	int n = node->num_children;
+
+	for (int i = 0; i < n-1; i++) {
+		for (int j = 0; j < n-i-1; j++) {
+			if (node->children[j]->renderOpts.scale > node->children[j+1]->renderOpts.scale) {
+				Node* temp = node->children[j];
+				node->children[j] = node->children[j+1];
+				node->children[j+1] = temp;
+			}
+		}
+	}
+	return LONG_TICK;
+}
+
 TickType_t  simple_animation(Node *node, void *p) {
   SimpleAnimationParams *params = (SimpleAnimationParams *)p;
 

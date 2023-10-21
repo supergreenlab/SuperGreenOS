@@ -153,12 +153,21 @@ void init_screensaver(Node *root) {
   params4trans->elapsed_time = M_PI/2;
   params4trans->speed = -0.2666666;
 
+  SineScaleAnimationParams *params4scale = (SineScaleAnimationParams*)malloc(sizeof(SineScaleAnimationParams));
+  params4scale->min_scale = 0.8;
+  params4scale->max_scale = 1.2;
+  params4scale->elapsed_time = 0;
+  params4scale->speed = 0.3;
+
   Node* textNode4 = create_text_node(10, 10, 5, "9999°", (color_t){0, 51, 203}, NORMAL_FONT_SIZE);
   textNode4->funcParams[0] = params4;
   textNode4->funcs[0] = sine_animation;
 
   textNode4->funcParams[1] = params4trans;
   textNode4->funcs[1] = sine_transparency_animation;
+
+  textNode4->funcParams[2] = params4scale;
+  textNode4->funcs[2] = sine_scale_animation;
 
   add_child(root, textNode4);
 
@@ -170,4 +179,5 @@ void init_screensaver(Node *root) {
 
   root->funcParams[0] = params;
   root->funcs[0] = tester_loop;
+	root->funcs[1] = sort_children_by_scale;
 }

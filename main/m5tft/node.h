@@ -61,6 +61,7 @@ void set_text_node(Node *textNode, const char *text, uint8_t mask);
 Node* create_text_node(int x, int y, int max_length, const char *text, color_t color, uint8_t mask);
 void delete_node(Node *node);
 void remove_child(Node *parent, Node *child);
+TickType_t sort_children_by_scale(Node *node, void *p);
 
 #define SHORT_TICK 10 / portTICK_PERIOD_MS
 #define LONG_TICK 100000 / portTICK_PERIOD_MS
