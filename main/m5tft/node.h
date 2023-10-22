@@ -30,7 +30,7 @@ typedef TickType_t (*NodeFunction)(Node *node, void *p);
 #define N_NODE_FUNCTION 4
 
 struct Node {
-  float x; // position relative to its parent
+  float x;
   float y;
   bitmap_data *bitmap;
   void *funcParams[N_NODE_FUNCTION];
@@ -43,21 +43,17 @@ struct Node {
 };
 
 typedef struct {
-    int x;
-    int y;
-    int width;
-    int height;
-} BoundingBox;
-
-BoundingBox node_bounding_box(const Node *node);
+  float width;
+  float height;
+} NodeSize;
 
 TickType_t root_render(Node *node);
-TickType_t render_node(Node *node, int parent_x, int parent_y, float transparency, float scale);
+TickType_t render_node(Node *node, float parent_x, float parent_y, float transparency, float scale);
 
 float get_effective_scale(const Node *node);
 Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *funcParams);
 void add_child(Node *parent, Node *child);
-void set_text_node(Node *textNode, const char *text, uint8_t mask);
+NodeSize set_text_node(Node *textNode, const char *text, uint8_t mask);
 Node* create_text_node(int x, int y, int max_length, const char *text, color_t color, uint8_t mask);
 void delete_node(Node *node);
 void remove_child(Node *parent, Node *child);
@@ -128,6 +124,18 @@ typedef struct {
 
 TickType_t sine_scale_animation(Node *node, void *p);
 
+typedef struct {
+
+  float dest_scale;
+  float speed;
+
+  int nextFuncIndex;
+  void *nextParams;
+  NodeFunction nextFunc;
+
+} SimpleScaleAnimationParams;
+
+TickType_t simple_scale_animation(Node *node, void *p);
 
 typedef struct {
 

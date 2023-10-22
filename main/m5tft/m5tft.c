@@ -135,8 +135,8 @@ void init_m5tft() {
 static void m5tft_task(void *param) {
   Node* root = create_node(0, 0, NULL, NULL, NULL);
 
-	//init_splash(root);
-	init_screensaver(root);
+	init_splash(root);
+	//init_screensaver(root);
 
   bool c;
   while(true) {

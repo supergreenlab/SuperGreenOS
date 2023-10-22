@@ -29,45 +29,16 @@
 
 color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
 
-void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, RenderOpt *opts) {
-  // Calculate the new scaled dimensions
-  int scaled_width = ceilf(img->width * scale);
-  int scaled_height = ceilf(img->height * scale);
-
-  // Calculate the starting draw positions to ensure the image is anchored at its center
-  int draw_start_x = x + ((img->width - scaled_width) / 2);
-  int draw_start_y = y + ((img->height - scaled_height) / 2);
-
-  for (int i = 0; i < scaled_width; i++) {
-    for (int j = 0; j < scaled_height; j++) {
-
-      // Calculate the corresponding source pixel based on scaling
-      int src_x = (int)(i / scale);
-      int src_y = (int)(j / scale);
-
-      // Fetch the palette color from the original bitmap, not the scaled one
-      color_t color = img->palette[img->bitmap[src_x + src_y * img->width]];
-
-      // Calculate the positions on the frame where the pixel should be drawn
-      int frame_x = draw_start_x + i;
-      int frame_y = draw_start_y + j;
-
-      // Check boundaries to avoid overwriting the frame and ignore transparent pixels
-      if (frame_x < DEFAULT_TFT_DISPLAY_HEIGHT && frame_y < DEFAULT_TFT_DISPLAY_WIDTH 
-          && frame_x >= 0 && frame_y >= 0 
-          && !(color.r == 0xff && color.g == 0x00 && color.b == 0xff)) {
-
-        frame[frame_x + frame_y * DEFAULT_TFT_DISPLAY_HEIGHT] = color;
-      }
-    }
-  }
-}
-
 void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
-  float scale = (opts && opts->scale) ? opts->scale : 1.0f;
+  float scale = (opts) ? opts->scale : 1.0f;
+  float transparency = (opts) ? opts->transparency : 1.0f;
 
-  int scaledWidth = (float)img->width * scale;
-  int scaledHeight = (float)img->height * scale;
+  if (scale == 0 || transparency == 0) {
+    return;
+  }
+
+  int scaledWidth = img->width * scale;
+  int scaledHeight = img->height * scale;
 
   // Check if the image is completely out of the frame
   if (x + scaledWidth < 0 || x > DEFAULT_TFT_DISPLAY_HEIGHT || y + scaledHeight < 0 || y > DEFAULT_TFT_DISPLAY_WIDTH) {
@@ -80,8 +51,8 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
   int endX = (x + scaledWidth > DEFAULT_TFT_DISPLAY_HEIGHT) ? DEFAULT_TFT_DISPLAY_HEIGHT - x : scaledWidth;
   int endY = (y + scaledHeight > DEFAULT_TFT_DISPLAY_WIDTH) ? DEFAULT_TFT_DISPLAY_WIDTH - y : scaledHeight;
 
-  float srcIncrementX = (float)img->width / scaledWidth;
-  float srcIncrementY = (float)img->height / scaledHeight;
+  float srcIncrementX = img->width / scaledWidth;
+  float srcIncrementY = img->height / scaledHeight;
 
   float srcXAccum = (float)startX * srcIncrementX;
 
@@ -91,7 +62,7 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
     for (int j = startY; j < endY; j++) {
       int srcX = (int)srcXAccum;
       int srcY = (int)srcYAccum;
-      color_t color = img->palette[img->bitmap[srcX + srcY * img->width]];
+      color_t color = img->palette[img->bitmap[srcX + srcY * (int)img->width]];
 
       // Check for transparent color
       if (color.r == 0xff && color.g == 0x00 && color.b == 0xff) {
@@ -110,7 +81,7 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
           int nx = srcX + adjX[k];
           int ny = srcY + adjY[k];
           if (nx >= 0 && nx < img->width && ny >= 0 && ny < img->height) {
-            color_t adjacentColor = img->palette[img->bitmap[nx + ny * img->width]];
+            color_t adjacentColor = img->palette[img->bitmap[nx + ny * (int)img->width]];
             if (adjacentColor.r != 0xff || adjacentColor.g != 0x00 || adjacentColor.b != 0xff) {
               if (opts && opts->invert) {
                 sumR += 255 - adjacentColor.r;
@@ -166,7 +137,7 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
   }
 }
 
-bitmap_data* get_bitmap_for_name(char* name, int len, uint8_t mask) {
+bitmap_data* get_bitmap_for_name(char *name, int len, uint8_t mask) {
 	for (int i = 0; i < n_bitmaps; i++) {
     if (!(bitmap_db[i]->mask & mask)) {
       continue;

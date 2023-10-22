@@ -20,6 +20,7 @@
 
 #include "node.h"
 #include "math.h"
+#include "float.h"
 #include "bitmaps.h"
 #include "bitmaps_definitions.h"
 #include "freertos/task.h"
@@ -56,6 +57,8 @@ TickType_t  simple_animation(Node *node, void *p) {
   if (distance <= abs(params->speed)) {
     node->x = params->dest_x;
     node->y = params->dest_y;
+
+		free(params);
 
     if (params->nextFunc) {
       node->funcs[params->nextFuncIndex] = params->nextFunc;
@@ -97,11 +100,16 @@ TickType_t sine_animation(Node *node, void *p) {
 TickType_t simple_transparency_animation(Node *node, void *p) {
   SimpleTransparencyAnimationParams *params = (SimpleTransparencyAnimationParams*)p;
 
+  // Update the transparency of the node
+  node->renderOpts.transparency += params->speed;
+
   // Check if the node's transparency has reached the destination transparency
   if ((params->speed > 0 && node->renderOpts.transparency >= params->dest_transparency) ||
       (params->speed < 0 && node->renderOpts.transparency <= params->dest_transparency)) {
 
     node->renderOpts.transparency = params->dest_transparency;  // Ensure it doesn't overshoot
+
+		free(params);
 
     // Check if there's a next function to execute after this animation
     if (params->nextFunc) {
@@ -116,9 +124,6 @@ TickType_t simple_transparency_animation(Node *node, void *p) {
     // Returning 0 to stop the timer
     return LONG_TICK;
   }
-
-  // Update the transparency of the node
-  node->renderOpts.transparency += params->speed;
 
   // Return a delay. For this example, I'll use a fixed delay of 50ms. Adjust as necessary.
   return SHORT_TICK;  
@@ -146,6 +151,38 @@ TickType_t sine_scale_animation(Node *node, void *p) {
 
   params->elapsed_time += params->speed;
   return SHORT_TICK;
+}
+
+TickType_t simple_scale_animation(Node *node, void *p) {
+  SimpleScaleAnimationParams *params = (SimpleScaleAnimationParams*)p;
+
+  // Update the transparency of the node
+  node->renderOpts.scale += params->speed;
+
+  // Check if the node's transparency has reached the destination transparency
+  if ((params->speed > 0 && node->renderOpts.scale >= params->dest_scale) ||
+      (params->speed < 0 && node->renderOpts.scale <= params->dest_scale)) {
+
+    node->renderOpts.scale = params->dest_scale;  // Ensure it doesn't overshoot
+
+		free(params);
+
+    // Check if there's a next function to execute after this animation
+    if (params->nextFunc) {
+      node->funcs[params->nextFuncIndex] = params->nextFunc;
+      node->funcParams[params->nextFuncIndex] = params->nextParams;
+    } else {
+      // If no next function, set node function to NULL (halt further animations)
+      node->funcs[params->nextFuncIndex] = NULL;
+      node->funcParams[params->nextFuncIndex] = NULL;
+    }
+
+    // Returning 0 to stop the timer
+    return LONG_TICK;
+  }
+
+  // Return a delay. For this example, I'll use a fixed delay of 50ms. Adjust as necessary.
+  return SHORT_TICK;  
 }
 
 TickType_t wait_action(Node *node, void *p) {
@@ -198,33 +235,34 @@ Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *fu
 }
 
 void delete_node(Node *node) {
-  // Recursively delete all child nodes
+	if (node->parent) {
+		remove_child(node->parent, node);
+	}
+
   for (int i = 0; i < node->num_children; i++) {
+		node->children[i]->parent = NULL;
     delete_node(node->children[i]);
   }
 
-  // Free children array if it exists
   if (node->children) {
     free(node->children);
   }
 
-  // Free function parameters if they exist
-  for (int i = 0; i < 4; i++) { // Assuming a maximum of 4 based on the given memset size in create_node
+  for (int i = 0; i < N_NODE_FUNCTION; i++) {
     if (node->funcParams[i]) {
       free(node->funcParams[i]);
     }
   }
 
-  // Finally, free the node itself
   free(node);
 }
 
 float get_effective_scale(const Node *node) {
-  float resultingScale = 1.0f;  // Start with a neutral scale
+  float resultingScale = 1.0f;
 
   while (node) {
     resultingScale *= node->renderOpts.scale;
-    node = node->parent;  // Move up the hierarchy
+    node = node->parent;
   }
 
   return resultingScale;
@@ -240,39 +278,6 @@ void add_child(Node *parent, Node *child) {
   parent->children[parent->num_children] = child;
   parent->num_children++;
   child->parent = parent;
-}
-
-BoundingBox node_bounding_box(const Node *node) {
-  BoundingBox bbox = { 
-    .x = node->x,
-    .y = node->y,
-    .width = node->bitmap ? node->bitmap->width : 0, 
-    .height = node->bitmap ? node->bitmap->height : 0
-  };
-
-  for (int i = 0; i < node->num_children; i++) {
-    BoundingBox childBbox = node_bounding_box(node->children[i]);
-
-    if (childBbox.x < bbox.x) {
-      bbox.width += bbox.x - childBbox.x;
-      bbox.x = childBbox.x;
-    }
-
-    if (childBbox.y < bbox.y) {
-      bbox.height += bbox.y - childBbox.y;
-      bbox.y = childBbox.y;
-    }
-
-    if (childBbox.x + childBbox.width > bbox.x + bbox.width) {
-      bbox.width = childBbox.x + childBbox.width - bbox.x;
-    }
-
-    if (childBbox.y + childBbox.height > bbox.y + bbox.height) {
-      bbox.height = childBbox.y + childBbox.height - bbox.y;
-    }
-  }
-
-  return bbox;
 }
 
 void remove_child(Node *parent, Node *child) {
@@ -307,12 +312,12 @@ void remove_child(Node *parent, Node *child) {
 }
 
 TickType_t root_render(Node *node) {
+	//ESP_LOGI(SGO_LOG_NOSEND, "=================\nROOT NODE");
   return render_node(node, 0, 0, 1, 1);
 }
 
-TickType_t render_node(Node *node, int parent_x, int parent_y, float transparency, float scale) {
+TickType_t render_node(Node *node, float parent_x, float parent_y, float transparency, float scale) {
 
-  // Call the node's custom function (if it exists)
   TickType_t tickTime = LONG_TICK;
   for (int i = 0; i < N_NODE_FUNCTION; ++i) {
     if (node->funcs[i] != NULL) {
@@ -323,24 +328,28 @@ TickType_t render_node(Node *node, int parent_x, int parent_y, float transparenc
     }
   }
 
-  // Draw the node's bitmap (if it exists)
+	float actualTransparency = node->renderOpts.transparency * transparency;
+	float actualScale = node->renderOpts.scale * scale;
+	float new_x = parent_x + node->x * scale;
+	float new_y = parent_y + node->y * scale;
+
   if (node->bitmap) {
     RenderOpt opts = node->renderOpts;
-    opts.transparency *= transparency;
-    opts.scale *= scale;
-    draw_bitmap(node->bitmap, parent_x + node->x, parent_y + node->y, &opts);
-  }
+    opts.transparency = actualTransparency;
+    opts.scale = actualScale;
+    draw_bitmap(node->bitmap, new_x, new_y, &opts);
 
-  int offsetX = 0, offsetY = 0;
-
-  if (node->renderOpts.scale != 1) {
-    BoundingBox bbox = node_bounding_box(node);
-    offsetX = (bbox.width - bbox.width * node->renderOpts.scale * scale) / 2;
-    offsetY = (bbox.height - bbox.height * node->renderOpts.scale * scale) / 2;
-  }
+		/*if (node->num_children == 0) {
+			ESP_LOGI(SGO_LOG_NOSEND, "bitmap: parent_x: %f parent_y: %f\nx: %f y: %f\nnew_x: %f new_y: %f\nactualScale: %f", parent_x, parent_y, node->x, node->y, new_x, new_y, actualScale);
+		}*/
+  } else {
+		/*if (node->num_children != 0) {
+			ESP_LOGI(SGO_LOG_NOSEND, "node: parent_x: %f parent_y: %f\nx: %f y: %f\nnew_x: %f new_y: %f\nactualScale: %f", parent_x, parent_y, node->x, node->y, new_x, new_y, actualScale);
+		}*/
+	}
 
   for (int i = 0; i < node->num_children; i++) {
-    TickType_t t = render_node(node->children[i], parent_x + node->x + offsetX, parent_y + node->y + offsetY, node->renderOpts.transparency * transparency, node->renderOpts.scale * scale);
+    TickType_t t = render_node(node->children[i], new_x, new_y, actualTransparency, actualScale);
     if (t < tickTime) {
       tickTime = t;
     }
@@ -349,16 +358,15 @@ TickType_t render_node(Node *node, int parent_x, int parent_y, float transparenc
   return tickTime;
 }
 
-// Text node
-
-void set_text_node(Node *textNode, const char *text, uint8_t mask) {
+NodeSize set_text_node(Node *textNode, const char *text, uint8_t mask) {
   int len = strlen(text);
-  float currentX = 0;  // Starting x position
+  float currentX = 0;
 
-  // Limit the text length to the number of allocated child nodes
   if(len > textNode->num_children) {
     len = textNode->num_children;
   }
+
+	NodeSize size = (NodeSize){0, 0};
 
   int i = 0;
   for (; i < len; i++) {
@@ -366,21 +374,25 @@ void set_text_node(Node *textNode, const char *text, uint8_t mask) {
 
     bitmap_data *charBitmap = get_bitmap_for_name(&c, 1, mask);
     if (charBitmap == NULL) {
-      continue;  // Skip this character if we don't have a bitmap for it
+      continue;
     }
 
     Node *letterNode = textNode->children[i];
 
     letterNode->x = currentX;
-    letterNode->y = 0;  // No change in y-axis for this use-case
+    //letterNode->y = 0;
     letterNode->bitmap = charBitmap;
 
-    float scale = get_effective_scale(textNode->children[i]);
-    currentX += charBitmap->width * scale;
+    currentX += charBitmap->width * letterNode->renderOpts.scale;
+		if (charBitmap->height * letterNode->renderOpts.scale > size.height) {
+			size.height = charBitmap->height * letterNode->renderOpts.scale;
+		}
+		size.width = currentX;
   }
   for (; i < textNode->num_children; i++) {
     textNode->children[i]->bitmap = NULL;
   }
+	return size;
 }
 
 Node* create_text_node(int x, int y, int max_length, const char *text, color_t color, uint8_t mask) {

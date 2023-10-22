@@ -30,10 +30,10 @@ extern color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
 
 typedef struct {
   color_t palette[11];
-  int width;
-  int height;
+  float width;
+  float height;
   uint8_t mask;
-  const char name[10];
+  const char *name;
   uint8_t bitmap[];
 } bitmap_data;     
 

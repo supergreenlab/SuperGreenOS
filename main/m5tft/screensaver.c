@@ -35,9 +35,7 @@ typedef struct {
 TickType_t tester_loop(Node *node, void *p) {
   LoopParams *params = p;
 
-  for (int i = 0; i < DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH; ++i) {
-    frame[i] = (color_t){43, 63, 81};
-  }
+  fill_screen((color_t){43, 63, 81});
 
   char text[10] = "";
   sprintf(text, "%04d°", (int)++params->n);
@@ -49,7 +47,7 @@ TickType_t tester_loop(Node *node, void *p) {
   sprintf(text, "%04d", (int)(9999 - params->n));
   set_text_node(params->textNode3, text, NORMAL_FONT_SIZE);
 
-  sprintf(text, "%04d°", (int)(9999 - params->n));
+  sprintf(text, "%04d°", (int)(params->n/2));
   set_text_node(params->textNode4, text, NORMAL_FONT_SIZE);
 
   params->n = (int)params->n % 10000;
