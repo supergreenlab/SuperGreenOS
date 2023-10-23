@@ -120,14 +120,14 @@ Node *create_phase() {
   for (int i = 0; i < node->num_children; ++i) {
     node->children[i]->renderOpts.scale = 0.6;
     node->children[i]->renderOpts.limit = true;
-    node->children[i]->renderOpts.frame = (frame_limits){80, 0, 150, 25};
+    node->children[i]->renderOpts.frame = (frame_limits){72, 0, 150, 25};
   }
   NodeSize size = set_text_node(node, value, NORMAL_FONT_SIZE);
 
   SineAnimationParams *params1 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
-  params1->center_x = 120 - size.width/2;
+  params1->center_x = 120 - size.width/2 - 8;
   params1->center_y = node->y;
-  params1->magnitude_x = (size.width - 80)/2 + 10;
+  params1->magnitude_x = (size.width - 80)/2 + 5;
   params1->magnitude_y = 0;
   params1->elapsedTime = M_PI * 2.5;
   params1->speed=0.01;
