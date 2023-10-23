@@ -93,6 +93,7 @@ TickType_t sine_animation(Node *node, void *p) {
   node->y = params->center_y + offset_y;
 
   params->elapsedTime += params->speed; // Adjust this value to change the speed of the oscillation
+  //ESP_LOGI(SGO_LOG_NOSEND, "%f", params->elapsedTime);
                                         //
   return SHORT_TICK;
 }
@@ -369,15 +370,20 @@ NodeSize set_text_node(Node *textNode, const char *text, uint8_t mask) {
 	NodeSize size = (NodeSize){0, 0};
 
   int i = 0;
-  for (; i < len; i++) {
+  for (; i < len && text[i]; i++) {
     char c = text[i];
+
+    Node *letterNode = textNode->children[i];
+
+    if (c == ' ') {
+      currentX += letterNode->renderOpts.scale * 10;
+      continue;
+    }
 
     bitmap_data *charBitmap = get_bitmap_for_name(&c, 1, mask);
     if (charBitmap == NULL) {
       continue;
     }
-
-    Node *letterNode = textNode->children[i];
 
     letterNode->x = currentX;
     //letterNode->y = 0;
@@ -387,10 +393,20 @@ NodeSize set_text_node(Node *textNode, const char *text, uint8_t mask) {
 		if (charBitmap->height * letterNode->renderOpts.scale > size.height) {
 			size.height = charBitmap->height * letterNode->renderOpts.scale;
 		}
-		size.width = currentX;
   }
+  size.width = currentX;
   for (; i < textNode->num_children; i++) {
     textNode->children[i]->bitmap = NULL;
+  }
+  for (i = 0; i < textNode->num_children; ++i) {
+    if (textNode->children[i]->bitmap == NULL) {
+      continue;
+    }
+    float offsetY = 0;
+    if (textNode->renderOpts.offsetNumbers && text[i] >= '0' && text[i] <= '9') {
+      offsetY = -5 * textNode->children[i]->renderOpts.scale;
+    }
+    textNode->children[i]->y = offsetY + size.height - textNode->children[i]->bitmap->height * textNode->children[i]->renderOpts.scale;
   }
 	return size;
 }

@@ -44,6 +44,7 @@ extern bitmap_data bmp_db_34_NORMAL_FONT_SIZE;
 extern bitmap_data bmp_db_35_NORMAL_FONT_SIZE;
 extern bitmap_data bmp_db_36_NORMAL_FONT_SIZE;
 extern bitmap_data bmp_db_37_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_38_NORMAL_FONT_SIZE;
 
 
 extern int n_bitmaps;

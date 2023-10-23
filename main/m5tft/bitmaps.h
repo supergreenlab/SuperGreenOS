@@ -29,7 +29,21 @@
 extern color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
 
 typedef struct {
-  color_t palette[11];
+  uint8_t r;
+  uint8_t g;
+  uint8_t b;
+  uint8_t a;
+} bmp_color_t;
+
+typedef struct {
+	float x1;
+	float y1;
+	float x2;
+	float y2;
+} frame_limits;
+
+typedef struct {
+  bmp_color_t palette[11];
   float width;
   float height;
   uint8_t mask;
@@ -43,6 +57,9 @@ typedef struct {
   float scale;
   float transparency;   // Ranges from 0.0 (fully transparent) to 1.0 (fully opaque)
   color_t targetColor;  // The color to be used as the new color for gray pixels
+	bool offsetNumbers;
+	bool limit;
+	frame_limits frame;
 } RenderOpt;
 
 void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, RenderOpt *opts);

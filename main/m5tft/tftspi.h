@@ -52,9 +52,7 @@ extern "C" {
 
   // ##############################################################
 
-  // 24-bit color type structure
   typedef struct __attribute__((__packed__)) {
-    //typedef struct {
     uint8_t r;
     uint8_t g;
     uint8_t b;

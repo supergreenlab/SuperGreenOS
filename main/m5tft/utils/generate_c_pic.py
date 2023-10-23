@@ -37,7 +37,7 @@ def scale_image_to_max_size(image, max_width, max_height):
         new_height = max_height
         new_width = int(new_height * img_ratio)
 
-    return image.resize((new_width, new_height), Image.NEAREST)
+    return image.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
 def svg_to_raster(input_svg):
     # Convert SVG to raster in memory (using BytesIO)
@@ -48,30 +48,10 @@ def svg_to_raster(input_svg):
     # Use PIL to open the raster image
     return Image.open(output_buffer)
 
-def handle_transparency(img):
-    """
-    Replace transparent pixels with {255, 0, 255}
-    """
-    img = img.convert("RGBA")
-
-    datas = img.getdata()
-    newData = []
-
-    for item in datas:
-        # Change all white (also shades of whites)
-        # pixels to yellow
-        if item[3] == 0:  # Alpha is 0, which means transparent
-            newData.append((255, 0, 255, 255))
-        else:
-            newData.append(item)
-
-    img.putdata(newData)
-    return img.convert("RGB")
-
 def generate_palette_and_bitmap(image):
-    image = handle_transparency(image)
+    # image = handle_transparency(image)
     image = image.quantize(colors=10)
-    image = image.convert("RGB")
+    image = image.convert("RGBA")
     
     # Getting all colors
     colors = list(image.getdata())
@@ -89,7 +69,7 @@ def generate_palette_and_bitmap(image):
     return unique_colors, bitmap
 
 def generate_c_code(palette, mask, bitmap, width, height, filename, var_index, prefix):
-    palette_str = ",\n".join([f"{{ {color[0]}, {color[1]}, {color[2]} }}" for color in palette])
+    palette_str = ",\n".join([f"{{ {color[0]}, {color[1]}, {color[2]}, {color[3]} }}" for color in palette])
     bitmap_str = ", ".join(map(str, bitmap))
     
     return f"""

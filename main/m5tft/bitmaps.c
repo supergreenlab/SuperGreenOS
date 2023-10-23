@@ -45,12 +45,17 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
     return; // Image is out of frame, so return immediately
   }
 
-  // Calculate the start and end values for loops to avoid unnecessary iteration
-  int startX = (x < 0) ? -x : 0;
-  int startY = (y < 0) ? -y : 0;
-  int endX = (x + scaledWidth > DEFAULT_TFT_DISPLAY_HEIGHT) ? DEFAULT_TFT_DISPLAY_HEIGHT - x : scaledWidth;
-  int endY = (y + scaledHeight > DEFAULT_TFT_DISPLAY_WIDTH) ? DEFAULT_TFT_DISPLAY_WIDTH - y : scaledHeight;
+	int minX = 0;
+	int minY = 0;
+	int maxX = DEFAULT_TFT_DISPLAY_HEIGHT;
+	int maxY = DEFAULT_TFT_DISPLAY_WIDTH;
 
+  // Calculate the start and end values for loops to avoid unnecessary iteration
+  int startX = (x < minX) ? -x : minX;
+  int startY = (y < minY) ? -y : minY;
+  int endX = (x + scaledWidth > maxX) ? maxX - x : scaledWidth;
+  int endY = (y + scaledHeight > maxY) ? maxY - y : scaledHeight;
+	
   float srcIncrementX = img->width / scaledWidth;
   float srcIncrementY = img->height / scaledHeight;
 
@@ -58,56 +63,31 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
 
   // Iterate only within calculated bounds
   for (int i = startX; i < endX; i++) {
-    float srcYAccum = (float)startY * srcIncrementY;
+		if (opts && opts->limit) {
+			if (x + i < opts->frame.x1 || x + i > opts->frame.x2) {
+				srcXAccum += srcIncrementX;
+				continue;
+			}
+		}
+		float srcYAccum = (float)startY * srcIncrementY;
     for (int j = startY; j < endY; j++) {
+			if (opts && opts->limit) {
+				if ((y + j) < opts->frame.y1 || (y + j) > opts->frame.y2) {
+					srcYAccum += srcIncrementY;
+					continue;
+				}
+			}
+
       int srcX = (int)srcXAccum;
       int srcY = (int)srcYAccum;
-      color_t color = img->palette[img->bitmap[srcX + srcY * (int)img->width]];
+      bmp_color_t color = img->palette[img->bitmap[srcX + srcY * (int)img->width]];
 
-      // Check for transparent color
-      if (color.r == 0xff && color.g == 0x00 && color.b == 0xff) {
-        if (opts && !opts->antialias) {
-          srcYAccum += srcIncrementY;
-          continue;
-        }
-        int sumR = 0, sumG = 0, sumB = 0, count = 0;
+			if (color.a == 0) {
+				srcYAccum += srcIncrementY;
+				continue;
+			}
 
-        // Define relative positions of adjacent pixels
-        int adjX[] = {-1, 1, 1, -1};
-        int adjY[] = {-1, 1, -1, 1};
-
-        // Check only the top, right, bottom, and left pixels
-        for (int k = 0; k < 4; k++) {
-          int nx = srcX + adjX[k];
-          int ny = srcY + adjY[k];
-          if (nx >= 0 && nx < img->width && ny >= 0 && ny < img->height) {
-            color_t adjacentColor = img->palette[img->bitmap[nx + ny * (int)img->width]];
-            if (adjacentColor.r != 0xff || adjacentColor.g != 0x00 || adjacentColor.b != 0xff) {
-              if (opts && opts->invert) {
-                sumR += 255 - adjacentColor.r;
-                sumG += 255 - adjacentColor.g;
-                sumB += 255 - adjacentColor.b;
-              } else {
-                sumR += adjacentColor.r;
-                sumG += adjacentColor.g;
-                sumB += adjacentColor.b;
-              }
-              count++;
-            }
-          }
-        }
-
-        // If there are any non-transparent adjacent pixels, calculate the average
-        if (count > 0) {
-          color_t current_pixel = frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT];
-          color.r = (sumR + current_pixel.r) / (count + 1);
-          color.g = (sumG + current_pixel.g) / (count + 1);
-          color.b = (sumB + current_pixel.b) / (count + 1);
-        } else {
-          srcYAccum += srcIncrementY;
-          continue; // Skip if the pixel is transparent and has no non-transparent neighbors
-        }
-      } else if (opts != NULL && color.r == color.g && color.g == color.b && color.b != 0xff) {
+      if (opts != NULL && color.r == color.g && color.g == color.b && color.b != 0xff) {
         float grayValue = 1.0f - ((float)color.r / 255.0f); // invert grayscale value
         uint8_t color_to = 0xff;
         if (opts->invert) {
@@ -122,15 +102,16 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
         color.b = 255 - color.b;
       }
 
-      if (opts != NULL && opts->transparency < 1) {
+      float alpha = (opts != NULL ? opts->transparency : 1) * ((float)color.a / 255);
+
+      if (alpha < 1) {
         color_t current_pixel = frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT];
-        float alpha = opts->transparency;
         color.r = current_pixel.r * (1.0f - alpha) + color.r * alpha;
         color.g = current_pixel.g * (1.0f - alpha) + color.g * alpha;
         color.b = current_pixel.b * (1.0f - alpha) + color.b * alpha;
       }
 
-      frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT] = color;
+      frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT] = (color_t){ color.r, color.g, color.b };
       srcYAccum += srcIncrementY;
     }
     srcXAccum += srcIncrementX;
@@ -138,16 +119,16 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
 }
 
 bitmap_data* get_bitmap_for_name(char *name, int len, uint8_t mask) {
-	for (int i = 0; i < n_bitmaps; i++) {
+  for (int i = 0; i < n_bitmaps; i++) {
     if (!(bitmap_db[i]->mask & mask)) {
       continue;
     }
 		if (strncmp(bitmap_db[i]->name, name, len) == 0) {
 			return bitmap_db[i];
 		}
-	}
-  ESP_LOGI(SGO_LOG_NOSEND, "Does not exist %c", name[0]);
-	return NULL;  // Return NULL if character bitmap not found
+  }
+  //ESP_LOGI(SGO_LOG_NOSEND, "Does not exist \"%c\" (%x)", name[0], name[0]);
+  return NULL;  // Return NULL if character bitmap not found
 }
 
 void fill_screen(color_t color) {
