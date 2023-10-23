@@ -45,11 +45,21 @@ extern bitmap_data bmp_db_35_NORMAL_FONT_SIZE;
 extern bitmap_data bmp_db_36_NORMAL_FONT_SIZE;
 extern bitmap_data bmp_db_37_NORMAL_FONT_SIZE;
 extern bitmap_data bmp_db_38_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_39_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_40_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_41_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_42_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_43_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_44_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_45_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_46_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_47_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_48_NORMAL_FONT_SIZE;
+extern bitmap_data bmp_db_49_NORMAL_FONT_SIZE;
 
 
 extern int n_bitmaps;
 extern bitmap_data *bitmap_db[];
 
 #endif
-
 
