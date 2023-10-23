@@ -96,10 +96,7 @@ Node *create_humidity() {
 Node *create_co2() {
   char value[5] = {0};
   sprintf(value, "%d", get_box_0_co2());
-  Node *node = create_text_node(80, 26, 7, value, (color_t){ 217, 69, 184 }, NORMAL_FONT_SIZE);
-  /* for (int i = 0; i < node->num_children; ++i) {
-    node->children[i]->renderOpts.scale = 0.95;
-  } */
+  Node *node = create_text_node(80, 24, 7, value, (color_t){ 217, 69, 184 }, NORMAL_FONT_SIZE);
   NodeSize size = set_text_node(node, value, NORMAL_FONT_SIZE);
   node->x = 160 - size.width - 10;
   return node;
