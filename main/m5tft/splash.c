@@ -22,7 +22,7 @@
 #include "../core/log/log.h"
 
 typedef struct {
-  
+
   Node *root;
 
   Node *super;
@@ -44,7 +44,10 @@ TickType_t splash_loop(Node *node, void *p) {
 		node->funcs[0] = NULL;
 		free(params);
 
-		init_metrics_screen(node);
+    init_screen_app(node);
+    /*metrics_screen_params *metricsParams = (metrics_screen_params *)malloc(sizeof(metrics_screen_params));
+    memset(metricsParams, 0, sizeof(metrics_screen_params));
+		init_metrics_screen(node, metricsParams);*/
 		//init_splash(node);
 		//init_screensaver(node);
 		return SHORT_TICK;

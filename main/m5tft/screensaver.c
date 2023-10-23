@@ -30,12 +30,13 @@ typedef struct {
   Node *textNode2;
   Node *textNode3;
   Node *textNode4;
+
 } LoopParams;
 
 TickType_t tester_loop(Node *node, void *p) {
   LoopParams *params = p;
 
-  fill_screen((color_t){43, 63, 81});
+  //fill_screen((color_t){43, 63, 81});
 
   char text[10] = "";
   sprintf(text, "%04d°", (int)++params->n);

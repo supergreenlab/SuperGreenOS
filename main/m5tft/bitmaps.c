@@ -64,7 +64,7 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
   // Iterate only within calculated bounds
   for (int i = startX; i < endX; i++) {
 		if (opts && opts->limit) {
-			if (x + i < opts->frame.x1 || x + i > opts->frame.x2) {
+			if (x + i < opts->frame.x1 + (opts->frameRef ? opts->frameRef->x : 0) || x + i > opts->frame.x2 + (opts->frameRef ? opts->frameRef->x : 0)) {
 				srcXAccum += srcIncrementX;
 				continue;
 			}
@@ -72,7 +72,7 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
 		float srcYAccum = (float)startY * srcIncrementY;
     for (int j = startY; j < endY; j++) {
 			if (opts && opts->limit) {
-				if ((y + j) < opts->frame.y1 || (y + j) > opts->frame.y2) {
+				if ((y + j) < opts->frame.y1 + (opts->frameRef ? opts->frameRef->y : 0) || (y + j) > opts->frame.y2 + (opts->frameRef ? opts->frameRef->y : 0)) {
 					srcYAccum += srcIncrementY;
 					continue;
 				}
@@ -81,32 +81,6 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
       int srcX = (int)srcXAccum;
       int srcY = (int)srcYAccum;
       bmp_color_t color = img->palette[img->bitmap[srcX + srcY * (int)img->width]];
-
-			/*if (opts && opts->scale < 1 && color.a > 0) {
-				int incX = ceil(srcIncrementX);
-				int incY = ceil(srcIncrementY);
-				int sumR = 0, sumG = 0, sumB = 0, sumA = 0;
-				int count = 0;
-				for (int x = -incX; x < incX; ++x) {
-					for (int y = -incY; y < incY; ++y) {
-						bmp_color_t color2 = img->palette[img->bitmap[(srcX + x) + (srcY + y) * (int)img->width]];
-						if (color2.a > 0 && srcX + x > 0 && srcX + x < img->width && srcY + y > 0 && srcY + y < img->height) {
-							bmp_color_t color2 = img->palette[img->bitmap[(srcX + x) + (srcY + y) * (int)img->width]];
-							count++;
-							sumR += color2.r;
-							sumG += color2.g;
-							sumB += color2.b;
-							sumA += color2.a;
-						}
-					}
-				}
-				if (count > 0) {
-					color.r = sumR / count;
-					color.g = sumG / count;
-					color.b = sumB / count;
-					//color.a = sumA / count;
-				}
-			}*/
 
 			if (color.a == 0) {
 				srcYAccum += srcIncrementY;

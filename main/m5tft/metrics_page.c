@@ -23,41 +23,19 @@
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
-typedef struct {
-
-  int current_temp;
-  int current_humi;
-  int current_co2;
-
-  int last_temp;
-  int last_humi;
-  int last_co2;
-  TickType_t last_fetch;
-
-  Node *temperature;
-  Node *humidity;
-  Node *co2;
-
-  Node *phase;
-
-  Node *loading;
-
-} metrics_screen_params;
-
-color_t background_color = (color_t){43, 63, 81};
-
 TickType_t metrics_screen_loop(Node *node, void *p) {
   metrics_screen_params *params = (metrics_screen_params *)p;
-
-  fill_screen(background_color);
 
   if (params->loading && params->last_temp != 0 && params->last_humi != 0 && params->last_co2 != 0) {
     delete_node(params->loading);
     params->loading = NULL;
   }
 
-  if (node->renderOpts.transparency < 1) {
-    node->renderOpts.transparency += 0.1;
+  if (!params->loading && params->background_node->renderOpts.transparency != 1) {
+    params->background_node->renderOpts.transparency += (1 - params->background_node->renderOpts.transparency) / 5;
+    if (params->background_node->renderOpts.transparency > 0.9) {
+      params->background_node->renderOpts.transparency = 1;
+    }
   }
 
   TickType_t returnTick = 2000 / portTICK_PERIOD_MS;
@@ -119,9 +97,9 @@ Node *create_co2() {
   char value[5] = {0};
   sprintf(value, "%d", get_box_0_co2());
   Node *node = create_text_node(80, 26, 7, value, (color_t){ 217, 69, 184 }, NORMAL_FONT_SIZE);
-  for (int i = 0; i < node->num_children; ++i) {
+  /* for (int i = 0; i < node->num_children; ++i) {
     node->children[i]->renderOpts.scale = 0.95;
-  }
+  } */
   NodeSize size = set_text_node(node, value, NORMAL_FONT_SIZE);
   node->x = 160 - size.width - 10;
   return node;
@@ -163,13 +141,6 @@ Node *create_phase() {
   return node;
 }
 
-TickType_t fade_background(Node *node, void *p) {
-  for (int i = 0; i < DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH; ++i) {
-    frame[i] = (color_t){ (frame[i].r + background_color.r*3) / 4, (frame[i].g + background_color.g*3) / 4, (frame[i].b + background_color.b*3) / 4 };
-  }
-  return LONG_TICK;
-}
-
 Node *create_loading() {
   SineTransparencyAnimationParams *params1trans = (SineTransparencyAnimationParams*)malloc(sizeof(SineTransparencyAnimationParams));
   params1trans->min_transparency = 0.4;
@@ -186,9 +157,8 @@ Node *create_loading() {
   NodeSize size = set_text_node(node, "Loading", NORMAL_FONT_SIZE);
   node->x = 80 - size.width/2;
   node->y = 40 - size.height/2;
-  node->funcs[0] = fade_background;
-  node->funcParams[1] = params1trans;
-  node->funcs[1] = sine_transparency_animation;
+  node->funcParams[0] = params1trans;
+  node->funcs[0] = sine_transparency_animation;
 
   Node *sub_node = create_node(0, 0, NULL, NULL, NULL);
   add_child(sub_node, node);
@@ -196,29 +166,32 @@ Node *create_loading() {
   return sub_node;
 }
 
-void init_metrics_screen(Node *root) {
-  metrics_screen_params *params = (metrics_screen_params *)malloc(sizeof(metrics_screen_params));
-  memset(params, 0, sizeof(metrics_screen_params));
+void init_metrics_screen(Node *root, metrics_screen_params *params) {
+  params->background_node = create_node(0, 0, NULL, NULL, NULL);
+  add_child(root, params->background_node);
+  params->background_node->renderOpts.transparency = 0.2;
 
   params->temperature = create_temperature();
-  add_child(root, params->temperature);
+  add_child(params->background_node, params->temperature);
 
   params->humidity = create_humidity();
-  add_child(root, params->humidity);
+  add_child(params->background_node, params->humidity);
 
   params->co2 = create_co2();
-  add_child(root, params->co2);
+  add_child(params->background_node, params->co2);
 
   Node *label = create_co2_label();
-  add_child(root, label);
+  add_child(params->background_node, label);
 
   params->phase = create_phase();
-  add_child(root, params->phase);
+  for (int i = 0; i < params->phase->num_children; ++i) {
+    params->phase->children[i]->renderOpts.frameRef = (node_position *)root->parent;
+	}
+  add_child(params->background_node, params->phase);
 
   params->loading = create_loading();
   add_child(root, params->loading);
 
-  root->renderOpts.transparency = 0;
   root->funcParams[0] = params;
   root->funcs[0] = metrics_screen_loop;
 }

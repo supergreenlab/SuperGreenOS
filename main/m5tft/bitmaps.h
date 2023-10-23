@@ -29,6 +29,12 @@
 extern color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
 
 typedef struct {
+  // TODO: ugly hack, to fix
+  float x;
+  float y;
+} node_position;
+
+typedef struct {
   uint8_t r;
   uint8_t g;
   uint8_t b;
@@ -60,6 +66,7 @@ typedef struct {
 	bool offsetNumbers;
 	bool limit;
 	frame_limits frame;
+  node_position *frameRef;
 } RenderOpt;
 
 void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, RenderOpt *opts);

@@ -21,6 +21,30 @@
 
 #include "node.h"
 
-void init_metrics_screen(Node *root);
+typedef struct {
+
+  int current_temp;
+  int current_humi;
+  int current_co2;
+
+  int last_temp;
+  int last_humi;
+  int last_co2;
+  TickType_t last_fetch;
+
+  Node *background_node;
+
+  Node *temperature;
+  Node *humidity;
+  Node *co2;
+
+  Node *phase;
+
+  Node *loading;
+
+} metrics_screen_params;
+
+void init_screen_app(Node *root);
+void init_metrics_screen(Node *root, metrics_screen_params *params);
 
 #endif

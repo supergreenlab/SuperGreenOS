@@ -61,16 +61,6 @@ void force_frame() {
   xQueueSend(cmd, &val, 0);
 }
 
-void buttonEvent(void *handler_arg, esp_event_base_t base, int32_t id, void *event_data) {
-	if ((base == button_a.esp_event_base) && (id == BUTTON_PRESSED_EVENT)) {
-		ESP_LOGI(SGO_LOG_NOSEND, "Button a");
-	}
-
-	if ((base == button_b.esp_event_base) && (id == BUTTON_PRESSED_EVENT)) {
-		ESP_LOGI(SGO_LOG_NOSEND, "Button b");
-	}
-}
-
 void init_m5tft() {
   ESP_LOGI(SGO_LOG_EVENT, "@M5TFT Initializing m5tft module");
 
@@ -91,9 +81,6 @@ void init_m5tft() {
     ESP_LOGE(SGO_LOG_NOSEND, "Error initializing button");
     return;
   }
-
-	esp_event_handler_register_with(event_loop, BUTTON_A_EVENT_BASE, BUTTON_PRESSED_EVENT, buttonEvent, NULL);
-	esp_event_handler_register_with(event_loop, BUTTON_B_EVENT_BASE, BUTTON_PRESSED_EVENT, buttonEvent, NULL);
 
   max_rdclock = DEFAULT_SPI_CLOCK;
 
