@@ -56,6 +56,10 @@ TickType_t metrics_screen_loop(Node *node, void *p) {
     params->loading = NULL;
   }
 
+  if (node->renderOpts.transparency < 1) {
+    node->renderOpts.transparency += 0.1;
+  }
+
   TickType_t returnTick = 2000 / portTICK_PERIOD_MS;
   if (params->last_temp != params->current_temp) {
     params->current_temp += params->last_temp > params->current_temp ? 1 : -1;
@@ -148,7 +152,7 @@ Node *create_phase() {
   SineAnimationParams *params1 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
   params1->center_x = 120 - size.width/2;
   params1->center_y = node->y;
-  params1->magnitude_x = (size.width - 80)/2 + 15;
+  params1->magnitude_x = (size.width - 80)/2 + 10;
   params1->magnitude_y = 0;
   params1->elapsedTime = M_PI * 2.5;
   params1->speed=0.01;
@@ -214,6 +218,7 @@ void init_metrics_screen(Node *root) {
   params->loading = create_loading();
   add_child(root, params->loading);
 
+  root->renderOpts.transparency = 0;
   root->funcParams[0] = params;
   root->funcs[0] = metrics_screen_loop;
 }
