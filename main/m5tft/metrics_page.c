@@ -19,10 +19,20 @@
 #include "app.h"
 
 #include "math.h"
+#include "freertos/task.h"
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
 typedef struct {
+
+  int current_temp;
+  int current_humi;
+  int current_co2;
+
+  int last_temp;
+  int last_humi;
+  int last_co2;
+  TickType_t last_fetch;
 
   Node *temperature;
   Node *humidity;
@@ -41,27 +51,50 @@ TickType_t metrics_screen_loop(Node *node, void *p) {
 
   fill_screen(background_color);
 
-  int temp = get_box_0_temp();
-  int humi = get_box_0_humi();
-  int co2 = get_box_0_co2();
-
-  if (params->loading && temp != 0 && humi != 0 && co2 != 0) {
+  if (params->loading && params->last_temp != 0 && params->last_humi != 0 && params->last_co2 != 0) {
     delete_node(params->loading);
     params->loading = NULL;
   }
 
-  char value[6] = {0};
-  sprintf(value, "%d°", temp);
-  set_text_node(params->temperature, value, NORMAL_FONT_SIZE);
+  TickType_t returnTick = 2000 / portTICK_PERIOD_MS;
+  if (params->last_temp != params->current_temp) {
+    params->current_temp += params->last_temp > params->current_temp ? 1 : -1;
+    char value[6] = {0};
+    sprintf(value, "%d°", params->current_temp);
+    set_text_node(params->temperature, value, NORMAL_FONT_SIZE);
+    returnTick = SHORT_TICK;
+  }
+  if (params->last_humi != params->current_humi) {
+    params->current_humi += params->last_humi > params->current_humi ? 1 : -1;
+    char value[6] = {0};
+    sprintf(value, "%d%%", params->current_humi);
+    set_text_node(params->humidity, value, NORMAL_FONT_SIZE);
+    returnTick = SHORT_TICK;
+  }
+  if (params->last_co2 != params->current_co2) {
+    bool dir = params->last_co2 > params->current_co2;
+    params->current_co2 += params->last_co2 > params->current_co2 ? 20 : -20;
+    if (dir != (params->last_co2 > params->current_co2)) {
+      params->current_co2 = params->last_co2;
+    }
+    char value[6] = {0};
+    sprintf(value, "%d", params->current_co2);
+    NodeSize size = set_text_node(params->co2, value, NORMAL_FONT_SIZE);
+    params->co2->x = 160 - size.width - 10;
+    returnTick = SHORT_TICK;
+  }
 
-  sprintf(value, "%d%%", humi);
-  set_text_node(params->humidity, value, NORMAL_FONT_SIZE);
+  TickType_t tick = xTaskGetTickCount();
+  if ((tick - params->last_fetch) * portTICK_PERIOD_MS > 2000) {
 
-  sprintf(value, "%d", co2);
-  NodeSize size = set_text_node(params->co2, value, NORMAL_FONT_SIZE);
-  params->co2->x = 160 - size.width - 10;
+    params->last_temp = get_box_0_temp();
+    params->last_humi = get_box_0_humi();
+    params->last_co2 = get_box_0_co2();
 
-  return 2000 / portTICK_PERIOD_MS;
+    params->last_fetch = tick;
+  }
+
+  return returnTick;
 }
 
 Node *create_temperature() {
@@ -161,6 +194,7 @@ Node *create_loading() {
 
 void init_metrics_screen(Node *root) {
   metrics_screen_params *params = (metrics_screen_params *)malloc(sizeof(metrics_screen_params));
+  memset(params, 0, sizeof(metrics_screen_params));
 
   params->temperature = create_temperature();
   add_child(root, params->temperature);
