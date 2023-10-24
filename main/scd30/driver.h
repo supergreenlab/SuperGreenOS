@@ -73,6 +73,7 @@ bool setAmbientPressure(scd30_handle *s, uint16_t pressure_mbar);
 bool setAltitudeCompensation(scd30_handle *s, uint16_t altitude);
 bool setAutoSelfCalibration(scd30_handle *s, bool enable);
 bool setForcedRecalibrationFactor(scd30_handle *s, uint16_t concentration);
+float getTemperatureOffset(scd30_handle *s);
 bool setTemperatureOffset(scd30_handle *s, float tempOffset);
 
 bool dataAvailable(scd30_handle *s);
