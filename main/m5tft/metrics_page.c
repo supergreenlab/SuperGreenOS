@@ -120,6 +120,7 @@ Node *create_phase() {
   for (int i = 0; i < node->num_children; ++i) {
     node->children[i]->renderOpts.scale = 0.6;
     node->children[i]->renderOpts.limit = true;
+    node->children[i]->renderOpts.blendposition = true;
     node->children[i]->renderOpts.frame = (frame_limits){72, 0, 150, 25};
   }
   NodeSize size = set_text_node(node, value, NORMAL_FONT_SIZE);

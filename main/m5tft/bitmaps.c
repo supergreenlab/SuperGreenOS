@@ -29,7 +29,14 @@
 
 color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
 
-void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
+color_t blend_pixels(color_t dest, color_t src, float alpha) {
+	uint8_t r = dest.r * (1.0f - alpha) + src.r * alpha;
+	uint8_t g = dest.g * (1.0f - alpha) + src.g * alpha;
+	uint8_t b = dest.b * (1.0f - alpha) + src.b * alpha;
+	return (color_t){ r, g, b };
+}
+
+void draw_bitmap(const bitmap_data *img, float x, float y, RenderOpt *opts) {
   float scale = (opts) ? opts->scale : 1.0f;
   float transparency = (opts) ? opts->transparency : 1.0f;
 
@@ -102,16 +109,47 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
         color.b = 255 - color.b;
       }
 
-      float alpha = (opts != NULL ? opts->transparency : 1) * ((float)color.a / 255);
+			float alpha = (opts != NULL ? opts->transparency : 1) * ((float)color.a / 255);
 
-      if (alpha < 1) {
-        color_t current_pixel = frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT];
-        color.r = current_pixel.r * (1.0f - alpha) + color.r * alpha;
-        color.g = current_pixel.g * (1.0f - alpha) + color.g * alpha;
-        color.b = current_pixel.b * (1.0f - alpha) + color.b * alpha;
-      }
+			float x_frac = x + i - floorf(x + i);
+			float y_frac = y + j - floorf(y + j);
 
-      frame[(x + i) + (y + j) * DEFAULT_TFT_DISPLAY_HEIGHT] = (color_t){ color.r, color.g, color.b };
+			bool do_position_blending = (opts && opts->blendposition) && (x_frac > 0 || y_frac > 0);
+
+			if (do_position_blending) {
+				float weight_tl = (1.0f - x_frac) * (1.0f - y_frac);
+				float weight_tr = x_frac * (1.0f - y_frac);
+				float weight_bl = (1.0f - x_frac) * y_frac;
+				float weight_br = x_frac * y_frac;
+
+				int tl_idx = (floorf(x) + i) + (floorf(y) + j) * DEFAULT_TFT_DISPLAY_HEIGHT;
+				int tr_idx = (floorf(x) + i + 1) + (floorf(y) + j) * DEFAULT_TFT_DISPLAY_HEIGHT;
+				int bl_idx = (floorf(x) + i) + (floorf(y) + j + 1) * DEFAULT_TFT_DISPLAY_HEIGHT;
+				int br_idx = (floorf(x) + i + 1) + (floorf(y) + j + 1) * DEFAULT_TFT_DISPLAY_HEIGHT;
+
+				if (tl_idx > 0 && tl_idx < DEFAULT_TFT_DISPLAY_WIDTH * DEFAULT_TFT_DISPLAY_HEIGHT) {
+					frame[tl_idx] = blend_pixels(frame[tl_idx], (color_t){ color.r, color.g, color.b }, alpha * weight_tl);
+				}
+				if (tr_idx > 0 && tr_idx < DEFAULT_TFT_DISPLAY_WIDTH * DEFAULT_TFT_DISPLAY_HEIGHT) {
+					frame[tr_idx] = blend_pixels(frame[tr_idx], (color_t){ color.r, color.g, color.b }, alpha * weight_tr);
+				}
+				if (bl_idx > 0 && bl_idx < DEFAULT_TFT_DISPLAY_WIDTH * DEFAULT_TFT_DISPLAY_HEIGHT) {
+					frame[bl_idx] = blend_pixels(frame[bl_idx], (color_t){ color.r, color.g, color.b }, alpha * weight_bl);
+				}
+				if (br_idx > 0 && br_idx < DEFAULT_TFT_DISPLAY_WIDTH * DEFAULT_TFT_DISPLAY_HEIGHT) {
+					frame[br_idx] = blend_pixels(frame[br_idx], (color_t){ color.r, color.g, color.b }, alpha * weight_br);
+				}
+			} else {
+				if (alpha < 1) {
+					color_t current_pixel = frame[((int)x + i) + ((int)y + j) * DEFAULT_TFT_DISPLAY_HEIGHT];
+					color.r = current_pixel.r * (1.0f - alpha) + color.r * alpha;
+					color.g = current_pixel.g * (1.0f - alpha) + color.g * alpha;
+					color.b = current_pixel.b * (1.0f - alpha) + color.b * alpha;
+				}
+
+				frame[((int)x + i) + ((int)y + j) * DEFAULT_TFT_DISPLAY_HEIGHT] = (color_t){ color.r, color.g, color.b };
+			}
+
       srcYAccum += srcIncrementY;
     }
     srcXAccum += srcIncrementX;

@@ -65,12 +65,12 @@ typedef struct {
   color_t targetColor;  // The color to be used as the new color for gray pixels
 	bool offsetNumbers;
 	bool limit;
+  bool blendposition;
 	frame_limits frame;
   node_position *frameRef;
 } RenderOpt;
 
-void scaled_draw_bitmap(const bitmap_data *img, int x, int y, float scale, RenderOpt *opts);
-void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts);
+void draw_bitmap(const bitmap_data *img, float x, float y, RenderOpt *opts);
 bitmap_data* get_bitmap_for_name(char* name, int len, uint8_t mask);
 void fill_screen(color_t color);
 void flush_frame();
