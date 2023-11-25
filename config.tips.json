@@ -916,12 +916,12 @@
                 }
             }
         },
-        "m5tft": {
-            "name": "m5tft",
+        "sensor_tester": {
+            "name": "sensor_tester",
             "enabled": true,
-            "tester": false,
+            "tester": true,
             "required": false,
-            "field_prefix": "m5tft",
+            "field_prefix": "sensor_tester",
             "preinit": false,
             "init": true,
             "code": true,
@@ -931,22 +931,22 @@
             "array_len": 0,
             "fields": {}
         },
-        "status_led": {
-            "name": "status_led",
-            "enabled": false,
+        "state": {
+            "name": "state",
+            "enabled": true,
             "tester": false,
             "required": true,
-            "field_prefix": "status_led",
-            "preinit": true,
+            "field_prefix": "state",
+            "preinit": false,
             "init": true,
             "code": true,
-            "init_priority": 110,
+            "init_priority": 100,
             "core": false,
             "i2c": false,
             "array_len": 0,
             "fields": {
-                "red_gpio": {
-                    "name": "status_led_red_gpio",
+                "state": {
+                    "name": "state",
                     "type": "integer",
                     "remote": true,
                     "nosend": false,
@@ -955,7 +955,7 @@
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "SL_R_IO"
+                        "key": "STATE"
                     },
                     "ble": {
                         "enable": false
@@ -967,15 +967,16 @@
                     "indir": {
                         "enable": false
                     },
-                    "write_cb": false,
+                    "write_cb": true,
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "red_gpio",
-                    "caps_name": "STATUS_LED_RED_GPIO"
+                    "suffix": "state",
+                    "caps_name": "STATE",
+                    "default_var": "FIRST_RUN"
                 },
-                "green_gpio": {
-                    "name": "status_led_green_gpio",
-                    "type": "integer",
+                "device_name": {
+                    "name": "device_name",
+                    "type": "string",
                     "remote": true,
                     "nosend": false,
                     "helper": "",
@@ -983,7 +984,7 @@
                     "nvs": {
                         "enable": true,
                         "manual": false,
-                        "key": "SL_G_IO"
+                        "key": "DEV_NAME"
                     },
                     "ble": {
                         "enable": false
@@ -996,39 +997,9 @@
                         "enable": false
                     },
                     "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "green_gpio",
-                    "caps_name": "STATUS_LED_GREEN_GPIO"
-                },
-                "dim": {
-                    "name": "status_led_dim",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "SL_R_D"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "dim",
-                    "caps_name": "STATUS_LED_DIM",
-                    "default": 10
+                    "suffix": "device_name",
+                    "caps_name": "DEVICE_NAME",
+                    "default": "SuperGreenTips"
                 }
             }
         },
@@ -1859,6 +1830,107 @@
                     "suffix": "0_timer_emerson_power",
                     "caps_name": "BOX_0_TIMER_EMERSON_POWER",
                     "default": 0
+                }
+            }
+        },
+        "status_led": {
+            "name": "status_led",
+            "enabled": false,
+            "tester": false,
+            "required": true,
+            "field_prefix": "status_led",
+            "preinit": true,
+            "init": true,
+            "code": true,
+            "init_priority": 110,
+            "core": false,
+            "i2c": false,
+            "array_len": 0,
+            "fields": {
+                "red_gpio": {
+                    "name": "status_led_red_gpio",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "SL_R_IO"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "red_gpio",
+                    "caps_name": "STATUS_LED_RED_GPIO"
+                },
+                "green_gpio": {
+                    "name": "status_led_green_gpio",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "SL_G_IO"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "green_gpio",
+                    "caps_name": "STATUS_LED_GREEN_GPIO"
+                },
+                "dim": {
+                    "name": "status_led_dim",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "SL_R_D"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "dim",
+                    "caps_name": "STATUS_LED_DIM",
+                    "default": 10
                 }
             }
         },
@@ -2863,77 +2935,20 @@
             "array_len": 0,
             "fields": {}
         },
-        "state": {
-            "name": "state",
+        "m5tft": {
+            "name": "m5tft",
             "enabled": true,
             "tester": false,
-            "required": true,
-            "field_prefix": "state",
+            "required": false,
+            "field_prefix": "m5tft",
             "preinit": false,
             "init": true,
             "code": true,
-            "init_priority": 100,
+            "init_priority": 0,
             "core": false,
             "i2c": false,
             "array_len": 0,
-            "fields": {
-                "state": {
-                    "name": "state",
-                    "type": "integer",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "STATE"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": true,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "state",
-                    "caps_name": "STATE",
-                    "default_var": "FIRST_RUN"
-                },
-                "device_name": {
-                    "name": "device_name",
-                    "type": "string",
-                    "remote": true,
-                    "nosend": false,
-                    "helper": "",
-                    "dump_freq": 60,
-                    "nvs": {
-                        "enable": true,
-                        "manual": false,
-                        "key": "DEV_NAME"
-                    },
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "suffix": "device_name",
-                    "caps_name": "DEVICE_NAME",
-                    "default": "SuperGreenTips"
-                }
-            }
+            "fields": {}
         },
         "mixer": {
             "name": "mixer",
@@ -3562,21 +3577,6 @@
                 }
             }
         },
-        "sensor_tester": {
-            "name": "sensor_tester",
-            "enabled": true,
-            "tester": true,
-            "required": false,
-            "field_prefix": "sensor_tester",
-            "preinit": false,
-            "init": true,
-            "code": true,
-            "init_priority": 0,
-            "core": false,
-            "i2c": false,
-            "array_len": 0,
-            "fields": {}
-        },
         "sht21": {
             "name": "sht21",
             "enabled": true,
@@ -3745,6 +3745,21 @@
                     "default": -20
                 }
             }
+        },
+        "sgl": {
+            "name": "sgl",
+            "enabled": true,
+            "tester": false,
+            "required": false,
+            "field_prefix": "sgl",
+            "preinit": false,
+            "init": true,
+            "code": true,
+            "init_priority": 0,
+            "core": false,
+            "i2c": false,
+            "array_len": 0,
+            "fields": {}
         }
     }
 }

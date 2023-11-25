@@ -13,10 +13,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SGL_ACCOUNT_H_
-#define SGL_ACCOUNT_H_
+#ifndef SGL_H_
+#define SGL_H_
 
-void init_sgl_account();
+void init_sgl();
 
 #endif
 

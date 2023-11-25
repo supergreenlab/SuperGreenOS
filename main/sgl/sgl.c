@@ -14,7 +14,7 @@
  */
 
 #include <stdlib.h>
-#include "sgl_account.h"
+#include "sgl.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -22,17 +22,17 @@
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
-static void sgl_account_task(void *param);
+static void sgl_task(void *param);
 
-void init_sgl_account() {
-  ESP_LOGI(SGO_LOG_EVENT, "@SGL_ACCOUNT Initializing sgl_account module");
+void init_sgl() {
+  ESP_LOGI(SGO_LOG_EVENT, "@SGL Initializing sgl module");
 
   // TODO: write you setup code here
 
-  xTaskCreatePinnedToCore(sgl_account_task, "SGL_ACCOUNT", 4096, NULL, 10, NULL, 1);
+  xTaskCreatePinnedToCore(sgl_task, "SGL", 4096, NULL, 10, NULL, 1);
 }
 
-static void sgl_account_task(void *param) {
+static void sgl_task(void *param) {
   while (true) {
 
     // TODO: write your loop code here
