@@ -27,17 +27,16 @@ static void sgl_task(void *param);
 void init_sgl() {
   ESP_LOGI(SGO_LOG_EVENT, "@SGL Initializing sgl module");
 
-  // TODO: write you setup code here
-
   xTaskCreatePinnedToCore(sgl_task, "SGL", 4096, NULL, 10, NULL, 1);
 }
 
 static void sgl_task(void *param) {
   while (true) {
 
-    // TODO: write your loop code here
-
     vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
   }
 }
 
+void mqtt_message(const char *str, int len) {
+  ESP_LOGI(SGO_LOG_EVENT, "@SGL MQTT received %.*s", len, str);
+}

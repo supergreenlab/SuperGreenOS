@@ -46,8 +46,8 @@ status_led_timeline running_timeline = {
 #endif
 
 void init_state() {
-  int state = get_state();
 #ifdef MODULE_STATUS_LED
+  int state = get_state();
   if (state == FIRST_RUN) {
     set_status_led_timeline(new_timeline);
   }

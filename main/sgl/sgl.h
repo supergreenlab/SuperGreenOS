@@ -17,6 +17,6 @@
 #define SGL_H_
 
 void init_sgl();
+void mqtt_message(const char *str, int len);
 
 #endif
-

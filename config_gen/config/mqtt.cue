@@ -18,3 +18,19 @@ modules mqtt fields clientid: _STRING & _NVS & _HTTP_RW & {
   nvs key: "BRKR_CLID"
   default: ""
 }
+
+modules mqtt fields cmdcallbackinclude: _STRING & {
+  default: string | *""
+}
+
+modules mqtt fields cmdcallback: _STRING & {
+  default: string | *""
+}
+
+modules mqtt fields scrcallbackinclude: _STRING & {
+  default: string | *""
+}
+
+modules mqtt fields scrcallback: _STRING & {
+  default: string | *""
+}
