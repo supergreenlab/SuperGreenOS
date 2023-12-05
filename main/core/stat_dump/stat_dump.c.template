@@ -42,7 +42,7 @@ static void stat_dump_task(void *param) {
     int value;
     char str[MAX_KVALUE_SIZE] = {0};
     <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-      Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].nosend).forEach(f => { f = modules[m].fields[f] %>
+      Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && !modules[m].fields[f].nosend).forEach(f => { f = modules[m].fields[f] %>
     if ((counter % <%= f.dump_freq %>) == 0<% if (!f.indir.enable) { %> || is_<%= f.name %>_changed()<% } %>) {
       <% if (f.type == 'integer') { %>
         value = get_<%= f.name %>();

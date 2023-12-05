@@ -56,6 +56,7 @@ _FIELD: {
   write_cb: bool | *false
   default_var: string | *_default_var if _default_var != null
   _default_var: string | *null
+  disabled: bool | *false
 }
 
 _STRING: _FIELD & {

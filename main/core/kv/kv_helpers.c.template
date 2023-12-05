@@ -31,7 +31,7 @@
 StaticSemaphore_t mutex_buffer;
 
 <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
 
   static SemaphoreHandle_t _mutex_<%= f.name %>; // TODO check RAM weight of creating so many semaphores :/
   static bool _<%= f.name %>_changed = true;
@@ -134,12 +134,12 @@ StaticSemaphore_t mutex_buffer;
 <% })}) %>
 
 <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
   <% if (f.type == 'integer') { %>
     <%= f.signedness %>int<%= f.intlen %>_t get_<%= f.name %>() {
       switch(get_<%= modules[m].fields[f.indir.source].name %>()) {
       <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-        Object.keys(modules[m].fields).filter(f2 => modules[m].fields[f2][f.indir.key]).forEach(f2 => { f2 = modules[m].fields[f2] %>
+        Object.keys(modules[m].fields).filter(f2 => !modules[m].fields[f2].disabled && modules[m].fields[f2][f.indir.key]).forEach(f2 => { f2 = modules[m].fields[f2] %>
         case <%= f2[f.indir.key] %>:
           return get_<%= f2.name %>();
       <% })}) %>
@@ -150,7 +150,7 @@ StaticSemaphore_t mutex_buffer;
     void get_<%= f.name %>(char *dest, size_t len) {
       switch(get_<%= modules[m].fields[f.indir.source].name %>()) {
       <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-        Object.keys(modules[m].fields).filter(f2 => modules[m].fields[f2][f.indir.key]).forEach(f2 => { f2 = modules[m].fields[f2] %>
+        Object.keys(modules[m].fields).filter(f2 => !modules[m].fields[f2].disabled && modules[m].fields[f2][f.indir.key]).forEach(f2 => { f2 = modules[m].fields[f2] %>
         case <%= f2[f.indir.key] %>:
           return get_<%= f2.name %>(dest, len);
       <% })}) %>
@@ -162,7 +162,7 @@ StaticSemaphore_t mutex_buffer;
 
 void init_helpers() {
   <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-    Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f]%>
+    Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f]%>
     _mutex_<%= f.name %> = xSemaphoreCreateMutexStatic(&mutex_buffer);
   <% })}) %>
 }

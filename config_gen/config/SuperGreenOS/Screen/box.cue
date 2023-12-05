@@ -12,12 +12,3 @@ _box_conf: [
     fan_ref_source: 0
   },
 ]
-
-modules box fields "\(k)_weight": {
-  disabled: true
-} for k, v in _box_conf
-
-modules box fields "\(k)_weight_source": {
-  disabled: true
-} for k, v in _box_conf
-

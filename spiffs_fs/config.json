@@ -1,5 +1,7 @@
 {
   "name": "SuperGreenTips",
+  "isController": "true",
+  "isScreen": "true",
   "keys": [
     
             {
@@ -334,6 +336,36 @@
           
             {
               "core": false,
+              "name": "state",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "STATE",
+              "module": "state",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "device_name",
+              "type": "string",
+              "integer": false,
+              "caps_name": "DEVICE_NAME",
+              "module": "state",
+              
+              
+              "write": true,
+              
+              
+              "default": "SuperGreenTips"
+            },
+          
+            {
+              "core": false,
               "name": "box_0_enabled",
               "type": "integer",
               "integer": true,
@@ -386,37 +418,6 @@
           
             {
               "core": false,
-              "name": "box_0_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "temp_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16,1],
-                  "helpers": ["SCD30 temperature on port #1","SHT21 temperature on port #1"]
-                },
-              
-              "default": 16
-            },
-          
-            {
-              "core": false,
               "name": "box_0_humi",
               "type": "integer",
               "integer": true,
@@ -439,37 +440,6 @@
               
               
               "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "humi_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16,1],
-                  "helpers": ["SCD30 humidity on port #1","SHT21 humidity on port #1"]
-                },
-              
-              "default": 16
             },
           
             {
@@ -500,6 +470,68 @@
           
             {
               "core": false,
+              "name": "box_0_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16],
+                  "helpers": ["SCD30 temperature on port #1"]
+                },
+              
+              "default": 16
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16],
+                  "helpers": ["SCD30 humidity on port #1"]
+                },
+              
+              "default": 16
+            },
+          
+            {
+              "core": false,
               "name": "box_0_vpd_source",
               "type": "integer",
               "integer": true,
@@ -522,68 +554,11 @@
               
               
                 "indir": {
-                  "values": [16,1],
-                  "helpers": ["SCD30 vpd on port #1","SHT21 vpd on port #1"]
+                  "values": [16],
+                  "helpers": ["SCD30 vpd on port #1"]
                 },
               
               "default": 16
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_weight",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_WEIGHT",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "weight"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "weight"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_weight_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_WEIGHT_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "weight_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "weight_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1],
-                  "helpers": ["HX711 weight on port #1"]
-                },
-              
-              "default": 1
             },
           
             {
@@ -645,136 +620,28 @@
           
             {
               "core": false,
-              "name": "hx711_0_weight",
+              "name": "scd30_0_present",
               "type": "integer",
               "integer": true,
-              "caps_name": "HX711_0_WEIGHT",
-              "module": "hx711",
-              "helper": "HX711 weight on port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "hx711",
-                  "len": 1,
-                  "index": 0,
-                  "param": "weight"
-                },
-                "hx711": {
-                  "index": 0,
-                  "param": "weight"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "hx711_0_present",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "HX711_0_PRESENT",
-              "module": "hx711",
+              "caps_name": "SCD30_0_PRESENT",
+              "module": "scd30",
               
               
               "write": false,
               
                 "array": {
-                  "name": "hx711",
+                  "name": "scd30",
                   "len": 1,
                   "index": 0,
                   "param": "present"
                 },
-                "hx711": {
+                "scd30": {
                   "index": 0,
                   "param": "present"
                 },
               
               
               "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "hx711_0_weight_calibration",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "HX711_0_WEIGHT_CALIBRATION",
-              "module": "hx711",
-              "helper": "HX711 weight divider calibration on port #1",
-              
-              "write": true,
-              
-                "array": {
-                  "name": "hx711",
-                  "len": 1,
-                  "index": 0,
-                  "param": "weight_calibration"
-                },
-                "hx711": {
-                  "index": 0,
-                  "param": "weight_calibration"
-                },
-              
-              
-              "default": 48
-            },
-          
-            {
-              "core": false,
-              "name": "hx711_0_weight_offset",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "HX711_0_WEIGHT_OFFSET",
-              "module": "hx711",
-              "helper": "HX711 weight weight offset on port #1",
-              
-              "write": true,
-              
-                "array": {
-                  "name": "hx711",
-                  "len": 1,
-                  "index": 0,
-                  "param": "weight_offset"
-                },
-                "hx711": {
-                  "index": 0,
-                  "param": "weight_offset"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "state",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "STATE",
-              "module": "state",
-              
-              
-              "write": true,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "device_name",
-              "type": "string",
-              "integer": false,
-              "caps_name": "DEVICE_NAME",
-              "module": "state",
-              
-              
-              "write": true,
-              
-              
-              "default": "SuperGreenTips"
             },
           
             {
@@ -857,58 +724,6 @@
           
             {
               "core": false,
-              "name": "scd30_0_co2",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SCD30_0_CO2",
-              "module": "scd30",
-              "helper": "SCD30 co2 on port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "scd30",
-                  "len": 1,
-                  "index": 0,
-                  "param": "co2"
-                },
-                "scd30": {
-                  "index": 0,
-                  "param": "co2"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "scd30_0_present",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SCD30_0_PRESENT",
-              "module": "scd30",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "scd30",
-                  "len": 1,
-                  "index": 0,
-                  "param": "present"
-                },
-                "scd30": {
-                  "index": 0,
-                  "param": "present"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
               "name": "scd30_0_vpd_leaf_offset",
               "type": "integer",
               "integer": true,
@@ -935,132 +750,28 @@
           
             {
               "core": false,
-              "name": "sht21_0_temp",
+              "name": "scd30_0_co2",
               "type": "integer",
               "integer": true,
-              "caps_name": "SHT21_0_TEMP",
-              "module": "sht21",
-              "helper": "SHT21 temperature on port #1",
+              "caps_name": "SCD30_0_CO2",
+              "module": "scd30",
+              "helper": "SCD30 co2 on port #1",
               
               "write": false,
               
                 "array": {
-                  "name": "sht21",
+                  "name": "scd30",
                   "len": 1,
                   "index": 0,
-                  "param": "temp"
+                  "param": "co2"
                 },
-                "sht21": {
+                "scd30": {
                   "index": 0,
-                  "param": "temp"
+                  "param": "co2"
                 },
               
               
               "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_0_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_0_HUMI",
-              "module": "sht21",
-              "helper": "SHT21 humidity on port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 1,
-                  "index": 0,
-                  "param": "humi"
-                },
-                "sht21": {
-                  "index": 0,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_0_vpd",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_0_VPD",
-              "module": "sht21",
-              "helper": "SHT21 vpd on port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 1,
-                  "index": 0,
-                  "param": "vpd"
-                },
-                "sht21": {
-                  "index": 0,
-                  "param": "vpd"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_0_present",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_0_PRESENT",
-              "module": "sht21",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 1,
-                  "index": 0,
-                  "param": "present"
-                },
-                "sht21": {
-                  "index": 0,
-                  "param": "present"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "sht21_0_vpd_leaf_offset",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SHT21_0_VPD_LEAF_OFFSET",
-              "module": "sht21",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "sht21",
-                  "len": 1,
-                  "index": 0,
-                  "param": "vpd_leaf_offset"
-                },
-                "sht21": {
-                  "index": 0,
-                  "param": "vpd_leaf_offset"
-                },
-              
-              
-              "default": -20
             }
           
   ]

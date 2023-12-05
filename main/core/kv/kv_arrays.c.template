@@ -22,7 +22,7 @@
 
 <% Object.keys(modules).filter(m => modules[m].enabled).filter(m => modules[m].array_len > 0).forEach(m => {
   m = modules[m]
-  Object.keys(m.fields).filter(f => m.fields[f].write_cb && !m.fields[f].indir.enable).forEach(f => { 
+  Object.keys(m.fields).filter(f => !m.fields[f].disabled && m.fields[f].write_cb && !m.fields[f].indir.enable).forEach(f => { 
     f = m.fields[f]
     let p = f.name.split('_')
     p.splice(0, 2)
@@ -41,7 +41,7 @@
                           const name = modules[m].field_prefix
                           acc[name] = acc[name] || {name, array_len: modules[m].array_len, fields: {}}
                           Object.keys(modules[m].fields)
-                                .filter(f => modules[m].fields[f].type == 'integer')
+                                .filter(f => !modules[m].fields[f].disabled && modules[m].fields[f].type == 'integer')
                                 .forEach((f) => {
                                   f = modules[m].fields[f]
                                   p = f.name.split('_')

@@ -28,7 +28,7 @@
  */
 
 <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f] %>
   <% if (f.type == 'integer') { %>
     void internal_set_<%= f.name %>(<%= f.signedness %>int<%= f.intlen %>_t value) {
   <% } else { %>

@@ -30,7 +30,7 @@ const kvi8_mapping kvi8_mappings[] = {
 */
   
 <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 8 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 8 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
   {
     .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
@@ -70,7 +70,7 @@ const kvui8_mapping kvui8_mappings[] = {
 */
   
 <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 8 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 8 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
   {
     .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
@@ -112,7 +112,7 @@ const kvi16_mapping kvi16_mappings[] = {
 */
 
  <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
   {
     .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
@@ -153,7 +153,7 @@ const kvui16_mapping kvui16_mappings[] = {
 */
 
  <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 16 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
   {
     .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
@@ -194,7 +194,7 @@ const kvi32_mapping kvi32_mappings[] = {
 */
 
  <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32 && modules[m].fields[f].signedness == '').forEach(f => { f = modules[m].fields[f]%>
   {
     .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
@@ -235,7 +235,7 @@ const kvui32_mapping kvui32_mappings[] = {
 */
 
  <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && modules[m].fields[f].type == 'integer' && modules[m].fields[f].intlen == 32 && modules[m].fields[f].signedness == 'u').forEach(f => { f = modules[m].fields[f]%>
   {
     .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",
@@ -276,7 +276,7 @@ const kvs_mapping kvs_mappings[] = {
 */
 
 <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
-  Object.keys(modules[m].fields).filter(f => modules[m].fields[f].type == 'string').forEach(f => { f = modules[m].fields[f]%>
+  Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && modules[m].fields[f].type == 'string').forEach(f => { f = modules[m].fields[f]%>
   {
     .remote = <%= f.remote %>,
     .name = "<%= f.caps_name %>",

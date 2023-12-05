@@ -23,7 +23,7 @@
 
 <% Object.keys(modules).filter((m) => modules[m].enabled).filter(m => modules[m].array_len).forEach(m => {
   m = modules[m]
-  Object.keys(m.fields).forEach(f => { 
+  Object.keys(m.fields).filter(f => !m.fields[f].disabled).forEach(f => { 
     f = m.fields[f]
     i = parseInt(f.name.split('_')[1]) %>
     <% if (f.write_cb) { %>
@@ -38,7 +38,7 @@
                           const name = modules[m].field_prefix
                           acc[name] = acc[name] || {name, array_len: modules[m].array_len, fields: {}}
                           Object.keys(modules[m].fields)
-                                .filter(f => modules[m].fields[f].type == 'integer')
+                                .filter(f => !modules[m].fields[f].disabled && modules[m].fields[f].type == 'integer')
                                 .forEach((f) => {
                                   f = modules[m].fields[f]
                                   p = f.name.split('_')

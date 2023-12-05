@@ -59,6 +59,7 @@ static void sensor_tester_task(void *param) {
 
 #endif
 
+#ifdef MODULE_SHT21
     bool ok = true;
     for (int i = 0; i < N_SHT21; ++i) {
       bool is_ok = get_sht21_present(i) == 1;
@@ -80,6 +81,8 @@ static void sensor_tester_task(void *param) {
     } else {
       set_status_led_timeline(timeline);
     }
+
+#endif
 
 #endif
 

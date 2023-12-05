@@ -1,9 +1,11 @@
 {
   "name": "<%= name %>",
+  "isController": "<%= iscontroller %>",
+  "isScreen": "<%= isscreen %>",
   "keys": [
     <%
-      const ms = Object.keys(modules).filter(m => modules[m].enabled && Object.keys(modules[m].fields).length > 0)
-      const indirs = ms.reduce((acc, i) => Object.keys(modules[i].fields).reduce((acc, f) => {
+      const ms = Object.keys(modules).filter(m => modules[m].enabled && Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled).length > 0)
+      const indirs = ms.reduce((acc, i) => Object.keys(modules[i].fields).filter(f => !modules[i].fields[f].disabled).reduce((acc, f) => {
         f = modules[i].fields[f]
         if (f.indir.enable) {
           acc[f.indir.source] = {
@@ -18,7 +20,7 @@
       Object.keys(indirs).forEach(i => {
         ms.forEach(m => {
           m = modules[m]
-          const fields = Object.keys(m.fields)
+          const fields = Object.keys(m.fields).filter(f => !m.fields[f].disabled)
           fields.forEach(f => {
             f = m.fields[f]
             if (!f[indirs[i].key]) {
@@ -32,7 +34,7 @@
 
       ms.forEach((m, i) => {
         m = modules[m]
-        const fields = Object.keys(m.fields).filter(f => m.fields[f].http.enable)
+        const fields = Object.keys(m.fields).filter(f => !m.fields[f].disabled && m.fields[f].http.enable)
         fields.forEach((f, j) => {
           const indir = indirs[f]
           f = m.fields[f]
