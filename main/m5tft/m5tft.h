@@ -17,6 +17,9 @@
 #define M5TFT_H_
 
 #include "tftspi.h"
+#include "node.h"
+
+extern Node* root;
 
 void init_m5tft();
 void force_frame();

@@ -55,6 +55,7 @@ uint8_t axp192_init_list[28] = {
 static void m5tft_task(void *param);
 
 static QueueHandle_t cmd;
+Node* root;
 
 void force_frame() {
   bool val = true;
@@ -114,14 +115,14 @@ void init_m5tft() {
     ESP_LOGE(SGO_LOG_EVENT, "@LED Unable to create led queue");
   }
 
+  root = create_node(0, 0, NULL, NULL, NULL);
+
   if (xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 4096, NULL, 10, NULL, 1) != pdPASS) {
 		ESP_LOGE(SGO_LOG_NOSEND, "Could not create M5TFT task");
 	}
 }
 
 static void m5tft_task(void *param) {
-  Node* root = create_node(0, 0, NULL, NULL, NULL);
-
 	init_splash(root);
 	//init_screensaver(root);
 
