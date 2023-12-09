@@ -56,7 +56,9 @@ void app_main() {
 
   init_spiffs();
 
+#ifdef MODULE_TESTER
   init_tester();
+#endif
 
   init_wifi();
 
@@ -65,11 +67,15 @@ void app_main() {
   init_time();
   init_i2c();
 
+#ifdef MODULE_TESTER
   bool tester_enabled = get_tester_enabled() != 0;
   init_app(tester_enabled);
   if (tester_enabled) {
     reset_on_next_reboot();
   }
+#else
+  init_app(false);
+#endif
 
   init_stat_dump();
 

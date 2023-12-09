@@ -45,9 +45,11 @@ static esp_mqtt_client_handle_t client;
 
 static QueueHandle_t cmd;
 static QueueHandle_t log_queue;
+static QueueHandle_t scr_queue;
 
 #define MAX_LOG_QUEUE_ITEM_SIZE 128
 #define MAX_LOG_QUEUE_ITEMS 50
+#define MAX_SCR_QUEUE_ITEMS 5
 static uint8_t buf_out[MAX_LOG_QUEUE_ITEM_SIZE] = {0};
 
 static int CMD_MQTT_DISCONNECTED = 0;
@@ -180,9 +182,11 @@ static void mqtt_task(void *param) {
   esp_efuse_mac_get_default((uint8_t*) (&_chipmacid));
 
   char log_channel[MAX_KVALUE_SIZE] = {0};
+  char scr_channel[MAX_KVALUE_SIZE] = {0};
   get_broker_channel(log_channel, sizeof(log_channel) - 1);
   if (strlen(log_channel) == 0) {
     snprintf(log_channel, sizeof(log_channel)-1, "%llx.log", _chipmacid);
+    snprintf(scr_channel, sizeof(scr_channel)-1, "%llx.scr", _chipmacid);
     set_broker_channel(log_channel);
   }
   ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log channel: %s", log_channel);
@@ -238,6 +242,10 @@ static void mqtt_task(void *param) {
         esp_mqtt_client_publish(client, log_channel, (char *)buf_out, 0, 0, 0);
         memset(buf_out, 0, MAX_LOG_QUEUE_ITEM_SIZE);
       }
+      while (xQueueReceive(scr_queue, buf_out, 0)) {
+        esp_mqtt_client_publish(client, scr_channel, (char *)buf_out, 0, 0, 0);
+        memset(buf_out, 0, MAX_LOG_QUEUE_ITEM_SIZE);
+      }
     }
   }
 }
@@ -278,6 +286,10 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
   return vprintf(str, l);
 }
 
+void sendScreenMessage(const char msg[MAX_LOG_QUEUE_ITEM_SIZE]) {
+  xQueueSend(scr_queue, msg, 0);
+}
+
 void mqtt_intercept_log() {
   log_queue = xQueueCreate(MAX_LOG_QUEUE_ITEMS, MAX_LOG_QUEUE_ITEM_SIZE);
   if (log_queue == NULL) {
@@ -295,6 +307,11 @@ void init_mqtt() {
   cmd = xQueueCreate(10, sizeof(int));
   if (cmd == NULL) {
     ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt queue");
+  }
+
+  scr_queue = xQueueCreate(MAX_SCR_QUEUE_ITEMS, MAX_LOG_QUEUE_ITEM_SIZE);
+  if (scr_queue == NULL) {
+    ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt scr queue");
   }
 
   BaseType_t ret = xTaskCreatePinnedToCore(mqtt_task, "MQTT", 8192, NULL, 10, NULL, 1);

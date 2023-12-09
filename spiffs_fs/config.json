@@ -21,14 +21,29 @@
           
             {
               "core": true,
-              "name": "tester_enabled",
+              "name": "reboot",
               "type": "integer",
               "integer": true,
-              "caps_name": "TESTER_ENABLED",
-              "module": "tester",
+              "caps_name": "REBOOT",
+              "module": "reboot",
               
               
               "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "n_restarts",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "N_RESTARTS",
+              "module": "reboot",
+              
+              
+              "write": false,
               
               
               "default": 0
@@ -137,36 +152,6 @@
               
               
               "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "reboot",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "REBOOT",
-              "module": "reboot",
-              
-              
-              "write": true,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": true,
-              "name": "n_restarts",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "N_RESTARTS",
-              "module": "reboot",
-              
-              
-              "write": false,
-              
-              
-              "default": 0
             },
           
             {
@@ -366,260 +351,6 @@
           
             {
               "core": false,
-              "name": "box_0_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "enabled"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TEMP",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "temp"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_HUMI",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "humi"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_vpd",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_VPD",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "vpd"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "vpd"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TEMP_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "temp_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "temp_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16],
-                  "helpers": ["SCD30 temperature on port #1"]
-                },
-              
-              "default": 16
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_humi_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_HUMI_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "humi_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16],
-                  "helpers": ["SCD30 humidity on port #1"]
-                },
-              
-              "default": 16
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_vpd_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_VPD_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "vpd_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "vpd_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16],
-                  "helpers": ["SCD30 vpd on port #1"]
-                },
-              
-              "default": 16
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_co2",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_CO2",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "co2"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "co2"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_co2_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_CO2_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "co2_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "co2_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1],
-                  "helpers": ["SCD30 co2 on port #1"]
-                },
-              
-              "default": 1
-            },
-          
-            {
-              "core": false,
               "name": "scd30_0_present",
               "type": "integer",
               "integer": true,
@@ -772,6 +503,260 @@
               
               
               "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "enabled"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "enabled"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "temp"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "temp"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "humi"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_co2",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_CO2",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "co2"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "co2"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16],
+                  "helpers": ["SCD30 temperature on port #1"]
+                },
+              
+              "default": 16
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16],
+                  "helpers": ["SCD30 humidity on port #1"]
+                },
+              
+              "default": 16
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16],
+                  "helpers": ["SCD30 vpd on port #1"]
+                },
+              
+              "default": 16
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_co2_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_CO2_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "co2_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "co2_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1],
+                  "helpers": ["SCD30 co2 on port #1"]
+                },
+              
+              "default": 1
             }
           
   ]

@@ -1,5 +1,5 @@
 package config
 
 modules m5tft: _MODULE & {
-  enabled: true
+  init_priority: 50
 }
