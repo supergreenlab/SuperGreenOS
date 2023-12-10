@@ -16,7 +16,10 @@
 #ifndef TIMELAPSES_SCREEN_H_
 #define TIMELAPSES_SCREEN_H_
 
+#include <stdint.h>
+
 void init_timelapses_screen();
+uint8_t on_set_timelapses_screen_screen_order(uint8_t value);
 
 #endif
 

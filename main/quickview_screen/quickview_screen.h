@@ -16,7 +16,10 @@
 #ifndef QUICKVIEW_SCREEN_H_
 #define QUICKVIEW_SCREEN_H_
 
+#include <stdint.h>
+
 void init_quickview_screen();
+uint8_t on_set_quickview_screen_screen_order(uint8_t value);
 
 #endif
 

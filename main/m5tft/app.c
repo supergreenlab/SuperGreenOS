@@ -29,12 +29,13 @@
 
 typedef struct {
 
-  metrics_screen_params *metricsParams;
   uint8_t current_screen;
+  uint8_t n_screens;
 
 } screen_app_params;
 
 screen_app_params *params; 
+SemaphoreHandle_t params_mutex;
 
 TickType_t screen_app_loop(Node *node, void *p) {
   fill_screen((color_t){ 43, 63, 81 });
@@ -55,36 +56,48 @@ TickType_t screen_app_loop(Node *node, void *p) {
 }
 
 void buttonEvent(void *handler_arg, esp_event_base_t base, int32_t id, void *event_data) {
-	if ((base == button_a.esp_event_base) && (id == BUTTON_PRESSED_EVENT)) {
-		ESP_LOGI(SGO_LOG_NOSEND, "Button a");
+  if ((base == button_a.esp_event_base) && (id == BUTTON_PRESSED_EVENT)) {
+    ESP_LOGI(SGO_LOG_NOSEND, "Button a");
     params->current_screen++;
-    params->current_screen %= 2;
+    params->current_screen %= params->n_screens;
     force_frame();
-	}
+  }
 
-	if ((base == button_b.esp_event_base) && (id == BUTTON_PRESSED_EVENT)) {
-		ESP_LOGI(SGO_LOG_NOSEND, "Button b");
+  if ((base == button_b.esp_event_base) && (id == BUTTON_PRESSED_EVENT)) {
+    ESP_LOGI(SGO_LOG_NOSEND, "Button b");
     force_frame();
-	}
+  }
+}
+
+
+static init_function app_init_functions[MAX_NSCREENS] = { 0 };
+
+void add_screen_init(init_function fn) {
+  for (int i = 0; i < MAX_NSCREENS; ++i) {
+    if (!app_init_functions[i]) {
+      app_init_functions[i] = fn;
+      return;
+    }
+  }
 }
 
 void init_screen_app(Node *root) {
-	esp_event_handler_register_with(event_loop, BUTTON_A_EVENT_BASE, BUTTON_PRESSED_EVENT, buttonEvent, NULL);
-	esp_event_handler_register_with(event_loop, BUTTON_B_EVENT_BASE, BUTTON_PRESSED_EVENT, buttonEvent, NULL);
+  esp_event_handler_register_with(event_loop, BUTTON_A_EVENT_BASE, BUTTON_PRESSED_EVENT, buttonEvent, NULL);
+  esp_event_handler_register_with(event_loop, BUTTON_B_EVENT_BASE, BUTTON_PRESSED_EVENT, buttonEvent, NULL);
 
+  params_mutex = xSemaphoreCreateMutex();
   params = (screen_app_params *)malloc(sizeof(screen_app_params));
   memset(params, 0, sizeof(screen_app_params));
 
-  params->metricsParams = (metrics_screen_params *)malloc(sizeof(metrics_screen_params));
-  memset(params->metricsParams, 0, sizeof(metrics_screen_params));
-
-  Node *screen1 = create_node(0, 0, NULL, NULL, NULL);
-  add_child(root, screen1);
-  init_metrics_screen(screen1, params->metricsParams);
-
-  Node *screen2 = create_node(160, 0, NULL, NULL, NULL);
-  add_child(root, screen2);
-  init_screensaver(screen2);
+  for (int i = 0; i < MAX_NSCREENS; ++i) {
+    if (!app_init_functions[i]) {
+      break;
+    }
+    Node *screen = create_node(i * DEFAULT_TFT_DISPLAY_HEIGHT, 0, NULL, NULL, NULL);
+    add_child(root, screen);
+    app_init_functions[i](screen);
+    params->n_screens++;
+  }
 
   root->renderOpts.transparency = 0;
 

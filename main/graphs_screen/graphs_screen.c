@@ -22,22 +22,15 @@
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
-static void graphs_screen_task(void *param);
+#include "../m5tft/app.h"
+#include "./graphs_page.h"
 
 void init_graphs_screen() {
   ESP_LOGI(SGO_LOG_EVENT, "@GRAPHS_SCREEN Initializing graphs_screen module");
 
-  // TODO: write you setup code here
-
-  xTaskCreatePinnedToCore(graphs_screen_task, "GRAPHS_SCREEN", 4096, NULL, 10, NULL, 1);
+  add_screen_init(init_graphs_page);
 }
 
-static void graphs_screen_task(void *param) {
-  while (true) {
-
-    // TODO: write your loop code here
-
-    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
-  }
+uint8_t on_set_graphs_screen_screen_order(uint8_t value) {
+  return value;
 }
-

@@ -22,22 +22,16 @@
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
-static void quickview_screen_task(void *param);
+#include "../m5tft/app.h"
+
+#include "./metrics_page.h"
 
 void init_quickview_screen() {
   ESP_LOGI(SGO_LOG_EVENT, "@QUICKVIEW_SCREEN Initializing quickview_screen module");
 
-  // TODO: write you setup code here
-
-  xTaskCreatePinnedToCore(quickview_screen_task, "QUICKVIEW_SCREEN", 4096, NULL, 10, NULL, 1);
+  add_screen_init(init_metrics_page);
 }
 
-static void quickview_screen_task(void *param) {
-  while (true) {
-
-    // TODO: write your loop code here
-
-    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
-  }
+uint8_t on_set_quickview_screen_screen_order(uint8_t value) {
+  return value;
 }
-

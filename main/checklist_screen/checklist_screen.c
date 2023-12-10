@@ -22,22 +22,16 @@
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
-static void checklist_screen_task(void *param);
+#include "../m5tft/app.h"
+
+#include "./checklist_page.h"
 
 void init_checklist_screen() {
   ESP_LOGI(SGO_LOG_EVENT, "@CHECKLIST_SCREEN Initializing checklist_screen module");
 
-  // TODO: write you setup code here
-
-  xTaskCreatePinnedToCore(checklist_screen_task, "CHECKLIST_SCREEN", 4096, NULL, 10, NULL, 1);
+  add_screen_init(init_checklist_page);
 }
 
-static void checklist_screen_task(void *param) {
-  while (true) {
-
-    // TODO: write your loop code here
-
-    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
-  }
+uint8_t on_set_checklist_screen_screen_order(uint8_t value) {
+  return value;
 }
-

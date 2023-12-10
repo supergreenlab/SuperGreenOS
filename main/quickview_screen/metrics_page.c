@@ -16,12 +16,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "app.h"
-
+#include "metrics_page.h"
 #include "math.h"
 #include "freertos/task.h"
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
+
+typedef struct {
+
+  int current_temp;
+  int current_humi;
+  int current_co2;
+
+  int last_temp;
+  int last_humi;
+  int last_co2;
+  TickType_t last_fetch;
+
+  Node *background_node;
+
+  Node *temperature;
+  Node *humidity;
+  Node *co2;
+
+  Node *phase;
+
+  Node *loading;
+
+} metrics_screen_params;
 
 TickType_t metrics_screen_loop(Node *node, void *p) {
   metrics_screen_params *params = (metrics_screen_params *)p;
@@ -163,7 +185,10 @@ Node *create_loading() {
   return sub_node;
 }
 
-void init_metrics_screen(Node *root, metrics_screen_params *params) {
+void init_metrics_page(Node *root) {
+  metrics_screen_params *params = (metrics_screen_params *)malloc(sizeof(metrics_screen_params));
+  memset(params, 0, sizeof(metrics_screen_params));
+
   params->background_node = create_node(0, 0, NULL, NULL, NULL);
   add_child(root, params->background_node);
   params->background_node->renderOpts.transparency = 0.2;

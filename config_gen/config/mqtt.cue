@@ -21,16 +21,20 @@ modules mqtt fields clientid: _STRING & _NVS & _HTTP_RW & {
 
 modules mqtt fields cmdcallbackinclude: _STRING & {
   default: string | *""
+  nosend: true
 }
 
 modules mqtt fields cmdcallback: _STRING & {
   default: string | *""
+  nosend: true
 }
 
 modules mqtt fields scrcallbackinclude: _STRING & {
   default: string | *""
+  nosend: true
 }
 
 modules mqtt fields scrcallback: _STRING & {
   default: string | *""
+  nosend: true
 }

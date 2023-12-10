@@ -885,7 +885,7 @@
                     "name": "broker_cmdcallbackinclude",
                     "type": "string",
                     "remote": true,
-                    "nosend": false,
+                    "nosend": true,
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
@@ -911,7 +911,7 @@
                     "name": "broker_cmdcallback",
                     "type": "string",
                     "remote": true,
-                    "nosend": false,
+                    "nosend": true,
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
@@ -937,7 +937,7 @@
                     "name": "broker_scrcallbackinclude",
                     "type": "string",
                     "remote": true,
-                    "nosend": false,
+                    "nosend": true,
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
@@ -963,7 +963,7 @@
                     "name": "broker_scrcallback",
                     "type": "string",
                     "remote": true,
-                    "nosend": false,
+                    "nosend": true,
                     "helper": "",
                     "dump_freq": 60,
                     "nvs": {
@@ -3959,7 +3959,37 @@
             "core": false,
             "i2c": false,
             "array_len": 0,
-            "fields": {}
+            "fields": {
+                "screen_order": {
+                    "name": "timelapses_screen_screen_order",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "disabled": false,
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "screen_order",
+                    "caps_name": "TIMELAPSES_SCREEN_SCREEN_ORDER",
+                    "default": 3
+                }
+            }
         },
         "sgl": {
             "name": "sgl",
@@ -3989,7 +4019,37 @@
             "core": false,
             "i2c": false,
             "array_len": 0,
-            "fields": {}
+            "fields": {
+                "screen_order": {
+                    "name": "graphs_screen_screen_order",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "disabled": false,
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "screen_order",
+                    "caps_name": "GRAPHS_SCREEN_SCREEN_ORDER",
+                    "default": 2
+                }
+            }
         },
         "m5tft": {
             "name": "m5tft",
@@ -4019,7 +4079,37 @@
             "core": false,
             "i2c": false,
             "array_len": 0,
-            "fields": {}
+            "fields": {
+                "screen_order": {
+                    "name": "checklist_screen_screen_order",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "disabled": false,
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "screen_order",
+                    "caps_name": "CHECKLIST_SCREEN_SCREEN_ORDER",
+                    "default": 1
+                }
+            }
         },
         "quickview_screen": {
             "name": "quickview_screen",
@@ -4034,7 +4124,37 @@
             "core": false,
             "i2c": false,
             "array_len": 0,
-            "fields": {}
+            "fields": {
+                "screen_order": {
+                    "name": "quickview_screen_screen_order",
+                    "type": "integer",
+                    "remote": true,
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "disabled": false,
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "screen_order",
+                    "caps_name": "QUICKVIEW_SCREEN_SCREEN_ORDER",
+                    "default": 0
+                }
+            }
         }
     },
     "isscreen": true,

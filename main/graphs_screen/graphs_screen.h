@@ -16,7 +16,10 @@
 #ifndef GRAPHS_SCREEN_H_
 #define GRAPHS_SCREEN_H_
 
+#include <stdint.h>
+
 void init_graphs_screen();
+uint8_t on_set_graphs_screen_screen_order(uint8_t value);
 
 #endif
 

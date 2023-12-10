@@ -1,4 +1,7 @@
 /*
+ * Copyright (C) 2023  SuperGreenLab <towelie@supergreenlab.com>
+ * Author: Constantin Clauzel <constantin.clauzel@gmail.com>
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -13,24 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "timelapses_screen.h"
+#ifndef METRICS_PAGE_H
+#define METRICS_PAGE_H
 
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+#include "../m5tft/node.h"
 
-#include "../core/kv/kv.h"
-#include "../core/log/log.h"
+void init_metrics_page(Node *root);
 
-#include "../m5tft/app.h"
-
-#include "./timelapses_page.h"
-
-void init_timelapses_screen() {
-  ESP_LOGI(SGO_LOG_EVENT, "@TIMELAPSES_SCREEN Initializing timelapses_screen module");
-
-  add_screen_init(init_timelapses_page);
-}
-
-uint8_t on_set_timelapses_screen_screen_order(uint8_t value) {
-  return value;
-}
+#endif

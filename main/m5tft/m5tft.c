@@ -124,7 +124,6 @@ void init_m5tft() {
 
 static void m5tft_task(void *param) {
 	init_splash(root);
-	//init_screensaver(root);
 
   bool c;
   while(true) {
@@ -139,10 +138,7 @@ static void m5tft_task(void *param) {
     float delayTime = TARGET_FRAME_TIME_MS - timeSpent;  // Calculate actual delay time
     if (delayTime < 10) delayTime = 10;  // Ensure delay time is never below 10ms
 
-		if (delayTime / portTICK_PERIOD_MS > tickTime) {
-			xQueueReceive(cmd, &c, delayTime / portTICK_PERIOD_MS);
-		} else {
-			xQueueReceive(cmd, &c, tickTime);
-		}
+    TickType_t waitTicks = delayTime / portTICK_PERIOD_MS > tickTime ? delayTime / portTICK_PERIOD_MS : tickTime;
+    xQueueReceive(cmd, &c, waitTicks);
   }
 }

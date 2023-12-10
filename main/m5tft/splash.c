@@ -33,7 +33,6 @@ typedef struct {
 
 TickType_t splash_loop(Node *node, void *p) {
 	splash_params *params = (splash_params *)p;
-  //fill_screen((color_t){ 0, 0, 0 });
   fill_screen((color_t){43, 63, 81});
 
 	if (params->green->funcs[0] == NULL) {
@@ -45,11 +44,6 @@ TickType_t splash_loop(Node *node, void *p) {
 		free(params);
 
     init_screen_app(node);
-    /*metrics_screen_params *metricsParams = (metrics_screen_params *)malloc(sizeof(metrics_screen_params));
-    memset(metricsParams, 0, sizeof(metrics_screen_params));
-		init_metrics_screen(node, metricsParams);*/
-		//init_splash(node);
-		//init_screensaver(node);
 		return SHORT_TICK;
 	}
 

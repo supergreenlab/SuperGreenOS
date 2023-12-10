@@ -16,7 +16,10 @@
 #ifndef CHECKLIST_SCREEN_H_
 #define CHECKLIST_SCREEN_H_
 
+#include <stdint.h>
+
 void init_checklist_screen();
+uint8_t on_set_checklist_screen_screen_order(uint8_t value);
 
 #endif
 
