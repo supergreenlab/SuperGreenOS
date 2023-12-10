@@ -18,5 +18,12 @@
 
 #include "checklist_page.h"
 
+typedef struct {
+  Node *textNode;
+} checklist_params;
+
 void init_checklist_page(Node *root) {
+  checklist_params *params = (checklist_params *)malloc(sizeof(checklist_params));
+  params->textNode = create_text_node(10, 10, 10, "Checklist", (color_t){255, 255, 255}, NORMAL_FONT_SIZE);
+  add_child(root, params->textNode);
 }

@@ -18,5 +18,12 @@
 
 #include "graphs_page.h"
 
+typedef struct {
+  Node *textNode;
+} graphs_params;
+
 void init_graphs_page(Node *root) {
+  graphs_params *params = (graphs_params *)malloc(sizeof(graphs_params));
+  params->textNode = create_text_node(10, 10, 10, "Graphs", (color_t){255, 255, 255}, NORMAL_FONT_SIZE);
+  add_child(root, params->textNode);
 }
