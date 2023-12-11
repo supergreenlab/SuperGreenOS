@@ -32,6 +32,6 @@ void init_checklist_screen() {
   add_screen_init(init_checklist_page);
 }
 
-uint8_t on_set_checklist_screen_screen_order(uint8_t value) {
+uint8_t on_set_checklist_screen_order(uint8_t value) {
   return value;
 }

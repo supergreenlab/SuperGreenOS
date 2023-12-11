@@ -19,7 +19,10 @@
 #ifndef MQTT_H_
 #define MQTT_H_
 
+#define MAX_QUEUE_ITEM_SIZE 128
+
 void init_mqtt();
 void mqtt_intercept_log();
+void send_screen_message(const char msg[MAX_QUEUE_ITEM_SIZE]);
 
 #endif

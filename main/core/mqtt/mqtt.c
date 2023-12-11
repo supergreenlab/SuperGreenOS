@@ -47,10 +47,9 @@ static QueueHandle_t cmd;
 static QueueHandle_t log_queue;
 static QueueHandle_t scr_queue;
 
-#define MAX_LOG_QUEUE_ITEM_SIZE 128
 #define MAX_LOG_QUEUE_ITEMS 50
 #define MAX_SCR_QUEUE_ITEMS 5
-static uint8_t buf_out[MAX_LOG_QUEUE_ITEM_SIZE] = {0};
+static uint8_t buf_out[MAX_QUEUE_ITEM_SIZE] = {0};
 
 static int CMD_MQTT_DISCONNECTED = 0;
 static int CMD_MQTT_CONNECTED = 1;
@@ -117,7 +116,7 @@ static void subscribe_scr() {
   char scr_channel[MAX_KVALUE_SIZE] = {0};
   char client_id[MAX_KVALUE_SIZE] = {0};
   get_broker_clientid(client_id, sizeof(client_id) - 1);
-  sprintf(scr_channel, "%s.scr", client_id);
+  sprintf(scr_channel, "%s.scrrep", client_id);
 
   ESP_LOGI(SGO_LOG_NOSEND, "@MQTT subscribe_scr %s", scr_channel);
   esp_mqtt_client_subscribe(client, scr_channel, 2);
@@ -151,7 +150,7 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event) {
       ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_DATA");
 
       
-        if (event->topic_len > 3 && !strncmp(&(event->topic[event->topic_len-3]), "scr", 3)) {
+        if (event->topic_len > 6 && !strncmp(&(event->topic[event->topic_len-6]), "scrrep", 6)) {
           mqtt_message(event->data, event->data_len);
         }
       
@@ -186,9 +185,9 @@ static void mqtt_task(void *param) {
   get_broker_channel(log_channel, sizeof(log_channel) - 1);
   if (strlen(log_channel) == 0) {
     snprintf(log_channel, sizeof(log_channel)-1, "%llx.log", _chipmacid);
-    snprintf(scr_channel, sizeof(scr_channel)-1, "%llx.scr", _chipmacid);
     set_broker_channel(log_channel);
   }
+  snprintf(scr_channel, sizeof(scr_channel)-1, "%llx.scrcmd", _chipmacid);
   ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log channel: %s", log_channel);
 
   char client_id[MAX_KVALUE_SIZE] = {0};
@@ -237,14 +236,15 @@ static void mqtt_task(void *param) {
       }
     }
     if (connected) {
-      memset(buf_out, 0, MAX_LOG_QUEUE_ITEM_SIZE);
+      memset(buf_out, 0, MAX_QUEUE_ITEM_SIZE);
       while (xQueueReceive(log_queue, buf_out, 0)) {
         esp_mqtt_client_publish(client, log_channel, (char *)buf_out, 0, 0, 0);
-        memset(buf_out, 0, MAX_LOG_QUEUE_ITEM_SIZE);
+        memset(buf_out, 0, MAX_QUEUE_ITEM_SIZE);
       }
       while (xQueueReceive(scr_queue, buf_out, 0)) {
-        esp_mqtt_client_publish(client, scr_channel, (char *)buf_out, 0, 0, 0);
-        memset(buf_out, 0, MAX_LOG_QUEUE_ITEM_SIZE);
+				ESP_LOGI(SGO_LOG_NOSEND, "Strlen: %d", strnlen((char *)buf_out, MAX_QUEUE_ITEM_SIZE));
+        esp_mqtt_client_publish(client, scr_channel, (char *)buf_out, strnlen((char *)buf_out, MAX_QUEUE_ITEM_SIZE), 0, 0);
+        memset(buf_out, 0, MAX_QUEUE_ITEM_SIZE);
       }
     }
   }
@@ -258,7 +258,7 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
     return vprintf(str, l); 
   }
   int totalsize = vsnprintf(NULL, 0, str, l);
-  if (totalsize >= MAX_LOG_QUEUE_ITEM_SIZE - 1) {
+  if (totalsize >= MAX_QUEUE_ITEM_SIZE - 1) {
     return vprintf(str, l);
   }
   
@@ -272,12 +272,12 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
     return vprintf(str, l);
   }
 
-  uint8_t buf_in[MAX_LOG_QUEUE_ITEM_SIZE] = {0};
+  uint8_t buf_in[MAX_QUEUE_ITEM_SIZE] = {0};
   if (uxQueueMessagesWaiting(log_queue) >= MAX_LOG_QUEUE_ITEMS) {
     xQueueReceive(log_queue, buf_in, 0);
   }
-  memset(buf_in, 0, MAX_LOG_QUEUE_ITEM_SIZE);
-  int len = vsnprintf((char*)buf_in, MAX_LOG_QUEUE_ITEM_SIZE-1, str, l);
+  memset(buf_in, 0, MAX_QUEUE_ITEM_SIZE);
+  int len = vsnprintf((char*)buf_in, MAX_QUEUE_ITEM_SIZE-1, str, l);
   buf_in[len] = 0;
   xQueueSend(log_queue, buf_in, 0);
   if (cmd/* && uxQueueMessagesWaiting(log_queue) > 5*/) {
@@ -286,12 +286,12 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
   return vprintf(str, l);
 }
 
-void sendScreenMessage(const char msg[MAX_LOG_QUEUE_ITEM_SIZE]) {
+void send_screen_message(const char msg[MAX_QUEUE_ITEM_SIZE]) {
   xQueueSend(scr_queue, msg, 0);
 }
 
 void mqtt_intercept_log() {
-  log_queue = xQueueCreate(MAX_LOG_QUEUE_ITEMS, MAX_LOG_QUEUE_ITEM_SIZE);
+  log_queue = xQueueCreate(MAX_LOG_QUEUE_ITEMS, MAX_QUEUE_ITEM_SIZE);
   if (log_queue == NULL) {
     ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt log queue");
   }
@@ -309,7 +309,7 @@ void init_mqtt() {
     ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt queue");
   }
 
-  scr_queue = xQueueCreate(MAX_SCR_QUEUE_ITEMS, MAX_LOG_QUEUE_ITEM_SIZE);
+  scr_queue = xQueueCreate(MAX_SCR_QUEUE_ITEMS, MAX_QUEUE_ITEM_SIZE);
   if (scr_queue == NULL) {
     ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt scr queue");
   }

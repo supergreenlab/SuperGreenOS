@@ -31,6 +31,6 @@ void init_timelapses_screen() {
   add_screen_init(init_timelapses_page);
 }
 
-uint8_t on_set_timelapses_screen_screen_order(uint8_t value) {
+uint8_t on_set_timelapses_screen_order(uint8_t value) {
   return value;
 }

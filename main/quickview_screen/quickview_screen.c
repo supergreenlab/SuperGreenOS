@@ -32,6 +32,6 @@ void init_quickview_screen() {
   add_screen_init(init_metrics_page);
 }
 
-uint8_t on_set_quickview_screen_screen_order(uint8_t value) {
+uint8_t on_set_quickview_screen_order(uint8_t value) {
   return value;
 }
