@@ -288,6 +288,9 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
 
 void send_screen_message(const char msg[MAX_QUEUE_ITEM_SIZE]) {
   xQueueSend(scr_queue, msg, 0);
+  if (cmd/* && uxQueueMessagesWaiting(log_queue) > 5*/) {
+    xQueueSend(cmd, &CMD_MQTT_FORCE_FLUSH, 0);
+  }
 }
 
 void mqtt_intercept_log() {
