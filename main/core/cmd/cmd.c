@@ -154,17 +154,17 @@ static int geti_cmd_fn(int argc, char **argv) {
   }
 
   int v = 0;
-  if (hi8) {
+  if (hi8 && hi8->getter) {
     v = hi8->getter();
-  } else if (hui8) {
+  } else if (hui8 && hui8->getter) {
     v = hui8->getter();
-  } else if (hi16) {
+  } else if (hi16 && hi16->getter) {
     v = hi16->getter();
-  } else if (hui16) {
+  } else if (hui16 && hui16->getter) {
     v = hui16->getter();
-  } else if (hi32) {
+  } else if (hi32 && hi32->getter) {
     v = hi32->getter();
-  } else if (hui32) {
+  } else if (hui32 && hui32->getter) {
     v = hui32->getter();
   }
 
@@ -233,7 +233,9 @@ static int gets_cmd_fn(int argc, char **argv) {
   }
 
   char v[MAX_KVALUE_SIZE] = {0};
-  h->getter(v, MAX_KVALUE_SIZE - 1);
+  if (h->getter) {
+    h->getter(v, MAX_KVALUE_SIZE - 1);
+  }
 
   ESP_LOGI(SGO_LOG_METRIC, "@KV %s=%s", name, v);
   ESP_LOGI(SGO_LOG_EVENT, "@CMD (%s) done", gets_args.id->sval[0]);

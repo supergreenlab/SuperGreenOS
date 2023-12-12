@@ -119,6 +119,7 @@ _BLE_RW: {
 _HTTP: {
   http: _FIELD.http & {
     enable: true
+    read: bool | *true
   }
 }
 

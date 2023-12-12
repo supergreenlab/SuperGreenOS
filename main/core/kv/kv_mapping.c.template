@@ -39,7 +39,11 @@ const kvi8_mapping kvi8_mappings[] = {
     <% } else { %>
       .setter = NULL,
     <% } %>
-    .getter = get_<%= f.name %>,
+    <% if (f.http.read) { %>
+      .getter = get_<%= f.name %>,
+    <% } else { %>
+      .getter = NULL,
+    <% } %>
   },
 <% })}) %>
 
@@ -79,7 +83,11 @@ const kvui8_mapping kvui8_mappings[] = {
     <% } else { %>
       .setter = NULL,
     <% } %>
-    .getter = get_<%= f.name %>,
+    <% if (f.http.read) { %>
+      .getter = get_<%= f.name %>,
+    <% } else { %>
+      .getter = NULL,
+    <% } %>
   },
 <% })}) %>
 
@@ -121,7 +129,11 @@ const kvi16_mapping kvi16_mappings[] = {
     <% } else { %>
       .setter = NULL,
     <% } %>
-    .getter = get_<%= f.name %>,
+    <% if (f.http.read) { %>
+      .getter = get_<%= f.name %>,
+    <% } else { %>
+      .getter = NULL,
+    <% } %>
   },
 <% })}) %>
 
@@ -162,7 +174,12 @@ const kvui16_mapping kvui16_mappings[] = {
     <% } else { %>
       .setter = NULL,
     <% } %>
-    .getter = get_<%= f.name %>,
+    <% if (f.http.read) { %>
+      .getter = get_<%= f.name %>,
+    <% } else { %>
+      .getter = NULL,
+    <% } %>
+
   },
 <% })}) %>
 
@@ -203,7 +220,11 @@ const kvi32_mapping kvi32_mappings[] = {
     <% } else { %>
       .setter = NULL,
     <% } %>
-    .getter = get_<%= f.name %>,
+    <% if (f.http.read) { %>
+      .getter = get_<%= f.name %>,
+    <% } else { %>
+      .getter = NULL,
+    <% } %>
   },
 <% })}) %>
 
@@ -244,7 +265,11 @@ const kvui32_mapping kvui32_mappings[] = {
     <% } else { %>
       .setter = NULL,
     <% } %>
-    .getter = get_<%= f.name %>,
+    <% if (f.http.read) { %>
+      .getter = get_<%= f.name %>,
+    <% } else { %>
+      .getter = NULL,
+    <% } %>
   },
 <% })}) %>
 
@@ -285,7 +310,11 @@ const kvs_mapping kvs_mappings[] = {
     <% } else { %>
     .setter = NULL,
     <% } %>
-    .getter = get_<%= f.name %>,
+    <% if (f.http.read) { %>
+      .getter = get_<%= f.name %>,
+    <% } else { %>
+      .getter = NULL,
+    <% } %>
   },
 <% })}) %>
 

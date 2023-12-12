@@ -21,6 +21,81 @@
           
             {
               "core": true,
+              "name": "broker_url",
+              "type": "string",
+              "integer": false,
+              "caps_name": "BROKER_URL",
+              "module": "mqtt",
+              
+              
+              "write": true,
+              
+              
+              "default": "mqtt://sink2.supergreenlab.com:1883"
+            },
+          
+            {
+              "core": true,
+              "name": "broker_channel",
+              "type": "string",
+              "integer": false,
+              "caps_name": "BROKER_CHANNEL",
+              "module": "mqtt",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "broker_clientid",
+              "type": "string",
+              "integer": false,
+              "caps_name": "BROKER_CLIENTID",
+              "module": "mqtt",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "broker_scrtoken",
+              "type": "string",
+              "integer": false,
+              "caps_name": "BROKER_SCRTOKEN",
+              "module": "mqtt",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "tester_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "TESTER_ENABLED",
+              "module": "tester",
+              
+              
+              "write": true,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
               "name": "reboot",
               "type": "integer",
               "integer": true,
@@ -47,111 +122,6 @@
               
               
               "default": 0
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_status",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "WIFI_STATUS",
-              "module": "wifi",
-              
-              
-              "write": false,
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ssid",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_SSID",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_password",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_PASSWORD",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ap_ssid",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_AP_SSID",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ap_password",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_AP_PASSWORD",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "mdns_domain",
-              "type": "string",
-              "integer": false,
-              "caps_name": "MDNS_DOMAIN",
-              "module": "wifi",
-              
-              
-              "write": true,
-              
-              
-              "default": "supergreentips"
-            },
-          
-            {
-              "core": true,
-              "name": "wifi_ip",
-              "type": "string",
-              "integer": false,
-              "caps_name": "WIFI_IP",
-              "module": "wifi",
-              
-              
-              "write": false,
-              
-              
-              "default": ""
             },
           
             {
@@ -261,51 +231,6 @@
           
             {
               "core": true,
-              "name": "broker_url",
-              "type": "string",
-              "integer": false,
-              "caps_name": "BROKER_URL",
-              "module": "mqtt",
-              
-              
-              "write": true,
-              
-              
-              "default": "mqtt://sink2.supergreenlab.com:1883"
-            },
-          
-            {
-              "core": true,
-              "name": "broker_channel",
-              "type": "string",
-              "integer": false,
-              "caps_name": "BROKER_CHANNEL",
-              "module": "mqtt",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
-              "name": "broker_clientid",
-              "type": "string",
-              "integer": false,
-              "caps_name": "BROKER_CLIENTID",
-              "module": "mqtt",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
-            },
-          
-            {
-              "core": true,
               "name": "httpd_auth",
               "type": "string",
               "integer": false,
@@ -321,14 +246,25 @@
           
             {
               "core": false,
-              "name": "state",
+              "name": "box_0_enabled",
               "type": "integer",
               "integer": true,
-              "caps_name": "STATE",
-              "module": "state",
+              "caps_name": "BOX_0_ENABLED",
+              "module": "box",
               
               
               "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "enabled"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "enabled"
+                },
               
               
               "default": 0
@@ -336,43 +272,335 @@
           
             {
               "core": false,
-              "name": "device_name",
-              "type": "string",
-              "integer": false,
-              "caps_name": "DEVICE_NAME",
-              "module": "state",
-              
-              
-              "write": true,
-              
-              
-              "default": "SuperGreenTips"
-            },
-          
-            {
-              "core": false,
-              "name": "scd30_0_present",
+              "name": "box_0_temp",
               "type": "integer",
               "integer": true,
-              "caps_name": "SCD30_0_PRESENT",
-              "module": "scd30",
+              "caps_name": "BOX_0_TEMP",
+              "module": "box",
               
               
               "write": false,
               
                 "array": {
-                  "name": "scd30",
+                  "name": "box",
                   "len": 1,
                   "index": 0,
-                  "param": "present"
+                  "param": "temp"
                 },
-                "scd30": {
+                "box": {
                   "index": 0,
-                  "param": "present"
+                  "param": "temp"
                 },
               
               
               "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_temp_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_TEMP_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "temp_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "temp_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16],
+                  "helpers": ["SCD30 temperature on port #1"]
+                },
+              
+              "default": 16
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "humi"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_humi_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_HUMI_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "humi_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "humi_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16],
+                  "helpers": ["SCD30 humidity on port #1"]
+                },
+              
+              "default": 16
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "vpd"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_vpd_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_VPD_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "vpd_source"
+                },
+              
+              
+                "indir": {
+                  "values": [16],
+                  "helpers": ["SCD30 vpd on port #1"]
+                },
+              
+              "default": 16
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_co2",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_CO2",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "co2"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "co2"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_co2_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_CO2_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "co2_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "co2_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1],
+                  "helpers": ["SCD30 co2 on port #1"]
+                },
+              
+              "default": 1
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_status",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "WIFI_STATUS",
+              "module": "wifi",
+              
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ssid",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_SSID",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_password",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_PASSWORD",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ap_ssid",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_AP_SSID",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ap_password",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_AP_PASSWORD",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
+              "name": "mdns_domain",
+              "type": "string",
+              "integer": false,
+              "caps_name": "MDNS_DOMAIN",
+              "module": "wifi",
+              
+              
+              "write": true,
+              
+              
+              "default": "supergreentips"
+            },
+          
+            {
+              "core": true,
+              "name": "wifi_ip",
+              "type": "string",
+              "integer": false,
+              "caps_name": "WIFI_IP",
+              "module": "wifi",
+              
+              
+              "write": false,
+              
+              
+              "default": ""
             },
           
             {
@@ -455,32 +683,6 @@
           
             {
               "core": false,
-              "name": "scd30_0_vpd_leaf_offset",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SCD30_0_VPD_LEAF_OFFSET",
-              "module": "scd30",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "scd30",
-                  "len": 1,
-                  "index": 0,
-                  "param": "vpd_leaf_offset"
-                },
-                "scd30": {
-                  "index": 0,
-                  "param": "vpd_leaf_offset"
-                },
-              
-              
-              "default": -20
-            },
-          
-            {
-              "core": false,
               "name": "scd30_0_co2",
               "type": "integer",
               "integer": true,
@@ -507,50 +709,24 @@
           
             {
               "core": false,
-              "name": "box_0_enabled",
+              "name": "scd30_0_present",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "enabled"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TEMP",
-              "module": "box",
+              "caps_name": "SCD30_0_PRESENT",
+              "module": "scd30",
               
               
               "write": false,
               
                 "array": {
-                  "name": "box",
+                  "name": "scd30",
                   "len": 1,
                   "index": 0,
-                  "param": "temp"
+                  "param": "present"
                 },
-                "box": {
+                "scd30": {
                   "index": 0,
-                  "param": "temp"
+                  "param": "present"
                 },
               
               
@@ -559,25 +735,100 @@
           
             {
               "core": false,
-              "name": "box_0_humi",
+              "name": "scd30_0_vpd_leaf_offset",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_HUMI",
-              "module": "box",
+              "caps_name": "SCD30_0_VPD_LEAF_OFFSET",
+              "module": "scd30",
               
               
-              "write": false,
+              "write": true,
               
                 "array": {
-                  "name": "box",
+                  "name": "scd30",
                   "len": 1,
                   "index": 0,
-                  "param": "humi"
+                  "param": "vpd_leaf_offset"
                 },
-                "box": {
+                "scd30": {
                   "index": 0,
-                  "param": "humi"
+                  "param": "vpd_leaf_offset"
                 },
+              
+              
+              "default": -20
+            },
+          
+            {
+              "core": false,
+              "name": "device_name",
+              "type": "string",
+              "integer": false,
+              "caps_name": "DEVICE_NAME",
+              "module": "state",
+              
+              
+              "write": true,
+              
+              
+              "default": "SuperGreenTips"
+            },
+          
+            {
+              "core": false,
+              "name": "timelapses_screen_order",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "TIMELAPSES_SCREEN_ORDER",
+              "module": "timelapses_screen",
+              
+              
+              "write": true,
+              
+              
+              "default": 3
+            },
+          
+            {
+              "core": false,
+              "name": "sgl_token",
+              "type": "string",
+              "integer": false,
+              "caps_name": "SGL_TOKEN",
+              "module": "sgl",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": false,
+              "name": "sgl_enckey",
+              "type": "string",
+              "integer": false,
+              "caps_name": "SGL_ENCKEY",
+              "module": "sgl",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": false,
+              "name": "quickview_screen_order",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "QUICKVIEW_SCREEN_ORDER",
+              "module": "quickview_screen",
+              
+              
+              "write": true,
               
               
               "default": 0
@@ -585,176 +836,30 @@
           
             {
               "core": false,
-              "name": "box_0_vpd",
+              "name": "graphs_screen_order",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_VPD",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "vpd"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "vpd"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_co2",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_CO2",
-              "module": "box",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "co2"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "co2"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_temp_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_TEMP_SOURCE",
-              "module": "box",
+              "caps_name": "GRAPHS_SCREEN_ORDER",
+              "module": "graphs_screen",
               
               
               "write": true,
               
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "temp_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "temp_source"
-                },
               
-              
-                "indir": {
-                  "values": [16],
-                  "helpers": ["SCD30 temperature on port #1"]
-                },
-              
-              "default": 16
+              "default": 2
             },
           
             {
               "core": false,
-              "name": "box_0_humi_source",
+              "name": "checklist_screen_order",
               "type": "integer",
               "integer": true,
-              "caps_name": "BOX_0_HUMI_SOURCE",
-              "module": "box",
+              "caps_name": "CHECKLIST_SCREEN_ORDER",
+              "module": "checklist_screen",
               
               
               "write": true,
               
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "humi_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "humi_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16],
-                  "helpers": ["SCD30 humidity on port #1"]
-                },
-              
-              "default": 16
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_vpd_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_VPD_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "vpd_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "vpd_source"
-                },
-              
-              
-                "indir": {
-                  "values": [16],
-                  "helpers": ["SCD30 vpd on port #1"]
-                },
-              
-              "default": 16
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_co2_source",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_CO2_SOURCE",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "co2_source"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "co2_source"
-                },
-              
-              
-                "indir": {
-                  "values": [1],
-                  "helpers": ["SCD30 co2 on port #1"]
-                },
               
               "default": 1
             }
