@@ -15,8 +15,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -76,8 +76,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -104,8 +104,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -132,8 +132,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -160,8 +160,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -205,8 +205,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -234,8 +234,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -263,8 +263,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -291,8 +291,8 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -317,8 +317,8 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -343,8 +343,8 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -369,8 +369,8 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -396,8 +396,8 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "remote": false,
                     "write_cb": true,
+                    "remote": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -415,6 +415,35 @@
                     "disabled": false,
                     "suffix": "scrtoken",
                     "caps_name": "BROKER_SCRTOKEN"
+                },
+                "screnckey": {
+                    "name": "broker_screnckey",
+                    "default": "",
+                    "nvs": {
+                        "key": "BRKR_SCR_EK",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "nosend": true,
+                    "write_cb": false,
+                    "remote": false,
+                    "type": "string",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "disabled": false,
+                    "suffix": "screnckey",
+                    "caps_name": "BROKER_SCRENCKEY"
                 }
             },
             "enabled": true,
@@ -441,8 +470,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -517,8 +546,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -548,8 +577,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -593,8 +622,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -624,8 +653,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": false,
                     "write_cb": false,
+                    "remote": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -656,8 +685,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": false,
                     "write_cb": false,
+                    "remote": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -685,8 +714,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": false,
                     "write_cb": false,
+                    "remote": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -714,8 +743,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": false,
                     "write_cb": false,
+                    "remote": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -745,8 +774,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": false,
                     "write_cb": false,
+                    "remote": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -773,8 +802,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -835,8 +864,8 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "remote": false,
                     "write_cb": false,
+                    "remote": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -880,8 +909,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -910,8 +939,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 1,
@@ -943,8 +972,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -973,8 +1002,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 1,
@@ -1006,8 +1035,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1036,8 +1065,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 1,
@@ -1069,8 +1098,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1099,8 +1128,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 1,
@@ -1132,8 +1161,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1162,8 +1191,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 1,
@@ -1195,8 +1224,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1240,8 +1269,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1271,8 +1300,8 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "remote": false,
                     "write_cb": true,
+                    "remote": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -1299,8 +1328,8 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "remote": false,
                     "write_cb": true,
+                    "remote": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -1327,8 +1356,8 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -1356,8 +1385,8 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -1386,8 +1415,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": false,
                     "write_cb": true,
+                    "remote": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -1413,8 +1442,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
@@ -1444,6 +1473,82 @@
             "init_priority": 0,
             "core": true
         },
+        "state": {
+            "name": "state",
+            "i2c": false,
+            "array_len": 0,
+            "fields": {
+                "state": {
+                    "name": "state",
+                    "nvs": {
+                        "key": "STATE",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "nosend": false,
+                    "write_cb": true,
+                    "remote": true,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "disabled": true,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "state",
+                    "caps_name": "STATE",
+                    "default_var": "FIRST_RUN"
+                },
+                "device_name": {
+                    "name": "device_name",
+                    "default": "SuperGreenTips",
+                    "nvs": {
+                        "key": "DEV_NAME",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "nosend": false,
+                    "write_cb": false,
+                    "remote": true,
+                    "type": "string",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "disabled": false,
+                    "suffix": "device_name",
+                    "caps_name": "DEVICE_NAME"
+                }
+            },
+            "enabled": true,
+            "field_prefix": "state",
+            "tester": false,
+            "init": true,
+            "required": true,
+            "preinit": false,
+            "code": true,
+            "init_priority": 100,
+            "core": false
+        },
         "scd30": {
             "name": "scd30",
             "i2c": true,
@@ -1457,8 +1562,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "SCD30 temperature on port #1",
                     "dump_freq": 60,
@@ -1491,8 +1596,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "SCD30 humidity on port #1",
                     "dump_freq": 60,
@@ -1525,8 +1630,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "SCD30 vpd on port #1",
                     "dump_freq": 60,
@@ -1559,8 +1664,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "SCD30 co2 on port #1",
                     "dump_freq": 60,
@@ -1593,8 +1698,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1624,8 +1729,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1670,8 +1775,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "HX711 weight on port #1",
                     "dump_freq": 60,
@@ -1701,8 +1806,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1732,8 +1837,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "HX711 weight divider calibration on port #1",
                     "dump_freq": 60,
@@ -1763,8 +1868,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "HX711 weight weight offset on port #1",
                     "dump_freq": 60,
@@ -1809,8 +1914,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "SHT21 temperature on port #1",
                     "dump_freq": 60,
@@ -1843,8 +1948,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "SHT21 humidity on port #1",
                     "dump_freq": 60,
@@ -1877,8 +1982,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "SHT21 vpd on port #1",
                     "dump_freq": 60,
@@ -1911,8 +2016,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1942,8 +2047,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": false,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -1975,248 +2080,19 @@
             "init_priority": 0,
             "core": false
         },
-        "state": {
-            "name": "state",
+        "m5tft": {
+            "name": "m5tft",
             "i2c": false,
             "array_len": 0,
-            "fields": {
-                "state": {
-                    "name": "state",
-                    "nvs": {
-                        "key": "STATE",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "write_cb": true,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": true,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "state",
-                    "caps_name": "STATE",
-                    "default_var": "FIRST_RUN"
-                },
-                "device_name": {
-                    "name": "device_name",
-                    "default": "SuperGreenTips",
-                    "nvs": {
-                        "key": "DEV_NAME",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "write_cb": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "device_name",
-                    "caps_name": "DEVICE_NAME"
-                }
-            },
+            "fields": {},
             "enabled": true,
-            "field_prefix": "state",
-            "tester": false,
-            "init": true,
-            "required": true,
-            "preinit": false,
-            "code": true,
-            "init_priority": 100,
-            "core": false
-        },
-        "timelapses_screen": {
-            "name": "timelapses_screen",
-            "i2c": false,
-            "array_len": 0,
-            "fields": {
-                "order": {
-                    "name": "timelapses_screen_order",
-                    "default": 3,
-                    "nvs": {
-                        "key": "TLSCR_ORDR",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "write_cb": true,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "u",
-                    "intlen": 8,
-                    "suffix": "order",
-                    "caps_name": "TIMELAPSES_SCREEN_ORDER"
-                }
-            },
-            "enabled": true,
-            "field_prefix": "timelapses_screen",
+            "field_prefix": "m5tft",
             "tester": false,
             "init": true,
             "required": false,
             "preinit": false,
             "code": true,
-            "init_priority": 15,
-            "core": false
-        },
-        "sgl": {
-            "name": "sgl",
-            "i2c": false,
-            "array_len": 0,
-            "fields": {
-                "token": {
-                    "name": "sgl_token",
-                    "default": "",
-                    "nvs": {
-                        "key": "SGL_TK",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": true,
-                    "remote": false,
-                    "write_cb": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "token",
-                    "caps_name": "SGL_TOKEN"
-                },
-                "enckey": {
-                    "name": "sgl_enckey",
-                    "default": "",
-                    "nvs": {
-                        "key": "SGL_EK",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": true,
-                    "remote": false,
-                    "write_cb": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "enckey",
-                    "caps_name": "SGL_ENCKEY"
-                }
-            },
-            "enabled": true,
-            "field_prefix": "sgl",
-            "tester": false,
-            "init": true,
-            "required": false,
-            "preinit": false,
-            "code": true,
-            "init_priority": 40,
-            "core": false
-        },
-        "quickview_screen": {
-            "name": "quickview_screen",
-            "i2c": false,
-            "array_len": 0,
-            "fields": {
-                "order": {
-                    "name": "quickview_screen_order",
-                    "default": 0,
-                    "nvs": {
-                        "key": "QVSCR_ORDR",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "write_cb": true,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "u",
-                    "intlen": 8,
-                    "suffix": "order",
-                    "caps_name": "QUICKVIEW_SCREEN_ORDER"
-                }
-            },
-            "enabled": true,
-            "field_prefix": "quickview_screen",
-            "tester": false,
-            "init": true,
-            "required": false,
-            "preinit": false,
-            "code": true,
-            "init_priority": 30,
+            "init_priority": 50,
             "core": false
         },
         "graphs_screen": {
@@ -2233,8 +2109,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -2266,6 +2142,53 @@
             "init_priority": 20,
             "core": false
         },
+        "timelapses_screen": {
+            "name": "timelapses_screen",
+            "i2c": false,
+            "array_len": 0,
+            "fields": {
+                "order": {
+                    "name": "timelapses_screen_order",
+                    "default": 3,
+                    "nvs": {
+                        "key": "TLSCR_ORDR",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "nosend": false,
+                    "write_cb": true,
+                    "remote": true,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "disabled": false,
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "order",
+                    "caps_name": "TIMELAPSES_SCREEN_ORDER"
+                }
+            },
+            "enabled": true,
+            "field_prefix": "timelapses_screen",
+            "tester": false,
+            "init": true,
+            "required": false,
+            "preinit": false,
+            "code": true,
+            "init_priority": 15,
+            "core": false
+        },
         "checklist_screen": {
             "name": "checklist_screen",
             "i2c": false,
@@ -2280,8 +2203,8 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "remote": true,
                     "write_cb": true,
+                    "remote": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
@@ -2313,19 +2236,96 @@
             "init_priority": 25,
             "core": false
         },
-        "m5tft": {
-            "name": "m5tft",
+        "quickview_screen": {
+            "name": "quickview_screen",
             "i2c": false,
             "array_len": 0,
-            "fields": {},
+            "fields": {
+                "order": {
+                    "name": "quickview_screen_order",
+                    "default": 0,
+                    "nvs": {
+                        "key": "QVSCR_ORDR",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "nosend": false,
+                    "write_cb": true,
+                    "remote": true,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "disabled": false,
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "order",
+                    "caps_name": "QUICKVIEW_SCREEN_ORDER"
+                }
+            },
             "enabled": true,
-            "field_prefix": "m5tft",
+            "field_prefix": "quickview_screen",
             "tester": false,
             "init": true,
             "required": false,
             "preinit": false,
             "code": true,
-            "init_priority": 50,
+            "init_priority": 30,
+            "core": false
+        },
+        "sgl": {
+            "name": "sgl",
+            "i2c": false,
+            "array_len": 0,
+            "fields": {
+                "token": {
+                    "name": "sgl_token",
+                    "default": "",
+                    "nvs": {
+                        "key": "SGL_TK",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "nosend": true,
+                    "write_cb": false,
+                    "remote": false,
+                    "type": "string",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "disabled": false,
+                    "suffix": "token",
+                    "caps_name": "SGL_TOKEN"
+                }
+            },
+            "enabled": true,
+            "field_prefix": "sgl",
+            "tester": false,
+            "init": true,
+            "required": false,
+            "preinit": false,
+            "code": true,
+            "init_priority": 40,
             "core": false
         }
     },

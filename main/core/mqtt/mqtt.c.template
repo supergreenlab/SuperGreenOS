@@ -293,10 +293,10 @@ static void mqtt_task(void *param) {
   ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log channel: %s", log_channel);
 
 	<% if (hasScr) { %>
-    const char scr_token[MAX_KVALUE_SIZE];
+    char scr_token[MAX_KVALUE_SIZE];
     get_broker_scrtoken(scr_token, sizeof(scr_token)-1);
     snprintf(scr_channel, sizeof(scr_channel)-1, "%s.scrcmd/%s", client_id, scr_token);
-    ESP_LOGI(SGO_LOG_EVENT, "@MQTT Scr channel: %s", log_channel);
+    ESP_LOGI(SGO_LOG_EVENT, "@MQTT Scr channel: %s", scr_channel);
 
     unsigned char msgenc[MAX_QUEUE_ITEM_SIZE] = { 0 };
 	<% } %>
@@ -337,7 +337,7 @@ static void mqtt_task(void *param) {
       } <% if (hasScr) { %> else if (c == CMD_MQTT_CHANGE_SCR_CHANNEL) {
         get_broker_scrtoken(scr_token, sizeof(scr_token)-1);
         snprintf(scr_channel, sizeof(scr_channel)-1, "%s.scrcmd/%s", client_id, scr_token);
-        ESP_LOGI(SGO_LOG_EVENT, "@MQTT Scr channel: %s", log_channel);
+        ESP_LOGI(SGO_LOG_EVENT, "@MQTT Scr channel: %s", scr_channel);
       } <% } %>
     }
     if (connected) {

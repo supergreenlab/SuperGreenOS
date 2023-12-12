@@ -81,6 +81,21 @@
           
             {
               "core": true,
+              "name": "broker_screnckey",
+              "type": "string",
+              "integer": false,
+              "caps_name": "BROKER_SCRENCKEY",
+              "module": "mqtt",
+              
+              
+              "write": true,
+              
+              
+              "default": ""
+            },
+          
+            {
+              "core": true,
               "name": "tester_enabled",
               "type": "integer",
               "integer": true,
@@ -605,6 +620,21 @@
           
             {
               "core": false,
+              "name": "device_name",
+              "type": "string",
+              "integer": false,
+              "caps_name": "DEVICE_NAME",
+              "module": "state",
+              
+              
+              "write": true,
+              
+              
+              "default": "SuperGreenTips"
+            },
+          
+            {
+              "core": false,
               "name": "scd30_0_temp",
               "type": "integer",
               "integer": true,
@@ -761,17 +791,17 @@
           
             {
               "core": false,
-              "name": "device_name",
-              "type": "string",
-              "integer": false,
-              "caps_name": "DEVICE_NAME",
-              "module": "state",
+              "name": "graphs_screen_order",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "GRAPHS_SCREEN_ORDER",
+              "module": "graphs_screen",
               
               
               "write": true,
               
               
-              "default": "SuperGreenTips"
+              "default": 2
             },
           
             {
@@ -791,32 +821,17 @@
           
             {
               "core": false,
-              "name": "sgl_token",
-              "type": "string",
-              "integer": false,
-              "caps_name": "SGL_TOKEN",
-              "module": "sgl",
+              "name": "checklist_screen_order",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "CHECKLIST_SCREEN_ORDER",
+              "module": "checklist_screen",
               
               
               "write": true,
               
               
-              "default": ""
-            },
-          
-            {
-              "core": false,
-              "name": "sgl_enckey",
-              "type": "string",
-              "integer": false,
-              "caps_name": "SGL_ENCKEY",
-              "module": "sgl",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
+              "default": 1
             },
           
             {
@@ -836,32 +851,17 @@
           
             {
               "core": false,
-              "name": "graphs_screen_order",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "GRAPHS_SCREEN_ORDER",
-              "module": "graphs_screen",
+              "name": "sgl_token",
+              "type": "string",
+              "integer": false,
+              "caps_name": "SGL_TOKEN",
+              "module": "sgl",
               
               
               "write": true,
               
               
-              "default": 2
-            },
-          
-            {
-              "core": false,
-              "name": "checklist_screen_order",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "CHECKLIST_SCREEN_ORDER",
-              "module": "checklist_screen",
-              
-              
-              "write": true,
-              
-              
-              "default": 1
+              "default": ""
             }
           
   ]

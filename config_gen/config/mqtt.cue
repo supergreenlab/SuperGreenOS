@@ -38,12 +38,3 @@ modules mqtt fields scrcallback: _STRING & {
   default: string | *""
   nosend: true
 }
-
-modules mqtt fields scrtoken: _STRING & _NVS & _HTTP_RW & {
-  default: string | *""
-  nosend: true
-  remote: false
-  nvs key: "BRKR_SCR_TK"
-  default: ""
-  write_cb: true
-}
