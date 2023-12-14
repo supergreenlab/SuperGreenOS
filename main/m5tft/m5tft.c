@@ -37,19 +37,19 @@
 const float TARGET_FRAME_TIME_MS = 1000.0f / 32.0f;
 
 uint8_t axp192_init_list[28] = {
-	'A', 'X', 'P',
-	0x06, 0, 11,
-	0x10, 0xff, //1
-	0x28, 0xCC, //2
-	0x82, 0xff, //3
-	0x33, 0xC1, //4
-	0xB8, 0x80, //5
-	0x12, 0x4D, //6
-	0x36, 0x0C, //7
-	0x90, 0x02, //8
-	0x30, 0xec, //9
-	0x39, 0xFC, //10
-	0x35, 0xA2, //11
+  'A', 'X', 'P',
+  0x06, 0, 11,
+  0x10, 0xff, //1
+  0x28, 0xCC, //2
+  0x82, 0xff, //3
+  0x33, 0xC1, //4
+  0xB8, 0x80, //5
+  0x12, 0x4D, //6
+  0x36, 0x0C, //7
+  0x90, 0x02, //8
+  0x30, 0xec, //9
+  0x39, 0xFC, //10
+  0x35, 0xA2, //11
 };
 
 static void m5tft_task(void *param);
@@ -65,6 +65,12 @@ void force_frame() {
 void init_m5tft() {
   ESP_LOGI(SGO_LOG_EVENT, "@M5TFT Initializing m5tft module");
 
+  if (xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 4096, NULL, 10, NULL, 1) != pdPASS) {
+    ESP_LOGE(SGO_LOG_NOSEND, "Could not create M5TFT task");
+  }
+}
+
+void init_screen() {
   esp_err_t e;
 
   ESP_LOGI(SGO_LOG_NOSEND, "Setting up I2C");
@@ -94,9 +100,9 @@ void init_m5tft() {
   buscfg.quadhd_io_num = -1;
 
   spi_lobo_device_interface_config_t devcfg = {};
-  devcfg.clock_speed_hz = DEFAULT_SPI_CLOCK;		 // Initial clock out at 8 MHz
-  devcfg.mode = 0;						 // SPI mode 0
-  devcfg.spics_io_num = PIN_NUM_CS;	// external CS pin
+  devcfg.clock_speed_hz = DEFAULT_SPI_CLOCK;     // Initial clock out at 8 MHz
+  devcfg.mode = 0;             // SPI mode 0
+  devcfg.spics_io_num = PIN_NUM_CS; // external CS pin
   devcfg.flags = LB_SPI_DEVICE_HALFDUPLEX; // ALWAYS SET  to HALF DUPLEX MODE!! for display spi
 
   e = spi_lobo_bus_add_device(TFT_HSPI_HOST, &buscfg, &devcfg, &disp_spi);
@@ -116,14 +122,12 @@ void init_m5tft() {
   }
 
   root = create_node(0, 0, NULL, NULL, NULL);
-
-  if (xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 4096, NULL, 10, NULL, 1) != pdPASS) {
-		ESP_LOGE(SGO_LOG_NOSEND, "Could not create M5TFT task");
-	}
 }
 
 static void m5tft_task(void *param) {
-	init_splash(root);
+  vTaskDelay(1000 / portTICK_PERIOD_MS); // Looks like we have a race confition with wifi
+  init_screen();
+  init_splash(root);
 
   bool c;
   while(true) {

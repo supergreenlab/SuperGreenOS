@@ -15,18 +15,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": true,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -76,15 +76,15 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "enable": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
-                        "enable": false
-                    },
-                    "http": {
                         "enable": false
                     },
                     "indir": {
@@ -104,15 +104,15 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "enable": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
-                        "enable": false
-                    },
-                    "http": {
                         "enable": false
                     },
                     "indir": {
@@ -132,15 +132,15 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "enable": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
-                        "enable": false
-                    },
-                    "http": {
                         "enable": false
                     },
                     "indir": {
@@ -160,15 +160,15 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "enable": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
-                        "enable": false
-                    },
-                    "http": {
                         "enable": false
                     },
                     "indir": {
@@ -205,18 +205,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -234,18 +234,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -263,18 +263,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -291,15 +291,15 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "enable": false
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
-                        "enable": false
-                    },
-                    "http": {
                         "enable": false
                     },
                     "indir": {
@@ -317,15 +317,15 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "enable": false
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
-                        "enable": false
-                    },
-                    "http": {
                         "enable": false
                     },
                     "indir": {
@@ -343,15 +343,15 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "enable": false
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
-                        "enable": false
-                    },
-                    "http": {
                         "enable": false
                     },
                     "indir": {
@@ -369,15 +369,15 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "enable": false
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
-                        "enable": false
-                    },
-                    "http": {
                         "enable": false
                     },
                     "indir": {
@@ -386,6 +386,35 @@
                     "disabled": false,
                     "suffix": "scrcallback",
                     "caps_name": "BROKER_SCRCALLBACK"
+                },
+                "enckey": {
+                    "name": "broker_enckey",
+                    "default": "",
+                    "nvs": {
+                        "key": "BRKR_EK",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "nosend": true,
+                    "remote": false,
+                    "http": {
+                        "read": false,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
+                    "type": "string",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "disabled": false,
+                    "suffix": "enckey",
+                    "caps_name": "BROKER_ENCKEY"
                 },
                 "scrtoken": {
                     "name": "broker_scrtoken",
@@ -396,18 +425,18 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "write_cb": true,
                     "remote": false,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -415,35 +444,6 @@
                     "disabled": false,
                     "suffix": "scrtoken",
                     "caps_name": "BROKER_SCRTOKEN"
-                },
-                "screnckey": {
-                    "name": "broker_screnckey",
-                    "default": "",
-                    "nvs": {
-                        "key": "BRKR_SCR_EK",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": true,
-                    "write_cb": false,
-                    "remote": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "screnckey",
-                    "caps_name": "BROKER_SCRENCKEY"
                 }
             },
             "enabled": true,
@@ -470,18 +470,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": true,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -546,18 +546,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": true,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -577,18 +577,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -622,18 +622,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -653,18 +653,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": false,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -685,18 +685,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": false,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -714,18 +714,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": false,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -743,18 +743,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": false,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -774,18 +774,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": false,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -802,18 +802,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": true,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -864,18 +864,18 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "write_cb": false,
                     "remote": false,
+                    "http": {
+                        "read": false,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": false
                     },
                     "indir": {
                         "enable": false
@@ -909,18 +909,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": true,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -939,18 +939,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 1,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "key": "temp_sensor",
@@ -972,18 +972,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1002,18 +1002,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 1,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "key": "humi_sensor",
@@ -1035,18 +1035,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1065,18 +1065,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 1,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "key": "vpd_sensor",
@@ -1098,18 +1098,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1128,18 +1128,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 1,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "key": "weight_sensor",
@@ -1161,18 +1161,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1191,18 +1191,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 1,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "key": "co2_sensor",
@@ -1224,18 +1224,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1269,18 +1269,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1300,18 +1300,18 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "write_cb": true,
                     "remote": false,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1328,18 +1328,18 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "write_cb": true,
                     "remote": false,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1356,18 +1356,18 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1385,18 +1385,18 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1415,18 +1415,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": true,
                     "remote": false,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1442,18 +1442,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1486,18 +1486,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": true,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1518,18 +1518,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1562,18 +1562,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "SCD30 temperature on port #1",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1596,18 +1596,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "SCD30 humidity on port #1",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1630,18 +1630,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "SCD30 vpd on port #1",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1664,18 +1664,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "SCD30 co2 on port #1",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1698,18 +1698,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1729,18 +1729,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1775,18 +1775,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "HX711 weight on port #1",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1806,18 +1806,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1837,18 +1837,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "HX711 weight divider calibration on port #1",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1868,18 +1868,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "HX711 weight weight offset on port #1",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1914,18 +1914,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "SHT21 temperature on port #1",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1948,18 +1948,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "SHT21 humidity on port #1",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -1982,18 +1982,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "SHT21 vpd on port #1",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -2016,18 +2016,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": false
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": false,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -2047,18 +2047,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": false,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -2109,18 +2109,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": true,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -2156,18 +2156,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": true,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -2203,18 +2203,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": true,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -2250,18 +2250,18 @@
                         "manual": false
                     },
                     "nosend": false,
-                    "write_cb": true,
                     "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
                     "type": "integer",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": true
                     },
                     "indir": {
                         "enable": false
@@ -2297,18 +2297,18 @@
                         "manual": false
                     },
                     "nosend": true,
-                    "write_cb": false,
                     "remote": false,
+                    "http": {
+                        "read": false,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": false,
                     "type": "string",
                     "helper": "",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
-                    },
-                    "http": {
-                        "enable": true,
-                        "write": true,
-                        "read": false
                     },
                     "indir": {
                         "enable": false

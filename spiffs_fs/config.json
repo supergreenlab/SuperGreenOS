@@ -66,10 +66,10 @@
           
             {
               "core": true,
-              "name": "broker_scrtoken",
+              "name": "broker_enckey",
               "type": "string",
               "integer": false,
-              "caps_name": "BROKER_SCRTOKEN",
+              "caps_name": "BROKER_ENCKEY",
               "module": "mqtt",
               
               
@@ -81,10 +81,10 @@
           
             {
               "core": true,
-              "name": "broker_screnckey",
+              "name": "broker_scrtoken",
               "type": "string",
               "integer": false,
-              "caps_name": "BROKER_SCRENCKEY",
+              "caps_name": "BROKER_SCRTOKEN",
               "module": "mqtt",
               
               
