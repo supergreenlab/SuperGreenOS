@@ -339,14 +339,8 @@ TickType_t render_node(Node *node, float parent_x, float parent_y, float transpa
     opts.transparency = actualTransparency;
     opts.scale = actualScale;
     draw_bitmap(node->bitmap, new_x, new_y, &opts);
-
-		/*if (node->num_children == 0) {
-			ESP_LOGI(SGO_LOG_NOSEND, "bitmap: parent_x: %f parent_y: %f\nx: %f y: %f\nnew_x: %f new_y: %f\nactualScale: %f", parent_x, parent_y, node->x, node->y, new_x, new_y, actualScale);
-		}*/
-  } else {
-		/*if (node->num_children != 0) {
-			ESP_LOGI(SGO_LOG_NOSEND, "node: parent_x: %f parent_y: %f\nx: %f y: %f\nnew_x: %f new_y: %f\nactualScale: %f", parent_x, parent_y, node->x, node->y, new_x, new_y, actualScale);
-		}*/
+  } else if (node->drawFunc) {
+    node->drawFunc(node, new_x, new_y);
 	}
 
   for (int i = 0; i < node->num_children; i++) {

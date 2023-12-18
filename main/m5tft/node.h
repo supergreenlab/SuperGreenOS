@@ -26,6 +26,7 @@
 typedef struct Node Node;
 
 typedef TickType_t (*NodeFunction)(Node *node, void *p);
+typedef void (*DrawFunction)(Node *node, int x, int y);
 
 #define N_NODE_FUNCTION 4
 
@@ -33,6 +34,7 @@ struct Node {
   float x;
   float y;
   bitmap_data *bitmap;
+  DrawFunction drawFunc;
   void *funcParams[N_NODE_FUNCTION];
   NodeFunction funcs[N_NODE_FUNCTION];
   Node **children;
