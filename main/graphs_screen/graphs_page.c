@@ -63,6 +63,9 @@ void draw_graphs(Node *node, int x, int y) {
 	}
 }
 
+void init_graphs_labels(Node *node) {
+}
+
 void init_graphs_page(Node *root) {
   graphs_params *params = (graphs_params *)malloc(sizeof(graphs_params));
 

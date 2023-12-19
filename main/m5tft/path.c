@@ -122,3 +122,13 @@ void drawLineAA(int x0, int y0, int x1, int y1, color_t color, float thickness) 
 		}
 	}
 }
+
+void fillRectangle(int x, int y, int width, int height, color_t color) {
+	for (int i = x; i < x + width; i++) {
+		for (int j = y; j < y + height; j++) {
+			if (i >= 0 && i < DEFAULT_TFT_DISPLAY_WIDTH && j >= 0 && j < DEFAULT_TFT_DISPLAY_HEIGHT) {
+				frame[j * DEFAULT_TFT_DISPLAY_WIDTH + i] = color;
+			}
+		}
+	}
+}

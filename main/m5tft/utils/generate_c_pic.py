@@ -2,107 +2,179 @@
 
 import sys
 import os
+import yaml
 import argparse
 import cairosvg
 from PIL import Image
 from io import BytesIO
 
-def list_svg_files(directory):
-    """
-    List all SVG files in the given directory.
-    """
-    return [os.path.join(directory, f) for f in os.listdir(directory) if f.endswith('.svg')]
-
 def get_filename_without_extension(filepath):
-    """
-    Given a filepath, return the filename without its extension.
-    """
-    return os.path.splitext(os.path.basename(filepath))[0]
+	"""
+	Given a filepath, return the filename without its extension.
+	"""
+	return os.path.splitext(os.path.basename(filepath))[0]
 
 def scale_image_to_max_size(image, max_width, max_height):
-    """
-    Scale the image to fit within max_width and max_height, while preserving the aspect ratio.
-    """
-    img_width, img_height = image.size
-    img_ratio = img_width / img_height
-    max_ratio = max_width / max_height
+	"""
+	Scale the image to fit within max_width and max_height, while preserving the aspect ratio.
+	"""
+	img_width, img_height = image.size
+	img_ratio = img_width / img_height
+	max_ratio = max_width / max_height
 
-    # Compare the aspect ratios
-    if img_ratio > max_ratio:
-        # Image is wider than the desired ratio, so set width to max_width and scale height
-        new_width = max_width
-        new_height = int(new_width / img_ratio)
-    else:
-        # Image is taller or equal to the desired ratio, so set height to max_height and scale width
-        new_height = max_height
-        new_width = int(new_height * img_ratio)
+	# Compare the aspect ratios
+	if img_ratio > max_ratio:
+		# Image is wider than the desired ratio, so set width to max_width and scale height
+		new_width = max_width
+		new_height = int(new_width / img_ratio)
+	else:
+		# Image is taller or equal to the desired ratio, so set height to max_height and scale width
+		new_height = max_height
+		new_width = int(new_height * img_ratio)
 
-    return image.resize((new_width, new_height), Image.Resampling.LANCZOS)
+	return image.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
 def svg_to_raster(input_svg):
-    # Convert SVG to raster in memory (using BytesIO)
-    output_buffer = BytesIO()
-    cairosvg.svg2png(url=input_svg, write_to=output_buffer, output_width=None, output_height=None, dpi=300, parent_width=None, parent_height=None, scale=1)
-    output_buffer.seek(0)
+	# Convert SVG to raster in memory (using BytesIO)
+	output_buffer = BytesIO()
+	cairosvg.svg2png(url=input_svg, write_to=output_buffer, output_width=None, output_height=None, dpi=300, parent_width=None, parent_height=None, scale=1)
+	output_buffer.seek(0)
 
-    # Use PIL to open the raster image
-    return Image.open(output_buffer)
+	# Use PIL to open the raster image
+	return Image.open(output_buffer)
 
 def generate_palette_and_bitmap(image):
-    # image = handle_transparency(image)
-    image = image.quantize(colors=10)
-    image = image.convert("RGBA")
-    
-    # Getting all colors
-    colors = list(image.getdata())
-    unique_colors = list(set(colors))
-    
-    # Create a palette
-    palette = {color: idx for idx, color in enumerate(unique_colors)}
-    if len(palette) >= 11:
-        print(f"TOO MANY COLORS {len(palette)}")
-        sys.exit()
-    
-    # Create a bitmap
-    bitmap = [palette[color] for color in colors]
-    
-    return unique_colors, bitmap
+	# image = handle_transparency(image)
+	image = image.quantize(colors=32)
+	image = image.convert("RGBA")
+	alpha = image.split()[3]
+	image = image.convert("L")
+	image = Image.merge("LA", (image, alpha))
+	
+	# Getting all colors
+	colors = list(image.getdata())
+	unique_colors = list(set(colors))
+	
+	# Create a palette
+	palette = {color: idx for idx, color in enumerate(unique_colors)}
+	# if len(palette) > 32:
+	#	print(f"TOO MANY COLORS {len(palette)}")
+	#	sys.exit()
+	
+	# Create a bitmap
+	bitmap = [palette[color] for color in colors]
+	
+	return unique_colors, bitmap
 
-def generate_c_code(palette, mask, bitmap, width, height, filename, var_index, prefix):
-    palette_str = ",\n".join([f"{{ {color[0]}, {color[1]}, {color[2]}, {color[3]} }}" for color in palette])
-    bitmap_str = ", ".join(map(str, bitmap))
-    
-    return f"""
-bitmap_data {prefix}_{var_index}_{mask} = {{
-    .mask = {mask},
-    .palette = {{
-        {palette_str}
-    }},
-    .bitmap = {{
-        {bitmap_str}
-    }},
-    .width = {width},
-    .height = {height},
-    .name = "{filename}"
+def generate_c_code(mask, bitmap, width, height, filename, var_index, prefix):
+	bitmap_str = ", ".join(map(str, bitmap))
+	
+	return f"""
+bitmap_data {prefix}_{var_index} = {{
+	.mask = {mask},
+	.bitmap = {{
+		{bitmap_str}
+	}},
+	.width = {width},
+	.height = {height},
+	.name = "{filename}"
 }};
 """
 
+def process_svg_file(config, svg_file):
+	image = svg_to_raster(svg_file)
+	image = scale_image_to_max_size(image, config['max_width'], config['max_height'])
+	palette, bitmap = generate_palette_and_bitmap(image)
+	filename_no_ext = get_filename_without_extension(svg_file)
+	result = {
+		'palette': palette,
+		'bitmap': bitmap,
+		'name': filename_no_ext,
+		'width': image.width,
+		'height': image.height,
+	}
+	result.update(config)
+	return result
+
+def parse_yaml_file(yaml_file):
+	with open(yaml_file, 'r') as file:
+		try:
+			return yaml.safe_load(file)
+		except yaml.YAMLError as exc:
+			print(exc)
+			return None
+
+def traverse_folders(root_folder):
+	results = []
+	for subdir, dirs, files in os.walk(root_folder):
+		config = parse_yaml_file(os.path.join(subdir, 'config.yml'))
+		for file in files:
+			if file == None:
+				continue
+			if file.endswith('.svg'):
+				filepath = os.path.join(subdir, file)
+				results.append(process_svg_file(config, filepath))
+	return results
+
+def average_nested_pairs(arr):
+	if not arr:
+		return (0, 0)
+
+	sum_first = sum(pair[1][0] for pair in arr)
+	sum_second = sum(pair[1][1] for pair in arr)
+	n = len(arr)
+
+	return (int(sum_first / n), int(sum_second / n))
+
 def main():
-    # Setup command-line argument parsing
-    parser = argparse.ArgumentParser(description="Convert SVG images to C code with a color palette.")
-    parser.add_argument("directory", type=str, help="Path to the directory containing SVG files to convert.")
-    parser.add_argument("--max-width", type=int, default=160, help="Maximum width of the output raster image.")
-    parser.add_argument("--max-height", type=int, default=80, help="Maximum height of the output raster image.")
-    parser.add_argument("--grayscale", type=bool, default=False, help="Generate grayscale images")
-    parser.add_argument("--mask", type=str, default="NORMAL_FONT_SIZE", help="Generate grayscale images")
-    parser.add_argument("--prefix", type=str, default="bmp_db", help="Generate grayscale images")
+	parser = argparse.ArgumentParser(description="Convert SVG images to C code with a color palette.")
+	parser.add_argument("directory", type=str, help="Path to the directory containing SVG files to convert.")
+	parser.add_argument("output", type=str, help="Output files without extension")
 
-    args = parser.parse_args()
+	args = parser.parse_args()
 
-    svg_files = list_svg_files(args.directory)
-    
-    i = 0
-    pointHContent = f"""
+	files = traverse_folders(args.directory)
+
+	global_palette = []
+	for file in files:
+		global_palette = global_palette + file['palette']
+
+	global_palette = list(set(global_palette))
+	global_palette = sorted(global_palette, key=lambda x: x[0])
+
+	group_size = 5
+	grouped = {}
+	for index, (a, b) in enumerate(global_palette):
+		key = (int(a / group_size)*group_size, int(b / group_size)*group_size)
+		if key[1] == 0:
+			key = (0, 0)
+		if key not in grouped:
+			grouped[key] = []
+		grouped[key].append((index, [a, b]))
+
+	g_avg = {}
+	for k, g in grouped.items():
+		g_avg[average_nested_pairs(g)] = g
+
+	grouped = g_avg
+
+	# for k, g in grouped.items():
+		# print(f"{k} {g}")
+
+	grouped_palette = grouped.keys()
+	grouped_palette = sorted(grouped_palette, key=lambda x: x[0])
+
+	color_to_index_map = {}
+	for k, g in enumerate(grouped_palette):
+		for e in grouped[g]:
+			color_to_index_map[(e[1][0], e[1][1])] = k
+
+	for file in files:
+		file['bitmap'] = [color_to_index_map[file['palette'][index]] for index in file['bitmap']]
+
+	palette_str = ",\n".join([f"{{ {color[0]}, {color[1]} }}" for color in global_palette])
+
+	pointHContent = f"""
 // Generated by utils/generate_c_pic.py
 
 #ifndef BITMAPS_DEFINITIONS
@@ -110,36 +182,33 @@ def main():
 
 #include "bitmaps.h"
 
+bmp_color_t bmp_db_palette[];
+
 """
-    pointCContent = f"""
+	pointCContent = f"""
 // Generated by utils/generate_c_pic.py
 
 #include "bitmaps_definitions.h"
 
-"""
-    variablesDeclaration = "bitmap_data *bitmap_db[] = { "
-    for svg_file in svg_files:
-        image = svg_to_raster(svg_file)
-        if args.grayscale:
-            image = image.convert('L')
-        image.save(f"{svg_file}.png")
-        image = scale_image_to_max_size(image, args.max_width, args.max_height)
-        image.save(f"{svg_file}_resized.png")
-        palette, bitmap = generate_palette_and_bitmap(image)
-        filename_no_ext = get_filename_without_extension(svg_file)
-        pointHContent += f"extern bitmap_data {args.prefix}_{i}_{args.mask};\n";
-        pointCContent += generate_c_code(palette, args.mask, bitmap, image.width, image.height, filename_no_ext, i, args.prefix)
-        variablesDeclaration += f"&{args.prefix}_{i}_{args.mask}, "
-        i += 1
+bmp_color_t bmp_db_palette[] = {{ {palette_str} }};
 
-    variablesDeclaration += "};"
-    pointCContent += variablesDeclaration
-    pointCContent += f"""
-
-int n_bitmaps = {i};
 """
 
-    pointHContent += """
+	variablesDeclaration = "bitmap_data *bitmap_db[] = { "
+	for index, file in enumerate(files):
+		pointHContent += f"extern bitmap_data bmp_db_{index};\n";
+		pointCContent += generate_c_code(file['mask'], file['bitmap'], file['width'], file['height'], file['name'], index+1, 'bmp_db')
+		variablesDeclaration += f"&bmp_db_{index+1}, "
+
+	variablesDeclaration += "};"
+	pointCContent += variablesDeclaration
+	pointCContent += f"""
+
+int n_bitmaps = {len(files)};
+"""
+
+
+	pointHContent += """
 
 extern int n_bitmaps;
 extern bitmap_data *bitmap_db[];
@@ -147,8 +216,15 @@ extern bitmap_data *bitmap_db[];
 #endif
 """
 
-    print(pointCContent)
-    print(pointHContent)
+	with open(f'{args.output}.c', 'w') as file:
+		file.write(pointCContent)
+
+	with open(f'{args.output}.h', 'w') as file:
+		file.write(pointHContent)
+
+	print(pointHContent)
+	print(pointCContent)
+
 
 if __name__ == "__main__":
-    main()
+	main()

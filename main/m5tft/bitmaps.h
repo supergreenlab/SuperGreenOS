@@ -49,7 +49,6 @@ typedef struct {
 } frame_limits;
 
 typedef struct {
-  bmp_color_t palette[11];
   float width;
   float height;
   uint8_t mask;
