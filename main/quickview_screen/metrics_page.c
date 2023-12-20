@@ -137,7 +137,7 @@ Node *create_co2_label() {
 
 Node *create_phase() {
   const char *value = "Blooming Week 2 Day 5";
-  Node *node = create_text_node(80, 5, 25, value, (color_t){ 89, 200, 31 }, SMALL_FONT_SIZE);
+  Node *node = create_text_node(80, 5, 25, value, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
   //node->renderOpts.offsetNumbers = true;
   for (int i = 0; i < node->num_children; ++i) {
     //node->children[i]->renderOpts.scale = 0.6;

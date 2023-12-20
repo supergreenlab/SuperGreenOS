@@ -24,6 +24,6 @@ typedef struct {
 
 void init_timelapses_page(Node *root) {
   timelapses_params *params = (timelapses_params *)malloc(sizeof(timelapses_params));
-  params->textNode = create_text_node(10, 10, 10, "Timelapse", (color_t){255, 255, 255}, NORMAL_FONT_SIZE);
+  params->textNode = create_text_node(10, 10, 9, "Timelapse", (color_t){255, 255, 255}, NORMAL_FONT_SIZE);
   add_child(root, params->textNode);
 }
