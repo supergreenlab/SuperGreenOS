@@ -7,7 +7,6 @@ import argparse
 import cairosvg
 from PIL import Image
 from io import BytesIO
-import numpy as np
 
 def get_filename_without_extension(filepath):
 	"""
@@ -44,77 +43,34 @@ def svg_to_raster(input_svg):
 	# Use PIL to open the raster image
 	return Image.open(output_buffer)
 
-def find_nearest_color(color, palette):
-	# Compute the distance between the given color and all colors in the palette
-	distances = np.sqrt(np.sum((palette - color)**2, axis=1))
-	# Find the index of the nearest color
-	nearest_color_index = np.argmin(distances)
-	return palette[nearest_color_index]
-
-def quantize_image_to_palette(img, palette):
-	# Convert image to numpy array for easier processing
-	img_np = np.array(img)
-
-	# Iterate over each pixel and quantize
-	for i in range(img_np.shape[0]):
-		for j in range(img_np.shape[1]):
-			img_np[i, j] = find_nearest_color(img_np[i, j], palette)
-
-	# Convert the numpy array back to an image
-	quantized_img = Image.fromarray(img_np, 'RGBA')
-
-	return quantized_img
-
-def load_svg(svg_file, config, quantize=True, palette=None):
-	image = svg_to_raster(svg_file)
-	image = scale_image_to_max_size(image, config['max_width'], config['max_height'])
-	if quantize:
-		if palette == None:
-			image = image.quantize(colors=16)
-			image = image.convert("RGBA")
-		else:
-			image = image.convert("RGBA")
-			image = quantize_image_to_palette(image, palette)
-	else:
-		image = image.convert("RGBA")
-	#alpha = image.split()[3]
-	#image = image.convert("L")
-	#image = Image.merge("LA", (image, alpha))
-	return image
-
-def generate_bitmap(image, unique_colors):
-	colors = list(image.getdata())
-	print(unique_colors)
-	palette = {color: idx for idx, color in enumerate(unique_colors)}
-	bitmap = [palette[color] for color in colors]
-	return bitmap
-
-def generate_palette(image):
+def generate_palette_and_bitmap(image):
+	# image = handle_transparency(image)
+	image = image.quantize(colors=32)
+	image = image.convert("RGBA")
+	alpha = image.split()[3]
+	image = image.convert("L")
+	image = Image.merge("LA", (image, alpha))
+	
+	# Getting all colors
 	colors = list(image.getdata())
 	unique_colors = list(set(colors))
 	
-	return unique_colors
-
-
-def pack_bytes(byte_list):
-	packed_list = []
-	for i in range(0, len(byte_list), 2):
-		if i + 1 < len(byte_list):
-			second_byte = byte_list[i + 1]
-		else:
-			second_byte = 0
-
-		packed_byte = (byte_list[i] << 4) + second_byte
-		packed_list.append(packed_byte)
-
-	return packed_list
+	# Create a palette
+	palette = {color: idx for idx, color in enumerate(unique_colors)}
+	# if len(palette) > 32:
+	#	print(f"TOO MANY COLORS {len(palette)}")
+	#	sys.exit()
+	
+	# Create a bitmap
+	bitmap = [palette[color] for color in colors]
+	
+	return unique_colors, bitmap
 
 def generate_c_code(mask, bitmap, width, height, filename, var_index, prefix):
-	bitmap_str = ", ".join(map(str, pack_bytes(bitmap)))
+	bitmap_str = ", ".join(map(str, bitmap))
 	
 	return f"""
 bitmap_data {prefix}_{var_index} = {{
-    .palette = bmp_db_palette,
 	.mask = {mask},
 	.bitmap = {{
 		{bitmap_str}
@@ -125,46 +81,20 @@ bitmap_data {prefix}_{var_index} = {{
 }};
 """
 
-def process_svg_file(results, config, svg_file, palette):
-	image = load_svg(svg_file, config, True, palette)
-	bitmap = generate_bitmap(image, palette)
+def process_svg_file(config, svg_file):
+	image = svg_to_raster(svg_file)
+	image = scale_image_to_max_size(image, config['max_width'], config['max_height'])
+	palette, bitmap = generate_palette_and_bitmap(image)
 	filename_no_ext = get_filename_without_extension(svg_file)
 	result = {
+		'palette': palette,
 		'bitmap': bitmap,
 		'name': filename_no_ext,
 		'width': image.width,
 		'height': image.height,
 	}
 	result.update(config)
-	if results == None:
-		results = []
-	results.append(result)
-	return results
-
-def generate_large_image_palette(results, config, svg_file, args):
-	new_image = load_svg(svg_file, config, False)
-
-	if results == None:
-		results = {}
-
-	if 'large_image' not in results:
-		results['large_image'] = new_image
-	else:
-		large_image = results['large_image']
-		new_width = large_image.width + new_image.width
-		new_height = max(large_image.height, new_image.height)
-
-		updated_large_image = Image.new('RGBA', (new_width, new_height))
-		updated_large_image.paste(large_image, (0, 0))
-		updated_large_image.paste(new_image, (large_image.width, 0))
-
-		results['large_image'] = updated_large_image
-
-	tmp = results['large_image'].quantize(colors=16)
-	tmp = tmp.convert('RGBA')
-	# tmp.save(f"large_image.png")
-	results['palette'] = generate_palette(tmp)
-	return results
+	return result
 
 def parse_yaml_file(yaml_file):
 	with open(yaml_file, 'r') as file:
@@ -174,8 +104,8 @@ def parse_yaml_file(yaml_file):
 			print(exc)
 			return None
 
-def traverse_folders(root_folder, traverse_func, traverse_args=None):
-	results = None
+def traverse_folders(root_folder):
+	results = []
 	for subdir, dirs, files in os.walk(root_folder):
 		config = parse_yaml_file(os.path.join(subdir, 'config.yml'))
 		for file in files:
@@ -183,8 +113,18 @@ def traverse_folders(root_folder, traverse_func, traverse_args=None):
 				continue
 			if file.endswith('.svg'):
 				filepath = os.path.join(subdir, file)
-				results = traverse_func(results, config, filepath, traverse_args)
+				results.append(process_svg_file(config, filepath))
 	return results
+
+def average_nested_pairs(arr):
+	if not arr:
+		return (0, 0)
+
+	sum_first = sum(pair[1][0] for pair in arr)
+	sum_second = sum(pair[1][1] for pair in arr)
+	n = len(arr)
+
+	return (int(sum_first / n), int(sum_second / n))
 
 def main():
 	parser = argparse.ArgumentParser(description="Convert SVG images to C code with a color palette.")
@@ -193,12 +133,46 @@ def main():
 
 	args = parser.parse_args()
 
-	large_image = traverse_folders(args.directory, generate_large_image_palette)
-	global_palette = large_image['palette']
+	files = traverse_folders(args.directory)
 
-	files = traverse_folders(args.directory, process_svg_file, global_palette)
+	global_palette = []
+	for file in files:
+		global_palette = global_palette + file['palette']
 
-	palette_str = ",\n".join([f"{{ {color[0]}, {color[3]} }}" for color in global_palette])
+	global_palette = list(set(global_palette))
+	global_palette = sorted(global_palette, key=lambda x: x[0])
+
+	group_size = 5
+	grouped = {}
+	for index, (a, b) in enumerate(global_palette):
+		key = (int(a / group_size)*group_size, int(b / group_size)*group_size)
+		if key[1] == 0:
+			key = (0, 0)
+		if key not in grouped:
+			grouped[key] = []
+		grouped[key].append((index, [a, b]))
+
+	g_avg = {}
+	for k, g in grouped.items():
+		g_avg[average_nested_pairs(g)] = g
+
+	grouped = g_avg
+
+	# for k, g in grouped.items():
+		# print(f"{k} {g}")
+
+	grouped_palette = grouped.keys()
+	grouped_palette = sorted(grouped_palette, key=lambda x: x[0])
+
+	color_to_index_map = {}
+	for k, g in enumerate(grouped_palette):
+		for e in grouped[g]:
+			color_to_index_map[(e[1][0], e[1][1])] = k
+
+	for file in files:
+		file['bitmap'] = [color_to_index_map[file['palette'][index]] for index in file['bitmap']]
+
+	palette_str = ",\n".join([f"{{ {color[0]}, {color[1]} }}" for color in global_palette])
 
 	pointHContent = f"""
 // Generated by utils/generate_c_pic.py
