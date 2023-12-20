@@ -84,7 +84,6 @@ def load_svg(svg_file, config, quantize=True, palette=None):
 
 def generate_bitmap(image, unique_colors):
 	colors = list(image.getdata())
-	print(unique_colors)
 	palette = {color: idx for idx, color in enumerate(unique_colors)}
 	bitmap = [palette[color] for color in colors]
 	return bitmap
@@ -208,7 +207,7 @@ def main():
 
 #include "bitmaps.h"
 
-bmp_color_t bmp_db_palette[];
+bmp_grey_color_t bmp_db_palette[16];
 
 """
 	pointCContent = f"""
@@ -216,7 +215,7 @@ bmp_color_t bmp_db_palette[];
 
 #include "bitmaps_definitions.h"
 
-bmp_color_t bmp_db_palette[] = {{ {palette_str} }};
+bmp_grey_color_t bmp_db_palette[16] = {{ {palette_str} }};
 
 """
 

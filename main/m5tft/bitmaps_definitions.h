@@ -6,61 +6,50 @@
 
 #include "bitmaps.h"
 
-extern bitmap_data bmp_db_0_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_1_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_2_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_3_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_4_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_5_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_6_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_7_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_8_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_9_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_10_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_11_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_12_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_13_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_14_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_15_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_16_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_17_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_18_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_19_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_20_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_21_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_22_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_23_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_24_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_25_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_26_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_27_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_28_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_29_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_30_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_31_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_32_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_33_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_34_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_35_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_36_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_37_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_38_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_39_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_40_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_41_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_42_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_43_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_44_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_45_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_46_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_47_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_48_NORMAL_FONT_SIZE;
-extern bitmap_data bmp_db_49_NORMAL_FONT_SIZE;
+bmp_grey_color_t bmp_db_palette[16];
+
+extern bitmap_data bmp_db_0;
+extern bitmap_data bmp_db_1;
+extern bitmap_data bmp_db_2;
+extern bitmap_data bmp_db_3;
+extern bitmap_data bmp_db_4;
+extern bitmap_data bmp_db_5;
+extern bitmap_data bmp_db_6;
+extern bitmap_data bmp_db_7;
+extern bitmap_data bmp_db_8;
+extern bitmap_data bmp_db_9;
+extern bitmap_data bmp_db_10;
+extern bitmap_data bmp_db_11;
+extern bitmap_data bmp_db_12;
+extern bitmap_data bmp_db_13;
+extern bitmap_data bmp_db_14;
+extern bitmap_data bmp_db_15;
+extern bitmap_data bmp_db_16;
+extern bitmap_data bmp_db_17;
+extern bitmap_data bmp_db_18;
+extern bitmap_data bmp_db_19;
+extern bitmap_data bmp_db_20;
+extern bitmap_data bmp_db_21;
+extern bitmap_data bmp_db_22;
+extern bitmap_data bmp_db_23;
+extern bitmap_data bmp_db_24;
+extern bitmap_data bmp_db_25;
+extern bitmap_data bmp_db_26;
+extern bitmap_data bmp_db_27;
+extern bitmap_data bmp_db_28;
+extern bitmap_data bmp_db_29;
+extern bitmap_data bmp_db_30;
+extern bitmap_data bmp_db_31;
+extern bitmap_data bmp_db_32;
+extern bitmap_data bmp_db_33;
+extern bitmap_data bmp_db_34;
+extern bitmap_data bmp_db_35;
+extern bitmap_data bmp_db_36;
+extern bitmap_data bmp_db_37;
+extern bitmap_data bmp_db_38;
 
 
 extern int n_bitmaps;
 extern bitmap_data *bitmap_db[];
 
 #endif
-
-

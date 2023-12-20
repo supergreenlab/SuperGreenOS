@@ -29,6 +29,19 @@
 
 color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
 
+unsigned char get_pixel_index(const unsigned char* bitmap, int width, int x, int y) {
+  int pixel_index = y * width + x;
+
+  int byte_index = pixel_index / 2;
+  unsigned char byte = bitmap[byte_index];
+
+  if (pixel_index % 2 == 0) {
+    return byte >> 4;
+  } else {
+    return byte & 0x0F;
+  }
+}
+
 void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
   float scale = (opts) ? opts->scale : 1.0f;
   float transparency = (opts) ? opts->transparency : 1.0f;
@@ -80,7 +93,9 @@ void draw_bitmap(const bitmap_data *img, int x, int y, RenderOpt *opts) {
 
       int srcX = (int)srcXAccum;
       int srcY = (int)srcYAccum;
-      bmp_color_t color = img->palette[img->bitmap[srcX + srcY * (int)img->width]];
+      unsigned char index = get_pixel_index(img->bitmap, img->width, srcX, srcY);
+      bmp_grey_color_t pcolor = img->palette[index];
+      bmp_color_t color = {pcolor.c, pcolor.c, pcolor.c, pcolor.a};
 
 			if (color.a == 0) {
 				srcYAccum += srcIncrementY;

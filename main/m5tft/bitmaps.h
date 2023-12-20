@@ -42,7 +42,7 @@ typedef struct {
 } bmp_color_t;
 
 typedef struct {
-  uint8_t r;
+  uint8_t c;
   uint8_t a;
 } bmp_grey_color_t;
 
