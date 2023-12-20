@@ -137,14 +137,14 @@ Node *create_co2_label() {
 
 Node *create_phase() {
   const char *value = "Blooming Week 2 Day 5";
-  Node *node = create_text_node(80, 5, 25, value, (color_t){ 255, 255, 255 }, NORMAL_FONT_SIZE);
-  node->renderOpts.offsetNumbers = true;
+  Node *node = create_text_node(80, 5, 25, value, (color_t){ 89, 200, 31 }, SMALL_FONT_SIZE);
+  //node->renderOpts.offsetNumbers = true;
   for (int i = 0; i < node->num_children; ++i) {
-    node->children[i]->renderOpts.scale = 0.6;
+    //node->children[i]->renderOpts.scale = 0.6;
     node->children[i]->renderOpts.limit = true;
     node->children[i]->renderOpts.frame = (frame_limits){72, 0, 150, 25};
   }
-  NodeSize size = set_text_node(node, value, NORMAL_FONT_SIZE);
+  NodeSize size = set_text_node(node, value, SMALL_FONT_SIZE);
 
   SineAnimationParams *params1 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
   params1->center_x = 120 - size.width/2 - 8;

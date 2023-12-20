@@ -113,7 +113,7 @@ def generate_c_code(mask, bitmap, width, height, filename, var_index, prefix):
 	
 	return f"""
 bitmap_data {prefix}_{var_index} = {{
-    .palette = bmp_db_palette,
+	.palette = bmp_db_palette,
 	.mask = {mask},
 	.bitmap = {{
 		{bitmap_str}
@@ -176,13 +176,16 @@ def parse_yaml_file(yaml_file):
 def traverse_folders(root_folder, traverse_func, traverse_args=None):
 	results = None
 	for subdir, dirs, files in os.walk(root_folder):
-		config = parse_yaml_file(os.path.join(subdir, 'config.yml'))
-		for file in files:
-			if file == None:
-				continue
-			if file.endswith('.svg'):
-				filepath = os.path.join(subdir, file)
-				results = traverse_func(results, config, filepath, traverse_args)
+		try:
+			config = parse_yaml_file(os.path.join(subdir, 'config.yml'))
+			for file in files:
+				if file == None:
+					continue
+				if file.endswith('.svg'):
+					filepath = os.path.join(subdir, file)
+					results = traverse_func(results, config, filepath, traverse_args)
+		except:
+			continue
 	return results
 
 def main():
