@@ -28,6 +28,11 @@ _I2C_MODULE: _MODULE & {
   init: false
 }
 
+_REMOTE_MODULE: _MODULE & {
+  remote: true
+  init: false
+}
+
 _FIELD: {
   type: "string" | "integer"
   remote: bool | *true
