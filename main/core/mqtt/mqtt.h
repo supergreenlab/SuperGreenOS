@@ -19,7 +19,11 @@
 #ifndef MQTT_H_
 #define MQTT_H_
 
+#include "stdbool.h"
+
 #define MAX_QUEUE_ITEM_SIZE 128
+
+extern bool connected;
 
 void init_mqtt();
 void mqtt_intercept_log();

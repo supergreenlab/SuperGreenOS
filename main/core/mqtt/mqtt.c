@@ -32,6 +32,8 @@
 
 
 
+bool connected = false;
+
 
 #include "../cmd/cmd.h"
 
@@ -134,7 +136,6 @@ static esp_mqtt_client_handle_t client;
 static QueueHandle_t cmd;
 static QueueHandle_t log_queue;
 
-static int CMD_MQTT_DISCONNECTED = 0;
 static int CMD_MQTT_CONNECTED = 1;
 static int CMD_MQTT_FORCE_FLUSH = 2;
 
@@ -239,11 +240,12 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event) {
       break;
     case MQTT_EVENT_CONNECTED:
       ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_CONNECTED");
+      connected = true;
       xQueueSend(cmd, &CMD_MQTT_CONNECTED, 0);
       break;
     case MQTT_EVENT_DISCONNECTED:
       ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_DISCONNECTED");
-      xQueueSend(cmd, &CMD_MQTT_DISCONNECTED, 0);
+      connected = false;
       break;
     case MQTT_EVENT_SUBSCRIBED:
       ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
@@ -282,7 +284,6 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event) {
 
 static void mqtt_task(void *param) {
   int c;
-  bool connected = false;
   bool first_connect = true;
 
   uint64_t _chipmacid;
@@ -346,13 +347,10 @@ static void mqtt_task(void *param) {
           subscribe_scr();
         
 
-        connected = true;
         if (first_connect) {
           first_connect = false;
           ESP_LOGI(SGO_LOG_EVENT, "@MQTT First connect");
         }
-      } else if (c == CMD_MQTT_DISCONNECTED) {
-        connected = false;
       }  else if (c == CMD_MQTT_CHANGE_SCR_CHANNEL) {
         get_broker_scrtoken(scr_token, sizeof(scr_token)-1);
         snprintf(scr_channel, sizeof(scr_channel)-1, "%s/%s/scrcmd", client_id, scr_token);

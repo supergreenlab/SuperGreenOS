@@ -26,6 +26,13 @@
 
 #include "./checklist_page.h"
 
+typedef struct {
+  uint8_t type;
+  uint8_t order;
+  uint8_t len;
+  char text;
+} set_checklists_event;
+
 void init_checklist_screen() {
   ESP_LOGI(SGO_LOG_EVENT, "@CHECKLIST_SCREEN Initializing checklist_screen module");
 

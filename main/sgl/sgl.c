@@ -25,8 +25,13 @@
 #include "../core/log/log.h"
 #include "../core/mqtt/mqtt.h"
 
-static void sgl_task(void *param);
+CommandFunction commands[4] = { 0 };
 
+void set_command(CommandType type, CommandFunction fn) {
+  commands[type] = fn;
+}
+
+static void sgl_task(void *param);
 
 void init_sgl() {
   ESP_LOGI(SGO_LOG_EVENT, "@SGL Initializing sgl module");
@@ -51,5 +56,8 @@ static void sgl_task(void *param) {
 }
 
 void mqtt_message(const char *str, int len) {
-  ESP_LOGI(SGO_LOG_EVENT, "@SGL MQTT received %.*s", len, str);
+  //ESP_LOGI(SGO_LOG_EVENT, "@SGL MQTT received %.*s", len, str);
+  if (str[0] >= 0 && str[0] < CMD_COUNT && commands[(int)str[0]] != NULL) {
+    commands[(int)str[0]](str, len);
+  }
 }

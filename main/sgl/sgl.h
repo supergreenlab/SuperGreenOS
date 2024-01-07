@@ -16,6 +16,19 @@
 #ifndef SGL_H_
 #define SGL_H_
 
+typedef void (*CommandFunction)(const char *msg, int len);
+
+typedef enum {
+  SET_SENSORS,
+  SET_CHECKLISTS,
+  SET_METRICS,
+  SET_TIMELAPSE,
+  
+  CMD_COUNT,
+} CommandType;
+
+void set_command(CommandType type, CommandFunction fn);
+
 void init_sgl();
 void mqtt_message(const char *str, int len);
 
