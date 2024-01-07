@@ -13,31 +13,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdlib.h>
-#include "remote_blower.h"
+#ifndef REMOTE_SENSORS_H_
+#define REMOTE_SENSORS_H_
 
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+void init_remote_sensors();
 
-#include "../core/kv/kv.h"
-#include "../core/log/log.h"
-
-static void remote_blower_task(void *param);
-
-void init_remote_blower() {
-  ESP_LOGI(SGO_LOG_EVENT, "@REMOTE_BLOWER Initializing remote_blower module");
-
-  // TODO: write you setup code here
-
-  xTaskCreatePinnedToCore(remote_blower_task, "REMOTE_BLOWER", 4096, NULL, 10, NULL, 1);
-}
-
-static void remote_blower_task(void *param) {
-  while (true) {
-
-    // TODO: write your loop code here
-
-    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
-  }
-}
+#endif
 

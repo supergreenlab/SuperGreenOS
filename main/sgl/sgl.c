@@ -44,7 +44,7 @@ static void sgl_task(void *param) {
     int len = snprintf(msg, sizeof(msg) - 1, "Pouet poeuwt pout wepout wpeout %d", i++);
     ESP_LOGI(SGO_LOG_NOSEND, "Sending %s %d", msg, (int)(ceilf((float)len/16.0f)*16));
 
-    send_screen_message(msg);
+    send_screen_message(msg, len);
 
     vTaskDelay(2 * 1000 / portTICK_PERIOD_MS);
   }

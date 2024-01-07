@@ -23,7 +23,7 @@
 
 void init_mqtt();
 void mqtt_intercept_log();
-void send_screen_message(const char msg[MAX_QUEUE_ITEM_SIZE]);
+void send_screen_message(const char msg[MAX_QUEUE_ITEM_SIZE], int len);
 
 const char* on_set_broker_scrtoken(const char* value);
 const char* on_set_broker_enckey(const char* value);

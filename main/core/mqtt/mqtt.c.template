@@ -141,14 +141,18 @@ static int CMD_MQTT_DISCONNECTED = 0;
 static int CMD_MQTT_CONNECTED = 1;
 static int CMD_MQTT_FORCE_FLUSH = 2;
 
-#define MAX_LOG_QUEUE_ITEMS 50
+#define MAX_LOG_QUEUE_ITEMS 25
 static uint8_t buf_out[MAX_QUEUE_ITEM_SIZE] = {0};
 
 <% if (hasScr) { %>
+
+  typedef struct {
+    int len;
+    uint8_t buf_out[MAX_QUEUE_ITEM_SIZE];
+  } ScreenCmd;
+
   static QueueHandle_t scr_queue;
   #define MAX_SCR_QUEUE_ITEMS 5
-
-  static char scr_channel[MAX_KVALUE_SIZE] = {0};
 
   static int CMD_MQTT_CHANGE_SCR_CHANNEL = 3;
 <% } %>
@@ -306,6 +310,7 @@ static void mqtt_task(void *param) {
   ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log channel: %s", log_channel);
 
   <% if (hasScr) { %>
+    char scr_channel[MAX_KVALUE_SIZE] = {0};
     char scr_token[MAX_KVALUE_SIZE];
     get_broker_scrtoken(scr_token, sizeof(scr_token)-1);
     snprintf(scr_channel, sizeof(scr_channel)-1, "%s/%s/scrcmd", client_id, scr_token);
@@ -329,6 +334,8 @@ static void mqtt_task(void *param) {
 
   client = esp_mqtt_client_init(&mqtt_cfg);
   esp_mqtt_client_start(client);
+
+  ScreenCmd screenCmd = { 0 };
 
   while(true) {
     if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS)) {
@@ -364,15 +371,15 @@ static void mqtt_task(void *param) {
       }
 
       <% if (hasScr) { %>
-        while (xQueueReceive(scr_queue, buf_out, 0)) {
-          int len = strnlen((char *)buf_out, MAX_QUEUE_ITEM_SIZE);
-          len = (int)(ceilf((float)len/16.0f)*16);
+        memset(&screenCmd, 0, sizeof(ScreenCmd));
+        while (xQueueReceive(scr_queue, &screenCmd, 0)) {
+          int len = (int)(ceilf((float)screenCmd.len/16.0f)*16);
 
           memset(msgenc, 0, sizeof(msgenc));
-          aes_encrypt_msg((const unsigned char *)buf_out, len, msgenc, key);
+          aes_encrypt_msg((const unsigned char *)screenCmd.buf_out, len, msgenc, key);
 
           esp_mqtt_client_publish(client, scr_channel, (char *)msgenc, len, 0, 0);
-          memset(buf_out, 0, MAX_QUEUE_ITEM_SIZE);
+          memset(&screenCmd, 0, sizeof(ScreenCmd));
         }
       <% } %>
     }
@@ -416,8 +423,12 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
 }
 
 <% if (hasScr) { %>
-  void send_screen_message(const char msg[MAX_QUEUE_ITEM_SIZE]) {
-    xQueueSend(scr_queue, msg, 0);
+  void send_screen_message(const char msg[MAX_QUEUE_ITEM_SIZE], int len) {
+    ScreenCmd scrCmd = {
+      .len = len,
+    };
+    memcpy(&scrCmd.buf_out, msg, len);
+    xQueueSend(scr_queue, &scrCmd, 0);
     if (cmd/* && uxQueueMessagesWaiting(log_queue) > 5*/) {
       xQueueSend(cmd, &CMD_MQTT_FORCE_FLUSH, 0);
     }
@@ -454,7 +465,7 @@ void init_mqtt() {
   }
 
   <% if (hasScr) { %>
-    scr_queue = xQueueCreate(MAX_SCR_QUEUE_ITEMS, MAX_QUEUE_ITEM_SIZE);
+    scr_queue = xQueueCreate(MAX_SCR_QUEUE_ITEMS, sizeof(ScreenCmd));
     if (scr_queue == NULL) {
       ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt scr queue");
     }

@@ -620,21 +620,6 @@
           
             {
               "core": false,
-              "name": "device_name",
-              "type": "string",
-              "integer": false,
-              "caps_name": "DEVICE_NAME",
-              "module": "state",
-              
-              
-              "write": true,
-              
-              
-              "default": "SuperGreenTips"
-            },
-          
-            {
-              "core": false,
               "name": "scd30_0_temp",
               "type": "integer",
               "integer": true,
@@ -791,6 +776,21 @@
           
             {
               "core": false,
+              "name": "device_name",
+              "type": "string",
+              "integer": false,
+              "caps_name": "DEVICE_NAME",
+              "module": "state",
+              
+              
+              "write": true,
+              
+              
+              "default": "SuperGreenTips"
+            },
+          
+            {
+              "core": false,
               "name": "graphs_screen_order",
               "type": "integer",
               "integer": true,
@@ -802,21 +802,6 @@
               
               
               "default": 2
-            },
-          
-            {
-              "core": false,
-              "name": "timelapses_screen_order",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "TIMELAPSES_SCREEN_ORDER",
-              "module": "timelapses_screen",
-              
-              
-              "write": true,
-              
-              
-              "default": 3
             },
           
             {
@@ -847,6 +832,21 @@
               
               
               "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "timelapses_screen_order",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "TIMELAPSES_SCREEN_ORDER",
+              "module": "timelapses_screen",
+              
+              
+              "write": true,
+              
+              
+              "default": 3
             },
           
             {

@@ -13,10 +13,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef REMOTE_SHT21_H_
-#define REMOTE_SHT21_H_
+#include <stdlib.h>
+#include "remote_sensors.h"
 
-void init_remote_sht21();
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
-#endif
+#include "../core/kv/kv.h"
+#include "../core/log/log.h"
+
+static void remote_sensors_task(void *param);
+
+void init_remote_sensors() {
+  ESP_LOGI(SGO_LOG_EVENT, "@REMOTE_SENSORS Initializing remote_sensors module");
+
+  xTaskCreatePinnedToCore(remote_sensors_task, "REMOTE_SENSORS", 4096, NULL, 10, NULL, 1);
+}
+
+static void remote_sensors_task(void *param) {
+  while (true) {
+    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
+  }
+}
 
