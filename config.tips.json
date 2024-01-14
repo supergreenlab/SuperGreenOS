@@ -2302,37 +2302,7 @@
             "name": "sgl",
             "i2c": false,
             "array_len": 0,
-            "fields": {
-                "token": {
-                    "name": "sgl_token",
-                    "default": "",
-                    "nvs": {
-                        "key": "SGL_TK",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": true,
-                    "remote": false,
-                    "http": {
-                        "read": false,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "token",
-                    "caps_name": "SGL_TOKEN"
-                }
-            },
+            "fields": {},
             "enabled": true,
             "field_prefix": "sgl",
             "tester": false,

@@ -16,18 +16,30 @@
 #ifndef SGL_H_
 #define SGL_H_
 
+#include <stdint.h>
+
+typedef void (*UpdateFunction)();
+
 typedef void (*CommandFunction)(const char *msg, int len);
 
 typedef enum {
+  GET_SENSORS,
+  GET_CHECKLISTS,
+  GET_METRICS,
+  GET_TIMELAPSE,
+  GET_PLANT_DATE,
+
   SET_SENSORS,
   SET_CHECKLISTS,
   SET_METRICS,
   SET_TIMELAPSE,
+  SET_PLANT_DATE,
   
   CMD_COUNT,
 } CommandType;
 
 void set_command(CommandType type, CommandFunction fn);
+void set_command_update(CommandType type, UpdateFunction fn);
 
 void init_sgl();
 void mqtt_message(const char *str, int len);

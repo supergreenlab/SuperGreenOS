@@ -19,9 +19,11 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+#include "../core/mqtt/mqtt.h"
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
+#include "../sgl/sgl.h"
 #include "../m5tft/app.h"
 
 #include "./checklist_page.h"
@@ -33,10 +35,22 @@ typedef struct {
   char text;
 } set_checklists_event;
 
+void updateChecklistFn() {
+  ESP_LOGI(SGO_LOG_NOSEND, "checklists update");
+  uint8_t cmd = GET_CHECKLISTS;
+  send_screen_message((char *)&cmd, 1);
+}
+
+void setChecklistData(const char *msg, int len) {
+  ESP_LOGI(SGO_LOG_NOSEND, "setChecklistData");
+}
+
 void init_checklist_screen() {
   ESP_LOGI(SGO_LOG_EVENT, "@CHECKLIST_SCREEN Initializing checklist_screen module");
 
   add_screen_init(init_checklist_page);
+  set_command_update(GET_CHECKLISTS, updateChecklistFn);
+  set_command(SET_CHECKLISTS, setChecklistData);
 }
 
 uint8_t on_set_checklist_screen_order(uint8_t value) {

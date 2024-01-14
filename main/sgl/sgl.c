@@ -25,10 +25,16 @@
 #include "../core/log/log.h"
 #include "../core/mqtt/mqtt.h"
 
-CommandFunction commands[4] = { 0 };
+CommandFunction commandFns[CMD_COUNT] = { 0 };
 
 void set_command(CommandType type, CommandFunction fn) {
-  commands[type] = fn;
+  commandFns[type] = fn;
+}
+
+UpdateFunction updateFns[CMD_COUNT] = { 0 };
+
+void set_command_update(CommandType type, UpdateFunction fn) {
+  updateFns[type] = fn;
 }
 
 static void sgl_task(void *param);
@@ -40,24 +46,22 @@ void init_sgl() {
 }
 
 static void sgl_task(void *param) {
-  int i = 0;
-  char msg[MAX_QUEUE_ITEM_SIZE] = { 0 };
 
   while (true) {
-		memset(msg, 0, sizeof(msg));
 
-    int len = snprintf(msg, sizeof(msg) - 1, "Pouet poeuwt pout wepout wpeout %d", i++);
-    ESP_LOGI(SGO_LOG_NOSEND, "Sending %s %d", msg, (int)(ceilf((float)len/16.0f)*16));
+    for (int i = 0; i < CMD_COUNT; ++i) {
+      if (updateFns[i] != NULL) {
+        updateFns[i]();
+      }
+    }
 
-    send_screen_message(msg, len);
-
-    vTaskDelay(2 * 1000 / portTICK_PERIOD_MS);
+    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
   }
 }
 
 void mqtt_message(const char *str, int len) {
   //ESP_LOGI(SGO_LOG_EVENT, "@SGL MQTT received %.*s", len, str);
-  if (str[0] >= 0 && str[0] < CMD_COUNT && commands[(int)str[0]] != NULL) {
-    commands[(int)str[0]](str, len);
+  if (str[0] < CMD_COUNT && commandFns[(int)str[0]] != NULL) {
+    commandFns[(int)str[0]](str, len);
   }
 }

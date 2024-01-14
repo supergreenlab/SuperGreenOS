@@ -18,17 +18,24 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+#include "../core/mqtt/mqtt.h"
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
+#include "../sgl/sgl.h"
 #include "../m5tft/app.h"
 
 #include "./timelapses_page.h"
+
+void setTimelapseData(const char *msg, int len) {
+  ESP_LOGI(SGO_LOG_NOSEND, "Set timelapse data");
+}
 
 void init_timelapses_screen() {
   ESP_LOGI(SGO_LOG_EVENT, "@TIMELAPSES_SCREEN Initializing timelapses_screen module");
 
   add_screen_init(init_timelapses_page);
+  set_command(SET_TIMELAPSE, setTimelapseData);
 }
 
 uint8_t on_set_timelapses_screen_order(uint8_t value) {

@@ -19,16 +19,31 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+#include "../core/mqtt/mqtt.h"
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
+#include "../sgl/sgl.h"
 #include "../m5tft/app.h"
+
 #include "./graphs_page.h"
+
+void updateGraphsFn() {
+  ESP_LOGI(SGO_LOG_NOSEND, "graphs update");
+  uint8_t cmd = GET_METRICS;
+  send_screen_message((char *)&cmd, 1);
+}
+
+void setGraphsData(const char *msg, int len) {
+  ESP_LOGI(SGO_LOG_NOSEND, "setGraphsData");
+}
 
 void init_graphs_screen() {
   ESP_LOGI(SGO_LOG_EVENT, "@GRAPHS_SCREEN Initializing graphs_screen module");
 
   add_screen_init(init_graphs_page);
+  set_command_update(GET_METRICS, updateGraphsFn);
+  set_command(SET_METRICS, setGraphsData);
 }
 
 uint8_t on_set_graphs_screen_order(uint8_t value) {

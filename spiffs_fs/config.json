@@ -847,21 +847,6 @@
               
               
               "default": 3
-            },
-          
-            {
-              "core": false,
-              "name": "sgl_token",
-              "type": "string",
-              "integer": false,
-              "caps_name": "SGL_TOKEN",
-              "module": "sgl",
-              
-              
-              "write": true,
-              
-              
-              "default": ""
             }
           
   ]
