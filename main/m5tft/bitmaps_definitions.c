@@ -1019,7 +1019,7 @@ bitmap_data bmp_db_91 = {
 	},
 	.width = 2,
 	.height = 20,
-	.name = "0x3A"
+	.name = ":"
 };
 
 bitmap_data bmp_db_92 = {
@@ -1382,7 +1382,7 @@ bitmap_data bmp_db_124 = {
 	},
 	.width = 2,
 	.height = 20,
-	.name = "0x2E"
+	.name = "."
 };
 
 bitmap_data bmp_db_125 = {

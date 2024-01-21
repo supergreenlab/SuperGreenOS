@@ -36,7 +36,7 @@ void update_checklist_entry(char *value, int index) {
   ESP_LOGI(SGO_LOG_NOSEND, "update_checklist_entry: %s", value);
   while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
 
-  float elapsedTime = M_PI * 0.5;
+  float elapsedTime = 0;
   if (chparams->textNode[index] != NULL) {
     if (chSinParam != NULL) {
       elapsedTime = chSinParam->elapsedTime;

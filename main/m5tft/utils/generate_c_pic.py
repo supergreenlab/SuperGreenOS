@@ -108,6 +108,15 @@ def pack_bytes(byte_list):
 
 	return packed_list
 
+def replace_hex_with_chars(input_string):
+    import re
+    def hex_to_char(match):
+        hex_value = match.group(0)
+        return chr(int(hex_value, 16))
+
+    result_string = re.sub(r'0x([0-9A-Fa-f]{2})', lambda match: hex_to_char(match), input_string)
+    return result_string
+
 def generate_c_code(mask, bitmap, width, height, filename, var_index, prefix):
 	bitmap_str = ", ".join(map(str, pack_bytes(bitmap)))
 	
@@ -120,7 +129,7 @@ bitmap_data {prefix}_{var_index} = {{
 	}},
 	.width = {width},
 	.height = {height},
-	.name = "{filename}"
+	.name = "{replace_hex_with_chars(filename)}"
 }};
 """
 
