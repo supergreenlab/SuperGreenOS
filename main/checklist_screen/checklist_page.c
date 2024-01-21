@@ -30,13 +30,13 @@ typedef struct {
 
 Node *checklist_root;
 checklist_params *chparams;
-SineAnimationParams *chSinParam;
+SineAnimationBetweenParams *chSinParam;
 
 void update_checklist_entry(char *value, int index) {
   ESP_LOGI(SGO_LOG_NOSEND, "update_checklist_entry: %s", value);
   while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
 
-  float elapsedTime = 0;
+  float elapsedTime = M_PI * 0.5;
   if (chparams->textNode[index] != NULL) {
     if (chSinParam != NULL) {
       elapsedTime = chSinParam->elapsedTime;
@@ -55,20 +55,18 @@ void update_checklist_entry(char *value, int index) {
   }
   NodeSize size = set_text_node(node, value, SMALL_FONT_SIZE);
 
-  int magnitude = SCREEN_WIDTH - size.width;
-  if (magnitude < 0) {
-    chSinParam = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
-    chSinParam->center_x = SCREEN_WIDTH / 2;
-    chSinParam->center_y = node->y;
-    ESP_LOGI(SGO_LOG_NOSEND, "%d", magnitude);
-    chSinParam->magnitude_x = magnitude/2;
-    chSinParam->magnitude_y = 0;
-    //chSinParam->elapsedTime = M_PI * 0.5;
+  int diff = SCREEN_WIDTH - size.width;
+  if (diff < 0) {
+    chSinParam = (SineAnimationBetweenParams*)malloc(sizeof(SineAnimationBetweenParams));
+    chSinParam->xfrom = 10;
+    chSinParam->xto = diff - 10;
+		chSinParam->yfrom = node->y;
+		chSinParam->yto = node->y;
     chSinParam->speed=0.01;
     chSinParam->elapsedTime = elapsedTime;
 
     node->funcParams[0] = chSinParam;
-    node->funcs[0] = sine_animation;
+    node->funcs[0] = sine_animation_between;
   }
 
   add_child(checklist_root, node);

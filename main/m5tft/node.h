@@ -96,6 +96,19 @@ TickType_t sine_animation(Node *node, void *p);
 
 typedef struct {
 
+  float xfrom;
+  float yfrom;
+  float xto;
+  float yto;
+  float elapsedTime; // To keep track of time for sin oscillation
+  float speed;
+
+} SineAnimationBetweenParams;
+
+TickType_t sine_animation_between(Node *node, void *p);
+
+typedef struct {
+
   float dest_transparency;
   float speed;
 

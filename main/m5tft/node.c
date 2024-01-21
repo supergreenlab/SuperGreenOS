@@ -100,6 +100,26 @@ TickType_t sine_animation(Node *node, void *p) {
   return SHORT_TICK;
 }
 
+TickType_t sine_animation_between(Node *node, void *p) {
+    SineAnimationBetweenParams *params = (SineAnimationBetweenParams *)p;
+
+    float mid_x = (params->xfrom + params->xto) / 2.0;
+    float mid_y = (params->yfrom + params->yto) / 2.0;
+
+    float amplitude_x = (params->xto - params->xfrom) / 2.0;
+    float amplitude_y = (params->yto - params->yfrom) / 2.0;
+
+    float offset_x = amplitude_x * sinf(params->elapsedTime);
+    float offset_y = amplitude_y * sinf(params->elapsedTime);
+
+    node->x = mid_x + offset_x;
+    node->y = mid_y + offset_y;
+
+    params->elapsedTime += params->speed; // Adjust this value to change the speed of the oscillation
+
+    return SHORT_TICK;
+}
+
 TickType_t simple_transparency_animation(Node *node, void *p) {
   SimpleTransparencyAnimationParams *params = (SimpleTransparencyAnimationParams*)p;
 
