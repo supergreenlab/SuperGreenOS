@@ -31,8 +31,7 @@
 typedef struct {
   uint8_t type;
   uint8_t order;
-  uint8_t len;
-  char text;
+  char text[];
 } set_checklists_event;
 
 void updateChecklistFn() {
@@ -43,6 +42,8 @@ void updateChecklistFn() {
 
 void setChecklistData(const char *msg, int len) {
   ESP_LOGI(SGO_LOG_NOSEND, "setChecklistData");
+  set_checklists_event *evt = (set_checklists_event *)msg;
+  ESP_LOGI(SGO_LOG_NOSEND, "Set checklist event: len: %d order: %d text: %s", len, evt->order, evt->text);
 }
 
 void init_checklist_screen() {
