@@ -121,6 +121,7 @@ void init_screen() {
     ESP_LOGE(SGO_LOG_EVENT, "@LED Unable to create led queue");
   }
 
+  render_mutex = xSemaphoreCreateMutex();
   root = create_node(0, 0, NULL, NULL, NULL);
 }
 

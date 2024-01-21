@@ -22,6 +22,9 @@
 #include "bitmaps.h"
 #include "freertos/queue.h"
 #include <string.h>
+#include "freertos/semphr.h"
+
+extern SemaphoreHandle_t render_mutex;
 
 typedef struct Node Node;
 

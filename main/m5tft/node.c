@@ -28,6 +28,8 @@
 
 // Animation function
 
+SemaphoreHandle_t render_mutex;
+
 TickType_t sort_children_by_scale(Node *node, void *p) {
 	int n = node->num_children;
 
@@ -314,7 +316,10 @@ void remove_child(Node *parent, Node *child) {
 
 TickType_t root_render(Node *node) {
 	//ESP_LOGI(SGO_LOG_NOSEND, "=================\nROOT NODE");
-  return render_node(node, 0, 0, 1, 1);
+  while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
+  TickType_t d = render_node(node, 0, 0, 1, 1);
+  xSemaphoreGive(render_mutex);
+  return d;
 }
 
 TickType_t render_node(Node *node, float parent_x, float parent_y, float transparency, float scale) {
@@ -376,6 +381,7 @@ NodeSize set_text_node(Node *textNode, const char *text, uint8_t mask) {
 
     bitmap_data *charBitmap = get_bitmap_for_name(&c, 1, mask);
     if (charBitmap == NULL) {
+      ESP_LOGI(SGO_LOG_NOSEND, "Missing bitmap for letter '%c'", c);
       continue;
     }
 

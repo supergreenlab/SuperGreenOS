@@ -56,6 +56,7 @@ TickType_t screen_app_loop(Node *node, void *p) {
 }
 
 void buttonEvent(void *handler_arg, esp_event_base_t base, int32_t id, void *event_data) {
+  xSemaphoreTake(render_mutex, 0);
   if ((base == button_a.esp_event_base) && (id == BUTTON_PRESSED_EVENT)) {
     ESP_LOGI(SGO_LOG_NOSEND, "Button a");
     params->current_screen++;
@@ -67,6 +68,7 @@ void buttonEvent(void *handler_arg, esp_event_base_t base, int32_t id, void *eve
     ESP_LOGI(SGO_LOG_NOSEND, "Button b");
     force_frame();
   }
+  xSemaphoreGive(render_mutex);
 }
 
 
@@ -93,6 +95,7 @@ void init_screen_app(Node *root) {
     if (!app_init_functions[i]) {
       break;
     }
+    ESP_LOGI(SGO_LOG_NOSEND, "%d", i);
     Node *screen = create_node(i * DEFAULT_TFT_DISPLAY_HEIGHT, 0, NULL, NULL, NULL);
     add_child(root, screen);
     app_init_functions[i](screen);

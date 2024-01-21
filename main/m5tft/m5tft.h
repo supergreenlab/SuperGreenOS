@@ -19,6 +19,9 @@
 #include "tftspi.h"
 #include "node.h"
 
+#define SCREEN_WIDTH DEFAULT_TFT_DISPLAY_HEIGHT
+#define SCREEN_HEIGHT DEFAULT_TFT_DISPLAY_HEIGHT
+
 extern Node* root;
 
 void init_m5tft();

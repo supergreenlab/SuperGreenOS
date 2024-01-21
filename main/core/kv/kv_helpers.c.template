@@ -38,20 +38,20 @@ StaticSemaphore_t mutex_buffer;
   static bool _<%= f.name %>_undefined = true;
 
   void reset_<%= f.name %>_changed() {
-    xSemaphoreTake(_mutex_<%= f.name %>, 0);
+    while (xSemaphoreTake(_mutex_<%= f.name %>, portMAX_DELAY) != pdPASS);
     _<%= f.name %>_changed = false;
     xSemaphoreGive(_mutex_<%= f.name %>);
   }
 
   bool is_<%= f.name %>_changed() {
-    xSemaphoreTake(_mutex_<%= f.name %>, 0);
+    while (xSemaphoreTake(_mutex_<%= f.name %>, portMAX_DELAY) != pdPASS);
     bool v = _<%= f.name %>_changed;
     xSemaphoreGive(_mutex_<%= f.name %>);
     return v;
   }
 
   bool is_<%= f.name %>_undefined() {
-    xSemaphoreTake(_mutex_<%= f.name %>, 0);
+    while (xSemaphoreTake(_mutex_<%= f.name %>, portMAX_DELAY) != pdPASS);
     bool v = _<%= f.name %>_undefined;
     xSemaphoreGive(_mutex_<%= f.name %>);
     return v;
@@ -67,7 +67,7 @@ StaticSemaphore_t mutex_buffer;
       <% if (f.nvs.enable) { %>
         return get<%= f.signedness %>i<%= f.intlen %>(<%= f.caps_name %>);
       <% } else { %>
-        xSemaphoreTake(_mutex_<%= f.name %>, 0);
+        while (xSemaphoreTake(_mutex_<%= f.name %>, portMAX_DELAY) != pdPASS);
         int v = _<%= f.name %>;
         xSemaphoreGive(_mutex_<%= f.name %>);
         return v;
@@ -79,7 +79,7 @@ StaticSemaphore_t mutex_buffer;
         if (get<%= f.signedness %>i<%= f.intlen %>(<%= f.caps_name %>) == value) return;
         set<%= f.signedness %>i<%= f.intlen %>(<%= f.caps_name %>, value);
       <% } %>
-      xSemaphoreTake(_mutex_<%= f.name %>, 0);
+      while (xSemaphoreTake(_mutex_<%= f.name %>, portMAX_DELAY) != pdPASS);
       <% if (!f.nvs.enable) { %>
         if (_<%= f.name %> == value) {
           xSemaphoreGive(_mutex_<%= f.name %>);
@@ -117,7 +117,7 @@ StaticSemaphore_t mutex_buffer;
       if (!strcmp(old_value, value)) return;
       setstr(<%= f.caps_name %>, value);
       <% } %>
-      xSemaphoreTake(_mutex_<%= f.name %>, 0);
+      while (xSemaphoreTake(_mutex_<%= f.name %>, portMAX_DELAY) != pdPASS);
       <% if (!f.nvs.enable) { %>
       if (!strcmp(_<%= f.name %>, value)) {
         xSemaphoreGive(_mutex_<%= f.name %>);

@@ -18,12 +18,70 @@
 
 #include "checklist_page.h"
 
+#include "../m5tft/m5tft.h"
+#include "../core/log/log.h"
+
+#include <stdbool.h>
+#include <math.h>
+
 typedef struct {
-  Node *textNode;
+  Node *textNode[3];
 } checklist_params;
 
+Node *checklist_root;
+checklist_params *chparams;
+SineAnimationParams *chSinParam;
+
+void update_checklist_entry(char *value, int index) {
+  ESP_LOGI(SGO_LOG_NOSEND, "update_checklist_entry: %s", value);
+  while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
+
+  float elapsedTime = 0;
+  if (chparams->textNode[index] != NULL) {
+    if (chSinParam != NULL) {
+      elapsedTime = chSinParam->elapsedTime;
+    }
+    delete_node(chparams->textNode[index]);
+    chSinParam = NULL;
+  }
+
+  Node *node = create_text_node(5, index * 20 + 10, strlen(value), value, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
+  //node->renderOpts.offsetNumbers = true;
+  for (int i = 0; i < node->num_children; ++i) {
+    //node->children[i]->renderOpts.scale = 0.6;
+    node->children[i]->renderOpts.limit = true;
+    node->children[i]->renderOpts.frame = (frame_limits){SCREEN_WIDTH + 5, 5, SCREEN_WIDTH*2-10, SCREEN_HEIGHT-5};
+    node->children[i]->renderOpts.frameRef = (node_position *)checklist_root->parent;
+  }
+  NodeSize size = set_text_node(node, value, SMALL_FONT_SIZE);
+
+  int magnitude = SCREEN_WIDTH - size.width;
+  if (magnitude < 0) {
+    chSinParam = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
+    chSinParam->center_x = SCREEN_WIDTH / 2;
+    chSinParam->center_y = node->y;
+    ESP_LOGI(SGO_LOG_NOSEND, "%d", magnitude);
+    chSinParam->magnitude_x = magnitude/2;
+    chSinParam->magnitude_y = 0;
+    //chSinParam->elapsedTime = M_PI * 0.5;
+    chSinParam->speed=0.01;
+    chSinParam->elapsedTime = elapsedTime;
+
+    node->funcParams[0] = chSinParam;
+    node->funcs[0] = sine_animation;
+  }
+
+  add_child(checklist_root, node);
+
+  chparams->textNode[index] = node;
+
+  xSemaphoreGive(render_mutex);
+}
+
 void init_checklist_page(Node *root) {
-  checklist_params *params = (checklist_params *)malloc(sizeof(checklist_params));
-  params->textNode = create_text_node(10, 10, 10, "Checklist", (color_t){255, 255, 255}, NORMAL_FONT_SIZE);
-  add_child(root, params->textNode);
+  checklist_root = root;
+  chSinParam = NULL;
+  chparams = (checklist_params *)malloc(sizeof(checklist_params));
+  memset(chparams, 0, sizeof(checklist_params));
+  ESP_LOGI(SGO_LOG_NOSEND, "node[0]:  %d", (int)chparams);
 }

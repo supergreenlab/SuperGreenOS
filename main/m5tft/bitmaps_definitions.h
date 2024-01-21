@@ -129,6 +129,14 @@ extern bitmap_data bmp_db_117;
 extern bitmap_data bmp_db_118;
 extern bitmap_data bmp_db_119;
 extern bitmap_data bmp_db_120;
+extern bitmap_data bmp_db_121;
+extern bitmap_data bmp_db_122;
+extern bitmap_data bmp_db_123;
+extern bitmap_data bmp_db_124;
+extern bitmap_data bmp_db_125;
+extern bitmap_data bmp_db_126;
+extern bitmap_data bmp_db_127;
+extern bitmap_data bmp_db_128;
 
 
 extern int n_bitmaps;
