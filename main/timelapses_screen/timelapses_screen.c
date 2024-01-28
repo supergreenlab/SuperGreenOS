@@ -27,8 +27,17 @@
 
 #include "./timelapses_page.h"
 
+typedef struct {
+  uint8_t type;
+  uint32_t offset;
+  uint16_t len;
+  color_t colors[];
+} set_timelapses_event;
+
 void setTimelapseData(const char *msg, int len) {
   ESP_LOGI(SGO_LOG_NOSEND, "Set timelapse data");
+  set_timelapses_event *evt = (set_timelapses_event *)msg;
+  update_timelapse_frame(evt->offset, evt->len, evt->colors);
 }
 
 void init_timelapses_screen() {

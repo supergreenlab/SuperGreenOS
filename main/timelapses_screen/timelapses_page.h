@@ -20,7 +20,9 @@
 #define TIMELAPSES_PAGE_H
 
 #include "../m5tft/node.h"
+#include "stdint.h"
 
+void update_timelapse_frame(uint32_t offset, uint16_t len, color_t colors[]);
 void init_timelapses_page(Node *root);
 
 #endif

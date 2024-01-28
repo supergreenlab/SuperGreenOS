@@ -37,9 +37,6 @@ void update_graphs(metric_types type, uint8_t values[N_METRICS_VALUES]) {
 
   switch(type) {
     case TEMP_METRIC:
-      for (int i = 0; i < N_METRICS_VALUES; ++i) {
-        ESP_LOGI(SGO_LOG_NOSEND, "temp: %d", values[i]);
-      }
       memcpy(temperature, values, sizeof(uint8_t) * N_METRICS_VALUES);
       break;
     case HUMI_METRIC:

@@ -127,6 +127,7 @@ void init_screen() {
 
 static void m5tft_task(void *param) {
   vTaskDelay(1000 / portTICK_PERIOD_MS); // Looks like we have a race confition with wifi
+  frame = malloc(sizeof(color_t) * (DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH));
   init_screen();
   init_splash(root);
 

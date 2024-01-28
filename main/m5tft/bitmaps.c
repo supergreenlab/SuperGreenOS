@@ -27,7 +27,7 @@
 
 #include "../core/log/log.h"
 
-color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
+color_t *frame;
 
 unsigned char get_pixel_index(const unsigned char* bitmap, int width, int x, int y) {
   int pixel_index = y * width + x;

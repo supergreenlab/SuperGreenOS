@@ -18,12 +18,27 @@
 
 #include "timelapses_page.h"
 
+#include "freertos/task.h"
+#include "../m5tft/m5tft.h"
+
 typedef struct {
   Node *textNode;
 } timelapses_params;
 
+color_t *timelapse_frame;
+
+void draw_timelapse_frame(Node *node, int x, int y) {
+}
+
+void update_timelapse_frame(uint32_t offset, uint16_t len, color_t *colors) {
+  while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
+  memcpy(timelapse_frame + offset, colors, len);
+  xSemaphoreGive(render_mutex);
+}
+
 void init_timelapses_page(Node *root) {
-  timelapses_params *params = (timelapses_params *)malloc(sizeof(timelapses_params));
-  params->textNode = create_text_node(10, 10, 9, "Timelapse", (color_t){255, 255, 255}, NORMAL_FONT_SIZE);
-  add_child(root, params->textNode);
+  timelapse_frame = malloc(sizeof(color_t) * (SCREEN_WIDTH * SCREEN_HEIGHT));
+	Node *graphsNode = create_node(0, 0, NULL, NULL, NULL);
+	graphsNode->drawFunc = draw_timelapse_frame;
+	add_child(root, graphsNode);
 }
