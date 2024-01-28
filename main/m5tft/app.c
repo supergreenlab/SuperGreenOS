@@ -56,7 +56,7 @@ TickType_t screen_app_loop(Node *node, void *p) {
 }
 
 void buttonEvent(void *handler_arg, esp_event_base_t base, int32_t id, void *event_data) {
-  xSemaphoreTake(render_mutex, 0);
+  while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
   if ((base == button_a.esp_event_base) && (id == BUTTON_PRESSED_EVENT)) {
     ESP_LOGI(SGO_LOG_NOSEND, "Button a");
     params->current_screen++;

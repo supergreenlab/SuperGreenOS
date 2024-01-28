@@ -21,6 +21,7 @@
 
 #include "../m5tft/node.h"
 
+void update_plant_date(char *value);
 void init_metrics_page(Node *root);
 
 #endif

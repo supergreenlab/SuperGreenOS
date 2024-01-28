@@ -28,6 +28,11 @@
 
 #include "./metrics_page.h"
 
+typedef struct {
+  uint8_t type;
+  char text[];
+} set_plant_date_event;
+
 void updatePlantDateFn() {
   ESP_LOGI(SGO_LOG_NOSEND, "quickview update");
   uint8_t cmd = GET_PLANT_DATE;
@@ -36,6 +41,9 @@ void updatePlantDateFn() {
 
 void setPlantDateData(const char *msg, int len) {
   ESP_LOGI(SGO_LOG_NOSEND, "setPlantDateData");
+  set_plant_date_event *evt = (set_plant_date_event *)msg;
+  update_plant_date(evt->text);
+  ESP_LOGI(SGO_LOG_NOSEND, "Set plant date event: text: %s", evt->text);
 }
 
 void init_quickview_screen() {

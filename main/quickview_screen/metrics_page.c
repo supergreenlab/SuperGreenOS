@@ -45,57 +45,83 @@ typedef struct {
 
 } metrics_screen_params;
 
-TickType_t metrics_screen_loop(Node *node, void *p) {
-  metrics_screen_params *params = (metrics_screen_params *)p;
+Node *plant_date_root;
+metrics_screen_params *pdparams;
+SineAnimationParams *pdSinParam;
 
-  if (params->loading && params->last_temp != 0 && params->last_humi != 0 && params->last_co2 != 0) {
-    delete_node(params->loading);
-    params->loading = NULL;
+Node *create_phase(const char *value, float elapsedTime);
+
+void update_plant_date(char *value) {
+  ESP_LOGI(SGO_LOG_NOSEND, "update_plant_date: %s", value);
+  while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
+
+  float elapsedTime = 0;
+  if (pdparams->phase != NULL) {
+    if (pdSinParam != NULL) {
+      elapsedTime = pdSinParam->elapsedTime;
+    }
+
+    delete_node(pdparams->phase);
+  }
+  pdparams->phase = create_phase(value, elapsedTime);
+  for (int i = 0; i < pdparams->phase->num_children; ++i) {
+    pdparams->phase->children[i]->renderOpts.frameRef = (node_position *)plant_date_root->parent;
+	}
+  add_child(pdparams->background_node, pdparams->phase);
+  xSemaphoreGive(render_mutex);
+}
+
+TickType_t metrics_screen_loop(Node *node, void *p) {
+  metrics_screen_params *pdparams = (metrics_screen_params *)p;
+
+  if (pdparams->loading && pdparams->last_temp != 0 && pdparams->last_humi != 0 && pdparams->last_co2 != 0) {
+    delete_node(pdparams->loading);
+    pdparams->loading = NULL;
   }
 
-  if (!params->loading && params->background_node->renderOpts.transparency != 1) {
-    params->background_node->renderOpts.transparency += (1 - params->background_node->renderOpts.transparency) / 5;
-    if (params->background_node->renderOpts.transparency > 0.9) {
-      params->background_node->renderOpts.transparency = 1;
+  if (!pdparams->loading && pdparams->background_node->renderOpts.transparency != 1) {
+    pdparams->background_node->renderOpts.transparency += (1 - pdparams->background_node->renderOpts.transparency) / 5;
+    if (pdparams->background_node->renderOpts.transparency > 0.9) {
+      pdparams->background_node->renderOpts.transparency = 1;
     }
   }
 
   TickType_t returnTick = 2000 / portTICK_PERIOD_MS;
-  if (params->last_temp != params->current_temp) {
-    params->current_temp += params->last_temp > params->current_temp ? 1 : -1;
+  if (pdparams->last_temp != pdparams->current_temp) {
+    pdparams->current_temp += pdparams->last_temp > pdparams->current_temp ? 1 : -1;
     char value[6] = {0};
-    sprintf(value, "%d°", params->current_temp);
-    set_text_node(params->temperature, value, NORMAL_FONT_SIZE);
+    sprintf(value, "%d°", pdparams->current_temp);
+    set_text_node(pdparams->temperature, value, NORMAL_FONT_SIZE);
     returnTick = SHORT_TICK;
   }
-  if (params->last_humi != params->current_humi) {
-    params->current_humi += params->last_humi > params->current_humi ? 1 : -1;
+  if (pdparams->last_humi != pdparams->current_humi) {
+    pdparams->current_humi += pdparams->last_humi > pdparams->current_humi ? 1 : -1;
     char value[6] = {0};
-    sprintf(value, "%d%%", params->current_humi);
-    set_text_node(params->humidity, value, NORMAL_FONT_SIZE);
+    sprintf(value, "%d%%", pdparams->current_humi);
+    set_text_node(pdparams->humidity, value, NORMAL_FONT_SIZE);
     returnTick = SHORT_TICK;
   }
-  if (params->last_co2 != params->current_co2) {
-    bool dir = params->last_co2 > params->current_co2;
-    params->current_co2 += params->last_co2 > params->current_co2 ? 20 : -20;
-    if (dir != (params->last_co2 > params->current_co2)) {
-      params->current_co2 = params->last_co2;
+  if (pdparams->last_co2 != pdparams->current_co2) {
+    bool dir = pdparams->last_co2 > pdparams->current_co2;
+    pdparams->current_co2 += pdparams->last_co2 > pdparams->current_co2 ? 20 : -20;
+    if (dir != (pdparams->last_co2 > pdparams->current_co2)) {
+      pdparams->current_co2 = pdparams->last_co2;
     }
     char value[6] = {0};
-    sprintf(value, "%d", params->current_co2);
-    NodeSize size = set_text_node(params->co2, value, NORMAL_FONT_SIZE);
-    params->co2->x = 160 - size.width - 10;
+    sprintf(value, "%d", pdparams->current_co2);
+    NodeSize size = set_text_node(pdparams->co2, value, NORMAL_FONT_SIZE);
+    pdparams->co2->x = 160 - size.width - 10;
     returnTick = SHORT_TICK;
   }
 
   TickType_t tick = xTaskGetTickCount();
-  if ((tick - params->last_fetch) * portTICK_PERIOD_MS > 2000) {
+  if ((tick - pdparams->last_fetch) * portTICK_PERIOD_MS > 2000) {
 
-    params->last_temp = get_box_0_temp();
-    params->last_humi = get_box_0_humi();
-    params->last_co2 = get_box_0_co2();
+    pdparams->last_temp = get_box_0_temp();
+    pdparams->last_humi = get_box_0_humi();
+    pdparams->last_co2 = get_box_0_co2();
 
-    params->last_fetch = tick;
+    pdparams->last_fetch = tick;
   }
 
   return returnTick;
@@ -135,8 +161,7 @@ Node *create_co2_label() {
   return node;
 }
 
-Node *create_phase() {
-  const char *value = "Blooming Week 2 Day 5";
+Node *create_phase(const char *value, float elapsedTime) {
   Node *node = create_text_node(80, 5, 25, value, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
   //node->renderOpts.offsetNumbers = true;
   for (int i = 0; i < node->num_children; ++i) {
@@ -146,15 +171,16 @@ Node *create_phase() {
   }
   NodeSize size = set_text_node(node, value, SMALL_FONT_SIZE);
 
-  SineAnimationParams *params1 = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
-  params1->center_x = 120 - size.width/2 - 8;
-  params1->center_y = node->y;
-  params1->magnitude_x = (size.width - 80)/2 + 5;
-  params1->magnitude_y = 0;
-  params1->elapsedTime = M_PI * 2.5;
-  params1->speed=0.01;
+  pdSinParam = (SineAnimationParams*)malloc(sizeof(SineAnimationParams));
+  pdSinParam->center_x = 120 - size.width/2 - 8;
+  pdSinParam->center_y = node->y;
+  pdSinParam->magnitude_x = (size.width - 80)/2 + 5;
+  pdSinParam->magnitude_y = 0;
+  pdSinParam->elapsedTime = M_PI * 2.5;
+  pdSinParam->speed=0.01;
+  pdSinParam->elapsedTime = elapsedTime;
 
-  node->funcParams[0] = params1;
+  node->funcParams[0] = pdSinParam;
   node->funcs[0] = sine_animation;
 
   return node;
@@ -186,34 +212,29 @@ Node *create_loading() {
 }
 
 void init_metrics_page(Node *root) {
-  metrics_screen_params *params = (metrics_screen_params *)malloc(sizeof(metrics_screen_params));
-  memset(params, 0, sizeof(metrics_screen_params));
+  plant_date_root = root;
+  pdparams = (metrics_screen_params *)malloc(sizeof(metrics_screen_params));
+  memset(pdparams, 0, sizeof(metrics_screen_params));
 
-  params->background_node = create_node(0, 0, NULL, NULL, NULL);
-  add_child(root, params->background_node);
-  params->background_node->renderOpts.transparency = 0.2;
+  pdparams->background_node = create_node(0, 0, NULL, NULL, NULL);
+  add_child(root, pdparams->background_node);
+  pdparams->background_node->renderOpts.transparency = 0.2;
 
-  params->temperature = create_temperature();
-  add_child(params->background_node, params->temperature);
+  pdparams->temperature = create_temperature();
+  add_child(pdparams->background_node, pdparams->temperature);
 
-  params->humidity = create_humidity();
-  add_child(params->background_node, params->humidity);
+  pdparams->humidity = create_humidity();
+  add_child(pdparams->background_node, pdparams->humidity);
 
-  params->co2 = create_co2();
-  add_child(params->background_node, params->co2);
+  pdparams->co2 = create_co2();
+  add_child(pdparams->background_node, pdparams->co2);
 
   Node *label = create_co2_label();
-  add_child(params->background_node, label);
+  add_child(pdparams->background_node, label);
 
-  params->phase = create_phase();
-  for (int i = 0; i < params->phase->num_children; ++i) {
-    params->phase->children[i]->renderOpts.frameRef = (node_position *)root->parent;
-	}
-  add_child(params->background_node, params->phase);
+  pdparams->loading = create_loading();
+  add_child(root, pdparams->loading);
 
-  params->loading = create_loading();
-  add_child(root, params->loading);
-
-  root->funcParams[0] = params;
+  root->funcParams[0] = pdparams;
   root->funcs[0] = metrics_screen_loop;
 }

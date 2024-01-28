@@ -103,7 +103,7 @@ StaticSemaphore_t mutex_buffer;
       <% if (f.nvs.enable) { %>
         getstr(<%= f.caps_name %>, dest, len);
       <% } else { %>
-        xSemaphoreTake(_mutex_<%= f.name%>, 0);
+        while (xSemaphoreTake(_mutex_<%= f.name %>, portMAX_DELAY) != pdPASS);
         strncpy(dest, _<%= f.name %>, len);
         xSemaphoreGive(_mutex_<%= f.name %>);
       <% } %>

@@ -42,7 +42,6 @@ void update_checklist_entry(char *value, int index) {
       elapsedTime = chSinParam->elapsedTime;
     }
     delete_node(chparams->textNode[index]);
-    chSinParam = NULL;
   }
 
   Node *node = create_text_node(5, index * 20 + 10, strlen(value), value, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
