@@ -31,7 +31,7 @@ typedef struct {
   uint8_t type;
   uint32_t offset;
   uint16_t len;
-  color_t colors[];
+  uint8_t colors[];
 } set_timelapses_event;
 
 void setTimelapseData(const char *msg, int len) {
@@ -40,11 +40,24 @@ void setTimelapseData(const char *msg, int len) {
   update_timelapse_frame(evt->offset, evt->len, evt->colors);
 }
 
+typedef struct {
+  uint8_t type;
+  uint16_t len;
+  color_t colors[];
+} set_timelapses_palette_event;
+
+void setTimelapsePalette(const char *msg, int len) {
+  ESP_LOGI(SGO_LOG_NOSEND, "Set timelapse palette");
+  set_timelapses_palette_event *evt = (set_timelapses_palette_event *)msg;
+  update_timelapse_palette(evt->len, evt->colors);
+}
+
 void init_timelapses_screen() {
   ESP_LOGI(SGO_LOG_EVENT, "@TIMELAPSES_SCREEN Initializing timelapses_screen module");
 
   add_screen_init(init_timelapses_page);
   set_command(SET_TIMELAPSE, setTimelapseData);
+  set_command(SET_TIMELAPSE_PALETTE, setTimelapsePalette);
 }
 
 uint8_t on_set_timelapses_screen_order(uint8_t value) {

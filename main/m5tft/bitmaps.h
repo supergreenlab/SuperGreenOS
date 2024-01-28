@@ -26,7 +26,7 @@
 #define CAPS_FONT 0x01 << 2
 #define SPRITE 0xff
 
-extern color_t *frame;
+extern color_t frame[DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH];
 
 typedef struct {
   // TODO: ugly hack, to fix

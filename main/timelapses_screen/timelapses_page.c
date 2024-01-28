@@ -20,24 +20,45 @@
 
 #include "freertos/task.h"
 #include "../m5tft/m5tft.h"
+#include "../core/log/log.h"
 
 typedef struct {
   Node *textNode;
 } timelapses_params;
 
-color_t *timelapse_frame;
+color_t palette[100];
+uint8_t *timelapse_frame;
 
 void draw_timelapse_frame(Node *node, int x, int y) {
+  for (int y2 = 0; y2 < SCREEN_HEIGHT; ++y2) {
+    for (int x2 = 0; x2 < SCREEN_WIDTH; ++x2) {
+      if (x2 + x < 0 || x2 + x > SCREEN_WIDTH) {
+        continue;
+      }
+      if (y2 + y < 0 || y2 + y > SCREEN_HEIGHT) {
+        continue;
+      }
+      frame[(x2 + x) + (y2 + y) * SCREEN_WIDTH] = palette[timelapse_frame[x2 + y2 * SCREEN_WIDTH]];
+    }
+  }
 }
 
-void update_timelapse_frame(uint32_t offset, uint16_t len, color_t *colors) {
+void update_timelapse_palette(uint16_t len, color_t *colors) {
+  while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
+  memset(palette, 0, sizeof(palette));
+  memcpy(palette, colors, sizeof(color_t) * len);
+  xSemaphoreGive(render_mutex);
+}
+
+void update_timelapse_frame(uint32_t offset, uint16_t len, uint8_t *colors) {
   while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
   memcpy(timelapse_frame + offset, colors, len);
   xSemaphoreGive(render_mutex);
 }
 
 void init_timelapses_page(Node *root) {
-  timelapse_frame = malloc(sizeof(color_t) * (SCREEN_WIDTH * SCREEN_HEIGHT));
+  timelapse_frame = malloc(sizeof(uint8_t) * (SCREEN_WIDTH * SCREEN_HEIGHT));
+  memset(timelapse_frame, 0, sizeof(uint8_t) * (SCREEN_WIDTH * SCREEN_HEIGHT));
 	Node *graphsNode = create_node(0, 0, NULL, NULL, NULL);
 	graphsNode->drawFunc = draw_timelapse_frame;
 	add_child(root, graphsNode);

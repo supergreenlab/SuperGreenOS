@@ -95,7 +95,6 @@ void init_screen_app(Node *root) {
     if (!app_init_functions[i]) {
       break;
     }
-    ESP_LOGI(SGO_LOG_NOSEND, "%d", i);
     Node *screen = create_node(i * DEFAULT_TFT_DISPLAY_HEIGHT, 0, NULL, NULL, NULL);
     add_child(root, screen);
     app_init_functions[i](screen);
