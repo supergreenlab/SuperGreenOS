@@ -47,15 +47,22 @@ typedef struct {
 } set_timelapses_palette_event;
 
 void setTimelapsePalette(const char *msg, int len) {
-  ESP_LOGI(SGO_LOG_NOSEND, "Set timelapse palette");
+  ESP_LOGI(SGO_LOG_NOSEND, "Set timelapse palette %d", len);
   set_timelapses_palette_event *evt = (set_timelapses_palette_event *)msg;
   update_timelapse_palette(evt->len, evt->colors);
+}
+
+void updateTimelapseFn() {
+  ESP_LOGI(SGO_LOG_NOSEND, "quickview update");
+  uint8_t cmd = GET_TIMELAPSE;
+  send_screen_message((char *)&cmd, 1);
 }
 
 void init_timelapses_screen() {
   ESP_LOGI(SGO_LOG_EVENT, "@TIMELAPSES_SCREEN Initializing timelapses_screen module");
 
   add_screen_init(init_timelapses_page);
+  set_command_update(GET_TIMELAPSE, updateTimelapseFn);
   set_command(SET_TIMELAPSE, setTimelapseData);
   set_command(SET_TIMELAPSE_PALETTE, setTimelapsePalette);
 }

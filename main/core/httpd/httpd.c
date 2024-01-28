@@ -368,16 +368,18 @@ static void start_webserver_task(void *args) {
     httpd_register_uri_handler(server, &file_download);
 		httpd_register_uri_handler(server, &file_upload);
     httpd_register_uri_handler(server, &uri_option);
+  } else {
+    ESP_LOGE(SGO_LOG_NOSEND, "Failed to start httpd!");
   }
 
   vTaskDelete(NULL);
 }
 
 void init_httpd() {
-  ESP_LOGI(SGO_LOG_EVENT, "@HTTPS Intializing HTTPD task");
+  ESP_LOGI(SGO_LOG_NOSEND, "@HTTPD Intializing HTTPD task");
 
   BaseType_t ret = xTaskCreatePinnedToCore(start_webserver_task, "START_WEBSERVER", 2048, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@HTTPS Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@HTTPD Failed to create task");
   }
 }
