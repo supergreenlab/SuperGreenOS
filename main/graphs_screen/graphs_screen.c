@@ -15,6 +15,7 @@
 
 #include <stdlib.h>
 #include "graphs_screen.h"
+#include "graphs_page.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -28,6 +29,12 @@
 
 #include "./graphs_page.h"
 
+typedef struct {
+  uint8_t type;
+  uint8_t metricType;
+  uint8_t values[N_METRICS_VALUES];
+} set_graphs_event;
+
 void updateGraphsFn() {
   ESP_LOGI(SGO_LOG_NOSEND, "graphs update");
   uint8_t cmd = GET_METRICS;
@@ -36,6 +43,8 @@ void updateGraphsFn() {
 
 void setGraphsData(const char *msg, int len) {
   ESP_LOGI(SGO_LOG_NOSEND, "setGraphsData");
+  set_graphs_event *evt = (set_graphs_event *)msg;
+  update_graphs(evt->metricType, evt->values);
 }
 
 void init_graphs_screen() {

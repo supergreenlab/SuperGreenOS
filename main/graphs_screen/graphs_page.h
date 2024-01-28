@@ -19,8 +19,21 @@
 #ifndef GRAPHS_PAGE_H
 #define GRAPHS_PAGE_H
 
+#include "stdint.h"
 #include "../m5tft/node.h"
 
+#define N_METRICS_VALUES 24
+
+typedef enum {
+  TEMP_METRIC,
+  HUMI_METRIC,
+  VPD_METRIC,
+  CO2_METRIC,
+  WEIGHT_METRIC,
+  LIGHT_METRIC,
+} metric_types;
+
+void update_graphs(metric_types type, uint8_t values[N_METRICS_VALUES]);
 void init_graphs_page(Node *root);
 
 #endif

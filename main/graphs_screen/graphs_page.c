@@ -19,19 +19,47 @@
 #include "graphs_page.h"
 
 #include "math.h"
-#include "stdint.h"
 #include "stdlib.h"
+#include "freertos/task.h"
+#include "../core/log/log.h"
 
 #include "../m5tft/path.h"
-
-#define N_METRICS_VALUES 24
 
 uint8_t humidity[N_METRICS_VALUES] = {0};
 uint8_t temperature[N_METRICS_VALUES] = {0};
 uint8_t co2[N_METRICS_VALUES] = {0};
+uint8_t weight[N_METRICS_VALUES] = {0};
 uint8_t vpd[N_METRICS_VALUES] = {0};
-
 uint8_t light[N_METRICS_VALUES] = {0};
+
+void update_graphs(metric_types type, uint8_t values[N_METRICS_VALUES]) {
+  while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
+
+  switch(type) {
+    case TEMP_METRIC:
+      for (int i = 0; i < N_METRICS_VALUES; ++i) {
+        ESP_LOGI(SGO_LOG_NOSEND, "temp: %d", values[i]);
+      }
+      memcpy(temperature, values, sizeof(uint8_t) * N_METRICS_VALUES);
+      break;
+    case HUMI_METRIC:
+      memcpy(humidity, values, sizeof(uint8_t) * N_METRICS_VALUES);
+      break;
+    case VPD_METRIC:
+      memcpy(vpd, values, sizeof(uint8_t) * N_METRICS_VALUES);
+      break;
+    case CO2_METRIC:
+      memcpy(co2, values, sizeof(uint8_t) * N_METRICS_VALUES);
+      break;
+    case WEIGHT_METRIC:
+      memcpy(weight, values, sizeof(uint8_t) * N_METRICS_VALUES);
+      break;
+    case LIGHT_METRIC:
+      memcpy(light, values, sizeof(uint8_t) * N_METRICS_VALUES);
+      break;
+  }
+  xSemaphoreGive(render_mutex);
+}
 
 typedef struct {
 	Node *graphsNode;
