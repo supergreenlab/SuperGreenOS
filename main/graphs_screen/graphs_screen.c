@@ -33,7 +33,7 @@ typedef struct {
   uint8_t type;
   uint8_t metricType;
   uint8_t values[N_METRICS_VALUES];
-} set_graphs_event;
+} __attribute__ ((packed)) set_graphs_event;
 
 void updateGraphsFn() {
   ESP_LOGI(SGO_LOG_NOSEND, "graphs update");

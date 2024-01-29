@@ -32,7 +32,7 @@ typedef struct {
   uint8_t type;
   uint8_t order;
   char text[];
-} set_checklists_event;
+} __attribute__ ((packed)) set_checklists_event;
 
 void updateChecklistFn() {
   ESP_LOGI(SGO_LOG_NOSEND, "checklists update");

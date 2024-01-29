@@ -22,6 +22,8 @@
 #include "../m5tft/m5tft.h"
 #include "../core/log/log.h"
 
+#include <stdio.h>
+
 typedef struct {
   Node *textNode;
 } timelapses_params;

@@ -31,7 +31,7 @@
 typedef struct {
   uint8_t type;
   char text[];
-} set_plant_date_event;
+} __attribute__ ((packed)) set_plant_date_event;
 
 void updatePlantDateFn() {
   ESP_LOGI(SGO_LOG_NOSEND, "quickview update");
