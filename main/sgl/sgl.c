@@ -49,9 +49,11 @@ static void sgl_task(void *param) {
 
   while (true) {
 
-    for (int i = 0; i < CMD_COUNT; ++i) {
-      if (updateFns[i] != NULL) {
-        updateFns[i]();
+    if (connected) {
+      for (int i = 0; i < CMD_COUNT; ++i) {
+        if (updateFns[i] != NULL) {
+          updateFns[i]();
+        }
       }
     }
 

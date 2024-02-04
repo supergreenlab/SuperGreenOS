@@ -18,6 +18,7 @@
 
 #include "timelapses_page.h"
 
+#include <sys/unistd.h>
 #include "freertos/task.h"
 #include "../m5tft/m5tft.h"
 #include "../core/log/log.h"
@@ -29,19 +30,20 @@ typedef struct {
 } timelapses_params;
 
 #define BATCH_READ_SIZE 100
-#define PALETTE_SIZE 100
+#define PALETTE_SIZE 40
 color_t palette[PALETTE_SIZE] = { 0 };
 
 void draw_timelapse_frame(Node *node, int x, int y) {
-	FILE *file = fopen("frame.dat", "rb");
+	FILE *file = fopen("/spiffs/frame.dat", "rb");
 	if (file == NULL) {
-		//perror("Failed to open file");
+		// perror("Failed to open file");
 		return;
 	}
 
 	uint8_t buffer[BATCH_READ_SIZE];
 	int bytesRead;
-	int totalPixels = SCREEN_WIDTH * SCREEN_HEIGHT;
+	// Adjust totalPixels to match the source image size, not the frame buffer size
+	int totalPixels = 80 * 40; // Source image size
 	int pixelIndex = 0;
 
 	while ((bytesRead = fread(buffer, 1, BATCH_READ_SIZE, file)) > 0) {
@@ -49,15 +51,25 @@ void draw_timelapse_frame(Node *node, int x, int y) {
 			break;
 		}
 		for (int i = 0; i < bytesRead; i++) {
-			int x2 = (pixelIndex % SCREEN_WIDTH);
-			int y2 = (pixelIndex / SCREEN_WIDTH);
+			// Calculate original source image coordinates
+			int x2 = (pixelIndex % 80); // Source image width
+			int y2 = (pixelIndex / 80); // Source image height
 
 			if (pixelIndex >= totalPixels) {
 				break;
 			}
 
-			if (x2 + x >= 0 && x2 + x < SCREEN_WIDTH && y2 + y >= 0 && y2 + y < SCREEN_HEIGHT) {
-				frame[(x2 + x) + (y2 + y) * SCREEN_WIDTH] = palette[buffer[i]];
+			// Scale coordinates for the frame buffer and offset by x, y
+			int newX = (x2 * 2) + x;
+			int newY = (y2 * 2) + y;
+
+			// Write the pixel to a 2x2 area in the frame buffer
+			for (int dy = 0; dy < 2; dy++) {
+				for (int dx = 0; dx < 2; dx++) {
+					if (newX + dx >= 0 && newX + dx < SCREEN_WIDTH && newY + dy >= 0 && newY + dy < SCREEN_HEIGHT) {
+						frame[(newX + dx) + ((newY + dy) * SCREEN_WIDTH)] = palette[buffer[i]];
+					}
+				}
 			}
 
 			pixelIndex++;
@@ -71,22 +83,39 @@ void update_timelapse_palette(uint16_t len, color_t *colors) {
   while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
   memset(palette, 0, sizeof(palette));
   memcpy(palette, colors, sizeof(color_t) * len);
+	printf("Palette: [ ");
+	for (int i = 0; i < len; ++i) {
+		printf("%d, %d, %d, ", palette[i].r, palette[i].g, palette[i].b);
+	}
+	printf(" ]\n");
   xSemaphoreGive(render_mutex);
 }
 
-void update_timelapse_frame(uint32_t offset, uint16_t len, uint8_t *colors) {
+void update_timelapse_frame(uint32_t offset, uint16_t len, uint8_t bigPic, uint8_t *colors) {
   while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
-  FILE* f = fopen("frame.dat", "wb");
+
+	if (bigPic) {
+		memcpy(frame + offset, colors, len * 3);
+		xSemaphoreGive(render_mutex);
+		return;
+	}
+
+  FILE* f = NULL;
+  if (offset == 0) {
+    unlink("/spiffs/frame.dat");
+  }
+  f = fopen("/spiffs/frame.dat", "ab");
   if (f == NULL) {
     ESP_LOGE(SGO_LOG_NOSEND, "Failed to open file for writing");
+    xSemaphoreGive(render_mutex);
     return;
   }
-  fseek(f, offset, SEEK_SET);
+  ESP_LOGI(SGO_LOG_NOSEND, "Writing frame at %d", offset);
   size_t written = fwrite(colors, 1, len, f);
   if (written != len) {
     ESP_LOGE(SGO_LOG_NOSEND, "Failed to write complete data");
   } else {
-    ESP_LOGI(SGO_LOG_NOSEND, "Data written successfully");
+    ESP_LOGI(SGO_LOG_NOSEND, "Data written successfully %d", written);
   }
 	fclose(f);
   xSemaphoreGive(render_mutex);

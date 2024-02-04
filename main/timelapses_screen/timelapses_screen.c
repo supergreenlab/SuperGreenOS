@@ -31,6 +31,7 @@ typedef struct {
   uint8_t type;
   uint32_t offset;
   uint16_t len;
+	uint8_t bigPic;
   uint8_t colors[];
 } __attribute__ ((packed)) set_timelapses_event;
 
@@ -52,7 +53,15 @@ void setTimelapsePalette(const char *msg, int len) {
   update_timelapse_palette(evt->len, evt->colors);
 }
 
+int updatesCount = 0;
+
 void updateTimelapseFn() {
+  if (!(updatesCount % 120 == 0)) {
+    updatesCount++;
+    ESP_LOGI(SGO_LOG_NOSEND, "Skipping timelapse update");
+    return;
+  }
+  updatesCount++;
   ESP_LOGI(SGO_LOG_NOSEND, "timelapse update");
   uint8_t cmd = GET_TIMELAPSE;
   send_screen_message((char *)&cmd, 1);
