@@ -91,14 +91,8 @@ void update_timelapse_palette(uint16_t len, color_t *colors) {
   xSemaphoreGive(render_mutex);
 }
 
-void update_timelapse_frame(uint32_t offset, uint16_t len, uint8_t bigPic, uint8_t *colors) {
+void update_timelapse_frame(uint32_t offset, uint16_t len, uint8_t *colors) {
   while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
-
-	if (bigPic) {
-		memcpy(frame + offset, colors, len * 3);
-		xSemaphoreGive(render_mutex);
-		return;
-	}
 
   FILE* f = NULL;
   if (offset == 0) {
@@ -113,7 +107,7 @@ void update_timelapse_frame(uint32_t offset, uint16_t len, uint8_t bigPic, uint8
   ESP_LOGI(SGO_LOG_NOSEND, "Writing frame at %d", offset);
   size_t written = fwrite(colors, 1, len, f);
   if (written != len) {
-    ESP_LOGE(SGO_LOG_NOSEND, "Failed to write complete data");
+    ESP_LOGE(SGO_LOG_NOSEND, "Failed to write complete data %d != %d", len, written);
   } else {
     ESP_LOGI(SGO_LOG_NOSEND, "Data written successfully %d", written);
   }

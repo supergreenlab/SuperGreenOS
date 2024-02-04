@@ -31,7 +31,6 @@ typedef struct {
   uint8_t type;
   uint32_t offset;
   uint16_t len;
-	uint8_t bigPic;
   uint8_t colors[];
 } __attribute__ ((packed)) set_timelapses_event;
 
