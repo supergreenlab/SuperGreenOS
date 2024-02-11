@@ -1,5 +1,5 @@
 {
-    "name": "SuperGreenTips",
+    "name": "SuperGreenScreen",
     "modules": {
         "time": {
             "name": "time",
@@ -66,122 +66,9 @@
         "i2c": {
             "name": "i2c",
             "i2c": false,
-            "array_len": 1,
-            "fields": {
-                "0_sda": {
-                    "name": "i2c_0_sda",
-                    "default": 32,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_sda",
-                    "caps_name": "I2C_0_SDA"
-                },
-                "0_scl": {
-                    "name": "i2c_0_scl",
-                    "default": 33,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_scl",
-                    "caps_name": "I2C_0_SCL"
-                },
-                "0_enabled": {
-                    "name": "i2c_0_enabled",
-                    "default": 1,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_enabled",
-                    "caps_name": "I2C_0_ENABLED"
-                },
-                "0_port": {
-                    "name": "i2c_0_port",
-                    "default": 0,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_port",
-                    "caps_name": "I2C_0_PORT"
-                }
-            },
-            "enabled": true,
+            "array_len": 0,
+            "fields": {},
+            "enabled": false,
             "field_prefix": "i2c",
             "tester": false,
             "init": true,
@@ -285,7 +172,7 @@
                 },
                 "cmdcallbackinclude": {
                     "name": "broker_cmdcallbackinclude",
-                    "default": "../cmd/cmd.h",
+                    "default": "",
                     "nvs": {
                         "enable": false,
                         "manual": false
@@ -311,7 +198,7 @@
                 },
                 "cmdcallback": {
                     "name": "broker_cmdcallback",
-                    "default": "execute_cmd",
+                    "default": "",
                     "nvs": {
                         "enable": false,
                         "manual": false
@@ -767,7 +654,7 @@
                 },
                 "basedir": {
                     "name": "ota_basedir",
-                    "default": "/TipsV2.1",
+                    "default": "/ScreenV2.1",
                     "nvs": {
                         "key": "OTA_BASEDIR",
                         "enable": true,
@@ -900,37 +787,6 @@
             "i2c": false,
             "array_len": 1,
             "fields": {
-                "0_enabled": {
-                    "name": "box_0_enabled",
-                    "default": 0,
-                    "nvs": {
-                        "key": "B_0_E",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_enabled",
-                    "caps_name": "BOX_0_ENABLED"
-                },
                 "0_temp": {
                     "name": "box_0_temp",
                     "default": 0,
@@ -1146,7 +1002,7 @@
                         "enable": true,
                         "source": "0_weight_source"
                     },
-                    "disabled": true,
+                    "disabled": false,
                     "signedness": "",
                     "intlen": 32,
                     "suffix": "0_weight",
@@ -1177,7 +1033,7 @@
                     "indir": {
                         "enable": false
                     },
-                    "disabled": true,
+                    "disabled": false,
                     "signedness": "",
                     "intlen": 8,
                     "suffix": "0_weight_source",
@@ -1245,6 +1101,37 @@
                     "intlen": 8,
                     "suffix": "0_co2_source",
                     "caps_name": "BOX_0_CO2_SOURCE"
+                },
+                "0_enabled": {
+                    "name": "box_0_enabled",
+                    "default": 0,
+                    "nvs": {
+                        "key": "B_0_E",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "nosend": false,
+                    "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "disabled": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "0_enabled",
+                    "caps_name": "BOX_0_ENABLED"
                 }
             },
             "enabled": true,
@@ -1408,7 +1295,7 @@
                 },
                 "mdns_domain": {
                     "name": "mdns_domain",
-                    "default": "supergreentips",
+                    "default": "supergreenscreen",
                     "nvs": {
                         "key": "MDNSD",
                         "enable": true,
@@ -1473,28 +1360,28 @@
             "init_priority": 0,
             "core": true
         },
-        "remote_sensors": {
-            "name": "remote_sensors",
-            "i2c": false,
+        "sht21": {
+            "name": "sht21",
+            "i2c": true,
             "array_len": 0,
             "fields": {},
-            "enabled": true,
-            "field_prefix": "remote_sensors",
+            "enabled": false,
+            "field_prefix": "sht21",
             "tester": false,
-            "init": true,
-            "required": false,
+            "init": false,
+            "required": true,
             "preinit": false,
             "code": true,
             "init_priority": 0,
             "core": false
         },
-        "scd30": {
-            "name": "scd30",
-            "i2c": true,
-            "array_len": 1,
+        "remote_sensors": {
+            "name": "remote_sensors",
+            "i2c": false,
+            "array_len": 0,
             "fields": {
-                "0_temp": {
-                    "name": "scd30_0_temp",
+                "weight": {
+                    "name": "remote_sensors_weight",
                     "default": 0,
                     "nvs": {
                         "enable": false,
@@ -1509,7 +1396,7 @@
                     },
                     "write_cb": false,
                     "type": "integer",
-                    "helper": "SCD30 temperature on port #1",
+                    "helper": "Remote HX711 weight",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
@@ -1519,16 +1406,13 @@
                     },
                     "disabled": false,
                     "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_temp",
-                    "caps_name": "SCD30_0_TEMP",
-                    "blower_ref": 37,
-                    "fan_ref": 37,
-                    "valve_ref": 28,
-                    "temp_sensor": 16
+                    "intlen": 32,
+                    "suffix": "weight",
+                    "caps_name": "REMOTE_SENSORS_WEIGHT",
+                    "weight_sensor": 1
                 },
-                "0_humi": {
-                    "name": "scd30_0_humi",
+                "co2": {
+                    "name": "remote_sensors_co2",
                     "default": 0,
                     "nvs": {
                         "enable": false,
@@ -1543,75 +1427,7 @@
                     },
                     "write_cb": false,
                     "type": "integer",
-                    "helper": "SCD30 humidity on port #1",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_humi",
-                    "caps_name": "SCD30_0_HUMI",
-                    "blower_ref": 44,
-                    "fan_ref": 44,
-                    "valve_ref": 34,
-                    "humi_sensor": 16
-                },
-                "0_vpd": {
-                    "name": "scd30_0_vpd",
-                    "default": 0,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "SCD30 vpd on port #1",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "u",
-                    "intlen": 8,
-                    "suffix": "0_vpd",
-                    "caps_name": "SCD30_0_VPD",
-                    "blower_ref": 50,
-                    "fan_ref": 50,
-                    "valve_ref": 40,
-                    "vpd_sensor": 16
-                },
-                "0_co2": {
-                    "name": "scd30_0_co2",
-                    "default": 0,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "SCD30 co2 on port #1",
+                    "helper": "Remote SCD30 co2",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
@@ -1622,15 +1438,12 @@
                     "disabled": false,
                     "signedness": "u",
                     "intlen": 16,
-                    "suffix": "0_co2",
-                    "caps_name": "SCD30_0_CO2",
-                    "co2_sensor": 1,
-                    "blower_ref": 30,
-                    "fan_ref": 30,
-                    "valve_ref": 22
+                    "suffix": "co2",
+                    "caps_name": "REMOTE_SENSORS_CO2",
+                    "co2_sensor": 1
                 },
-                "0_present": {
-                    "name": "scd30_0_present",
+                "temp": {
+                    "name": "remote_sensors_temp",
                     "default": 0,
                     "nvs": {
                         "enable": false,
@@ -1645,7 +1458,7 @@
                     },
                     "write_cb": false,
                     "type": "integer",
-                    "helper": "",
+                    "helper": "Remote SCD30 temperature",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
@@ -1656,58 +1469,12 @@
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
-                    "suffix": "0_present",
-                    "caps_name": "SCD30_0_PRESENT"
+                    "suffix": "temp",
+                    "caps_name": "REMOTE_SENSORS_TEMP",
+                    "temp_sensor": 16
                 },
-                "0_vpd_leaf_offset": {
-                    "name": "scd30_0_vpd_leaf_offset",
-                    "default": -20,
-                    "nvs": {
-                        "key": "S_0_VPD_LO",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_vpd_leaf_offset",
-                    "caps_name": "SCD30_0_VPD_LEAF_OFFSET"
-                }
-            },
-            "enabled": true,
-            "field_prefix": "scd30",
-            "tester": false,
-            "init": false,
-            "required": false,
-            "preinit": false,
-            "code": true,
-            "init_priority": 0,
-            "core": false
-        },
-        "hx711": {
-            "name": "hx711",
-            "i2c": true,
-            "array_len": 1,
-            "fields": {
-                "0_weight": {
-                    "name": "hx711_0_weight",
+                "humi": {
+                    "name": "remote_sensors_humi",
                     "default": 0,
                     "nvs": {
                         "enable": false,
@@ -1722,7 +1489,7 @@
                     },
                     "write_cb": false,
                     "type": "integer",
-                    "helper": "HX711 weight on port #1",
+                    "helper": "Remote SCD30 humidity",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
@@ -1732,13 +1499,13 @@
                     },
                     "disabled": false,
                     "signedness": "",
-                    "intlen": 32,
-                    "suffix": "0_weight",
-                    "caps_name": "HX711_0_WEIGHT",
-                    "weight_sensor": 1
+                    "intlen": 8,
+                    "suffix": "humi",
+                    "caps_name": "REMOTE_SENSORS_HUMI",
+                    "humi_sensor": 16
                 },
-                "0_present": {
-                    "name": "hx711_0_present",
+                "vpd": {
+                    "name": "remote_sensors_vpd",
                     "default": 0,
                     "nvs": {
                         "enable": false,
@@ -1753,38 +1520,7 @@
                     },
                     "write_cb": false,
                     "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_present",
-                    "caps_name": "HX711_0_PRESENT"
-                },
-                "0_weight_calibration": {
-                    "name": "hx711_0_weight_calibration",
-                    "default": 48,
-                    "nvs": {
-                        "key": "HX_0_W_CAL",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "HX711 weight divider calibration on port #1",
+                    "helper": "Remote SCD30 vpd",
                     "dump_freq": 60,
                     "ble": {
                         "enable": false
@@ -1795,41 +1531,26 @@
                     "disabled": false,
                     "signedness": "u",
                     "intlen": 8,
-                    "suffix": "0_weight_calibration",
-                    "caps_name": "HX711_0_WEIGHT_CALIBRATION"
-                },
-                "0_weight_offset": {
-                    "name": "hx711_0_weight_offset",
-                    "default": 0,
-                    "nvs": {
-                        "key": "HX_0_W_OFF",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "HX711 weight weight offset on port #1",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 32,
-                    "suffix": "0_weight_offset",
-                    "caps_name": "HX711_0_WEIGHT_OFFSET"
+                    "suffix": "vpd",
+                    "caps_name": "REMOTE_SENSORS_VPD",
+                    "vpd_sensor": 16
                 }
             },
+            "enabled": true,
+            "field_prefix": "remote_sensors",
+            "tester": false,
+            "init": true,
+            "required": false,
+            "preinit": false,
+            "code": true,
+            "init_priority": 0,
+            "core": false
+        },
+        "hx711": {
+            "name": "hx711",
+            "i2c": true,
+            "array_len": 0,
+            "fields": {},
             "enabled": false,
             "field_prefix": "hx711",
             "tester": false,
@@ -1840,180 +1561,16 @@
             "init_priority": 0,
             "core": false
         },
-        "sht21": {
-            "name": "sht21",
+        "scd30": {
+            "name": "scd30",
             "i2c": true,
-            "array_len": 1,
-            "fields": {
-                "0_temp": {
-                    "name": "sht21_0_temp",
-                    "default": 0,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "SHT21 temperature on port #1",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_temp",
-                    "caps_name": "SHT21_0_TEMP",
-                    "blower_ref": 1,
-                    "fan_ref": 1,
-                    "valve_ref": 1,
-                    "temp_sensor": 1
-                },
-                "0_humi": {
-                    "name": "sht21_0_humi",
-                    "default": 0,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "SHT21 humidity on port #1",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_humi",
-                    "caps_name": "SHT21_0_HUMI",
-                    "blower_ref": 15,
-                    "fan_ref": 15,
-                    "valve_ref": 7,
-                    "humi_sensor": 1
-                },
-                "0_vpd": {
-                    "name": "sht21_0_vpd",
-                    "default": 0,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "SHT21 vpd on port #1",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "u",
-                    "intlen": 8,
-                    "suffix": "0_vpd",
-                    "caps_name": "SHT21_0_VPD",
-                    "blower_ref": 23,
-                    "fan_ref": 23,
-                    "valve_ref": 15,
-                    "vpd_sensor": 1
-                },
-                "0_present": {
-                    "name": "sht21_0_present",
-                    "default": 0,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_present",
-                    "caps_name": "SHT21_0_PRESENT"
-                },
-                "0_vpd_leaf_offset": {
-                    "name": "sht21_0_vpd_leaf_offset",
-                    "default": -20,
-                    "nvs": {
-                        "key": "B_0_VPD_LO",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "0_vpd_leaf_offset",
-                    "caps_name": "SHT21_0_VPD_LEAF_OFFSET"
-                }
-            },
+            "array_len": 0,
+            "fields": {},
             "enabled": false,
-            "field_prefix": "sht21",
+            "field_prefix": "scd30",
             "tester": false,
             "init": false,
-            "required": true,
+            "required": false,
             "preinit": false,
             "code": true,
             "init_priority": 0,
@@ -2057,7 +1614,7 @@
                 },
                 "device_name": {
                     "name": "device_name",
-                    "default": "SuperGreenTips",
+                    "default": "SuperGreenScreen",
                     "nvs": {
                         "key": "DEV_NAME",
                         "enable": true,
@@ -2093,53 +1650,6 @@
             "preinit": false,
             "code": true,
             "init_priority": 100,
-            "core": false
-        },
-        "timelapses_screen": {
-            "name": "timelapses_screen",
-            "i2c": false,
-            "array_len": 0,
-            "fields": {
-                "order": {
-                    "name": "timelapses_screen_order",
-                    "default": 3,
-                    "nvs": {
-                        "key": "TLSCR_ORDR",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "u",
-                    "intlen": 8,
-                    "suffix": "order",
-                    "caps_name": "TIMELAPSES_SCREEN_ORDER"
-                }
-            },
-            "enabled": true,
-            "field_prefix": "timelapses_screen",
-            "tester": false,
-            "init": true,
-            "required": false,
-            "preinit": false,
-            "code": true,
-            "init_priority": 15,
             "core": false
         },
         "quickview_screen": {
@@ -2187,53 +1697,6 @@
             "preinit": false,
             "code": true,
             "init_priority": 30,
-            "core": false
-        },
-        "checklist_screen": {
-            "name": "checklist_screen",
-            "i2c": false,
-            "array_len": 0,
-            "fields": {
-                "order": {
-                    "name": "checklist_screen_order",
-                    "default": 1,
-                    "nvs": {
-                        "key": "CKSCR_ORDR",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "u",
-                    "intlen": 8,
-                    "suffix": "order",
-                    "caps_name": "CHECKLIST_SCREEN_ORDER"
-                }
-            },
-            "enabled": true,
-            "field_prefix": "checklist_screen",
-            "tester": false,
-            "init": true,
-            "required": false,
-            "preinit": false,
-            "code": true,
-            "init_priority": 25,
             "core": false
         },
         "graphs_screen": {
@@ -2312,8 +1775,102 @@
             "code": true,
             "init_priority": 50,
             "core": false
+        },
+        "checklist_screen": {
+            "name": "checklist_screen",
+            "i2c": false,
+            "array_len": 0,
+            "fields": {
+                "order": {
+                    "name": "checklist_screen_order",
+                    "default": 1,
+                    "nvs": {
+                        "key": "CKSCR_ORDR",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "nosend": false,
+                    "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "disabled": false,
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "order",
+                    "caps_name": "CHECKLIST_SCREEN_ORDER"
+                }
+            },
+            "enabled": true,
+            "field_prefix": "checklist_screen",
+            "tester": false,
+            "init": true,
+            "required": false,
+            "preinit": false,
+            "code": true,
+            "init_priority": 25,
+            "core": false
+        },
+        "timelapses_screen": {
+            "name": "timelapses_screen",
+            "i2c": false,
+            "array_len": 0,
+            "fields": {
+                "order": {
+                    "name": "timelapses_screen_order",
+                    "default": 3,
+                    "nvs": {
+                        "key": "TLSCR_ORDR",
+                        "enable": true,
+                        "manual": false
+                    },
+                    "nosend": false,
+                    "remote": true,
+                    "http": {
+                        "read": true,
+                        "enable": true,
+                        "write": true
+                    },
+                    "write_cb": true,
+                    "type": "integer",
+                    "helper": "",
+                    "dump_freq": 60,
+                    "ble": {
+                        "enable": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "disabled": false,
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "order",
+                    "caps_name": "TIMELAPSES_SCREEN_ORDER"
+                }
+            },
+            "enabled": true,
+            "field_prefix": "timelapses_screen",
+            "tester": false,
+            "init": true,
+            "required": false,
+            "preinit": false,
+            "code": true,
+            "init_priority": 15,
+            "core": false
         }
     },
     "isscreen": true,
-    "iscontroller": true
+    "iscontroller": false
 }

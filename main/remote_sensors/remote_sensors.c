@@ -19,20 +19,40 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+#include "../core/mqtt/mqtt.h"
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 
-static void remote_sensors_task(void *param);
+#include "../sgl/sgl.h"
+
+typedef struct {
+  uint8_t type;
+  uint8_t temp;
+  uint8_t humidity;
+  uint8_t VPD;
+  uint16_t CO2;
+  uint32_t weight;
+} __attribute__ ((packed)) set_remote_sensor_event;
+
+void updateRemoteSensorsFn() {
+  ESP_LOGI(SGO_LOG_NOSEND, "remote_sensor update");
+  uint8_t cmd = GET_SENSORS;
+  send_screen_message((char *)&cmd, 1);
+}
+
+void setRemoteSensorData(const char *msg, int len) {
+  ESP_LOGI(SGO_LOG_NOSEND, "setPlantDateData");
+  set_remote_sensor_event *evt = (set_remote_sensor_event *)msg;
+  set_remote_sensors_temp(evt->temp);
+  set_remote_sensors_humi(evt->humidity);
+  set_remote_sensors_vpd(evt->VPD);
+  set_remote_sensors_co2(evt->CO2);
+  set_remote_sensors_weight(evt->weight);
+}
 
 void init_remote_sensors() {
   ESP_LOGI(SGO_LOG_EVENT, "@REMOTE_SENSORS Initializing remote_sensors module");
 
-  xTaskCreatePinnedToCore(remote_sensors_task, "REMOTE_SENSORS", 4096, NULL, 10, NULL, 1);
+  set_command_update(GET_PLANT_DATE, updateRemoteSensorsFn);
+  set_command(SET_SENSORS, setRemoteSensorData);
 }
-
-static void remote_sensors_task(void *param) {
-  while (true) {
-    vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
-  }
-}
-

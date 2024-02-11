@@ -65,7 +65,10 @@ void app_main() {
   init_mqtt();
   init_ota();
   init_time();
+
+#ifdef MODULE_I2C
   init_i2c();
+#endif
 
 #ifdef MODULE_TESTER
   bool tester_enabled = get_tester_enabled() != 0;
