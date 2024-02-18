@@ -313,9 +313,11 @@ static void mqtt_task(void *param) {
   <% if (hasScr) { %>
     char scr_channel[MAX_KVALUE_SIZE] = {0};
     char scr_token[MAX_KVALUE_SIZE];
-    get_broker_scrtoken(scr_token, sizeof(scr_token)-1);
-    snprintf(scr_channel, sizeof(scr_channel)-1, "%s/%s/scrcmd", client_id, scr_token);
-    ESP_LOGI(SGO_LOG_EVENT, "@MQTT Scr channel: %s", scr_channel);
+    if (strlen(scr_token) != 0) {
+      get_broker_scrtoken(scr_token, sizeof(scr_token)-1);
+      snprintf(scr_channel, sizeof(scr_channel)-1, "%s/%s/scrcmd", client_id, scr_token);
+      ESP_LOGI(SGO_LOG_EVENT, "@MQTT Scr channel: %s", scr_channel);
+    }
 
     unsigned char msgenc[MAX_QUEUE_ITEM_SIZE] = { 0 };
 
@@ -356,9 +358,11 @@ static void mqtt_task(void *param) {
         }
       } <% if (hasScr) { %> else if (c == CMD_MQTT_CHANGE_SCR_CHANNEL) {
         get_broker_scrtoken(scr_token, sizeof(scr_token)-1);
-        snprintf(scr_channel, sizeof(scr_channel)-1, "%s/%s/scrcmd", client_id, scr_token);
+        if (strlen(scr_token) != 0) {
+          snprintf(scr_channel, sizeof(scr_channel)-1, "%s/%s/scrcmd", client_id, scr_token);
+          ESP_LOGI(SGO_LOG_EVENT, "@MQTT Scr channel: %s", scr_channel);
+        }
         update_key();
-        ESP_LOGI(SGO_LOG_EVENT, "@MQTT Scr channel: %s", scr_channel);
       } <% } %>
     }
     if (connected) {
@@ -370,14 +374,16 @@ static void mqtt_task(void *param) {
 
       <% if (hasScr) { %>
         memset(&screenCmd, 0, sizeof(ScreenCmd));
-        while (xQueueReceive(scr_queue, &screenCmd, 0)) {
-          int len = (int)(ceilf((float)screenCmd.len/16.0f)*16);
+        if (strlen(scr_channel) != 0) {
+          while (xQueueReceive(scr_queue, &screenCmd, 0)) {
+            int len = (int)(ceilf((float)screenCmd.len/16.0f)*16);
 
-          memset(msgenc, 0, sizeof(msgenc));
-          aes_encrypt_msg((const unsigned char *)screenCmd.buf_out, len, msgenc, key);
+            memset(msgenc, 0, sizeof(msgenc));
+            aes_encrypt_msg((const unsigned char *)screenCmd.buf_out, len, msgenc, key);
 
-          esp_mqtt_client_publish(client, scr_channel, (char *)msgenc, len, 0, 0);
-          memset(&screenCmd, 0, sizeof(ScreenCmd));
+            esp_mqtt_client_publish(client, scr_channel, (char *)msgenc, len, 0, 0);
+            memset(&screenCmd, 0, sizeof(ScreenCmd));
+          }
         }
       <% } %>
     }

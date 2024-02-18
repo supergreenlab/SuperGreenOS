@@ -98,6 +98,7 @@ void init_screen() {
   buscfg.sclk_io_num = PIN_NUM_CLK;  // set SPI CLK pin
   buscfg.quadwp_io_num = -1;
   buscfg.quadhd_io_num = -1;
+  buscfg.max_transfer_sz = DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH / 4 * sizeof(color_t);
 
   spi_lobo_device_interface_config_t devcfg = {};
   devcfg.clock_speed_hz = DEFAULT_SPI_CLOCK;     // Initial clock out at 8 MHz
@@ -125,16 +126,24 @@ void init_screen() {
   root = create_node(0, 0, NULL, NULL, NULL);
 }
 
+void init_test(Node *root) {
+  Node *node = create_text_node(0, 0, 3, "LAB", (color_t){ 255, 255, 255 }, NORMAL_FONT_SIZE);
+	add_child(root, node);
+}
+
 static void m5tft_task(void *param) {
   vTaskDelay(1000 / portTICK_PERIOD_MS); // Looks like we have a race confition with wifi
+
   init_screen();
   init_splash(root);
+  //init_test(root);
 
   bool c;
   while(true) {
     TickType_t xLastWakeTime = xTaskGetTickCount();
 
     TickType_t tickTime = root_render(root);
+
     flush_frame();
 
     TickType_t xEndTime = xTaskGetTickCount();  // Capture the end time
@@ -145,5 +154,6 @@ static void m5tft_task(void *param) {
 
     TickType_t waitTicks = delayTime / portTICK_PERIOD_MS > tickTime ? delayTime / portTICK_PERIOD_MS : tickTime;
     xQueueReceive(cmd, &c, waitTicks);
+
   }
 }

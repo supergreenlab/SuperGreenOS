@@ -152,10 +152,12 @@ void fill_screen(color_t color) {
   }
 }
 
+#define N_PARTS 4
+
 void flush_frame() {
-  int buffer_size = DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH/4;
-  send_data(0, 0, DEFAULT_TFT_DISPLAY_HEIGHT-1, 19, buffer_size, frame);
-  send_data(0, 20, DEFAULT_TFT_DISPLAY_HEIGHT-1, 39, buffer_size, frame+buffer_size);
-  send_data(0, 40, DEFAULT_TFT_DISPLAY_HEIGHT-1, 59, buffer_size, frame+buffer_size*2);
-  send_data(0, 60, DEFAULT_TFT_DISPLAY_HEIGHT-1, 79, buffer_size, frame+buffer_size*3);
+  int buffer_size = DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH / N_PARTS;
+
+  for (int i = 0; i < N_PARTS; ++i) {
+    send_data(0, i * DEFAULT_TFT_DISPLAY_WIDTH / N_PARTS, DEFAULT_TFT_DISPLAY_HEIGHT-1, i * DEFAULT_TFT_DISPLAY_WIDTH / N_PARTS - 1, buffer_size, frame+buffer_size*i);
+  }
 }

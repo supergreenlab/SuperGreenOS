@@ -218,6 +218,7 @@ static void IRAM_ATTR disp_spi_transfer_addrwin(uint16_t x1, uint16_t x2, uint16
 static void IRAM_ATTR _dma_send(uint8_t *data, uint32_t size)
 {
   //Fill DMA descriptors
+  
   spi_lobo_dmaworkaround_transfer_active(disp_spi->host->dma_chan); //mark channel as active
   spi_lobo_setup_dma_desc_links(disp_spi->host->dmadesc_tx, size, data, false);
   disp_spi->host->hw->user.usr_mosi_highpart=0;
@@ -367,6 +368,7 @@ void IRAM_ATTR send_data(int x1, int y1, int x2, int y2, uint32_t len, color_t *
   if (disp_select() != ESP_OK) return;
   // ** Send address window **
   x1+=1; y1+=26; x2+=1; y2+=26; // FIXME This hack fixes positioning issue on M5StickC
+
   disp_spi_transfer_addrwin(x1, x2, y1, y2);
   _TFT_pushColorRep(buf, len, 0, 0);
   disp_deselect();

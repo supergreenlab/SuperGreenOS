@@ -204,6 +204,12 @@ void spi_lobo_setup_dma_desc_links(lldesc_t *dmadesc, int len, const uint8_t *da
 {
   int n = 0;
   while (len) {
+    /* if (heap_caps_check_integrity_all(true) == false) {
+      ESP_LOGI("SGL", "Check heap 1 !!!!!!!!!!!!!!!!!");
+    } else {
+      ESP_LOGI("SGL", "Check heap 1 OK");
+    } */
+
     int dmachunklen = len;
     if (dmachunklen > SPI_MAX_DMA_LEN) dmachunklen = SPI_MAX_DMA_LEN;
     if (isrx) {
@@ -225,6 +231,7 @@ void spi_lobo_setup_dma_desc_links(lldesc_t *dmadesc, int len, const uint8_t *da
   }
   dmadesc[n - 1].eof = 1; //Mark last DMA desc as end of stream.
   dmadesc[n - 1].qe.stqe_next = NULL;
+  // ESP_LOGI("SGL", "===================");
 }
 
 

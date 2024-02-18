@@ -65,7 +65,7 @@ void remove_child(Node *parent, Node *child);
 TickType_t sort_children_by_scale(Node *node, void *p);
 
 #define SHORT_TICK 10 / portTICK_PERIOD_MS
-#define LONG_TICK 100000 / portTICK_PERIOD_MS
+#define LONG_TICK 1000 / portTICK_PERIOD_MS
 
 typedef struct {
 

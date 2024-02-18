@@ -87,6 +87,9 @@ void init_screen_app(Node *root) {
   esp_event_handler_register_with(event_loop, BUTTON_A_EVENT_BASE, BUTTON_PRESSED_EVENT, buttonEvent, NULL);
   esp_event_handler_register_with(event_loop, BUTTON_B_EVENT_BASE, BUTTON_PRESSED_EVENT, buttonEvent, NULL);
 
+  ESP_LOGI(SGO_LOG_NOSEND, "**** Check heap init_screen_app");
+  heap_caps_check_integrity_all(true);
+
   params_mutex = xSemaphoreCreateMutex();
   params = (screen_app_params *)malloc(sizeof(screen_app_params));
   memset(params, 0, sizeof(screen_app_params));

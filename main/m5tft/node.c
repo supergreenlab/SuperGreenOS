@@ -337,6 +337,7 @@ void remove_child(Node *parent, Node *child) {
 TickType_t root_render(Node *node) {
 	//ESP_LOGI(SGO_LOG_NOSEND, "=================\nROOT NODE");
   while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
+
   TickType_t d = render_node(node, 0, 0, 1, 1);
   xSemaphoreGive(render_mutex);
   return d;
