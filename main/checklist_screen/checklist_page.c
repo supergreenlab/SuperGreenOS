@@ -36,7 +36,7 @@ checklist_params *chparams;
 SineAnimationBetweenParams *chSinParam;
 
 void draw_underline(Node *node, int x, int y) {
-  drawLineAA(x - 30, 20, x + DEFAULT_TFT_DISPLAY_HEIGHT-1 - 30, 20, (color_t){ 59, 179, 11 }, 2);
+  drawLineAA(x - 18, 20, x + DEFAULT_TFT_DISPLAY_HEIGHT-1 - 18, 20, (color_t){ 59, 179, 11 }, 2);
 }
 
 void update_nchecklist(int nitems) {
@@ -47,7 +47,7 @@ void update_nchecklist(int nitems) {
 
   char value[100] = {0};
   sprintf(value, "%d pending tasks", nitems);
-  Node *node = create_text_node(30, 0, strlen(value), value, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
+  Node *node = create_text_node(18, 0, strlen(value), value, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
 
   for (int i = 0; i < strlen(value); ++i) {
     if (value[i] == ' ') {
@@ -86,7 +86,7 @@ void update_checklist_entry(char *value, int index) {
   Node *node = create_text_node(5, index * 17 + 22, strlen(value), value, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
   //node->renderOpts.offsetNumbers = true;
   for (int i = 0; i < node->num_children; ++i) {
-    node->children[i]->renderOpts.scale = 0.9;
+    node->children[i]->renderOpts.scale = 0.95;
     node->children[i]->renderOpts.limit = true;
     node->children[i]->renderOpts.frame = (frame_limits){SCREEN_WIDTH + 5, 5, SCREEN_WIDTH*2-10, SCREEN_HEIGHT-5};
     node->children[i]->renderOpts.frameRef = (node_position *)checklist_root->parent;

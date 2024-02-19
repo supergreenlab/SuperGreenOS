@@ -396,7 +396,7 @@ NodeSize set_text_node(Node *textNode, const char *text, uint8_t mask) {
     Node *letterNode = textNode->children[i];
 
     if (c == ' ') {
-      currentX += letterNode->renderOpts.scale * 10;
+      currentX += letterNode->renderOpts.scale * 6;
       continue;
     }
 
@@ -411,6 +411,9 @@ NodeSize set_text_node(Node *textNode, const char *text, uint8_t mask) {
     letterNode->bitmap = charBitmap;
 
     currentX += charBitmap->width * letterNode->renderOpts.scale;
+    if (mask & SMALL_FONT_SIZE) {
+      currentX += 1 * letterNode->renderOpts.scale;
+    }
 		if (charBitmap->height * letterNode->renderOpts.scale > size.height) {
 			size.height = charBitmap->height * letterNode->renderOpts.scale;
 		}
