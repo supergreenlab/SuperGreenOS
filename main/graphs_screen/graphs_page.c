@@ -88,7 +88,37 @@ void draw_graphs(Node *node, int x, int y) {
 	}
 }
 
+typedef struct {
+  color_t color;
+} draw_entry_underline_params;
+
+void draw_label_line(Node *node, int x, int y) {
+  drawLineAA(x-3, y+10, x + 4, y+10, ((draw_entry_underline_params *)node->funcParams[0])->color, 4);
+}
+
+void init_graphs_label(Node *root, int x, int y, color_t color, const char *label) {
+  Node *node = create_node(x, y, NULL, NULL, NULL);
+  add_child(root, node);
+
+  Node *l = create_text_node(8, 0, strlen(label), label, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
+  for (int i = 0; i < l->num_children; ++i) {
+    l->children[i]->renderOpts.scale = 0.95;
+  }
+  add_child(node, l);
+
+  Node *d = create_node(0, 0, NULL, NULL, NULL);
+  d->drawFunc = draw_label_line;
+  d->funcParams[0] = malloc(sizeof(draw_entry_underline_params));
+  ((draw_entry_underline_params *)d->funcParams[0])->color = color;
+  add_child(node, d);
+}
+
 void init_graphs_labels(Node *node) {
+  init_graphs_label(node, 5, 63, (color_t){ 113, 124, 223 }, "Humidity");
+  init_graphs_label(node, 5, 80, (color_t){ 59, 179, 11 }, "Temperature");
+  init_graphs_label(node, 75, 63, (color_t){ 204, 204, 204 }, "CO2");
+  init_graphs_label(node, 75, 80, (color_t){ 199, 85, 21 }, "VPD");
+  init_graphs_label(node, 120, 63, (color_t){ 234, 198, 71 }, "Light");
 }
 
 void init_graphs_page(Node *root) {
@@ -110,7 +140,6 @@ void init_graphs_page(Node *root) {
 		vpd[i] = (rand() % 20 + 25);
 	}
 
-
 	for (int i = 0; i < N_METRICS_VALUES; ++i) {
 		vpd[i] = (rand() % 10 + 5);
 	}
@@ -121,4 +150,6 @@ void init_graphs_page(Node *root) {
 			light[i] = 35;
 		}
 	}
+
+  init_graphs_labels(root);
 }

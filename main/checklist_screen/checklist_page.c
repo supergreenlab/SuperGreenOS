@@ -21,16 +21,47 @@
 #include "../m5tft/m5tft.h"
 #include "../core/log/log.h"
 
+#include "../m5tft/path.h"
+
 #include <stdbool.h>
 #include <math.h>
 
 typedef struct {
+  Node *titleNode;
   Node *textNode[3];
 } checklist_params;
 
 Node *checklist_root;
 checklist_params *chparams;
 SineAnimationBetweenParams *chSinParam;
+
+void draw_underline(Node *node, int x, int y) {
+		drawLineAA(x - 30, 20, x + DEFAULT_TFT_DISPLAY_HEIGHT-1 - 30, 20, (color_t){ 59, 179, 11 }, 2);
+}
+
+void update_nchecklist(int nitems) {
+  while( xSemaphoreTake( render_mutex, portMAX_DELAY ) != pdPASS );
+  if (chparams->titleNode != NULL) {
+    delete_node(chparams->titleNode);
+  }
+
+  char value[100] = {0};
+  sprintf(value, "%d pending tasks", nitems);
+  Node *node = create_text_node(30, 0, strlen(value), value, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
+  node->children[0]->renderOpts.targetColor = (color_t){ 59, 179, 11 };
+  
+  Node *line = create_node(0, 0, NULL, NULL, NULL);
+  line->drawFunc = draw_underline;
+  add_child(node, line);
+
+  add_child(checklist_root, node);
+  chparams->titleNode = node;
+  xSemaphoreGive(render_mutex);
+}
+
+void draw_entry_underline(Node *node, int x, int y) {
+		drawLineAA(x, y + 20, x + DEFAULT_TFT_DISPLAY_HEIGHT-1, y + 20, (color_t){ 90, 138, 187 }, 1);
+}
 
 void update_checklist_entry(char *value, int index) {
   ESP_LOGI(SGO_LOG_NOSEND, "update_checklist_entry: %s", value);
@@ -44,10 +75,10 @@ void update_checklist_entry(char *value, int index) {
     delete_node(chparams->textNode[index]);
   }
 
-  Node *node = create_text_node(5, index * 20 + 10, strlen(value), value, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
+  Node *node = create_text_node(5, index * 17 + 22, strlen(value), value, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
   //node->renderOpts.offsetNumbers = true;
   for (int i = 0; i < node->num_children; ++i) {
-    //node->children[i]->renderOpts.scale = 0.6;
+    node->children[i]->renderOpts.scale = 0.9;
     node->children[i]->renderOpts.limit = true;
     node->children[i]->renderOpts.frame = (frame_limits){SCREEN_WIDTH + 5, 5, SCREEN_WIDTH*2-10, SCREEN_HEIGHT-5};
     node->children[i]->renderOpts.frameRef = (node_position *)checklist_root->parent;
@@ -80,5 +111,12 @@ void init_checklist_page(Node *root) {
   chSinParam = NULL;
   chparams = (checklist_params *)malloc(sizeof(checklist_params));
   memset(chparams, 0, sizeof(checklist_params));
+
+  for (int i = 0; i < 3; ++i) {
+    Node *line = create_node(0, i * 16 + 22, NULL, NULL, NULL);
+    line->drawFunc = draw_entry_underline;
+    add_child(checklist_root, line);
+  }
+
   ESP_LOGI(SGO_LOG_NOSEND, "node[0]:  %d", (int)chparams);
 }

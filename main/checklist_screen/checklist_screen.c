@@ -31,6 +31,7 @@
 typedef struct {
   uint8_t type;
   uint8_t order;
+  uint8_t nitems;
   char text[];
 } __attribute__ ((packed)) set_checklists_event;
 
@@ -44,6 +45,7 @@ void setChecklistData(const char *msg, int len) {
   ESP_LOGI(SGO_LOG_NOSEND, "setChecklistData");
   set_checklists_event *evt = (set_checklists_event *)msg;
   update_checklist_entry(evt->text, evt->order);
+  update_nchecklist(evt->nitems);
   ESP_LOGI(SGO_LOG_NOSEND, "Set checklist event: len: %d order: %d text: %s", len, evt->order, evt->text);
 }
 

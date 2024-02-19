@@ -21,6 +21,7 @@
 
 #include "../m5tft/node.h"
 
+void update_nchecklist(int nitems);
 void update_checklist_entry(char *value, int index);
 void init_checklist_page(Node *root);
 

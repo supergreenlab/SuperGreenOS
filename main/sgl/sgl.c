@@ -57,6 +57,8 @@ static void sgl_task(void *param) {
       }
     }
 
+    heap_caps_check_integrity_all(true);
+
     vTaskDelay(5 * 1000 / portTICK_PERIOD_MS);
   }
 }

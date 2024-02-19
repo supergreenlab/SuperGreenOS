@@ -34,6 +34,10 @@ typedef struct {
 color_t palette[PALETTE_SIZE] = { 0 };
 
 void draw_timelapse_frame(Node *node, int x, int y) {
+  if (x >= SCREEN_WIDTH || x <= -SCREEN_WIDTH) {
+    return;
+  }
+
 	FILE *file = fopen("/spiffs/frame.dat", "rb");
 	if (file == NULL) {
 		// perror("Failed to open file");
