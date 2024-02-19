@@ -36,7 +36,7 @@ checklist_params *chparams;
 SineAnimationBetweenParams *chSinParam;
 
 void draw_underline(Node *node, int x, int y) {
-		drawLineAA(x - 30, 20, x + DEFAULT_TFT_DISPLAY_HEIGHT-1 - 30, 20, (color_t){ 59, 179, 11 }, 2);
+  drawLineAA(x - 30, 20, x + DEFAULT_TFT_DISPLAY_HEIGHT-1 - 30, 20, (color_t){ 59, 179, 11 }, 2);
 }
 
 void update_nchecklist(int nitems) {
@@ -48,7 +48,15 @@ void update_nchecklist(int nitems) {
   char value[100] = {0};
   sprintf(value, "%d pending tasks", nitems);
   Node *node = create_text_node(30, 0, strlen(value), value, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
-  node->children[0]->renderOpts.targetColor = (color_t){ 59, 179, 11 };
+
+  for (int i = 0; i < strlen(value); ++i) {
+    if (value[i] == ' ') {
+      break;
+    }
+    
+    node->children[i]->renderOpts.scale = 1.1;
+    node->children[i]->renderOpts.targetColor = (color_t){ 59, 179, 11 };
+  }
   
   Node *line = create_node(0, 0, NULL, NULL, NULL);
   line->drawFunc = draw_underline;
