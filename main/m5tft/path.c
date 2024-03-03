@@ -40,7 +40,7 @@ color_t blendPixelColor(color_t existingColor, color_t newColor, float alpha) {
 	return result;
 }
 
-static void plot(int x, int y, float c, color_t color, float thickness) {
+static void plot(RenderOpt renderOpts, int x, int y, float c, color_t color, float thickness) {
 	int radius = (int)(thickness / 2);
 	int startX = fmax(x - radius, 0);
 	int endX = fmin(x + radius, DEFAULT_TFT_DISPLAY_HEIGHT - 1);
@@ -48,7 +48,19 @@ static void plot(int x, int y, float c, color_t color, float thickness) {
 	int endY = fmin(y + radius, DEFAULT_TFT_DISPLAY_WIDTH - 1);
 
 	for (int i = startX; i <= endX; i++) {
+    if (renderOpts.limit) {
+      if (i < renderOpts.frame.x1 + (renderOpts.frameRef ? renderOpts.frameRef->x : 0) || i > renderOpts.frame.x2 + (renderOpts.frameRef ? renderOpts.frameRef->x : 0)) {
+        continue;
+      }
+    }
+
 		for (int j = startY; j <= endY; j++) {
+    if (renderOpts.limit) {
+      if (j < renderOpts.frame.y1 + (renderOpts.frameRef ? renderOpts.frameRef->y : 0) || j > renderOpts.frame.y2 + (renderOpts.frameRef ? renderOpts.frameRef->y : 0)) {
+        continue;
+      }
+    }
+
 			if ((i - x) * (i - x) + (j - y) * (j - y) <= radius * radius) {
 				int index = j * DEFAULT_TFT_DISPLAY_HEIGHT + i;
 				if (index > 0 && index < DEFAULT_TFT_DISPLAY_HEIGHT * DEFAULT_TFT_DISPLAY_WIDTH) {
@@ -60,7 +72,7 @@ static void plot(int x, int y, float c, color_t color, float thickness) {
 	}
 }
 
-void drawLineAA(int x0, int y0, int x1, int y1, color_t color, float thickness) {
+void drawLineAA(RenderOpt renderOpts, int x0, int y0, int x1, int y1, color_t color, float thickness) {
 	int steep = abs(y1 - y0) > abs(x1 - x0);
 	if (steep) {
 		swap(&x0, &y0);
@@ -85,11 +97,11 @@ void drawLineAA(int x0, int y0, int x1, int y1, color_t color, float thickness) 
 	int xpxl1 = xend;
 	int ypxl1 = floor(yend);
 	if (steep) {
-		plot(ypxl1,   xpxl1, 1 - (yend - floor(yend)) * xgap, color, thickness);
-		plot(ypxl1+1, xpxl1, (yend - floor(yend)) * xgap, color, thickness);
+		plot(renderOpts, ypxl1,   xpxl1, 1 - (yend - floor(yend)) * xgap, color, thickness);
+		plot(renderOpts, ypxl1+1, xpxl1, (yend - floor(yend)) * xgap, color, thickness);
 	} else {
-		plot(xpxl1, ypxl1  , 1 - (yend - floor(yend)) * xgap, color, thickness);
-		plot(xpxl1, ypxl1+1, (yend - floor(yend)) * xgap, color, thickness);
+		plot(renderOpts, xpxl1, ypxl1  , 1 - (yend - floor(yend)) * xgap, color, thickness);
+		plot(renderOpts, xpxl1, ypxl1+1, (yend - floor(yend)) * xgap, color, thickness);
 	}
 	float intery = yend + gradient;
 
@@ -100,24 +112,24 @@ void drawLineAA(int x0, int y0, int x1, int y1, color_t color, float thickness) 
 	int xpxl2 = xend;
 	int ypxl2 = floor(yend);
 	if (steep) {
-		plot(ypxl2  , xpxl2, 1 - (yend - floor(yend)) * xgap, color, thickness);
-		plot(ypxl2+1, xpxl2, (yend - floor(yend)) * xgap, color, thickness);
+		plot(renderOpts, ypxl2  , xpxl2, 1 - (yend - floor(yend)) * xgap, color, thickness);
+		plot(renderOpts, ypxl2+1, xpxl2, (yend - floor(yend)) * xgap, color, thickness);
 	} else {
-		plot(xpxl2, ypxl2, 1 - (yend - floor(yend)) * xgap, color, thickness);
-		plot(xpxl2, ypxl2 + 1, (yend - floor(yend)) * xgap, color, thickness);
+		plot(renderOpts, xpxl2, ypxl2, 1 - (yend - floor(yend)) * xgap, color, thickness);
+		plot(renderOpts, xpxl2, ypxl2 + 1, (yend - floor(yend)) * xgap, color, thickness);
 	}
 
 	// Main loop
 	if (steep) {
 		for (int x = xpxl1 + 1; x <= xpxl2 - 1; x++) {
-			plot(floor(intery), x, 1 - (intery - floor(intery)), color, thickness);
-			plot(floor(intery) + 1, x, intery - floor(intery), color, thickness);
+			plot(renderOpts, floor(intery), x, 1 - (intery - floor(intery)), color, thickness);
+			plot(renderOpts, floor(intery) + 1, x, intery - floor(intery), color, thickness);
 			intery = intery + gradient;
 		}
 	} else {
 		for (int x = xpxl1 + 1; x <= xpxl2 - 1; x++) {
-			plot(x, floor(intery), 1 - (intery - floor(intery)), color, thickness);
-			plot(x, floor(intery) + 1, intery - floor(intery), color, thickness);
+			plot(renderOpts, x, floor(intery), 1 - (intery - floor(intery)), color, thickness);
+			plot(renderOpts, x, floor(intery) + 1, intery - floor(intery), color, thickness);
 			intery = intery + gradient;
 		}
 	}

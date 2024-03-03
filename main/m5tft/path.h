@@ -22,7 +22,7 @@
 #include "m5tft.h"
 #include "node.h"
 
-void drawLineAA(int x0, int y0, int x1, int y1, color_t color, float thickness);
+void drawLineAA(RenderOpt renderOpts, int x0, int y0, int x1, int y1, color_t color, float thickness);
 void drawSingleLineAA(int x0, int y0, int x1, int y1, color_t color);
 void drawPixel(int x, int y, color_t color);
 void fillRectangle(int x, int y, int width, int height, color_t color);
