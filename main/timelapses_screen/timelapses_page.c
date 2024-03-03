@@ -71,6 +71,9 @@ void draw_timelapse_frame(Node *node, int x, int y) {
 			for (int dy = 0; dy < 2; dy++) {
 				for (int dx = 0; dx < 2; dx++) {
 					if (newX + dx >= 0 && newX + dx < SCREEN_WIDTH && newY + dy >= 0 && newY + dy < SCREEN_HEIGHT) {
+            if (palette[buffer[i]].r == 0 && palette[buffer[i]].g == 0 && palette[buffer[i]].b == 0) {
+              continue;
+            }
 						frame[(newX + dx) + ((newY + dy) * SCREEN_WIDTH)] = palette[buffer[i]];
 					}
 				}

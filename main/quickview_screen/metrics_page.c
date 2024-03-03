@@ -41,7 +41,7 @@ typedef struct {
 
   Node *phase;
 
-  Node *loading;
+  // Node *loading;
 
 } metrics_screen_params;
 
@@ -74,7 +74,7 @@ void update_plant_date(char *value) {
 TickType_t metrics_screen_loop(Node *node, void *p) {
   metrics_screen_params *pdparams = (metrics_screen_params *)p;
 
-  if (pdparams->loading && pdparams->last_temp != 0 && pdparams->last_humi != 0 && pdparams->last_co2 != 0) {
+  /*if (pdparams->loading && pdparams->last_temp != 0 && pdparams->last_humi != 0 && pdparams->last_co2 != 0) {
     delete_node(pdparams->loading);
     pdparams->loading = NULL;
   }
@@ -84,7 +84,7 @@ TickType_t metrics_screen_loop(Node *node, void *p) {
     if (pdparams->background_node->renderOpts.transparency > 0.9) {
       pdparams->background_node->renderOpts.transparency = 1;
     }
-  }
+  }*/
 
   TickType_t returnTick = 2000 / portTICK_PERIOD_MS;
   if (pdparams->last_temp != pdparams->current_temp) {
@@ -218,7 +218,7 @@ void init_metrics_page(Node *root) {
 
   pdparams->background_node = create_node(0, 0, NULL, NULL, NULL);
   add_child(root, pdparams->background_node);
-  pdparams->background_node->renderOpts.transparency = 0.2;
+  //pdparams->background_node->renderOpts.transparency = 0.2;
 
   pdparams->temperature = create_temperature();
   add_child(pdparams->background_node, pdparams->temperature);
@@ -232,8 +232,8 @@ void init_metrics_page(Node *root) {
   Node *label = create_co2_label();
   add_child(pdparams->background_node, label);
 
-  pdparams->loading = create_loading();
-  add_child(root, pdparams->loading);
+  //pdparams->loading = create_loading();
+  //add_child(root, pdparams->loading);
 
   root->funcParams[0] = pdparams;
   root->funcs[0] = metrics_screen_loop;

@@ -94,23 +94,22 @@ typedef struct {
 } draw_entry_underline_params;
 
 void draw_label_line(Node *node, int x, int y) {
-  drawLineAA(node->renderOpts, x-3, y+10, x + 4, y+10, ((draw_entry_underline_params *)node->funcParams[0])->color, 4);
+  drawLineAA(node->renderOpts, x-3, y+10, x + 6, y+10, ((draw_entry_underline_params *)node->funcParams[0])->color, 4);
 }
 
 void init_graphs_label(Node *root, int x, int y, color_t color, const char *label) {
   Node *node = create_node(x, y, NULL, NULL, NULL);
   add_child(root, node);
 
-  Node *l = create_text_node(8, 0, strlen(label), label, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
+  Node *l = create_text_node(13, 0, strlen(label), label, (color_t){ 255, 255, 255 }, SMALL_FONT_SIZE);
   for (int i = 0; i < l->num_children; ++i) {
     l->children[i]->renderOpts.scale = 0.95;
     l->children[i]->renderOpts.limit = true;
     l->children[i]->renderOpts.frame = (frame_limits){0, 63, SCREEN_WIDTH*10, SCREEN_HEIGHT};
-    l->children[i]->renderOpts.frameRef = (node_position *)root->parent->parent;
   }
   add_child(node, l);
 
-  Node *d = create_node(0, 0, NULL, NULL, NULL);
+  Node *d = create_node(3, 0, NULL, NULL, NULL);
   d->drawFunc = draw_label_line;
   d->funcParams[0] = malloc(sizeof(draw_entry_underline_params));
   ((draw_entry_underline_params *)d->funcParams[0])->color = color;
@@ -138,8 +137,8 @@ void init_graphs_labels(Node *node) {
   init_graphs_label(labels, 5, 0, (color_t){ 113, 124, 223 }, "Humi");
   init_graphs_label(labels, 78, 0, (color_t){ 59, 179, 11 }, "Temp");
   init_graphs_label(labels, 5, 20, (color_t){ 204, 204, 204 }, "CO2");
-  init_graphs_label(labels, 75, 20, (color_t){ 199, 85, 21 }, "VPD");
-  init_graphs_label(labels, 120, 20, (color_t){ 234, 198, 71 }, "Light");
+  init_graphs_label(labels, 65, 20, (color_t){ 199, 85, 21 }, "VPD");
+  init_graphs_label(labels, 110, 20, (color_t){ 234, 198, 71 }, "Light");
 }
 
 void init_graphs_page(Node *root) {
@@ -148,29 +147,6 @@ void init_graphs_page(Node *root) {
 	params->graphsNode = create_node(0, 0, NULL, NULL, NULL);
 	params->graphsNode->drawFunc = draw_graphs;
 	add_child(root, params->graphsNode);
-
-	for (int i = 0; i < N_METRICS_VALUES; ++i) {
-		humidity[i] = (rand() % 20 + 20);
-	}
-
-	for (int i = 0; i < N_METRICS_VALUES; ++i) {
-		temperature[i] = (rand() % 20 + 15);
-	}
-
-	for (int i = 0; i < N_METRICS_VALUES; ++i) {
-		vpd[i] = (rand() % 20 + 25);
-	}
-
-	for (int i = 0; i < N_METRICS_VALUES; ++i) {
-		vpd[i] = (rand() % 10 + 5);
-	}
-
-	for (int i = 0; i < N_METRICS_VALUES; ++i) {
-		light[i] = cosf((float)i/2) * 30 + 30;
-		if (light[i] > 35) {
-			light[i] = 35;
-		}
-	}
 
   init_graphs_labels(root);
 }
