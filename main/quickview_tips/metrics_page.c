@@ -26,22 +26,22 @@ typedef struct {
 
   int current_temp;
   int current_humi;
-  int current_vpd;
+  int current_co2;
 
   int last_temp;
   int last_humi;
-  int last_vpd;
+  int last_co2;
   TickType_t last_fetch;
 
   Node *background_node;
 
   Node *temperature;
   Node *humidity;
-  Node *vpd;
+  Node *co2;
 
   Node *phase;
 
-  Node *loading;
+  // Node *loading;
 
 } metrics_screen_params;
 
@@ -74,7 +74,7 @@ void update_plant_date(char *value) {
 TickType_t metrics_screen_loop(Node *node, void *p) {
   metrics_screen_params *pdparams = (metrics_screen_params *)p;
 
-  if (pdparams->loading && pdparams->last_temp != 0 && pdparams->last_humi != 0 && pdparams->last_vpd != 0) {
+  /*if (pdparams->loading && pdparams->last_temp != 0 && pdparams->last_humi != 0 && pdparams->last_co2 != 0) {
     delete_node(pdparams->loading);
     pdparams->loading = NULL;
   }
@@ -84,7 +84,7 @@ TickType_t metrics_screen_loop(Node *node, void *p) {
     if (pdparams->background_node->renderOpts.transparency > 0.9) {
       pdparams->background_node->renderOpts.transparency = 1;
     }
-  }
+  }*/
 
   TickType_t returnTick = 2000 / portTICK_PERIOD_MS;
   if (pdparams->last_temp != pdparams->current_temp) {
@@ -101,16 +101,16 @@ TickType_t metrics_screen_loop(Node *node, void *p) {
     set_text_node(pdparams->humidity, value, NORMAL_FONT_SIZE);
     returnTick = SHORT_TICK;
   }
-  if (pdparams->last_vpd != pdparams->current_vpd) {
-    bool dir = pdparams->last_vpd > pdparams->current_vpd;
-    pdparams->current_vpd += pdparams->last_vpd > pdparams->current_vpd ? 20 : -20;
-    if (dir != (pdparams->last_vpd > pdparams->current_vpd)) {
-      pdparams->current_vpd = pdparams->last_vpd;
+  if (pdparams->last_co2 != pdparams->current_co2) {
+    bool dir = pdparams->last_co2 > pdparams->current_co2;
+    pdparams->current_co2 += pdparams->last_co2 > pdparams->current_co2 ? 20 : -20;
+    if (dir != (pdparams->last_co2 > pdparams->current_co2)) {
+      pdparams->current_co2 = pdparams->last_co2;
     }
     char value[6] = {0};
-    sprintf(value, "%.01f", (float)pdparams->current_vpd/10);
-    NodeSize size = set_text_node(pdparams->vpd, value, NORMAL_FONT_SIZE);
-    pdparams->vpd->x = 160 - size.width - 10;
+    sprintf(value, "%d", pdparams->current_co2);
+    NodeSize size = set_text_node(pdparams->co2, value, NORMAL_FONT_SIZE);
+    pdparams->co2->x = 160 - size.width - 10;
     returnTick = SHORT_TICK;
   }
 
@@ -119,7 +119,7 @@ TickType_t metrics_screen_loop(Node *node, void *p) {
 
     pdparams->last_temp = get_box_0_temp();
     pdparams->last_humi = get_box_0_humi();
-    pdparams->last_vpd = get_box_0_vpd();
+    pdparams->last_co2 = get_box_0_co2();
 
     pdparams->last_fetch = tick;
   }
@@ -141,21 +141,21 @@ Node *create_humidity() {
   return node;
 }
 
-Node *create_vpd() {
+Node *create_co2() {
   char value[5] = {0};
-  sprintf(value, "%.01f", (float)get_box_0_vpd()/10);
+  sprintf(value, "%d", get_box_0_co2());
   Node *node = create_text_node(80, 24, 7, value, (color_t){ 217, 69, 184 }, NORMAL_FONT_SIZE);
   NodeSize size = set_text_node(node, value, NORMAL_FONT_SIZE);
   node->x = 160 - size.width - 10;
   return node;
 }
 
-Node *create_vpd_label() {
-  Node *node = create_text_node(100, 60, 7, "vpd", (color_t){ 217, 69, 184 }, NORMAL_FONT_SIZE);
+Node *create_co2_label() {
+  Node *node = create_text_node(100, 60, 7, "ppm", (color_t){ 217, 69, 184 }, NORMAL_FONT_SIZE);
   for (int i = 0; i < node->num_children; ++i) {
     node->children[i]->renderOpts.scale = 0.8;
   }
-  NodeSize size = set_text_node(node, "vpd", NORMAL_FONT_SIZE);
+  NodeSize size = set_text_node(node, "ppm", NORMAL_FONT_SIZE);
   node->x = 160 - size.width - 10;
   node->y = 80 - size.height - 5;
   return node;
@@ -218,7 +218,7 @@ void init_metrics_page(Node *root) {
 
   pdparams->background_node = create_node(0, 0, NULL, NULL, NULL);
   add_child(root, pdparams->background_node);
-  pdparams->background_node->renderOpts.transparency = 0.2;
+  //pdparams->background_node->renderOpts.transparency = 0.2;
 
   pdparams->temperature = create_temperature();
   add_child(pdparams->background_node, pdparams->temperature);
@@ -226,14 +226,14 @@ void init_metrics_page(Node *root) {
   pdparams->humidity = create_humidity();
   add_child(pdparams->background_node, pdparams->humidity);
 
-  pdparams->vpd = create_vpd();
-  add_child(pdparams->background_node, pdparams->vpd);
+  pdparams->co2 = create_co2();
+  add_child(pdparams->background_node, pdparams->co2);
 
-  Node *label = create_vpd_label();
+  Node *label = create_co2_label();
   add_child(pdparams->background_node, label);
 
-  pdparams->loading = create_loading();
-  add_child(root, pdparams->loading);
+  //pdparams->loading = create_loading();
+  //add_child(root, pdparams->loading);
 
   root->funcParams[0] = pdparams;
   root->funcs[0] = metrics_screen_loop;

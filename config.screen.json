@@ -1652,16 +1652,46 @@
             "init_priority": 100,
             "core": false
         },
-        "quickview_screen": {
-            "name": "quickview_screen",
+        "m5tft": {
+            "name": "m5tft",
+            "i2c": false,
+            "array_len": 0,
+            "fields": {},
+            "enabled": true,
+            "field_prefix": "m5tft",
+            "tester": false,
+            "init": true,
+            "required": false,
+            "preinit": false,
+            "code": true,
+            "init_priority": 50,
+            "core": false
+        },
+        "sgl": {
+            "name": "sgl",
+            "i2c": false,
+            "array_len": 0,
+            "fields": {},
+            "enabled": true,
+            "field_prefix": "sgl",
+            "tester": false,
+            "init": true,
+            "required": false,
+            "preinit": false,
+            "code": true,
+            "init_priority": 40,
+            "core": false
+        },
+        "timelapses_screen": {
+            "name": "timelapses_screen",
             "i2c": false,
             "array_len": 0,
             "fields": {
                 "order": {
-                    "name": "quickview_screen_order",
-                    "default": 0,
+                    "name": "timelapses_screen_order",
+                    "default": 3,
                     "nvs": {
-                        "key": "QVSCR_ORDR",
+                        "key": "TLSCR_ORDR",
                         "enable": true,
                         "manual": false
                     },
@@ -1686,17 +1716,17 @@
                     "signedness": "u",
                     "intlen": 8,
                     "suffix": "order",
-                    "caps_name": "QUICKVIEW_SCREEN_ORDER"
+                    "caps_name": "TIMELAPSES_SCREEN_ORDER"
                 }
             },
             "enabled": true,
-            "field_prefix": "quickview_screen",
+            "field_prefix": "timelapses_screen",
             "tester": false,
             "init": true,
             "required": false,
             "preinit": false,
             "code": true,
-            "init_priority": 30,
+            "init_priority": 15,
             "core": false
         },
         "graphs_screen": {
@@ -1746,36 +1776,6 @@
             "init_priority": 20,
             "core": false
         },
-        "sgl": {
-            "name": "sgl",
-            "i2c": false,
-            "array_len": 0,
-            "fields": {},
-            "enabled": true,
-            "field_prefix": "sgl",
-            "tester": false,
-            "init": true,
-            "required": false,
-            "preinit": false,
-            "code": true,
-            "init_priority": 40,
-            "core": false
-        },
-        "m5tft": {
-            "name": "m5tft",
-            "i2c": false,
-            "array_len": 0,
-            "fields": {},
-            "enabled": true,
-            "field_prefix": "m5tft",
-            "tester": false,
-            "init": true,
-            "required": false,
-            "preinit": false,
-            "code": true,
-            "init_priority": 50,
-            "core": false
-        },
         "checklist_screen": {
             "name": "checklist_screen",
             "i2c": false,
@@ -1823,16 +1823,16 @@
             "init_priority": 25,
             "core": false
         },
-        "timelapses_screen": {
-            "name": "timelapses_screen",
+        "quickview_screen": {
+            "name": "quickview_screen",
             "i2c": false,
             "array_len": 0,
             "fields": {
                 "order": {
-                    "name": "timelapses_screen_order",
-                    "default": 3,
+                    "name": "quickview_screen_order",
+                    "default": 0,
                     "nvs": {
-                        "key": "TLSCR_ORDR",
+                        "key": "QVSCR_ORDR",
                         "enable": true,
                         "manual": false
                     },
@@ -1857,17 +1857,17 @@
                     "signedness": "u",
                     "intlen": 8,
                     "suffix": "order",
-                    "caps_name": "TIMELAPSES_SCREEN_ORDER"
+                    "caps_name": "QUICKVIEW_SCREEN_ORDER"
                 }
             },
             "enabled": true,
-            "field_prefix": "timelapses_screen",
+            "field_prefix": "quickview_screen",
             "tester": false,
             "init": true,
             "required": false,
             "preinit": false,
             "code": true,
-            "init_priority": 15,
+            "init_priority": 30,
             "core": false
         }
     },

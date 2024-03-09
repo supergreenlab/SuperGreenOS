@@ -389,12 +389,14 @@ NodeSize set_text_node(Node *textNode, const char *text, uint8_t mask) {
 
 	NodeSize size = (NodeSize){0, 0};
 
+  //ESP_LOGI(SGO_LOG_NOSEND, "%s", text);
   int i = 0;
   for (; i < len && text[i]; i++) {
     char c = text[i];
 
     Node *letterNode = textNode->children[i];
 
+    //ESP_LOGI(SGO_LOG_NOSEND, "%c", text[i]);
     if (c == ' ') {
       currentX += letterNode->renderOpts.scale * 6;
       continue;

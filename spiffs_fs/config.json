@@ -782,17 +782,17 @@
           
             {
               "core": false,
-              "name": "quickview_screen_order",
+              "name": "timelapses_screen_order",
               "type": "integer",
               "integer": true,
-              "caps_name": "QUICKVIEW_SCREEN_ORDER",
-              "module": "quickview_screen",
+              "caps_name": "TIMELAPSES_SCREEN_ORDER",
+              "module": "timelapses_screen",
               
               
               "write": true,
               
               
-              "default": 0
+              "default": 3
             },
           
             {
@@ -827,17 +827,17 @@
           
             {
               "core": false,
-              "name": "timelapses_screen_order",
+              "name": "quickview_screen_order",
               "type": "integer",
               "integer": true,
-              "caps_name": "TIMELAPSES_SCREEN_ORDER",
-              "module": "timelapses_screen",
+              "caps_name": "QUICKVIEW_SCREEN_ORDER",
+              "module": "quickview_screen",
               
               
               "write": true,
               
               
-              "default": 3
+              "default": 0
             }
           
   ]
