@@ -38,13 +38,3 @@ modules mqtt fields scrcallback: _STRING & {
   default: string | *""
   nosend: true
 }
-
-modules mqtt fields enckey: _STRING & _NVS & _HTTP_RW & {
-  default: string | *""
-  nosend: true
-  remote: false
-  nvs key: "BRKR_EK"
-  default: ""
-  http read: false
-  write_cb: true
-}

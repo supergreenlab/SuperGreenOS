@@ -16,3 +16,13 @@ modules mqtt fields scrtoken: _STRING & _NVS & _HTTP_RW & {
   default: ""
   write_cb: true
 }
+
+modules mqtt fields enckey: _STRING & _NVS & _HTTP_RW & {
+  default: string | *""
+  nosend: true
+  remote: false
+  nvs key: "BRKR_EK"
+  default: ""
+  http read: false
+  write_cb: true
+}

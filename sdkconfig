@@ -94,7 +94,7 @@ CONFIG_MONITOR_BAUD=115200
 #
 # SuperGreenOS Configuration
 #
-CONFIG_VERSION="SuperGreenScreen"
+CONFIG_VERSION="SuperGreenController"
 
 #
 # Partition Table

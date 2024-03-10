@@ -338,7 +338,9 @@ static void mqtt_task(void *param) {
   client = esp_mqtt_client_init(&mqtt_cfg);
   esp_mqtt_client_start(client);
 
+<% if (hasScr) { %>
   ScreenCmd screenCmd = { 0 };
+<% } %>
 
   while(true) {
     if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS)) {

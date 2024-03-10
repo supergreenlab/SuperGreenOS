@@ -23,7 +23,10 @@
 
 #define MAX_QUEUE_ITEM_SIZE 128
 
-
+<%
+  const hasCmd = modules.mqtt.fields.cmdcallbackinclude.default && modules.mqtt.fields.cmdcallback.default
+  const hasScr = modules.mqtt.fields.scrcallbackinclude.default && modules.mqtt.fields.scrcallback.default
+%>
 
 extern bool connected;
 
@@ -31,7 +34,9 @@ void init_mqtt();
 void mqtt_intercept_log();
 void send_screen_message(const char msg[MAX_QUEUE_ITEM_SIZE], int len);
 
-
+<% if(hasScr) { %>
+const char* on_set_broker_scrtoken(const char* value);
+const char* on_set_broker_enckey(const char* value);
+<% } %>
 
 #endif
-

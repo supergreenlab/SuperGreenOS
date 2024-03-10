@@ -238,9 +238,6 @@ TickType_t wait_action(Node *node, void *p) {
   return (params->duration - elapsedTime) / portTICK_PERIOD_MS;
 }
 
-// Node management functions
-
-// Create a new node. For simplicity, memory allocation is straightforward and lacks error checking.
 Node* create_node(int x, int y, bitmap_data *bitmap, NodeFunction func, void *funcParams) {
   Node *node = (Node*)malloc(sizeof(Node));
   memset(node, 0, sizeof(Node));
