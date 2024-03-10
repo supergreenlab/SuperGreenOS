@@ -14,7 +14,7 @@
  */
 
 #include <stdlib.h>
-#include "quickview_screen.h"
+#include "quickview_tips.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -46,14 +46,14 @@ void setPlantDateData(const char *msg, int len) {
   ESP_LOGI(SGO_LOG_NOSEND, "Set plant date event: text: %s", evt->text);
 }
 
-void init_quickview_screen() {
-  ESP_LOGI(SGO_LOG_EVENT, "@QUICKVIEW_SCREEN Initializing quickview_screen module");
+void init_quickview_tips() {
+  ESP_LOGI(SGO_LOG_EVENT, "@QUICKVIEW_SCREEN Initializing quickview_tips module");
 
   add_screen_init(init_metrics_page);
   set_command_update(GET_PLANT_DATE, updatePlantDateFn);
   set_command(SET_PLANT_DATE, setPlantDateData);
 }
 
-uint8_t on_set_quickview_screen_order(uint8_t value) {
+uint8_t on_set_quickview_tips_order(uint8_t value) {
   return value;
 }

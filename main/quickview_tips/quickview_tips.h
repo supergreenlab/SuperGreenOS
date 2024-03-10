@@ -13,13 +13,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef QUICKVIEW_SCREEN_H_
-#define QUICKVIEW_SCREEN_H_
+#ifndef QUICKVIEW_TIPS_H_
+#define QUICKVIEW_TIPS_H_
 
 #include <stdint.h>
 
-void init_quickview_screen();
-uint8_t on_set_quickview_screen_order(uint8_t value);
+void init_quickview_tips();
+uint8_t on_set_quickview_tips_order(uint8_t value);
 
 #endif
 

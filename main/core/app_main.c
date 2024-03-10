@@ -34,6 +34,7 @@
 #include "ota/ota.h"
 #include "stat_dump/stat_dump.h"
 #include "httpd/httpd.h"
+#include "modules.h"
 
 void preinit_app();
 void init_app(bool tester);
