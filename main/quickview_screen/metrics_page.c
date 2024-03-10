@@ -108,7 +108,7 @@ TickType_t metrics_screen_loop(Node *node, void *p) {
       pdparams->current_vpd = pdparams->last_vpd;
     }
     char value[6] = {0};
-    sprintf(value, "%.01f", (float)pdparams->current_vpd/10);
+    sprintf(value, "%.02f", (float)pdparams->current_vpd/100);
     NodeSize size = set_text_node(pdparams->vpd, value, NORMAL_FONT_SIZE);
     pdparams->vpd->x = 160 - size.width - 10;
     returnTick = SHORT_TICK;
@@ -143,7 +143,7 @@ Node *create_humidity() {
 
 Node *create_vpd() {
   char value[5] = {0};
-  sprintf(value, "%.01f", (float)get_box_0_vpd()/10);
+  sprintf(value, "%.02f", (float)get_box_0_vpd()/100);
   Node *node = create_text_node(80, 24, 7, value, (color_t){ 217, 69, 184 }, NORMAL_FONT_SIZE);
   NodeSize size = set_text_node(node, value, NORMAL_FONT_SIZE);
   node->x = 160 - size.width - 10;

@@ -9,28 +9,28 @@
                 "time": {
                     "name": "time",
                     "default": 0,
-                    "nvs": {
-                        "key": "TIME",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "TIME"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": true,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 32,
@@ -39,11 +39,11 @@
                 }
             },
             "enabled": true,
-            "field_prefix": "time",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "time",
             "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 0,
             "core": true
@@ -54,11 +54,11 @@
             "array_len": 0,
             "fields": {},
             "enabled": true,
-            "field_prefix": "cmd",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "cmd",
             "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 0,
             "core": true
@@ -69,323 +69,11 @@
             "array_len": 0,
             "fields": {},
             "enabled": false,
+            "tester": false,
+            "required": false,
             "field_prefix": "i2c",
-            "tester": false,
+            "preinit": false,
             "init": true,
-            "required": false,
-            "preinit": false,
-            "code": true,
-            "init_priority": 0,
-            "core": true
-        },
-        "mqtt": {
-            "name": "mqtt",
-            "i2c": false,
-            "array_len": 0,
-            "fields": {
-                "url": {
-                    "name": "broker_url",
-                    "default": "mqtt://sink2.supergreenlab.com:1883",
-                    "nvs": {
-                        "key": "BRKR_URL",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "url",
-                    "caps_name": "BROKER_URL"
-                },
-                "channel": {
-                    "name": "broker_channel",
-                    "default": "",
-                    "nvs": {
-                        "key": "BRKR_CHN",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "channel",
-                    "caps_name": "BROKER_CHANNEL"
-                },
-                "clientid": {
-                    "name": "broker_clientid",
-                    "default": "",
-                    "nvs": {
-                        "key": "BRKR_CLID",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "clientid",
-                    "caps_name": "BROKER_CLIENTID"
-                },
-                "cmdcallbackinclude": {
-                    "name": "broker_cmdcallbackinclude",
-                    "default": "",
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": true,
-                    "remote": true,
-                    "http": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "cmdcallbackinclude",
-                    "caps_name": "BROKER_CMDCALLBACKINCLUDE"
-                },
-                "cmdcallback": {
-                    "name": "broker_cmdcallback",
-                    "default": "",
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": true,
-                    "remote": true,
-                    "http": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "cmdcallback",
-                    "caps_name": "BROKER_CMDCALLBACK"
-                },
-                "scrcallbackinclude": {
-                    "name": "broker_scrcallbackinclude",
-                    "default": "../../sgl/sgl.h",
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": true,
-                    "remote": true,
-                    "http": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "scrcallbackinclude",
-                    "caps_name": "BROKER_SCRCALLBACKINCLUDE"
-                },
-                "scrcallback": {
-                    "name": "broker_scrcallback",
-                    "default": "mqtt_message",
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": true,
-                    "remote": true,
-                    "http": {
-                        "enable": false
-                    },
-                    "write_cb": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "scrcallback",
-                    "caps_name": "BROKER_SCRCALLBACK"
-                },
-                "enckey": {
-                    "name": "broker_enckey",
-                    "default": "",
-                    "nvs": {
-                        "key": "BRKR_EK",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": true,
-                    "remote": false,
-                    "http": {
-                        "read": false,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "enckey",
-                    "caps_name": "BROKER_ENCKEY"
-                },
-                "scrtoken": {
-                    "name": "broker_scrtoken",
-                    "default": "",
-                    "nvs": {
-                        "key": "BRKR_SCR_TK",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": true,
-                    "remote": false,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "suffix": "scrtoken",
-                    "caps_name": "BROKER_SCRTOKEN"
-                }
-            },
-            "enabled": true,
-            "field_prefix": "broker",
-            "tester": false,
-            "init": true,
-            "required": false,
-            "preinit": false,
-            "code": true,
-            "init_priority": 0,
-            "core": true
-        },
-        "tester": {
-            "name": "tester",
-            "i2c": false,
-            "array_len": 0,
-            "fields": {
-                "enabled": {
-                    "name": "tester_enabled",
-                    "default": 0,
-                    "nvs": {
-                        "key": "TEST_E",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "enabled",
-                    "caps_name": "TESTER_ENABLED"
-                }
-            },
-            "enabled": true,
-            "field_prefix": "tester",
-            "tester": false,
-            "init": false,
-            "required": false,
-            "preinit": false,
             "code": true,
             "init_priority": 0,
             "core": true
@@ -396,11 +84,11 @@
             "array_len": 0,
             "fields": {},
             "enabled": true,
-            "field_prefix": "term",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "term",
             "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 0,
             "core": true
@@ -411,11 +99,11 @@
             "array_len": 0,
             "fields": {},
             "enabled": true,
-            "field_prefix": "stat_dump",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "stat_dump",
             "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 0,
             "core": true
@@ -428,27 +116,27 @@
                 "reboot": {
                     "name": "reboot",
                     "default": 0,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
                     "nvs": {
                         "enable": false,
                         "manual": false
                     },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": true,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -458,28 +146,28 @@
                 "n_restarts": {
                     "name": "n_restarts",
                     "default": 0,
-                    "nvs": {
-                        "key": "N_RESTARTS",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "N_RESTARTS"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "u",
                     "intlen": 8,
@@ -488,11 +176,276 @@
                 }
             },
             "enabled": true,
-            "field_prefix": "reboot",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "reboot",
             "preinit": false,
+            "init": true,
+            "code": true,
+            "init_priority": 0,
+            "core": true
+        },
+        "mqtt": {
+            "name": "mqtt",
+            "i2c": false,
+            "array_len": 0,
+            "fields": {
+                "url": {
+                    "name": "broker_url",
+                    "default": "mqtt://sink2.supergreenlab.com:1883",
+                    "remote": true,
+                    "type": "string",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "BRKR_URL"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "disabled": false,
+                    "suffix": "url",
+                    "caps_name": "BROKER_URL"
+                },
+                "channel": {
+                    "name": "broker_channel",
+                    "default": "",
+                    "remote": true,
+                    "type": "string",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "BRKR_CHN"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "disabled": false,
+                    "suffix": "channel",
+                    "caps_name": "BROKER_CHANNEL"
+                },
+                "clientid": {
+                    "name": "broker_clientid",
+                    "default": "",
+                    "remote": true,
+                    "type": "string",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "BRKR_CLID"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "disabled": false,
+                    "suffix": "clientid",
+                    "caps_name": "BROKER_CLIENTID"
+                },
+                "cmdcallbackinclude": {
+                    "name": "broker_cmdcallbackinclude",
+                    "default": "",
+                    "remote": true,
+                    "type": "string",
+                    "nosend": true,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "disabled": false,
+                    "suffix": "cmdcallbackinclude",
+                    "caps_name": "BROKER_CMDCALLBACKINCLUDE"
+                },
+                "cmdcallback": {
+                    "name": "broker_cmdcallback",
+                    "default": "",
+                    "remote": true,
+                    "type": "string",
+                    "nosend": true,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "disabled": false,
+                    "suffix": "cmdcallback",
+                    "caps_name": "BROKER_CMDCALLBACK"
+                },
+                "scrcallbackinclude": {
+                    "name": "broker_scrcallbackinclude",
+                    "default": "../../sgl/sgl.h",
+                    "remote": true,
+                    "type": "string",
+                    "nosend": true,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "disabled": false,
+                    "suffix": "scrcallbackinclude",
+                    "caps_name": "BROKER_SCRCALLBACKINCLUDE"
+                },
+                "scrcallback": {
+                    "name": "broker_scrcallback",
+                    "default": "mqtt_message",
+                    "remote": true,
+                    "type": "string",
+                    "nosend": true,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "disabled": false,
+                    "suffix": "scrcallback",
+                    "caps_name": "BROKER_SCRCALLBACK"
+                },
+                "scrtoken": {
+                    "name": "broker_scrtoken",
+                    "default": "",
+                    "remote": false,
+                    "type": "string",
+                    "nosend": true,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "BRKR_SCR_TK"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "disabled": false,
+                    "suffix": "scrtoken",
+                    "caps_name": "BROKER_SCRTOKEN"
+                },
+                "enckey": {
+                    "name": "broker_enckey",
+                    "default": "",
+                    "remote": false,
+                    "type": "string",
+                    "nosend": true,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "BRKR_EK"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": false
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "disabled": false,
+                    "suffix": "enckey",
+                    "caps_name": "BROKER_ENCKEY"
+                }
+            },
+            "enabled": true,
+            "tester": false,
+            "required": false,
+            "field_prefix": "broker",
+            "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 0,
             "core": true
@@ -504,27 +457,27 @@
             "fields": {
                 "status": {
                     "name": "ota_status",
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
                     "nvs": {
                         "enable": false,
                         "manual": false
                     },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -534,28 +487,28 @@
                 },
                 "timestamp": {
                     "name": "ota_timestamp",
-                    "nvs": {
-                        "key": "OTA_TMSTP",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": false,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "OTA_TMSTP"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 32,
@@ -566,28 +519,28 @@
                 "server_ip": {
                     "name": "ota_server_ip",
                     "default": "192.168.4.2",
-                    "nvs": {
-                        "key": "OTA_SRV_IP",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": false,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "string",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "OTA_SRV_IP"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "suffix": "server_ip",
                     "caps_name": "OTA_SERVER_IP"
@@ -595,28 +548,28 @@
                 "server_hostname": {
                     "name": "ota_server_hostname",
                     "default": "update2.supergreenlab.com",
-                    "nvs": {
-                        "key": "OTA_SRV_HN",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": false,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "string",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "OTA_SRV_HN"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "suffix": "server_hostname",
                     "caps_name": "OTA_SERVER_HOSTNAME"
@@ -624,28 +577,28 @@
                 "server_port": {
                     "name": "ota_server_port",
                     "default": 80,
-                    "nvs": {
-                        "key": "OTA_SRV_UPRT",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": false,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "OTA_SRV_UPRT"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "u",
                     "intlen": 16,
@@ -655,28 +608,28 @@
                 "basedir": {
                     "name": "ota_basedir",
                     "default": "/ScreenV2.1",
-                    "nvs": {
-                        "key": "OTA_BASEDIR",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": false,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "string",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "OTA_BASEDIR"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "suffix": "basedir",
                     "caps_name": "OTA_BASEDIR"
@@ -684,27 +637,27 @@
                 "ota_start": {
                     "name": "ota_start",
                     "default": 0,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
                     "nvs": {
                         "enable": false,
                         "manual": false
                     },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": true,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -713,11 +666,11 @@
                 }
             },
             "enabled": true,
-            "field_prefix": "ota",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "ota",
             "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 0,
             "core": true
@@ -728,11 +681,11 @@
             "array_len": 0,
             "fields": {},
             "enabled": true,
-            "field_prefix": "kv",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "kv",
             "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 0,
             "core": true
@@ -745,39 +698,39 @@
                 "auth": {
                     "name": "httpd_auth",
                     "default": "",
-                    "nvs": {
-                        "key": "AUTH_HDR",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": true,
                     "remote": false,
-                    "http": {
-                        "read": false,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "string",
+                    "nosend": true,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "AUTH_HDR"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": false
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "suffix": "auth",
                     "caps_name": "HTTPD_AUTH"
                 }
             },
             "enabled": true,
-            "field_prefix": "httpd",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "httpd",
             "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 0,
             "core": true
@@ -790,29 +743,29 @@
                 "0_temp": {
                     "name": "box_0_temp",
                     "default": 0,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 1,
                     "nvs": {
                         "enable": false,
                         "manual": false
                     },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 1,
                     "ble": {
                         "enable": false
                     },
-                    "indir": {
-                        "key": "temp_sensor",
+                    "http": {
                         "enable": true,
+                        "write": false,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": true,
+                        "key": "temp_sensor",
                         "source": "0_temp_source"
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -822,28 +775,28 @@
                 "0_temp_source": {
                     "name": "box_0_temp_source",
                     "default": 16,
-                    "nvs": {
-                        "key": "B_0_T_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_T_SRC"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -853,29 +806,29 @@
                 "0_humi": {
                     "name": "box_0_humi",
                     "default": 0,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 1,
                     "nvs": {
                         "enable": false,
                         "manual": false
                     },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 1,
                     "ble": {
                         "enable": false
                     },
-                    "indir": {
-                        "key": "humi_sensor",
+                    "http": {
                         "enable": true,
+                        "write": false,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": true,
+                        "key": "humi_sensor",
                         "source": "0_humi_source"
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -885,28 +838,28 @@
                 "0_humi_source": {
                     "name": "box_0_humi_source",
                     "default": 16,
-                    "nvs": {
-                        "key": "B_0_H_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_H_SRC"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -916,29 +869,29 @@
                 "0_vpd": {
                     "name": "box_0_vpd",
                     "default": 0,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 1,
                     "nvs": {
                         "enable": false,
                         "manual": false
                     },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 1,
                     "ble": {
                         "enable": false
                     },
-                    "indir": {
-                        "key": "vpd_sensor",
+                    "http": {
                         "enable": true,
+                        "write": false,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": true,
+                        "key": "vpd_sensor",
                         "source": "0_vpd_source"
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "u",
                     "intlen": 8,
@@ -948,28 +901,28 @@
                 "0_vpd_source": {
                     "name": "box_0_vpd_source",
                     "default": 16,
-                    "nvs": {
-                        "key": "B_0_VPD_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_VPD_SRC"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -979,29 +932,29 @@
                 "0_weight": {
                     "name": "box_0_weight",
                     "default": 0,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 1,
                     "nvs": {
                         "enable": false,
                         "manual": false
                     },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 1,
                     "ble": {
                         "enable": false
                     },
-                    "indir": {
-                        "key": "weight_sensor",
+                    "http": {
                         "enable": true,
+                        "write": false,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": true,
+                        "key": "weight_sensor",
                         "source": "0_weight_source"
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 32,
@@ -1011,28 +964,28 @@
                 "0_weight_source": {
                     "name": "box_0_weight_source",
                     "default": 1,
-                    "nvs": {
-                        "key": "B_0_W_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_W_SRC"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -1042,29 +995,29 @@
                 "0_co2": {
                     "name": "box_0_co2",
                     "default": 0,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 1,
                     "nvs": {
                         "enable": false,
                         "manual": false
                     },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 1,
                     "ble": {
                         "enable": false
                     },
-                    "indir": {
-                        "key": "co2_sensor",
+                    "http": {
                         "enable": true,
+                        "write": false,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": true,
+                        "key": "co2_sensor",
                         "source": "0_co2_source"
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 32,
@@ -1074,28 +1027,28 @@
                 "0_co2_source": {
                     "name": "box_0_co2_source",
                     "default": 1,
-                    "nvs": {
-                        "key": "B_0_CO_SRC",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_CO_SRC"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -1105,28 +1058,28 @@
                 "0_enabled": {
                     "name": "box_0_enabled",
                     "default": 0,
-                    "nvs": {
-                        "key": "B_0_E",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "B_0_E"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": true,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -1135,11 +1088,11 @@
                 }
             },
             "enabled": true,
-            "field_prefix": "box",
             "tester": false,
-            "init": false,
             "required": false,
+            "field_prefix": "box",
             "preinit": false,
+            "init": false,
             "code": true,
             "init_priority": 0,
             "core": false
@@ -1151,27 +1104,27 @@
             "fields": {
                 "status": {
                     "name": "wifi_status",
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
                     "nvs": {
                         "enable": false,
                         "manual": false
                     },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -1181,84 +1134,84 @@
                 },
                 "ssid": {
                     "name": "wifi_ssid",
-                    "nvs": {
-                        "key": "WSSID",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": true,
                     "remote": false,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
                     "type": "string",
+                    "nosend": true,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "WSSID"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": true,
                     "disabled": false,
                     "suffix": "ssid",
                     "caps_name": "WIFI_SSID"
                 },
                 "password": {
                     "name": "wifi_password",
-                    "nvs": {
-                        "key": "WPASS",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": true,
                     "remote": false,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
                     "type": "string",
+                    "nosend": true,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "WPASS"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": true,
                     "disabled": false,
                     "suffix": "password",
                     "caps_name": "WIFI_PASSWORD"
                 },
                 "ap_ssid": {
                     "name": "wifi_ap_ssid",
-                    "nvs": {
-                        "key": "WAPSSID",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": true,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "string",
+                    "nosend": true,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "WAPSSID"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "suffix": "ap_ssid",
                     "caps_name": "WIFI_AP_SSID",
@@ -1266,28 +1219,28 @@
                 },
                 "ap_password": {
                     "name": "wifi_ap_password",
-                    "nvs": {
-                        "key": "WAPPASS",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": true,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "string",
+                    "nosend": true,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "WAPPASS"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "suffix": "ap_password",
                     "caps_name": "WIFI_AP_PASSWORD",
@@ -1296,66 +1249,66 @@
                 "mdns_domain": {
                     "name": "mdns_domain",
                     "default": "supergreenscreen",
-                    "nvs": {
-                        "key": "MDNSD",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": false,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
                     "type": "string",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "MDNSD"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": true,
                     "disabled": false,
                     "suffix": "mdns_domain",
                     "caps_name": "MDNS_DOMAIN"
                 },
                 "ip": {
                     "name": "wifi_ip",
+                    "remote": true,
+                    "type": "string",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
                     "nvs": {
                         "enable": false,
                         "manual": false
                     },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "string",
-                    "helper": "",
-                    "dump_freq": 60,
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "suffix": "ip",
                     "caps_name": "WIFI_IP"
                 }
             },
             "enabled": true,
-            "field_prefix": "wifi",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "wifi",
             "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 0,
             "core": true
@@ -1366,212 +1319,11 @@
             "array_len": 0,
             "fields": {},
             "enabled": false,
-            "field_prefix": "sht21",
             "tester": false,
-            "init": false,
             "required": true,
+            "field_prefix": "sht21",
             "preinit": false,
-            "code": true,
-            "init_priority": 0,
-            "core": false
-        },
-        "remote_sensors": {
-            "name": "remote_sensors",
-            "i2c": false,
-            "array_len": 0,
-            "fields": {
-                "weight": {
-                    "name": "remote_sensors_weight",
-                    "default": 0,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "Remote HX711 weight",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 32,
-                    "suffix": "weight",
-                    "caps_name": "REMOTE_SENSORS_WEIGHT",
-                    "weight_sensor": 1
-                },
-                "co2": {
-                    "name": "remote_sensors_co2",
-                    "default": 0,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "Remote SCD30 co2",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "u",
-                    "intlen": 16,
-                    "suffix": "co2",
-                    "caps_name": "REMOTE_SENSORS_CO2",
-                    "co2_sensor": 1
-                },
-                "temp": {
-                    "name": "remote_sensors_temp",
-                    "default": 0,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "Remote SCD30 temperature",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "temp",
-                    "caps_name": "REMOTE_SENSORS_TEMP",
-                    "temp_sensor": 16
-                },
-                "humi": {
-                    "name": "remote_sensors_humi",
-                    "default": 0,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "Remote SCD30 humidity",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "",
-                    "intlen": 8,
-                    "suffix": "humi",
-                    "caps_name": "REMOTE_SENSORS_HUMI",
-                    "humi_sensor": 16
-                },
-                "vpd": {
-                    "name": "remote_sensors_vpd",
-                    "default": 0,
-                    "nvs": {
-                        "enable": false,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": false
-                    },
-                    "write_cb": false,
-                    "type": "integer",
-                    "helper": "Remote SCD30 vpd",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "u",
-                    "intlen": 8,
-                    "suffix": "vpd",
-                    "caps_name": "REMOTE_SENSORS_VPD",
-                    "vpd_sensor": 16
-                }
-            },
-            "enabled": true,
-            "field_prefix": "remote_sensors",
-            "tester": false,
-            "init": true,
-            "required": false,
-            "preinit": false,
-            "code": true,
-            "init_priority": 0,
-            "core": false
-        },
-        "hx711": {
-            "name": "hx711",
-            "i2c": true,
-            "array_len": 0,
-            "fields": {},
-            "enabled": false,
-            "field_prefix": "hx711",
-            "tester": false,
             "init": false,
-            "required": false,
-            "preinit": false,
-            "code": true,
-            "init_priority": 0,
-            "core": false
-        },
-        "scd30": {
-            "name": "scd30",
-            "i2c": true,
-            "array_len": 0,
-            "fields": {},
-            "enabled": false,
-            "field_prefix": "scd30",
-            "tester": false,
-            "init": false,
-            "required": false,
-            "preinit": false,
             "code": true,
             "init_priority": 0,
             "core": false
@@ -1583,28 +1335,28 @@
             "fields": {
                 "state": {
                     "name": "state",
-                    "nvs": {
-                        "key": "STATE",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "STATE"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": true,
                     "disabled": false,
                     "signedness": "",
                     "intlen": 8,
@@ -1615,71 +1367,71 @@
                 "device_name": {
                     "name": "device_name",
                     "default": "SuperGreenScreen",
-                    "nvs": {
-                        "key": "DEV_NAME",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": false,
                     "type": "string",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "DEV_NAME"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": false,
                     "disabled": false,
                     "suffix": "device_name",
                     "caps_name": "DEVICE_NAME"
                 }
             },
             "enabled": true,
-            "field_prefix": "state",
             "tester": false,
-            "init": true,
             "required": true,
+            "field_prefix": "state",
             "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 100,
             "core": false
         },
-        "m5tft": {
-            "name": "m5tft",
-            "i2c": false,
+        "scd30": {
+            "name": "scd30",
+            "i2c": true,
             "array_len": 0,
             "fields": {},
-            "enabled": true,
-            "field_prefix": "m5tft",
+            "enabled": false,
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "scd30",
             "preinit": false,
+            "init": false,
             "code": true,
-            "init_priority": 50,
+            "init_priority": 0,
             "core": false
         },
-        "sgl": {
-            "name": "sgl",
-            "i2c": false,
+        "hx711": {
+            "name": "hx711",
+            "i2c": true,
             "array_len": 0,
             "fields": {},
-            "enabled": true,
-            "field_prefix": "sgl",
+            "enabled": false,
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "hx711",
             "preinit": false,
+            "init": false,
             "code": true,
-            "init_priority": 40,
+            "init_priority": 0,
             "core": false
         },
         "timelapses_screen": {
@@ -1690,28 +1442,28 @@
                 "order": {
                     "name": "timelapses_screen_order",
                     "default": 3,
-                    "nvs": {
-                        "key": "TLSCR_ORDR",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "TLSCR_ORDR"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": true,
                     "disabled": false,
                     "signedness": "u",
                     "intlen": 8,
@@ -1720,60 +1472,43 @@
                 }
             },
             "enabled": true,
-            "field_prefix": "timelapses_screen",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "timelapses_screen",
             "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 15,
             "core": false
         },
-        "graphs_screen": {
-            "name": "graphs_screen",
+        "sgl": {
+            "name": "sgl",
             "i2c": false,
             "array_len": 0,
-            "fields": {
-                "order": {
-                    "name": "graphs_screen_order",
-                    "default": 2,
-                    "nvs": {
-                        "key": "GRSCR_ORDR",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
-                    "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
-                    "type": "integer",
-                    "helper": "",
-                    "dump_freq": 60,
-                    "ble": {
-                        "enable": false
-                    },
-                    "indir": {
-                        "enable": false
-                    },
-                    "disabled": false,
-                    "signedness": "u",
-                    "intlen": 8,
-                    "suffix": "order",
-                    "caps_name": "GRAPHS_SCREEN_ORDER"
-                }
-            },
+            "fields": {},
             "enabled": true,
-            "field_prefix": "graphs_screen",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "sgl",
             "preinit": false,
+            "init": true,
             "code": true,
-            "init_priority": 20,
+            "init_priority": 40,
+            "core": false
+        },
+        "m5tft": {
+            "name": "m5tft",
+            "i2c": false,
+            "array_len": 0,
+            "fields": {},
+            "enabled": true,
+            "tester": false,
+            "required": false,
+            "field_prefix": "m5tft",
+            "preinit": false,
+            "init": true,
+            "code": true,
+            "init_priority": 50,
             "core": false
         },
         "checklist_screen": {
@@ -1784,28 +1519,28 @@
                 "order": {
                     "name": "checklist_screen_order",
                     "default": 1,
-                    "nvs": {
-                        "key": "CKSCR_ORDR",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "CKSCR_ORDR"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": true,
                     "disabled": false,
                     "signedness": "u",
                     "intlen": 8,
@@ -1814,13 +1549,231 @@
                 }
             },
             "enabled": true,
-            "field_prefix": "checklist_screen",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "checklist_screen",
             "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 25,
+            "core": false
+        },
+        "graphs_screen": {
+            "name": "graphs_screen",
+            "i2c": false,
+            "array_len": 0,
+            "fields": {
+                "order": {
+                    "name": "graphs_screen_order",
+                    "default": 2,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "GRSCR_ORDR"
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": true,
+                    "disabled": false,
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "order",
+                    "caps_name": "GRAPHS_SCREEN_ORDER"
+                }
+            },
+            "enabled": true,
+            "tester": false,
+            "required": false,
+            "field_prefix": "graphs_screen",
+            "preinit": false,
+            "init": true,
+            "code": true,
+            "init_priority": 20,
+            "core": false
+        },
+        "remote_sensors": {
+            "name": "remote_sensors",
+            "i2c": false,
+            "array_len": 0,
+            "fields": {
+                "weight": {
+                    "name": "remote_sensors_weight",
+                    "default": 0,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "Remote HX711 weight",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "disabled": false,
+                    "signedness": "",
+                    "intlen": 32,
+                    "suffix": "weight",
+                    "caps_name": "REMOTE_SENSORS_WEIGHT",
+                    "weight_sensor": 1
+                },
+                "co2": {
+                    "name": "remote_sensors_co2",
+                    "default": 0,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "Remote SCD30 co2",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "disabled": false,
+                    "signedness": "u",
+                    "intlen": 16,
+                    "suffix": "co2",
+                    "caps_name": "REMOTE_SENSORS_CO2",
+                    "co2_sensor": 1
+                },
+                "temp": {
+                    "name": "remote_sensors_temp",
+                    "default": 0,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "Remote SCD30 temperature",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "disabled": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "temp",
+                    "caps_name": "REMOTE_SENSORS_TEMP",
+                    "temp_sensor": 16
+                },
+                "humi": {
+                    "name": "remote_sensors_humi",
+                    "default": 0,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "Remote SCD30 humidity",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "disabled": false,
+                    "signedness": "",
+                    "intlen": 8,
+                    "suffix": "humi",
+                    "caps_name": "REMOTE_SENSORS_HUMI",
+                    "humi_sensor": 16
+                },
+                "vpd": {
+                    "name": "remote_sensors_vpd",
+                    "default": 0,
+                    "remote": true,
+                    "type": "integer",
+                    "nosend": false,
+                    "helper": "Remote SCD30 vpd",
+                    "dump_freq": 60,
+                    "nvs": {
+                        "enable": false,
+                        "manual": false
+                    },
+                    "ble": {
+                        "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": false,
+                        "read": true
+                    },
+                    "indir": {
+                        "enable": false
+                    },
+                    "write_cb": false,
+                    "disabled": false,
+                    "signedness": "u",
+                    "intlen": 8,
+                    "suffix": "vpd",
+                    "caps_name": "REMOTE_SENSORS_VPD",
+                    "vpd_sensor": 16
+                }
+            },
+            "enabled": true,
+            "tester": false,
+            "required": false,
+            "field_prefix": "remote_sensors",
+            "preinit": false,
+            "init": true,
+            "code": true,
+            "init_priority": 0,
             "core": false
         },
         "quickview_screen": {
@@ -1831,28 +1784,28 @@
                 "order": {
                     "name": "quickview_screen_order",
                     "default": 0,
-                    "nvs": {
-                        "key": "QVSCR_ORDR",
-                        "enable": true,
-                        "manual": false
-                    },
-                    "nosend": false,
                     "remote": true,
-                    "http": {
-                        "read": true,
-                        "enable": true,
-                        "write": true
-                    },
-                    "write_cb": true,
                     "type": "integer",
+                    "nosend": false,
                     "helper": "",
                     "dump_freq": 60,
+                    "nvs": {
+                        "enable": true,
+                        "manual": false,
+                        "key": "QVSCR_ORDR"
+                    },
                     "ble": {
                         "enable": false
+                    },
+                    "http": {
+                        "enable": true,
+                        "write": true,
+                        "read": true
                     },
                     "indir": {
                         "enable": false
                     },
+                    "write_cb": true,
                     "disabled": false,
                     "signedness": "u",
                     "intlen": 8,
@@ -1861,11 +1814,11 @@
                 }
             },
             "enabled": true,
-            "field_prefix": "quickview_screen",
             "tester": false,
-            "init": true,
             "required": false,
+            "field_prefix": "quickview_screen",
             "preinit": false,
+            "init": true,
             "code": true,
             "init_priority": 30,
             "core": false

@@ -1,6 +1,6 @@
 {
-  "name": "SuperGreenTips",
-  "isController": "true",
+  "name": "SuperGreenScreen",
+  "isController": "false",
   "isScreen": "true",
   "keys": [
     
@@ -211,7 +211,7 @@
               "write": true,
               
               
-              "default": "/TipsV2.1"
+              "default": "/ScreenV2.1"
             },
           
             {
@@ -242,32 +242,6 @@
               
               
               "default": ""
-            },
-          
-            {
-              "core": false,
-              "name": "box_0_enabled",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "BOX_0_ENABLED",
-              "module": "box",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "box",
-                  "len": 1,
-                  "index": 0,
-                  "param": "enabled"
-                },
-                "box": {
-                  "index": 0,
-                  "param": "enabled"
-                },
-              
-              
-              "default": 0
             },
           
             {
@@ -321,7 +295,7 @@
               
                 "indir": {
                   "values": [16],
-                  "helpers": ["SCD30 temperature on port #1"]
+                  "helpers": ["Remote SCD30 temperature"]
                 },
               
               "default": 16
@@ -378,7 +352,7 @@
               
                 "indir": {
                   "values": [16],
-                  "helpers": ["SCD30 humidity on port #1"]
+                  "helpers": ["Remote SCD30 humidity"]
                 },
               
               "default": 16
@@ -435,10 +409,67 @@
               
                 "indir": {
                   "values": [16],
-                  "helpers": ["SCD30 vpd on port #1"]
+                  "helpers": ["Remote SCD30 vpd"]
                 },
               
               "default": 16
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_weight",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WEIGHT",
+              "module": "box",
+              
+              
+              "write": false,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "weight"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "weight"
+                },
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_weight_source",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_WEIGHT_SOURCE",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "weight_source"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "weight_source"
+                },
+              
+              
+                "indir": {
+                  "values": [1],
+                  "helpers": ["Remote HX711 weight"]
+                },
+              
+              "default": 1
             },
           
             {
@@ -492,10 +523,36 @@
               
                 "indir": {
                   "values": [1],
-                  "helpers": ["SCD30 co2 on port #1"]
+                  "helpers": ["Remote SCD30 co2"]
                 },
               
               "default": 1
+            },
+          
+            {
+              "core": false,
+              "name": "box_0_enabled",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "BOX_0_ENABLED",
+              "module": "box",
+              
+              
+              "write": true,
+              
+                "array": {
+                  "name": "box",
+                  "len": 1,
+                  "index": 0,
+                  "param": "enabled"
+                },
+                "box": {
+                  "index": 0,
+                  "param": "enabled"
+                },
+              
+              
+              "default": 0
             },
           
             {
@@ -585,7 +642,7 @@
               "write": true,
               
               
-              "default": "supergreentips"
+              "default": "supergreenscreen"
             },
           
             {
@@ -630,178 +687,7 @@
               "write": true,
               
               
-              "default": "SuperGreenTips"
-            },
-          
-            {
-              "core": false,
-              "name": "scd30_0_temp",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SCD30_0_TEMP",
-              "module": "scd30",
-              "helper": "SCD30 temperature on port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "scd30",
-                  "len": 1,
-                  "index": 0,
-                  "param": "temp"
-                },
-                "scd30": {
-                  "index": 0,
-                  "param": "temp"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "scd30_0_humi",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SCD30_0_HUMI",
-              "module": "scd30",
-              "helper": "SCD30 humidity on port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "scd30",
-                  "len": 1,
-                  "index": 0,
-                  "param": "humi"
-                },
-                "scd30": {
-                  "index": 0,
-                  "param": "humi"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "scd30_0_vpd",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SCD30_0_VPD",
-              "module": "scd30",
-              "helper": "SCD30 vpd on port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "scd30",
-                  "len": 1,
-                  "index": 0,
-                  "param": "vpd"
-                },
-                "scd30": {
-                  "index": 0,
-                  "param": "vpd"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "scd30_0_co2",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SCD30_0_CO2",
-              "module": "scd30",
-              "helper": "SCD30 co2 on port #1",
-              
-              "write": false,
-              
-                "array": {
-                  "name": "scd30",
-                  "len": 1,
-                  "index": 0,
-                  "param": "co2"
-                },
-                "scd30": {
-                  "index": 0,
-                  "param": "co2"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "scd30_0_present",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SCD30_0_PRESENT",
-              "module": "scd30",
-              
-              
-              "write": false,
-              
-                "array": {
-                  "name": "scd30",
-                  "len": 1,
-                  "index": 0,
-                  "param": "present"
-                },
-                "scd30": {
-                  "index": 0,
-                  "param": "present"
-                },
-              
-              
-              "default": 0
-            },
-          
-            {
-              "core": false,
-              "name": "scd30_0_vpd_leaf_offset",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "SCD30_0_VPD_LEAF_OFFSET",
-              "module": "scd30",
-              
-              
-              "write": true,
-              
-                "array": {
-                  "name": "scd30",
-                  "len": 1,
-                  "index": 0,
-                  "param": "vpd_leaf_offset"
-                },
-                "scd30": {
-                  "index": 0,
-                  "param": "vpd_leaf_offset"
-                },
-              
-              
-              "default": -20
-            },
-          
-            {
-              "core": false,
-              "name": "graphs_screen_order",
-              "type": "integer",
-              "integer": true,
-              "caps_name": "GRAPHS_SCREEN_ORDER",
-              "module": "graphs_screen",
-              
-              
-              "write": true,
-              
-              
-              "default": 2
+              "default": "SuperGreenScreen"
             },
           
             {
@@ -836,11 +722,101 @@
           
             {
               "core": false,
-              "name": "quickview_tips_order",
+              "name": "graphs_screen_order",
               "type": "integer",
               "integer": true,
-              "caps_name": "QUICKVIEW_TIPS_ORDER",
-              "module": "quickview_tips",
+              "caps_name": "GRAPHS_SCREEN_ORDER",
+              "module": "graphs_screen",
+              
+              
+              "write": true,
+              
+              
+              "default": 2
+            },
+          
+            {
+              "core": false,
+              "name": "remote_sensors_weight",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "REMOTE_SENSORS_WEIGHT",
+              "module": "remote_sensors",
+              "helper": "Remote HX711 weight",
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "remote_sensors_co2",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "REMOTE_SENSORS_CO2",
+              "module": "remote_sensors",
+              "helper": "Remote SCD30 co2",
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "remote_sensors_temp",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "REMOTE_SENSORS_TEMP",
+              "module": "remote_sensors",
+              "helper": "Remote SCD30 temperature",
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "remote_sensors_humi",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "REMOTE_SENSORS_HUMI",
+              "module": "remote_sensors",
+              "helper": "Remote SCD30 humidity",
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "remote_sensors_vpd",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "REMOTE_SENSORS_VPD",
+              "module": "remote_sensors",
+              "helper": "Remote SCD30 vpd",
+              
+              "write": false,
+              
+              
+              "default": 0
+            },
+          
+            {
+              "core": false,
+              "name": "quickview_screen_order",
+              "type": "integer",
+              "integer": true,
+              "caps_name": "QUICKVIEW_SCREEN_ORDER",
+              "module": "quickview_screen",
               
               
               "write": true,

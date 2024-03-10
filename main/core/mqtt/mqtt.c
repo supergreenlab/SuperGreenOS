@@ -35,8 +35,6 @@
 bool connected = false;
 
 
-#include "../cmd/cmd.h"
-
 
 
 
@@ -157,59 +155,6 @@ static uint8_t buf_out[MAX_QUEUE_ITEM_SIZE] = {0};
 
 
 
-static void subscribe_cmd() {
-  char cmd_channel[MAX_KVALUE_SIZE] = {0};
-  char client_id[MAX_KVALUE_SIZE] = {0};
-  get_broker_clientid(client_id, sizeof(client_id) - 1);
-  sprintf(cmd_channel, "%s.cmd", client_id);
-
-  ESP_LOGI(SGO_LOG_NOSEND, "@MQTT subscribe_cmd %s", cmd_channel);
-  esp_mqtt_client_subscribe(client, cmd_channel, 2);
-}
-
-static void parse_cmd(esp_mqtt_event_handle_t event) {
-  if (event->data_len > MAX_REMOTE_CMD_LENGTH + 65) {
-    ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command string can't be larger that %d with signature", MAX_REMOTE_CMD_LENGTH + 65);
-    return;
-  }
-  if (event->data_len < 66) {
-    ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command disabled: missing signing key");
-    return;
-  }
-  if (hasstr(SIGNING_KEY)) {
-    char signingKey[33] = {0};
-    getstr(SIGNING_KEY, signingKey, 33);
-    char hash[65] = {0};
-    strncpy(hash, event->data, 64);
-    char cmd[MAX_REMOTE_CMD_LENGTH + 1] = {0};
-    strncpy(cmd, &(event->data[65]), event->data_len - 65);
-
-    char cmdSeeded[MAX_REMOTE_CMD_LENGTH + 33 + 1] = {0};
-    uint8_t localHashBin[32] = {0};
-    sprintf(cmdSeeded, "%s:%s", signingKey, cmd);
-
-    //ESP_LOGI(SGO_LOG_EVENT, "@MQTT Hash: %s - Cmd: %s", hash, cmd);
-    mbedtls_sha256_context sha256_ctx;
-    mbedtls_sha256_init(&sha256_ctx);
-    mbedtls_sha256_starts_ret(&sha256_ctx, false);
-    mbedtls_sha256_update_ret(&sha256_ctx, (uint8_t *)cmdSeeded, strlen(cmdSeeded));
-    mbedtls_sha256_finish_ret(&sha256_ctx, localHashBin);
-
-    char localHash[65] = {0};
-    sodium_bin2hex(localHash, sizeof(localHash), localHashBin, sizeof(localHashBin));
-    if (strncmp(localHash, hash, 64) != 0) {
-      ESP_LOGI(SGO_LOG_EVENT, "@MQTT Command signing check failed.");
-      return;
-    }
-
-    execute_cmd(event->data_len - 65, cmd, true);
-  } else {
-    ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command disabled: missing signign key");
-  }
-}
-
-
-
 
 
 static void subscribe_scr() {
@@ -265,10 +210,6 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event) {
         }
       
 
-      
-        if (event->topic_len > 3 && !strncmp(&(event->topic[event->topic_len-3]), "cmd", 3)) {
-          parse_cmd(event);
-        }
       
 
       break;
@@ -343,8 +284,6 @@ static void mqtt_task(void *param) {
     if (xQueueReceive(cmd, &c, 10000 / portTICK_PERIOD_MS)) {
       if (c == CMD_MQTT_CONNECTED) {
 
-        
-          subscribe_cmd();
         
 
         
