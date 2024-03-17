@@ -49,13 +49,9 @@ static void sgl_task(void *param) {
 
   while (true) {
 
-    ESP_LOGI(SGO_LOG_NOSEND, "pouet connected: %d", connected);
     if (connected) {
-      ESP_LOGI(SGO_LOG_NOSEND, "pouet");
       for (int i = 0; i < CMD_COUNT; ++i) {
-        ESP_LOGI(SGO_LOG_NOSEND, "pouet %d", i);
         if (updateFns[i] != NULL) {
-          ESP_LOGI(SGO_LOG_NOSEND, "pouet 2 %d", i);
           updateFns[i]();
         }
       }
