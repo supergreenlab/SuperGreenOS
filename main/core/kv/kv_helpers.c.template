@@ -23,6 +23,7 @@
 #include "freertos/semphr.h"
 
 #include "kv.h"
+#include "../log/log.h"
 
 /*
  * [GENERATED]
@@ -163,7 +164,9 @@ StaticSemaphore_t mutex_buffer;
 void init_helpers() {
   <% Object.keys(modules).filter(m => modules[m].enabled).forEach(m => {
     Object.keys(modules[m].fields).filter(f => !modules[m].fields[f].disabled && !modules[m].fields[f].indir.enable).forEach(f => { f = modules[m].fields[f]%>
-    _mutex_<%= f.name %> = xSemaphoreCreateMutexStatic(&mutex_buffer);
+    if ((_mutex_<%= f.name %> = xSemaphoreCreateMutexStatic(&mutex_buffer)) == NULL) {
+      ESP_LOGI(SGO_LOG_NOSEND, "Could not create semaphore !!!");
+    }
   <% })}) %>
 }
 

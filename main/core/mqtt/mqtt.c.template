@@ -48,7 +48,7 @@ bool connected = false;
 #include "mbedtls/aes.h"
 #include "mbedtls/md.h"
 
-static unsigned char key[16] = { 0 };
+static unsigned char key[32] = { 0 };
 
 int generate_key_from_uuid(const char *uuid, unsigned char *key) {
   mbedtls_md_context_t ctx;
@@ -121,6 +121,7 @@ void update_key() {
   char enckey[MAX_KVALUE_SIZE] = { 0 };
   get_broker_enckey(enckey, MAX_KVALUE_SIZE-1);
   if (strlen(enckey) == 0) {
+    memset(key, 0, sizeof(key));
     ESP_LOGI(SGO_LOG_NOSEND, "Empty encryption key");
     return;
   }
@@ -363,7 +364,10 @@ static void mqtt_task(void *param) {
         if (strlen(scr_token) != 0) {
           snprintf(scr_channel, sizeof(scr_channel)-1, "%s/%s/scrcmd", client_id, scr_token);
           ESP_LOGI(SGO_LOG_EVENT, "@MQTT Scr channel: %s", scr_channel);
+        } else {
+          memset(scr_channel, 0, sizeof(scr_channel));
         }
+
         update_key();
       } <% } %>
     }
@@ -376,7 +380,7 @@ static void mqtt_task(void *param) {
 
       <% if (hasScr) { %>
         memset(&screenCmd, 0, sizeof(ScreenCmd));
-        if (strlen(scr_channel) != 0) {
+        if (strlen(scr_channel) != 0 && strlen((char *)key) != 0) {
           while (xQueueReceive(scr_queue, &screenCmd, 0)) {
             int len = (int)(ceilf((float)screenCmd.len/16.0f)*16);
 
@@ -441,11 +445,15 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
   }
 
   const char* on_set_broker_scrtoken(const char* value) {
+    ESP_LOGI(SGO_LOG_NOSEND, "Changing scrtoken to: %s", value);
+    set_broker_scrtoken(value);
     xQueueSend(cmd, &CMD_MQTT_CHANGE_SCR_CHANNEL, 0);
     return value;
   }
 
   const char* on_set_broker_enckey(const char* value) {
+    ESP_LOGI(SGO_LOG_NOSEND, "Changing screnckey to: %s", value);
+    set_broker_enckey(value);
     xQueueSend(cmd, &CMD_MQTT_CHANGE_SCR_CHANNEL, 0);
     return value;
   }
