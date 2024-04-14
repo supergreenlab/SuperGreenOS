@@ -39,9 +39,9 @@ typedef struct {
 int checklistUpdatesCount = 0;
 
 void updateChecklistFn() {
-  if (!(checklistUpdatesCount % 30 == 0)) {
+  if (!(checklistUpdatesCount % 3 == 0)) {
     checklistUpdatesCount++;
-    ESP_LOGI(SGO_LOG_NOSEND, "Skipping timelapse update");
+    ESP_LOGI(SGO_LOG_NOSEND, "Skipping checklist update");
     return;
   }
   checklistUpdatesCount++;

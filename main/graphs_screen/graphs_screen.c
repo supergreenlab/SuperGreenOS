@@ -40,7 +40,7 @@ int graphsUpdatesCount = 0;
 void updateGraphsFn() {
   if (!(graphsUpdatesCount % 5 == 0)) {
     graphsUpdatesCount++;
-    ESP_LOGI(SGO_LOG_NOSEND, "Skipping timelapse update");
+    ESP_LOGI(SGO_LOG_NOSEND, "Skipping graphs update");
     return;
   }
   graphsUpdatesCount++;
