@@ -52,15 +52,15 @@ void setTimelapsePalette(const char *msg, int len) {
   update_timelapse_palette(evt->len, evt->colors);
 }
 
-int updatesCount = 0;
+int timelapseUpdatesCount = 0;
 
 void updateTimelapseFn() {
-  if (!(updatesCount % 120 == 0)) {
-    updatesCount++;
+  if (!(timelapseUpdatesCount % 60 == 0)) {
+    timelapseUpdatesCount++;
     ESP_LOGI(SGO_LOG_NOSEND, "Skipping timelapse update");
     return;
   }
-  updatesCount++;
+  timelapseUpdatesCount++;
   ESP_LOGI(SGO_LOG_NOSEND, "timelapse update");
   uint8_t cmd = GET_TIMELAPSE;
   send_screen_message((char *)&cmd, 1);

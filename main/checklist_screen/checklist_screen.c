@@ -35,7 +35,16 @@ typedef struct {
   char text[];
 } __attribute__ ((packed)) set_checklists_event;
 
+
+int checklistUpdatesCount = 0;
+
 void updateChecklistFn() {
+  if (!(checklistUpdatesCount % 30 == 0)) {
+    checklistUpdatesCount++;
+    ESP_LOGI(SGO_LOG_NOSEND, "Skipping timelapse update");
+    return;
+  }
+  checklistUpdatesCount++;
   ESP_LOGI(SGO_LOG_NOSEND, "checklists update");
   uint8_t cmd = GET_CHECKLISTS;
   send_screen_message((char *)&cmd, 1);

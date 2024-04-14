@@ -35,7 +35,16 @@ typedef struct {
   uint8_t values[N_METRICS_VALUES];
 } __attribute__ ((packed)) set_graphs_event;
 
+int graphsUpdatesCount = 0;
+
 void updateGraphsFn() {
+  if (!(graphsUpdatesCount % 5 == 0)) {
+    graphsUpdatesCount++;
+    ESP_LOGI(SGO_LOG_NOSEND, "Skipping timelapse update");
+    return;
+  }
+  graphsUpdatesCount++;
+
   ESP_LOGI(SGO_LOG_NOSEND, "graphs update");
   uint8_t cmd = GET_METRICS;
   send_screen_message((char *)&cmd, 1);
