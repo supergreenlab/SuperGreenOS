@@ -352,6 +352,7 @@ void init_ota() {
   ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA_BUILD_TIMESTAMP=%d", OTA_BUILD_TIMESTAMP);
   if (hasi32(OTA_BUILD_TIMESTAMP_BCK)) {
     int ota_build_timestamp_bck = geti32(OTA_BUILD_TIMESTAMP_BCK);
+    ESP_LOGI(SGO_LOG_NOSEND, "@OTA ota_build_timestamp_bck = %d", ota_build_timestamp_bck);
     if (ota_build_timestamp_bck != OTA_BUILD_TIMESTAMP) {
       ESP_LOGI(SGO_LOG_EVENT, "@OTA OTA build update detected, OTA_BUILD_TIMESTAMP_BCK=%d OTA_BUILD_TIMESTAMP=%d", ota_build_timestamp_bck, OTA_BUILD_TIMESTAMP);
       set_ota_timestamp(OTA_BUILD_TIMESTAMP);

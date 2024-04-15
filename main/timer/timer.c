@@ -46,6 +46,7 @@ static void stop(int boxId, enum timer t);
 static void start(int boxId, enum timer t);
 
 void init_timer() {
+  ESP_LOGI(SGO_LOG_EVENT, "@TIMER Initializing timer task");
   cmd = xQueueCreate(10, sizeof(timer_cmd));
   if (cmd == NULL) {
     ESP_LOGE(SGO_LOG_EVENT, "@TIMER Unable to create timer queue");
