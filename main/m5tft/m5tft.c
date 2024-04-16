@@ -63,7 +63,7 @@ void force_frame() {
 }
 
 void init_m5tft() {
-  ESP_LOGI(SGO_LOG_EVENT, "@M5TFT Initializing m5tft module");
+  ESP_LOGI(SGO_LOG_NOSEND, "@M5TFT Initializing m5tft module");
 
   if (xTaskCreatePinnedToCore(m5tft_task, "M5TFT", 4096, NULL, 10, NULL, 1) != pdPASS) {
     ESP_LOGE(SGO_LOG_NOSEND, "Could not create M5TFT task");
@@ -119,7 +119,7 @@ void init_screen() {
 
   cmd = xQueueCreate(1, sizeof(bool));
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@LED Unable to create led queue");
+    ESP_LOGE(SGO_LOG_NOSEND, "@LED Unable to create led queue");
   }
 
   render_mutex = xSemaphoreCreateMutex();

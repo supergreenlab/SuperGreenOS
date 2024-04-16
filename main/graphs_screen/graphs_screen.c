@@ -57,7 +57,7 @@ void setGraphsData(const char *msg, int len) {
 }
 
 void init_graphs_screen() {
-  ESP_LOGI(SGO_LOG_EVENT, "@GRAPHS_SCREEN Initializing graphs_screen module");
+  ESP_LOGI(SGO_LOG_NOSEND, "@GRAPHS_SCREEN Initializing graphs_screen module");
 
   add_screen_init(init_graphs_page);
   set_command_update(GET_METRICS, updateGraphsFn);

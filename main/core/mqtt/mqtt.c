@@ -69,11 +69,11 @@ static void subscribe_cmd() {
 
 static void parse_cmd(esp_mqtt_event_handle_t event) {
   if (event->data_len > MAX_REMOTE_CMD_LENGTH + 65) {
-    ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command string can't be larger that %d with signature", MAX_REMOTE_CMD_LENGTH + 65);
+    ESP_LOGI(SGO_LOG_NOSEND, "@MQTT Remote command string can't be larger that %d with signature", MAX_REMOTE_CMD_LENGTH + 65);
     return;
   }
   if (event->data_len < 66) {
-    ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command disabled: missing signing key");
+    ESP_LOGI(SGO_LOG_NOSEND, "@MQTT Remote command disabled: missing signing key");
     return;
   }
   if (hasstr(SIGNING_KEY)) {
@@ -88,7 +88,7 @@ static void parse_cmd(esp_mqtt_event_handle_t event) {
     uint8_t localHashBin[32] = {0};
     sprintf(cmdSeeded, "%s:%s", signingKey, cmd);
 
-    //ESP_LOGI(SGO_LOG_EVENT, "@MQTT Hash: %s - Cmd: %s", hash, cmd);
+    //ESP_LOGI(SGO_LOG_NOSEND, "@MQTT Hash: %s - Cmd: %s", hash, cmd);
     mbedtls_sha256_context sha256_ctx;
     mbedtls_sha256_init(&sha256_ctx);
     mbedtls_sha256_starts_ret(&sha256_ctx, false);
@@ -98,13 +98,13 @@ static void parse_cmd(esp_mqtt_event_handle_t event) {
     char localHash[65] = {0};
     sodium_bin2hex(localHash, sizeof(localHash), localHashBin, sizeof(localHashBin));
     if (strncmp(localHash, hash, 64) != 0) {
-      ESP_LOGI(SGO_LOG_EVENT, "@MQTT Command signing check failed.");
+      ESP_LOGI(SGO_LOG_NOSEND, "@MQTT Command signing check failed.");
       return;
     }
 
     execute_cmd(event->data_len - 65, cmd, true);
   } else {
-    ESP_LOGI(SGO_LOG_EVENT, "@MQTT Remote command disabled: missing signign key");
+    ESP_LOGI(SGO_LOG_NOSEND, "@MQTT Remote command disabled: missing signign key");
   }
 }
 
@@ -115,28 +115,28 @@ static void parse_cmd(esp_mqtt_event_handle_t event) {
 static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event) {
   switch (event->event_id) {
     case MQTT_EVENT_BEFORE_CONNECT:
-      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_BEFORE_CONNECT");
+      ESP_LOGI(SGO_LOG_NOSEND, "@MQTT MQTT_EVENT_BEFORE_CONNECT");
       break;
     case MQTT_EVENT_CONNECTED:
-      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_CONNECTED");
+      ESP_LOGI(SGO_LOG_NOSEND, "@MQTT MQTT_EVENT_CONNECTED");
       connected = true;
       xQueueSend(cmd, &CMD_MQTT_CONNECTED, 0);
       break;
     case MQTT_EVENT_DISCONNECTED:
-      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_DISCONNECTED");
+      ESP_LOGI(SGO_LOG_NOSEND, "@MQTT MQTT_EVENT_DISCONNECTED");
       connected = false;
       break;
     case MQTT_EVENT_SUBSCRIBED:
-      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
+      ESP_LOGI(SGO_LOG_NOSEND, "@MQTT MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
       break;
     case MQTT_EVENT_UNSUBSCRIBED:
-      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
+      ESP_LOGI(SGO_LOG_NOSEND, "@MQTT MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
       break;
     case MQTT_EVENT_PUBLISHED:
-      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
+      ESP_LOGI(SGO_LOG_NOSEND, "@MQTT MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
       break;
     case MQTT_EVENT_DATA:
-      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_DATA");
+      ESP_LOGI(SGO_LOG_NOSEND, "@MQTT MQTT_EVENT_DATA");
 
       
 
@@ -148,10 +148,10 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event) {
 
       break;
     case MQTT_EVENT_ERROR:
-      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_ERROR");
+      ESP_LOGI(SGO_LOG_NOSEND, "@MQTT MQTT_EVENT_ERROR");
       break;
     case MQTT_EVENT_ANY:
-      ESP_LOGI(SGO_LOG_EVENT, "@MQTT MQTT_EVENT_ANY");
+      ESP_LOGI(SGO_LOG_NOSEND, "@MQTT MQTT_EVENT_ANY");
       break;
   }
   return ESP_OK;
@@ -172,7 +172,7 @@ static void mqtt_task(void *param) {
   } else if (strlen(client_id) == 1 && client_id[0] == '-') {
     client_id[0] = 0;
   }
-  ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log clientid: %s", client_id);
+  ESP_LOGI(SGO_LOG_NOSEND, "@MQTT Log clientid: %s", client_id);
 
   char log_channel[MAX_KVALUE_SIZE] = {0};
   get_broker_channel(log_channel, sizeof(log_channel) - 1);
@@ -180,7 +180,7 @@ static void mqtt_task(void *param) {
     snprintf(log_channel, sizeof(log_channel)-1, "%s.log", client_id);
     set_broker_channel(log_channel);
   }
-  ESP_LOGI(SGO_LOG_EVENT, "@MQTT Log channel: %s", log_channel);
+  ESP_LOGI(SGO_LOG_NOSEND, "@MQTT Log channel: %s", log_channel);
 
   
 
@@ -212,7 +212,7 @@ static void mqtt_task(void *param) {
 
         if (first_connect) {
           first_connect = false;
-          ESP_LOGI(SGO_LOG_EVENT, "@MQTT First connect");
+          ESP_LOGI(SGO_LOG_NOSEND, "@MQTT First connect");
         }
       } 
     }
@@ -269,27 +269,27 @@ static int mqtt_logging_vprintf(const char *str, va_list l) {
 void mqtt_intercept_log() {
   log_queue = xQueueCreate(MAX_LOG_QUEUE_ITEMS, MAX_QUEUE_ITEM_SIZE);
   if (log_queue == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt log queue");
+    ESP_LOGE(SGO_LOG_NOSEND, "@MQTT Unable to create mqtt log queue");
   }
 
   esp_log_set_vprintf(mqtt_logging_vprintf);
 }
 
 void init_mqtt() {
-  ESP_LOGI(SGO_LOG_EVENT, "@MQTT Intializing MQTT task");
+  ESP_LOGI(SGO_LOG_NOSEND, "@MQTT Intializing MQTT task");
 
   //esp_log_level_set("MQTT_CLIENT", ESP_LOG_NONE);
 
   cmd = xQueueCreate(10, sizeof(int));
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@MQTT Unable to create mqtt queue");
+    ESP_LOGE(SGO_LOG_NOSEND, "@MQTT Unable to create mqtt queue");
   }
 
   
 
   BaseType_t ret = xTaskCreatePinnedToCore(mqtt_task, "MQTT", 8192, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@MQTT Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@MQTT Failed to create task");
   }
 }
 

@@ -35,12 +35,12 @@
 #include "../kv/kv.h"
 
 void init_tester() {
-  ESP_LOGI(SGO_LOG_EVENT, "@TESTER Initializing tester module");
+  ESP_LOGI(SGO_LOG_NOSEND, "@TESTER Initializing tester module");
 
   const char path[] = "/spiffs/tester.html";
   struct stat file_stat;
   if (stat(path, &file_stat) != -1) {
-    ESP_LOGI(SGO_LOG_EVENT, "@TESTER /spiffs/tester.html file found. --- STARTING TEST MODE ---");
+    ESP_LOGI(SGO_LOG_NOSEND, "@TESTER /spiffs/tester.html file found. --- STARTING TEST MODE ---");
     set_tester_enabled(1);
     unlink(path);
   }

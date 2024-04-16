@@ -720,7 +720,7 @@
                 },
                 "basedir": {
                     "name": "ota_basedir",
-                    "default": "/TipsV2.1",
+                    "default": "/TipsV1",
                     "remote": false,
                     "type": "string",
                     "nosend": false,

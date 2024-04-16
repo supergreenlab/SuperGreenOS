@@ -40,7 +40,7 @@ void preinit_app();
 void init_app(bool tester);
 
 void app_main() {
-  ESP_LOGI(SGO_LOG_EVENT, "@MAIN Welcome to SuperGreenOS version=%s\n", CONFIG_VERSION);
+  ESP_LOGI(SGO_LOG_NOSEND, "@MAIN Welcome to SuperGreenOS version=%s\n", CONFIG_VERSION);
 
   open_kv();
   init_reboot();

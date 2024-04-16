@@ -59,7 +59,7 @@ void setChecklistData(const char *msg, int len) {
 }
 
 void init_checklist_screen() {
-  ESP_LOGI(SGO_LOG_EVENT, "@CHECKLIST_SCREEN Initializing checklist_screen module");
+  ESP_LOGI(SGO_LOG_NOSEND, "@CHECKLIST_SCREEN Initializing checklist_screen module");
 
   add_screen_init(init_checklist_page);
   set_command_update(GET_CHECKLISTS, updateChecklistFn);

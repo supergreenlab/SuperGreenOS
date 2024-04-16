@@ -86,11 +86,11 @@ static void motor_task(void *param) {
 }
 
 void init_motor() {
-  ESP_LOGI(SGO_LOG_EVENT, "@MOTOR Initializing motor task");
+  ESP_LOGI(SGO_LOG_NOSEND, "@MOTOR Initializing motor task");
 
   cmd = xQueueCreate(10, sizeof(motor_cmd));
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@MOTOR Unable to create motor queue");
+    ESP_LOGE(SGO_LOG_NOSEND, "@MOTOR Unable to create motor queue");
   }
 
   for (int i = 0; i < N_MOTOR; ++i) {
@@ -109,7 +109,7 @@ void init_motor() {
   }
   BaseType_t ret = xTaskCreatePinnedToCore(motor_task, "MOTOR", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@MOTOR Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@MOTOR Failed to create task");
   }
 }
 

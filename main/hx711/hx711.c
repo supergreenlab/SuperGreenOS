@@ -24,7 +24,7 @@
 #include "driver.h"
 
 void init_hx711(int i2cId) {
-  ESP_LOGI(SGO_LOG_EVENT, "@HX711 Initializing hx711 i2c device");
+  ESP_LOGI(SGO_LOG_NOSEND, "@HX711 Initializing hx711 i2c device");
 }
 
 void loop_hx711(int i2cId) {

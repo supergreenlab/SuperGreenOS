@@ -1389,6 +1389,17 @@ bitmap_data bmp_db_125 = {
 	.palette = bmp_db_palette,
 	.mask = SMALL_FONT_SIZE,
 	.bitmap = {
+		85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 86, 103, 119, 101, 85, 85, 92, 153, 153, 153, 117, 85, 92, 150, 102, 108, 151, 85, 92, 149, 85, 85, 153, 85, 92, 149, 85, 85, 201, 85, 92, 149, 85, 85, 153, 85, 92, 150, 102, 124, 151, 85, 92, 153, 153, 153, 117, 85, 92, 150, 102, 101, 85, 85, 92, 149, 85, 85, 85, 85, 92, 149, 85, 85, 85, 85, 92, 149, 85, 85, 85, 85, 92, 149, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85
+	},
+	.width = 12,
+	.height = 20,
+	.name = "P"
+};
+
+bitmap_data bmp_db_126 = {
+	.palette = bmp_db_palette,
+	.mask = SMALL_FONT_SIZE,
+	.bitmap = {
 		85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 204, 204, 85, 85, 85, 85
 	},
 	.width = 2,
@@ -1396,7 +1407,7 @@ bitmap_data bmp_db_125 = {
 	.name = "."
 };
 
-bitmap_data bmp_db_126 = {
+bitmap_data bmp_db_127 = {
 	.palette = bmp_db_palette,
 	.mask = SMALL_FONT_SIZE,
 	.bitmap = {
@@ -1407,7 +1418,7 @@ bitmap_data bmp_db_126 = {
 	.name = "h"
 };
 
-bitmap_data bmp_db_127 = {
+bitmap_data bmp_db_128 = {
 	.palette = bmp_db_palette,
 	.mask = SMALL_FONT_SIZE,
 	.bitmap = {
@@ -1418,7 +1429,7 @@ bitmap_data bmp_db_127 = {
 	.name = "D"
 };
 
-bitmap_data bmp_db_128 = {
+bitmap_data bmp_db_129 = {
 	.palette = bmp_db_palette,
 	.mask = SMALL_FONT_SIZE,
 	.bitmap = {
@@ -1429,7 +1440,7 @@ bitmap_data bmp_db_128 = {
 	.name = "O"
 };
 
-bitmap_data bmp_db_129 = {
+bitmap_data bmp_db_130 = {
 	.palette = bmp_db_palette,
 	.mask = SMALL_FONT_SIZE,
 	.bitmap = {
@@ -1440,7 +1451,7 @@ bitmap_data bmp_db_129 = {
 	.name = "X"
 };
 
-bitmap_data bmp_db_130 = {
+bitmap_data bmp_db_131 = {
 	.palette = bmp_db_palette,
 	.mask = SMALL_FONT_SIZE,
 	.bitmap = {
@@ -1450,6 +1461,6 @@ bitmap_data bmp_db_130 = {
 	.height = 20,
 	.name = "i"
 };
-bitmap_data *bitmap_db[] = { &bmp_db_1, &bmp_db_2, &bmp_db_3, &bmp_db_4, &bmp_db_5, &bmp_db_6, &bmp_db_7, &bmp_db_8, &bmp_db_9, &bmp_db_10, &bmp_db_11, &bmp_db_12, &bmp_db_13, &bmp_db_14, &bmp_db_15, &bmp_db_16, &bmp_db_17, &bmp_db_18, &bmp_db_19, &bmp_db_20, &bmp_db_21, &bmp_db_22, &bmp_db_23, &bmp_db_24, &bmp_db_25, &bmp_db_26, &bmp_db_27, &bmp_db_28, &bmp_db_29, &bmp_db_30, &bmp_db_31, &bmp_db_32, &bmp_db_33, &bmp_db_34, &bmp_db_35, &bmp_db_36, &bmp_db_37, &bmp_db_38, &bmp_db_39, &bmp_db_40, &bmp_db_41, &bmp_db_42, &bmp_db_43, &bmp_db_44, &bmp_db_45, &bmp_db_46, &bmp_db_47, &bmp_db_48, &bmp_db_49, &bmp_db_50, &bmp_db_51, &bmp_db_52, &bmp_db_53, &bmp_db_54, &bmp_db_55, &bmp_db_56, &bmp_db_57, &bmp_db_58, &bmp_db_59, &bmp_db_60, &bmp_db_61, &bmp_db_62, &bmp_db_63, &bmp_db_64, &bmp_db_65, &bmp_db_66, &bmp_db_67, &bmp_db_68, &bmp_db_69, &bmp_db_70, &bmp_db_71, &bmp_db_72, &bmp_db_73, &bmp_db_74, &bmp_db_75, &bmp_db_76, &bmp_db_77, &bmp_db_78, &bmp_db_79, &bmp_db_80, &bmp_db_81, &bmp_db_82, &bmp_db_83, &bmp_db_84, &bmp_db_85, &bmp_db_86, &bmp_db_87, &bmp_db_88, &bmp_db_89, &bmp_db_90, &bmp_db_91, &bmp_db_92, &bmp_db_93, &bmp_db_94, &bmp_db_95, &bmp_db_96, &bmp_db_97, &bmp_db_98, &bmp_db_99, &bmp_db_100, &bmp_db_101, &bmp_db_102, &bmp_db_103, &bmp_db_104, &bmp_db_105, &bmp_db_106, &bmp_db_107, &bmp_db_108, &bmp_db_109, &bmp_db_110, &bmp_db_111, &bmp_db_112, &bmp_db_113, &bmp_db_114, &bmp_db_115, &bmp_db_116, &bmp_db_117, &bmp_db_118, &bmp_db_119, &bmp_db_120, &bmp_db_121, &bmp_db_122, &bmp_db_123, &bmp_db_124, &bmp_db_125, &bmp_db_126, &bmp_db_127, &bmp_db_128, &bmp_db_129, &bmp_db_130, };
+bitmap_data *bitmap_db[] = { &bmp_db_1, &bmp_db_2, &bmp_db_3, &bmp_db_4, &bmp_db_5, &bmp_db_6, &bmp_db_7, &bmp_db_8, &bmp_db_9, &bmp_db_10, &bmp_db_11, &bmp_db_12, &bmp_db_13, &bmp_db_14, &bmp_db_15, &bmp_db_16, &bmp_db_17, &bmp_db_18, &bmp_db_19, &bmp_db_20, &bmp_db_21, &bmp_db_22, &bmp_db_23, &bmp_db_24, &bmp_db_25, &bmp_db_26, &bmp_db_27, &bmp_db_28, &bmp_db_29, &bmp_db_30, &bmp_db_31, &bmp_db_32, &bmp_db_33, &bmp_db_34, &bmp_db_35, &bmp_db_36, &bmp_db_37, &bmp_db_38, &bmp_db_39, &bmp_db_40, &bmp_db_41, &bmp_db_42, &bmp_db_43, &bmp_db_44, &bmp_db_45, &bmp_db_46, &bmp_db_47, &bmp_db_48, &bmp_db_49, &bmp_db_50, &bmp_db_51, &bmp_db_52, &bmp_db_53, &bmp_db_54, &bmp_db_55, &bmp_db_56, &bmp_db_57, &bmp_db_58, &bmp_db_59, &bmp_db_60, &bmp_db_61, &bmp_db_62, &bmp_db_63, &bmp_db_64, &bmp_db_65, &bmp_db_66, &bmp_db_67, &bmp_db_68, &bmp_db_69, &bmp_db_70, &bmp_db_71, &bmp_db_72, &bmp_db_73, &bmp_db_74, &bmp_db_75, &bmp_db_76, &bmp_db_77, &bmp_db_78, &bmp_db_79, &bmp_db_80, &bmp_db_81, &bmp_db_82, &bmp_db_83, &bmp_db_84, &bmp_db_85, &bmp_db_86, &bmp_db_87, &bmp_db_88, &bmp_db_89, &bmp_db_90, &bmp_db_91, &bmp_db_92, &bmp_db_93, &bmp_db_94, &bmp_db_95, &bmp_db_96, &bmp_db_97, &bmp_db_98, &bmp_db_99, &bmp_db_100, &bmp_db_101, &bmp_db_102, &bmp_db_103, &bmp_db_104, &bmp_db_105, &bmp_db_106, &bmp_db_107, &bmp_db_108, &bmp_db_109, &bmp_db_110, &bmp_db_111, &bmp_db_112, &bmp_db_113, &bmp_db_114, &bmp_db_115, &bmp_db_116, &bmp_db_117, &bmp_db_118, &bmp_db_119, &bmp_db_120, &bmp_db_121, &bmp_db_122, &bmp_db_123, &bmp_db_124, &bmp_db_125, &bmp_db_126, &bmp_db_127, &bmp_db_128, &bmp_db_129, &bmp_db_130, &bmp_db_131, };
 
-int n_bitmaps = 130;
+int n_bitmaps = 131;

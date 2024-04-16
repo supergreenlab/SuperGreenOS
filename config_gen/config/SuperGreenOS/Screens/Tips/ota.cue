@@ -1,3 +1,3 @@
 package config
 
-modules ota fields basedir default: "/TipsV2.1"
+modules ota fields basedir default: "/TipsV1"

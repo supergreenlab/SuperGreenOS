@@ -35,7 +35,7 @@ static char buf_cmd[MAX_CMD_LENGTH] = {0};
 
 void execute_cmd(int length, const char *cmdData, bool remote) {
   if (length > MAX_CMD_LENGTH-1) {
-    ESP_LOGE(SGO_LOG_EVENT, "@CMD Sending command failed, too long.");
+    ESP_LOGE(SGO_LOG_NOSEND, "@CMD Sending command failed, too long.");
   } else {
     char cmdStr[MAX_CMD_LENGTH] = {0};
     memcpy(cmdStr, cmdData, length);
@@ -324,13 +324,13 @@ static void cmd_task(void *param) {
     int ret;
     esp_err_t err = esp_console_run(buf_cmd, &ret);
     if (err == ESP_ERR_NOT_FOUND) {
-      ESP_LOGE(SGO_LOG_EVENT, "@CMD Unrecognized command\n");
+      ESP_LOGE(SGO_LOG_NOSEND, "@CMD Unrecognized command\n");
     } else if (err == ESP_ERR_INVALID_ARG) {
       // command was empty
     } else if (err == ESP_OK && ret != ESP_OK) {
-      ESP_LOGE(SGO_LOG_EVENT, "@CMD Command returned non-zero error code: 0x%x (%s)\n", ret, esp_err_to_name(ret));
+      ESP_LOGE(SGO_LOG_NOSEND, "@CMD Command returned non-zero error code: 0x%x (%s)\n", ret, esp_err_to_name(ret));
     } else if (err != ESP_OK) {
-      ESP_LOGE(SGO_LOG_EVENT, "@CMD Internal error: %s\n", esp_err_to_name(err));
+      ESP_LOGE(SGO_LOG_NOSEND, "@CMD Internal error: %s\n", esp_err_to_name(err));
     }
 
     memset(buf_cmd, 0, MAX_CMD_LENGTH);
@@ -338,15 +338,15 @@ static void cmd_task(void *param) {
 }
 
 void init_cmd() {
-  ESP_LOGI(SGO_LOG_EVENT, "@CMD Intializing CMD task");
+  ESP_LOGI(SGO_LOG_NOSEND, "@CMD Intializing CMD task");
 
   cmd = xQueueCreate(1, MAX_CMD_LENGTH);
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@CMD Unable to create cmd queue");
+    ESP_LOGE(SGO_LOG_NOSEND, "@CMD Unable to create cmd queue");
   }
 
   BaseType_t ret = xTaskCreatePinnedToCore(cmd_task, "CMD", 8192, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@CMD Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@CMD Failed to create task");
   }
 }

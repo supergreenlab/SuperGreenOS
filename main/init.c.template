@@ -53,12 +53,12 @@ void init_app(bool tester) {
   <% }) %>
 
   if (tester) {
-    ESP_LOGI(SGO_LOG_EVENT, "@MAIN Starting tester modules");
+    ESP_LOGI(SGO_LOG_NOSEND, "@MAIN Starting tester modules");
   <% initTester.forEach(m => { %>
     init_<%= m.name %>();
   <% }) %>
   } else {
-    ESP_LOGI(SGO_LOG_EVENT, "@MAIN Starting normal modules");
+    ESP_LOGI(SGO_LOG_NOSEND, "@MAIN Starting normal modules");
   <% init.forEach(m => { %>
     init_<%= m.name %>();
   <% }) %>

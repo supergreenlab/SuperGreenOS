@@ -59,17 +59,17 @@ void init_reboot() {
 
   cmd = xQueueCreate(10, sizeof(unsigned char));
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@REBOOT Unable to create reboot queue");
+    ESP_LOGE(SGO_LOG_NOSEND, "@REBOOT Unable to create reboot queue");
   }
 
   BaseType_t ret = xTaskCreatePinnedToCore(autoreboot_task, "AUTOREBOOT", 2048, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@REBOOT Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@REBOOT Failed to create task");
   }
 
   BaseType_t ret2 = xTaskCreatePinnedToCore(reboot_task, "REBOOT", 2048, NULL, 10, NULL, 1);
   if (ret2 != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@REBOOT Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@REBOOT Failed to create task");
   }
 }
 

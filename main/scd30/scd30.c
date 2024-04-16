@@ -28,7 +28,7 @@
 static scd30_handle scd30_handlers[N_SCD30] = {0};
 
 void init_scd30(int i2cId) {
-  ESP_LOGI(SGO_LOG_EVENT, "@SCD30 Initializing scd30 i2c device");
+  ESP_LOGI(SGO_LOG_NOSEND, "@SCD30 Initializing scd30 i2c device");
 
   start_i2c(i2cId);
 	scd30_handle *s = &(scd30_handlers[i2cId]);

@@ -74,9 +74,9 @@ fi
 ./update_firmware.sh TipsTesting
 if [ $SKIP_APP -eq "0" ]; then
   last_timestamp=$(cat ./releases/TipsTesting/last_timestamp)
-  cp -r ./releases/TipsTesting/$last_timestamp/html_app ../SuperGreenApp2/assets/firmware/Tips/
-  cp ./releases/TipsTesting/$last_timestamp/firmware.bin ../SuperGreenApp2/assets/firmware/Tips/
-  cp ./releases/TipsTesting/$last_timestamp/timestamp ../SuperGreenApp2/assets/firmware/Tips/
+  cp -r ./releases/TipsTesting/$last_timestamp/html_app ../SuperGreenApp2/assets/firmware/TipsV1/
+  cp ./releases/TipsTesting/$last_timestamp/firmware.bin ../SuperGreenApp2/assets/firmware/TipsV1/
+  cp ./releases/TipsTesting/$last_timestamp/timestamp ../SuperGreenApp2/assets/firmware/TipsV1/
   cp -r ./releases/TipsTesting ../backend/SuperGreenCloud/www/update/
 fi
 
@@ -86,8 +86,8 @@ fi
 ./update_firmware.sh ScreenTesting
 if [ $SKIP_APP -eq "0" ]; then
   last_timestamp=$(cat ./releases/ScreenTesting/last_timestamp)
-  cp -r ./releases/ScreenTesting/$last_timestamp/html_app ../SuperGreenApp2/assets/firmware/Screen/
-  cp ./releases/ScreenTesting/$last_timestamp/firmware.bin ../SuperGreenApp2/assets/firmware/Screen/
-  cp ./releases/ScreenTesting/$last_timestamp/timestamp ../SuperGreenApp2/assets/firmware/Screen/
+  cp -r ./releases/ScreenTesting/$last_timestamp/html_app ../SuperGreenApp2/assets/firmware/ScreenV1/
+  cp ./releases/ScreenTesting/$last_timestamp/firmware.bin ../SuperGreenApp2/assets/firmware/ScreenV1/
+  cp ./releases/ScreenTesting/$last_timestamp/timestamp ../SuperGreenApp2/assets/firmware/ScreenV1/
   cp -r ./releases/ScreenTesting ../backend/SuperGreenCloud/www/update/
 fi

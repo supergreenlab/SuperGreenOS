@@ -77,16 +77,16 @@ void refresh_fan() {
 }
 
 void init_fan() {
-  ESP_LOGI(SGO_LOG_EVENT, "@FAN Initializing fan task");
+  ESP_LOGI(SGO_LOG_NOSEND, "@FAN Initializing fan task");
 
   cmd = xQueueCreate(10, sizeof(fan_cmd));
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@FAN Unable to create fan queue");
+    ESP_LOGE(SGO_LOG_NOSEND, "@FAN Unable to create fan queue");
   }
 
   BaseType_t ret = xTaskCreatePinnedToCore(fan_task, "FAN", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@FAN Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@FAN Failed to create task");
   }
 }
 

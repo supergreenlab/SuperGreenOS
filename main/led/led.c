@@ -77,7 +77,7 @@ static void update_led(int i) {
   }
   if (get_led_fade(i) == 1) {
     double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
-    //ESP_LOGI(SGO_LOG_EVENT, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
+    //ESP_LOGI(SGO_LOG_NOSEND, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
 
     if (is_sunglasses_mode) {
       real_duty = min(15, real_duty);
@@ -118,7 +118,7 @@ static void led_task(void *param) {
 }
 
 void init_led() {
-  ESP_LOGI(SGO_LOG_EVENT, "@LED Initializing led task");
+  ESP_LOGI(SGO_LOG_NOSEND, "@LED Initializing led task");
 
   ledc_timer_config_t ledc_timer = {
     speed_mode:       LEDC_HIGH_SPEED_MODE,
@@ -143,14 +143,14 @@ void init_led() {
 
   cmd = xQueueCreate(10, sizeof(cmd_refresh_led));
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@LED Unable to create led queue");
+    ESP_LOGE(SGO_LOG_NOSEND, "@LED Unable to create led queue");
   }
 
   ledc_fade_func_install(0);
 
   BaseType_t ret = xTaskCreatePinnedToCore(led_task, "LED", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@LED Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@LED Failed to create task");
   }
 }
 

@@ -59,10 +59,10 @@ static void term_task(void *param) {
 }
 
 void init_term() {
-  ESP_LOGI(SGO_LOG_EVENT, "@TERM Intializing TERM task");
+  ESP_LOGI(SGO_LOG_NOSEND, "@TERM Intializing TERM task");
 
   BaseType_t ret = xTaskCreatePinnedToCore(term_task, "TERM", 8192, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@TERM Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@TERM Failed to create task");
   }
 }

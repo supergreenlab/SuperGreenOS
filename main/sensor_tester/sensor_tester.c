@@ -39,7 +39,7 @@ status_led_timeline ok_timeline = {
 static void sensor_tester_task(void *param);
 
 void init_sensor_tester() {
-  ESP_LOGI(SGO_LOG_EVENT, "@SENSOR_TESTER Initializing sensor_tester module\n");
+  ESP_LOGI(SGO_LOG_NOSEND, "@SENSOR_TESTER Initializing sensor_tester module\n");
 
   xTaskCreatePinnedToCore(sensor_tester_task, "SENSOR_TESTER", 4096, NULL, 10, NULL, 1);
 }

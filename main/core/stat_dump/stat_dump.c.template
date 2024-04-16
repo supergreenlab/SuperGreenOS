@@ -69,9 +69,9 @@ static void stat_dump_task(void *param) {
 }
 
 void init_stat_dump() {
-  ESP_LOGI(SGO_LOG_EVENT, "@SYS reset_reason=%d", esp_reset_reason());
+  ESP_LOGI(SGO_LOG_NOSEND, "@SYS reset_reason=%d", esp_reset_reason());
   BaseType_t ret = xTaskCreatePinnedToCore(stat_dump_task, "STAT_DUMP", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@STAT_DUMP Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@STAT_DUMP Failed to create task");
   }
 }

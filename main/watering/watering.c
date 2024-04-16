@@ -38,11 +38,11 @@ typedef enum {
 static void watering_task(void *param);
 
 void init_watering() {
-  ESP_LOGI(SGO_LOG_EVENT, "@WATERING Initializing watering module\n");
+  ESP_LOGI(SGO_LOG_NOSEND, "@WATERING Initializing watering module\n");
 
   cmd = xQueueCreate(10, sizeof(watering_cmd));
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@WATERING Unable to create watering queue");
+    ESP_LOGE(SGO_LOG_NOSEND, "@WATERING Unable to create watering queue");
   }
 
   xTaskCreatePinnedToCore(watering_task, "WATERING", 4096, NULL, 10, NULL, 1);

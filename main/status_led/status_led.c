@@ -88,11 +88,11 @@ void set_status_led_timeline(status_led_timeline timeline) {
 }
 
 void init_status_led() {
-  ESP_LOGI(SGO_LOG_EVENT, "@STATUS_LED Initializing status_led module");
+  ESP_LOGI(SGO_LOG_NOSEND, "@STATUS_LED Initializing status_led module");
 
   cmd = xQueueCreate(10, sizeof(status_led_timeline));
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@MOTOR Unable to create motor queue");
+    ESP_LOGE(SGO_LOG_NOSEND, "@MOTOR Unable to create motor queue");
   }
 
   ledc_timer_config_t ledc_timer = {
@@ -129,6 +129,6 @@ void init_status_led() {
 
   BaseType_t ret = xTaskCreatePinnedToCore(status_led_task, "STATUS_LED", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@STATUS_LED Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@STATUS_LED Failed to create task");
   }
 }

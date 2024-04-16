@@ -28,7 +28,7 @@
 static void led_tester_task(void *param);
 
 void init_led_tester() {
-  ESP_LOGI(SGO_LOG_EVENT, "@LED_TESTER Initializing led_tester module\n");
+  ESP_LOGI(SGO_LOG_NOSEND, "@LED_TESTER Initializing led_tester module\n");
 
   xTaskCreatePinnedToCore(led_tester_task, "LED_TESTER", 4096, NULL, 10, NULL, 1);
 }

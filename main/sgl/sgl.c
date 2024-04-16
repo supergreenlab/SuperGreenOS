@@ -40,7 +40,7 @@ void set_command_update(CommandType type, UpdateFunction fn) {
 static void sgl_task(void *param);
 
 void init_sgl() {
-  ESP_LOGI(SGO_LOG_EVENT, "@SGL Initializing sgl module");
+  ESP_LOGI(SGO_LOG_NOSEND, "@SGL Initializing sgl module");
 
   xTaskCreatePinnedToCore(sgl_task, "SGL", 4096, NULL, 10, NULL, 1);
 }
@@ -64,7 +64,7 @@ static void sgl_task(void *param) {
 }
 
 void mqtt_message(const char *str, int len) {
-  //ESP_LOGI(SGO_LOG_EVENT, "@SGL MQTT received %.*s", len, str);
+  //ESP_LOGI(SGO_LOG_NOSEND, "@SGL MQTT received %.*s", len, str);
   if (str[0] < CMD_COUNT && commandFns[(int)str[0]] != NULL) {
     commandFns[(int)str[0]](str, len);
   }

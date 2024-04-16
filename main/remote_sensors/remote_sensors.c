@@ -51,7 +51,7 @@ void setRemoteSensorData(const char *msg, int len) {
 }
 
 void init_remote_sensors() {
-  ESP_LOGI(SGO_LOG_EVENT, "@REMOTE_SENSORS Initializing remote_sensors module");
+  ESP_LOGI(SGO_LOG_NOSEND, "@REMOTE_SENSORS Initializing remote_sensors module");
 
   set_command_update(GET_SENSORS, updateRemoteSensorsFn);
   set_command(SET_SENSORS, setRemoteSensorData);

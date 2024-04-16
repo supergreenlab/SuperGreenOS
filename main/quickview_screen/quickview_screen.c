@@ -47,7 +47,7 @@ void setPlantDateData(const char *msg, int len) {
 }
 
 void init_quickview_screen() {
-  ESP_LOGI(SGO_LOG_EVENT, "@QUICKVIEW_SCREEN Initializing quickview_screen module");
+  ESP_LOGI(SGO_LOG_NOSEND, "@QUICKVIEW_SCREEN Initializing quickview_screen module");
 
   add_screen_init(init_metrics_page);
   set_command_update(GET_PLANT_DATE, updatePlantDateFn);

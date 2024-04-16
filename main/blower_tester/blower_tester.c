@@ -28,7 +28,7 @@
 static void blower_tester_task(void *param);
 
 void init_blower_tester() {
-  ESP_LOGI(SGO_LOG_EVENT, "@BLOWER_TESTER Initializing blower_tester module\n");
+  ESP_LOGI(SGO_LOG_NOSEND, "@BLOWER_TESTER Initializing blower_tester module\n");
 
   xTaskCreatePinnedToCore(blower_tester_task, "BLOWER_TESTER", 4096, NULL, 10, NULL, 1);
 }

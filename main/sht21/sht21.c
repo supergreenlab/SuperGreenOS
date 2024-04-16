@@ -33,7 +33,7 @@
 static uint16_t read_sht21(int i2cId);
 
 void init_sht21(int i2cId) {
-  ESP_LOGI(SGO_LOG_EVENT, "@SHT21 Initializing sht21 i2c device");
+  ESP_LOGI(SGO_LOG_NOSEND, "@SHT21 Initializing sht21 i2c device");
   // TODO: write you setup code here
 }
 
@@ -52,7 +52,7 @@ static bool send_sht21_cmd(int i2cId, uint8_t cmd_b) {
     ESP_LOGW(SGO_LOG_NOSEND, "@SHT21_%d Write bus is busy", i2cId);
     return false;
   } else if (ret != ESP_OK) {
-    //ESP_LOGI(SGO_LOG_EVENT, "@SHT21_%d Write failed", i2cId);
+    //ESP_LOGI(SGO_LOG_NOSEND, "@SHT21_%d Write failed", i2cId);
     return false;
   }
   return true;

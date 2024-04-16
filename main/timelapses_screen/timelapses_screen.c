@@ -67,7 +67,7 @@ void updateTimelapseFn() {
 }
 
 void init_timelapses_screen() {
-  ESP_LOGI(SGO_LOG_EVENT, "@TIMELAPSES_SCREEN Initializing timelapses_screen module");
+  ESP_LOGI(SGO_LOG_NOSEND, "@TIMELAPSES_SCREEN Initializing timelapses_screen module");
 
   add_screen_init(init_timelapses_page);
   set_command_update(GET_TIMELAPSE, updateTimelapseFn);

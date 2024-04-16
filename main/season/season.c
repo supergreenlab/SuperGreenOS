@@ -87,12 +87,12 @@ int get_output_for_time(int boxId) {
 }
 
 void start_season(int boxId) {
-  ESP_LOGI(SGO_LOG_EVENT, "@SEASON start_season");
+  ESP_LOGI(SGO_LOG_NOSEND, "@SEASON start_season");
   season_task();
 }
 
 void stop_season(int boxId) {
-  ESP_LOGI(SGO_LOG_EVENT, "@SEASON stop_season");
+  ESP_LOGI(SGO_LOG_NOSEND, "@SEASON stop_season");
 }
 
 void season_task(int boxId) {

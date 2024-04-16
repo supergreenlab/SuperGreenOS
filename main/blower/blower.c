@@ -77,16 +77,16 @@ void refresh_blower() {
 }
 
 void init_blower() {
-  ESP_LOGI(SGO_LOG_EVENT, "@BLOWER Initializing blower task");
+  ESP_LOGI(SGO_LOG_NOSEND, "@BLOWER Initializing blower task");
 
   cmd = xQueueCreate(10, sizeof(blower_cmd));
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@BLOWER Unable to create blower queue");
+    ESP_LOGE(SGO_LOG_NOSEND, "@BLOWER Unable to create blower queue");
   }
 
   BaseType_t ret = xTaskCreatePinnedToCore(blower_task, "BLOWER", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@BLOWER Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@BLOWER Failed to create task");
   }
 }
 

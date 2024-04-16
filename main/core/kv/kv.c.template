@@ -47,7 +47,7 @@ void open_kv() {
 
   err = nvs_open("kv_store", NVS_READWRITE, &kv_handle);
   if (err != ESP_OK) {
-    ESP_LOGI(SGO_LOG_EVENT, "@KV Error (%s) opening NVS handle!\n", esp_err_to_name(err));
+    ESP_LOGI(SGO_LOG_NOSEND, "@KV Error (%s) opening NVS handle!\n", esp_err_to_name(err));
   }
 }
 

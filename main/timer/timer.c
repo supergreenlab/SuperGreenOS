@@ -46,10 +46,10 @@ static void stop(int boxId, enum timer t);
 static void start(int boxId, enum timer t);
 
 void init_timer() {
-  ESP_LOGI(SGO_LOG_EVENT, "@TIMER Initializing timer task");
+  ESP_LOGI(SGO_LOG_NOSEND, "@TIMER Initializing timer task");
   cmd = xQueueCreate(10, sizeof(timer_cmd));
   if (cmd == NULL) {
-    ESP_LOGE(SGO_LOG_EVENT, "@TIMER Unable to create timer queue");
+    ESP_LOGE(SGO_LOG_NOSEND, "@TIMER Unable to create timer queue");
   }
 
   for (int i = 0; i < N_BOX; ++i) {
@@ -59,7 +59,7 @@ void init_timer() {
 
   BaseType_t ret = xTaskCreatePinnedToCore(timer_task, "TIMER", 4096, NULL, tskIDLE_PRIORITY, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@TIMER Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@TIMER Failed to create task");
   }
 }
 

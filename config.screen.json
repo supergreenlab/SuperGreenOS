@@ -607,7 +607,7 @@
                 },
                 "basedir": {
                     "name": "ota_basedir",
-                    "default": "/ScreenV2.1",
+                    "default": "/ScreenV1",
                     "remote": false,
                     "type": "string",
                     "nosend": false,

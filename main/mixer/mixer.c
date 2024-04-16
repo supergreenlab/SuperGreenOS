@@ -40,11 +40,11 @@ static void set_duty(int i, int duty);
 // Private methods
 
 void init_mixer() {
-  ESP_LOGI(SGO_LOG_EVENT, "@MIXER Initializing mixer module");
+  ESP_LOGI(SGO_LOG_NOSEND, "@MIXER Initializing mixer module");
 
   BaseType_t ret = xTaskCreatePinnedToCore(mixer_task, "MIXER", 4096, NULL, tskIDLE_PRIORITY, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@MIXER Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@MIXER Failed to create task");
   }
 }
 

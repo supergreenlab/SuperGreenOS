@@ -38,7 +38,7 @@ static void setup(void);
 void init_time() {
   BaseType_t ret = xTaskCreatePinnedToCore(time_task, "TIME", 4096, NULL, 10, NULL, 1);
   if (ret != pdPASS) {
-    ESP_LOGE(SGO_LOG_EVENT, "@TIME Failed to create task");
+    ESP_LOGE(SGO_LOG_NOSEND, "@TIME Failed to create task");
   }
 }
 
@@ -49,7 +49,7 @@ static void time_task(void *param) {
     settimeofday(&tv, NULL);
     BaseType_t ret = xTaskCreatePinnedToCore(ntp_task, "NTP", 4096, NULL, 10, NULL, 1);
     if (ret != pdPASS) {
-      ESP_LOGE(SGO_LOG_EVENT, "@TIME Failed to create NTP task");
+      ESP_LOGE(SGO_LOG_NOSEND, "@TIME Failed to create NTP task");
     }
   } else {
     wait_connected();
@@ -73,7 +73,7 @@ static void ntp_task(void *param) {
 
 static void setup(void) {
   const char *NTP_SERVER = "pool.ntp.org";
-  ESP_LOGI(SGO_LOG_EVENT, "@TIME Initializing SNTP\n");
+  ESP_LOGI(SGO_LOG_NOSEND, "@TIME Initializing SNTP\n");
   sntp_setoperatingmode(SNTP_OPMODE_POLL);
   sntp_setservername(0, (char *)NTP_SERVER);
   sntp_init();
@@ -82,7 +82,7 @@ static void setup(void) {
 /* ble callbacks */
 
 int on_set_time(int value) {
-  //ESP_LOGI(SGO_LOG_EVENT, "@TIMER on_set_time = %d", (int)value);
+  //ESP_LOGI(SGO_LOG_NOSEND, "@TIMER on_set_time = %d", (int)value);
   struct timeval tv = { .tv_sec = value, .tv_usec = 0 };
   settimeofday(&tv, NULL);
   return value;
