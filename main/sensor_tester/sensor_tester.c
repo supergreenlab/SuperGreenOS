@@ -19,6 +19,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+#include "../core/modules.h"
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
 

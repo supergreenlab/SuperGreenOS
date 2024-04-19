@@ -20,6 +20,7 @@
 
 #include "../core/kv/kv.h"
 #include "../core/log/log.h"
+#include "../core/modules.h"
 
 #include "../status_led/status_led.h"
 

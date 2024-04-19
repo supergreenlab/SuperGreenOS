@@ -18,6 +18,7 @@
 
 #include "./core/wifi/wifi.h"
 #include "./core/kv/kv.h"
+#include "./core/modules.h"
 #include "./core/log/log.h"
 
 #include "./status_led/status_led.h"
