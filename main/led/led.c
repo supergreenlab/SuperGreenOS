@@ -46,6 +46,8 @@
 #define SPEED_MODE LEDC_HIGH_SPEED_MODE
 #define LEDC_CHANNEL(i) LEDC_CHANNEL_0+i
 
+#define ANTI_PSU_FRY_DURATION (10*1000*1000)
+
 typedef struct {
   int box_id;
   int led_id;
@@ -76,12 +78,17 @@ static void update_led(int i) {
     is_sunglasses_mode = now - box_led_dim < 1200;
   }
   if (get_led_fade(i) == 1) {
+    if (is_sunglasses_mode) {
+      duty = min(15, duty);
+    } else if (esp_timer_get_time() < ANTI_PSU_FRY_DURATION) {
+      double progress = (double)esp_timer_get_time() / (double)ANTI_PSU_FRY_DURATION;
+      progress = max(0.2, progress);
+      duty = duty * progress;
+      ESP_LOGI(SGO_LOG_NOSEND, "Anti PSU-fry system duty override: %f", duty);
+    }
+
     double real_duty = LED_MIN_DUTY + (double)(LED_MAX_DUTY - LED_MIN_DUTY) * duty / 100;
     //ESP_LOGI(SGO_LOG_NOSEND, "@LED REAL_DUTY_%d=%d", i, (int)real_duty);
-
-    if (is_sunglasses_mode) {
-      real_duty = min(15, real_duty);
-    }
 
     fade_no_wait_led(i, real_duty);
   } else {
@@ -100,7 +107,7 @@ static void led_task(void *param) {
   cmd_refresh_led c;
 
   while(1) {
-    if (!xQueueReceive(cmd, &c, 5000 / portTICK_PERIOD_MS)) {
+    if (!xQueueReceive(cmd, &c, 1000 / portTICK_PERIOD_MS)) {
       c.box_id = -1;
       c.led_id = -1;
     }

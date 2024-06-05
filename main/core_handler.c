@@ -21,9 +21,9 @@
 #include "./core/modules.h"
 #include "./core/log/log.h"
 
-#include "./status_led/status_led.h"
-
 #ifdef MODULE_STATUS_LED
+
+#include "./status_led/status_led.h"
 
 status_led_timeline connecting_timeline = {
   .reset = true,
