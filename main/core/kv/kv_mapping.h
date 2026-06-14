@@ -79,7 +79,7 @@ typedef struct {
   uint32_t (*getter)();
 } kvui32_mapping;
 
-extern const kvui32_mapping kviui32_mappings[];
+extern const kvui32_mapping kvui32_mappings[];
 const kvui32_mapping *get_kvui32_mapping(const char *name, bool remote);
 
 typedef struct {
