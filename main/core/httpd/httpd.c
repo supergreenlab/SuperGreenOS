@@ -104,6 +104,69 @@ static void find_str_param(const char *uri, const char *name, char *out, size_t 
   *len = i;
 }
 
+// Emit a JSON-escaped string value (without the surrounding quotes).
+static void send_json_string(httpd_req_t *req, const char *s) {
+  char esc[8];
+  for (; *s; ++s) {
+    if (*s == '"' || *s == '\\') {
+      esc[0] = '\\'; esc[1] = *s;
+      httpd_resp_send_chunk(req, esc, 2);
+    } else if ((unsigned char)*s < 0x20) {
+      int n = snprintf(esc, sizeof(esc), "\\u%04x", (unsigned char)*s);
+      httpd_resp_send_chunk(req, esc, n);
+    } else {
+      httpd_resp_send_chunk(req, s, 1);
+    }
+  }
+}
+
+// Stream every readable integer key of a mapping table as JSON "name":value.
+#define SGO_DUMP_INTS(arr) \
+  for (int _i = 0; arr[_i].name != NULL; ++_i) { \
+    if (arr[_i].getter == NULL) continue; \
+    int _n = snprintf(buf, sizeof(buf), "%s\"%s\":%lld", \
+                      first ? "" : ",", arr[_i].name, (long long)arr[_i].getter()); \
+    if (_n > 0) httpd_resp_send_chunk(req, buf, _n); \
+    first = false; \
+  }
+
+// GET /all -> one JSON object with every readable key/value. Lets clients read
+// the whole state in a single request instead of one HTTP call per key.
+static esp_err_t bulk_get_handler(httpd_req_t *req) {
+  if (auth_request(req) == false) {
+    return 0;
+  }
+  httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+  httpd_resp_set_type(req, "application/json");
+
+  char buf[80];
+  bool first = true;
+
+  httpd_resp_send_chunk(req, "{", 1);
+
+  SGO_DUMP_INTS(kvi8_mappings);
+  SGO_DUMP_INTS(kvui8_mappings);
+  SGO_DUMP_INTS(kvi16_mappings);
+  SGO_DUMP_INTS(kvui16_mappings);
+  SGO_DUMP_INTS(kvi32_mappings);
+  SGO_DUMP_INTS(kvui32_mappings);
+
+  for (int i = 0; kvs_mappings[i].name != NULL; ++i) {
+    if (kvs_mappings[i].getter == NULL) continue;
+    char val[MAX_KVALUE_SIZE] = {0};
+    kvs_mappings[i].getter(val, MAX_KVALUE_SIZE - 1);
+    int n = snprintf(buf, sizeof(buf), "%s\"%s\":\"", first ? "" : ",", kvs_mappings[i].name);
+    if (n > 0) httpd_resp_send_chunk(req, buf, n);
+    send_json_string(req, val);
+    httpd_resp_send_chunk(req, "\"", 1);
+    first = false;
+  }
+
+  httpd_resp_send_chunk(req, "}", 1);
+  httpd_resp_send_chunk(req, NULL, 0); // finalize the chunked response
+  return ESP_OK;
+}
+
 static esp_err_t geti_handler(httpd_req_t *req) {
   if (auth_request(req) == false) {
     return 0;
@@ -285,6 +348,13 @@ static esp_err_t get_ip_handler(httpd_req_t *req) {
   return ESP_OK;
 }
 
+httpd_uri_t uri_bulk = {
+  .uri      = "/all",
+  .method   = HTTP_GET,
+  .handler  = bulk_get_handler,
+  .user_ctx = NULL
+};
+
 httpd_uri_t uri_geti = {
   .uri      = "/i",
   .method   = HTTP_GET,
@@ -356,9 +426,10 @@ static void start_webserver_task(void *args) {
   httpd_config_t config = HTTPD_DEFAULT_CONFIG();
   config.lru_purge_enable = true;
   config.uri_match_fn = httpd_uri_match_wildcard;
-  config.max_uri_handlers = 9;
+  config.max_uri_handlers = 10;
 
   if (httpd_start(&server, &config) == ESP_OK) {
+    httpd_register_uri_handler(server, &uri_bulk);
     httpd_register_uri_handler(server, &uri_geti);
     httpd_register_uri_handler(server, &uri_seti);
     httpd_register_uri_handler(server, &uri_getstr);
